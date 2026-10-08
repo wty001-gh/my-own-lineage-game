@@ -1,0 +1,19 @@
+# 部署包／備份
+*.zip
+deploy-*/
+backup-*/
+*.bak
+*~
+# 開發暫存／工作資料夾（不屬遊戲本體）
+work/
+from-pc/
+patches/
+slices/
+node_modules/
+# 測試截圖／暫存
+*-contact.jpg
+tmp/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db

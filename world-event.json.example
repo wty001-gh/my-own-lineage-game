@@ -1,0 +1,21 @@
+{
+  "_schema": "Idle Lineage world-event override v1",
+  "_docs": "Place as world-event.json next to index.html to override this week's 2 events. Ignored if missing or invalid. week optional (if set, only applies that ISO week key e.g. 2026-W41).",
+  "week": null,
+  "events": [
+    {
+      "cat": "map",
+      "id": "mb_custom",
+      "map": "dragon_valley",
+      "label": "GM指定：龍之谷雙倍",
+      "exp": 2,
+      "drop": 2
+    },
+    {
+      "cat": "rule",
+      "id": "ru_custom",
+      "label": "GM指定：強化成功率 +5%",
+      "enhanceBonus": 5
+    }
+  ]
+}

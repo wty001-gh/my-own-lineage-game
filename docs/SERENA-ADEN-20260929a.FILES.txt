@@ -1,0 +1,103 @@
+serena-aden-20260929a
+v3.8.65 蒼淵金杖魔女 · 塞蕾娜 → 亞丁城堡
+BOX only — no PC CopyFromBox
+
+js/00-data.js
+js/01-drops-config.js
+js/02-stats-recompute.js
+js/09-vfx-render.js
+index.html
+index-pc.html
+docs/SERENA-ADEN-20260929a.md
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/_icon.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/attack_0.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/attack_1.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/attack_2.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/attack_3.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/attack_4.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/attack_5.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/attack_6.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/attack_7.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/attack_s_0.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/attack_s_1.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/attack_s_2.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/attack_s_3.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/attack_s_4.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/attack_s_5.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/attack_s_6.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/attack_s_7.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_0.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_1.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_10.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_2.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_3.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_4.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_5.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_6.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_7.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_8.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_9.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_s_0.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_s_1.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_s_10.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_s_2.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_s_3.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_s_4.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_s_5.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_s_6.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_s_7.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_s_8.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/death_s_9.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/hurt_0.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/hurt_1.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/hurt_s_0.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/hurt_s_1.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/idle_0.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/idle_1.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/idle_2.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/idle_3.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/idle_4.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/idle_5.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/idle_6.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/idle_7.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/idle_s_0.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/idle_s_1.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/idle_s_2.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/idle_s_3.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/idle_s_4.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/idle_s_5.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/idle_s_6.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/idle_s_7.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_0.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_1.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_10.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_11.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_12.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_2.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_3.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_4.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_5.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_6.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_7.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_8.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_9.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_s_0.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_s_1.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_s_10.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_s_11.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_s_12.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_s_2.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_s_3.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_s_4.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_s_5.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_s_6.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_s_7.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_s_8.png
+assets/anim/蒼淵金杖魔女 · 塞蕾娜/skill_s_9.png
+assets/icons/monsters/蒼淵金杖魔女 · 塞蕾娜.png
+assets/icons/armors/蒼淵頭箍.png
+assets/icons/armors/蒼淵斗篷.png
+assets/icons/armors/蒼淵手套.png
+assets/icons/armors/蒼淵長靴.png
+assets/icons/weapons/蒼淵金杖.png
+assets/icons/accessories/蒼淵魔女的金杖遺穗.png

@@ -1,0 +1,33 @@
+{
+  "name": "Idle Lineage / 放置天堂",
+  "short_name": "放置天堂",
+  "description": "放置天堂 - 日出之國（個人自用 PWA）",
+  "lang": "zh-Hant",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1a0f2e",
+  "theme_color": "#6d28d9",
+  "icons": [
+    {
+      "src": "assets/icons/pwa/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/pwa/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/pwa/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
