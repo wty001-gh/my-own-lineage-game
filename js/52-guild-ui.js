@@ -96,14 +96,14 @@ function detailHtml() {
         return `<div class="gd-mem${on ? ' on' : ''}${m.why ? ' no' : ''}" onclick="${m.why ? '' : `gdUiPick('${m.slot}')`}"><div class="av" style="background-image:url('${esc(GD.memberPortrait(m))}')"></div>
           <div style="flex:1;min-width:0"><div>${on ? '✅ ' : ''}${esc(m.name)}・${GD.CLS_LABEL[m.cls] || m.cls} Lv${m.lv} ${'♥'.repeat(Math.min(5, m.tr.affLv))}</div>
           <div class="tr">${GD.TRAIT_N[c.trait]} ${m.tr[c.trait]}・${GD.TRAIT_N[c.sub]} ${m.tr[c.sub]}・體力 ${Math.max(0, m.tr.stamina - m.st.used)}/${m.tr.stamina}${m.why ? '・<span style="color:#f87171">' + m.why + '</span>' : ''}</div></div></div>`;
-    }).join('') : '<div style="color:#a8a29e">沒有其他存檔角色可作為成員（建立更多角色即會加入公會）。</div>';
+    }).join('') : '<div style="color:#a8a29e">沒有可派遣的成員。</div>';
     h += `<div>預計成功率：<b style="font-size:16px;color:${rate >= 70 ? '#4ade80' : rate >= 40 ? '#fbbf24' : '#f87171'}">${picked.length ? rate + '%' : '—'}</b></div><div class="gd-rate"><i style="width:${rate}%"></i></div>
       <div style="display:flex;gap:6px"><button onclick="gdUiAuto()">⚡ 自動編成</button><button class="on" style="flex:1;padding:7px" ${picked.length ? '' : 'disabled'} onclick="gdUiDispatch()">📤 派遣</button><button onclick="gdUiKeep('${c.id}')">${c.kept ? '取消收藏' : '📌 收藏'}</button></div>`;
     return h;
 }
 function membersHtml() {
     let mems = GD.members(true);
-    if (!mems.length) return '<div style="color:#a8a29e;padding:20px">沒有其他存檔角色。建立新角色後會自動成為公會成員。</div>';
+    if (!mems.length) return '<div style="color:#a8a29e;padding:20px">沒有可派遣的成員。</div>';
     let bar = (k, v) => `<div class="gd-bar"><b>${GD.TRAIT_N[k]}</b><span><i style="width:${v}%"></i></span>${v}</div>`;
     return `<div class="gd-mgrid">${mems.map(m => `<div class="gd-mc"><div class="pi" style="background-image:url('${esc(GD.memberPortrait(m))}')"></div><div class="bd">
       <div style="font-weight:bold">${esc(m.name)} <span style="color:#a8a29e;font-weight:normal">${GD.CLS_LABEL[m.cls] || m.cls} Lv${m.lv}</span></div>

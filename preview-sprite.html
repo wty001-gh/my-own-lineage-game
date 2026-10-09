@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>騎士 sprite 預覽</title>
+<style>
+  body { margin:0; background:#16141a; color:#e7e5e4; font-family:sans-serif; }
+  h1 { font-size:18px; margin:12px 16px 4px; color:#fde68a; }
+  p { margin:0 16px 12px; color:#a8a29e; font-size:13px; }
+  .row { display:flex; align-items:center; gap:12px; padding:8px 16px; border-top:1px solid #292524; }
+  .row b { width:72px; color:#fcd34d; }
+  .stage { position:relative; width:200px; height:240px; background:#0c0a09; border:1px solid #44403c; }
+  .stage img { position:absolute; left:0; top:0; width:200px; height:240px; }
+  .stage .sh { mix-blend-mode:multiply; }
+  canvas.strip { background:#0c0a09; border:1px solid #44403c; }
+</style>
+</head>
+<body>
+<h1>sprite 預覽　200×240　8 fps</h1>
+<p>綠甲女騎士、金髮女騎士。idle 8 · attack 10 · skill 12 · hurt 2 · death 10（_s 影子層疊在本體下）</p>
+<div id="rows"></div>
+<script>
+const ACTS = [
+  ['idle', 8], ['attack', 10], ['skill', 12], ['hurt', 2], ['death', 10]
+];
+const FPS = 8;
+const NAMES = ['綠甲女騎士', '金髮女騎士'];
+const root = document.getElementById('rows');
+const stages = [];
+for (const who of NAMES) {
+  const h = document.createElement('h1'); h.textContent = who; root.append(h);
+  const base = 'assets/anim/' + encodeURIComponent(who) + '/';
+  ACTS.forEach(([name, n]) => stages.push(Object.assign(make(base, name, n), {n})));
+}
+function make(base, name, n) {
+  const row = document.createElement('div'); row.className = 'row';
+  const b = document.createElement('b'); b.textContent = name;
+  const stage = document.createElement('div'); stage.className = 'stage';
+  const sh = document.createElement('img'); sh.className = 'sh';
+  const bd = document.createElement('img');
+  stage.append(sh, bd);
+  const strip = document.createElement('canvas'); strip.className = 'strip'; strip.height = 120;
+  row.append(b, stage, strip); root.append(row);
+  const body = [], shadow = [];
+  for (let i = 0; i < n; i++) {
+    const ib = new Image(); ib.src = base + name + '_' + i + '.png'; body.push(ib);
+    const is = new Image(); is.src = base + name + '_s_' + i + '.png'; shadow.push(is);
+  }
+  return { name, n, sh, bd, strip, body, shadow };
+}
+function drawStrips() {
+  for (const s of stages) {
+    const w = 100;
+    s.strip.width = w * s.n;
+    const g = s.strip.getContext('2d');
+    g.clearRect(0, 0, s.strip.width, s.strip.height);
+    s.body.forEach((im, i) => { if (im.complete && im.naturalWidth) g.drawImage(im, i * w, 0, w, 120); });
+  }
+}
+let t0 = performance.now();
+function tick(now) {
+  const f = Math.floor((now - t0) / (1000 / FPS));
+  for (const s of stages) {
+    const i = f % s.n;
+    const b = s.body[i], h = s.shadow[i];
+    if (b && b.complete && s.bd.src !== b.src) s.bd.src = b.src;
+    if (h && h.complete && s.sh.src !== h.src) s.sh.src = h.src;
+  }
+  requestAnimationFrame(tick);
+}
+setTimeout(drawStrips, 400);
+setTimeout(drawStrips, 1200);
+requestAnimationFrame(tick);
+</script>
+</body>
+</html>

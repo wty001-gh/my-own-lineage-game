@@ -1018,7 +1018,11 @@ const TRUE_SHANNA_FORM = {
     n: "真夏納", lv: 85, trueShanna: true, controlOnly: true, classMorph: true,
     wlk: 16, castApm: 85, supportCastApm: 75, c: "text-yellow-400"
 };
-const CONTROL_ONLY_POLY_FORMS = [SHANNA_FORM, TRUE_SHANNA_FORM];
+// 🧪 v3.8.119 原型：綠甲女騎士（assets/anim 與 assets/morphanim 同名幀）。只出現在變形控制戒指選單，不進隨機卷軸。
+const GREEN_KNIGHT_FORM = { n: "綠甲女騎士", lv: 1, controlOnly: true, atk: 18, wlk: 16, cast: 10, stun: 5, c: "text-emerald-300" };
+// 速度跟真夏納同一張表（TRUE_SHANNA_APM／施法 85／輔助 75）。不設 classMorph，外觀仍用 assets/morphanim/金髮女騎士。
+const BLONDE_KNIGHT_FORM = { n: "金髮女騎士", lv: 1, controlOnly: true, trueShanna: true, castApm: 85, supportCastApm: 75, c: "text-sky-300" };
+const CONTROL_ONLY_POLY_FORMS = [SHANNA_FORM, TRUE_SHANNA_FORM, GREEN_KNIGHT_FORM, BLONDE_KNIGHT_FORM];
 const SHANNA_APM_PROFILES = {
     full:   { '單手劍':96, '單手鈍器':84, '雙手鈍器':84, '弓':75, '十字弓':75, '單手矛':90, '雙手矛':90, '魔杖':96, '匕首':102, '雙手劍':84 },
     six:    { '單手劍':96, '單手鈍器':84, '雙手鈍器':84, '弓':75, '十字弓':75, '單手矛':90, '雙手矛':90, '魔杖':96, '匕首':102 },

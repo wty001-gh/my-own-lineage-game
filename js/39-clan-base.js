@@ -38,7 +38,7 @@ const CB_BUILDINGS = {
     },
     explore: {
         id: 'explore', n: '委託板', emoji: '📋',
-        desc: '（原探險公會）冒險者公會委託板每日 05:00（台北）刷新 D–S 級委託，派遣其他存檔角色（傭兵）執行（離線亦計時）。等級提升委託數量、派遣欄與收益。',
+        desc: '（原探險公會）冒險者公會委託板每日 05:00（台北）刷新 D–S 級委託，派遣自己與隊伍中的傭兵執行（離線亦計時，人不離場）。等級提升委託數量、派遣欄與收益。',
         effect: lv => `委託 ${Math.min(12, 6 + Math.floor(lv * 0.6))} 張・派遣欄 ${Math.min(6, 2 + Math.floor(lv / 2))}・收益 ×${(1 + lv * 0.05).toFixed(2)}`,
         nextEffect: lv => lv >= CB_MAX_LV ? null : `委託 ${Math.min(12, 6 + Math.floor((lv + 1) * 0.6))} 張・派遣欄 ${Math.min(6, 2 + Math.floor((lv + 1) / 2))}・收益 ×${(1 + (lv + 1) * 0.05).toFixed(2)}`
     },

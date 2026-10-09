@@ -1,9 +1,24 @@
 # Idle Lineage（放置天堂）
 
-以《天堂》為題材的網頁放置型 RPG：自動掛機打怪、轉職與技能、裝備強化、怪物卡片、遺物、傭兵（多存檔角色互相協力）、血盟據點、無盡試煉塔、世界事件、天氣晝夜，以及冒險者公會（委託板、野外頭目懸賞與蓄力打斷機制、公會設施、成員好感度）。
+以《天堂》為題材的網頁放置型 RPG：自動掛機打怪、轉職與技能、裝備強化、怪物卡片、遺物、傭兵（多存檔角色互相協力）、血盟據點、無盡試煉塔、世界事件、天氣晝夜，以及冒險者公會（委託板、野外頭目懸賞與蓄力打斷、公會設施、成員好感度）。另含變形控制戒指可選的自訂角色動畫（綠甲女騎士、金髮女騎士）。
 
-- 目前版本：**v3.8.119**（快取標籤 `guild.20261008c`，見 `version.json`）
+- 目前版本：**v3.8.122**（快取標籤 `guild.20261008f`，見 `version.json`）
 - 純前端（HTML／CSS／JavaScript），存檔使用瀏覽器 localStorage，無需伺服器端程式。
+
+## 給其他 Grok／Cursor bot：如何 clone
+
+此 repo 為 **私人**（`wty001-gh/idle-lineage`）。要拉程式碼需具備以下其一：
+
+1. 以已登入、且對此 repo 有讀取權限的 `gh` 帳號操作（作者本機是 `wty001-gh`，scope 含 `repo`）：
+   ```bash
+   gh auth status
+   gh repo clone wty001-gh/idle-lineage
+   # 或
+   git clone https://github.com/wty001-gh/idle-lineage.git
+   ```
+2. 被邀請為 collaborator 後，用自己的 GitHub 帳號／token clone。
+
+未授權的 bot／帳號會得到 404，這是預期行為。
 
 ## 執行方式
 
@@ -16,23 +31,24 @@
 | 路徑 | 內容 |
 |---|---|
 | `index-pc.html`／`index.html`／`index-live.html` | 遊戲入口 |
-| `js/` | 遊戲主程式（依檔名序號載入） |
-| `afk-*.js` | 外掛式功能模組 |
+| `js/` | 遊戲主程式（依檔名序號載入；含 `51–54` 公會） |
+| `afk-*.js` | 外掛式功能模組（完整清單見 PC 部署；本 repo 目前僅含開發機上的子集） |
 | `css/` | 樣式 |
-| `assets/` | 圖片、動畫幀、立繪、圖示 |
-| `docs/` | 設計與資料表文件 |
+| `assets/` | 圖片、動畫幀（含 `anim/`、`morphanim/` 騎士變形）、立繪、圖示 |
+| `docs/` | 設計與資料表文件（含 `docs/design/guild-v1.md`） |
 | `sw.js`／`manifest.webmanifest` | PWA |
+| `preview-sprite.html` | 騎士 sprite 預覽頁 |
 
-## 尚未納入的檔案
+## 尚未納入的檔案（僅存在於作者 PC）
 
-此版本由開發用工作副本上傳，**部分只存在於作者 PC 的檔案尚未包含**，因此目前無法完整執行：
+同步當下 PC 離線，下列約 94 個 HTML 參照檔尚未從 `idle-lineage-class-20260825-1924` 拷入，**目前無法完整執行完整 PC 版**：
 
-- 原創角色美術、部分怪物圖示、登入畫面與職業 logo 圖片（`assets/logo/`、`assets/start/`、`public/assets/login/` 等）
-- `css/tailwind-built.css`、`css/floating-ui.css`
-- 部分程式檔：`js/17-audio.js`、`js/18-misc-book.js`、`js/19-equipment-window.js`、`js/20-warehouse-window.js`、`js/26-world-channel.js`、`js/28-pvp-arena.js`、`js/29-siege-v2-data.js`、`js/30-siege-v2.js`、`js/31-castle-guards.js`、`js/32-threat.js`、`js/anim-manifest.js`
-- 66 個 `afk-*.js` 外掛模組（例如 `afk-skin.js`、`afk-mobile.js`）
+- 程式：`js/17-audio.js`、`js/18-misc-book.js`、`js/19-equipment-window.js`、`js/20-warehouse-window.js`、`js/26-world-channel.js`、`js/28-pvp-arena.js`、`js/29-siege-v2-data.js`、`js/30-siege-v2.js`、`js/31-castle-guards.js`、`js/32-threat.js`、`js/anim-manifest.js`
+- 樣式：`css/tailwind-built.css`、`css/floating-ui.css`
+- 約 66 個根目錄 `afk-*.js`（例如 `afk-skin.js`、`afk-mobile.js`；repo 已有開發機上的 14 個）
+- 圖片：`assets/logo/*logo.png`、`assets/start/prince/714.png`、`assets/ui/castle-crown.gif`、`public/assets/login/` 等
 
-之後會從 PC 補上這些檔案。
+之後 PC 上線時再補齊並更新本節。
 
 ## 版權
 

@@ -1,5 +1,5 @@
 // ===== 🏛️ v3.8.117 冒險者公會 G1：委託板 MVP（design/guild-v1.md）=====
-// 玩家＝公會長；成員＝其他存檔角色（slotSummary）。每日 05:00（台北）刷新委託；D–S 等級；討伐／護送／採集／調查自動派遣；
+// 玩家＝公會長；成員＝自己、隊伍中的傭兵，以及其他存檔角色（slotSummary）。每日 05:00（台北）刷新委託；D–S 等級；討伐／護送／採集／調查自動派遣；
 // 頭目懸賞（A 簡易／S）＝接受後於野外掛機地圖生成懸賞頭目（js/53，v3.8.118）。收益重用 js/39 cbExpedRewards；忙碌鎖共用 lineage_idle_exped_busy。
 // 存檔：player.guild（缺欄位自動補）；舊探險公會派遣（clanBase.exped）合併顯示於「進行中」並可直接領取（cbExpedClaim）。
 (function () {
@@ -106,23 +106,34 @@ function gdTraits(sum, st) {
 function gdMembers(force) {
     let now = Date.now();
     if (!force && now - _memCache.at < 15000) return _memCache.list;
-    let out = [], lim = (typeof SAVE_SLOT_MAX === 'number' && SAVE_SLOT_MAX > 0) ? SAVE_SLOT_MAX : 16, cur = _cur();
-    let inParty = new Set(((player && player.allies) || []).filter(Boolean).map(a => String(a._slot)));
+    let out = [], seen = new Set(), lim = (typeof SAVE_SLOT_MAX === 'number' && SAVE_SLOT_MAX > 0) ? SAVE_SLOT_MAX : 16, cur = _cur();
+    // 隊伍中不再擋派遣：委託是計時工作，人不離場、不解散傭兵。只擋模式不同、被其他存檔雇用、外出中、體力不足。
     let hired = null; try { if (typeof mercEmploymentMap === 'function') hired = mercEmploymentMap(); } catch (e) {}
     let busy = {}; try { busy = JSON.parse(localStorage.getItem(BUSY_KEY) || '{}') || {}; } catch (e) {}
-    for (let n = 1; n <= lim; n++) {
-        let s = String(n); if (s === cur) continue;
-        let sum = null; try { sum = (typeof slotSummary === 'function') ? slotSummary(n) : null; } catch (e) {}
-        if (!sum || !sum.name || !sum.rawCls) continue;
+    let push = (slot, sum, self) => {
+        let s = String(slot);
+        if (!sum || !sum.name || !sum.rawCls || seen.has(s)) return;
+        seen.add(s);
         let why = '';
-        if (!!sum.classic !== !!(player && player.classicMode)) why = '模式不同';
-        else if (inParty.has(s)) why = '隊伍中';
-        else if (hired && hired[s] && typeof mercSlotHiredByOther === 'function' && mercSlotHiredByOther(s, hired)) why = '受僱中';
+        if (!self && !!sum.classic !== !!(player && player.classicMode)) why = '模式不同';
+        else if (!self && hired && hired[s] && typeof mercSlotHiredByOther === 'function' && mercSlotHiredByOther(s, hired)) why = '受僱中';
         else if (busy[s] && busy[s].endAt > now) why = '外出中';
         let st = gdMemberState(s), tr = gdTraits(sum, st);
         if (!why && st.used >= tr.stamina) why = '體力不足';
-        out.push({ slot: s, name: sum.name, cls: sum.rawCls, lv: Math.max(1, Number(sum.lv) || 1), avatar: sum.avatar, tr, st, why });
+        out.push({ slot: s, name: sum.name, cls: sum.rawCls, lv: Math.max(1, Number(sum.lv) || 1), avatar: sum.avatar, tr, st, why, self: !!self });
+    };
+    if (player && player.cls) push(cur || 'self', { name: player.name || '自己', rawCls: player.cls, lv: player.lv, avatar: player.avatar, classic: !!player.classicMode }, true);
+    for (let n = 1; n <= lim; n++) {
+        if (String(n) === cur) continue;
+        let sum = null; try { sum = (typeof slotSummary === 'function') ? slotSummary(n) : null; } catch (e) {}
+        push(n, sum, false);
     }
+    // 同一存檔裡的傭兵（含沒有獨立存檔位的）：已在上方清單的不重複
+    ((player && player.allies) || []).forEach((a, i) => {
+        if (!a || !a.cls) return;
+        let s = a._slot != null ? String(a._slot) : ('ally' + i);
+        push(s, { name: a.name || a._allyName || ('傭兵' + (i + 1)), rawCls: a.cls, lv: a.lv, avatar: a.avatar, classic: !!(player && player.classicMode) }, false);
+    });
     _memCache = { at: now, list: out };
     return out;
 }
@@ -327,7 +338,7 @@ function gdBountyResult(cid, win, stars) {
     return r;
 }
 
-// ---------- 自動派遣（成員＝其他存檔角色＝傭兵）----------
+// ---------- 自動派遣（自己、隊伍傭兵、其他存檔角色）----------
 function gdAutoPick(card, exclude) {
     exclude = exclude || new Set();
     let free = gdMembers(true).filter(m => !m.why && !exclude.has(m.slot));
@@ -375,7 +386,7 @@ function gdBasePanelHtml(cb, now) {
     gdEnsureBoard();
     let lv = gdBoardLv(), open = g.board.filter(c => !c.taken).length, ready = g.jobs.filter(j => now >= j.endAt).length + (cb.exped || []).filter(e => now >= e.endAt).length;
     let h = '<div class="cb-sec cb-exp-sec" id="cb-exped-panel"><div class="cb-sec-h">📋 委託板 Lv.' + lv + '・冒險者公會 Lv.' + gdLevel(g) + '</div>';
-    h += '<div class="cb-sec-note">每日 05:00 刷新 D–S 級委託；派遣其他存檔角色（傭兵）執行。今日可接 ' + open + ' 張・派遣欄 ' + g.jobs.length + '/' + gdDispatchSlots() + '・名聲 ' + g.fame.toLocaleString() + '</div>';
+    h += '<div class="cb-sec-note">每日 05:00 刷新 D–S 級委託；派遣自己與隊伍中的傭兵（以及其他存檔角色）執行；人留在場上，不影響掛機。今日可接 ' + open + ' 張・派遣欄 ' + g.jobs.length + '/' + gdDispatchSlots() + '・名聲 ' + g.fame.toLocaleString() + '</div>';
     if ((cb.exped || []).length) h += '<div class="cb-sec-note">舊探險派遣 ' + cb.exped.length + ' 件已轉入委託板「進行中」，到時照原規則領取。</div>';
     h += '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px"><button type="button" class="btn cb-btn cb-btn-go" onclick="gdUiOpen()">📋 開啟委託板</button>'
        + '<button type="button" class="btn cb-btn cb-btn-go" onclick="gdAutoDispatchAll();try{renderClanBaseTab()}catch(e){}">⚡ 一鍵自動派遣</button>'

@@ -22,9 +22,9 @@
     <title>放置天堂 - 日出之國</title>
     <link rel="icon" type="image/png" href="assets/favicon.png">   <!-- 🖼️ 瀏覽器分頁圖示(favicon)：把你的圖放到 assets/favicon.png 即生效；可改 href 路徑或副檔名(.ico/.svg) -->
 
-    <link rel="stylesheet" href="css/style.css?v=guild.20261008c">
-    <link rel="stylesheet" href="css/floating-ui.css?v=guild.20261008c">
-    <link rel="stylesheet" href="css/tailwind-built.css?v=guild.20261008c"><!-- 🔧 預編譯 Tailwind（取代執行期 JIT tailwind.js）：只含實際用到的 class，省 407KB runtime + 移除持續掃描 DOM 的成本。置於 style.css 之後以保留原 cascade（utility 平手時勝過自訂 class，與舊 JIT 注入順序一致） -->
+    <link rel="stylesheet" href="css/style.css?v=guild.20261008f">
+    <link rel="stylesheet" href="css/floating-ui.css?v=guild.20261008f">
+    <link rel="stylesheet" href="css/tailwind-built.css?v=guild.20261008f"><!-- 🔧 預編譯 Tailwind（取代執行期 JIT tailwind.js）：只含實際用到的 class，省 407KB runtime + 移除持續掃描 DOM 的成本。置於 style.css 之後以保留原 cascade（utility 平手時勝過自訂 class，與舊 JIT 注入順序一致） -->
 </head>
 <body class="h-screen w-screen overflow-hidden">
 
@@ -181,7 +181,7 @@
         <div id="col-left" class="w-[340px] flex flex-col gap-4">
             <!-- 新增了 id="status-panel"，並加入去底色與加深背景的樣式確保文字可讀 -->
             <div id="status-panel" class="panel bg-cover bg-top bg-no-repeat" style="background-blend-mode: multiply; background-color: rgba(30, 41, 59, 0.85);">
-                <div class="panel-header text-center flex justify-between bg-transparent border-b border-slate-700"><span class="flex items-center shrink-0"><span id="st-classname">職業</span><span id="classic-badge" class="hidden font-bold ml-1" style="color:#fbbf24;text-shadow:0 0 5px rgba(251,191,36,0.7);font-size:0.85rem;line-height:1;" title="經典模式（硬核）：死亡損失該等級 5% 最大經驗（不降等）、無祝福/精通/席琳；掉落率、經驗與金幣獲得與一般模式相同">⚔經典</span></span><span id="victory-badge" class="hidden font-bold" style="color:#fde68a;text-shadow:0 0 6px rgba(253,230,138,0.85);font-size:1.05rem;line-height:1;align-items:center;gap:0.15rem;white-space:nowrap;flex-shrink:0;" title="城主：血盟持有城堡，全商店 8 折、開放城堡"><img id="victory-badge-crown" src="assets/ui/castle-crown.gif?v=guild.20261008c" alt="" draggable="false" style="width:16px;height:12px;object-fit:contain;image-rendering:pixelated;position:relative;top:-0.08em;filter:drop-shadow(0 1px 1px rgba(69,26,3,.95)) drop-shadow(0 0 3px rgba(250,204,21,.82));"><span id="victory-badge-text" style="line-height:1;">城主</span></span><span id="st-class" class="text-white text-lg font-bold cursor-pointer hover:bg-slate-700/50 rounded px-2 inline-block min-w-[2.5rem] text-right" title="點擊此處修改名稱" onclick="startEditName()"></span></div>
+                <div class="panel-header text-center flex justify-between bg-transparent border-b border-slate-700"><span class="flex items-center shrink-0"><span id="st-classname">職業</span><span id="classic-badge" class="hidden font-bold ml-1" style="color:#fbbf24;text-shadow:0 0 5px rgba(251,191,36,0.7);font-size:0.85rem;line-height:1;" title="經典模式（硬核）：死亡損失該等級 5% 最大經驗（不降等）、無祝福/精通/席琳；掉落率、經驗與金幣獲得與一般模式相同">⚔經典</span></span><span id="victory-badge" class="hidden font-bold" style="color:#fde68a;text-shadow:0 0 6px rgba(253,230,138,0.85);font-size:1.05rem;line-height:1;align-items:center;gap:0.15rem;white-space:nowrap;flex-shrink:0;" title="城主：血盟持有城堡，全商店 8 折、開放城堡"><img id="victory-badge-crown" src="assets/ui/castle-crown.gif?v=guild.20261008f" alt="" draggable="false" style="width:16px;height:12px;object-fit:contain;image-rendering:pixelated;position:relative;top:-0.08em;filter:drop-shadow(0 1px 1px rgba(69,26,3,.95)) drop-shadow(0 0 3px rgba(250,204,21,.82));"><span id="victory-badge-text" style="line-height:1;">城主</span></span><span id="st-class" class="text-white text-lg font-bold cursor-pointer hover:bg-slate-700/50 rounded px-2 inline-block min-w-[2.5rem] text-right" title="點擊此處修改名稱" onclick="startEditName()"></span></div>
                 <div class="status-compact-body text-base">
                     <div class="status-level-row text-slate-400">
                         <span>等級</span><span class="text-white font-bold text-xl" id="st-lv">1</span>
@@ -564,181 +564,181 @@
     })();
     </script>
 
-    <script src="js/anim-manifest.js?v=guild.20261008c"></script>
-    <script src="js/00-data.js?v=guild.20261008c"></script>
-<script src="js/01-drops-config.js?v=guild.20261008c"></script>
-<script src="js/02-stats-recompute.js?v=guild.20261008c"></script>
-    <script src="js/03-combat-core.js?v=guild.20261008c"></script>
-    <script src="js/04-combat-attack.js?v=guild.20261008c"></script>
-<script src="js/05-kill-progression.js?v=guild.20261008c"></script>
-    <script src="js/06-status-allies.js?v=guild.20261008c"></script>
-    <script src="js/07-skills-cast.js?v=guild.20261008c"></script>
-<script src="js/08-items-equip.js?v=guild.20261008c"></script>
-<script src="js/09-vfx-render.js?v=guild.20261008c"></script>
-    <script src="js/10-ui-tabs.js?v=guild.20261008c"></script>
-<script src="js/11-world-map.js?v=guild.20261008c"></script>
-<script src="js/12-npc-quests.js?v=guild.20261008c"></script>
-<script src="js/13-shop-save.js?v=guild.20261008c"></script>
-<script src="js/14-craft-pandora.js?v=guild.20261008c"></script>
-<script src="js/15-cards.js?v=guild.20261008c"></script>
-<script src="js/16-equip-book.js?v=guild.20261008c"></script>
-<script src="js/18-misc-book.js?v=guild.20261008c"></script>
-<script src="js/17-audio.js?v=guild.20261008c"></script>
-<script src="js/19-equipment-window.js?v=guild.20261008c"></script>
-<script src="js/20-warehouse-window.js?v=guild.20261008c"></script>
-<script src="js/21-relic-book.js?v=guild.20261008c"></script>
-    <script src="js/23-summons.js?v=guild.20261008c"></script>
-    <script src="js/22-pets.js?v=guild.20261008c"></script>
-    <script src="js/24-pandora-relic-market.js?v=guild.20261008c"></script>
-    <script src="js/25-clan-system.js?v=guild.20261008c"></script>
-    <script src="js/26-world-channel.js?v=guild.20261008c"></script>
-<script src="js/28-pvp-arena.js?v=guild.20261008c"></script>
-<script src="js/29-siege-v2-data.js?v=guild.20261008c"></script>
-<script src="js/30-siege-v2.js?v=guild.20261008c"></script>
-<script src="js/31-castle-guards.js?v=guild.20261008c"></script>
-<script src="js/32-threat.js?v=guild.20261008c"></script>
-<script src="js/33-relic-recycle.js?v=guild.20261008c"></script>
-<script src="js/34-mob-race.js?v=guild.20261008c"></script>
-<script src="js/35-sherine-enchant.js?v=guild.20261008c"></script>
-<script src="js/36-sherine-combat.js?v=guild.20261008c"></script>
-<script src="js/37-nazarick-enchant.js?v=guild.20261008c"></script>
-<script src="js/38-nazarick-combat.js?v=guild.20261008c"></script>
-<script src="js/39-clan-base.js?v=guild.20261008c"></script>
-<script src="js/40-card-stars.js?v=guild.20261008c"></script>
-<script src="js/41-trial-tower.js?v=guild.20261008c"></script>
-<script src="js/42-world-events.js?v=guild.20261008c"></script>
-<script src="js/43-trial-scrolls.js?v=guild.20261008c"></script>
-<script src="js/45-weather.js?v=guild.20261008c"></script>
-<script src="js/46-rebirth.js?v=guild.20261008c"></script>
-<script src="js/47-portraits.js?v=guild.20261008c"></script>
-<script src="js/51-guild.js?v=guild.20261008c"></script>
-<script src="js/52-guild-ui.js?v=guild.20261008c"></script>
-<script src="js/53-guild-bounty.js?v=guild.20261008c"></script>
-<script src="js/54-guild-bond.js?v=guild.20261008c"></script>
+    <script src="js/anim-manifest.js?v=guild.20261008f"></script>
+    <script src="js/00-data.js?v=guild.20261008f"></script>
+<script src="js/01-drops-config.js?v=guild.20261008f"></script>
+<script src="js/02-stats-recompute.js?v=guild.20261008f"></script>
+    <script src="js/03-combat-core.js?v=guild.20261008f"></script>
+    <script src="js/04-combat-attack.js?v=guild.20261008f"></script>
+<script src="js/05-kill-progression.js?v=guild.20261008f"></script>
+    <script src="js/06-status-allies.js?v=guild.20261008f"></script>
+    <script src="js/07-skills-cast.js?v=guild.20261008f"></script>
+<script src="js/08-items-equip.js?v=guild.20261008f"></script>
+<script src="js/09-vfx-render.js?v=guild.20261008f"></script>
+    <script src="js/10-ui-tabs.js?v=guild.20261008f"></script>
+<script src="js/11-world-map.js?v=guild.20261008f"></script>
+<script src="js/12-npc-quests.js?v=guild.20261008f"></script>
+<script src="js/13-shop-save.js?v=guild.20261008f"></script>
+<script src="js/14-craft-pandora.js?v=guild.20261008f"></script>
+<script src="js/15-cards.js?v=guild.20261008f"></script>
+<script src="js/16-equip-book.js?v=guild.20261008f"></script>
+<script src="js/18-misc-book.js?v=guild.20261008f"></script>
+<script src="js/17-audio.js?v=guild.20261008f"></script>
+<script src="js/19-equipment-window.js?v=guild.20261008f"></script>
+<script src="js/20-warehouse-window.js?v=guild.20261008f"></script>
+<script src="js/21-relic-book.js?v=guild.20261008f"></script>
+    <script src="js/23-summons.js?v=guild.20261008f"></script>
+    <script src="js/22-pets.js?v=guild.20261008f"></script>
+    <script src="js/24-pandora-relic-market.js?v=guild.20261008f"></script>
+    <script src="js/25-clan-system.js?v=guild.20261008f"></script>
+    <script src="js/26-world-channel.js?v=guild.20261008f"></script>
+<script src="js/28-pvp-arena.js?v=guild.20261008f"></script>
+<script src="js/29-siege-v2-data.js?v=guild.20261008f"></script>
+<script src="js/30-siege-v2.js?v=guild.20261008f"></script>
+<script src="js/31-castle-guards.js?v=guild.20261008f"></script>
+<script src="js/32-threat.js?v=guild.20261008f"></script>
+<script src="js/33-relic-recycle.js?v=guild.20261008f"></script>
+<script src="js/34-mob-race.js?v=guild.20261008f"></script>
+<script src="js/35-sherine-enchant.js?v=guild.20261008f"></script>
+<script src="js/36-sherine-combat.js?v=guild.20261008f"></script>
+<script src="js/37-nazarick-enchant.js?v=guild.20261008f"></script>
+<script src="js/38-nazarick-combat.js?v=guild.20261008f"></script>
+<script src="js/39-clan-base.js?v=guild.20261008f"></script>
+<script src="js/40-card-stars.js?v=guild.20261008f"></script>
+<script src="js/41-trial-tower.js?v=guild.20261008f"></script>
+<script src="js/42-world-events.js?v=guild.20261008f"></script>
+<script src="js/43-trial-scrolls.js?v=guild.20261008f"></script>
+<script src="js/45-weather.js?v=guild.20261008f"></script>
+<script src="js/46-rebirth.js?v=guild.20261008f"></script>
+<script src="js/47-portraits.js?v=guild.20261008f"></script>
+<script src="js/51-guild.js?v=guild.20261008f"></script>
+<script src="js/52-guild-ui.js?v=guild.20261008f"></script>
+<script src="js/53-guild-bounty.js?v=guild.20261008f"></script>
+<script src="js/54-guild-bond.js?v=guild.20261008f"></script>
     <!-- ═══════════ 加掛版外掛層（核心永遠是原作者原版；我們的功能全部是外掛疊上去） ═══════════ -->
-    <!-- 此區塊由 scripts/sync-upstream.mjs 於「拉上游 index.html 後」自動注入到 </body> 之前。?v=guild.20261008c"afk-toggles.js?v=guild.20261008c"></script>
+    <!-- 此區塊由 scripts/sync-upstream.mjs 於「拉上游 index.html 後」自動注入到 </body> 之前。?v=guild.20261008f"afk-toggles.js?v=guild.20261008f"></script>
     <!-- afk-banner：非官方轉載橫幅讓位（基礎設施、無開關；不可掛在 afk-mobile 裡，玩家關掉手機版面就會整個頂端被蓋住） -->
-    <script src="afk-banner.js?v=guild.20261008c"></script>
+    <script src="afk-banner.js?v=guild.20261008f"></script>
     <!-- afk-nobanner：隱藏非官方橫幅（預設關；只藏不刪＝不跟 gameLoop 的重掛打架，確認過才生效） -->
-    <script src="afk-nobanner.js?v=guild.20261008c"></script>
+    <script src="afk-nobanner.js?v=guild.20261008f"></script>
     <!-- 存檔解壓快取：必須排在所有會讀 localStorage 的外掛之前（核心每殺一隻怪都重解壓一次血盟狀態） -->
-    <script src="afk-lzcache.js?v=guild.20261008c"></script>
+    <script src="afk-lzcache.js?v=guild.20261008f"></script>
     <!-- afk-synccompress：存檔即時壓縮（預設關）——開啟後把 _lzSet 換回同步壓縮，根治登出/多開後存檔未壓縮爆滿。緊接 lzcache、在任何會存檔的外掛之前 -->
-    <script src="afk-synccompress.js?v=guild.20261008c"></script>
+    <script src="afk-synccompress.js?v=guild.20261008f"></script>
     <!-- afk-clanroster：血盟名冊瘦身——名冊只增不減（上限一萬筆），而野外 PVP 每生一個對手就整包讀改寫一次，越玩越慢。排在 synccompress 之後（它包 _lzSet，我們包 _clanWriteState，互不干擾） -->
-    <script src="afk-clanroster.js?v=guild.20261008c"></script>
+    <script src="afk-clanroster.js?v=guild.20261008f"></script>
     <!-- afk-allyslim：傭兵快照瘦身——傭兵是來源角色的深拷貝，隊長存檔裡每個傭兵都各帶一份廢品標記等用不到的資料（實測佔存檔三成）。包 saveGame，存檔前清空 -->
-    <script src="afk-allyslim.js?v=guild.20261008c"></script>
+    <script src="afk-allyslim.js?v=guild.20261008f"></script>
     <!-- 共用基礎：自製彈窗/確認、dex/wiki 共用資料表（其他外掛依賴，排前面） -->
-    <script src="afk-ui.js?v=guild.20261008c"></script>
-    <script src="afk-extradata.js?v=guild.20261008c"></script>
+    <script src="afk-ui.js?v=guild.20261008f"></script>
+    <script src="afk-extradata.js?v=guild.20261008f"></script>
     <!-- 離線快速結算（自己 monkey-patch 包核心 saveGame/loadGame/changeMap/killMob/gainItem；搭配 maybeSpawnMobs 補丁） -->
-    <script src="afk-offline.js?v=guild.20261008c"></script>
+    <script src="afk-offline.js?v=guild.20261008f"></script>
     <!-- 手機版面 / 返回鍵 -->
-    <script src="afk-mobile.js?v=guild.20261008c"></script>
-    <script src="afk-backnav.js?v=guild.20261008c"></script>
-    <script src="afk-battlehud.js?v=guild.20261008c"></script>
-    <script src="afk-mapbar.js?v=guild.20261008c"></script>
-    <script src="afk-nozoom.js?v=guild.20261008c"></script>
+    <script src="afk-mobile.js?v=guild.20261008f"></script>
+    <script src="afk-backnav.js?v=guild.20261008f"></script>
+    <script src="afk-battlehud.js?v=guild.20261008f"></script>
+    <script src="afk-mapbar.js?v=guild.20261008f"></script>
+    <script src="afk-nozoom.js?v=guild.20261008f"></script>
     <!-- afk-statusicon：手機狀態圖示縮小一半（純 CSS，只在窄畫面生效） -->
-    <script src="afk-statusicon.js?v=guild.20261008c"></script>
+    <script src="afk-statusicon.js?v=guild.20261008f"></script>
     <!-- afk-petui：手機寵物保管面板改兩排（純 CSS，只在窄畫面生效） -->
-    <script src="afk-petui.js?v=guild.20261008c"></script>
+    <script src="afk-petui.js?v=guild.20261008f"></script>
     <!-- 資訊頁 / 查詢頁 -->
-    <script src="afk-slotinfo.js?v=guild.20261008c"></script>
-    <script src="afk-loadslots.js?v=guild.20261008c"></script>
-    <script src="afk-dex.js?v=guild.20261008c"></script>
-    <script src="afk-wiki.js?v=guild.20261008c"></script>
+    <script src="afk-slotinfo.js?v=guild.20261008f"></script>
+    <script src="afk-loadslots.js?v=guild.20261008f"></script>
+    <script src="afk-dex.js?v=guild.20261008f"></script>
+    <script src="afk-wiki.js?v=guild.20261008f"></script>
     <!-- 設定選單 / 存檔 / 診斷 / 離線紀錄 -->
-    <script src="afk-storage.js?v=guild.20261008c"></script>
+    <script src="afk-storage.js?v=guild.20261008f"></script>
     <!-- 整包備份／還原（本機檔案）：入口掛在 afk-storage 的設定選單裡，必須排在它之後 -->
-    <script src="afk-fullsave.js?v=guild.20261008c"></script>
+    <script src="afk-fullsave.js?v=guild.20261008f"></script>
     <!-- 存檔空間警告：localStorage 用量 >80% 時首頁紅色警告(唯讀;與 afk-storage 同一套估算) -->
-    <script src="afk-quotawarn.js?v=guild.20261008c"></script>
+    <script src="afk-quotawarn.js?v=guild.20261008f"></script>
     <!-- 首頁公告卡（通用框架：檔頭 NOTICE 設成 null 就不顯示，要發公告時填一組設定即可） -->
-    <script src="afk-notice.js?v=guild.20261008c"></script>
-    <script src="afk-history.js?v=guild.20261008c"></script>
-    <script src="afk-reissueid.js?v=guild.20261008c"></script>
-    <script src="afk-diag.js?v=guild.20261008c"></script>
-    <script src="afk-powersave.js?v=guild.20261008c"></script>
+    <script src="afk-notice.js?v=guild.20261008f"></script>
+    <script src="afk-history.js?v=guild.20261008f"></script>
+    <script src="afk-reissueid.js?v=guild.20261008f"></script>
+    <script src="afk-diag.js?v=guild.20261008f"></script>
+    <script src="afk-powersave.js?v=guild.20261008f"></script>
     <!-- 遊戲內小工具 -->
-    <script src="afk-statpts.js?v=guild.20261008c"></script>
+    <script src="afk-statpts.js?v=guild.20261008f"></script>
     <!-- 能力分頁條列式：拿掉背景圖改大字卡片(純 CSS,DOM/updateUI 不動) -->
-    <script src="afk-statlist.js?v=guild.20261008c"></script>
-    <script src="afk-autobuy.js?v=guild.20261008c"></script>
-    <script src="afk-training.js?v=guild.20261008c"></script>
+    <script src="afk-statlist.js?v=guild.20261008f"></script>
+    <script src="afk-autobuy.js?v=guild.20261008f"></script>
+    <script src="afk-training.js?v=guild.20261008f"></script>
     <!-- 廢品標記管理：入口排在木人場鈕下方（自己 insertAdjacentElement，不靠載入順序） -->
-    <script src="afk-junkmgr.js?v=guild.20261008c"></script>
+    <script src="afk-junkmgr.js?v=guild.20261008f"></script>
     <!-- 傭兵招募擋下提示：核心只寫系統日誌，改跳彈窗（不重刻條件，收核心自己的紅字） -->
-    <script src="afk-mercguard.js?v=guild.20261008c"></script>
+    <script src="afk-mercguard.js?v=guild.20261008f"></script>
     <!-- 傭兵技能清單即時更新：隊伍面板 skill 分頁的重建簽章沒把技能清單算進去，傭兵換了授予技能的裝備/學了新魔法，下拉停在舊清單 -->
-    <script src="afk-squadsync.js?v=guild.20261008c"></script>
+    <script src="afk-squadsync.js?v=guild.20261008f"></script>
     <!-- 金卡怪掉遠古裝備：遠古系在上游是「絕版」(rollAffixesNew 恆回 anc:false)，這裡把產生管道接回來，條件綁卡片收集冊金階 -->
-    <script src="afk-ancdrop.js?v=guild.20261008c"></script>
+    <script src="afk-ancdrop.js?v=guild.20261008f"></script>
     <!-- 重複的遺物會帶詞綴：遺物收集冊已收錄的那件，之後再打到的每一件各自 50% 擲祝福／遠古系／屬性（屬性只上武器遺物）。需核心補丁 11 的 __afkRelicAffix 鉤子 -->
-    <script src="afk-relicaffix.js?v=guild.20261008c"></script>
+    <script src="afk-relicaffix.js?v=guild.20261008f"></script>
     <!-- 遺物整理：重複的遺物一次清掉（賣金幣／回收換龍鑽）；每個遺物 id 自動保留最好的 1 件。排在 afk-relicaffix 之後＝在最外層包 renderRelicBook -->
-    <script src="afk-relicbatch.js?v=guild.20261008c"></script>
-    <script src="afk-bmprice.js?v=guild.20261008c"></script>
+    <script src="afk-relicbatch.js?v=guild.20261008f"></script>
+    <script src="afk-bmprice.js?v=guild.20261008f"></script>
     <!-- 只迴避指定頭目：把上游「迴避頭目(瞬移卷軸)」的範圍從「全部的王」縮小到玩家挑的那幾隻（每張地圖各自一份） -->
-    <script src="afk-bossavoid.js?v=guild.20261008c"></script>
-    <script src="afk-bossring.js?v=guild.20261008c"></script>
-    <script src="afk-itemsearch.js?v=guild.20261008c"></script>
-    <script src="afk-invlist.js?v=guild.20261008c"></script>
-    <script src="afk-eqlist.js?v=guild.20261008c"></script>
-    <script src="afk-npclist.js?v=guild.20261008c"></script>
+    <script src="afk-bossavoid.js?v=guild.20261008f"></script>
+    <script src="afk-bossring.js?v=guild.20261008f"></script>
+    <script src="afk-itemsearch.js?v=guild.20261008f"></script>
+    <script src="afk-invlist.js?v=guild.20261008f"></script>
+    <script src="afk-eqlist.js?v=guild.20261008f"></script>
+    <script src="afk-npclist.js?v=guild.20261008f"></script>
     <!-- afk-npclabel：村莊 NPC 名牌不要跑出畫面 -->
-    <script src="afk-npclabel.js?v=guild.20261008c"></script>
-    <script src="afk-mobname.js?v=guild.20261008c"></script>
-    <script src="afk-trackinfo.js?v=guild.20261008c"></script>
+    <script src="afk-npclabel.js?v=guild.20261008f"></script>
+    <script src="afk-mobname.js?v=guild.20261008f"></script>
+    <script src="afk-trackinfo.js?v=guild.20261008f"></script>
     <!-- afk-trackmaps：追蹤選單補上選不到的圖（黑暗妖精聖地＝地獄奴隸唯一產地、傲慢之塔2~10樓、六張隱藏區域）；三批來歷不同,檔頭有表 -->
-    <script src="afk-trackmaps.js?v=guild.20261008c"></script>
-    <script src="afk-relicguard.js?v=guild.20261008c"></script>
-    <script src="afk-wpnfix.js?v=guild.20261008c"></script>
+    <script src="afk-trackmaps.js?v=guild.20261008f"></script>
+    <script src="afk-relicguard.js?v=guild.20261008f"></script>
+    <script src="afk-wpnfix.js?v=guild.20261008f"></script>
     <!-- 快速強化目標上限 +12→+15（包 buildQuickEnhanceHeader 補下拉選項） -->
-    <script src="afk-enhtarget.js?v=guild.20261008c"></script>
+    <script src="afk-enhtarget.js?v=guild.20261008f"></script>
     <!-- 試煉重複挑戰：已完成的職業試煉可重置再刷（包 trialQHTML/build50TrialHTML） -->
-    <script src="afk-retrial.js?v=guild.20261008c"></script>
+    <script src="afk-retrial.js?v=guild.20261008f"></script>
     <!-- 碧恩賦予屬性一鍵衝到指定階段/星數（包 renderBianAttr，批次呼叫 doBianAttr） -->
-    <script src="afk-attrbatch.js?v=guild.20261008c"></script>
+    <script src="afk-attrbatch.js?v=guild.20261008f"></script>
     <!-- 詛咒卷軸一鍵弱化＋補回滿強化裝備的入口（包 openModal，批次呼叫 executeCurseDeEnhance） -->
-    <script src="afk-cursebatch.js?v=guild.20261008c"></script>
+    <script src="afk-cursebatch.js?v=guild.20261008f"></script>
     <!-- 防手滑賣掉裝備：①物品視窗剛開的 450ms 不吃點擊（雙擊裝備失手時第二下會打在販賣上）②賣好裝備前先問；排在 afk-cursebatch 之後＝在最外層包 openModal -->
-    <script src="afk-sellguard.js?v=guild.20261008c"></script>
+    <script src="afk-sellguard.js?v=guild.20261008f"></script>
     <!-- 手機戰鬥框下方鏡射整條狀態欄：必須排在 afk-trackinfo 之後（要含它補的追蹤／龍裔／血盟／套裝那幾格） -->
-    <script src="afk-battlebuffs.js?v=guild.20261008c"></script>
+    <script src="afk-battlebuffs.js?v=guild.20261008f"></script>
     <!-- 手機戰鬥框下方的主動技能列：排在 afk-battlebuffs 之後 → 插入時看得到 #m-battle-buffs，才排得到它上面（那支關掉就直接接戰鬥框） -->
-    <script src="afk-skillbar.js?v=guild.20261008c"></script>
-    <script src="afk-toast.js?v=guild.20261008c"></script>
+    <script src="afk-skillbar.js?v=guild.20261008f"></script>
+    <script src="afk-toast.js?v=guild.20261008f"></script>
     <!-- 手機長按 .tip-host 顯示原版資料框（倉庫清單由 afk-warehouse 自理，故排在它之前無妨） -->
-    <script src="afk-touchtip.js?v=guild.20261008c"></script>
+    <script src="afk-touchtip.js?v=guild.20261008f"></script>
     <!-- 關閉物品懸停資訊框（預設關;嫌 hover 擋路的人自行開啟;不印 hooks OK 故不在 smoke need 內） -->
-    <script src="afk-notip.js?v=guild.20261008c"></script>
+    <script src="afk-notip.js?v=guild.20261008f"></script>
     <!-- afk-dollcursor：關閉魔法娃娃游標（預設關）——包 applyDollCursor；手機上那顆「點一下留下的光點」也是同一個東西，一起關 -->
-    <script src="afk-dollcursor.js?v=guild.20261008c"></script>
+    <script src="afk-dollcursor.js?v=guild.20261008f"></script>
     <!-- afk-anyclass：去除裝備職業限制（預設關）——包 checkCanEquip，執行期間暫時放行職業那幾關 -->
-    <script src="afk-anyclass.js?v=guild.20261008c"></script>
+    <script src="afk-anyclass.js?v=guild.20261008f"></script>
     <!-- afk-locksafe：上鎖的裝備不會被潘朵拉收購/遺物布告欄拿走 -->
-    <script src="afk-locksafe.js?v=guild.20261008c"></script>
+    <script src="afk-locksafe.js?v=guild.20261008f"></script>
     <!-- afk-buyercompat：收購 NPC 向下兼容（收 +6 也可以繳 +15）——需搭配 apply-core-patches 補丁 13 的 __afkBuyerEnMatch 鉤子；排在 afk-locksafe 之後＝在最外層 -->
-    <script src="afk-buyercompat.js?v=guild.20261008c"></script>
+    <script src="afk-buyercompat.js?v=guild.20261008f"></script>
     <!-- 傳統模式(偽)/自動衝裝：需搭配 scripts/apply-core-patches.mjs 的 gainItem _tEn 鉤子 -->
-    <script src="afk-traditional.js?v=guild.20261008c"></script>
-    <script src="afk-lootx10.js?v=guild.20261008c"></script>
-    <script src="afk-gearboost.js?v=guild.20261008c"></script>
-    <script src="afk-tradwish.js?v=guild.20261008c"></script>
-    <script src="afk-start30.js?v=guild.20261008c"></script>
-    <script src="afk-warehouse.js?v=guild.20261008c"></script>
+    <script src="afk-traditional.js?v=guild.20261008f"></script>
+    <script src="afk-lootx10.js?v=guild.20261008f"></script>
+    <script src="afk-gearboost.js?v=guild.20261008f"></script>
+    <script src="afk-tradwish.js?v=guild.20261008f"></script>
+    <script src="afk-start30.js?v=guild.20261008f"></script>
+    <script src="afk-warehouse.js?v=guild.20261008f"></script>
     <!-- 倉庫批次存取:勾選/全選一次搬完(核心是一件一件搬、每件都 saveGame,幾千格搬不動);排在 afk-warehouse 之後 → afterRender 在它的注入之後才跑 -->
-    <script src="afk-whbatch.js?v=guild.20261008c"></script>
+    <script src="afk-whbatch.js?v=guild.20261008f"></script>
     <!-- 迷你遊戲（我方自製） -->
-    <script src="afk-dograce.js?v=guild.20261008c"></script>
+    <script src="afk-dograce.js?v=guild.20261008f"></script>
     <!-- PWA / SW / 統計 / 品牌（skin 固定排最後） -->
-    <script src="afk-pwa.js?v=guild.20261008c"></script>
-    <script src="afk-sw.js?v=guild.20261008c"></script>
-    <script src="afk-syncinfo.js?v=guild.20261008c"></script>
-    <script src="afk-analytics.js?v=guild.20261008c"></script>
-    <script src="afk-skin.js?v=guild.20261008c"></script>
+    <script src="afk-pwa.js?v=guild.20261008f"></script>
+    <script src="afk-sw.js?v=guild.20261008f"></script>
+    <script src="afk-syncinfo.js?v=guild.20261008f"></script>
+    <script src="afk-analytics.js?v=guild.20261008f"></script>
+    <script src="afk-skin.js?v=guild.20261008f"></script>
     <!-- ═══════════ 加掛版外掛層 END ═══════════ -->
 </body>
 </html>
