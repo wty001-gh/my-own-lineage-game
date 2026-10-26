@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><radialGradient id="g" cx="50%" cy="35%" r="70%"><stop offset="0" stop-color="#c4b5fd" stop-opacity=".55"/><stop offset=".6" stop-color="#111827"/><stop offset="1" stop-color="#020617"/></radialGradient></defs>
+<rect width="200" height="200" fill="url(#g)"/>
+<path d="M30 200 q0 -70 70 -75 q70 5 70 75z" fill="#0f172a" stroke="#c4b5fd" stroke-width="3"/>
+<circle cx="100" cy="85" r="36" fill="#f1d5b8"/><path d="M62 85 q0 -48 38 -48 q38 0 38 48 q-8 -26 -38 -28 q-30 2 -38 28z" fill="#3f2a1d"/>
+<circle cx="88" cy="88" r="3" fill="#1f2937"/><circle cx="112" cy="88" r="3" fill="#1f2937"/>
+<path d="M150 60 l8 70 l-16 0z" fill="#e5e7eb"/><path d="M60 70 l-10 -25 l18 15z M140 70 l10 -25 l-18 15z" fill="#d6d3d1"/><text x="100" y="188" text-anchor="middle" font-size="26" font-weight="900" fill="#c4b5fd" stroke="#020617" stroke-width="1">暗</text></svg>

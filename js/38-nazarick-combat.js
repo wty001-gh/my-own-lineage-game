@@ -474,6 +474,7 @@ function neOnMagicHit(target, who) {
 
 function neIncomingDmg(dmg, kind, who, attacker) {
     who = neWho(who);
+    if (typeof tlApplyIncoming === 'function') { try { dmg = tlApplyIncoming(dmg, who); } catch (e) {} }   // 🧭 v3.8.127 天賦鐵壁／便當
     if (!(dmg > 0) || !who || !neAlive(who)) return dmg;
     let d = who.d || {};
     // 元素 incoming（來自對應屬性怪物）

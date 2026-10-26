@@ -1,0 +1,1531 @@
+===== PATTERN: ���� =====
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-anyclass.js
+  L111: //   ����(Lv48)�Ǳo��X�X���ڥu��Ǥ@/�G��(�]�k��q�A�}��T~����)�B�M�h/�Ԥh/�۳N�h/
+  L112: //   �s�M�h/�·t����]�U�ۨS�� �� �L�̸ˤW�ѥu���u���������^ 1%�v���b�q����
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-dex.js
+  L169: var _CLS_CN = { knight: '�M�h', mage: '�k�v', elf: '����', dark: '�·t����', illusion: '�۳N�h', dragon: '�s�M�h', warrior: '�Ԥh', royal: '����' };
+  L859: { id: 'areadrop', title: '?? �ϰ��B�~�����]����˪L�P��B�v�s�}�� 1~3 �ӡ^', keys: ['�̯���', '���F��', '������'], lines: [
+  L864: { id: 'blackstone', title: '? ���]�ۡ]�·t��������^', keys: ['���]��'], lines: [
+  L869: { id: 'silverore', title: '?? ���q�ۡ]�·t����s�@���ơ^', keys: ['���q��'], lines: [
+  L892: '<b>���o?</b>�G<b>�·t����t�a</b>���Ǫ��]�a�����������A�G���·t���밫�h�P�k�v�P�M�h�����G�~���S�������l�s�^�T�w <b>0.5%</b> ���]�b�@�뱼�������A�����j�ǦW�Y�i�^�C',
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-extradata.js
+  L31: if (typeof SANCTUARY_MAP_NAMES !== 'undefined' && SANCTUARY_MAP_NAMES[id]) return SANCTUARY_MAP_NAMES[id];   // ?? �·t����t�a 3 ���ùϡ]js/11 �w�q�^
+  L118: wpn_11:           { short: '����Ыخɪ��_�l�Z���]�·t��������ڡ^�A�L�k�t�~���o' },
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-history.js
+  L30: var CLS_NAME = { knight: '�M�h', mage: '�k�v', elf: '����', dark: '�·t����', illusion: '�۳N�h', dragon: '�s�M�h', warrior: '�Ԥh', royal: '����' };
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-offline.js
+  L892: //   �� �^�u�W��۰ʬI��P�w�ubuff �٦b�v�����s�l��,���F�N�o�ˤ���(2026-07-07 ���a�^��,����j�O�ݩʺ��F)�C
+  L1467: // ?? �·t����t�a�ⶡ�� BOSS �С]�N���𴵡��߬Ӥ��S���^�G��ӡu���u�׽u�W�Ӷ]�v�A�ӱ`����X�X
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-squadsync.js
+  L8: *   �]sigSkill�^�u�ѡu�s�ɦ�:�W�r:�˦a:���šv�ϧ����ݩʲզ��A**�ޯ�M�椣�b�̭�** ��
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-trackmaps.js
+  L19: *   ? �·t����t�a(dark_elf_sanctuary) �� �ɤW�媺�|
+  L49: { v: 'dark_elf_sanctuary', t: '�·t����t�a' },
+  L58: desc: '�i�H�l�ܶ·t����t�a�B�ƺC����2~10�ӻP�H����K�ǵ����ðϰ�'
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-wiki.js
+  L22: { k: 'elf', n: '����' },
+  L23: { k: 'dark', n: '�·t����' },
+  L250: if (sk.reqE !== undefined) p.push('���� ' + sk.reqE);
+  L251: else if (typeof MAGIC_MASTERY_SKILLS !== 'undefined' && MAGIC_MASTERY_SKILLS.indexOf(id) >= 0) p.push('���� ' + sk.reqM + '�]���]�ɺ�q�^');
+  L253: if (sk.reqD !== undefined) p.push('�·t���� ' + sk.reqD);
+  L254: else if (sk.tier === 1) p.push('�·t���� 12');
+  L255: else if (sk.tier === 2) p.push('�·t���� 24');
+  L295: { n: '�X��]�P�� / ���١^', d: '����R���ɦ��u<b>�O�q �� 60</b>�v���v���ؼЬy��G�C�h�C���y�������ˮ`�� <b>20%</b>�B���� 8 ���A�̦h <b>5 �h</b>�]���F�s�h���N���¼h�^�C<b>����٥u����z�B���|�X��</b>�C<br>�·t����u�X���q�v�G�P�������١����M�����|�� <b>10 �h</b>�B�C�h�ˮ`�A +10%�]���h��+100%�^�A���M�]��ӤP��Ĳ
+  L330: royal: ['���l', '���D'], knight: ['�k�M�h', '�k�M�h'], mage: ['�k�k�v', '�k�k�v'], elf: ['�k����', '�k����'],
+  L331: dark: ['�k�·t����', '�k�·t����'], illusion: ['�k�۳N�h', '�k�۳N�h'], dragon: ['�k�s�M�h', '�k�s�M�h'], warrior: ['�k�Ԥh', '�k�Ԥh']
+  L344: ['�]���]MR�^', '¾�~��¦�]���]����̰��B�M�h�̧C�^�ϤɯŦ�����<b>�믫</b>�ϸ˳��]���]���]�ˡB����C�j�� +3�B�u�C�j�ƥ[�]���v������^�ϧ��]�M�ˡ��ݩʡP�Ӫ����']
+  L425: { t: 'p', p: '���몺<b>�ÿB����</b>�]�������F�B�u����Y�ة�B�����^�����o�Ӧ^�_�q�A<b>��b 32 ��</b>�A�k�t�i�Y�ثܦ��ΡC' },
+  L428: { t: '�Y�اC��g�ɡ]�ثe�u���·t����t�a�� BOSS�^', blocks: [
+  L481: ['? �j�ײv�]ER�^', '�����v<b>��Ӱ{���]0 �ˮ`�^</b>', '�D�n�a<b>�ӱ�</b>�ϼW�q/�M�ˡ]�j�״���+12�B���3��+5�^�C<b>�D 1:1</b>�G50 �H�� 1 �I=1%�B�W�L 50 �C 5 �I�~+1%�C<b>�u�{���z</b>�A�]�k�P�����ޯ�@�߰{�����]�ߤ@�ҥ~�G�·t���몺<b>�t�v�{��</b>�A50% �{���@�������ˮ`�]�k�^�C? �a<b>�­������K�۬�</b>�ɧ���<
+  L510: { t: 'p', p: '�u<b>�Ĥ�����</b>�v�Ӧۥ��j�u�\��<b>�\�ܶA�G</b>�B�u<b>���B����</b>�v�Ӧۧ��뫬�����a NPC�A<b>��ӥi�H�P�ɤ��B�ĪG�ۭ�</b>�]�v¡�u�ѥ|�����@�^�C<b>�]�k�ۮ��N</b>�i�H�ѱ��o���ءC' },
+  L619: icon: '??', name: '����',
+  L621: { n: '���F�Y���]15 �š^', npc: '�ڴ� �I�U�h��', req: '�|�j���]�]�k�ѡ]���F���ԡ����|�[���̦a�����R�ڡ^�U ��1', from: '�����|�ا��]�]�U�h���P���]�˪L�B����˪L�P��B����˪L�P�v�s�}�ޡ^�C�����շҫ��������w����', rw: '���F�ӱ��Y���Ϻ��F����Y���]�@�������^' },
+  L622: { n: '���F�����Ϻ��FT��]30 �š^', npc: '�g�۴˪L���� �I����˪L', req: '���A�G�����F�� ��1', from: '�ƺ��L���]�����P�쫽����^�C�����ᥲ�w����', rw: '���F����(�l���ݩʺ��F)�Ϻ��FT��]�@�������^' },
+  L625: attr: { n: '��w�ݩ��]�k', npc: '��Q�� �I����˪L', req: '�|���ݩʡ]�������������a�^�|��@', from: '�X', rw: '�}�ҩҿ��ݩʪ��]�k���u�C�`�N�G�u���@�ءB��F�N�T�w' }
+  L628: icon: '??', name: '�·t����',
+  L638: { n: '�۳N�h�]���ϰO�Ф���(�ߤ�G�U�N)�]15 �š^', npc: '�ƽ��� �I�ڷ�P�ư��Q�ȧ���', req: '�ÿB�w�S�����G ��1�B�ÿB�w�S����K ��1�B�ÿB�w�S����� ��1', from: '�ìV���w�S�]����˪L�P�v�s�}�� 1~3 �ӡB����˪L�P��^�C�����շҫ��������w����', rw: '�۳N�h�]���ϰO�Ф���(�ߤ�G�U�N)�]�@�������^' },
+  L646: { n: '�s�M�h����C���s���@�Z�ѪO�]15 �š^', npc: '�����ͺ� �I�¹y�P���Ƽ���', req: '���]�j����� ��3', from: '�̦a��ù�������R�ڡ����F���ԧ��]�]����˪L�P��B�U�h���P���]�˪L�B����˪L�P�v�s�}�ޡ^�C�����շҫ��������w�����]���s�M�h�^', rw: '�s�M�h����C���s�M�h�ѪO(�s���@�Z)�]�@�������^' },
+  L675: knight: { n: '�M�h 50 �Ÿշ�', npc: '�}�Űǧ� �I�ڷ�P�H����]�ݵ��� 50�^', req: '�ⶥ�q�̧ǥ�I�G?���S�����l�� ��1 �� ?���F���p�y ��10', from: '���S�����l�ѡG�·t����N�x 1%�]�U�h���P�j�}�����P�̧������Դ���ڼw�������Դ���ڼw�P�]�~�V�m���^�F���F���p�y�G�b�u�U�h���P���F�ӥޡv������� 1% ��', rw: '�������q���ȫ�}��u�]�گ�
+  L676: elf: { n: '���� 50 �Ÿշ�', npc: '�}�Űǧ� �I�ڷ�P�H����]�ݵ��� 50�^', req: '�ⶥ�q�̧ǥ�I�G?�j�N�§������D ��1 �� ?�K�ʪ������� ��1', from: '�j�N�§������D�G���j�L�� 1%�]������G�F�z�����Ƭ}�] 1~2 �ӡ^�F�K�ʪ������ѡG�b�u�U�h���P�j�}�����P�̧����a�ϡv���u�]�ڷt���Ρv�����C�]�ڷt���άO�S���ǡB���`�n�A�u���A���d�b�o�@�B�]�ʱK�ʪ���
+  L680: dark: { n: '�·t���� 50 �Ÿշ�', npc: '���|�}�d �I�s�����P�I�q�}�ޡ]�ݵ��� 50�^', req: '�@���q�G��I �V�P�_�� ��1', from: '�V�P�_�͡G�·t�ϪL�� 1%�]�U�h���P�j�}�����P�̧������Դ���ڼw�P�]�گ����^', rw: '�������q���ȫ�}��u�]�گ����v�]�Դ���ڼw���^�C�̲׸շҡG�b�]�گ������u�Z�����q���v���o�u�Z���_�͡v�]�̲קI�����q���w�����^��1 ��
+  L696: { t: '���]��I���]�M�h��������k�v�����ڪ��̲קI�����ơ^', lines: ['���]���C�]�M�h�^�����]�����]����^�����]�����]�k�v�^�����]���ߡ]���ڡ^�G50 �ŸշҨ���u�̲קI�����q�v�ɡA�b�]�گ��������u���]���c�]�v�]Lv61�^<b>���w�����A¾�~���������@��</b>�]�����ݨD�q�Y���F�O¾�~�����ƧA������^�C���^�h��}�Űǧ�<b>�@������������y</b>�]�C�Ө���ȯ৹���@���^�C'] },
+  L716: { n: '�·t����M��', pcs: 3, items: '�·t�����Y�T�B�·t������ҡB�·t����D�c', eff: '���m(AC) -3�B�O�q -2�B�ӱ� +2�BHP�۵M��_ -2�BMP�۵M��_ -7�A�åi�ܨ��u�����·t���F�v�]���Z���ˮ` +5�B���Z���R�� +5�A�ñĥ��ܨ��ۨ��������t�סA���N�쥻��¾�~���Z����t�^�F�ﺡ�ͮġB���U����' },
+  L894: '���u<b>�Դ���ڼw�u���H</b>�v�� <b>1%</b> ���v�� 1 ��A�u���H�O Lv40 ���·t����A<b>�u�X�S�b�u�Դ���ڼw�P�]�~�V�m���v</b>�o�i�a�ϡ]���C���ߤ@�|���x���_�ͪ��ǡ^�C',
+  L923: '�ҥ~�G���몺<b>���E�o����q�E�o</b>�ͮĴ����A�t�����A�U���i�۵M��_ HP��MP�C'
+  L1016: '<b>������u�C�ɤ@�Ū� HP �����v��h</b>�G���^�m���C�� HP �ס]���?8�^�� �����v�A�L�W���C�����v�G�M�h���s�M�h���Ԥh <b>1.5</b>�B�k�v������ <b>0.8</b>�B���� <b>0.75</b>�B�·t������۳N�h <b>0.5</b>�C',
+  L1031: '����u��Ϯg�v���ϼu���v ��<b>�믫</b>%�]�C 1 �I�믫 +1%�^�C'
+  L1037: '<b>�ݩʺ��F</b>�G�T�w <b>1 ��</b>�A�ݩʡקA�諸�����ݩʡC�ǤF�u<b>���F��q</b>�v��A�j�O�ݩʺ��F�|�@�ئ�<b>���F��</b>�]�󰪵��šB��w�B�L�������]���^�C',
+  L1439: // ?? �·t����t�a�G3 �i NPC �ǰe�i�J�����ùϡ]���b�a�Ͽ��B�]�������Ӽh�ǰe�^
+  L1440: h += '<div class="m-wiki-sub">?? �·t����t�a�]NPC �ǰe�i�J�^</div>';
+  L1442: h += '<div class="m-wiki-kv"><b>' + wDexLink('�·t����t�a') + '</b>�@<span class="c-mapunlock">?? ��X ���`�M�h���� ��1�]�@�물�y�ϡ^</span></div>';
+  L1443: h += '<div class="m-wiki-kv"><b>' + wDexLink('���A�G���·t����t�a') + '</b>�@<span class="c-mapunlock">?? ��X ���`�M�h���� ��1�]�N���� BOSS �С^</span></div>';
+  L1457: if (npc.darkOnly) t.push('<span class="m-npc-tag" style="color:#c084fc;">?? �·t���뭭�w</span>');
+  L1606: d_crit: ['�·t����ѽ᥻�ӴN +3% �z���A��q�A +3%�]�X�p����� +6%�^', '�l�[������ڬO ��0.5 �ˮ`���s���]�D����@������^�F�ˡu�t�v 5/5 �M�ˡv�~�ɬ� ��1.0'],
+  L1617: k_dualaxe: ['�ԩ���Y MP 5 �� 0', '�X��h�ƤW�����O 5�]10 �h�O�·t����X���q�M�ݡ^�G�C���`�X�� ��(1��10%�Ѽh��)�B�� 5 �h +50%'],
+  L1681: if (q.attr) html += '<div class="m-wiki-sub">?? �����ݩʾǲ�</div>' + questCard(q.attr);
+  ... +20 more
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-wpnfix.js
+  L36: relic_wing_chaos_blades: ['���M'],      // ���l���V�P���M�]�·t����򪫡^
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\00-data.js
+  L348: "wpn_31": { n: "�Q�r�}", type: "wpn", isBow: true, ranged: true, rapidfire: 50, dmgS: 3, dmgL: 2, hit: 3, dmgBonus: 2, spd: 1.0, req: "knight,elf,dark", safe: 6, p: 59400, gachaWeight: 10 },   // ?? v3.2
+  L379: // ===== �·t����Z���G�����]����A�s���^ =====
+  L427: // ===== �·t����Z���G���M�]����A�s���^ =====
+  L444: // ===== �·t����Z���G�Q�r�}�]����A���{�A�s�g�^ =====
+  L465: "glv_dark": { n: "�·t��M", type: "arm", slot: "gloves", ac: 1, rangedHit: 2, req: "dark", safe: 4, p: 4000, gachaWeight: 90, d: "�·t���몺��M�A����������í�ǡC" },
+  L615: "relic_ogre_mawashi":       { n: "���H���몺�ۼ���",   type: "arm", slot: "shin", relic: true, noEnhance: true, ac: 3, resFire: 5, dr: 5, req: "all", p: 10000, gachaWeight: 0, d: "�i�򪫡j���H������y���ۼ��áA�p���h�h�פU�P�K�P�����C"
+  L636: "relic_apprentice_wand":    { n: "���]�k�Ǯ{�]��",   type: "wpn", isWand: true, relic: true, noEnhance: true, ignHardSkin: true, dmgS: 1, dmgL: 1, hit: 6, dmgBonus: 6, extraMp: 6, mpR: 15, req: "mage", p: 10
+  L642: "relic_darkremnant_boots":  { n: "�·t�ݧL���V�m�u", type: "arm", slot: "boots", relic: true, noEnhance: true, ac: 6, dex: 1, req: "all", p: 10000, gachaWeight: 0, d: "�i�򪫡j�·t����ݧL���V�m�u�A�[�g�޽m�B�B�i�����C" },
+  L651: "relic_darkthief_claw":     { n: "�·t�s�骺������", type: "wpn", w2h: true, relic: true, noEnhance: true, dmgS: 17, dmgL: 15, hit: 10, dmgBonus: 13, eff: "combo", comboRate: 50, extraDmg: 10, req: "dark", p:
+  L658: "relic_darkelf_grindblade": { n: "�·t�ݧL����i�Q�b", type: "wpn", relic: true, noEnhance: true, ignHardSkin: true, dmgS: 10, dmgL: 12, hit: 15, dmgBonus: 14, req: "royal,knight,elf,dark,dragon", p: 10000, ga
+  L659: "relic_darkelf_shootglove": { n: "�·t�ݧL���U�g����M", type: "arm", slot: "gloves", relic: true, noEnhance: true, ac: 5, rangedDmg: 2, rangedHit: 2, req: "knight,elf,dark,illusion,dragon,warrior", p: 10000, g
+  L661: "relic_ogreking_collar":    { n: "���H��������y�붵��", type: "acc", slot: "belt", relic: true, noEnhance: true, ac: 0, weightCap: 300, petDmgAll: 3, petHitAll: 3, req: "all", p: 10000, gachaWeight: 0, d: "�i��
+  L667: "relic_remnant_barrier":    { n: "�ݧL�k�v���]�O�@��", type: "arm", slot: "shield", relic: true, noEnhance: true, ac: 4, mr: 20, int: 1, con: -1, req: "elf,mage,dark,illusion", p: 10000, gachaWeight: 0, d: "�i��
+  L720: "relic_troll_belly":        { n: "���H���몺�w�Ĩ{", type: "arm", slot: "armor", relic: true, noEnhance: true, ac: 0, dr: 20, mr: 20, req: "all", p: 10000, gachaWeight: 0, d: "�i�򪫡j���H����p�ꪺ�w�Ĩ{�֡A�A�������������J�䤤���ڵL�ΡC"
+  L771: "relic_guard_roughgloves": { n: "���m��ĵ�òʥ���M", type: "arm", slot: "gloves", relic: true, noEnhance: true, ac: 7, str: 1, meleeHit: 1, req: "all", p: 10000, gachaWeight: 0, d: "�i�򪫡j�·t����ĵ�ä[�g�i�m���ʥ���M�A���j�Ií���O
+  L775: "relic_dark_manaball":     { n: "���ª����������y",   type: "arm", slot: "shield", relic: true, noEnhance: true, ac: 7, int: 2, mpR: 10, con: -2, req: "mage,illusion", p: 10000, gachaWeight: 0, d: "�i�򪫡j�·t����k�v
+  L828: "relic_pure_maiden_love": { n: "�¼�֤k�����R", type: "acc", slot: "amulet", relic: true, noEnhance: true, ac: 0, dex: 2, int: 2, mpR: 3, relicRole: "�k����M�ݪ��ӱ��B���O�P�]�O��_����", req: "elf", reqAvatar: "�k����", stric
+  L830: "relic_general_swordguard": { n: "�N�x�R�Ϊ����C�@��", type: "arm", slot: "gloves", relic: true, noEnhance: true, ac: 6, swordStr: 3, relicRole: "�D������C������C�ɡA�i�@�B�j�ƤO�q", req: "all", p: 10000, gachaWeight: 0, d: 
+  L982: "arm_shadowglove": { n: "�v�l��M", type: "arm", slot: "gloves", ac: 1, con: 1, req: "dark", safe: 6, p: 1720, gachaWeight: 50 },   // ?? �·t����G�۱o�H���`�}���I��
+  L983: "arm_shadowmask": { n: "�v�l����", type: "arm", slot: "helm", ac: 2, req: "dark", safe: 6, p: 1240, gachaWeight: 50 },   // ?? �·t����G�d�H���]���ѭ��ŧI��
+  L984: "arm_shadowboots": { n: "�v�l���u", type: "arm", slot: "boots", ac: 2, mhp: 50, hpR: 4, req: "dark", safe: 4, p: 2660, gachaWeight: 50 },   // ?? �·t����G���|�}�d�H���ǭ��ŧI��
+  L1049: "wpn_crimson_xbow": { n: "�`������", type: "wpn", isBow: true, ranged: true, rapidfire: 80, w2h: true, dmgS: 3, dmgL: 3, hit: 1, dmgBonus: 0, req: "elf", safe: 6, p: 56000, gachaWeight: 0, procStatus: { k
+  L1132: // ===== ?? �·t����t�a�]�̡m�·t����t�a.md�n�Pv3.3.33�^�G���ȹD������ơ��˳ơ��u�D�߬ӮM�� =====
+  L1133: "item_dk_book":        { n: "���`�M�h����", type: "etc", p: 0, c: "text-amber-300", noUse: true, noSell: true, gachaWeight: 0, d: "�O�����`�M�h�������j�ѡC�浹���ѷ|ĳ�U�� �u�D�߬Ӥ��S���A�i��ܶi�J �·t����t�a �� ���A�G���·t����t�a�]�C���i�J���� 1 ���^�C�b���A�G���·t��
+  L1140: "mat_de_soul_crystal": { n: "�·t���몺�F�����", type: "etc", p: 3000, gachaWeight: 0, d: "���A�G���·t����ݯd���F����A��y �u�D�߬� �t�C���㪺���ơC" },
+  L1149: "ear_cursed_black": { n: "���A�G���¦����", type: "etc", p: 60000, gachaWeight: 0, d: "���A�G���·t�����d���¦�����A���W��¶�۷L�z������C�g�ȴ��Q�ڥH�b���Ĥ��~�h�����A�i���ͬ��F������C" },
+  L1166: "new_item_139": { n: "���F�氮", type: "pot", req: "elf", p: 1980, c: "text-yellow-200", d: "�����F���֪��氮�A���뭹�Ϋ��P�����߰ʦP�B�C", eff: "elfcookie", dur: 300, gachaWeight: 0 },
+  L1244: "doll_�k����":     { n: "�]�k�����G�k����", type: "acc", slot: "doll", req: "all", safe: 0, p: 0, doll: true, dollTier: 3, noEnhance: true, gachaWeight: 0, c: "text-sky-300", hpR: 15, dex: 2, weightCap: 15, d: "
+  L1245: "doll_�k����":     { n: "�]�k�����G�k����", type: "acc", slot: "doll", req: "all", safe: 0, p: 0, doll: true, dollTier: 3, noEnhance: true, gachaWeight: 0, c: "text-sky-300", mpR: 5, dex: 2, weightCap: 15, d: "�T
+  L1248: "doll_�k�·t����": { n: "�]�k�����G�k�·t����", type: "acc", slot: "doll", req: "all", safe: 0, p: 0, doll: true, dollTier: 3, noEnhance: true, gachaWeight: 0, c: "text-sky-300", hpR: 15, str: 1, dex: 1, weightCap: 
+  L1249: "doll_�k�·t����": { n: "�]�k�����G�k�·t����", type: "acc", slot: "doll", req: "all", safe: 0, p: 0, doll: true, dollTier: 3, noEnhance: true, gachaWeight: 0, c: "text-sky-300", mpR: 5, str: 1, dex: 1, weightCap: 1
+  L1357: "mat_blackstone2": { n: "�G�Ŷ��]��", p: 50,   gachaWeight: 0, d: "�±o�l�����q�ۡA�K��կ`�ϩ���ť���իշt�v���C�y�C�·t����s�@����¦���ơC�]���~�԰������A�ǲߴ����]�۫ᱼ���v�����^" },
+  L1358: "mat_blackstone3": { n: "�T�Ŷ��]��", p: 200,  gachaWeight: 0, d: "�t�v�]�O�h�h�����Ӧ����¥ۡA����x���I�l�l�a�x�ۧN�N�C�·t����s�@���i�����ơC�]���~�԰������A�ǲߴ����]�۫ᱼ���v�����^" },
+  L1359: "mat_blackstone4": { n: "�|�Ŷ��]��", p: 1000, gachaWeight: 0, d: "�d�����¤Ʀܷ������]�ۡA�t�v���O�@�Y�o�X�G�n���X�����C�·t���볻�Ÿ˳ƪ�������ơC�]�}�������^" },
+  L1446: "item_ancient_book":  { n: "�j�N�§������D", type: "etc", p: 1, c: "text-amber-300", noUse: true, noSell: true, gachaWeight: 0, d: "���� 50 �Ÿշҥ��ȹD��C�L�k�R���B�L�k�s�ܮw�B�̦h���� 1 �ӡC" },
+  L1447: "item_sealed_intel":  { n: "�K�ʪ�������", type: "etc", p: 1, c: "text-amber-300", noUse: true, noSell: true, gachaWeight: 0, d: "���� 50 �Ÿշҥ��ȹD��C�L�k�R���B�L�k�s�ܮw�B�̦h���� 1 �ӡC" },
+  L1449: "item_chaos_key":     { n: "�V�P�_��", type: "etc", p: 1, c: "text-amber-300", noUse: true, noSell: true, gachaWeight: 0, d: "�·t���� 50 �Ÿշҥ��ȹD��C�̦h���� 1 �ӡC" },
+  L1478: "wpn_dual_destroy": { n: "�}�a���M", type: "wpn", w2h: true, dmgS: 16, dmgL: 10, hit: 6, dmgBonus: 1, str: 1, wis: 2, spd: 0.8, req: "dark", safe: 6, p: 150000, legend: true, gachaWeight: 1, eff: "combo",
+  L1479: "wpn_claw_destroy": { n: "�}�a����", type: "wpn", w2h: true, dmgS: 19, dmgL: 18, hit: 6, dmgBonus: 1, str: 1, wis: 2, spd: 0.9, req: "dark", safe: 6, p: 150000, legend: true, gachaWeight: 1, eff: "combo",
+  L1551: "bot_sephia":      { n: "�ɵ�Ȫ��u", type: "arm", slot: "boots", ac: 3, rangedHit: 1, req: "elf", safe: 4, p: 12000, gachaWeight: 10, d: "�ɵ�ȯ��֪����ժ��u�A�ϧ��몺�B��p���B�b�ڧ�ǡC" },
+  ... +64 more
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\01-drops-config.js
+  L62: '�·t����s��': [['scroll_acc',0.0001],['wpn_small_katana',2],['wpn_dual_rasta',1],['wpn_xbow_rasta',3],['arm_rasta_leather',0.5],['bot_rasta',1],['shd_rasta',5],['scroll_weapon',0.5],['scroll_armor',0.5],[
+  L103: '�·t����ݧL(�})': [['wpn_small_katana', 0.1], ['wpn_bow_rasta', 0.5], ['arm_rasta_leather', 2], ['bot_rasta', 1], ['quest_ring_darkdweller', 0.1]],
+  L104: '�·t����ݧL(�C)': [['wpn_sword_rasta', 0.5], ['clk_dark', 0.1], ['arm_rasta_leather', 3], ['bot_rasta', 2], ['scroll_weapon', 0.5], ['scroll_armor', 1], ['bk_berserk', 0.1], ['bk_dark_str', 1], ['bk_dark_b
+  L105: '�·t����ݧL(�Q�r�})': [['wpn_dagger_rasta', 0.5], ['wpn_xbow_rasta', 1], ['scroll_weapon', 0.5], ['scroll_armor', 1], ['bk_holy_dash', 0.1], ['bk_dark_stealth', 1], ['bk_dark_poison', 1], ['bk_dark_str', 1],
+  L106: '�·t����ݧL(�k�v)': [['wpn_wand_rasta', 0.5], ['amr_rasta_robe', 0.1], ['bk_dark_dex', 1]],
+  L107: '�·t����ݧL(����C)': [['wpn_dual_rasta', 0.5]],
+  L109: // ===== �Դ���ڼw�����G�·t����u�x =====
+  L110: '�·t����ĵ��(�Q�r�})': [['wpn_xbow_heavy_rasta', 0.5], ['scroll_armor', 0.5], ['scroll_weapon', 0.5], ['bk_holy_dash', 0.05], ['bk_dark_poison', 1], ['bk_dark_burn', 1], ['bk_dark_poisonres', 1]],
+  L111: '�·t�����]�k�Ǯ{': [['wpn_wand_rasta', 1], ['amr_rasta_robe', 0.1], ['bk_dark_dex', 1], ['mat_black_blood', 1]],
+  L112: '�·t����ĵ��(��)': [['wpn_spear_rasta', 0.5], ['arm_rasta_leather', 0.5], ['shd_rasta', 1], ['scroll_armor', 0.5], ['scroll_weapon', 0.5], ['bk_dark_mrup', 1], ['bk_dark_burn', 1], ['bk_dark_fang', 0.1]],
+  L113: '�·t���먵�u': [['wpn_small_katana', 1], ['wpn_bow_rasta', 2], ['arm_rasta_leather', 0.5], ['bot_rasta', 1], ['mat_steel_chunk',5]],
+  L114: '�·t����h�L': [['wpn_sword_rasta', 1], ['arm_rasta_leather', 0.5], ['bot_rasta', 1], ['scroll_armor', 0.5], ['scroll_weapon', 0.5], ['bk_dark_poison', 1], ['bk_dark_burn', 1], ['bk_dark_str', 1]],
+  L115: '�·t����N�x': [['scroll_acc',0.001],['scroll_armor', 0.5], ['scroll_weapon', 0.5], ['bk_reduction_armor', 0.05], ['bk_meteor', 0.001], ['bk_dark_poison', 1], ['bk_dark_burn', 1], ['bk_dark_poisonres', 1],
+  L124: // ===== ?? �·t����t�a�]�̡m�·t����t�a.md�n�Pv3.3.33�^�ױ�����H�ǦW��� =====
+  L125: '���A�G���·t���밫�h': [['mat_holy_relic',0.5],['mat_de_soul_crystal',1],['ear_cursed_black',0.05],['mat_summonorb_core',0.1],['mat_summonorb_shard',1]],
+  L126: '���A�G���·t����k�v': [['mat_holy_relic',0.5],['mat_de_soul_crystal',1],['ear_cursed_black',0.05],['mat_summonorb_core',0.1],['mat_summonorb_shard',1]],
+  L127: '���A�G���·t�����M�h': [['mat_holy_relic',0.5],['mat_de_soul_crystal',1],['ear_cursed_black',0.05],['mat_summonorb_core',0.1],['mat_summonorb_shard',1]],
+  L132: '�u�E���`�M�h �߬Ӥ��S��': [['wpn_cursed_emperor_blade',5],['wpn_emperor_blade',1],['clk_emperor',1],['amr_emperor',1],['hlm_emperor',1],['glv_emperor',1],['bot_emperor',1],['scroll_weapon',100],['scroll_armor',
+  L144: '�·t����k�v': [['mat_legion_law', 0.05], ['wpn_wand_rasta', 1], ['amr_rasta_robe', 0.1], ['bk_dark_dex', 1], ['bk_tornado', 0.05], ['bk_ice_spike', 1], ['bk_soul_up', 0.01], ['mat_steel_chunk',5]],
+  L294: '���H����': [['wpn_battleaxe',3], ['wpn_giantaxe',1], ['arm_61',0.6], ['scroll_weapon',0.2], ['scroll_armor',0.5], ['bk_fireball',0.1], ['bk_break',0.5], ['bk_elf_release',0.05], ['bk_blaze',0.01], ['acc_
+  L295: '���H�����': [['wpn_battleaxe',3], ['wpn_10',2], ['wpn_giantaxe',0.5], ['wpn_berserker',0.02], ['arm_61',0.5], ['arm_47',0.05], ['scroll_weapon',1], ['scroll_armor',1.5], ['new_item_158',0.5], ['bk_fireba
+  L395: '��Ѥ��q���H����': [['item_forgotten_robe',1], ['acc_demonbane',0.1]],
+  L405: '��Ѥ��q���H�����': [['item_forgotten_plate',1], ['rng_mr',0.3], ['new_item_192',0.001]],
+  L432: // ===== ?? ���Ƭ}�] �s�W�Ǫ����� + ���Ƥk�ӡ]�j�N����˳ơ^ =====
+  L511: ['���H����', 'relic_ogre_mawashi', 0.0001],
+  L532: ['�·t�����]�k�Ǯ{', 'relic_apprentice_wand', 0.0001],
+  L538: ['�·t����ݧL(�})', 'relic_darkremnant_boots', 0.0001],
+  L547: ['�·t����s��', 'relic_darkthief_claw', 0.0001],
+  L554: ['�·t����ݧL(�C)', 'relic_darkelf_grindblade', 0.0001],
+  L555: ['�·t����ݧL(�Q�r�})', 'relic_darkelf_shootglove', 0.0001],
+  L557: ['���H�����', 'relic_ogreking_collar', 0.0001],
+  L564: ['�·t����ݧL(�k�v)', 'relic_remnant_barrier', 0.0001],
+  L588: ['�·t����ݧL(����C)', 'relic_veteran_greatsword', 0.0001],
+  L608: ['�·t����ĵ��(�Q�r�})', 'relic_modded_crossbow', 0.0001],
+  L618: ['��Ѥ��q���H����', 'relic_troll_belly', 0.0001],
+  L627: ['�·t���먵�u', 'relic_handy_quiver', 0.0001],
+  L628: ['�·t����h�L', 'relic_soldier_medal', 0.0001],
+  L664: ['�·t����ĵ��(��)', 'relic_guard_roughgloves', 0.0001],
+  L668: ['�·t����k�v', 'relic_dark_manaball', 0.0001],
+  L706: ['��Ѥ��q���H�����', 'relic_fire_hide', 0.0001],
+  ... +36 more
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\02-stats-recompute.js
+  L82: let _baseCritDmg = (p.cls === 'dark') ? 100 : 50;   // ?? �·t�����¦�z���ˮ` 100%�]��l¾�~ 50%�^�F�˳�/��q���[�����W�|�[
+  L128: if (_setEarly['darkelf'] >= 3) { d.str -= 2; d.dex += 2; }   // ??? �·t����G�O�q-2/�ӱ�+2�]���e���ӱ���ڦY AC/�j��/���Z�ˮ`�R���B�O�q��ڦY��Z�ˮ`�R���A�_�h�u����ܼƦr���J�԰��^
+  L187: } else if (p.cls === 'dark') {             // �·t����
+  L240: if (player.cls === 'dark') { d.meleeCrit += 3; d.rangedCrit += 3; }   // ?? �·t����¾�~�ѽ�GLv1 �_��¦��/���z���v�U +3%
+  L241: if (hasMastery('d_crit')) { d.meleeCrit += 3; d.rangedCrit += 3; }   // ?? �·t�����z����q�G��/���z���v�U +3%
+  L303: if(w.mhp) p.mhp += w.mhp;   // ??? �Z�� HP �W���[���]�j�N�·t���뤧�C HP+50�F�P�B�ץ��`�����٬J�� HP+50 ���ġ^
+  L442: // ===== ����M�ݸ˳����îĪG =====
+  L445: d.mr += 5; // ���F�޵P�G����˳Ʈ��B�~ MR+5
+  L480: if(setCheck['darkelf'] >= 3) { d.ac -= 3; d.hpR -= 2; d.mpR -= 7; p._setPoly = Object.assign({}, SET_POLY_FORMS.darkelf); }   // ??? �·t����M�ˡGAC-3�BHP�۵M��_-2�BMP�۵M��_-7�B�ܨ������·t���F�]���Z���ˮ`/�R��+5�B��t+30%�^�]�O�q-2/�ӱ�+2
+  L485: if(setCheck['emperor'] >= 5) { d.ac -= 20; p.mhp += 100; p.mmp += 20; d.hpR += 10; d.atkSpdPct += 30; d.meleeDmg += 5; d.rangedDmg += 5; }   // ?? v3.3.33 �u�E�߬ӮM�ˡ]�ܭ�/�Z��/����/�@��/���u 5 ��P�·t����t�a.md�^�G���m-20�BHP
+  L561: if(p.buffs.elfcookie > 0 || (_mercPots && p.cls === 'elf')) spdMult *= (1/1.15); // ���F�氮�G��t+15%�]?? v3.5.37 1/1.15�P���N�� 0.85�׹��+17.6%�^�F����ħL�`�n
+  L868: { n:"���H����", lv:22, atk:21, wlk:16, cast:17, stun:5 },
+  L872: { n:"�·t����B�e��", lv:28, atk:38, wlk:24, cast:21, stun:6 },
+  L876: { n:"���H�����", lv:30, atk:18, wlk:16, cast:13, stun:4 },
+  L881: { n:"�·t������", lv:33, atk:17, wlk:18, cast:9, stun:5 },
+  L957: '�k����':'six', '�k����':'six', '�k�k�v':'six', '�k�k�v':'six',
+  L958: '�k�·t����':'dark', '�k�·t����':'dark',
+  L963: const SHANNA_DAGGER_LONG_HITSTUN = new Set(['���l', '�k�M�h', '�k����', '�k�k�v', '�k�·t����', '�k�·t����']);
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\03-combat-core.js
+  L72: // ?? v3.6.20 ���B�����]���aNPC�G�ҪO�P����^�G�ؼШ��쪺�v¡�]�Ĥ��P�ޯ�^�ĪG��b�C
+  L695: if(player.statuses.foulWater > 0) alerts.push("���B����");   // ?? v3.6.20 ���aNPC�G�ҪO�]����^�G����v¡�ĪG��b
+  L977: const PURE_BOSS_MAPS = ['antaras_lair', 'fafurion_lair', 'valakas_lair', 'king_baranka_room', 'law_king_room', 'necro_king_room', 'assassin_king_room', 'thebes_temple', 'tikal_altar', 'cursed_dark_elf
+  L1040: const TROLL_CLASS_BY_AVATAR = { "���l": "troll_royal", "���D": "troll_royal", "�k�M�h": "troll_knight", "�k�M�h": "troll_knight", "�k����": "troll_elf", "�k����": "troll_elf", "�k�k�v": "troll_mage", "�k�k�v": "troll_mage"
+  L2099: // ?? 50�ŸշҡG�j�}�����P�̧����a�� 1% �X�{�u�]�ڷt���Ρv�]���� stage2 �����K�ʱ����ѡ��k�v stage1 �������ҳ��i�ѡ^
+  L2197: // ?? v3.3.33 �N���� HP �O�d�]�·t����t�a.md�^�G�ԱѮɫ����㪺�l��y��js/05 revive ���� 1 ���ðO�� player.giltasKeep�F
+  L2778: // ?? �·t����G�s����W��Ĳ�o�U�N����(30%��1.5)�B�����}�a(���M/���� 45�Ű_10%��2�A�C5��+1%)�A��̥i�|�[�F���M�Ω����ˮ`�A�A�̳s�����v�]�t�v5/5��100%�A�_�h50%�^����
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\04-combat-attack.js
+  L111: // ?? �C�N��q�]����^�G��Z������ 5+����/10% ���v�o�ʬݯ} ��2
+  L119: // ?? �·t����G�U�N���ӡ]30% �ˮ`��1.5�^�B�����}�a�]�����M/�����ɡA45�Ű_10%���v�ˮ`��2�A�C5��+1%�A�i�P�U�N�����|�[�^
+  L121: if (player.buffs && player.buffs.sk_elf_attrfire > 0 && Math.random() < 0.30) result.dmg = Math.floor(result.dmg * 1.5);   // ?? ����G�ݩʤ����]�@�����30%���v�ˮ`��1.5�F�P�U�N���ӦP�ġA���ݩʧ���M�Ρ^
+  L166: // ?? �·t����G���[�@�r�]�R�� 50%���@�r��q 100% �ϥؼФ��r�G�C���Ӧ����� 60%���@�r��q 200% �ˮ`�A���� 5 ���A�̦h 1 �h�A�������ˮ`�è�s����ɶ��^
+  L447: // ?? �u�����B���Y�u�G�·t����u���[�@�r�v�O 1 ���@���A�Z�� proc �w�] 3 ���@���C
+  L1188: // �H����K�G�M�h (10-AC)/2�F����/�·t����/�s�M�h/�Ԥh (10-AC)/3�F�۳N�h (10-AC)/4�F����/�k�v�� (10-AC)/5
+  L1194: else if (player.cls === 'dark')      rndDrMax = Math.floor(acGap / 3);   // ?? �·t����G(10-AC)/3�]�P����^
+  L1374: // ?? �����v���]���a�P�ħL�P�W�h�A���������^�G�k�v/�۳N�h�B�Ϋ��}/���{�Z��(�}?�Q�r�})�̡�1�F��� �M�h/�Ԥh/�s�M�h��5�F��� ����/�·t����/���ڡ�4�F��l��1�C�]v2.6.30 ��ԭ��� 3��4?��Ի��� 2��3�Fv3.2.81 ��ԭ��� 4��5?��Ի��� 3��4�^
+  L1757: // ?? v3.3.33 ����Ŷ��]�N���𴵡P�·t����t�a.md�^�Gmob._reflectWall={kind,until} �������A����������]��Z��/���Z��/�]�k�^�ˮ`���ϼu�P���ˮ`��������]���a�θӶħL�^�C
+  L1808: // ??? v3.3.33 �ϫq�̪��޵P�]�·t����t�a.md�^�G����ˮ`�� rate(+per�ѱj��)% ���v�Ӧ��ˮ` -amt�]���a�϶ħL�B���z���]�k�|���|�@�Ρ^
+  L1944: // ?? v3.6.20 ���B�����]���aNPC�G�ҪO�P����^�G�����P�ؼШ��쪺�v¡�]�Ĥ��P�ޯ�^�ĪG��b�]�W��L���v/��ܶ��^
+  L2152: // ?? v3.6.20 �ͩR�����֡]���aNPC�G�ҪO�P����^�G�Y�ɫ�_���W�Ҧ����a NPC�]trollPlayer�P�t�ۤv�^healDice + �I�k�̵��� HP�F�L�˪̤��I��
+  L2278: // ?? v3.6.20 ���B�����]���aNPC�G�ҪO�P����^�G�����P�A���쪺�v¡�]�Ĥ��P�ޯ�^�ĪG��b�]�W��L���v/��ܶ��F�ޯব�f rollHealingSpell�P�Ĥ� js/08�^
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\05-kill-progression.js
+  L443: { let main = player.cls === 'knight' && player.trialStage === 1 && mob.n === '�·t����N�x' && !player.inv.some(i => i.id === 'item_dantes_letter');
+  L444: let ally = mob.n === '�·t����N�x' && typeof allyStageQuestItemActive === 'function' && allyStageQuestItemActive('item_dantes_letter');
+  L514: // === ?? ���]�۱����]�·t��������^�G�I�q�}�ީP��T�w�����]�����]�۴����^�F��l���~/�a�ʻݾǴ����]�ۤ~���]�𫰰Ϥ����^===
+  L516: // ����Q�ʡG�b���B���˦a���·t����ħL�Ƿ|�����]�ۮɡA�����P�˨��o���]�۱����ĪG�C
+  L530: // === ?? ���q�۱����]�·t����s�@���ơ^===
+  L540: // === ?? �·t����Z������ ===
+  L562: // === �ϰ��B�~�����G�v�s�}��1~3��(zone_15/16/17) / ����˪L�P��(zone_01) �Ҧ��Ǫ� ===
+  L1383: // ?? v3.4.16 �N���� HP �O�d�]�Τ@���f�P�Τ�G�԰����u���}�v�]�A�Ρ^�G���} ���A�G���·t����t�a ���Ҧ����|
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\06-status-allies.js
+  L256: if(lv >= 40) return { n:'�l��G���H����', dmgDice:[2,11], dmgDiv:4, dmgLvDiv:30, dmgMult:1.08, interval:20, kind:'melee', hitLvOff:7 };
+  L646: // ��O��ܦW�١G�����W������W�F�_�h��¾�~����]�M�h/�k�v/����^
+  L650: return ({ knight: '�M�h', mage: '�k�v', elf: '����', dark: '�·t����', illusion: '�۳N�h', dragon: '�s�M�h', warrior: '�Ԥh', royal: '����' })[a.cls] || a.cls || ('�s��' + (a._slot || ''));
+  L788: ally._atkSkill = (ally.config && ally.config.selAtkSkill) || '';   // �����ޯ��ܡ]�ַӡF�k�v�I�k / ����T���ڡ^
+  L793: { let _w = (ally.eq && ally.eq.wpn) ? DB.items[ally.eq.wpn.id] : null; ally._rapidfire = (_w && _w.isBow && _w.rapidfire) ? _w.rapidfire : 0; }   // ����}�G�O���s�g�o�ʾ��v
+  L1016: let _meleePassive = (ally.cls === 'knight') || allyHasMastery(ally, 'e_sword');   // ?? �C�N��q�G����ħL��Ԥ]�i�ݯ}
+  L1083: // ?? �·t����ħL�G�w�]�����۰ʺ������[�@�r�]�ǹL sk_dark_poison �Y�����`�n�W�q�^�F�R�� 50%���@�r��q 100% �ϥؼФ��r�]�P���a�P�W�h�^
+  L1112: if (isCrit && allyHasMastery(ally, 'd_crit')) allyComboAttack(ally, t);   // ?? �·t�����z����q�G�ħL�z���ɰl�[�@���s��
+  L1453: // �����O�G�s�g�]�}�^�X �̰O�����o�ʾ��v�l�[ 1~3 �b�A�C�b�� 30% �ˮ`�A�H���R�����W�ĤH
+  L1562: let _norm = ((r === 20) || (r !== 1 && hv >= r) || (r === 1 && ally.buffs && ally.buffs.sk_elf_preciseshot > 0));   // ?? ��Ǯg���]����ħL�P�s�ɮɫ�����buff�^�G�Y��1�ѥ��w���R�������w�R��
+  L2138: // �����O�G�T���ڡ]3 �����z�����^�����P�w�@���s�g
+  L2153: // �����O�@����ʡG��w�T���ڥB�ˤ}�B MP �������u���I��T���ڡF�_�h�@������F������P�w�s�g
+  L2166: // �ˮ`�]�k�G��Ӫk�v�AMP �����h�u���I��]�����]�k���ɦ��k�v���v�A�� allyCastMagic ��¾�~�B�z�^
+  L2179: // �·t�����O�@����ʡG�̳]�w�����ޯ�I��}�a����(�ؼеL�����A�BMP����)/�|�ߤ@��(MP��)/�ˮ`�]�k(v2.7.92�PLv12/24 �i�Ǥ@�G���P�� allyCastMagic)/�D�ˮ`���A�ޡF�Ҥ��A�Ϋh�@������]�t�s���P��q�^
+  L2216: let t = getTarget(); if (!t || t.curHp <= 0) { allyAttackOnce(ally); allyRapidfire(ally); return false; }   // ?? v3.1.77 �]�֤�#4�G�����P�w�s�g�]allyRapidfire �۱a isBow+rapidfire �Z���h�P�D�}=no-op�P��ȧ�����|Ĳ�o�^
+  L2238: let t = getTarget(); if (!t || t.curHp <= 0) { allyAttackOnce(ally); allyRapidfire(ally); return false; }   // ?? v3.1.77 �]�֤�#4�G�����P�w�s�g�]allyRapidfire �۱a isBow+rapidfire �Z���h�P�D�}=no-op�P��ȧ�����|Ĳ�o�^
+  L2286: let t = getTarget(); if (!t || t.curHp <= 0) { allyAttackOnce(ally); allyRapidfire(ally); return false; }   // ?? v3.1.77 �]�֤�#4�G�����P�w�s�g�]allyRapidfire �۱a isBow+rapidfire �Z���h�P�D�}=no-op�P��ȧ�����|Ĳ�o�^
+  L2319: let t = getTarget(); if (!t || t.curHp <= 0) { allyAttackOnce(ally); allyRapidfire(ally); return false; }   // ?? v3.1.77 �]�֤�#4�G�����P�w�s�g�]allyRapidfire �۱a isBow+rapidfire �Z���h�P�D�}=no-op�P��ȧ�����|Ĳ�o�^
+  L2342: let t = getTarget(); if (!t || t.curHp <= 0) { allyAttackOnce(ally); allyRapidfire(ally); return false; }   // ?? v3.1.77 �]�֤�#4�G�����P�w�s�g�]allyRapidfire �۱a isBow+rapidfire �Z���h�P�D�}=no-op�P��ȧ�����|Ĳ�o�^
+  L2660: // �H�u�����ޯ�N�o(_atkSkillCd)�v�h���]��¾�~ act�G�N�o�n�B�������ޡ����^�X�I��ӧިí��]�N�o�F�_�h�ȮɲM�� _atkSkill ��¾�~ act ���U�ۡu����v���|(�O�d����s�g/�§��s��/�k�v���b/�۳N�_�j�~��)�C
+  L2762: // ?? v3.8.5 �����ݩʹh�]�ħL���P��@�u�ۡ^�G���봫�ݩʫ�A���ݩʪ��T/�|/�������F�]�k�b�L�ۤv���W�O�u�Ǧ⤣�i�Ρv
+  L2768: //   granted�]�˳�/�Y���ᤩ�^��Ӫ��a�ŧK�ݩʹh�C�D����¾�~���ޯ�L reqEle/reqEleAny �� �@�� true�A�s�v�T�C
+  L2876: if (!allySkillElementOk(ally, sid)) continue;   // ?? v3.8.5 ���봫�ݩʫ᪺���ݩ� buff�]���K�Z��/�P���Z��/�j�a���@�K�^���A�����G���O�w���áP���B�P�B����]�쥻�|�ӦY d �[���S�Ӧ� MP�^
+  L2917: : (ally.skills.includes('sk_elf_summon2') && _mercAutoOn(ally, 'sk_elf_summon2') && allySkillElementOk(ally, 'sk_elf_summon2')) ? 'sk_elf_summon2'   // ?? ����ħL�u���u�l��j�O�ݩʺ��F�v(�W�ź��F)�G���Ǫ��@�목 sk_elf_summon ��
+  L3095: if (state.ticks % _aMpIv === 0 && (ally.mp||0) < (ally.mmp||0) && ((ally.d && ally.d.mpR) || 0) > 0) {   // ?? mpR �i��]�M���g�@�]�·t����M�� -7�^���t �� �P���a�^�]�@�P�A�u�b >0 �ɦ^�]�A�קK���ħLMP
+  L4109: <div class="text-slate-300 text-sm leading-relaxed">�۶Ҩ�L�s�ɦ쪺����@�_�@�ԡA<b class="text-emerald-300">�����K�O</b>�C��O�ħL�԰������|�}�`�A<b class="text-emerald-300">�A���`�æ^������a�_���ᤴ�|�d�b����A�i�ϥΦU�ħL�Ǫ��u�Ѵ��v�Ρu? �����h�X�v</b>�F�sŪ�ɤ��|�Ϩ�����C�k
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\07-skills-cast.js
+  L447: // ?? �·t����G�|�ߤ@���]���� HP 50% + �Ѿl�Ҧ� MP�F�ˮ` = �����@�����(�L���w��)���z����(����MP���W��%��10)�F���� x2�^
+  L1146: // �ഫ�]�k�]������k�v�U�ԡA���^�G�w���ϼȰ��BMP �F 90% �H�W���ഫ�F
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\08-items-equip.js
+  L610: // ¾�~���w�ˬd�]�p�V���Ĥ�=�k�v�B�i���Ĥ�=�M�h�B���F�氮=����^
+  L732: let reqLv = skillReqLv(sd, d.sk);   // ?? �����ơG�t�]�ɺ�q�S�ҡ]����i�ǥ|���k�v�k�N�^
+  L770: // �t���j��(sk_load_up)���k�v/�����ϥΪ��X�R�˳ƲM��]��@�ӷ��A�˳ƧP�w�P�ө��L�o�@�Ρ^
+  L780: // ===== �·t����˳ƨϥγW�h =====
+  L783: // �·t����L�k�ϥΪ�����/�Y��/��M/���O/��/T��/���u/���T�]�̦W�١A�t���j�ƲM�氣�~�^
+  L794: '���x�Y��','���x�k�T','���x���u','���x���O','���x��M',   // ?? ���x�t�C�G�·t����T�Ρ]�Ȫk�v/����^
+  L795: '���Ƥk�Ӫ����ͻH'   // ?? �̤奻�]�M�h/����^�G�·t����T�Ρ]�ȯͻH�奻�t�·t����h�i�Ρ^
+  L802: if (id === 'wpn_demon_sword_hidden') return false;              // ?? ���ê��]�ڤ��C�G�A�Τ���/�M�h/����/�s�M�h�]�·t������ ���ê��]�ڿ����^
+  L804: if (tags.includes('�P��') || tags.includes('���C') || tags.includes('����') || tags.includes('���M') || tags.includes('�Z�h�M')) return true;   // ?? �·t�����i�ϥΪZ�h�M
+  L807: //    req �������T�C�X dark �~�i�Ρ]�Q�r�} wpn_31 �w�� dark �O�d�{���^�Freq:'all' ���@����}���i�Ρ]�·t���뤣�ϥΪ��}�P��N�D���|�^�C
+  L808: //    ??�s�W�}/�Q�r�}�n���·t�����req �[ dark�F������req ���C dark�]�����Q�r�}�p �Դ���ڼw���Q�r�}/�c�]�Q�r�}/�I�R�Q�r�} �Y���}��^�C
+  L817: return reqAllowsClass(d, 'elf') || reqAllowsClass(d, 'dark');   // ��l��ӧ���i��
+  L910: if (d && d.reqAvatar && player && ((d.strictAvatar && player.avatar !== d.reqAvatar) || (!d.strictAvatar && player.avatar && player.avatar !== d.reqAvatar))) return false;   // ?? �ʧO�Y�����w�FstrictAvatar�]
+  L913: //    �� �����C�N��q��A�@�몺�M�h���w���Z���ɱo��B�P���󪺡u�򪫡v�o�ˤ��W�]8 ��^�C�令�u���L *EquipOk �����B
+  L916: if (player.cls === 'dark') return darkEquipOk(d, item.id);   // ?? �·t����M�ݸ˳ƳW�h
+  L927: // 3. ?? �C�N��q�G����i�˳��M�h���w�����Z���]�D����B�D�}�^�X�X?? �򪫦P�˾A�Ρ]v3.7.83 �_�򪫤]�|����o�̡^
+  L961: // ¾�~/�˳Ƹ��Τ@�� checkCanEquip�]�t�·t����W�h�B�t���j�ơB�C�N��q�ҥ~�^�A�P��ܥΧP�w�P�@�ӷ�
+  L1213: foulWater: '���B����'   // ?? v3.6.20 ���aNPC�G�ҪO�]����^�G����v¡�ĪG��b
+  L1431: // �B�z��ܤ�r�G�u��� �M�h�B�k�v�B����B�·t����
+  L1435: else if (player.cls === 'elf') clsDisplayName = '����';
+  L1436: else if (player.cls === 'dark') clsDisplayName = '�·t����';   // ?? �·t����¾�~�W
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\09-vfx-render.js
+  L1435: const MOB_ANIM_NAMES = new Set([/* ?? v3.1.59 ���d��18�� */ '���d���N���p�w(��)', '���d���N���p�w(��)', '���d����w�d���(��)', '���d����w�d���(��)', '���d����w�ץd(��)', '���d����w�ץd(��)', '���d����w�ک�', '���d����w�ک�(��)', '���d����w�㦫', '���d����w�㦫(�\��)', '���d����w��
+  L1451: const MOB_ANIM_SPRITE_SHADOW = new Set([/* ?? v3.2.17 */ '�Ѫ�', '��', '����', '���R����', '�F��', '�t�B�Ǥ�', '���W', '�ɨ���', '�p�y��', '�_�Q', '�U��', '�U�l', /* ?? v3.1.59 ���d��18�Ǭұa_s */ '���d���N���p�w(��)', '���d���N���p�w(��)', '���d����w�d���(
+  L1545: // ???? v2.7.72 �·t����k�v/���ƪ��a���� anchored skill_effect�G
+  L1546: '�·t����k�v': { startPfx: 'skill_effect', anchored: { ox: 22, oy: -22, bw: 78, bh: 133 } },
+  L1595: '���Q�w': '���a�k����', '������Q�w': '���a�k����', '����': '���a�k����', '�뤧���F����': '���a�k����',
+  L1597: '��v��߯S': '���a�k�·t����' };
+  L1745: const MOB_ANIM_8DIR = new Set(['������', /* ?? v3.2.17 �٦��s12�ǡ]�������d���K��V�@�Ρ^ */ /* ?? v3.2.20 �P�W�ǥh���G��Ū�K��V�@�ιϡP�®ڹϤw�R�]�B�H�O�dspawn�P���t��7���O�d�S�ļh�����^ */ '���f�����L', '�̦a���]', '���F���ԧ��]', '���]���u', '�g���r��', '�g�����r', '�g�����]', '���H��
+  L1889: '�ȤO�w', '�H���L��', '�ܾ�', '�����L', '�a�F', '�hù', '���]', '���]�}�b��', '�p�c�]', '�ڦC��', '�ڭ��S', '��J��', '�c�]', '�ڦN', '���`', '�T�H', '�ܪ�', '���H�����', '���Ͱ�', '�u�\�}�b��', '�u�\���', '�u�\�j�L', '�·t������',   // ?? v3.0.50 +23 �ܨ��]�c�]�׶H����c�]�M�� SE
+  L1890: '�Ϥ��֮�', '�l�尭', '���H', '�ժ����u', '�ɥ���', '�ȥ����u', '���|��', '�������u', '�·t���u', '�·t���F',   // ?? v3.0.52 +10 �ܨ��]�·t���F�׶·t����M�� �����·t���F �g�O�W�M�g�^
+  L1891: '�d�h�f', '�v�ڦ�', '���]���u', '���]���h', '���j���H', '�ڤg��', '�ɨ���', '�G���', '��Q��', '�کi���L', '�W�����H', '�̦a���]', '���Y���[', '�ȤH', 'ù�����]', '�躿', '���|�[���]', '���F���ԧ��]', '���˼کi', '����', '���R�ڧ��]', '����', '���H����', '���w��', '�u�\', '�·t����B�e��', '��
+  L1893: const MORPH_BATTLE_ALIAS = { '�u�E���`�M�h': '���`�M�h', '�u�E�J�S': '�J�S', '�����·t���F': '�·t���F' };   // �M���ܨ����P���ʵe�]v3.0.52 �·t����M�ˡ��·t���F�P�P js/19 ��ø�O�W�@�P�^
+  L1897: //   ?? ���ǤJ(�������V�P����Ƥ���)�G�ȤO�w(�� spr �l��)�����]�}�b��(�^�_���ޤ���)���T�H�P���j���H�P���˼کi�P���H������P�·t�����ȡP�·t����B�e��(����Ƨ��L���� body)�C
+  L1899: '�H���L��', '�ܾ�', '�J�S', '�d�q�S��', '�d�h�f', '�Ϥ��֮�', '�l�尭', '�����L', '�a�F', '�hù', '���]', '���]���h', '�p�c�]', '���H', '�ڦC��', '�ڤg��', '�ڭ��S', '��J��', '��J�ڤk��', '�c�]', '�ɨ���', '�G���', '��Q��', '�ڦN', '�کi���L', '���`', '���`�M�h', '���]', '�W�����H'
+  L1902: '�T�H', '���j���H', '���˼کi', '���H�����', '�·t������', '�·t����B�e��',   // ?? v3.5.14 �s������K��V��Ƨ������]�Τᴣ�ѧ�s�ʵe�Pdeploy_new6 �M�ݳ��p�^
+  L1909: const CLASS_BATTLE_ANIM = new Set(['�k�M�h', '�k�M�h', '�k����', '�k����', '���l', '���D', '�k�k�v', '�k�k�v', '�k�·t����', '�k�·t����', '�k�s�M�h', '�k�s�M�h', '�k�۳N�h', '�k�۳N�h', '�k�Ԥh', '�k�Ԥh']);   // ??? v3.0.70 �� 16 avatar�]¾�~�ʺA CSV �������ɧ����^
+  L1911: // ??? v3.0.70 per-avatar �i�ΪZ�������fallback�]CSV �W�h�G�˳ƦC���S�����Z�����U¾ fallback ��ܡP�k�v/�۳N�h=�]���P�·t����=�P���P�Ԥh=����C�P��l=���C�^
+  L1915: '�k����':     { w: ['unarmed','bow','dagger','sword1','blunt','spear'], fb: 'sword1' },
+  L1916: '�k����':     { w: ['unarmed','bow','dagger','sword1','blunt','spear'], fb: 'sword1' },
+  L1921: '�k�·t����': { w: ['unarmed','dagger','sword1','bow','dual','claw','gauntlet'], fb: 'dagger' },
+  L1922: '�k�·t����': { w: ['unarmed','dagger','sword1','bow','dual','claw','gauntlet'], fb: 'dagger' },
+  L1932: //   ���鶰�̨ӷ� spr ��ڰʧ@�]�Ԥh�L����C�ʧ@���h��F�s�M�h���ٰʧ@�F�·t����}=�Q�r�}�ʧ@�^�C���p����scratchpad/deploy_true_shanna.js�C
+  L1938: '�k����':     { w: ['unarmed','bow','dagger','sword1','blunt','spear'], fb: 'sword1' },
+  L1939: '�k����':     { w: ['unarmed','bow','dagger','sword1','blunt','spear'], fb: 'sword1' },
+  L1942: '�k�·t����': { w: ['unarmed','dagger','sword1','bow','dual','claw','blunt'], fb: 'dagger' },
+  L1943: '�k�·t����': { w: ['unarmed','dagger','sword1','bow','dual','claw','blunt'], fb: 'dagger' },
+  L1956: const CLASS_ANIM_8DIR = new Set(['�k�M�h', '�k�M�h', '�k����', '�k����', '���l', '���D', '�k�k�v', '�k�k�v', '�k�·t����', '�k�·t����', '�k�s�M�h', '�k�s�M�h', '�k�۳N�h', '�k�۳N�h', '�k�Ԥh', '�k�Ԥh']);   // ?? v3.7.65 �� 16 ¾�~�]�K��V�@�e�����p�����P�t <�Z��>_walk 
+  L2028: let pending = form.wpn ? 20 : 18;   // ??? v3.0.70 ¾�~�κA�h�� 2 ���G�Z���M�� skill�]<wpn>_skill_�P�·t�������M/�����P�s�M�h����C/����C�P�Ԥh�U�Z���^�F?? v3.7.65 �ʧ@�h�@�� walk�]body/shadow/weapon �@ 3�^
+  L2030: // ?? �}/�Q�r�}�L�M�ݧޯ�ʵe(bow_skill_)�G�I��ޯ�(�p����T����)�ɭ�h�^�u�q�� skill_�v�Ť�I�k���ա���ɥΤ}����(bow_attack)���աA���}�̬I��ޯण�A�ܪŤ�]���a�϶ħL�@�Φ��֨��P�P�M�μv�l�h�^
+  L2163: '����F':[67,82],'���H����':[93,118],'���H����2':[90,118],'���H����F':[92,119],'���H�����':[93,112],'���H�����2':[90,112],'���H�����F':[92,111],'���Ͱ�':[72,91],
+  L2167: '�����k�v2':[69,95],'�����k�vF':[65,94],'�����M�h':[90,113],'�����M�h2':[86,113],'�����M�hF':[88,112],'�·t������':[64,103],'�·t������2':[66,103],'�·t������F':[65,101],
+  L2168: '�·t����B�e��':[70,73],'�·t����B�e��2':[67,71],'�·t����B�e��F':[68,73],'�·t���u':[62,103],'�·t���u2':[66,104],'�·t���uF':[63,104],'�·t�k�v':[59,97],'�·t�k�v2':[65,95],
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\10-ui-tabs.js
+  L609: if(_convRow) _convRow.classList.toggle('hidden', player.cls !== 'elf' && player.cls !== 'mage' && !(player.cls === 'royal' && hasMastery('k_royal_magic')));   // ?? �ഫ�ޯ�]�m�}�񵹪k�v/����F?? ���ڡ]�]�k��q�^�]�}��H�ϥ��]�O��
+  L647: // ?? �·t����Z���G���� / ���M / �P��
+  L670: wpn_ancient_darkelf_sword:['���C'],   // ??? �j�N�·t���뤧�C�G����(���C)
+  L672: wpn_demon_claw_hidden:['����'],   // ?? ���ê��]�ڿ����G��������(����33�w�]�ϳe��϶·t����i��)
+  L1257: // ??? �A��¾�~�G�H¾�~ logo ��ܥi�˳Ʀ��˳ƪ�¾�~�]�M�h/����/�k�v/�·t����/�۳N�h�F�·t���먫 darkEquipOk �u��W�h�^
+  L1259: const _EQ_CLASSES = [['knight','�M�h'], ['elf','����'], ['mage','�k�v'], ['dark','�·t����'], ['illusion','�۳N�h'], ['dragon','�s�M�h'], ['warrior','�Ԥh'], ['royal','����']];
+  L2559: // ?? v3.8.5 �ߤ@�ҥ~�ק����ݩʹh�G��Ū **ally.elfEle**�]�ħL�ַӦ۱a�^�ӫD player.elfEle �N���|�~�P�C
+  L2609: // ?? v3.8.5 �l�[ elfEle�G�ӷ����봫�ݩʫ� refreshAllyOnce ���اַӮɦW�r/���ų��S�� �� ñ������ �� �ޯ�U�ԻP�۰ʺ����Ŀ�|���b���ݩʪ��M��]�����ê��S���á^
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\11-world-map.js
+  L4: {v:'town_silver_knight',t:'���M�h��'}, {v:'town_elf',t:'����˪L'}, {v:'town_talking',t:'���ܤ��q'},
+  L10: {v:'silver_knight',t:'���M�h�a��'}, {v:'talking_island',t:'���ܤ��q�P��'}, {v:'zone_01',t:'����˪L�P��'},
+  L36: // ?? �·t����t�a�����A�G�t�a���Y�a�����ѷ|ĳ�U�סu�L�k�q�a�Ͽ���ܡv�]MD �]�w�P�u��� ���ѷ|ĳ�U NPC �u�E�߬Ӥ��S�� �i�J�^�����C���F�w���ϧ� town_elder_council(village �s��)
+  L92: { key: 'fairyforest', label: '����˪L', maps: [
+  L93: {v:'town_elf', t:'����˪L����'}, {v:'zone_01', t:'����˪L�P��'},
+  L438: // ?? v3.4.7 �·t����t�a 3 ���ùϡ]NPC �i�J�P���b����U�ԡ^���k�W������ܦa�W�]��ӶƺC����/��Ѥ��q�^
+  L439: const SANCTUARY_MAP_NAMES = { dark_elf_sanctuary: '�·t����t�a', cursed_dark_elf_sanctuary: '���A�G���·t����t�a', collapsed_elder_council_hall: '�Y�a�����ѷ|ĳ�U' };
+  L480: ind.textContent = SANCTUARY_MAP_NAMES[cur];   // ?? v3.4.7 �·t����t�a3���ùϡG��ӶƺC����/��Ѥ��q�����å��k�U�ԡB�u��ܦa�W�]�u��Ρu�^���v���}�^
+  L495: if (player.cls === 'dark') return 'town_silent';   // ?? �·t����G���[�J����ɦ^�I�q�}�ޡ]�w�[�J�h�W���w�^���D�����^
+  L1405: <div class="text-slate-300 leading-relaxed">${player.cls === 'dark' ? '�~�G�C�Ө��췥�P���·t����A���n�^���P�@�Ӱ��D�X�X<br><span class="text-amber-200 font-bold">�A���u�H���v�O����</span>' : `�~�G�C�Ө��췥����${({knight:'�M�h',mage:'�k�v',elf:'
+  L1501: // ===== ?? v3.3.33 �u�E�߬Ӥ��S���]���ѷ|ĳ�U�P�·t����t�a.md�^�G�T�ﶵ�J�f =====
+  L1502: //   �i�J �·t����t�a�����A�G���·t����t�a�צU���� 1 �� ���`�M�h���ѡF��X �N���𴵪��ʦL�׮��� 1 �ӡ��ǰe �Y�a�����ѷ|ĳ�U�C
+  L1516: logSys(`<span class="text-amber-300">�A��X�F 1 �� ${d0 ? d0.n : costId}�A${mapKey === 'collapsed_elder_council_hall' ? '�Q�ǰe��F �Y�a�����ѷ|ĳ�U' : '��J�F ' + (mapKey === 'dark_elf_sanctuary' ? '�·t����t�a' : '���A�G���·t����t�a'
+  L1549: <button class="w-full text-left px-3 py-2 rounded bg-indigo-900/60 hover:bg-indigo-800 border border-indigo-500/40 ${books < 1 ? 'opacity-50' : ''}" onclick="sanctuaryEnter('dark_elf_sanctuary','item_
+  L1550: <button class="w-full text-left px-3 py-2 rounded bg-rose-900/60 hover:bg-rose-800 border border-rose-500/40 ${books < 1 ? 'opacity-50' : ''}" onclick="sanctuaryEnter('cursed_dark_elf_sanctuary','item
+  L1705: } else if (npc.id === 'npc_runde' || npc.id === 'npc_kang' || npc.id === 'npc_brudica') {   // ?? �·t���뭭�w�շҡ]���_/�̯S�A�ӫD�s�@�^
+  L1814: '2725': { g: '2725', f: 1 },   // ?? v3.2.90 �g�۴˪L�����ק���۹��]�Τᴣ�� NPC/�g�۴˪L����/2725-0�P88��96 ��V�^
+  L1842: // ?? v3.7.60 �¹y���w��紵�T�H�ա]Downloads/NPC �Τ���w�����^�G�h�|�Ũ����׷s�� 7618�F�̡̦�914�]�P����˪L�����P�����P���������y�^�F�ܧQ�������x��460�]�P���ܤ��q�k�L�P�����P���������y�^
+  L1864: const NPC_SPR_ROLE = { warehouse: '10669', ally: '51', castleguard: '1222' };   // ?? v3.4.74 �ܮw�q�Υ~�� 54��10669�]���Y�s�y���P����˪L�ܮw=npc_wh_elf �� FIXED '918' �����v�T�^
+  L1930: // ����˪L�G�J���W=������U�Ŧa�U�㺸=�D�����e�U�Y�F=�R�x�e�U��Q��=�k���L���ۮ|�U����/�R�|��=�L���Ŧa�U���F�k��(override)�U���F=��E���U�w�S(override�v�k�W)�U��/ͺ�J�g=�Ŧa�U���ԧB=�k�U�Ϊ��Y�Uù���]=���U��Υ��x�U�g�۴˪L����=�k���}��a(���۹�)
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\12-npc-quests.js
+  L973: // ?? �·t���뭭�w�շҡ]v3.0.78 ������^�G�۱o=30��/�d=15�š]v3.1.39 �洫�Pkey �W dark15/dark30 ���ʬG�P lv �������ݥ��`�^/���|�}�d=45�š�50�Ÿշ�
+  L982: div.innerHTML = `<div class="p-6 text-red-400">${cfg.npc}�G�o�O�·t���몺�շҡA�~�H���o�ѻP�C</div>`;
+  L986: if (npcId === 'npc_brudica') html += `<div class="mt-3">` + build50TrialHTML('���|�}�d') + `</div>`;   // ?? ���|�}�d�G�l�[�·t���� 50 �Ÿշҡ]�����ˬd�� build50TrialHTML �B�z�^
+  L989: // ===== ?? �U¾�~ 50 �ŸշҨt�Ρ]�}�Űǧʡ��M�h/����/�k�v�F���|�}�d�׶·t����^=====
+  L992: stages: [ {id:'item_dantes_letter', nm:'���S�����l��', cnt:1, hint:'�����·t����N�x'},
+  L1048: if (!cfg || cfg.npc !== '�}�Űǧ�') { div.innerHTML = `<div class="p-6 text-red-400">�}�ŰǧʡG�o���շҥu�ݩ��M�h�B����B�k�v�P���ڡC</div>`; return; }
+  L1126: // ?? �ڴ��G���� 15 �Ÿշҡ]������^
+  L1128: if (player.cls !== 'elf') { div.innerHTML = `<div class="p-6 text-red-400">�ڴ��G�ڦ��I�ƷQ�䧯�������A�������̽����}�C</div>`; return; }
+  L1148: // ?? �g�۴˪L�����G���� 30 �Ÿշҡ]������^
+  L1150: if (player.cls !== 'elf') { div.innerHTML = `<div class="p-6 text-red-400">�g�۴˪L�����G�u������ť�o���˪L���C�y�C</div>`; return; }
+  L1153: // ??????? ���F�]�¹y���^�G�M�h 45������ 45������ 45 �Ÿշҡ]������^
+  L1156: if (!key) { div.innerHTML = `<div class="p-6 text-red-400">���F�G�o�O�M�h�B����P���ڪ��շҡC</div>`; return; }
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\13-shop-save.js
+  L1: // ===================== �����ݩʨt�� (NPC ��Q��) =====================
+  L22: elf_forest: 'assets/area/�˪L.jpg', zone_01: 'assets/area/�˪L.jpg', mirror_forest: 'assets/area/�˪L.jpg',   // ?? ���]�˪L/����˪L�P��/��l�˪L�]���~�P�@�δ˪L�I���^
+  L59: dark_elf_sanctuary: 'assets/area/1920x1080/�·t����t�a.jpg',
+  L60: cursed_dark_elf_sanctuary: 'assets/area/1920x1080/���A�G���·t����t�a.jpg',
+  L90: const AREA_1920 = new Set(['�ȤB����','�쫽����','�ƺC����','�ƺC����11~20��','�ƺC����1��','�ƺC����21~30��','�ƺC����2~10��','�ƺC����31~40��','�ƺC����41~50��','�ƺC����51~60��','�ƺC����61~70��','�ƺC����71~80��','�ƺC����81~90��','�ƺC����91~100��','�ߪk�x������','�ߪk�x
+  L101: town_elf: '����˪L����', town_talking: '���ܤ��q����', town_gludio: '�U�h����', town_gludin: '�j�|�B����', town_witon: '�¹y����',
+  L105: town_elder_council: '���ѷ|ĳ�U'   // ?? v3.3.33 �·t����t�a�ϯæw����
+  L138: document.body.style.boxShadow = e ? `inset 0 0 0 6px ${e.border}` : 'none';   // ����ӼаO����Y����������ܡA�קK�P����a�ݩʶ�����ؽĬ�
+  L144: <span class="text-5xl mb-4">??</span><span class="text-lg">�u������������ݩʡC</span></div>`;
+  L266: let cantLearn = d.type === 'skillbk' && !learned && DB.skills[d.sk] && skillReqLv(DB.skills[d.sk], d.sk) === undefined;   // ?? ��¾�~�L�k�ǲߡ]�p�·t����T���H�W�k�v�]�k�^�G�H�u�w�߱o�v�ۦP�t��e�{
+  L342: let clsName = { knight:'�M�h', mage:'�k�v', elf:'����', dark:'�·t����', illusion:'�۳N�h', dragon:'�s�M�h', warrior:'�Ԥh', royal:'����' }[p.cls] || p.cls;
+  L793: '�k����': 'm_elf', '�k����': 'f_elf',
+  L794: '�k�·t����': 'm_dark', '�k�·t����': 'f_dark',
+  L1180: const titleMap = { royal:'����', knight:'�M�h', mage:'�k�v', elf:'����', dark:'�·t����', illusion:'�۳N�h', dragon:'�s�M�h', warrior:'�Ԥh' };
+  L1187: elf: "����֦���H��������ةR\n�P���R���~���A�L�̶����۵M\n�l�D�ĦX�w�w���ͬ�\n�ù�Ҧ����Ʊ����{�����O�u\n�]�����뤣���w�P�H����Ĳ\n�b�y�˪L�����z���O�@���U\n�إ߿W�۪���ƥͬ��C\n\n�������ϥΪ��Z�����M�h��\n���O�L�i�H�ϥΤj�������Z��\n�ר�i�H�ϥλ��Z���������}�b\n���L�Z���֦���h���u��\n�ӥB����ϥΪk�v���h���]�k\n�i�׬O�ӳ̧��Ū�¾�~�C\n\n�A�Q�n�H���몺
+  L1189: dark: "�·t�����ŧ���몺�ӾU�P����\n�o��ܦb���v���i�m�ۤv���D���C\n�L�̤��H�u�@�˪L���ϩR�A\n�ӬO�l�D��ֳt�B��P�R���O�q�A\n�b�I�R���������@���M�w�ӭt�������C\n\n�·t�������ϥΤP���B���M�B����\n�P�Q�r�}���Z���A\n�åH�r�P�{�ײo��ĤH����ʡC\n�L�̪����m�ä�í�T�A\n���O�ӱ�������P�z�o�ʪ����ˤO\n���H�b�u�ɶ�������ԧ��C\n\n�A�Y�Q�H�·t���몺�����ͦs�A\n�N����
+  L1276: 'm_elf': '�k����', 'f_elf': '�k����',
+  L1277: 'm_dark': '�k�·t����', 'f_dark': '�k�·t����',
+  L1313: gainItem('wpn_11', 1, true, true);        // ?? �P���]�·t����_�l�Z���A�D�ڦ贵�P���^
+  L1428: // �i���Ĥ��G�M�h���s�M�h���w�F�V���Ĥ��G�k�v���۳N�h���w�F���F�氮�G���뭭�w
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\14-craft-pandora.js
+  L234: // ?? �s�W����˪L���t�C�t��
+  L292: // ?? �s�Wù���]���t��]����˪L�G�K���ѨϤ}�^
+  L312: // ?? �s�W�w�����t��]�I�q�}�ޡG�ȻP�·t�������/���M/�Q�r�}�F�Z���Ҥ䴩�u�Y�s�@�^
+  L414: // ?? v3.3.33 ���ѷ|ĳ�U?�ȴ��Q�ڡ]�·t����t�a.md�^�G�l��y�X���ϯu�D�߬Өt�C������y
+  L1648: royal: '����', knight: '�M�h', mage: '�k�v', elf: '����',
+  L1649: dark: '�·t����', illusion: '�۳N�h', dragon: '�s�M�h', warrior: '�Ԥh'
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\15-cards.js
+  L20: { key: 'fairyforest',  name: '����˪L',   stat: 'mmp',      vals: [3, 5, 10],  maps: ['zone_01', 'zone_15', 'zone_16', 'zone_17'] },
+  L35: // ?? �H�U��ϭ쥻��Ӻ|���G35 ���ӰϿW���ǡ]��Ѥ��q obli_* 26 ���B�·t����t�a sanct_* 9 ���t�N���𴵡��߬Ӥ��S���^
+  L39: { key: 'sanctuary',    name: '�·t����t�a', stat: 'mr',     vals: [1, 3, 5],   maps: ['dark_elf_sanctuary', 'cursed_dark_elf_sanctuary', 'collapsed_elder_council_hall'] },
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\17-audio.js
+  L83: //   ���˸s��(4��)�Gknight=�M�h/�Ԥh/�s�M�h�Bmage=�k�v/�۳N�h�Belf=����/�·t����Broyal=���ڡF�ʧO�� player.avatar(/�k|���D/��f�_�hm) �P�w�C
+  L184: "�j�N���H": 1220, "���j�L��": 212, "���H": 614, "���P": 623, "����": 35, "�d�q�S": 106, "���H����": 75, "�D�k": 615, "�a����": 427, "�ƺ��L��": 727,
+  L186: "���H": 750, "�ȤH": 732, "�u�\���h": 57, "�����Z��": 618, "�z�u��": 653, "���H�����": 75, "���g��": 55, "�㺸���h�L": 700, "��Q��": 278,
+  L198: "���� �P����": 49, "�کi": 770, "�g�ɪ��کi": 770, "�کi�˥ҧL": 723, "�g�ɪ��کi�˥ҧL": 723, "�·t����ݧL(�})": 458, "�·t����ݧL(�C)": 458,
+  L199: "�·t����ݧL(�Q�r�})": 458, "�·t����ݧL(�k�v)": 458, "�·t����ݧL(����C)": 458, "�·t���F��": 458, "�·t����ĵ��(�Q�r�})": 458, "�·t�����]�k�Ǯ{": 458,
+  L200: "�·t����ĵ��(��)": 458, "�·t���먵�u": 458, "�·t����h�L": 458, "�·t����N�x": 458, "�ª�": 168, "�Դ���ڼw���~�v": 79, "���A�G�����~�v": 79, "�a��������": 427,
+  L202: "�������u�@��": 770, "�·t����k�v": 458, "�ªk�v": 458, "�·t�_����": 79, "���N�h": 79, "�کi�Ԥh": 106, "��§g��": 79, "���M�h": 79, "���˼کi�Ԥh": 106,
+  L214: "��Ѥ��q�d�q�S": 106, "��Ѥ��q�D�k": 615, "��Ѥ��q�ܪ�": 70, "��Ѥ��q������H": 519, "��Ѥ��q���H����": 75, "��Ѥ��q���G����": 55, "��Ѥ��q��Q��": 278,
+  L216: "��Ѥ��q���H�����": 75, "��Ѥ��q���c�h�i": 223, "��Ѥ��q�W�����H": 438, "��Ѥ��q���s": 278, "��Ѥ��q���j���H": 519, "�`�W���Ͱ�": 72, "�`�W�}�b��": 57,
+  L218: "�`�W���D": 427, "�]����": 83, "�·t����s��": 458, "����F": 156, "ɦҨ": 291, "�]��": 291, "�کi���L": 26, "����F��": 156, "���ݸ��G": 213,
+  L229: "���j���H": 519, "�ɨ���": 83, "�G���": 60, "���˼کi": 106, "�·t����B�e��": 458,   // ?? v3.0.58 �ܨ��ɭ��G��Ѥ��q���j���H/�ڤۤ��q�ɨ���/�H����G���/���˼کi�Ԥh�Pv3.0.59 �B�e��=�·t����ĵ��
+  L263: "�j�N���H": 1221, "���j�L��": 197, "���H": 560, "���P": 575, "����": 36, "�d�q�S": 105, "���H����": 76, "�D�k": 586, "�a����": 424, "�ƺ��L��": 730,
+  L265: "���H": 751, "�ȤH": 733, "�u�\���h": 58, "�����Z��": 557, "�z�u��": 654, "���H�����": 76, "���g��": 56, "�㺸���h�L": 720, "��Q��": 274,
+  L277: "���� �P����": 50, "�کi": 772, "�g�ɪ��کi": 772, "�کi�˥ҧL": 724, "�g�ɪ��کi�˥ҧL": 724, "�·t����ݧL(�})": 460, "�·t����ݧL(�C)": 460,
+  L278: "�·t����ݧL(�Q�r�})": 460, "�·t����ݧL(�k�v)": 460, "�·t����ݧL(����C)": 460, "�·t���F��": 460, "�·t����ĵ��(�Q�r�})": 460, "�·t�����]�k�Ǯ{": 460,
+  L279: "�·t����ĵ��(��)": 460, "�·t���먵�u": 460, "�·t����h�L": 460, "�·t����N�x": 460, "�ª�": 173, "�Դ���ڼw���~�v": 80, "���A�G�����~�v": 80, "�a��������": 424,
+  L281: "�������u�@��": 772, "�·t����k�v": 460, "�ªk�v": 460, "�·t�_����": 80, "���N�h": 80, "�کi�Ԥh": 105, "��§g��": 80, "���M�h": 80, "���˼کi�Ԥh": 105,
+  L293: "��Ѥ��q�d�q�S": 105, "��Ѥ��q�D�k": 586, "��Ѥ��q�ܪ�": 71, "��Ѥ��q������H": 530, "��Ѥ��q���H����": 76, "��Ѥ��q���G����": 56, "��Ѥ��q��Q��": 274,
+  L295: "��Ѥ��q���H�����": 76, "��Ѥ��q���c�h�i": 219, "��Ѥ��q�W�����H": 436, "��Ѥ��q���s": 274, "��Ѥ��q���j���H": 530, "�`�W���Ͱ�": 73, "�`�W�}�b��": 58,
+  L297: "�`�W���D": 424, "�]����": 84, "�·t����s��": 460, "����F": 157, "ɦҨ": 293, "�]��": 293, "�کi���L": 27, "����F��": 157, "���ݸ��G": 196,
+  L308: "���j���H": 530, "�ɨ���": 84, "�G���": 61, "���˼کi": 105, "�·t����B�e��": 460,   // ?? v3.0.58 �ܨ��ɭ��G��Ѥ��q���j���H/�ڤۤ��q�ɨ���/�H����G���/���˼کi�Ԥh�Pv3.0.59 �B�e��=�·t����ĵ��
+  L334: "�·t����h�L": 1096, "�·t����N�x": 1080, "�·t���먵�u": 783, "�·t����ݧL(�C)": 1096, "�·t����ݧL(�Q�r�})": 783, "�·t����ݧL(�})": 783, "�·t����ݧL(�k�v)": 1030, "�·t����ݧL(����C)": 1096,
+  L335: "�·t����k�v": 1148, "�·t����s��": 903, "�·t����ĵ��(�Q�r�})": 783, "�·t����ĵ��(��)": 1169, "�·t�����]�k�Ǯ{": 1030, "�·t�ϪL��": 1204, "�·t���F": 491, "�·t���F��": 1086,
+  L379: // ?? v3.4.0 �·t����t�a�� BOSS �԰����]�·t����t�a.md�P[�W, ����, �ޯ�, ����, ���`]�^�G�N���𴵡ץΤ���w 1992/1993/1995/1994�F�u�E���`�M�h �߬Ӥ��S���׭ɡu���`�M�h�v�P�M�]��86/��91/��88/��89�Phurt/kill/skill ���L�l�r��ɥάG���㦡�^�ϧ����|���M�n 248�]�P���`�M�h�^�C
+  L526: '�����w': 'elf_m' };   // ?? v3.5.16 �����w����/���`���M�Ψk����y���]hurt_elf_m�P�Τ���w�^
+  L567: 'town_elf',           // ����˪L
+  L579: 'town_elder_council', // ?? v3.4.0 ���ѷ|ĳ�U�]�·t����t�a.md�Gmusic 10�^
+  L592: 'cursed_dark_elf_sanctuary': 'music153', 'collapsed_elder_council_hall': 'music162',   // ?? v3.4.0 �·t����t�a�� BOSS �С]�·t����t�a.md�Gmusic 153��162�F�@��t�a�����w�������q�� battle�^
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\19-equipment-window.js
+  L53: royal: '����', knight: '�M�h', mage: '�k�v', elf: '����',
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\23-summons.js
+  L10: //     ?�y�ͳN�G���a���Ť����]�k�v 24/32/40/44/48/52 �� Lv10~20 �L�͡PHP100~800�F���� 48+ �T�w Lv10/HP100�^�P�ˮ`��ӥl��N�ҫ�
+  L34: { n: '���H����',   lv: 32, hp: 450, aspd: 13 },
+  L35: { n: '���H�����', lv: 32, hp: 400, aspd: 13, ring: true },
+  L151: // ?? �y�ͳN�G���a���ŨM�w�L�Ͷ��š]�Τ���w HP ���^�F���� 48 �ťH�W�T�w�̧C���]Lv10/HP100�^�C
+  L164: if (owner.cls === 'elf') return (owner.lv || 1) >= 48 ? ZOMBIE_TIERS[0] : null;   // ����G48+ �T�w Lv10/HP100
+  L192: { min: 41, max: 50, lv: 40, hp: 240, ref: '���H����', ratio: 1 },
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\24-pandora-relic-market.js
+  L33: '���l', '���D', '�k�M�h', '�k�M�h', '�k�k�v', '�k�k�v', '�k����', '�k����',
+  L34: '�k�·t����', '�k�·t����', '�k�۳N�h', '�k�۳N�h', '�k�s�M�h', '�k�s�M�h', '�k�Ԥh', '�k�Ԥh'
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\25-clan-system.js
+  L24: royal:'����', knight:'�M�h', elf:'����', mage:'�k�v', dark:'�·t����',
+  L72: '�O�ݱ��_�v','�������Ʊ�','���D�S�g��','�ɮv���O��','�M�h�V�e��','���미���','�k�v�S�]�F',
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\26-world-channel.js
+  L202: // ?? �����u���W�u���v�G�u�·t����v�t���u����v�B�u�s�M�h�v�t���u�M�h�v�A�Ӫ��󶶧Ǳ��|�Q�u�W�m���C
+  L626: { words: ['�·t����t�a', '����t�a', '���Ѥ���', '���ѷ|ĳ�U', '������', '���d��', '����', '���æa��', '���ðϰ�'], lines: [
+  L668: // ??? v3.6.61 �u���h�v�����D�G���a�W�^�����u�]�ګ���ڰݪk�G�·t����t�a���h���H������h�^
+  L1022: '�y�ͳN�n�����˪��ǬI��A���Ű��L�͸���ܱj�F���몺�ݩʺ��F�h�ݧA����ñ���ݩʫ����C',
+  L1162: '�x���C�A�k����ΡA�k��������n�K�C',
+  L1216: '���뤵�ѤS�b�n���������֤���j�C',
+  L1711: ['�������ݩʴN���F�A�i���C', '�ݩʬO��ܡA���O�B��C'],
+  L2905: elf: male ? '�k����' : '�k����', dark: male ? '�k�·t����' : '�k�·t����', dragon: male ? '�k�s�M�h' : '�k�s�M�h',
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\28-pvp-arena.js
+  L174: let m = { royal: '���l', knight: '�k�M�h', mage: '�k�k�v', elf: '�k����', dark: '�k�·t����', illusion: '�k�۳N�h', dragon: '�k�s�M�h', warrior: '�k�Ԥh' };
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\29-siege-v2-data.js
+  L49: "notes": "�֯S���{����FHP���P��¾�~����115%�A���L�t�I���U���ġA�R���P�ˮ`���C�F�@�q�֯S�W�h�GDR=MIN(9,2+FLOOR(����/15))+���[�ȡFHP<35%�̲ר���-15%�F�C�W��L�֯S�M�ݦu�x�A-3%�A�̦h3�W��9%",
+  L795: "portraitRow": "�k����",
+  L877: "notes": "�·t��ȡG���a��O�ޥ� class_dark_standard�]�·t����k�k�@�Ρ^�F�t�׼h�ȥζ·t�M�h atk��cast��stun�A��ᦳ������ȸ�ƦA����",
+  L892: "morphFormId": "�·t������",
+  L1204: "name": "�k����",
+  L1245: "notes": "¾�~�u�x�F����M�Τk���몱�a�����B�ɯŰt�I�P�U���ġC�ޯ�G�T���ڡ������ഫ���j�a�����֡F�j�a���֬�����AC�ﵽ7���ζ������C",
+  L1246: "assetSource": "castle/11.���Ԧu�x/¾�~�u�x/�k����",
+  L1255: "portraitRow": "�k����",
+  L1439: "portraitRow": "�k�·t����",
+  L1848: "name": "�k����",
+  L1889: "notes": "¾�~�u�x�F����M�Ψk���몱�a�����B�ɯŰt�I�P�U���ġC�ޯ�G�T���ڡ������ഫ���ɭ����g�F�ݰt�m�}�P�b�A�ɭ����g���ѻ��{�ˮ`+6�B�R��+3�C",
+  L1890: "assetSource": "castle/11.���Ԧu�x/¾�~�u�x/�k����",
+  L1899: "portraitRow": "�k����",
+  L2073: "notes": "¾�~�u�x�F�ޯ�G�|�ߤ@�����t�v�������j�״��ɡC����u�ζ·t���몫�z�B�|�ߡB�B�~�ˮ`�PER�����C",
+  L2083: "portraitRow": "�k�·t����",
+  L3279: "portraitRow": "�k����",
+  L3361: "notes": "�ȥ���ȡG���a��O�ޥ� class_dark_standard�]�·t����k�k�@�Ρ^�F�t�׼h�ȥλȥ��M�h atk��cast��stun�A��ᦳ������ȸ�ƦA����",
+  L3647: "portraitRow": "�k����",
+  L3729: "notes": "������ȡG���a��O�ޥ� class_dark_standard�]�·t����k�k�@�Ρ^�F�t�׼h�ȥζ����M�h atk��cast��stun�A��ᦳ������ȸ�ƦA�����F�_����U�˳ƥt�[HP+10%�BMP+8%�BAC-6�BMR+12�B�R��+3�B�̲׶ˮ`+8%�B�T�wDR+2�F��t�u�Ķ����ܨ��A���Ѹ˳ƭ��ƼW�[�C",
+  L4015: "portraitRow": "�k����",
+  L4097: "notes": "�ժ���ȡG���a��O�ޥ� class_dark_standard�]�·t����k�k�@�Ρ^�F�t�׼h�ȥΥժ��M�h atk��cast��stun�A��ᦳ������ȸ�ƦA�����F�ȤB�ժ���U�G�O�d¾�~�t�I�B60�I�U���ĻP�ժ��ܨ���t�A�A�Maden_platinum_gear�F�i���o�Ҧb���Ϥ���������C",
+  L10676: "unitName": "�k����",
+  L10970: "unitName": "�k����",
+  L11062: "attackNote": "�D�ʪ��z�|�ߧ����F�ˮ`��Ѳ{��·t����Z���P�|�ߤ����C",
+  L12330: "support1Note": "�u���k�v�B����P���U���ؼСF�L���ī�Ʈɤ~�����e�u�C",
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\32-threat.js
+  L29: if (c === 'elf' || c === 'dark') return 1.5;                                            // ����/�·t����
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\anim-manifest.js
+  L4: const ANIM_MANIFEST = {"assets/anim/�������۶H���]":{"attack_":7,"attack_s_":7,"death_":12,"death_s_":12,"hurt_":2,"hurt_s_":2,"idle_":14,"idle_s_":14,"skill_":11,"skill_effect_":11,"skill_s_":11},"assets/an
+===== PATTERN: ���ݩ� =====
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\00-data.js
+  L1731: "bk_elf_singleres": { type: "skillbk", n: "���F����(���ݩʨ��m)", p: 15000, sk: "sk_elf_singleres", gachaWeight: 0 },
+  L2888: "sk_elf_singleres": { n: "���ݩʨ��m", type: "buff", tier: 3, reqE: 30, mp: 10, dur: 64, reqEleAny: true },
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\02-stats-recompute.js
+  L608: // ���ݩʨ��m�G�ҿ��ݩʧܩ� +50
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\08-items-equip.js
+  L398: if (attr) return 'attr-glow-' + attrCanon(item.attr);  // ?? ���ݩʡG�Z���ϥܱa���ݩʦP��t���~�]���ŶV���V�G�A��5���I�l���^
+  L1257: 'sk_counter_barrier':'�����̻�','sk_elf_mr':'�]�k���m','sk_elf_purify':'�b�ƺ믫','sk_elf_eleres':'�ݩʨ��m','sk_elf_singleres':'���ݩʨ��m',
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\09-vfx-render.js
+  L282: '���ݩʨ��m': { dir:'���ݩʨ��m', prefix:'2285-0', n:13, fps:14, blend:'screen', h:0.50, overHead:true },
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\17-audio.js
+  L243: "�@�ɾ𪺩I��": 826, "��������": 826, "�ͩR���u": 826, "�ݩʨ��m": 828, "���ݩʨ��m": 828, "�]�k���m": 829, "�T����": 832, "�ɭ����g": 832, "��Ǯg��": 832,
+===== PATTERN: ���ݩ� =====
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-wiki.js
+  L1989: var EB_STAT = { mhp: 'HP', mmp: 'MP', dr: '�ˮ`��K', mr: '�]��', er: '�j��', hpR: 'HP�۵M��_', mpR: 'MP�۵M��_', weight: '�t���W��', petHit: '����٦�R��', extraDmg: '�B�~�ˮ`', extraHit: '�B�~�R��', allattr: '���ݩ�' };
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\00-data.js
+  L918: "relic_myriad_avatar":     { n: "���ܤƨ�",           type: "arm", slot: "gloves", relic: true, noEnhance: true, ac: 8, polyAtkSpdPct: 20, polyAllStats: 2, req: "all", p: 10000, gachaWeight: 0, d: "�i�򪫡j�ܧ�
+  L2974: "sk_dragon_awaken_falion": { n: "ı���G�k�Q��", type: "buff", label: "�W�q", tier: 2, reqDk: 30, mp: 30, hpCost: 20, dur: 600, noRefresh: true, awaken: true, d: { resFire: 15, resWater: 15, resEarth: 15, resW
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\02-stats-recompute.js
+  L152: // ?? v3.7.20 ���ܤƨ��]��M polyAllStats/polyAtkSpdPct�^�G�ܨ��ɥ��ݩ�+N�ϧ�t+N%�C
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\14-craft-pandora.js
+  L1840: s.push('���ݩʧܩ�'+sgn(dd.resFire));   // ?? �|�ݩʧܩʬۦP �� �X�֬��u���ݩʧܩʡv
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\16-equip-book.js
+  L76: doll:   { stat: 'allattr', val: 1,  label: '���ݩ� +1' }   // ?? �]�k�����������G�����U+1�C��ڮM�Φb js/02 Phase1(�ݩʶ��b����l�ͭȫe�p�J)�F���B�ȨѦ����U��� label�AequipCollectionBonus �� allattr �� no-op �קK Phase3 ���ƮM��
+===== PATTERN: �]�k���� =====
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\00-data.js
+  L1738: "bk_elf_magicerase": { type: "skillbk", n: "���F����(�]�k����)", p: 30000, sk: "sk_elf_magicerase", gachaWeight: 40 },
+  L2897: "sk_elf_magicerase": { n: "�]�k����", type: "atk", tier: 4, reqE: 40, mp: 30, dmgType: "magic", status: { kind: "mrhalf", pbase: 150, dur: 16 } },
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\06-status-allies.js
+  L1343: // ?? �ħL�I��u�D�ˮ`�v�����ޯ�G�²��`���A�]�w�t/�z��/�e�f/�]�k����/�ʦL�T�a/�I�Τ���/��D��A�G/�r�G/�a��/�/����v/�}�a���ҡK�^
+  L2172: if (allyCastNonDamage(ally, sk)) return true;   // ?? �D�ˮ`�����ޯ�]�a����ê/�]�k����/�ʦL�T�a/���񤸯��K�^�F���A�Ϋh�h�^���z����+�s�g
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\09-vfx-render.js
+  L105: '�]�k����': { dir:'�]�k����', prefix:'2181-0', n:19, fps:16, blend:'screen', h:1, ax:0.50, ay:0.55 },
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\17-audio.js
+  L241: "���F�ഫ": 813, "�����ഫ": 813, "�b�ƺ믫": 814, "�]�k����": 815, "���K�Z��": 816, "�R�D����": 816, "�ݩʤ���": 816, "�`���Z��": 816, "�P���Z��": 819,
+===== PATTERN: ?�B =====
+(no hits)
+===== PATTERN: �ÿB =====
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-wiki.js
+  L420: { t: 'tbl', h: ['�̪� 5 �����K', '�C 5 ���^�_', '���u�ÿB�v��'], rows: [
+  L425: { t: 'p', p: '���몺<b>�ÿB����</b>�]�������F�B�u����Y�ة�B�����^�����o�Ӧ^�_�q�A<b>��b 32 ��</b>�A�k�t�i�Y�ثܦ��ΡC' },
+  L468: ['�ÿB', '<b>�Y�رM��</b>�G�Y�بC 5 �����۵M�^���b�]�Ԩ��W���u�Y�ط|�^��v�^'],
+  L638: { n: '�۳N�h�]���ϰO�Ф���(�ߤ�G�U�N)�]15 �š^', npc: '�ƽ��� �I�ڷ�P�ư��Q�ȧ���', req: '�ÿB�w�S�����G ��1�B�ÿB�w�S����K ��1�B�ÿB�w�S����� ��1', from: '�ìV���w�S�]����˪L�P�v�s�}�� 1~3 �ӡB����˪L�P��^�C�����շҫ��������w����', rw: '�۳N�h�]���ϰO�Ф���(�ߤ�G�U�N)�]�@�������^' },
+  L4551: sk_elf_muddywater: ['�u����Y�جI��(���W�S�Y�شN����B�����])�F���w�R���B���|�Q���', '���Y�بC 5 �����۵M�^���b 32 ���G�Q���z���L 0.5%��0.25%�B�S�Q�� 2.5%��1.25%', '�������y���ˮ`�F�ؼФw�b�ÿB���N�����ƬI��'],
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\00-data.js
+  L1750: "bk_elf_muddywater": { type: "skillbk", n: "���F����(�ÿB����)", p: 16000, sk: "sk_elf_muddywater", gachaWeight: 1, d: "�ʦs�ۡu�ÿB�����v���F���O�������A�P���@��K��⮩�䤤�����C" },
+  L1833: "item_ant_fruit":  { n: "�ÿB�w�S�����G", p: 0, c: "text-emerald-300", noUse: true, noSell: true, gachaWeight: 0, d: "�ۻG�Ʀw�S���W�Y�����G��A�~�ֻX�ۤ@�h�������h���ÿB�C�ƽ������շҹD��C�]�L�k�c��^" },
+  L1834: "item_ant_branch": { n: "�ÿB�w�S����K", p: 0, c: "text-emerald-300", noUse: true, noSell: true, gachaWeight: 0, d: "�q���ìV���w�S��U���\�K�A�������f�I����G�C�ƽ������շҹD��C�]�L�k�c��^" },
+  L1835: "item_ant_bark":   { n: "�ÿB�w�S�����", p: 0, c: "text-emerald-300", noUse: true, noSell: true, gachaWeight: 0, d: "��ۻG�Ʀw�S�߷F����֡A�����������F�´��C�ƽ������շҹD��C�]�L�k�c��^" },
+  L2909: "sk_elf_muddywater": { n: "�ÿB����", type: "atk", tier: 5, reqE: 50, mp: 20, dmgType: "magic", ele: "water", reqEle: "water", bossOnly: true, status: { kind: "muddywater", force: true, dur: 32 }, desc: "
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\01-drops-config.js
+  L749: // ?? ���F����(�ÿB����)�G�k�Q�� 1%�������F�� 0.01%���ª��� 0.1%
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\03-combat-core.js
+  L803: if (m.st && (m.st.muddywater || 0) > 0) regenPct *= 0.5;   // ?? �ÿB�����G���A�������Y�� HP �۵M��_�q��b
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\06-status-allies.js
+  L3: blind:0, blindVal:0, weaken:0, disease:0, vacuum:0, broken:0, slow:0, mrhalf:0, magicseal:0, fragile:0, shatter:0, armorbreak:0, confuse:0, panic:0, guardbreak:0, terror:0, doom:0, strawCurse:0, muddy
+  L45: blind:'�ت�', weaken:'�z��', disease:'�e�f', vacuum:'�u��', broken:'�l�a', slow:'�w�t', mrhalf:'�]�ܴ�b', magicseal:'�]�k�ʦL', fragile:'�ܮz', shatter:'�H��', armorbreak:'�}��', confuse:'�V��', panic:'���W', guardbreak:'�@�÷���', t
+  L188: ['freeze','stun','stone','sleep','paralyze','blind','weaken','disease','vacuum','broken','slow','mrhalf','magicseal','fragile','shatter','armorbreak','confuse','panic','guardbreak','terror','doom','mu
+  L1351: if (sk.bossOnly) targets = targets.filter(m => m && m.boss);   // ?? �Y�ح��w�ޯ�]�ÿB�����^�G�D�Y�خɰh�^�@������A���� MP��������I�k�ʧ@
+  L2663: if (_sk && !allySkillElementOk(ally, ally._atkSkill)) _sk = null;   // ?? v3.8.5 ���ݩʫᤣ�i�Ϊ��ݩʧ����ޡ]�a����ê/�ʦL�T�a/�ÿB�����^�����P���]�w�A���U�贶�����]�|�ȲM _atkSkill�P¾�~ act �����@�߰h����^
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\07-skills-cast.js
+  L786: if(sk.bossOnly) targets = targets.filter(m => m && m.boss);   // ?? �Y�ح��w�ޯ�]�ÿB�����^�G�D�Y�ؤ��I��B���� MP���N�o
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\09-vfx-render.js
+  L59: '�ÿB����': { dir:'�ÿB����', prefix:'mw', n:10, fps:12, h:1.1, ax:0.50, ay:0.55 },
+  L1270: let order = ['freeze','stun','stone','sleep','paralyze','bind','blind','weaken','disease','vacuum','broken','slow','mrhalf','magicseal','fragile','shatter','armorbreak','confuse','panic','guardbreak',
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\26-world-channel.js
+  L1033: '�Y�ط|����^��A�Ӥ[�S�Y�쪫�z�ˮ`�ٷ|�^�o����F��X�����_�A�|�ÿB���������W�A�����L����_�C',
+===== PATTERN: �ʦL�T�a =====
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\00-data.js
+  L1749: "bk_elf_seal": { type: "skillbk", n: "���F����(�ʦL�T�a)", p: 60000, sk: "sk_elf_seal", gachaWeight: 10 },
+  L2151: "lindvior": { hard: true, n: "�L�w����", lv: 90, s: "L", beh: "�D��", race: "�s", boss: true, noAutoTeleport: true, e: "wind", hp: 120000, ac: -90, mr: 200, exp: 7922, goldMin: 13236, goldMax: 21524, atkSpd:
+  L2908: "sk_elf_seal": { n: "�ʦL�T�a", type: "atk", tier: 5, reqE: 50, mp: 40, dmgType: "magic", reqEleAny: true, status: { kind: "magicseal", pbase: 100, dur: 8 } },
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\06-status-allies.js
+  L1343: // ?? �ħL�I��u�D�ˮ`�v�����ޯ�G�²��`���A�]�w�t/�z��/�e�f/�]�k����/�ʦL�T�a/�I�Τ���/��D��A�G/�r�G/�a��/�/����v/�}�a���ҡK�^
+  L2172: if (allyCastNonDamage(ally, sk)) return true;   // ?? �D�ˮ`�����ޯ�]�a����ê/�]�k����/�ʦL�T�a/���񤸯��K�^�F���A�Ϋh�h�^���z����+�s�g
+  L2663: if (_sk && !allySkillElementOk(ally, ally._atkSkill)) _sk = null;   // ?? v3.8.5 ���ݩʫᤣ�i�Ϊ��ݩʧ����ޡ]�a����ê/�ʦL�T�a/�ÿB�����^�����P���]�w�A���U�贶�����]�|�ȲM _atkSkill�P¾�~ act �����@�߰h����^
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\09-vfx-render.js
+  L69: '�ʦL�T�a': { dir:'�ʦL�T�a', prefix:'2241-0', n:13, fps:14, blend:'screen', h:1, ax:0.50, ay:0.55 },
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\17-audio.js
+  L245: "�z�ƳN": 843, "�g�ɳN": 843, "�ʦL�T�a": 845, "�F��@��": 807, "�������w": 110, "���񤸯�": 717, "�l���ݩʺ��F": 139, "�l��j�O�ݩʺ��F": 139,
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\29-siege-v2-data.js
+  L4005: "notes": "�ܨ��u�x�F����ޥ�class_elf_standard�A��t�ϥΥժ����upoly_override�îM�ȤB�ժ���U�˳ơ�����������C�ޯ�G�T���ڡ������ഫ���ʦL�T�a�F�u������Ĥ�I�k�̡C",
+  L11954: "support2Name": "�ʦL�T�a",
+===== PATTERN: ���F���� =====
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-dex.js
+  L205: // �ثe 6 �i:MOB_DROPS�B�·t�Z��(DARK_WEAPON_DROPS)�B�T���º��F����(DARK_CRYSTAL_DROPS)�B�s�M�h(DRAGON_DROPS)�B�Ԥh�L�O(WARRIOR_DROPS)�B�O�Ф���(MEM_DROPS�P�۳N�h�k�N��)�C
+  L480: //   ��W�ӤH(�Z���ӷſաB�]�k�ӤڭC���B���F�����Y�F�K)�u�C�u�ӰӤH�W��/�D�q�Ρv���~���C
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-wiki.js
+  L622: { n: '���F�����Ϻ��FT��]30 �š^', npc: '�g�۴˪L���� �I����˪L', req: '���A�G�����F�� ��1', from: '�ƺ��L���]�����P�쫽����^�C�����ᥲ�w����', rw: '���F����(�l���ݩʺ��F)�Ϻ��FT��]�@�������^' },
+  L623: { n: '�O�@�̤�M�Ϻ��F�����]45 �š^', npc: '���F �I�¹y��', req: '�Ŧ���� ��1�B�j�N�_�� ��1', from: '�Ŧ���áG�·t���F�]�U�h���P���]�˪L�B�s�����B�_���B�_���a��4�ӡ^�F�j�N�_�͡G���K���[�]�ڷ���G�ڷ糷��������}�ޡ���ҭn����H���� 4~5 �ӡ^�C�����ᥲ�w����', rw: '�O�@�̤�M�Ϻ��F����(�l��j�O�ݩʺ��F)�]�@�������^' }
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\00-data.js
+  L1406: "new_item_228": { n: "�ìV�����F����(��)", p: 1, gachaWeight: 0 },
+  L1407: "new_item_229": { n: "�ìV�����F����(��)", p: 1, gachaWeight: 0 },
+  L1408: "new_item_230": { n: "�ìV�����F����(�a)", p: 1, gachaWeight: 0 },
+  L1409: "new_item_231": { n: "�ìV�����F����(��)", p: 1, gachaWeight: 0 },
+  L1720: // ===== ������F���� =====
+  L1721: "bk_elf_mr": { type: "skillbk", n: "���F����(�]�k���m)", p: 3000, sk: "sk_elf_mr", gachaWeight: 0 },
+  L1722: "bk_elf_mind": { type: "skillbk", n: "���F����(���F�ഫ)", p: 3000, sk: "sk_elf_mind", gachaWeight: 0 },
+  L1723: "bk_elf_worldtree": { type: "skillbk", n: "���F����(�@�ɾ𪺩I��)", p: 3000, sk: "sk_elf_worldtree", gachaWeight: 0 },
+  L1724: "bk_elf_triple": { type: "skillbk", n: "���F����(�T����)", p: 3000, sk: "sk_elf_triple", gachaWeight: 10 },
+  L1726: "bk_elf_purify": { type: "skillbk", n: "���F����(�b�ƺ믫)", p: 7500, sk: "sk_elf_purify", gachaWeight: 0 },
+  L1727: "bk_elf_eleres": { type: "skillbk", n: "���F����(�ݩʨ��m)", p: 7500, sk: "sk_elf_eleres", gachaWeight: 0 },
+  L1728: "bk_elf_release": { type: "skillbk", n: "���F����(���񤸯�)", p: 7500, sk: "sk_elf_release", gachaWeight: 0 },
+  L1729: "bk_elf_soul": { type: "skillbk", n: "���F����(�����ഫ)", p: 7500, sk: "sk_elf_soul", gachaWeight: 20 },
+  L1731: "bk_elf_singleres": { type: "skillbk", n: "���F����(���ݩʨ��m)", p: 15000, sk: "sk_elf_singleres", gachaWeight: 0 },
+  L1732: "bk_elf_firewpn": { type: "skillbk", n: "���F����(���K�Z��)", p: 15000, sk: "sk_elf_firewpn", gachaWeight: 0 },
+  L1733: "bk_elf_windshot": { type: "skillbk", n: "���F����(�������g)", p: 15000, sk: "sk_elf_windshot", gachaWeight: 0 },
+  L1734: "bk_elf_winddash": { type: "skillbk", n: "���F����(�����e��)", p: 15000, sk: "sk_elf_winddash", gachaWeight: 0 },
+  L1735: "bk_elf_earthguard": { type: "skillbk", n: "���F����(�j�a���@)", p: 15000, sk: "sk_elf_earthguard", gachaWeight: 0 },
+  L1736: "bk_elf_groundtrap": { type: "skillbk", n: "���F����(�a����ê)", p: 15000, sk: "sk_elf_groundtrap", gachaWeight: 0 },
+  L1738: "bk_elf_magicerase": { type: "skillbk", n: "���F����(�]�k����)", p: 30000, sk: "sk_elf_magicerase", gachaWeight: 40 },
+  L1739: "bk_elf_summon": { type: "skillbk", n: "���F����(�l���ݩʺ��F)", p: 30000, sk: "sk_elf_summon", gachaWeight: 20 },
+  L1740: "bk_elf_dancefire": { type: "skillbk", n: "���F����(�R�D����)", p: 30000, sk: "sk_elf_dancefire", gachaWeight: 10 },
+  L1741: "bk_elf_stormeye": { type: "skillbk", n: "���F����(�ɭ�����)", p: 30000, sk: "sk_elf_stormeye", gachaWeight: 10 },
+  L1742: "bk_elf_mirror": { type: "skillbk", n: "���F����(��Ϯg)", p: 16000, sk: "sk_elf_mirror", gachaWeight: 1, d: "�ʦs�ۡu��Ϯg�v���F���O�������A�P���@��K��⮩�䤤�����C" },
+  L1743: "bk_elf_earthshield": { type: "skillbk", n: "���F����(�j�a�̻�)", p: 30000, sk: "sk_elf_earthshield", gachaWeight: 10 },
+  L1744: "bk_elf_lifespring": { type: "skillbk", n: "���F����(�ͩR���u)", p: 30000, sk: "sk_elf_lifespring", gachaWeight: 10 },
+  L1745: "bk_elf_earthbless": { type: "skillbk", n: "���F����(�j�a������)", p: 30000, sk: "sk_elf_earthbless", gachaWeight: 10, d: "�ʦs�ۡu�j�a�����֡v���F���O�������A�P���@��K��⮩�䤤�����C" },
+  L1747: "bk_elf_summon2": { type: "skillbk", n: "���F����(�l��j�O�ݩʺ��F)", p: 60000, sk: "sk_elf_summon2", gachaWeight: 1 },
+  L1748: "bk_elf_lifebless": { type: "skillbk", n: "���F����(�ͩR������)", p: 60000, sk: "sk_elf_lifebless", gachaWeight: 5 },
+  L1749: "bk_elf_seal": { type: "skillbk", n: "���F����(�ʦL�T�a)", p: 60000, sk: "sk_elf_seal", gachaWeight: 10 },
+  L1750: "bk_elf_muddywater": { type: "skillbk", n: "���F����(�ÿB����)", p: 16000, sk: "sk_elf_muddywater", gachaWeight: 1, d: "�ʦs�ۡu�ÿB�����v���F���O�������A�P���@��K��⮩�䤤�����C" },
+  L1751: "bk_elf_blazewpn": { type: "skillbk", n: "���F����(�P���Z��)", p: 60000, sk: "sk_elf_blazewpn", gachaWeight: 1 },
+  L1752: "bk_elf_flamesoul": { type: "skillbk", n: "���F����(�P�K����)", p: 16000, sk: "sk_elf_flamesoul", gachaWeight: 1, d: "�ʦs�ۡu�P�K����v���F���O�������A�P���@��K��⮩�䤤�����C" },
+  L1753: "bk_elf_physboost": { type: "skillbk", n: "���F����(���E�o)", p: 16000, sk: "sk_elf_physboost", gachaWeight: 20, d: "�ʦs�ۡu���E�o�v���F���O�������A�P���@��K��⮩�䤤�����C" },
+  L1754: "bk_elf_energyboost": { type: "skillbk", n: "���F����(��q�E�o)", p: 16000, sk: "sk_elf_energyboost", gachaWeight: 20, d: "�ʦs�ۡu��q�E�o�v���F���O�������A�P���@��K��⮩�䤤�����C" },
+  L1755: "bk_elf_attrfire": { type: "skillbk", n: "���F����(�ݩʤ���)", p: 16000, sk: "sk_elf_attrfire", gachaWeight: 1, d: "�ʦs�ۡu�ݩʤ����v���F���O�������A�P���@��K��⮩�䤤�����C" },
+  L1756: "bk_elf_preciseshot": { type: "skillbk", n: "���F����(��Ǯg��)", p: 16000, sk: "sk_elf_preciseshot", gachaWeight: 1, d: "�ʦs�ۡu��Ǯg���v���F���O�������A�P���@��K��⮩�䤤�����C" },
+  L1757: "bk_elf_stormshot": { type: "skillbk", n: "���F����(�ɭ����g)", p: 60000, sk: "sk_elf_stormshot", gachaWeight: 1 },
+  L1758: "bk_elf_steelguard": { type: "skillbk", n: "���F����(���K���@)", p: 60000, sk: "sk_elf_steelguard", gachaWeight: 1, d: "�ʦs�ۡu���K���@�v���F���O�������A�P���@��K��⮩�䤤�����C" },
+  L1759: "bk_elf_watervital": { type: "skillbk", n: "���F����(��������)", p: 4000, sk: "sk_elf_watervital", gachaWeight: 10, d: "�ʦs�ۡu��������v���F���O�������A�P���@��K��⮩�䤤�����C" },
+  ... +18 more
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\01-drops-config.js
+  L749: // ?? ���F����(�ÿB����)�G�k�Q�� 1%�������F�� 0.01%���ª��� 0.1%
+  L1055: 'item_blueflute': 'elf',                                                         // ���F(����)�G�Ŧ���á]+�j�N�_�͡^�� �O�@�̤�M�����F����
+  L1082: // ?? �T���·t���F�����������]�Ǫ��W�� �� [[����ID, ���v%], ...]�F����������M�ΡA���u�Y�@�� _dropMult �v�T�^
+  L1270: if (sk.reqM !== undefined && (sk.tier === 1 || sk.tier === 2)) return sk.tier === 1 ? 12 : 24;   // ��¦�k�v�]�k�G�@�� Lv12 / �G�� Lv24�]�Ǥ�����F�����P�����k�v�]�k�^
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\05-kill-progression.js
+  L543: // === ?? �T���·t���F�������� ===
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\10-ui-tabs.js
+  L1879: if(/skillbk|�]�k��|�k�N��|���F����|�ޯ��/.test(s))return 3;
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\12-npc-quests.js
+  L715: elf45:      { cls:'elf',      lv:45, npc:'���F',         reqs:[['item_blueflute',1],['item_ancientkey',1]], rewards:['arm_102','bk_elf_summon2'] },   // ?? v3.1.23 �סG�� acc_guardian/bk_elf_wisdom �q���w�q�����
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\26-world-channel.js
+  L218: { words: ['����', '�����ഫ'], name: '���F����(�����ഫ)' },
+  L220: { words: ['�ͯ�', '�ͩR����'], name: '���F����(�ͩR������)' },
+  L221: { words: ['���}', '�����}�a'], name: '�·t���F����(�����}�a)' },
+  L222: { words: ['�ݤ�', '�ݩʤ���'], name: '���F����(�ݩʤ���)' },
+  L224: { words: ['�����e��'], name: '���F����(�����e��)' },
+===== PATTERN: ���F =====
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-anyclass.js
+  L14: *   ?? �ϹL�ӻ�,�����i�� reqAllowsClass �ä[���� �X�X ���P�ɺ�¾�~���w�Ĥ�(�V��/�i��/���F�氮)
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-dex.js
+  L205: // �ثe 6 �i:MOB_DROPS�B�·t�Z��(DARK_WEAPON_DROPS)�B�T���º��F����(DARK_CRYSTAL_DROPS)�B�s�M�h(DRAGON_DROPS)�B�Ԥh�L�O(WARRIOR_DROPS)�B�O�Ф���(MEM_DROPS�P�۳N�h�k�N��)�C
+  L238: //   ? �ө����檺�D�˳�(�]�k��/�Ĥ�/���b/����/���F?�·t�����K):�o�ǬJ���@�w�Q�Ǳ��B�S���O�˳�,
+  L480: //   ��W�ӤH(�Z���ӷſաB�]�k�ӤڭC���B���F�����Y�F�K)�u�C�u�ӰӤH�W��/�D�q�Ρv���~���C
+  L859: { id: 'areadrop', title: '?? �ϰ��B�~�����]����˪L�P��B�v�s�}�� 1~3 �ӡ^', keys: ['�̯���', '���F��', '������'], lines: [
+  L860: '�ӰϩҦ��ǡG���F�� 20%�F���W���̯������������� �U 2%',
+  L861: '�Ƿ|�u�@�ɾ𪺩I��v�h�� ���F�� 30%�F���W���̯������������� �U 3%',
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-offline.js
+  L892: //   �� �^�u�W��۰ʬI��P�w�ubuff �٦b�v�����s�l��,���F�N�o�ˤ���(2026-07-07 ���a�^��,����j�O�ݩʺ��F)�C
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-training.js
+  L231: if (typeof window.summonV2List === 'function') lists.push(window.summonV2List());          // ���a���l��N/�y�ͳN/�ݩʺ��F
+  L371: // �v����q�G�]���֤ߡu�U��������U�]�@�Ӥ���ַӵ����v�� threatWrap�]�d��/�l��N/�y�ͳN/���F/�u�\/�����@�ó������^
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-wiki.js
+  L300: { n: '���� / �T�H�g�P�]��?���F�^', d: '�����u�������v�Ρu�T�H�v���B�~�h�[ 1~20 �ˮ`�C���o�����ǯS�O���ġC', w: '�ȩ�B���F�u�C�B�Ȫ��C�A�H�λȽb�B�̯����b' },
+  L621: { n: '���F�Y���]15 �š^', npc: '�ڴ� �I�U�h��', req: '�|�j���]�]�k�ѡ]���F���ԡ����|�[���̦a�����R�ڡ^�U ��1', from: '�����|�ا��]�]�U�h���P���]�˪L�B����˪L�P��B����˪L�P�v�s�}�ޡ^�C�����շҫ��������w����', rw: '���F�ӱ��Y���Ϻ��F����Y���]�@�������^' },
+  L622: { n: '���F�����Ϻ��FT��]30 �š^', npc: '�g�۴˪L���� �I����˪L', req: '���A�G�����F�� ��1', from: '�ƺ��L���]�����P�쫽����^�C�����ᥲ�w����', rw: '���F����(�l���ݩʺ��F)�Ϻ��FT��]�@�������^' },
+  L623: { n: '�O�@�̤�M�Ϻ��F�����]45 �š^', npc: '���F �I�¹y��', req: '�Ŧ���� ��1�B�j�N�_�� ��1', from: '�Ŧ���áG�·t���F�]�U�h���P���]�˪L�B�s�����B�_���B�_���a��4�ӡ^�F�j�N�_�͡G���K���[�]�ڷ���G�ڷ糷��������}�ޡ���ҭn����H���� 4~5 �ӡ^�C�����ᥲ�w����', rw: '�O�@�̤�M�Ϻ��F����(�l��j�O�ݩʺ��F)�]�@�������^' }
+  L670: { n: '�p�w���_��', npc: '�p�w �I���M�h��', req: '�]�k�_�� ��100�A�H�Τ��T���U�ҩ��٫��U ��1�]�·t�ϪL�̡����~�v�����F�ϡ����~�v���·t�k�v�٫��^', from: '���٫��ҥX�۩Դ���ڼw�ϡ]�·t�ϪL�� 0.1%�B���~�v 0.05%�B���F�� 0.001%�B���~�v 0.01%�B�·t�k�v 0.01%�F���v���C�B�۷��w�֡^', rw: '�l�걱��٫�' },
+  L675: knight: { n: '�M�h 50 �Ÿշ�', npc: '�}�Űǧ� �I�ڷ�P�H����]�ݵ��� 50�^', req: '�ⶥ�q�̧ǥ�I�G?���S�����l�� ��1 �� ?���F���p�y ��10', from: '���S�����l�ѡG�·t����N�x 1%�]�U�h���P�j�}�����P�̧������Դ���ڼw�������Դ���ڼw�P�]�~�V�m���^�F���F���p�y�G�b�u�U�h���P���F�ӥޡv������� 1% ��', rw: '�������q���ȫ�}��u�]�گ�
+  L716: { n: '�·t����M��', pcs: 3, items: '�·t�����Y�T�B�·t������ҡB�·t����D�c', eff: '���m(AC) -3�B�O�q -2�B�ӱ� +2�BHP�۵M��_ -2�BMP�۵M��_ -7�A�åi�ܨ��u�����·t���F�v�]���Z���ˮ` +5�B���Z���R�� +5�A�ñĥ��ܨ��ۨ��������t�סA���N�쥻��¾�~���Z����t�^�F�ﺡ�ͮġB���U����' },
+  L1037: '<b>�ݩʺ��F</b>�G�T�w <b>1 ��</b>�A�ݩʡקA�諸�����ݩʡC�ǤF�u<b>���F��q</b>�v��A�j�O�ݩʺ��F�|�@�ئ�<b>���F��</b>�]�󰪵��šB��w�B�L�������]���^�C',
+  L1060: '�]�t�~�A�|�j�������F���������Y�إ��ӴN�|�T�w���S�w�ݩʪ��U���ġA���O�U�۪��������A�P�W���o�ӳq�ε}���������}�p��C�^'
+  L1593: k_cleave: ['��t�[�� +20% �� +50%�]����A�P�[�t�N���i�������F�氮�ۭ��^', '�����ΪZ���Y�`�n�B���A�ݭn����Ĳ�o�]���Ϊ��A�]�� 2 �������� 4 ���^'],
+  L1599: m_summon: ['�g�y��ǡײ��`�]�k�R���P�w�]�W�� 12�^�F�K�̰g�y���Ǻ�q�]�L��', '�y�ͳN���l��N�G�R���P��Զˮ`���y�O�Y�� ��1.2�]�����q�ơB���Ƥ��ܡF�ݩʺ��F���Y�o���^'],
+  L1601: e_spirit: ['�ݩʺ��F�T�w 1 ���A���F��q<b>���[����</b>�F�אּ��u�j�O�ݩʺ��F�v�@�ئ�<b>�������F��</b>�G���ŧ󰪡B��w�B�ˮ`�󭫡A�R���� 15% ���v����P�ݩʥ���k�N'],
+  L2821: '��L�ӷ����O<b>�ۭ��|�[</b>�G�i���Ĥ� +33%�B���F�氮 +15%�B�樫�[�t +15%�B���� +20%�B�˳ƤW����t%�B�U¾�~��q�C',
+  L3142: h += '<div class="m-wiki-kv"><b>�t�׫���</b>�G�ܨ��|��<b>�ӫ��A�ۤv��</b>�������j���I�k�N�o���Q���w��<b>���N</b>�A�쥻�ѡu¾�~�ϩʧO�ѪZ���v�M�w���t�ס]�����ܨ��Ϧӧ�C�A�ݤU���Ʀr�B�V�p�V�֡^�F���N�᪺<b>�����t��</b>���|�A�Y�[�t�N���i���Ĥ������F�氮���U��q��<b>�ۭ�</b>�[�t�F<b>���I�k���j������������[�t�v�T</b>�X�X��ޯ઺
+  L3303: '?? <b>�ħL�l��X�Ӫ��F��]�|�Q����</b>�G�ħL���L�͡����F���l�ꪫ<b>���ۤv����q</b>�A�|�Q����w�����B�]�Y�A�������v¡�F<b>����O�̤U�観�e�̪����</b>�C�ˤU�ήɶ���|<b>�۰ʭ��l</b>�]�ݨӷ����⦳�Ħ۰ʬI��B�ħL���b�w���ϡB�S�Q�w���B MP ���^�C'
+  L3326: autocast: '<b>�ݩʺ��F�l��</b>�]�T�w 1 ���F�����F��q���j�O�ݩʺ��F�@�ئ����F���^�F�Ǳo�쪺�ܤ]�|�`�n���c���B�������C',
+  L3469: '�|<b>�۰ʥl��</b>�]�y�ͳN���l��N���ݩʺ��F�B�۳N�h���ڦN���ŧ����p�۰��[�۶H�^�A�o��<b>�M�ˮĪG</b>�]������g����R�H���s����K�á��t�v������K�^�B<b>�]�k����</b>�P<b>�����Ϯg</b>�]�k�h���w�r���P�R���ߡ����Z����Ϯg�^�C',
+  L3600: + '<div class="m-wiki-desc">?�[�t���ĪG�]�[�t�N���i���Ĥ������F�氮�����Ρ��C�N��q���s�M�hı���K�^�b�o�Ӱ�¦�ȤW<b>�ۭ��|�[</b>�A���O�л\�C<b>�ܨ�</b>�|����<b>���N</b>��¦��t�]�����Ϧӧ�C�^�A����~�Y�[�t������C</div>';
+  L3708: '<div class="m-wiki-desc" style="margin:8px 2px;color:#94a3b8;font-size:12px;">�� �l��<b>����</b>�H�y�O <b>60</b> �ʳ��]��ڤW���̥l�궥�šA�C���̦h 5~6 ���B�V�����V�֡^�F�ˮ`�P�R���Χ���y�O�B�i�W�L 60�A�a�d�W���ʳ� 8�C<br>�� <b>�ݩʺ��F�T�w 1 ��</b>�X�X�u���F��q�v�O�����@��
+  L4501: sk_holy_wpn: ['���������t�ǨC���A�[ 1~20 �ˮ`(�����{�ɸt�Z��)�F���Z�������w�g����(�ȩ�/���F�u�C/�Ƚb��)�N���|�[�A��T�H�L��'],
+  L4520: sk_zombie: ['�l��<b>�T�w 1 ��</b>�H���L�͡]���ۤv�� HP�B�|�Q�����A�ɶ���έˤU�۰ʭ��l�^�A��t 1.2 ��', '�L�͵��š���q�H�A�����Ť����G<br>Lv24���L��Lv10/HP100�BLv32��Lv12/200�BLv40��Lv14/400�BLv44��Lv16/500�BLv48��Lv18/600�BLv52��Lv20/800�]<b>����¾�~</b>�@�̧߳C�� Lv10/H
+  L4538: sk_elf_worldtree: ['�Q�ʡG�b�u�ϰ��B�~�����v�a��(����˪L�P��B����˪L�P�v�s�}�� 1~3 �ӵ�)���ǡA���F�ɱ��v 20%��30%�B���W���̯������P������ 2%��3%'],
+  L4546: sk_elf_summon: ['�C����˨��ݩʡG��/�� 2~76�B��/�a 2~66�F�A�[�T�w�ȡ׾y�O�ѵ��šҫY�ơ]��/�� ��11�B��/�a ��12.5�^�A���]���P�ˮ`��K�]�]����z��10�Ͼy�O/10�^', '�T�w 1 ���]���H�y�O�W�[�^�FLv40�BHP 400�B��t ��/�� 1.8s�P��/�a 1.6s�F���F���ۤv�� HP�A�|�Q�����B�ɶ���Υ����۰ʭ��l', '�y�ͳN/�l��N/�ݩʺ��F�P�ɥu��}�@��
+  L4550: sk_elf_summon2: ['��˨��ݩʡG�� 3~144�B�� 3~129�B�a 3~120�B�� 3~126�F�T�w�ȡ׾y�O�ѵ��šҫY�ơ]��5.5/��6.2/�a6.6/��6.3�^�B�ˮ`�A��1.18�B�]����z 20�Ͼy�O/10', '�T�w 1 ���ALv50�BHP 600~720�]���̫p�^�C�ǡu���F��q�v���@�ئ��P�ݩ�<b>���F��</b>�]Lv60�B��w�B�ˮ`��1.3�B��z+30�A�R���� 15% ����
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\00-data.js
+  L316: "wpn_elfbow": { n: "���F�}", type: "wpn", isBow: true, ranged: true, rapidfire: 45, dmgS: 2, dmgL: 2, hit: 0, dmgBonus: 1, spd: 1.0, req: "all", safe: 6, p: 620, gachaWeight: 100 },
+  L320: "wpn_dagger2": { n: "���F�P��", type: "wpn", dmgS: 4, dmgL: 3, hit: 2, spd: 0.6, req: "all", safe: 6, p: 42, unBonus: true, gachaWeight: 100 },
+  L337: "wpn_24": { n: "���F����", type: "wpn", dmgS: 7, dmgL: 8, hit: 0, spd: 1, req: "all", safe: 6, p: 1180, unBonus: true, gachaWeight: 100 },
+  L340: "wpn_elfsword": { n: "���F�u�C", type: "wpn", dmgS: 8, dmgL: 8, hit: 0, spd: 0.8, req: "all", safe: 6, p: 3680, unBonus: true, gachaWeight: 100 },
+  L480: "wpn_windblade_dagger":{ n: "���b�u�C", type: "wpn", legend: true, dmgS: 23, dmgL: 16, hit: 10, dmgBonus: 10, spd: 0.6, req: "knight,elf,mage,royal,dark", safe: 0, p: 500000, gachaWeight: 0, ignHardSkin: 
+  L486: "hlm_elf": { n: "���F�ֲ�", type: "arm", slot: "helm", ac: 1, req: "elf,mage", safe: 6, p: 120, gachaWeight: 100 },
+  L503: "arm_50": { n: "���F�ӱ��Y��", type: "arm", slot: "helm", ac: 1, req: "elf", safe: 6, p: 4800, dex: 1, gachaWeight: 20 },
+  L504: "arm_51": { n: "���F����Y��", type: "arm", slot: "helm", ac: 1, req: "elf", safe: 6, p: 4800, con: 1, gachaWeight: 20 },
+  L527: "arm_71": { n: "���F�@�ݪ��ݪO", type: "arm", slot: "armor", ac: 4, req: "knight,elf", safe: 6, p: 2240, gachaWeight: 50 },
+  L528: "arm_72": { n: "���F���ݲ���", type: "arm", slot: "armor", ac: 6, req: "knight,elf", safe: 6, p: 57200, gachaWeight: 10 },
+  L529: "arm_73": { n: "���F���", type: "arm", slot: "armor", ac: 5, req: "knight,elf", safe: 6, p: 2880, gachaWeight: 50 },
+  L546: "arm_85": { n: "���FT��", type: "arm", slot: "tshirt", ac: 0, req: "elf", safe: 6, p: 6600, gachaWeight: 20 },
+  L553: "relic_gnomeearth_tshirt": { n: "ż�����a���FT��",     type: "arm", slot: "tshirt", relic: true, noEnhance: true, ac: 7, resFire: -10, req: "all", p: 10000, gachaWeight: 0, d: "�i�򪫡j�g���êd���}�� T ��A���m��H�o��~�Ȥ��C" },
+  L627: "relic_darkspirit_shroud":  { n: "�t�F���g���ܪ�",   type: "arm", slot: "armor", relic: true, noEnhance: true, ac: 0, mr: 30, dr: 3, er: 5, req: "all", p: 10000, gachaWeight: 0, d: "�i�򪫡j����F�������g���ܪӡA���p�L���o�]�k���I
+  L641: "relic_whirlwind_xbow":     { n: "�ۭ��Q�r�}",       type: "wpn", isBow: true, ranged: true, oneHand: true, relic: true, noEnhance: true, rapidfire: 70, dmgS: 3, dmgL: 3, hit: 13, dmgBonus: 10, mdmg: 2, el
+  L652: "relic_darkelf_chainsword": { n: "�t���F����C",     type: "wpn", w2h: true, chainsword: true, weakExpose: true, relic: true, noEnhance: true, dmgS: 22, dmgL: 16, hit: 8, dmgBonus: 8, hpR: 10, extraMp: 5, s
+  L822: // ===== ?? �� �ĤQ����G�������F���P¾�~�S�ƿ򪫡]��@�Ǫ� 0.0001% �����^ =====
+  L824: "relic_fireking_blast": { n: "�����F�����z�K", type: "wpn", w2h: true, relic: true, noEnhance: true, dmgS: 17, dmgL: 21, hit: 15, dmgBonus: 18, eff: "cleave", ele: "fire", hitEchoMagic: { rate: 10, ele: "fir
+  L825: "relic_waterking_caress": { n: "�����F�������N", type: "wpn", relic: true, noEnhance: true, ignHardSkin: true, dmgS: 17, dmgL: 13, hit: 15, dmgBonus: 15, eff: "combo", comboRate: 35, ele: "water", missGrazeR
+  L826: "relic_windking_roar": { n: "�����F�����g�S", type: "wpn", isWand: true, relic: true, noEnhance: true, ignHardSkin: true, dmgS: 3, dmgL: 3, hit: 15, dmgBonus: 15, ele: "wind", windSpellProcRate: 15, relicRol
+  L827: "relic_earthking_resist": { n: "�a���F�����ܩ�", type: "wpn", isBow: true, ranged: true, w2h: true, rapidfire: 65, relic: true, noEnhance: true, dmgS: 3, dmgL: 3, hit: 15, dmgBonus: 18, ele: "earth", hurtRap
+  L848: "relic_mini_darkelf":    { n: "�Q�t�����g�A����F", type: "wpn", qigu: true, relic: true, noEnhance: true, dmgS: 25, dmgL: 25, hit: 0, int: 1, mdmg: 1, extraMp: 11, procSkill: "sk_darkwave", procRateBase: 8, p
+  L954: "clk_elf": { n: "���F���O", type: "arm", slot: "cloak", ac: 1, req: "all", safe: 6, p: 900, gachaWeight: 100 },
+  L996: "shd_elf": { n: "���F�޵P", type: "arm", slot: "shield", ac: 2, req: "all", safe: 6, p: 3200, gachaWeight: 100, block: 40 },
+  L1166: "new_item_139": { n: "���F�氮", type: "pot", req: "elf", p: 1980, c: "text-yellow-200", d: "�����F���֪��氮�A���뭹�Ϋ��P�����߰ʦP�B�C", eff: "elfcookie", dur: 300, gachaWeight: 0 },
+  L1306: "quest_ring_elfcaller": { n: "���F�ϧ٫�", p: 1, c: "text-amber-300", gachaWeight: 0, d: "�X�Ϻ��F�@�Ԫ����F�ϩҨؤ��١C�p�w���_�����ȹD��A�L�k�˳ơC�������U���ҩ����C" },
+  L1332: "mat_wind_breath":    { n: "������", p: 1500, gachaWeight: 0, d: "�����F�I�X���@�\�F���A��x�ߤ��L�L���ʵ۬ݤ�������y�C���E�ۭ����F�������𮧡C" },
+  L1333: "mat_water_breath":   { n: "������", p: 1500, gachaWeight: 0, d: "�����F�R�Ǫ��@�ٲM�D�A���������n�b�䤤�y�ण���C���E�ۤ����F�������𮧡C" },
+  L1334: "mat_fire_breath":    { n: "������", p: 1500, gachaWeight: 0, d: "�����F���X���@���l�šA�K��ɤ���P���D�ʪ������C���E�ۤ����F�������𮧡C" },
+  L1335: "mat_earth_breath":   { n: "�g����", p: 1500, gachaWeight: 0, d: "�a���F�I�R���@�f�p��𮧡Aĭ�ۤj�a�`�B���Ií���q�C���E�ۦa���F�������𮧡C" },
+  L1344: "new_item_170": { n: "���F����", p: 1, gachaWeight: 0 },
+  L1373: "new_item_195": { n: "���F��", p: 100, gachaWeight: 0 },
+  L1391: "new_item_213": { n: "���A�G�����F��", p: 1, c: "text-blue-300", gachaWeight: 0 },
+  L1406: "new_item_228": { n: "�ìV�����F����(��)", p: 1, gachaWeight: 0 },
+  L1407: "new_item_229": { n: "�ìV�����F����(��)", p: 1, gachaWeight: 0 },
+  L1408: "new_item_230": { n: "�ìV�����F����(�a)", p: 1, gachaWeight: 0 },
+  L1409: "new_item_231": { n: "�ìV�����F����(��)", p: 1, gachaWeight: 0 },
+  L1416: "new_item_elfwing": { n: "���F���l", p: 10, gachaWeight: 0 },
+  L1445: "item_elf_whisper":   { n: "���F���p�y", type: "etc", p: 1, c: "text-amber-300", noUse: true, noSell: true, gachaWeight: 0, maxHold: 10, d: "�M�h 50 �Ÿշҥ��ȹD��C�̦h���� 10 �ӡF������I��|�۰ʲM���C" },
+  L1587: "hlm_darkelf": { n: "�·t�����Y�T", type: "arm", slot: "helm", ac: 1, req: "elf,dark", safe: 6, p: 6000, gachaWeight: 30, d: "�Ӹ��۰����·t���F��߰O�Ъ��Y�T�A�������M������I�Ϊ��t�]�����C" },
+  ... +86 more
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\01-drops-config.js
+  L42: // ===== ?? 50�Ÿշ��X�R�G���F�ӥ� =====
+  L63: '����F': [['scroll_weapon',0.5],['scroll_armor',0.5],['bk_holy_barrier',0.003],['bk_abs_barrier',0.001],['bk_dark_stealth',1],['bk_dark_poison',1],['bk_dark_mrup',1],['bk_dark_burn',1],['bk_dark_poison
+  L67: '����F��': [['scroll_weapon',0.5],['scroll_armor',0.5],['bk_bless_wpn',0.1],['bk_berserk',0.1],['bk_soul_up',0.001],['bk_abs_barrier',0.001],['bk_elf_blazewpn',0.05],['bk_dark_stealth',1],['bk_dark_poiso
+  L108: '�·t���F��': [['scroll_acc',0.001],['scroll_weapon', 0.5], ['scroll_armor', 1], ['bk_holy_barrier', 0.005], ['bk_dark_stealth', 1], ['bk_dark_poison', 1], ['bk_dark_mrup', 1], ['bk_dark_burn', 1], ['bk_da
+  L198: '�ڤۤ��q�a���F��': [['arm_69', 1], ['arm_63',5], ['scroll_weapon',5], ['scroll_armor',10], ['scroll_revive',1], ['panacea_con',1], ['mat_earth_breath',1], ['relic_earthking_resist',0.0001]],
+  L238: '�ڤۤ��q�����F��': [['arm_69', 1], ['arm_63',5], ['scroll_weapon',5], ['scroll_armor',10], ['scroll_revive',1], ['panacea_int',1], ['mat_water_breath',1], ['relic_waterking_caress',0.0001]],
+  L248: '�ڤۤ��q�����F��': [['arm_69', 1], ['arm_63',5], ['scroll_weapon',5], ['scroll_armor',10], ['scroll_revive',1], ['panacea_str',1], ['mat_fire_breath',1], ['relic_fireking_blast',0.0001]],
+  L292: '�ڤۤ��q�����F��': [['arm_69', 1], ['arm_63',5], ['scroll_weapon',5], ['scroll_armor',10], ['scroll_revive',1], ['panacea_dex',1], ['mat_wind_breath',1], ['relic_windking_roar',0.0001]],
+  L308: '�·t���F': [['item_wind_tear',1], ['amr_darkelf',0.1], ['bot_darkelf',0.1], ['wpn_elfbow',0.5], ['clk_elf',0.5], ['arm_71',0.3], ['bk_tornado',0.001], ['bk_invisible',0.001], ['new_item_195',1], ['bk_elf
+  L375: '�g���F��': [['rng_earth',0.05], ['acc_130',0.5], ['scroll_weapon',1], ['scroll_attr_earth', 0.18]],
+  L376: '�����F��': [['arm_69',5], ['rng_water',0.01], ['acc_130',0.5], ['scroll_armor',1], ['scroll_attr_water', 0.18]],
+  L377: '�����F��': [['arm_69',5], ['rng_wind',0.05], ['acc_130',0.5], ['scroll_armor',1], ['scroll_attr_wind', 0.18], ['wpn_thunder_sword',0.05]],   // ?? �p�B���C 0.05%
+  L378: '�����F��': [['rng_fire',0.01], ['acc_130',0.5], ['scroll_weapon',1], ['scroll_armor',1], ['scroll_attr_fire', 0.18]],
+  L388: '��Ѥ��q�·t���F': [['hlm_wind',0.1], ['item_forgotten_leather',1], ['rng_mr',0.3], ['hlm_darkelf',0.1], ['mat_black_mithril',0.1]],
+  L449: ['�ìV���a���F', 'relic_gnomeearth_tshirt', 0.0001],
+  L523: ['����F', 'relic_darkspirit_shroud', 0.0001],
+  L537: ['�·t���F', 'relic_whirlwind_xbow', 0.0001],
+  L548: ['����F��', 'relic_darkelf_chainsword', 0.0001],
+  L603: ['��Ѥ��q�·t���F', 'relic_forgotten_sniperbow', 0.0001],
+  L749: // ?? ���F����(�ÿB����)�G�k�Q�� 1%�������F�� 0.01%���ª��� 0.1%
+  L752: ['�����F��', 'bk_elf_muddywater', 0.01],
+  L758: // ���W���̯����� / �����ۦU 2%�A�Ƿ|�u�@�ɾ𪺩I��v�h�U 3%�F���F�ɺ��� 20% / 30%
+  L771: elfcookie: "���F�氮", poly: "�ܨ�", shield: "�O�@�n", taming: "����", sk_set_dragonscion: "�s��"
+  L1053: 'new_item_199': 'elf', 'new_item_200': 'elf', 'new_item_201': 'elf', 'new_item_202': 'elf',   // �ڴ��G�|�j���]�]�k�ѡ]���F����/���|�[/�̦a/���R�ڡ^�� ���F�Y��
+  L1054: 'new_item_213': 'elf',                                                           // �g�۴˪L�����G���A�G�����F��
+  L1055: 'item_blueflute': 'elf',                                                         // ���F(����)�G�Ŧ���á]+�j�N�_�͡^�� �O�@�̤�M�����F����
+  L1082: // ?? �T���·t���F�����������]�Ǫ��W�� �� [[����ID, ���v%], ...]�F����������M�ΡA���u�Y�@�� _dropMult �v�T�^
+  L1105: '�ڤۤ��q�����F��':   [['bk_dark_erup',1]],
+  L1153: e_spirit: { n: '���F��q', pos: 'left',   msg: '�I�ꤸ�����F�����{',     d: '�P�����l���̰����������A�ϱj�O���F�@�ج����F���F���F����H�P�ݩʪ��j�j�k�N�u���İ}�C' },
+  L1270: if (sk.reqM !== undefined && (sk.tier === 1 || sk.tier === 2)) return sk.tier === 1 ? 12 : 24;   // ��¦�k�v�]�k�G�@�� Lv12 / �G�� Lv24�]�Ǥ�����F�����P�����k�v�]�k�^
+  L1964: const ITEM_WEIGHTS = {"�V�P����":10,"�V�P�Y��":5,"�V�P���O":5,"�V�P�k�T":15,"�V�P��M":5,"���`���O":10,"���`����":100,"���`��M":5,"���`����":20,"�c�]����":20,"�c�]�����M":20,"�c�]������C":40,"�c�]���]��":20,"�c�]���}":10,"�ȳs":10,"�Z�h�M":40,"���C":40,"��":60,"����C"
+  L1972: Object.assign(ITEM_WEIGHTS, {"���]����\":50,"�����L���ۤb":70,"���]�}�b�⪺�u®�}":30,"�a�F�����":30,"��ۣ�ʴU":3,"ż�����a���FT��":5,"�T��ܪ�":30,"���h�_������":30,"�ܾ����§ɳ�":10,"�Y�Ѫ������Y":15,"�񪪪̪��ֹu":10,"�L�ͪ��p�L��":15,"�������y�U����":10,"�w�����Ѫ����":15,"�w�S��
+  L1975: Object.assign(ITEM_WEIGHTS, {"�`�������q����":5,"�s���̪��H��":3,"���H����":20,"���H��M":20,"�������ȩܭ�":1,"�·t�s�骺������":30,"�t���F����C":35,"���w����������":5,"���h�����¾ԩ�":120,"�H�~�ɪ����j�I��":140,"�z�u�ῶ":20,"�j�N�t�����H��":20});   // ?? �� �ĥ|�孫�q�ϳ��H��M�]�̦W
+  L1993: Object.assign(ITEM_WEIGHTS, {"�]�O����Ũ�m":15,"�����F�����z�K":150,"�����F�������N":40,"�����F�����g�S":30,"�a���F�����ܩ�":40,"�¼�֤k�����R":5,"�}���k�v�����N":30,"�N�x�R�Ϊ����C�@��":30});   // ?? �� �ĤQ���孫�q�]�̳W��^
+  L1996: Object.assign(ITEM_WEIGHTS, {"�����ʥ��m":30,"�a�����T�Y��":30,"���]���A�ͧ٫�":5,"�P�K�Ův���������T":30,"�t�������ԥ��u":50,"�­������K�۬�":250,"�]�O�u�����u":15,"�t�ª����ݴҴ�":30,"�l��������]�N��":10,"�_�������Υ��X":120,"�]�O��y�����v�����y":30,"�U�N�p�ɪ����u����":10,"�������I�M�}��":
+  L1998: [['���A�G�����~�v','relic_tamer_petarm'],['�a������','relic_slave_shirt'],['���ƪ��a����','relic_cerberus_pin'],['��Ѥ��q�hù','relic_troll_regen_ring'],['�d�h�f','relic_flamemage_robe'],['���� �y�O�ۥ�(��)','relic_burden_gauntlet'
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\02-stats-recompute.js
+  L254: d.hpR  = 0;   // HP�۵M��_�q(�˳�/���F���O�[��)�G�C��������k�s�A�קK�����|�[�B���U���٭�
+  L445: d.mr += 5; // ���F�޵P�G����˳Ʈ��B�~ MR+5
+  L480: if(setCheck['darkelf'] >= 3) { d.ac -= 3; d.hpR -= 2; d.mpR -= 7; p._setPoly = Object.assign({}, SET_POLY_FORMS.darkelf); }   // ??? �·t����M�ˡGAC-3�BHP�۵M��_-2�BMP�۵M��_-7�B�ܨ������·t���F�]���Z���ˮ`/�R��+5�B��t+30%�^�]�O�q-2/�ӱ�+2
+  L561: if(p.buffs.elfcookie > 0 || (_mercPots && p.cls === 'elf')) spdMult *= (1/1.15); // ���F�氮�G��t+15%�]?? v3.5.37 1/1.15�P���N�� 0.85�׹��+17.6%�^�F����ħL�`�n
+  L582: if(p.statuses && p.statuses.evilAura > 0) { d.ac += 10; d.er -= 10; }   // ?? ���F�����q�GAC+10�BER?10�]����6���A�Ѷ·t���F�ϬI��^
+  L772: //   ? ��N�Τ�ҦӤ��O����@���Gd.aspd �W���g�L spdMult�]�[�t�N/�i���Ĥ�/���F�氮/�樫�[�t/����/�C�N/����/
+  L877: { n:"�·t���F", lv:30, atk:19, wlk:16, cast:10, stun:5 },
+  L990: "���]�}�b��", "���]���u", "�u�\�}�b��", "�·t���F",
+  L1034: if (buffs.elfcookie > 0 && !windDashOn) mult *= (1/1.15);  // ���F�氮�G���t+15%�F�����e���s�b�ɥu�O�d�氮��t�A���|�[���t
+  L1060: darkelf: { n: "�����·t���F", rd: 5, rh: 5,                    atk: 19, wlk: 16, cast: 10, stun: 5, c: "text-violet-300" }     // �t�ס׶·t���F
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\03-combat-core.js
+  L2317: if (forceGraze) { hit = true; graze = true; }   // ?? �����F�������N�G�쥻���R���ɨ̾��v��P�� 50% ����
+  L2363: // �ˬd��ԪZ�� (�Ҧp�ȩ�B���F�u�C)
+  L2450: const WAND_LIGHTARROW_IDS = ['wpn_oakwand', 'wpn_38', 'wpn_witchwand', 'wpn_manawand', 'wpn_crystalwand', 'wpn_baless', 'wpn_wand_rasta', 'wpn_red_crystalwand', 'wpn_laia_wand', 'wpn_icequeen_wand', '
+  L2628: if (player.classicMode && !classicOk) return;   // ?? �g��Ҧ��G�@��s�g���ΡF�a���F�����ܩڨ����s�g�����w�ҥ~
+  L2665: // ?? �a���F�����ܩڡG�˳ƪ̨���ˮ`�ɥ��w�B�~�o�ʤ@���s�g�F�o�Ө���Ĳ�o�b�g��Ҧ������ġC
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\04-combat-attack.js
+  L43: if (!result.hit && wpn && wpn.missGrazeRate && Math.random() * 100 < wpn.missGrazeRate) result = getPhysicalDmg(dice, target, wpn, arrowData, false, false, false, false, player.eq.wpn, true);   // ?? 
+  L155: if (target.curHp > 0 && wpn && wpn.hitEchoMagic && Math.random() * 100 < (wpn.hitEchoMagic.rate || 0)) { let _he = wpn.hitEchoMagic; target.curHp -= result.dmg; if (typeof terrorVisageOnDamage === 'fu
+  L1327: if(totalDmg > 0 && player.hp > 0) hurtRapidfireProc();   // ?? �a���F�����ܩڡG�����z�ˮ`�ɱj��s�g�]�g���i�^
+  L1395: // ?? v3.2.82 �l�ꪫ�Q�����v���]���z/�]�k���`�̦��@�Ρ^�G�l��N/�y�ͳN��4�P�ݩʺ��F��3�C
+  L1423: // ?? v3.2.21 �l�ꪫ v2 �[�J���`�̦��]�i�Q�����������۰ʭ��I�^�G�v�����U�� _sumW�X�Xv3.2.81 �l��N/�y�ͳN��4�P�ݩʺ��F��3�]��� 3�^
+  L1466: // ?? �`���Z�������u�����������G���a/�ħL�ѬJ���`�J�I���o��L�ӷ��[���A�d��/�l��� forMinion ���|���o�F���q�̦ۤv�w�����ɤ��A�`�J�A�קK�P�ޯ୫���|�[�CroyalEd ���]�k�����F���@��������Ѩ`���Z���T�w�ˮ`�C
+  L1632: if (totalDmg > 0 && ally.curHp > 0 && typeof allyRapidfire === 'function') _dpsAllyReactWrap(ally, () => allyRapidfire(ally, true, true));   // ?? �a���F�����ܩڡ]�ħL�^�G�����j��s�g�A�g���i�F?? DPS �k�ӶħL
+  L1695: // ���`�ɲM���Ҧ��l�ꪫ�P�l�� buff�]�g�y�N/�y�ͳN/�l���ݩʺ��F/�l��j�O�ݩʺ��F�@�P�B�z�^�A
+  L2014: if (dmg > 0 && ally.curHp > 0 && typeof allyRapidfire === 'function') allyRapidfire(ally, true, true);   // ?? �a���F�����ܩڡ]�ħL�^�G���]�k�ˮ`�ɱj��s�g
+  L2508: // ?? ��Ϯg�]���F����?�W�q�^�G�����]�k�ˮ`�ɡA�믫% ���v�]�C 1 �I�믫 +1%�^��I�k�̳y���P�Ҩ��ˮ`���q�������T�w�ˮ`
+  L2537: if (dmg > 0 && player.hp > 0) hurtRapidfireProc();   // ?? �a���F�����ܩڡG���]�k�ˮ`�ɱj��s�g�]�g���i�^
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\05-kill-progression.js
+  L457: if ((main || ally) && Math.random() < partyDropRate(0.01)) { let got = grantPartyStageQuestDrop('item_elf_whisper', main); if (got.main || got.allies.length) logSys(`<span class="text-amber-300 font-b
+  L543: // === ?? �T���·t���F�������� ===
+  L563: // ���W���̯����� / �����ۦU 2%�A�Ƿ|�u�@�ɾ𪺩I��v�h�U 3%�F���F�ɺ��� 20% / 30%
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\06-status-allies.js
+  L262: //   HP �蹳���a v2 ��ơG�l��N�׸ө� v2 hp�Ѱ��ơP�y�͡�ZOMBIE_TIERS.hp�P���F��SPIRIT_DEF/_KING hp�F�¤��� fallback��100+���š�5�C
+  L291: owner = owner || player;   // ?? v2.6.25 owner �ѼƤơG������ owner.lv�B�ݩʺ��F�� owner.elfEle�]�ħL�l��@�Ρ^
+  L328: if (typeof _elfSpiritKingOverride === 'function') _elfSpiritKingOverride(_sm, owner);   // ?? v3.2.25 ���F��q�����F���]�ħL�蹳�^
+  L360: if (typeof _elfSpiritKingOverride === 'function') _elfSpiritKingOverride(sm, owner);   // ?? v3.2.25 Ū�ɭ����ɮM���F���мg�]�_�h�Q def ��Ȭ~�^�^
+  L361: _mercSummonRefreshEntity(sm, owner);   // ?? v3.5.94 �¤���/���F���|�P�˦^�y lv/mhp�]�P�W����� v2 ����P����G���P�B�������P�w�û����b�즸�l�굥�šF���F���мg��~��~�Y�o����� hp�^
+  L999: else if (wpn && wpn.missGrazeRate && Math.random() * 100 < wpn.missGrazeRate) _grazeA = true;   // ?? �����F�������N�]�ħL�^�G���R���� 30% ��P����
+  L1071: if (t.curHp > 0 && wpn && wpn.hitEchoMagic && Math.random() * 100 < (wpn.hitEchoMagic.rate || 0)) { t.curHp -= dmg; if (typeof terrorVisageOnDamage === 'function') terrorVisageOnDamage(t, dmg, 'magic'
+  L1294: // ?? �����F�����g�S�]�ħL�^�G�I�i���ݩʶˮ`�]�k�� 15% �K�O�l�[�s�����C
+  L1455: if (ally.classicMode && !classicOk) return;   // ?? �g��Ҧ��G�@��s�g���ΡF�a���F�����ܩڨ����s�g�ҥ~
+  L2762: // ?? v3.8.5 �����ݩʹh�]�ħL���P��@�u�ۡ^�G���봫�ݩʫ�A���ݩʪ��T/�|/�������F�]�k�b�L�ۤv���W�O�u�Ǧ⤣�i�Ρv
+  L2907: // ?? v2.6.25 �ħL�l������]�y�ͳN/�l��N/���F�l��P��@�l��P��Ӫ��a setupSummon�Powner=ally�^�G�w����/�w��(_block)���l�F�w���s���l��h�����l�F�_�h��MP�l��]�u�������l��N sk_summon�^�Cbuff �ѤW�軼��P���(�k0)�۰ʭ��l�C�l�ꪫ tick �� alliesTick �X�ʡ]��X�k _dps.summon�P�����k�u�����^�C
+  L2917: : (ally.skills.includes('sk_elf_summon2') && _mercAutoOn(ally, 'sk_elf_summon2') && allySkillElementOk(ally, 'sk_elf_summon2')) ? 'sk_elf_summon2'   // ?? ����ħL�u���u�l��j�O�ݩʺ��F�v(�W�ź��F)�G���Ǫ��@�목 sk_elf_summon ��
+  L3057: // ?? v2.6.25 �ħL�l�ꪫ tick�]�y�ͳN/�l��N/���F�l��Powner=ally�^��?? v2.6.26 �۳N�h�۶H�l��]�ڦN/�ŧ�/�p�۰��[�Pi_illusion ��q�P�ǹL�ӧާY�l�Pstat aura �Ѷ��� teamIlluAura �����קK���M�^�Gowner=ally�P��X�W���k _dps.summon�]���p�J���ħL�^�X _dpsAllyTurn�P�w�����l�ꪫ����ʡP������
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\07-skills-cast.js
+  L8: // ?? v3.2.25 ���F��q�睊�G���A�W�[���F�ƶq/�����q�ơ]�אּ �l��j�O�ݩʺ��F�����F���P�� _elfSpiritKingOverride�^
+  L11: // ?? v3.2.26��v3.4.11 �ݩʺ��F�W���蹳�]buildSummon/refreshSummonBalance ��B�M�Ρ^�G
+  L12: //   ���a�P�ħL��Ū js/23 �|�ݩʪ��F�ħL�O���L�ĩ�H�l��A��������� spiritAttackOnce �@�ΩR���B�ˮ`�P���F�� AOE�C
+  L19: if (king && typeof SPIRIT_ELE_ZH !== 'undefined' && sm.ele && SPIRIT_ELE_ZH[sm.ele]) sm.n = '�٦�G' + SPIRIT_ELE_ZH[sm.ele] + '�����F��';
+  L20: sm._king = king;   // ?? �ħL���L�ĩ�H�l��޽u�A���O�d���a v2 �����F���P�w�P 15% ����ޯ�
+  L58: // ?? �ħL�ݩʺ��F�O���L�ĩ�H����A����������飼���a v2 ���F�����G�|�ݩʻ��/��t�B�R���B�˳ơBMR��z�B�g��B��ı�����κ��F��15%����ޡC
+  L61: sm.form = sm.form || sm.n || '�ݩʺ��F';
+  L86: // �y�O�C 20 �I�W�[�@�q��������]�̦h4�q�^�F���F��q�P�˥H4�����W���C
+  L96: let flat = Math.floor(cha * owner.lv / (sm.elemScale || 20));   // �ݩʺ��F�G�y�O x (����/scale)
+  L892: // ?? �����F�����g�S�G�D�ʬI�i���ݩʶˮ`�]�k�ɡA15% �K�O�l�[�@���s�����]�Z�� proc ���|���|�^�즹�B�A�קK���j�^�C
+  L945: // ?? v3.2.21 ���a�l���� v2�Gsk_summon��sk_zombie�]�y�ͳN�^��sk_elf_summon(2)�]�ݩʺ��F�^���y�� js/23�]�h����P�i�Q�����P�B�ʮء^�F�g�y�P�ħL������ setupSummon �޽u
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\08-items-equip.js
+  L107: // ?? �����W�� maxHold�]�p���F���p�y=10�^�G����������o�q���`�������W�L�W���F�w�F�W���h����o
+  L610: // ¾�~���w�ˬd�]�p�V���Ĥ�=�k�v�B�i���Ĥ�=�M�h�B���F�氮=����^
+  L789: '�O�q�]�k�Y��','�ӱ��]�k�Y��','�v¡�]�k�Y��','���F����Y��','���F�ӱ��Y��','�㺸�p������','���`�M�h�Y��','�J�S�Y��',
+  L793: '���FT��',
+  L823: '���F�ֲ�','�j�Ѫ����T','�ŧ����O','�ª��̪��T','���x�k�T','�Դ���ڼw���T','���~�v���T','�ªk�v���T','�������T','�쫽����',
+  L828: '�շt�Q�r�}','�צ̤}','�j�Ѫ����j','�Դ���ڼw���Q�r�}','�u�}','�ڦ贵�}','�y�H���}','���F�}','�Դ���ڼw�}','�·t�Q�r�}'
+  L840: '�j�Ѫ����','���ݸ��G�ֲ���','���`����','���','���]�k���','���F���','���',
+  L842: '������M','�����d��M','�Z����M','�Z�x��M','�å�','���]�k�Y��','�����d�Y��','�Z�x�Y��','���F�ֲ�',
+  L845: '�j�Ѫ��C','�c�]���C','�¿V���C','��|�򤧼C','�J�S���C','�·t���C','�ӼC','�j���h���M','�Z�h�M','�Դ���ڼw���C','�I���̤��C','���F�u�C','�s�M','���C','���M�h���C','�Ȫ��C','�p�ܾ��u�C','�ȼC','�������|�ڪ��C��','�ڦ贵�u�C','��l�ү}�a��','��C','���C���C��','�u�C���C��',
+  L865: '�i���ֱa','�j�Ѫ����ݲ���','�ڭ��S����','���ݸ��G�ֲ���','�����d����','���`����','�J�S����','���ݲ���','���K���ݲ���','���`�M�h����','�Z�x�@�Z','�֥�','�å�','�C�ɲ���','���F���ݲ���','���','���]�k���','���F���','���F�@�ݪ��ݪO','���','�ڦ贵���','�p�å�',
+  L873: '�ФW�������|�ڪ���','���F����','������','�j','�ФW�̯�������','�T�e�u','�ڦ贵����','�諸��'
+  L893: '�p�å�','�ڦ贵���','���','���F�@�ݪ��ݪO','���F���','���]�k���','���','�C�ɲ���','�å�','�֥�','���ݲ���','���`����','��������','�j�Ѫ����',
+  L897: '��l�P��','�ڦ贵�P��','�Դ���ڼw�u�C','���F�P��','�P��','�]�O�u�C','�̯����u�C','�������|�ڵu�C','�p�Z�h�M','�����u�C','�V�P����',
+  L898: '����]�k��','�u�C���C��','���C���C��','��C','��l�ү}�a��','�ڦ贵�u�C','�������|�ڪ��C��','�u�C','�ȼC','�p�ܾ��u�C','�Ȫ��C','���M�h���C','���C','�s�M','���F�u�C','�I���̤��C','�Z�h�M','�j���h���M','�ӼC','�·t���C','�J�S���C','���`�M�h���P�����C','�c�]���C','�j�Ѫ��C',
+  L1282: if(player.buffs.elfcookie>0)add('���F�氮',player.buffs.elfcookie,'���F�氮');
+  L1316: //   _skipIconized=true(�԰����P�ϥܥi��)�G�Ĥ�(�[�t/�i/��/�V/���F�氮)�B�ܨ��B�� STATUS_ICON_SKILLS �����ޯ� �Ҳ��L��r�]��ݹϥܡ^�C
+  L1324: if(player.buffs.elfcookie>0 && !_skipIconized) buffs.push(`<span class="text-yellow-300 font-bold">���F�氮</span>`);
+  L1349: // ?? v3.2.42 �]�֭סGv2 �l��]�l��N/�y�ͳN/�ݩʺ��F�^���A�C��ܡX�XŪ summonsV2 ����]��Ū player.summon �b v2 �� null���|�ӥl��ޭ˼ƥä���ܡ^
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\09-vfx-render.js
+  L1435: const MOB_ANIM_NAMES = new Set([/* ?? v3.1.59 ���d��18�� */ '���d���N���p�w(��)', '���d���N���p�w(��)', '���d����w�d���(��)', '���d����w�d���(��)', '���d����w�ץd(��)', '���d����w�ץd(��)', '���d����w�ک�', '���d����w�ک�(��)', '���d����w�㦫', '���d����w�㦫(�\��)', '���d����w��
+  L1438: //    ?? v2.7.12 �� list.spr �x��w�q�ץ��G���ءu�S�� 101.shadow() �ݩʡv�׼v�l�O�L�b����(�̦ѥ@�N�C�s�����F 29~57)�ץ� Set�F�� 101.shadow(id)�׼v�l�W�ߡ����[�C
+  L1451: const MOB_ANIM_SPRITE_SHADOW = new Set([/* ?? v3.2.17 */ '�Ѫ�', '��', '����', '���R����', '�F��', '�t�B�Ǥ�', '���W', '�ɨ���', '�p�y��', '�_�Q', '�U��', '�U�l', /* ?? v3.1.59 ���d��18�Ǭұa_s */ '���d���N���p�w(��)', '���d���N���p�w(��)', '���d����w�d���(
+  L1497: '�·t���F':     { startPfx: 'skill_effect', anchored: { ox: -45, oy: 30, bw: 56, bh: 85 } },
+  L1498: '��Ѥ��q�·t���F': { startPfx: 'skill_effect', anchored: { ox: -45, oy: 30, bw: 56, bh: 85 } },
+  L1543: // ?? v2.7.70 �·t���F�� anchored(skill_effect 10�V�Pbody 54��83)�G
+  L1544: '�·t���F��': { startPfx: 'skill_effect', anchored: { ox: 11, oy: -28, bw: 54, bh: 83 } },
+  L1595: '���Q�w': '���a�k����', '������Q�w': '���a�k����', '����': '���a�k����', '�뤧���F����': '���a�k����',
+  L1745: const MOB_ANIM_8DIR = new Set(['������', /* ?? v3.2.17 �٦��s12�ǡ]�������d���K��V�@�Ρ^ */ /* ?? v3.2.20 �P�W�ǥh���G��Ū�K��V�@�ιϡP�®ڹϤw�R�]�B�H�O�dspawn�P���t��7���O�d�S�ļh�����^ */ '���f�����L', '�̦a���]', '���F���ԧ��]', '���]���u', '�g���r��', '�g�����r', '�g�����]', '���H��
+  L1890: '�Ϥ��֮�', '�l�尭', '���H', '�ժ����u', '�ɥ���', '�ȥ����u', '���|��', '�������u', '�·t���u', '�·t���F',   // ?? v3.0.52 +10 �ܨ��]�·t���F�׶·t����M�� �����·t���F �g�O�W�M�g�^
+  L1893: const MORPH_BATTLE_ALIAS = { '�u�E���`�M�h': '���`�M�h', '�u�E�J�S': '�J�S', '�����·t���F': '�·t���F' };   // �M���ܨ����P���ʵe�]v3.0.52 �·t����M�ˡ��·t���F�P�P js/19 ��ø�O�W�@�P�^
+  L1899: '�H���L��', '�ܾ�', '�J�S', '�d�q�S��', '�d�h�f', '�Ϥ��֮�', '�l�尭', '�����L', '�a�F', '�hù', '���]', '���]���h', '�p�c�]', '���H', '�ڦC��', '�ڤg��', '�ڭ��S', '��J��', '��J�ڤk��', '�c�]', '�ɨ���', '�G���', '��Q��', '�ڦN', '�کi���L', '���`', '���`�M�h', '���]', '�W�����H'
+  L2169: '�·t�k�vF':[61,94],'�·t���F':[94,115],'�·t���F2':[94,114],'�·t���FF':[93,115],'�·t�M�h':[62,93],'�·t�M�h2':[59,93],'�·t�M�hF':[61,92],'�ª���':[93,92],
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\10-ui-tabs.js
+  L81: return ({ knight:'�M�h�޳N', mage:'�k�v�]�k', elf:'���F�]�k', dark:'�§��]�k', illusion:'�۳N�]�k', dragon:'�s�M�]�k', warrior:'�Ԥh�ޯ�', royal:'�����]�k' })[player.cls] || '¾�~�ޯ�';
+  L140: + (classSkills.length ? '<button class="' + (stateBook.mode === 'class' ? 'active' : '') + '" onclick="classicSkillChooseMode(\'class\')">' + (player.cls === 'elf' ? '���F' : '¾�~') + '</button>' : '')
+  L439: // ===== �l�����ޯब���G�g�y / �l�� / �y�� / �l���ݩʺ��F / �l��j�O�ݩʺ��F �P�ɥu��}�Ҥ@�� =====
+  L480: if (typeof summonV2DismissAll === 'function' && ((player._summonV2Sk || 'sk_summon') === sid)) summonV2DismissAll();   // ?? v3.2.21 �l���� v2�]�l��N/�y�ͳN/�ݩʺ��F�^�G�����Ŀ���e�ͮĪ��l������ƸѴ��������۰ʭ��I
+  L531: player.buffs[pair[1]] = 0;   // ?? �������ġG�[�t/�i��/�V��/���F�氮/�ܨ�/�]�k�@�ޥߧY���ġ]�ܨ��|�b calcStats �٭��Ρ^
+  L685: // ?? �� �ĥ|��]v3.1.4�^�G����C(�t���F����C)�a chainsword �X�ЦۧP�K tag
+  L709: // ?? �� �ĤQ����G�T�Y���׿����]�����^�B���ݴҴ�/���u�����׳��w���]�w���^�B���Υ��X�׳��C+�Z�h�M�]����+�~�X�^�B�I�M�}��������C�]���ξa eff�^�F���v�����y(isWand)/�g�A����F(qigu)/�Q�r���}(isBow) �a�X�ЦۧP�K tag�C
+  L1879: if(/skillbk|�]�k��|�k�N��|���F����|�ޯ��/.test(s))return 3;
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\11-world-map.js
+  L16: {v:'elf_grave',t:'���F�ӥ�',c:'#67e8f9'}, {v:'hidden_cave',t:'�j�}�����P�̧����a��',c:'#a78bfa'}, {v:'giant_tomb',t:'�j�N���H����',c:'#d6d3d1'}
+  L103: {v:'elf_grave', t:'���F�ӥ�'}, {v:'hidden_cave', t:'�j�}�����P�̧����a��'}
+  L1356: player.buffs[player.summon.skId] = 0; player.summon = null;   // ���F��q�Ѱ��G���^�w�l���ݩʺ��F
+  L1357: logSys('�ݩʺ��F�H�ۺ�q���ಾ�Ӯ����F�C');
+  L1359: // ?? v3.2.21 �ݩʺ��F v2�G���F��q�Ѱ���������Ʀ��^�]�۰ʬI��Ŀ老�b������|���s�l��^�@�뫬�A�^
+  L1365: logSys('�ݩʺ��F�H�ۺ�q���ಾ�Ӯ����F�C');
+  L1367: // ?? v3.2.25 ���J���F��q�G�b�����j�O�ݩʺ��F���^���۰ʭ��I�ɪ@�ج����F��
+  L1372: player._summonV2On = on;   // �O�d�۰ʭ��I�}�����U�� tick �ߧY�l�^���F��
+  L1373: logSys('���F���O�}�l�@�ءX�X�j�O���F�N�H�u���F���v�������s�{���C');
+  L1930: // ����˪L�G�J���W=������U�Ŧa�U�㺸=�D�����e�U�Y�F=�R�x�e�U��Q��=�k���L���ۮ|�U����/�R�|��=�L���Ŧa�U���F�k��(override)�U���F=��E���U�w�S(override�v�k�W)�U��/ͺ�J�g=�Ŧa�U���ԧB=�k�U�Ϊ��Y�Uù���]=���U��Υ��x�U�g�۴˪L����=�k���}��a(���۹�)
+  L1994: // �w�S(847�P110��145)�v�k�W���F���F�k��(854�P11��19���p)�쯸�b�g�۴˪L����(2725�P88��96 �۹�)���W��Q 100% �\��������w�S���X�������Ŧ�(�i�I)
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\12-npc-quests.js
+  L715: elf45:      { cls:'elf',      lv:45, npc:'���F',         reqs:[['item_blueflute',1],['item_ancientkey',1]], rewards:['arm_102','bk_elf_summon2'] },   // ?? v3.1.23 �סG�� acc_guardian/bk_elf_wisdom �q���w�q�����
+  L993: {id:'item_elf_whisper', nm:'���F���p�y', cnt:10, hint:'�������F�ӥު��Ǫ�'} ],
+  L1061: // ?? ���F���p�y�G�M�h�u��I���F���p�y�v���q������]trialStage>2�A�Y�w�q�L�ĤG���q��I�^
+  L1062: //   �۰ʲM�����W�Ѿl�����F���p�y�]�t���J�¦s�ɪ��ɱϡB�H�δ��W�������p�^�C�^�ǲM���ƶq�C
+  L1080: purgeCompletedElfWhisper();   // ?? ��I���F���p�y���q���� �� �۰ʲM���Ѿl�����F���p�y
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\13-shop-save.js
+  L46: elf_grave: 'assets/area/�Դ���ڼw.jpg', hidden_cave: 'assets/area/�Դ���ڼw.jpg', giant_tomb: 'assets/area/�Դ���ڼw.jpg',   // ??? ���F�ӥ�/�j�}�����P�̧����a��/�j�N���H���ӡ]���~�P�Դ���ڼw�I���^
+  L90: const AREA_1920 = new Set(['�ȤB����','�쫽����','�ƺC����','�ƺC����11~20��','�ƺC����1��','�ƺC����21~30��','�ƺC����2~10��','�ƺC����31~40��','�ƺC����41~50��','�ƺC����51~60��','�ƺC����61~70��','�ƺC����71~80��','�ƺC����81~90��','�ƺC����91~100��','�ߪk�x������','�ߪk�x
+  L157: : `<p class="text-slate-300 mb-4">��ܤ@���ݩʡA������ܧK�O�C��ܫ�N����������T�B�|�����F�]�k�C</p>`;
+  L184: // ?? v3.2.42 �]�֭סG���ݩʮɦb���ݩʺ��F�ߧY���^�]�O�d�۰ʭ��I�}�����U�� tick �H�s�ݩʭ��s�{���F�쥻���ݩʺ��F�|�@�����즺/����^
+  L190: logSys('�ݩʺ��F�H���ݩʪ��ഫ�Ӯ����X�X�e�N�H�s�ݩʭ��s�{���C');
+  L1428: // �i���Ĥ��G�M�h���s�M�h���w�F�V���Ĥ��G�k�v���۳N�h���w�F���F�氮�G���뭭�w
+  L1717: if(player.summon && ['sk_zombie', 'sk_elf_summon', 'sk_elf_summon2'].includes(player.summon.skId)) player.summon = null;   // ?? v3.2.21 �y�ͳN/�ݩʺ��F�飼 v2 �����G�M���º޽u�ݯd�]�Ŀ老�b��v2 �۰ʭ��s�l��^
+  L1753: purgeCompletedElfWhisper();   // ?? ���J�ɡG�Y�w��I�������F���p�y���q�A�۰ʲM�����W�ݯd�����F���p�y
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\14-craft-pandora.js
+  L5: // ?? �ɤڴ��]�_�� �_�ۥ[�u�{�^�G4 �ݩʧ٫��]���t�W���~������5�Ϥ�����𮧡�1�ϲ��W���̯�������50���]�k�_�ۡ�30�ϥ|�ذ��~���_�ۦU��5�Ϫ���200�U�^��4 ���F�ֱa�]�ֱa��1�Ϲ����s���3�Ϥ����ۡ�5�^
+  L64: // ?? �گS���]�ư��Q�ȧ����^�G�t�����֡׮ɪŵ����H����100�F���`�۩_�j�~�ץ|�ذ��~���_�ۡ�10���t�����֡�2�ϭ�۸H����30�Ϻ��F������30�Ϫ��� 100 �U
+  L309: { id: 'new_item_195', cnt: 1000 }  // ���F��
+  L362: // ?? �_��?�۴����G�|�ݩʺ��F�٫��]�|�x�ΦL�O�U��10 �� �����x�����L��1�^
+  L1833: else if(sid === 'sk_elf_winddash') moveSpeedText += '�A�P���t�e�������A���N���F�氮���t';
+  L1836: } else if(sk.moveSpeedReplacesCookie) eff.push('���N���F�氮�����ʳt�״���');
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\17-audio.js
+  L178: "�뤧���F����": 25, "�]�k�v��": 144, "�]�k�ɥ���": 405, "��v��߯S": 23, "���]�}�b��": 47, "�a�F": 226, "�ìV���a���F": 156, "Ĩۣ": 162, "�T": 83,
+  L185: "�s�t": 611, "�r��": 216, "����": 244, "�u�\���g��": 57, "�u�\ĵ��": 44, "�·t���F": 156, "�ڦN": 195, "�hù": 254, "��ܧJ�y": 617, "�j�s": 26,
+  L190: "�v�]": 57, "����": 499, "�Ův": 35, "�������[": 642, "������": 499, "�ڤۤ��q�����F��": 156, "�ڤۤ��q�����F��": 156, "�ڤۤ��q�����F��": 156,
+  L191: "�ڤۤ��q�a���F��": 156, "�W���~": 291, "���L": 427, "�ڤۤ��qĨۣ": 162, "�ڤۤ��q����": 499, "�ڤۤ��q���h�i": 635, "�ڤۤ��q���H��": 213, "�ڤۤ��q�ɨ���": 83,
+  L199: "�·t����ݧL(�Q�r�})": 458, "�·t����ݧL(�k�v)": 458, "�·t����ݧL(����C)": 458, "�·t���F��": 458, "�·t����ĵ��(�Q�r�})": 458, "�·t�����]�k�Ǯ{": 458,
+  L211: "�p�۶H���]": 39, "�������l�尭": 427, "���ƪ��L�ͤ�": 72, "�������ŧ�": 765, "�g���F��": 156, "�����F��": 156, "�����F��": 156, "�����F��": 156, "�����": 427,
+  L213: "��Ѥ��q�s��": 629, "��Ѥ��q�T�H": 70, "��Ѥ��q�L���B": 55, "��Ѥ��q�ȤO�w": 261, "��Ѥ��q�·t���F": 458, "��Ѥ��q�ں�": 291, "��Ѥ��q�h�i�H": 494,
+  L218: "�`�W���D": 427, "�]����": 83, "�·t����s��": 458, "����F": 156, "ɦҨ": 291, "�]��": 291, "�کi���L": 26, "����F��": 156, "���ݸ��G": 213,
+  L245: "�z�ƳN": 843, "�g�ɳN": 843, "�ʦL�T�a": 845, "�F��@��": 807, "�������w": 110, "���񤸯�": 717, "�l���ݩʺ��F": 139, "�l��j�O�ݩʺ��F": 139,
+  L257: "�뤧���F����": 301, "�]�k�v��": 302, "�]�k�ɥ���": 407, "��v��߯S": 302, "���]�}�b��": 48, "�a�F": 258, "�ìV���a���F": 157, "Ĩۣ": 163, "�T": 84,
+  L264: "�s�t": 600, "�r��": 217, "����": 245, "�u�\���g��": 58, "�u�\ĵ��": 45, "�·t���F": 157, "�ڦN": 191, "�hù": 256, "��ܧJ�y": 551, "�j�s": 27,
+  L269: "�v�]": 58, "����": 507, "�Ův": 36, "�������[": 643, "������": 507, "�ڤۤ��q�����F��": 157, "�ڤۤ��q�����F��": 157, "�ڤۤ��q�����F��": 157,
+  L270: "�ڤۤ��q�a���F��": 157, "�W���~": 293, "���L": 424, "�ڤۤ��qĨۣ": 163, "�ڤۤ��q����": 507, "�ڤۤ��q���h�i": 634, "�ڤۤ��q���H��": 196, "�ڤۤ��q�ɨ���": 84,
+  L278: "�·t����ݧL(�Q�r�})": 460, "�·t����ݧL(�k�v)": 460, "�·t����ݧL(����C)": 460, "�·t���F��": 460, "�·t����ĵ��(�Q�r�})": 460, "�·t�����]�k�Ǯ{": 460,
+  L290: "�p�۶H���]": 40, "�������l�尭": 424, "���ƪ��L�ͤ�": 73, "�������ŧ�": 767, "�g���F��": 157, "�����F��": 157, "�����F��": 157, "�����F��": 157, "�����": 424,
+  L292: "��Ѥ��q�s��": 554, "��Ѥ��q�T�H": 71, "��Ѥ��q�L���B": 56, "��Ѥ��q�ȤO�w": 262, "��Ѥ��q�·t���F": 460, "��Ѥ��q�ں�": 293, "��Ѥ��q�h�i�H": 496,
+  L297: "�`�W���D": 424, "�]����": 84, "�·t����s��": 460, "����F": 157, "ɦҨ": 293, "�]��": 293, "�کi���L": 27, "����F��": 157, "���ݸ��G": 196,
+  L315: "���h�_": 773, "���Ť��v": 1278, "���~�v": 1273, "�g���F��": 962, "�a����": 883, "�a�����u�@��": 875, "�a������": 862, "�a�����°\": 1053,
+  L317: "�X�Ӧu�@�̪k�v": 1415, "�X�Ӧu�@���M�h": 1415, "�ڤۤ��q�a���F��": 962, "�ڤۤ��q�j����": 980, "�ڤۤ��q�ɨ���": 977, "�ڤۤ��q���H��": 1013, "�ڤۤ��q�Z�Ҧu��": 1010, "�ڤۤ��q�{�q�y": 956,
+  L318: "�ڤۤ��q�����F��": 974, "�ڤۤ��q����": 980, "���L": 872, "�_���x�M": 1482, "���]": 249, "���]���u": 249, "���]���h": 249, "�w��紵": 445,
+  L330: "��Ѥ��q��Q��": 503, "��Ѥ��q�ں�": 290, "��Ѥ��q�W�����H": 434, "��Ѥ��q�ܪ�": 248, "��Ѥ��q���|��": 275, "��Ѥ��q�·t���F": 491, "���|�[���]": 249, "���c���I�M����": 1050,
+  L331: "���F���ԧ��]": 249, "���˼کi�Ԥh": 1217, "���˻h�i�H": 1437, "���ݸ��G": 1246, "���K���[": 768, "����F": 1083, "����F��": 1099, "��ª��M�h�S�w": 1044,
+  L332: "���R�ڧ��]": 249, "���|��": 275, "���H": 748, "������": 889, "�������u�@��": 881, "�����F��": 974, "���F���D": 881, "���~�v": 1191,
+  L335: "�·t����k�v": 1148, "�·t����s��": 903, "�·t����ĵ��(�Q�r�})": 783, "�·t����ĵ��(��)": 1169, "�·t�����]�k�Ǯ{": 1030, "�·t�ϪL��": 1204, "�·t���F": 491, "�·t���F��": 1086,
+  L340: //   ??�ӷ��ǥ����n���������~�ɱo��F�s���a��(gfx 1572/1574)�Ѱ���F�����L�n���L�ӷ��i�ɡ]�����R���^�C���G�O�Ф� _mobAtkResolveCache�C
+  L341: const MOB_ATTACK_ALIAS = { "�d�|��": "�����F��", "�d��": "���`�M�h" };   // �d�� �w����T���� 86(=���`�M�h)�P���B�ȰO���Τ�N�ϡP��T�����u���G���O�W��Ĳ�o
+  L350: const MOB_ATTACK_SWING = { "���`�M�h": 248, "�d��": 248 };   // ���`�M�h/�d�� �P���F(gfx240)�P���� 86(�����n)��248(���M�n)
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\22-pets.js
+  L1458: let gfxForm = p.formGfx || p.form;   // ?? v3.2.25 �ʺA�O�W�G��ܦW�ڹ��ɸ�Ƨ��]���F���ɥαj�O���F�ϡP�j�O���F��Τ@����F�ϡ^
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\23-summons.js
+  L8: //   ?? v3.2.21 �X�R�G���a�� �y�ͳN(sk_zombie)���l���ݩʺ��F(sk_elf_summon)���l��j�O�ݩʺ��F(sk_elf_summon2) �]�����Ҳ�
+  L9: //     ?�T�t�����]SUMMON_BUFF_IDS�^�� �@�� player.summonsV2 ����M��϶���O��js/22 ��V��js/04 ���`�̦��]�v�� �l��N/�y�ͳN��4�P�ݩʺ��F��3�P�� js/04 summonAggroWeight�^
+  L11: //     ?�ݩʺ��F�Gv3.2.26 �|�ݩʿW�ߪ��]��/�Y��v�ݩʡP��t 16~18 ticks�^�� spiritAttackOnce�P���F��q�����F���ɯš]_elfSpiritKingOverride�Pjs/07�^�X�XHP ����ϾԳ��ʺA
+  L55: { n: '����F��', lv: 52, hp: 420, aspd: 18, ring: true },
+  L105: //   �� 50�ź��s�L��q�l�겤�ӵL���F��q���j�O���F�F���ŭ��v�P�ɫO�� 68�ų氦������Ҧ��C�����s�]�t��6���^�C
+  L150: // ---------- �@���G�B�y�ͳN v2���ݩʺ��F v2�]v3.2.21�^----------
+  L364: // ?? �ݩʺ��F�Gv3.2.26 �|�ݩʿW�ߪ��� spiritAttackOnce�]��/�Y��v�ݩʡP��t 16~18 ticks �� _spiritDerive�^�FHP/���Ŭ�����]�p�ȡC
+  L365: // ?? v3.2.25 ���F��q�睊�]�Τ��O�^�G���A�W�[�ƶq�]�@�� 1 ���^�X�X�����F��q�ɡA
+  L366: //    �u�l��j�O�ݩʺ��F�v�אּ�l���j�j���u<�ݩ�>���F���v�]SPIRIT_KING �W�߰ѼơP�ϥέ�j�O���F���ʺA�^�F
+  L367: //    �L��q���j�O�ݩʺ��F�ʺA��Τ@���ݩʺ��F���ϡ]�j�O�Ϧ������F���M�ݡ^�X�X�� formGfx �������]js/22 ��V�h�^�C
+  L369: //   �ˮ`�]�p�G��o�׭� DPS�ѧ������j�]��t�C����o���^�F�j�O/���F���A�� HP ���u�Ϥ�]��p�˧C�P(���HP/�ۨ�HP)^0.7�G���̩Z�̻��P�����̵h�^�C
+  L383: // ?? ���F���]���F��q�M�ݡ^�GHP�ױj�O��2 �`���u�P��o���j�O 1.6 ���F�����R���� 15% ���v����u�P�ݩʥ���k�N�v�]�C�ؼЬ��b�o�¤O�P�Y�]��/�g��^
+  L392: function _spiritSpec(skId, ele, king) {   // ����W��]�̧ޯ�/�ݩ�/�O�_���F���X�֡^
+  L399: if (_spiritIsKing(skId)) return (SPIRIT_ELE_ZH[ele] || '') + '�����F��';   // ??? v3.2.27 ��W�G�q�ݡr�����F�t�]���ɸ�Ƨ����� X�ݩʺ��F�P�� formGfx �����^
+  L400: return (SPIRIT_DEF[skId].strong ? '�j�O' : '') + (SPIRIT_ELE_ZH[ele] || '') + '�����F';
+  L418: const SUMMON_V2_TITLES = { sk_summon: '�l�ꪫ', sk_zombie: '�L���H�q', sk_elf_summon: '���F', sk_elf_summon2: '���F' };
+  L472: } else if (skId === 'sk_elf_summon' || skId === 'sk_elf_summon2') {   // ?? �ݩʺ��F�G�̪��a�ݩʡP�@�� 1 ���]?? v3.2.25 ���F��q�אּ�@�غ��F���P���A�[���ơ^
+  L474: if (!ele || !SPIRIT_ELE_ZH[ele]) { if (!silent) logSys('<span class="text-red-400">�|������ݩʡA�L�k�l���ݩʺ��F�C</span>'); return false; }
+  L478: // �ʺA�����G���F���׭�u�j�OX�ݩʺ��F�v�ϡ]�M�ݡ^�F�j�O�ݩʺ��F�]�L��q�^�P�@����F�סuX�ݩʺ��F�v��
+  L479: const gfx = (king ? '�j�O' : '') + SPIRIT_ELE_ZH[ele] + '�ݩʺ��F';
+  L482: ? `���F���O�b�A����q�U�@�ءX�X�A�l��F <span class="text-purple-300 font-bold">${form}</span>�I`
+  L552: else if (s.skId === 'sk_elf_summon' || s.skId === 'sk_elf_summon2') spiritAttackOnce(s, t);   // ?? �ݩʺ��F�G���a���ħL�@�Τ����]�ħL�I�s�I�� js/07�^
+  L616: // ?? �ݩʺ��F�����]v3.4.11 ���a������ħL�L�ĩ�H�l��@�Ρ^�G
+  L619: owner = owner || player;   // ?? ���a������ħL�L�ĩ�H���F�@�ΦP�@�ˮ`����
+  L623: const _ia = (typeof teamIlluAura === 'function') ? teamIlluAura(s, true) : null;   // ?? ��ı�����G���F�R���Y eh�Fmd �� owner.d�ϤU���L�����t�B�i summonDamageMult�A�קK���ƭp��
+  L633: const dmg = summonElementDamage(spec.dice || [1, 40], s.ele, t, flat + _sgb.dmg + ((_ia && _ia.royalEd) || 0) + ((_ia && _ia.mel) || 0), mult, mrPen);   // ?? �`���Z���G�]�k���ݩʺ��F���@���������o�����B�~�ˮ`�F?? v3.8.3 �R�D����
+  L635: t.curHp -= dmg; if (typeof terrorVisageOnDamage === 'function') terrorVisageOnDamage(t, dmg, 'melee'); mobWake(t);   // ?? ���j�u�\�G�ݩʺ��F�@�����������Z��
+  L637: // ?? v3.2.26 ���F���G�����R���� 15% ���v����u�P�ݩʥ���k�N�v�]�B����/������/�s����/�_���N�P�C�ؼЬ��b�o�¤O�P�Y�]��/�g��/DR�^
+  L644: m.curHp -= pd; if (typeof terrorVisageOnDamage === 'function') terrorVisageOnDamage(m, pd, 'magic'); m.justHit = s.ele; mobWake(m);   // ?? ���j�u�\�G���F���d��ޯ�����]�k
+  L654: // �Ǫ��@��������l�ꪫ�]js/04 ���`�̦��P�v�� �l��N/�y�ͳN��4�P�ݩʺ��F��3�P�� js/04 summonAggroWeight�Pv3.2.21 �t�L��/�ݩʺ��F�^
+  L827: // v3.2.40 �]�֭סG���T�I�� sk_summon�X�X�� summonV2Recast() �I���O���e�ޯ�A�y�ͳN/�ݩʺ��F�b���ɷ|�~���I���ժ� MP
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\26-world-channel.js
+  L218: { words: ['����', '�����ഫ'], name: '���F����(�����ഫ)' },
+  L220: { words: ['�ͯ�', '�ͩR����'], name: '���F����(�ͩR������)' },
+  L221: { words: ['���}', '�����}�a'], name: '�·t���F����(�����}�a)' },
+  L222: { words: ['�ݤ�', '�ݩʤ���'], name: '���F����(�ݩʤ���)' },
+  L224: { words: ['�����e��'], name: '���F����(�����e��)' },
+  L227: { words: ['�氮'], name: '���F�氮' },
+  L930: key: 'poly', kw: ['�ܨ�', '�ܧ�', '���ʳt��', '���t', '�[�t', '�����t��', '��t', '�����e��', '���t�e��', '���F�氮', '�i���Ĥ�', '�i��', '���', '�ܨ�', '�ܧ�', '����', '��t��', '��t�[��', '�t�פ���', '�s����', '�I�k�t��', '�I�t'],
+  L935: '�����e���ͮĮɷ|���N���F�氮�����ʳt�ץ[���A���氮�������t�פ��O�d�F�¦s�ɭY��دe���P�ɴݯd�A�H�����e�����ǡC',
+  L1018: key: 'summon', kw: ['�l��', '�l�ꪫ', '�y��', '�ݩʺ��F', '�l��N', '�l�걱��', '�l��٫�'],   // ?? �u�l�ꪫ�����K�v���u�����v�|�Q death �D�D�m�� �� �㦡�C '�l�ꪫ' �[�v
+  L1022: '�y�ͳN�n�����˪��ǬI��A���Ű��L�͸���ܱj�F���몺�ݩʺ��F�h�ݧA����ñ���ݩʫ����C',
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\29-siege-v2-data.js
+  L7225: "notes": "���R�ڧ��]����U����e�ơA�O�@�k�v�P�·t���F�C",
+  L7368: "name": "�·t���F",
+  L7409: "notes": "�·t���F�T�w���}�b��F�����ޯ�u��DB.skills�s�����AMP�����B�N�o�γQ���]�ɧ�Τ}�b�C",
+  L7410: "assetSource": "castle/4.���]��/�����M�ݦu�x/�·t���F",
+  L13490: "unitName": "�·t���F",
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\anim-manifest.js
+  L4: const ANIM_MANIFEST = {"assets/anim/�������۶H���]":{"attack_":7,"attack_s_":7,"death_":12,"death_s_":12,"hurt_":2,"hurt_s_":2,"idle_":14,"idle_s_":14,"skill_":11,"skill_effect_":11,"skill_s_":11},"assets/an
+===== PATTERN: reqClass =====
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\00-data.js
+  L273: function _expReqClassicV2(lv) {   // v3.4.58 �H�e���g����F�Ȩ� expMigV=3 �ʤ���E��
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\13-shop-save.js
+  L1793: let o = _expReqOldV1(lv), n = _expReqClassicV2(lv);
+  L1807: let o = _expReqClassicV2(lv), n = getExpReq(lv);
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\22-pets.js
+  L164: let oldReq = Math.max(1, Math.floor(_expReqClassicV2(lv) / 10));
+===== PATTERN: singleEle =====
+(no hits)
+===== PATTERN: allEle =====
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\00-data.js
+  L808: "relic_morph_blade":     { n: "���w�Ϊ��ܤۼC",   type: "wpn", w2h: true, chainsword: true, weakExpose: true, relic: true, noEnhance: true, dmgS: 21, dmgL: 17, hit: 17, dmgBonus: 15, str: 1, counterAllEle: t
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\03-combat-core.js
+  L2386: if (wpn && wpn.counterAllEle && target.e && target.e !== 'none') _ecm = Math.max(_ecm, 1.4);   // ?? ���w�Ϊ��ܤۼC�G�@������g��a/��/��/���@���ݩʤ��ġ]�j�� ?��1.4�^
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\06-status-allies.js
+  L1037: if (wpn && wpn.counterAllEle && t.e && t.e !== 'none') _ecmA = Math.max(_ecmA, 1.4);
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\10-ui-tabs.js
+  L1120: if (d.counterAllEle)         _eff.push('�@������g��Ҧ��ݩʼĤH');
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\14-craft-pandora.js
+  L1935: if(d.counterAllEle) _eff.push('�U�H�g��]�@������g��Ҧ��ݩʼĤH�^');
+===== PATTERN: eraseMagic =====
+(no hits)
+===== PATTERN: elf =====
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-ancdrop.js
+  L273: '$1<span class="c-ancient text-xs font-bold self-center" title="�o�Ӥ����w���������A���X�Ӧ����|�a���j�t����">?���j</span>');
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-bossavoid.js
+  L269: // justify-self:start �� �b grid �̤��n�Q������C,���s�K�ۤ�r�e��;�����Y�ƪ��ܥ��ݩ�W�������Ŀ��
+  L270: '.m-bav-entrybtn{justify-self:start;margin:2px 0 4px 24px;padding:3px 10px;font-size:12px;font-family:inherit;white-space:nowrap;cursor:pointer;background:#1e293b;border:1px solid #475569;border-radiu
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-buyercompat.js
+  L175: var self = this, args = arguments;
+  L177: if (!req || req.en == null) return _origDialog.apply(self, args);
+  L179: var r = _withSession(_origDialog, self, args, _reqKey(req), pick);
+  L196: var self = this, args = arguments;
+  L198: if (!req || req.en == null) return _origTrade.apply(self, args);
+  L201: if (!pick) return _withSession(_origTrade, self, args, key, null);   // ����n�ŦX�� �� �쪩�y�{
+  L204: var go = function () { _withSession(_origTrade, self, args, key, pick); };
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-dex.js
+  L169: var _CLS_CN = { knight: '�M�h', mage: '�k�v', elf: '����', dark: '�·t����', illusion: '�۳N�h', dragon: '�s�M�h', warrior: '�Ԥh', royal: '����' };
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-history.js
+  L30: var CLS_NAME = { knight: '�M�h', mage: '�k�v', elf: '����', dark: '�·t����', illusion: '�۳N�h', dragon: '�s�M�h', warrior: '�Ԥh', royal: '����' };
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-offline.js
+  L838: ['set-elfcookie', 'elfcookie'], ['set-poly', 'poly'], ['set-magicbarrier', 'sk_magic_shield']].forEach(function (c) {
+  L858: var useChk = { potion_haste: 'set-haste', potion_brave: 'set-brave', potion_blue: 'set-blue', new_item_140: 'set-cautious', new_item_139: 'set-elfcookie', scroll_poly: 'set-poly', scroll_magicbarrier:
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-petui.js
+  L60: function selfCheck(div) {
+  L82: try { selfCheck(div); } catch (e) {}
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-squadsync.js
+  L12: * �W���L�P�@�ӧ|�åu�ɤF�@�b�Gjs/10:2609 �� v3.8.5 �� elfEle �[�iñ���A�z�Ѥ@�r���t
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-trackmaps.js
+  L19: *   ? �·t����t�a(dark_elf_sanctuary) �� �ɤW�媺�|
+  L49: { v: 'dark_elf_sanctuary', t: '�·t����t�a' },
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-tradwish.js
+  L234: function labelFor(w) {
+  L249: return '<span class="text-amber-200">?' + labelFor(w) + '</span>';
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\afk-wiki.js
+  L16: // ¾�~���ǲΤ@�׳Ш��e������(js/13-shop-save.js btnIds:royal��knight��mage��elf��dark��illusion��dragon��warrior)�C
+  L22: { k: 'elf', n: '����' },
+  L197: if (sk.reqE !== undefined) return 'elf';
+  L227: if (lv === undefined && cls === 'elf' && typeof MAGIC_MASTERY_SKILLS !== 'undefined' && MAGIC_MASTERY_SKILLS.indexOf(id) >= 0) return sk.reqM;
+  L330: royal: ['���l', '���D'], knight: ['�k�M�h', '�k�M�h'], mage: ['�k�k�v', '�k�k�v'], elf: ['�k����', '�k����'],
+  L618: elf: {
+  L676: elf: { n: '���� 50 �Ÿշ�', npc: '�}�Űǧ� �I�ڷ�P�H����]�ݵ��� 50�^', req: '�ⶥ�q�̧ǥ�I�G?�j�N�§������D ��1 �� ?�K�ʪ������� ��1', from: '�j�N�§������D�G���j�L�� 1%�]������G�F�z�����Ƭ}�] 1~2 �ӡ^�F�K�ʪ������ѡG�b�u�U�h���P�j�}�����P�̧����a�ϡv���u�]�ڷt���Ρv�����C�]�ڷt���άO�S���ǡB���`�n�A�u���A���d�b�o�@�B�]�ʱK�ʪ���
+  L2503: var EQUIP_FILTERS = [['royal', '����'], ['knight', '�M�h'], ['mage', '�k�v'], ['elf', '����'], ['dark', '�·t����'], ['illusion', '�۳N�h'], ['dragon', '�s�M�h'], ['warrior', '�Ԥh']];   // ���ǡ׹C���Ш�����(�P CLASSES)
+  L2590: var EQUIP_REQ_CN = { knight: '�M�h', mage: '�k�v', elf: '����', dark: '�·t����', illusion: '�۳N�h', dragon: '�s�M�h', warrior: '�Ԥh', royal: '����' };
+  L2644: if (d.req && d.req !== 'all') {   // �h¾�~ req(�p knight,elf,dark)�v�@�त��;�T�ӥH�W�u�g�ƶq�X�X�C������¾�~�W�|��˳ƦW�����T��(����M��b�Ա���,�]�j�o��)
+  L3132: var SET_POLY_LABEL = { dk: '���`�M�h�M�ˡ]4 ��^', kurt: '�J�S�M�ˡ]4 ��^', demon: '�c�]�M�ˡ]4 ��^', darkelf: '�·t����M�ˡ]3 ��^' };
+  L3292: //   �� allyMaintainBuffs/_isMercSelfBuff�]�۰ʺ����W�q�^�� allyCubeTick/�l��/�b��/storm �U�`�n���|�C�睊�ʨ�o�Ǧ^�ӹ���C
+  L4537: sk_elf_mind: ['���^ 2 MP�F��������/�v¡�N�o', '�ഫ�]�k<b>����u����HP���ޯ�v</b>�G�������s�� 3 �󪺡u�s�ǡv�A�s���q�� HP ��b�]���A��'],
+  L4538: sk_elf_worldtree: ['�Q�ʡG�b�u�ϰ��B�~�����v�a��(����˪L�P��B����˪L�P�v�s�}�� 1~3 �ӵ�)���ǡA���F�ɱ��v 20%��30%�B���W���̯������P������ 2%��3%'],
+  L4539: sk_elf_triple: ['�@���g�X 3 �b�B�C�b�U�ۧP�w�R���P�z���A����ۥu���� 1 ��b'],
+  L4540: sk_elf_release: ['�������y���ˮ`�F�u�露���t�D�Y�ةǦ��ġA���Y�صL��', '���\�v�̵��Ůt/���]��/�]�k�R���B�ʡA�W�� 60%'],
+  L4541: sk_elf_soul: ['���^ 15 MP�F��������/�v¡�N�o', '�ഫ�]�k<b>����u����HP���ޯ�v</b>�G�������s�� 3 �󪺡u�s�ǡv�A�s���q�� HP ��b�]���A��'],
+  L4542: sk_elf_singleres: ['�̧A��w���ݩʡA���ݩʧܩ� +50'],
+  L4543: sk_elf_groundtrap: ['�������y���ˮ`�A�ϥ���w�t 30 ��(�������j�Ԫ� 1 ��)�F�̲��`�]�k�R���P�w(���š��]�k�R�� �� �ǵ��š��]��)'],
+  L4544: sk_elf_watervital: ['�u�U�@�������v¡�v(���t����^�_)�v���q ��2�B�����@�Τ@���AĲ�o�� 7 ���N�o�F�ĪG�����~��A�I��', '�ħL�]������G���@���������Y�����ͮġA�w���H�����ɨ�L�H�����ƬI��'],
+  L4545: sk_elf_magicerase: ['�������y���ˮ`�A�ϥؼ��]����b 16 ���F�R���Y���� 16 ��(�D�C�o�]�k�UĲ�o�@��)', '�̲��`�]�k�R���P�w�F�Y��/���]���Ǳ`�s���ܡA�e���W�]����b�@�{�Y�u�h�b�O�Q��ܡB�D�u����@��'],
+  L4546: sk_elf_summon: ['�C����˨��ݩʡG��/�� 2~76�B��/�a 2~66�F�A�[�T�w�ȡ׾y�O�ѵ��šҫY�ơ]��/�� ��11�B��/�a ��12.5�^�A���]���P�ˮ`��K�]�]����z��10�Ͼy�O/10�^', '�T�w 1 ���]���H�y�O�W�[�^�FLv40�BHP 400�B��t ��/�� 1.8s�P��/�a 1.6s�F���F���ۤv�� HP�A�|�Q�����B�ɶ���Υ����۰ʭ��l', '�y�ͳN/�l��N/�ݩʺ��F�P�ɥu��}�@��
+  L4547: sk_elf_earthshield: ['���������K�̩Ǫ��u�@�����/�s���v�ˮ`�A����Ĥ��]�k�L��'],
+  L4548: sk_elf_dancefire: ['�ζ������G�A�Υ��@���������A����(�t�ħL�B�d���B�l�ꪫ�B�����@��)��Z���ˮ`�� +3', '�w���H�����ɨ�L�H�����ƬI��B�����]'],
+  L4549: sk_elf_earthbless: ['���m(AC) �[�������ͮ�(�A�ϩҦ��ħL)', '�ħL�]������G���@���������Y�����ͮġA�w���H�����ɨ�L�H�����ƬI��'],
+  L4550: sk_elf_summon2: ['��˨��ݩʡG�� 3~144�B�� 3~129�B�a 3~120�B�� 3~126�F�T�w�ȡ׾y�O�ѵ��šҫY�ơ]��5.5/��6.2/�a6.6/��6.3�^�B�ˮ`�A��1.18�B�]����z 20�Ͼy�O/10', '�T�w 1 ���ALv50�BHP 600~720�]���̫p�^�C�ǡu���F��q�v���@�ئ��P�ݩ�<b>���F��</b>�]Lv60�B��w�B�ˮ`��1.3�B��z+30�A�R���� 15% ����
+  L4551: sk_elf_muddywater: ['�u����Y�جI��(���W�S�Y�شN����B�����])�F���w�R���B���|�Q���', '���Y�بC 5 �����۵M�^���b 32 ���G�Q���z���L 0.5%��0.25%�B�S�Q�� 2.5%��1.25%', '�������y���ˮ`�F�ؼФw�b�ÿB���N�����ƬI��'],
+  L4552: sk_elf_seal: ['�������y���ˮ`�A�ϥؼ��]�k�ʦL 8 ��(�өǵL�k�I�k)�F�̲��`�]�k�R���P�w'],
+  L4553: sk_elf_flamesoul: ['��Z���u�@������v���Z���Y�륲�w���̤j�ȡF�ĪG�����~��A�I��'],
+  L4554: sk_elf_preciseshot: ['�@������Y�� 1 �ѡu���w���R���v�אּ���w�R��(�R���v�W���Ԩ� 100%)�F�ĪG�����~��A�I��'],
+  L4555: sk_elf_steelguard: ['�u�[�j�I�k�̦ۤv�����m(AC) ?10�A�����Ѧʤ�����'],
+  L4556: sk_elf_attrfire: ['�@����� 30% ���v�ˮ` ��1.5�F��ԻP�}�ҦY�o��A���}���s�g�l�[�b���A�ΡF�ĪG�����~��A�I��'],
+  L4557: sk_elf_physboost: ['�t���W��(�i�J�g�@��)�� HP/MP ����۵M��_(���`�t���L���|�����_)�F�ĪG�����~��A�I��'],
+  L4558: sk_elf_energyboost: ['�t���W��(�i�J�g�@��)�� HP/MP ����۵M��_(���`�t���L���|�����_)�F�ĪG�����~��A�I��'],
+  L4559: sk_elf_mirror: ['�����]�k�u�����v�ˮ`�ɡA�H�u�믫�v%���v(�C 1 �I�믫��1%)��I�k�̤Ϯg���q�B�������T�w�ˮ`'],
+  L4698: var MAGIC_FILTERS = [['all', '����'], ['royal', '����'], ['knight', '�M�h'], ['mage', '�k�v'], ['elf', '����'], ['dark', '�·t����'], ['illusion', '�۳N�h'], ['dragon', '�s�M�h'], ['warrior', '�Ԥh']];   // ���ǡץ����ϳШ�¾�~��(�P C
+  L4712: //   ='mage/elf/knight/dark':�u�C�u��¾�~�Ǳo�쪺�]�k�v,�̥i�ǵ��űƧǡC
+  L4730: var needMastery = (magicCls === 'elf' && sk.reqE === undefined && typeof MAGIC_MASTERY_SKILLS !== 'undefined' && MAGIC_MASTERY_SKILLS.indexOf(id) >= 0);
+  L4749: var cats = { mage: [], elf: [], dark: [], knight: [], illusion: [], dragon: [], warrior: [], royal: [] };
+  L4768: exclusive(cats.elf, '?? ����M���]�k', 'reqE', '����');
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\sw.js
+  L61: self.addEventListener('activate', (e) => {
+  L72: await self.clients.claim();
+  L76: self.addEventListener('message', (e) => {
+  L97: try { const x = new URL(u, self.location.href); keepSet.add(x.pathname + x.search); } catch (err) { /* �a URL ���L */ }
+  L102: if (u.origin !== self.location.origin) continue;
+  L119: if (u.origin !== self.location.origin) continue;
+  L318: self.addEventListener('fetch', (e) => {
+  L324: const sameOrigin = url.origin === self.location.origin;
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\00-data.js
+  L128: 'self.onmessage=function(e){var d=e.data;try{self.postMessage({id:d.id,key:d.key,rev:d.rev,packed:"LZ1:"+LZString.compressToUTF16(d.value)});}catch(err){self.postMessage({id:d.id,key:d.key,rev:d.rev,e
+  L302: "wpn_katana": { n: "�Z�h�M", type: "wpn", dmgS: 10, dmgL: 12, hit: 1, spd: 0.9, req: "knight,elf", safe: 6, p: 28200, gachaWeight: 10 },
+  L303: "wpn_longsword": { n: "���C", type: "wpn", dmgS: 8, dmgL: 12, hit: 0, spd: 0.9, req: "knight,elf", safe: 6, p: 4200, gachaWeight: 50 },
+  L312: "wpn_battleaxe": { n: "�ԩ�", type: "wpn", w2h: true, dmgS: 18, dmgL: 18, hit: 0, spd: 1.1, req: "knight,elf", safe: 6, p: 980, gachaWeight: 100, eff: "crush" },
+  L316: "wpn_elfbow": { n: "���F�}", type: "wpn", isBow: true, ranged: true, rapidfire: 45, dmgS: 2, dmgL: 2, hit: 0, dmgBonus: 1, spd: 1.0, req: "all", safe: 6, p: 620, gachaWeight: 100 },
+  L324: "wpn_halberd": { n: "�k�C", type: "wpn", w2h: true, dmgS: 16, dmgL: 16, hit: 0, spd: 0.8, req: "knight,elf", safe: 6, p: 11200, unBonus: true, gachaWeight: 50, eff: "pierce", pierceChance: 80 },
+  L326: "wpn_14": { n: "���", type: "wpn", w2h: true, dmgS: 12, dmgL: 16, hit: 0, spd: 1.1, req: "knight,elf", safe: 6, p: 42, gachaWeight: 100, eff: "pierce", pierceChance: 60 },
+  L327: "wpn_15": { n: "�N��", type: "wpn", w2h: true, dmgS: 12, dmgL: 14, hit: 0, spd: 1.1, req: "knight,elf", safe: 6, p: 280, gachaWeight: 100, eff: "pierce", pierceChance: 70 },
+  L331: "wpn_19": { n: "����", type: "wpn", w2h: true, dmgS: 17, dmgL: 19, hit: 0, spd: 1.2, req: "knight,elf", safe: 6, p: 1400, gachaWeight: 100, eff: "crush" },
+  L332: "wpn_20": { n: "�y�P��", type: "wpn", dmgS: 9, dmgL: 10, hit: 0, spd: 1.1, req: "knight,elf", safe: 6, p: 4900, gachaWeight: 50 },
+  L333: "wpn_21": { n: "������", type: "wpn", dmgS: 6, dmgL: 6, hit: 0, spd: 1, req: "knight,elf", safe: 6, p: 700, gachaWeight: 100 },
+  L340: "wpn_elfsword": { n: "���F�u�C", type: "wpn", dmgS: 8, dmgL: 8, hit: 0, spd: 0.8, req: "all", safe: 6, p: 3680, unBonus: true, gachaWeight: 100 },
+  L343: "wpn_28": { n: "�T�e�u", type: "wpn", dmgS: 5, dmgL: 4, hit: 0, spd: 1, req: "knight,elf", safe: 6, p: 35, gachaWeight: 100 },
+  L345: "wpn_29": { n: "�צ̤}", type: "wpn", isBow: true, ranged: true, rapidfire: 55, dmgS: 3, dmgL: 3, hit: 0, dmgBonus: 3, spd: 1.0, req: "elf", safe: 6, p: 32680, gachaWeight: 10 },
+  L348: "wpn_31": { n: "�Q�r�}", type: "wpn", isBow: true, ranged: true, rapidfire: 50, dmgS: 3, dmgL: 2, hit: 3, dmgBonus: 2, spd: 1.0, req: "knight,elf,dark", safe: 6, p: 59400, gachaWeight: 10 },   // ?? v3.2
+  L350: "wpn_flaming_angel": { n: "�K���ѨϤ}", type: "wpn", isBow: true, ranged: true, rapidfire: 40, dmgS: 3, dmgL: 3, hit: 3, dmgBonus: 4, spd: 1.0, req: "elf", safe: 6, p: 137300, w2h: true, eff: "moonburst", 
+  L354: "wpn_damascus": { n: "�j���h���M", type: "wpn", dmgS: 10, dmgL: 11, hit: 0, spd: 0.9, req: "knight,elf", safe: 6, p: 22000, ignHardSkin: true, gachaWeight: 20 },   // ?? ���C�G������ WEAPON_TAGS �ᤩ�F�e��L���w���B�~���
+  L358: "wpn_rapier": { n: "�ӼC", type: "wpn", dmgS: 11, dmgL: 6, hit: 0, spd: 0.9, req: "knight,elf", safe: 6, p: 5230, unBonus: true, gachaWeight: 20 },
+  L393: "wpn_kurt_sword":    { n: "�J�S���C", type: "wpn", dmgS: 15, dmgL: 11, hit: 9, dmgBonus: 5, spd: 0.8, req: "knight,elf", safe: 6, p: 152000, legend: true, gachaWeight: 1, spellProc: { skn: "���D���p", dice: [
+  L395: "wpn_thor_hammer":   { n: "�p������", type: "wpn", dmgS: 7, dmgL: 12, hit: 3, dmgBonus: 0, spd: 0.9, req: "royal,knight,elf,mage,warrior", safe: 6, p: 46000, legend: true, gachaWeight: 1, ignHardSkin: tru
+  L396: "wpn_pagrio_wrath":  { n: "���樽������", type: "wpn", dmgS: 13, dmgL: 9, hit: 2, dmgBonus: 2, spd: 0.8, req: "royal,knight,elf", safe: 6, p: 56000, legend: true, gachaWeight: 1, ignHardSkin: true, spellPro
+  L397: "wpn_mapler_punish": { n: "�����Ǫ��g�@", type: "wpn", w2h: true, dmgS: 14, dmgL: 15, hit: 0, dmgBonus: 11, spd: 1, req: "royal,knight,elf,warrior", safe: 6, p: 46000, legend: true, gachaWeight: 1, eff: "cr
+  L399: "wpn_eva_scold":     { n: "�쫽���d�|", type: "wpn", dmgS: 9, dmgL: 9, hit: 1, dmgBonus: 1, spd: 0.8, req: "royal,knight,elf,mage,dark,dragon,illusion", safe: 6, p: 56400, legend: true, gachaWeight: 1, ign
+  L406: "acc_necro_king_ring": { n: "�ߪk�x������", legend: true, type: "acc", slot: "amulet", ac: 0, cha: 3, req: "mage,elf", safe: 0, p: 193000, gachaWeight: 1 },
+  L410: "acc_law_king_chain": { n: "�k�O�x������", legend: true, type: "acc", slot: "amulet", ac: 0, mmp: 15, mpR: 5, req: "mage,elf", safe: 0, p: 100000, gachaWeight: 1 },
+  L437: "wpn_thebes_bow":     { n: "���񴵼ڦ訽���}", legend: true, type: "wpn", isBow: true, ranged: true, rapidfire: 80, dmgS: 3, dmgL: 3, hit: 0, dmgBonus: 1, int: 2, wis: 1, spd: 0.9, req: "elf,illusion", safe: 
+  L445: "wpn_xbow_dark":  { n: "�·t�Q�r�}", type: "wpn", isBow: true, ranged: true, rapidfire: 35, w2h: true, dmgS: 2, dmgL: 2, hit: 4, dmgBonus: 0, spd: 1.0, req: "elf,dark", safe: 6, p: 17300, gachaWeight: 70 }
+  L446: "wpn_xbow_gloom": { n: "�շt�Q�r�}", type: "wpn", isBow: true, ranged: true, rapidfire: 70, w2h: true, dmgS: 3, dmgL: 2, hit: 5, dmgBonus: 2, spd: 1.0, req: "elf,dark", safe: 6, p: 33300, gachaWeight: 50 }
+  L447: "wpn_xbow_abyss": { n: "�t�¤Q�r�}", type: "wpn", isBow: true, ranged: true, rapidfire: 70, w2h: true, dmgS: 5, dmgL: 5, hit: 4, dmgBonus: 6, spd: 1.0, req: "elf,dark", safe: 6, p: 180000, gachaWeight: 1, 
+  L451: "wpn_xbow_rasta":   { n: "�Դ���ڼw�Q�r�}", type: "wpn", isBow: true, ranged: true, rapidfire: 45, w2h: true, dmgS: 3, dmgL: 3, hit: 2, dmgBonus: 2, spd: 0.9, req: "elf,dark", safe: 6, p: 2300, gachaWeight: 
+  L452: "wpn_bow_rasta":    { n: "�Դ���ڼw�}", type: "wpn", isBow: true, ranged: true, rapidfire: 55, w2h: true, dmgS: 2, dmgL: 2, hit: 2, dmgBonus: 2, spd: 0.9, req: "knight,elf", safe: 6, p: 1800, gachaWeight: 
+  L454: "wpn_sword_rasta":  { n: "�Դ���ڼw���C", type: "wpn", dmgS: 10, dmgL: 12, hit: 1, spd: 0.9, req: "knight,elf,dark", safe: 6, p: 990, gachaWeight: 50 },
+  L459: "wpn_xbow_heavy_rasta": { n: "�Դ���ڼw���Q�r�}", type: "wpn", isBow: true, ranged: true, rapidfire: 45, w2h: true, dmgS: 3, dmgL: 3, hit: 2, dmgBonus: 3, spd: 0.9, req: "elf", safe: 6, p: 5300, gachaWeight: 
+  L460: "wpn_spear_rasta":  { n: "�Դ���ڼw��", type: "wpn", dmgS: 8, dmgL: 8, hit: 0, spd: 0.9, req: "knight,elf", safe: 6, p: 1800, gachaWeight: 100 },
+  L463: "wpn_official_blade": { n: "�Z�x���b", type: "wpn", dmgS: 13, dmgL: 10, hit: 1, dmgBonus: 2, spd: 0.9, req: "knight,elf,royal,dragon", safe: 6, p: 58000, gachaWeight: 10, d: "�Դ���ڼw�Z�x�رa�����C�A�H�R��ʡB���������C" },
+  L480: "wpn_windblade_dagger":{ n: "���b�u�C", type: "wpn", legend: true, dmgS: 23, dmgL: 16, hit: 10, dmgBonus: 10, spd: 0.6, req: "knight,elf,mage,royal,dark", safe: 0, p: 500000, gachaWeight: 0, ignHardSkin: 
+  L486: "hlm_elf": { n: "���F�ֲ�", type: "arm", slot: "helm", ac: 1, req: "elf,mage", safe: 6, p: 120, gachaWeight: 100 },
+  L492: "arm_44": { n: "�㺸�p������", type: "arm", slot: "helm", ac: 2, req: "elf", safe: 6, p: 8900, dex: 1, gachaWeight: 10 },
+  L503: "arm_50": { n: "���F�ӱ��Y��", type: "arm", slot: "helm", ac: 1, req: "elf", safe: 6, p: 4800, dex: 1, gachaWeight: 20 },
+  L504: "arm_51": { n: "���F����Y��", type: "arm", slot: "helm", ac: 1, req: "elf", safe: 6, p: 4800, con: 1, gachaWeight: 20 },
+  ... +280 more
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\01-drops-config.js
+  L7: '�����h�i�H': [['arm_bluepirate_cloak',0.8],['acc_curse_red',0.1],['new_item_160',1],['bk_elf_mirror',0.1],['item_son_remains',3],['acc_curse_diamond_ring',0.1],['acc_curse_sapphire_ring',0.1]],
+  L16: '�w�p�J': [['wpn_glory_sword',0.1],['wpn_pirate_shortblade',5],['wpn_pirate_cutlass',3],['wpn_abyss_dualblade',0.05],['wpn_dark_crystalball',0.05],['wpn_silent_crossbow',0.1],['arm_faith_shield',0.1],['n
+  L36: '�L�w����': [['arm_83',1],['acc_117',3],['acc_116',3],['new_item_160',50],['new_item_161',50],['new_item_162',50],['bk_break',30],['bk_slow',30],['bk_charm',30],['bk_str_up',30],['bk_earthquake',30],['bk_
+  L38: '���H': [['wpn_alien',2.5], ['wpn_10',2.5], ['wpn_battleaxe',2], ['wpn_berserker',0.5], ['arm_110',0.01], ['acc_127',0.1], ['acc_129',0.1], ['acc_128',0.1], ['blt_body',0.01], ['acc_131',0.01], ['acc_13
+  L39: '���H�Ԥh': [['wpn_alien',2.5], ['wpn_10',2.5], ['wpn_battleaxe',2], ['wpn_berserker',0.5], ['arm_110',0.01], ['acc_127',0.1], ['acc_129',0.1], ['acc_128',0.1], ['blt_body',0.01], ['acc_131',0.01], ['acc_
+  L40: '���H����': [['wpn_alien',2.5], ['wpn_10',2.5], ['wpn_battleaxe',3], ['wpn_berserker',0.5], ['arm_110',0.03], ['acc_127',0.1], ['acc_129',0.1], ['acc_128',0.1], ['blt_body',0.01], ['acc_131',0.01], ['acc_
+  L41: '�j�N���H': [['wpn_katana',30], ['wpn_greatsword',10], ['mat_unknown_axe',0.03], ['amr_plate',30], ['glv_glove',30], ['acc_122',1], ['acc_129',1], ['blt_giant_ring',1], ['acc_131',1], ['blt_titan',0.1], [
+  L43: '�a����': [['wpn_mithril_dagger',0.1],['wpn_ori_dagger',0.05],['glv_earth_spirit',0.01],['new_item_151',1],['new_item_157',1],['new_item_160',1],['new_item_154',1],['new_item_152',0.3],['new_item_158',0.
+  L44: '������': [['wpn_mithril_dagger',0.1],['wpn_ori_dagger',0.05],['glv_wind_spirit',0.01],['new_item_151',1],['new_item_157',1],['new_item_160',1],['new_item_154',1],['new_item_152',0.3],['new_item_158',0.5
+  L45: '������': [['wpn_mithril_dagger',0.1],['wpn_ori_dagger',0.05],['glv_water_spirit',0.01],['new_item_151',1],['new_item_157',1],['new_item_160',1],['new_item_154',1],['new_item_152',0.3],['new_item_158',0.
+  L46: '������': [['wpn_mithril_dagger',0.1],['wpn_ori_dagger',0.05],['glv_fire_spirit',0.005],['new_item_151',1],['new_item_157',1],['new_item_160',1],['new_item_154',1],['new_item_152',0.3],['new_item_158',0.
+  L47: '���F���D': [['scroll_acc',0.001],['wpn_mithril_dagger',0.5],['wpn_ori_dagger',0.1],['glv_water_spirit',0.05],['new_item_152',0.5],['new_item_158',0.8],['new_item_161',0.5],['new_item_155',0.8],['bk_sleep
+  L49: '�`�W�}�b��': [['acc_abyss_ring',0.1],['bk_sleep_mist',0.2],['bk_elf_triple',0.05]],
+  L50: '�a�F���D': [['wpn_mithril_dagger',0.5],['wpn_ori_dagger',0.1],['glv_earth_spirit',0.03],['new_item_152',0.5],['new_item_158',0.8],['new_item_161',0.5],['new_item_155',0.8],['bk_elf_earthshield',0.1],['bk
+  L52: '���F���D': [['wpn_mithril_dagger',0.5],['wpn_ori_dagger',0.1],['glv_fire_spirit',0.01],['new_item_152',0.5],['new_item_158',0.8],['new_item_161',0.5],['new_item_155',0.8],['bk_fire_storm',0.1],['bk_elf_a
+  L53: '�贵': [['scroll_acc',0.001],['acc_abyss_ring',0.1],['bk_sleep_mist',0.2],['bk_elf_magicerase',0.01], ['mat_black_blood', 1]],
+  L54: '�`�W���F': [['wpn_mithril_dagger',1],['wpn_ori_dagger',0.2],['wpn_crimson_spear',0.01],['wpn_demon_axe',0.1],['glv_water_spirit',0.08],['new_item_152',1],['new_item_158',1],['new_item_161',1],['new_item_
+  L55: '�`�W�a�F': [['wpn_mithril_dagger',1],['wpn_ori_dagger',0.2],['wpn_crimson_spear',0.01],['wpn_demon_axe',0.1],['glv_earth_spirit',0.05],['new_item_152',1],['new_item_158',1],['new_item_161',1],['new_item_
+  L56: '�`�W���F': [['wpn_mithril_dagger',1],['wpn_ori_dagger',0.2],['wpn_crimson_spear',0.01],['wpn_demon_axe',0.1],['glv_wind_spirit',0.05],['new_item_152',1],['new_item_158',1],['new_item_161',1],['new_item_1
+  L57: '�`�W���F': [['scroll_acc',0.001],['wpn_mithril_dagger',1],['wpn_ori_dagger',0.2],['wpn_crimson_spear',0.01],['wpn_demon_axe',0.1],['glv_fire_spirit',0.02],['new_item_152',1],['new_item_158',1],['new_item
+  L58: '�Ҫi��': [['wpn_mithril_dagger',3],['wpn_ori_dagger',1],['hlm_mambo',0.1],['amr_mambo',0.1],['glv_water_spirit',0.1],['glv_earth_spirit',0.1],['glv_fire_spirit',0.1],['glv_wind_spirit',0.1],['new_item_1
+  L67: '����F��': [['scroll_weapon',0.5],['scroll_armor',0.5],['bk_bless_wpn',0.1],['bk_berserk',0.1],['bk_soul_up',0.001],['bk_abs_barrier',0.001],['bk_elf_blazewpn',0.05],['bk_dark_stealth',1],['bk_dark_poiso
+  L108: '�·t���F��': [['scroll_acc',0.001],['scroll_weapon', 0.5], ['scroll_armor', 1], ['bk_holy_barrier', 0.005], ['bk_dark_stealth', 1], ['bk_dark_poison', 1], ['bk_dark_mrup', 1], ['bk_dark_burn', 1], ['bk_da
+  L128: '���G�~': [['mat_holy_relic',0.5],['mat_summonorb_core',0.1],['mat_summonorb_shard',1],['bk_elf_preciseshot',0.001]],   // �O�Ф���(�ߤ�G�a��)0.5% �b MEM_DROPS
+  L130: '�l�s': [['mat_holy_relic',0.5],['mat_summonorb_core',0.1],['mat_summonorb_shard',1],['bk_greater_haste',1],['bk_elf_preciseshot',0.001]],
+  L131: '�N����': [['item_giltas_seal',100],['scroll_weapon',100],['scroll_armor',100],['wpn_xbow_abyss',3],['wpn_claw_abyss',3],['wpn_dual_abyss',3],['acc_133',1],['acc_135',1],['acc_136',1],['acc_137',1],['bl
+  L137: '�ߪk�x�����S��': [['scroll_acc',0.1],['wpn_priest_wand', 3], ['hlm_priest', 3], ['clk_kingnecro', 0.05], ['shd_priest_book', 3], ['acc_necro_king_ring', 0.1], ['mat_legion_necro', 100], ['mat_crest_necro', 
+  L153: '���ѡD�w�}��': [['wpn_official_blade', 0.5], ['wpn_dark_sword', 0.5], ['wpn_xbow_dark', 0.5], ['hlm_dark', 0.5], ['glv_official', 0.5], ['bk_shock_stun', 1], ['bk_blizzard', 1], ['bk_holy_barrier', 0.1], [
+  L154: '���ѡD�ڶ�': [['wpn_dual_spike', 0.5], ['wpn_dual_dark', 0.5], ['wpn_dual_rasta', 0.5], ['bot_official', 0.5], ['bk_seal', 1], ['bk_elf_soul', 0.5], ['mat_black_powder', 3], ['mat_history_2', 3], ['item_
+  L155: '���ѡD�ڬ���': [['wpn_red_crystalwand', 0.1], ['hlm_priest', 0.5], ['clk_priest', 0.5], ['bk_mummy_curse', 1], ['bk_cancel', 1], ['bk_slow', 1], ['bk_elf_earthshield', 1], ['bk_elf_watervital', 1], ['bk_el
+  L156: '���ѡD�ڳ��w': [['wpn_crystal_dagger', 0.5], ['wpn_red_crystalwand', 0.1], ['wpn_priest_wand', 0.5], ['amr_dark_cape', 0.5], ['bk_spike_armor', 0.5], ['bk_thunder_storm', 0.5], ['bk_meteor', 0.5], ['bk_abs
+  L157: '���ѡD�԰Ҵ�': [['wpn_dark_sword', 0.5], ['wpn_official_2h', 0.5], ['wpn_claw_dark', 0.5], ['hlm_official', 0.5], ['arm_official_cloak', 0.5], ['bot_dark', 0.5], ['bk_invisible', 0.2], ['bk_elf_groundtrap'
+  L158: '���ѡD������': [['wpn_blood_2hsword', 1], ['clk_dark', 0.5], ['glv_official', 0.5], ['bk_holy_dash', 0.5], ['bk_elf_mirror', 1], ['bk_dark_dex', 1], ['bk_elf_energyboost', 1], ['mat_black_powder', 3], ['ma
+  L159: '���ѡD��}��': [['glv_dark', 1], ['bot_priest', 0.5], ['bk_dark_shadow', 0.5], ['bk_sleep_mist', 0.5], ['bk_elf_lifebless', 0.5], ['bk_dragon_awaken_antares', 1], ['mat_black_powder', 3], ['mat_history_5',
+  L166: '�B���k��': [['mat_icequeen_heart',1],['wpn_crystal_dagger', 0.5], ['arm_88', 0.1], ['arm_63', 10], ['glv_crystal', 5], ['acc_116', 0.1], ['amu_int', 1], ['acc_122', 1], ['acc_128', 0.5], ['acc_129', 0.5]
+  L174: '�ڤۤ��q�B�۰��[': [['wpn_silveraxe',1], ['scroll_weapon',1], ['scroll_armor',2], ['scroll_revive',1], ['bk_elf_soul',0.1], ['new_item_150',5]],
+  L176: '���L': [['wpn_2hsword',3], ['scroll_weapon',5], ['scroll_armor',10], ['panacea_wis',1], ['bk_elf_triple',0.1]],
+  L177: '�B�H': [['wpn_battleaxe',1], ['new_item_150',1], ['new_item_195',1], ['bk_elf_watervital',0.1]],
+  L178: '������': [['arm_69', 10], ['wpn_katana',5], ['wpn_siruge',1], ['amr_plate',5], ['arm_88',0.1], ['arm_63',10], ['acc_117',0.01], ['amu_str',0.1], ['acc_120',0.1], ['acc_128',1], ['acc_129',1], ['acc_130'
+  L179: '�ȤO�w': [['scroll_weapon',1], ['scroll_armor',2], ['scroll_acc',0.01], ['bk_slow',0.5], ['bk_mummy_curse',0.5], ['bk_heal2',0.1], ['bk_holy_light',0.1], ['bk_haste_spell',0.5], ['bk_earthquake',0.1], [
+  ... +99 more
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\02-stats-recompute.js
+  L128: if (_setEarly['darkelf'] >= 3) { d.str -= 2; d.dex += 2; }   // ??? �·t����G�O�q-2/�ӱ�+2�]���e���ӱ���ڦY AC/�j��/���Z�ˮ`�R���B�O�q��ڦY��Z�ˮ`�R���A�_�h�u����ܼƦr���J�԰��^
+  L179: } else if (p.cls === 'elf') {
+  L268: let hpBase   = p.cls === 'knight' ? 16 : (p.cls === 'elf' ? 15 : (p.cls === 'dark' ? 12 : (p.cls === 'illusion' ? 14 : (p.cls === 'dragon' ? 16 : (p.cls === 'warrior' ? 16 : (p.cls === 'royal' ? 14 : 
+  L269: let hpClsInc = p.cls === 'knight' ? 8.5 : (p.cls === 'elf' ? 7.3 : (p.cls === 'dark' ? 10.5 : (p.cls === 'illusion' ? 7.5 : (p.cls === 'dragon' ? 4.5 : (p.cls === 'warrior' ? 9 : (p.cls === 'royal' ? 
+  L273: let mpBase   = p.cls === 'knight' ? 1 : (p.cls === 'elf' ? 5 : (p.cls === 'dark' ? 3 : (p.cls === 'illusion' ? 5 : (p.cls === 'dragon' ? 2 : (p.cls === 'warrior' ? 1 : (p.cls === 'royal' ? 2 : 6))))))
+  L274: let mpClsInc = p.cls === 'knight' ? 1 : (p.cls === 'elf' ? 2.83 : (p.cls === 'dark' ? 3 : (p.cls === 'illusion' ? 3.2 : (p.cls === 'dragon' ? 0.7 : (p.cls === 'warrior' ? 0.5 : (p.cls === 'royal' ? 1.
+  L443: if (player.cls === 'elf') {
+  L444: if (e.id === 'shd_elf') {
+  L447: if (e.id === 'clk_elf') {
+  L480: if(setCheck['darkelf'] >= 3) { d.ac -= 3; d.hpR -= 2; d.mpR -= 7; p._setPoly = Object.assign({}, SET_POLY_FORMS.darkelf); }   // ??? �·t����M�ˡGAC-3�BHP�۵M��_-2�BMP�۵M��_-7�B�ܨ������·t���F�]���Z���ˮ`/�R��+5�B��t+30%�^�]�O�q-2/�ӱ�+2
+  L561: if(p.buffs.elfcookie > 0 || (_mercPots && p.cls === 'elf')) spdMult *= (1/1.15); // ���F�氮�G��t+15%�]?? v3.5.37 1/1.15�P���N�� 0.85�׹��+17.6%�^�F����ħL�`�n
+  L609: if(p.buffs.sk_elf_singleres > 0 && p.elfEle) {
+  L610: if(p.elfEle === 'fire')  d.resFire  += 50;
+  L611: if(p.elfEle === 'water') d.resWater += 50;
+  L612: if(p.elfEle === 'earth') d.resEarth += 50;
+  L613: if(p.elfEle === 'wind')  d.resWind  += 50;
+  L788: applyElfBorder();
+  L1031: let windDashOn = (buffs.sk_elf_winddash || 0) > 0;
+  L1032: let dashSid = windDashOn ? 'sk_elf_winddash' : (((buffs.sk_holy_dash || 0) > 0) ? 'sk_holy_dash' : null);
+  L1034: if (buffs.elfcookie > 0 && !windDashOn) mult *= (1/1.15);  // ���F�氮�G���t+15%�F�����e���s�b�ɥu�O�d�氮��t�A���|�[���t
+  L1060: darkelf: { n: "�����·t���F", rd: 5, rh: 5,                    atk: 19, wlk: 16, cast: 10, stun: 5, c: "text-violet-300" }     // �t�ס׶·t���F
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\03-combat-core.js
+  L753: if (!bindSelfBlocked(player)) playerAttack();   // ??? v3.7.75 �����G�D���Z���Z���ɥ����X�@������]�����`���Ӷ]�P�I�k/�ޯण���v�T�^
+  L772: if (_ot && !bindSelfBlocked(player)) dualWieldOffhandAttack(_ot);   // ??? v3.7.75 �����G�Ƥ⥲����ԡ��Q�����ɦP�˥����X�h
+  L863: //   ?? �u�� `_pvpDuelFoe` �B¾�~���k�v�|����D null�A��l�Ǫ� _magBest �� null�ק������¡C
+  L864: let _magBest = (m._pvpDuelFoe && typeof pvpDuelBestSpellKey === 'function') ? pvpDuelBestSpellKey(m) : null;
+  L897: //    �]sk_regen ��O�^�_�N��sk_elf_lifebless �ͩR������ �w�אּ classicHeal+groupHeal ���u���������v¡�v�^�C
+  L977: const PURE_BOSS_MAPS = ['antaras_lair', 'fafurion_lair', 'valakas_lair', 'king_baranka_room', 'law_king_room', 'necro_king_room', 'assassin_king_room', 'thebes_temple', 'tikal_altar', 'cursed_dark_elf
+  L979: const SANCT_RESPAWN_COST = { cursed_dark_elf_sanctuary: 'item_dk_book', collapsed_elder_council_hall: 'item_giltas_seal' };
+  L1040: const TROLL_CLASS_BY_AVATAR = { "���l": "troll_royal", "���D": "troll_royal", "�k�M�h": "troll_knight", "�k�M�h": "troll_knight", "�k����": "troll_elf", "�k����": "troll_elf", "�k�k�v": "troll_mage", "�k�k�v": "troll_mage"
+  L1043: const TROLL_CLASS_TEMPLATE2 = { troll_royal: "troll2_royal", troll_knight: "troll2_knight", troll_elf: "troll2_elf", troll_mage: "troll2_mage", troll_dark: "troll2_dark", troll_dragon: "troll2_dragon"
+  L2101: && ((player.cls === 'elf' && player.trialStage === 2 && !player.inv.some(i => i.id === 'item_sealed_intel'))
+  L2323: else if (player.buffs && player.buffs.sk_elf_preciseshot > 0 && rollHit === 1) hit = true;   // ?? ��Ǯg���G�Y��1�ѥ��w���R�������w�R���]�̰��R���v�i�F100%�^
+  L2341: let _flameSoulMax = (!isRanged && player.buffs && player.buffs.sk_elf_flamesoul > 0);
+  L2364: if (wpn && !arrowData && wpn.unBonus) hasUnBonus = true;   // ??? v3.5.87 �P�W�GunDice / sp==='elf' �����]sp �u�b�ܨ����A����W�B���Ʀr�^
+  L2832: if (typeof offhandDmgMods === 'function') dmg = offhandDmgMods(owpn, t, dmg);   // ?? v3.5.97 �Ƥ⦩��e���ˮ`�׹��]selfBreakProc��eleBonusDmg�^
+  L2911: // ?? ��������]sk_elf_watervital�^�Gbuff �������A�U������u�v¡�N�v�]�����v¡�P���t HoT�^�v¡�ɫ�_�q�[���AĲ�o�� 7 ���N�o�C
+  L2915: if (heal > 0 && t && t.buffs && (t.buffs.sk_elf_watervital || 0) > 0 && (t._waterVitalCd || 0) <= 0) {   // �d��/�l��L buffs�����[���]����y�N�^
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\04-combat-attack.js
+  L112: if (player.cls === 'elf' && hasMastery('e_sword') && !result.ranged) {
+  L121: if (player.buffs && player.buffs.sk_elf_attrfire > 0 && Math.random() < 0.30) result.dmg = Math.floor(result.dmg * 1.5);   // ?? ����G�ݩʤ����]�@�����30%���v�ˮ`��1.5�F�P�U�N���ӦP�ġA���ݩʧ���M�Ρ^
+  L139: if (wpn && wpn.selfBreakProc && Math.random() < 0.03) { result.dmg = Math.max(1, Math.floor(result.dmg * 1.5)); if (player.statuses) player.statuses.broken = (wpn.selfBreakProc.dur || 5) * 10; }   // 
+  L483: let otherId = skId === 'sk_holy_dash' ? 'sk_elf_winddash' : (skId === 'sk_elf_winddash' ? 'sk_holy_dash' : null);
+  L524: //      eleBonusDmg(�t�ª����ݴҴ�)��selfBreakProc(�S�����H�d��)��procHealFlat(�B�D�H���@����)��
+  L546: if (def.selfBreakProc && Math.random() < 0.03) { dmg = Math.max(1, Math.floor(dmg * 1.5)); if (player.statuses) player.statuses.broken = (def.selfBreakProc.dur || 5) * 10; }   // ?? �S�����H�d���G3% �ˮ`��1.5 ��
+  L1049: let selfMrFactor = mrMult(_w.d.mr || 0);
+  L1050: let selfFireFactor = Math.max(0, Math.min(1, 1 - effResistPct(_w.d.resFire || 0) / 100));
+  L1051: let self = Math.max(1, Math.floor(base * coef * selfMrFactor * selfFireFactor));
+  L1052: if (_w === player) { player.hp -= self; logCombat(`<span class="font-bold" style="color:#fca5a5;">�i�z�u�ῶ�j</span>�z���Ͼ��A�A���� ${self} �I���ݩ��]�k�ˮ`�C`, 'player'); }
+  L1053: else { _w.curHp -= self; logCombat(`<span class="font-bold" style="color:#fca5a5;">�i�z�u�ῶ�j</span>�z���Ͼ��A��O�P${_w._allyName} ���� ${self} �I���ݩ��]�k�ˮ`�C`, 'enemy'); }   // ?? v3.1.76 �ħL�۶˦� curHp�]�˦a�ѩI�s�ݬJ���ˬd����^
+  L1160: if(player.buffs.sk_elf_earthshield > 0) {
+  L1193: else if (player.cls === 'elf')       rndDrMax = Math.floor(acGap / 3);
+  L1219: _drMult *= avatarSelfDmgReduceMult(player);                    // ?? v3.4.45 �ƨ��]����^�G�ۨ����������� -3%
+  L1385: if (c.cls === 'elf' || c.cls === 'dark' || c.cls === 'royal') return 4 + _agB;          // ��Ի��ˡ]v3.2.81 3��4�^
+  L1396: function summonAggroWeight(s) { return (s && (s.skId === 'sk_elf_summon' || s.skId === 'sk_elf_summon2')) ? 3 : 4; }
+  L1460: function teamAcBonus(forWho, forMinion) { let v = 0; if (_teamAuraHas('sk_elf_earthbless', forWho)) v += ((DB.skills.sk_elf_earthbless && DB.skills.sk_elf_earthbless.d && DB.skills.sk_elf_earthbless.d
+  L1461: // ?? v3.4.45 �Ĥ@�� forMinion�G�ƨ����˴�K�w��u����v(���a/�ħL�a avatarSelfDmgReduceMult �v����Ū�ۨ� buff)���u���d��/�l�ꤴ���������C���K���@�w��_���I�k�̦ۨ� AC-10�A�������禡�C
+  L1464: function avatarSelfDmgReduceMult(ent) { if (ent && ent.buffs && (ent.buffs.sk_illu_avatar || 0) > 0) return (1 - (((DB.skills.sk_illu_avatar && DB.skills.sk_illu_avatar.dmgTakenReduce) || 0) / 100)); 
+  L1482: if (!(forWho && forWho.buffs && (forWho.buffs.sk_elf_dancefire || 0) > 0) && _teamAuraHas('sk_elf_dancefire', forWho)) {
+  L1483: let f = (DB.skills.sk_elf_dancefire && DB.skills.sk_elf_dancefire.d) || {};
+  L1534: if ((ally.buffs && ally.buffs.sk_elf_earthshield > 0)) {
+  L1556: let rndDrMax = (ally.cls === 'knight') ? Math.floor(acGap / 2) : ((ally.cls === 'elf' || ally.cls === 'dark' || ally.cls === 'dragon' || ally.cls === 'warrior') ? Math.floor(acGap / 3) : (ally.cls ===
+  L1561: totalDmg = Math.floor(totalDmg * avatarSelfDmgReduceMult(ally));   // ?? v3.4.45 �ƨ��]����^�G�ħL�ۨ����������� -3%
+  L1985: dmg = Math.floor(dmg * avatarSelfDmgReduceMult(ally));   // ?? v3.4.45 �ƨ��]����^�G�ħL�ۨ����������� -3%
+  L2093: if(sk.type === 'self_buff') {
+  L2127: if(sk.type === 'self_heal') {
+  L2130: //    ������L���� return�A�U��ĤG�q self_heal �O���X�F���Y sk.heal �|���©Ǯ�����~���w�]�^��q�C
+  L2167: // ??? v3.5.83 �����ĤG�q self_heal�G�W��]v3.5.59�^���P������L���� return�A���B�ä��i�F�Fsk.heal �w�֤J�W�� fallback�C
+  L2285: if(sk.type === 'self_haste') {
+  L2411: _drMult *= avatarSelfDmgReduceMult(player);                                                            // ?? v3.4.45 �ƨ��]����^�G�ۨ����������� -3%
+  L2509: if(player.buffs && player.buffs.sk_elf_mirror > 0 && dmg > 0 && mob.curHp > 0 && (Math.random() * 100 < (player.d.wis || 0))) {
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\05-kill-progression.js
+  L446: { let main = player.cls === 'elf' && player.trialStage === 1 && mob.n === '���j�L��' && !player.inv.some(i => i.id === 'item_ancient_book');
+  L455: { let main = player.cls === 'knight' && player.trialStage === 2 && mapState.current === 'elf_grave' && (player.inv || []).reduce((s, i) => s + (i.id === 'item_elf_whisper' ? (i.cnt || 0) : 0), 0) < 10
+  L456: let ally = mapState.current === 'elf_grave' && typeof allyStageQuestItemActive === 'function' && allyStageQuestItemActive('item_elf_whisper');
+  L457: if ((main || ally) && Math.random() < partyDropRate(0.01)) { let got = grantPartyStageQuestDrop('item_elf_whisper', main); if (got.main || got.allies.length) logSys(`<span class="text-amber-300 font-b
+  L459: { let main = player.cls === 'elf' && player.trialStage === 2 && !player.inv.some(i => i.id === 'item_sealed_intel'); let ally = typeof allyStageQuestItemActive === 'function' && allyStageQuestItemActi
+  L565: let hasWorldTree = player.skills.includes('sk_elf_worldtree');
+  L1388: if (!mapState || mapState.current !== 'cursed_dark_elf_sanctuary') return;
+  L1422: else if (player.cls === 'elf') startMap = 'town_elf';
+  L1465: if (typeof playSelfFx === 'function') { try { playSelfFx('��ͳN', (typeof _partyMemberRect === 'function') ? _partyMemberRect(player) : null); } catch (e) {} }   // ?? v3.0.102 ��ͳN/�_�����b����_�������a���W����ͳN�S��
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\06-status-allies.js
+  L13: function bindSelfBlocked(ent) {   // ���a���ħL�G�ۤv�Q�����B�D���Z���Z�����L�k�@�����
+  L104: //   �|�Q�u���񤸯�(sk_elf_release)�v�̾��v�Y���C�d�Ҩ� salamander(���h�i)�C
+  L269: else if (sm.skId === 'sk_elf_summon' || sm.skId === 'sk_elf_summon2') { let spec = (typeof _spiritSpec === 'function') ? _spiritSpec(sm.skId, sm.ele, !!sm._king) : null; if (spec) { hp = spec.hp; lv =
+  L291: owner = owner || player;   // ?? v2.6.25 owner �ѼƤơG������ owner.lv�B�ݩʺ��F�� owner.elfEle�]�ħL�l��@�Ρ^
+  L314: if(def.eleFromPlayer) ele = owner.elfEle || 'none';
+  L328: if (typeof _elfSpiritKingOverride === 'function') _elfSpiritKingOverride(_sm, owner);   // ?? v3.2.25 ���F��q�����F���]�ħL�蹳�^
+  L360: if (typeof _elfSpiritKingOverride === 'function') _elfSpiritKingOverride(sm, owner);   // ?? v3.2.25 Ū�ɭ����ɮM���F���мg�]�_�h�Q def ��Ȭ~�^�^
+  L371: if(sk.eleFromPlayer) owner.summon.ele = owner.elfEle || 'none';
+  L650: return ({ knight: '�M�h', mage: '�k�v', elf: '����', dark: '�·t����', illusion: '�۳N�h', dragon: '�s�M�h', warrior: '�Ԥh', royal: '����' })[a.cls] || a.cls || ('�s��' + (a._slot || ''));
+  L881: if (w && w.unBonus && t && (t.un || t.isWolf)) v += roll(1, 20);   // ?? v3.5.87 ���������B�⤸ unDice/sp==='elf'�]DB.items �����s���w�q�Psp �Ȧs�b���ܨ����A����B���Ʀr�^
+  L929: if (bindSelfBlocked(ally)) return;   // ??? v3.7.75 �����G�D���Z���Z�����ħL��a���ʡA�����X�@������]�ޯऴ�i�I��^
+  L995: let _normA = _evSure || (r === 20) || (r !== 1 && hv >= r) || (r === 1 && ally.buffs && ally.buffs.sk_elf_preciseshot > 0);
+  L1007: let wpnRoll = (heavy || (!isRanged && ally.buffs && ally.buffs.sk_elf_flamesoul > 0)) ? dice : roll(1, dice);   // ?? v3.1.77 �P�K����]�ħL�^�G��Z���@������Z���Y�륲�w�̤j�ȡ]�蹳���a js/03:861�P��ħL������ buff �զ� MP�^
+  L1061: if (wpn && wpn.selfBreakProc && Math.random() < 0.03) { dmg = Math.max(1, Math.floor(dmg * 1.5)); if (!ally.statuses) ally.statuses = {}; ally.statuses.broken = (wpn.selfBreakProc.dur || 5) * 10; }   
+  L1190: if (def.selfBreakProc && Math.random() < 0.03) { dmg = Math.max(1, Math.floor(dmg * 1.5)); if (!ally.statuses) ally.statuses = {}; ally.statuses.broken = (def.selfBreakProc.dur || 5) * 10; }   // ?? �S
+  L1210: dmg = allyOffhandDmgMods(ally, owpn, t, dmg);   // ?? v3.5.97 �Ƥ⦩��e���ˮ`�׹��]selfBreakProc��eleBonusDmg�^
+  L1365: if (allyHasMastery(ally, 'e_magic') && sk.ele && sk.ele !== 'none' && sk.ele === ally.elfEle) cost = Math.max(1, Math.ceil(cost * 0.5));   // ?? �]�ɺ�q�]�ħL�^�G�P�ݩ� MP -50%(2026-07 30%��50%)
+  L1522: if (b.sk_elf_attrfire > 0 && Math.random() < 0.30) dmg = Math.floor(dmg * 1.5);          // ?? �ݩʤ���
+  L1562: let _norm = ((r === 20) || (r !== 1 && hv >= r) || (r === 1 && ally.buffs && ally.buffs.sk_elf_preciseshot > 0));   // ?? ��Ǯg���]����ħL�P�s�ɮɫ�����buff�^�G�Y��1�ѥ��w���R�������w�R��
+  L1571: let wpnRoll = (heavy || (!isRanged && ally.buffs && ally.buffs.sk_elf_flamesoul > 0)) ? dice : roll(1, dice);   // ?? v3.1.77 �P�K����]�ħL�P�s��/����/�~�X/�Ƥ�@�ΡP�蹳���a js/03:861�^
+  L2037: //    �ħL�쥻��ۧں����� buff�]js/06 _isMercSelfBuff �϶��PreqWpnBlunt �w�����^�o�S����������ݱ��I�ץզ� MP�A���B�ɤW�C
+  L2083: if (isMagic && b.sk_elf_mirror > 0 && mob.curHp > 0 && Math.random() * 100 < ((ally.d && ally.d.wis) || 0)) {   // ��Ϯg�G���q�P�����ܮz�P���v=wis%
+  L2154: function allyElfAct(ally) {
+  L2158: if (ally._atkSkill === 'sk_elf_triple' && sk) {
+  L2169: if (allyHasMastery(ally, 'e_magic') && sk.ele && sk.ele !== 'none' && sk.ele === ally.elfEle) cost = Math.max(1, Math.ceil(cost * 0.5));   // ?? �]�ɺ�q�]�ħL�^�G�P�ݩ��]�k����MP -50%(2026-07 30%��50%)
+  L2709: // ?? v3.4.38 �I�k�ʧ@��SELF_FX�]�쥻�|�ӬI�k�禡�u���o��S���P�T���ഫ�ޯ� ���F�ഫ/�����ഫ/�]�O�ܨ� �b SELF_FX �Ҧ����U�^�C
+  L2714: if (typeof playSelfFx !== 'function') return;
+  L2721: // �ؤo��ǻP playSelfFx �@�P�G#mob-list ���]�Ǫ����߱a�P���w�^�� ������~�h #battle-view ��
+  L2727: let cfg = (typeof SELF_FX !== 'undefined') ? SELF_FX[sk.n] : null;
+  L2729: // playSelfFx �� overHead �|�A�� top = anchor.top - fxH��0.55�F���B�� bodyRect.top + fxH��0.35
+  L2731: // ?? bottom �����@�_�a�Gcfg.overHead ������ playSelfFx �� pr.bottom - fxH�A�����|��X NaN�C
+  L2735: playSelfFx(sk.n, anchor);
+  L2766: //   ??�P�w������ **ally.elfEle**�]�ħL�ַӦ۱a�PbuildAlly �`�����ӷ��s�ɡ^�X�X���i�� player.elfEle�A���O���������ݩ�
+  L2773: let ele = (ally && ally.elfEle) || '';
+  L2797: function _isMercSelfBuff(sk, sid) {
+  L2799: if (sid === 'sk_holy_dash' || sid === 'sk_elf_winddash') return false;   // ���ʳt�ץu�̾ڥD���a�F�ħL���۰ʺ����²��t buff �H�K�ů� MP
+  L2807: if (sid === 'sk_abs_barrier' || sid === 'sk_elf_earthshield' || sid === 'sk_magic_shield') return false;   // ?? v2.6.13 #5b�G�����K�����]����̻�/�j�a�̻�/�]�k�̻١^�����ħL�]�۰ʺ����|��G�L�ġP�Τ�M�w�^�����۰ʺ����K�կ�MP
+  L2812: //   ??���t�G�����K�����]�Q _isMercSelfBuff �ư��P��N�����ħL�^�B�ߤ�M�ӡ]���ഫ�ޯ��汱��^�C
+  L2828: else if (sk.illuSummon && _isMercSelfBuff(sk, sid)) cat = '��ı';   // ?? v3.2.2 ��ı�]�ڦN/�ŧ�/�p�۰��[�^�G�Ŀ�׺��� buff�����������Ϥ۶H�l��]�� i_illusion ��q�^
+  L2829: else if (_isMercSelfBuff(sk, sid)) cat = '�ۧڼW�q';
+  ... +9 more
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\07-skills-cast.js
+  L8: // ?? v3.2.25 ���F��q�睊�G���A�W�[���F�ƶq/�����q�ơ]�אּ �l��j�O�ݩʺ��F�����F���P�� _elfSpiritKingOverride�^
+  L13: function _elfSpiritKingOverride(sm, owner) {
+  L14: if (!sm || (sm.skId !== 'sk_elf_summon' && sm.skId !== 'sk_elf_summon2') || typeof _spiritSpec !== 'function') return sm;
+  L15: const king = sm.skId === 'sk_elf_summon2' && owner && owner.mastery === 'e_spirit';
+  L59: if((sm.skId === 'sk_elf_summon' || sm.skId === 'sk_elf_summon2') && typeof spiritAttackOnce === 'function') {
+  L62: sm._king = sm.skId === 'sk_elf_summon2' && owner.mastery === 'e_spirit';
+  L154: const _SUPPORT_SKILL_TYPES = ['buff','self_buff','self_haste','heal','self_heal','heal_allies','convert','pray','bless','call_ally','dispel'];
+  L209: //    �ħL�{�i�󶤥�O�Ŀ�۰ʺ�����ı�]_isMercSelfBuff �w��� illuSummon�^�F���ġ׵L buff�פ��l�۶H�B�]�����ѥ����C
+  L259: if (cost > 0 && player.cls === 'elf' && hasMastery('e_magic') && sk.ele && sk.ele !== 'none' && sk.ele === player.elfEle) cost = Math.max(1, Math.ceil(cost * 0.5));   // ?? �]�ɺ�q�G�P�ݩ��]�k����MP -50%(2026-07
+  L311: if(typeof playSelfFx === 'function') { try { playSelfFx(sk.n); } catch(e){} }   // ??? ����̻ٯS���|�b���a�Y�W�]��ʧޡP���g castSkill �� isSupportSkill ���I�^
+  L371: if (r && typeof playSelfFx === 'function' && DB.skills[skId] && isSupportSkill(DB.skills[skId])) {   // ?? v2.7.48 �ۧڼW�q�S�ġGbuff�����a�Y�W(overHead)�Pheal���Q�v���ؼШ��W�]�����U�R�q���L�^
+  L374: let _anchor = (_sk.type === 'heal' && typeof _partyMemberRect === 'function') ? _partyMemberRect(_lastHealFxTarget || player) : null;   // ?? �v¡�S���|�b��ڨ��q�̨��W�F��l buff �� playSelfFx �� overHead�]���a�Y�W�^
+  L375: playSelfFx(_sk.n, _anchor);
+  L408: if (!owner || !owner.buffs || (sid !== 'sk_holy_dash' && sid !== 'sk_elf_winddash')) return;
+  L409: owner.buffs[sid === 'sk_holy_dash' ? 'sk_elf_winddash' : 'sk_holy_dash'] = 0;
+  L435: if(!__granted && sk.reqEle && player.elfEle !== sk.reqEle) return false;      // �ݩʤ���
+  L436: if(!__granted && sk.reqEleAny && !player.elfEle) return false;                 // �|������ݩ�
+  L476: if (cost > 0 && player.cls === 'elf' && hasMastery('e_magic') && sk.ele && sk.ele !== 'none' && sk.ele === player.elfEle) cost = Math.max(1, Math.ceil(cost * 0.5));   // ?? �]�ɺ�q�G�P�ݩ��]�k����MP -50%(2026-07
+  L747: if(skId === 'sk_elf_triple' && wpn && wpn.fullHpMultTriple && t.curHp === t.hp) res.dmg = Math.max(1, Math.floor(res.dmg * wpn.fullHpMultTriple));   // ?? ��Ѫ̪������}�G�T���ڹﺡ��ĤH�ˮ` ��2�]�ȲĤ@�b�P�R���� curHp �w���Pgate 
+  L777: if (skId === 'sk_elf_triple') {
+  L945: // ?? v3.2.21 ���a�l���� v2�Gsk_summon��sk_zombie�]�y�ͳN�^��sk_elf_summon(2)�]�ݩʺ��F�^���y�� js/23�]�h����P�i�Q�����P�B�ʮء^�F�g�y�P�ħL������ setupSummon �޽u
+  L969: //    �]sk_regen ��O�^�_�N��sk_elf_lifebless �ͩR������ �w�אּ classicHeal+groupHeal ���u���������v¡�v�^�C
+  L982: //    ?? �� helper �H sk.groupHeal ���h�G���_���� HoT �ޯ�Y�n�Y�]�Υ[���A�ޯ�w�q���O�d groupHeal:true�]sk_regen��sk_elf_lifebless �{�p�Y�O�^�C
+  L1019: { id: 'set-elfcookie', pot: 'new_item_139', b: 'elfcookie', req: 'elf' },
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\08-items-equip.js
+  L282: 'selfBreakProc', 'procInstakill', 'strawCurse',
+  L737: if(sd.reqEle && player.elfEle !== sd.reqEle) { logSys(`�ݩʤ��šA�L�k�ǲߡu${sd.n}�v�C`); return; }
+  L738: if(sd.reqEleAny && !player.elfEle) { logSys(`�|������ݩʡA�L�k�ǲߡu${sd.n}�v�C`); return; }
+  L773: elf:  ['arm_108', 'hlm_steel', 'arm_113', 'arm_79']  // ���, ���K�Y��, ���K�޵P, ���K���ݲ���
+  L817: return reqAllowsClass(d, 'elf') || reqAllowsClass(d, 'dark');   // ��l��ӧ���i��
+  L1257: 'sk_counter_barrier':'�����̻�','sk_elf_mr':'�]�k���m','sk_elf_purify':'�b�ƺ믫','sk_elf_eleres':'�ݩʨ��m','sk_elf_singleres':'���ݩʨ��m',
+  L1258: 'sk_elf_firewpn':'���K�Z��','sk_elf_windshot':'�������g','sk_elf_winddash':'�����e��','sk_elf_earthguard':'�j�a���@','sk_elf_watervital':'��������',
+  L1259: 'sk_elf_dancefire':'�R�D����','sk_elf_stormeye':'�ɭ�����','sk_elf_earthshield':'�j�a�̻�','sk_elf_earthbless':'�j�a������','sk_elf_blazewpn':'�P���Z��',
+  L1260: 'sk_elf_flamesoul':'�P�K����','sk_elf_stormshot':'�ɭ����g','sk_elf_preciseshot':'��Ǯg��','sk_elf_steelguard':'���K���@','sk_elf_attrfire':'�ݩʤ���',
+  L1261: 'sk_elf_physboost':'���E�o','sk_elf_energyboost':'��q�E�o','sk_elf_mirror':'��Ϯg','sk_dark_str':'�O�q����','sk_dark_mrup':'�v�����@',
+  L1282: if(player.buffs.elfcookie>0)add('���F�氮',player.buffs.elfcookie,'���F�氮');
+  L1290: [['sk_regen','��O�^�_�N'],['sk_elf_lifebless','�ͩR������']].forEach(([id,name])=>{let h=player.hots&&player.hots[id];if(h&&h.ticksLeft>0){let remainTicks=Math.max(0,(h.ticksLeft-1)*(h.interval||0)+(h.cd||0));
+  L1324: if(player.buffs.elfcookie>0 && !_skipIconized) buffs.push(`<span class="text-yellow-300 font-bold">���F�氮</span>`);
+  L1435: else if (player.cls === 'elf') clsDisplayName = '����';
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\09-vfx-render.js
+  L270: // ?? v2.7.48 �ۧڼW�q�S�ġ]SELF_FX�^�G�v¡/�Z�����]/���m/�̻ٵ� type buff/heal �ޯ�I��ɡA�� #battle-view �����|���]v3.0.49�G���a�ܨ� sprite ��ܤ�������w sprite ���W�P�_�h�H�԰��Ϭ��u�I�k�̡v���I�^�C
+  L271: //   ���I��js/07 castSkill �I�񦨥\�B isSupportSkill(sk)��playSelfFx(sk.n)�]�����U���R�q���L�^�Ccfg�G{dir,prefix,n,fps,blend,h=�����԰��ϰ�����,cx/cy=�԰��Ϥ����I���(�w�] 0.5/0.62 �����U=���a����)}�C
+  L272: const SELF_FX = {
+  L348: let _selfFxActive = {};   // �u�ޯ�W|���I�ѧO�v �� true�G�P�ޯ�P���I�P�ɥu�O�d�@��
+  L349: function playSelfFx(skn, anchorRect) {   // ?? v3.0.95 ��2�� anchorRect�]��Ρ^�G�㦡���I rect�]�ħL�v¡�|�b�Q�v¡�� sprite ���W�^�P���ǡ����޿�]���a sprite���԰��Ϥ����^
+  L352: let cfg = SELF_FX[skn]; if (!cfg) return;
+  L354: let _fxKey = skn + '|' + (anchorRect ? (Math.round(anchorRect.left) + ',' + Math.round(anchorRect.top)) : 'self');
+  L355: if (_selfFxActive[_fxKey]) return;
+  L385: el.className = 'vfx-spell vfx-selffx';
+  L390: _selfFxActive[_fxKey] = true;
+  L393: if (i >= cfg.n) { clearInterval(iv); el.remove(); delete _selfFxActive[_fxKey]; return; }
+  L403: let cfg = SELF_FX['�ǰe�N'];
+  L406: if (typeof playSelfFx === 'function') playSelfFx('�ǰe�N');   // �L anchorRect����w���a sprite�]_pmCasterRect�^�P���� sprite �|�����á�rect ����
+  L409: // ?? v3.0.95 ������u�Գ� sprite�v���I�G�^�ǸӦ���(���a/�ħL) sprite �� rect�A�� playSelfFx ��v¡�S���|�b�Q�v¡�̨��W�F�L sprite/���i����null�]playSelfFx ���^�w�]���I�^
+  L1301: } else if (m._pvpDuelFoe && typeof PVP_DUEL_FOE_POS !== 'undefined') {
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\10-ui-tabs.js
+  L81: return ({ knight:'�M�h�޳N', mage:'�k�v�]�k', elf:'���F�]�k', dark:'�§��]�k', illusion:'�۳N�]�k', dragon:'�s�M�]�k', warrior:'�Ԥh�ޯ�', royal:'�����]�k' })[player.cls] || '¾�~�ޯ�';
+  L86: if (player.cls === 'elf') return sk.reqE !== undefined && sk.reqM === undefined;
+  L125: let elementOk = !sk.reqEle || player.elfEle === sk.reqEle;
+  L126: let elementChosen = !sk.reqEleAny || !!player.elfEle;
+  L140: + (classSkills.length ? '<button class="' + (stateBook.mode === 'class' ? 'active' : '') + '" onclick="classicSkillChooseMode(\'class\')">' + (player.cls === 'elf' ? '���F' : '¾�~') + '</button>' : '')
+  L171: return `${inv}#${eq}#${(player.skills||[]).join(',')}#${(player.grantedSkills||[]).join(',')}#${player.cls}#${player.lv}#${player.elfEle||''}#${player.mastery||''}#${dd.str+dd.dex+dd.con+dd.int+dd.wis
+  L440: const SUMMON_BUFF_IDS = ['sk_zombie', 'sk_summon', 'sk_elf_summon', 'sk_elf_summon2'];
+  L513: if (c.checked && (sid === 'sk_holy_dash' || sid === 'sk_elf_winddash')) {
+  L514: let other = sid === 'sk_holy_dash' ? 'sk_elf_winddash' : 'sk_holy_dash';
+  L523: const POTION_BUFF_ENDERS = [['set-haste','haste'],['set-brave','brave'],['set-blue','blue'],['set-cautious','cautious'],['set-elfcookie','elfcookie'],['set-poly','poly'],['set-magicbarrier','sk_magic_
+  L557: if(!__granted && sk.reqEle && player.elfEle !== sk.reqEle) isAvail = false;
+  L558: if(!__granted && sk.reqEleAny && !player.elfEle) isAvail = false;
+  L609: if(_convRow) _convRow.classList.toggle('hidden', player.cls !== 'elf' && player.cls !== 'mage' && !(player.cls === 'royal' && hasMastery('k_royal_magic')));   // ?? �ഫ�ޯ�]�m�}�񵹪k�v/����F?? ���ڡ]�]�k��q�^�]�}��H�ϥ��]�O��
+  L625: wpn_elfsword: ['���C'], wpn_27: ['���C'], wpn_shortsword: ['���C'], wpn_redknight: ['���C'],
+  L670: wpn_ancient_darkelf_sword:['���C'],   // ??? �j�N�·t���뤧�C�G����(���C)
+  L688: relic_darkelf_grindblade:['���C','�Z�h�M'],
+  L848: if (d.selfBreakProc) out.push(`���H�z�o�]3%�y��1.5���ˮ`�A���ۨ��ˮ`���C${d.selfBreakProc.dur || 5}���^`);
+  L930: if (d.unBonus) desc = desc.replace(/(?:[�B�F;�C]\s*)?�藍��\s*[/��]\s*�T�H�[��(?=[�B�F;�C]|$)/g, '');   // ?? v3.5.87 #128�GunDice / sp:'elf' �� DB.items �s�w�q�]�������B�⤸�^�� �u�d unBonus
+  L1067: if (d.unBonus) _eff.push('�������T�H�[���]�B�~�y��1D20�ˮ`�^');   // ?? v3.5.87 #128�GunDice / sp:'elf' �� DB.items �s�w�q�]�������B�⤸�^�� �u�d unBonus
+  L1259: const _EQ_CLASSES = [['knight','�M�h'], ['elf','����'], ['mage','�k�v'], ['dark','�·t����'], ['illusion','�۳N�h'], ['dragon','�s�M�h'], ['warrior','�Ԥh'], ['royal','����']];
+  L2559: // ?? v3.8.5 �ߤ@�ҥ~�ק����ݩʹh�G��Ū **ally.elfEle**�]�ħL�ַӦ۱a�^�ӫD player.elfEle �N���|�~�P�C
+  L2608: let sigSkill = _sigAllies + '||E:' + allies.map(a => a.elfEle || '').join(',');   // ?? v3.2.74 skill �����u�ݶħL�W��/���š��԰����d��/�l�걼�夣���ءP�}�Ҫ��ޯ�U�Ԥ��Q��
+  L2609: // ?? v3.8.5 �l�[ elfEle�G�ӷ����봫�ݩʫ� refreshAllyOnce ���اַӮɦW�r/���ų��S�� �� ñ������ �� �ޯ�U�ԻP�۰ʺ����Ŀ�|���b���ݩʪ��M��]�����ê��S���á^
+  L2734: // ?? v3.0.97 �v�L�u�۰ʺ����v�}���]�мg _mercAutoOn�P�s ally._autoBuff�P�H�s�ɡ^�C���� self-buff���ߧY������ buff �í���]��Ӫ��a�������ĥߧY�����^�F�l��/HoT/�b��/�ߤ� �ݧY�ɩΥ����P�Ȱ���A�I�񤣱j��Ѱ��C
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\11-world-map.js
+  L4: {v:'town_silver_knight',t:'���M�h��'}, {v:'town_elf',t:'����˪L'}, {v:'town_talking',t:'���ܤ��q'},
+  L11: {v:'talking_island_port',t:'���ܤ��q��f'}, {v:'elf_forest',t:'���]�˪L'}, {v:'gludio',t:'�j�|�B'},
+  L16: {v:'elf_grave',t:'���F�ӥ�',c:'#67e8f9'}, {v:'hidden_cave',t:'�j�}�����P�̧����a��',c:'#a78bfa'}, {v:'giant_tomb',t:'�j�N���H����',c:'#d6d3d1'}
+  L93: {v:'town_elf', t:'����˪L����'}, {v:'zone_01', t:'����˪L�P��'},
+  L101: {v:'town_gludio', t:'�U�h����'}, {v:'elf_forest', t:'���]�˪L'},
+  L103: {v:'elf_grave', t:'���F�ӥ�'}, {v:'hidden_cave', t:'�j�}�����P�̧����a��'}
+  L439: const SANCTUARY_MAP_NAMES = { dark_elf_sanctuary: '�·t����t�a', cursed_dark_elf_sanctuary: '���A�G���·t����t�a', collapsed_elder_council_hall: '�Y�a�����ѷ|ĳ�U' };
+  L500: if (player.cls === 'elf') return 'town_elf';
+  L1355: if (prev === 'e_spirit' && player.summon && (player.summon.skId === 'sk_elf_summon' || player.summon.skId === 'sk_elf_summon2')) {
+  L1360: if (prev === 'e_spirit' && (player._summonV2Sk === 'sk_elf_summon' || player._summonV2Sk === 'sk_elf_summon2')
+  L1368: if (id === 'e_spirit' && prev !== 'e_spirit' && player._summonV2Sk === 'sk_elf_summon2'
+  L1405: <div class="text-slate-300 leading-relaxed">${player.cls === 'dark' ? '�~�G�C�Ө��췥�P���·t����A���n�^���P�@�Ӱ��D�X�X<br><span class="text-amber-200 font-bold">�A���u�H���v�O����</span>' : `�~�G�C�Ө��췥����${({knight:'�M�h',mage:'�k�v',elf:'
+  L1516: logSys(`<span class="text-amber-300">�A��X�F 1 �� ${d0 ? d0.n : costId}�A${mapKey === 'collapsed_elder_council_hall' ? '�Q�ǰe��F �Y�a�����ѷ|ĳ�U' : '��J�F ' + (mapKey === 'dark_elf_sanctuary' ? '�·t����t�a' : '���A�G���·t����t�a'
+  L1549: <button class="w-full text-left px-3 py-2 rounded bg-indigo-900/60 hover:bg-indigo-800 border border-indigo-500/40 ${books < 1 ? 'opacity-50' : ''}" onclick="sanctuaryEnter('dark_elf_sanctuary','item_
+  L1550: <button class="w-full text-left px-3 py-2 rounded bg-rose-900/60 hover:bg-rose-800 border border-rose-500/40 ${books < 1 ? 'opacity-50' : ''}" onclick="sanctuaryEnter('cursed_dark_elf_sanctuary','item
+  L1707: } else if (['npc_nalien', 'npc_rekne', 'npc_narupa', 'npc_elfqueen', 'npc_elf', 'npc_ent', 'npc_pan', 'npc_moliya', 'npc_hector', 'npc_herbert', 'npc_lumiel', 'npc_ibelbin', 'npc_tas', 'npc_robinson',
+  L1832: npc_falin: '460', npc_pan: '875', npc_pandora: '98', npc_linda: '949', npc_gunter: '100', npc_elf: '854',
+  L1833: npc_elfqueen: '854q', npc_robinson: '916', npc_elion: '920', npc_wh_elf: '918', npc_rekne: '864', npc_ryan: '727',
+  L1864: const NPC_SPR_ROLE = { warehouse: '10669', ally: '51', castleguard: '1222' };   // ?? v3.4.74 �ܮw�q�Υ~�� 54��10669�]���Y�s�y���P����˪L�ܮw=npc_wh_elf �� FIXED '918' �����v�T�^
+  L1931: town_elf: [[30, 48], [42, 33], [57, 30], [72, 34], [22, 60], [69, 49], [48, 62], [44, 74], [84, 43], [55, 70], [30, 72], [84, 74], [15, 88], [63, 63]],   // ?? ��Q�ťk���X�w�S�I���d��Fù���](��13��)������Τ쥭�x
+  L1982: town_silver_knight: [55, 60], town_talking: [53, 60], town_elf: [54, 48], town_gludio: [50, 60], town_gludin: [50, 58],
+  L1995: town_elf: { npc_ent: [84, 43], npc_elfqueen: [48, 62] },
+  L2006: town_silver_knight: [70, 72], town_windwood_castle: [31, 70], town_talking: [43, 52], town_elf: [75, 78],
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\12-npc-quests.js
+  L11: 'item_dantes_letter','item_elf_whisper','item_ancient_book','item_sealed_intel','item_spy_report','item_chaos_key','item_royal_order','wpn_shaha_arrow',   // ??? v3.5.87 ���� item_card_book/item_equip_b
+  L713: elf15:      { cls:'elf',      lv:15, npc:'�ڴ�',         reqs:[['new_item_199',1],['new_item_200',1],['new_item_201',1],['new_item_202',1]], rewards:['arm_50','arm_51'] },
+  L714: elf30:      { cls:'elf',      lv:30, npc:'�g�۴˪L����', reqs:[['new_item_213',1]], rewards:['bk_elf_summon','arm_85'] },
+  L715: elf45:      { cls:'elf',      lv:45, npc:'���F',         reqs:[['item_blueflute',1],['item_ancientkey',1]], rewards:['arm_102','bk_elf_summon2'] },   // ?? v3.1.23 �סG�� acc_guardian/bk_elf_wisdom �q���w�q�����
+  L732: const TRIAL_ITEM_Q = {};   // �շҹD�� id �� ���ݸշ� key �}�C�]�j�N�_�͡�knight45+elf45 �@�Ρ^
+  L741: mat_flame_claw:    { cls:'elf',      ex:1 },
+  L942: ['quest_ring_elfcaller', 1],
+  L993: {id:'item_elf_whisper', nm:'���F���p�y', cnt:10, hint:'�������F�ӥު��Ǫ�'} ],
+  L995: elf: { npc: '�}�Űǧ�',
+  L1063: function purgeCompletedElfWhisper() {
+  L1065: let n = (player.inv || []).reduce((s, i) => s + (i.id === 'item_elf_whisper' ? (i.cnt || 0) : 0), 0);
+  L1066: if (n > 0) player.inv = player.inv.filter(i => i.id !== 'item_elf_whisper');
+  L1080: purgeCompletedElfWhisper();   // ?? ��I���F���p�y���q���� �� �۰ʲM���Ѿl�����F���p�y
+  L1128: if (player.cls !== 'elf') { div.innerHTML = `<div class="p-6 text-red-400">�ڴ��G�ڦ��I�ƷQ�䧯�������A�������̽����}�C</div>`; return; }
+  L1129: div.innerHTML = `<div class="p-4 text-slate-300 leading-relaxed"><div class="text-amber-300 font-bold mb-3">?? �ڴ����շ�</div>` + trialQHTML('elf15', 'renderOsQuest') + `</div>`;
+  L1150: if (player.cls !== 'elf') { div.innerHTML = `<div class="p-6 text-red-400">�g�۴˪L�����G�u������ť�o���˪L���C�y�C</div>`; return; }
+  L1151: div.innerHTML = `<div class="p-4 text-slate-300 leading-relaxed"><div class="text-amber-300 font-bold mb-3">?? �g�۴˪L�������շ�</div>` + trialQHTML('elf30', 'renderMotherQuest') + `</div>`;
+  L1155: let key = player.cls === 'knight' ? 'knight45' : player.cls === 'elf' ? 'elf45' : player.cls === 'royal' ? 'royal45' : null;
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\13-shop-save.js
+  L2: const ELF_ELE = {
+  L8: const ELF_SWITCH_COST = 500000;
+  L22: elf_forest: 'assets/area/�˪L.jpg', zone_01: 'assets/area/�˪L.jpg', mirror_forest: 'assets/area/�˪L.jpg',   // ?? ���]�˪L/����˪L�P��/��l�˪L�]���~�P�@�δ˪L�I���^
+  L46: elf_grave: 'assets/area/�Դ���ڼw.jpg', hidden_cave: 'assets/area/�Դ���ڼw.jpg', giant_tomb: 'assets/area/�Դ���ڼw.jpg',   // ??? ���F�ӥ�/�j�}�����P�̧����a��/�j�N���H���ӡ]���~�P�Դ���ڼw�I���^
+  L59: dark_elf_sanctuary: 'assets/area/1920x1080/�·t����t�a.jpg',
+  L60: cursed_dark_elf_sanctuary: 'assets/area/1920x1080/���A�G���·t����t�a.jpg',
+  L101: town_elf: '����˪L����', town_talking: '���ܤ��q����', town_gludio: '�U�h����', town_gludin: '�j�|�B����', town_witon: '�¹y����',
+  L135: function applyElfBorder() {
+  L137: let e = (player.cls === 'elf' && player.elfEle) ? ELF_ELE[player.elfEle] : null;
+  L142: if(player.cls !== 'elf') {
+  L153: let cur = player.elfEle ? ELF_ELE[player.elfEle] : null;
+  L156: <p class="text-sm text-yellow-400 mb-4">�ഫ�ݩʻݪ�O ${ELF_SWITCH_COST.toLocaleString()} �����]�ثe���� ${player.gold.toLocaleString()}�^</p>`
+  L158: let btns = Object.keys(ELF_ELE).map(k => {
+  L159: let e = ELF_ELE[k];
+  L160: let isCur = player.elfEle === k;
+  L161: return `<button onclick="chooseElfElement('${k}')" ${isCur?'disabled':''}
+  L172: function chooseElfElement(ele) {
+  L173: if(player.cls !== 'elf' || player.lv < 30 || !ELF_ELE[ele]) return;
+  L174: if(player.elfEle === ele) return;
+  L175: if(player.elfEle) {
+  L176: if(player.gold < ELF_SWITCH_COST) { logSys('���������A�L�k�ഫ�ݩʡC'); return; }
+  L177: if(!confirm(`�T�w��O ${ELF_SWITCH_COST.toLocaleString()} �����N�ݩ��ഫ���u${ELF_ELE[ele].name}�v�H`)) return;
+  L178: player.gold -= ELF_SWITCH_COST;
+  L179: logSys(`�A��O ${ELF_SWITCH_COST.toLocaleString()} �����A�ݩ��ഫ�� <span class="${ELF_ELE[ele].cls}">${ELF_ELE[ele].name}�ݩ�</span>�C`);
+  L181: logSys(`�A��ܤF <span class="${ELF_ELE[ele].cls}">${ELF_ELE[ele].name}�ݩ�</span>�C`);
+  L183: player.elfEle = ele;
+  L185: if ((player._summonV2Sk === 'sk_elf_summon' || player._summonV2Sk === 'sk_elf_summon2')
+  L192: applyElfBorder();
+  L207: npc_linda: ['bk_elf_mr','bk_elf_mind','bk_elf_worldtree','bk_elf_purify','bk_elf_firewpn','bk_elf_windshot','bk_elf_earthguard','bk_elf_eleres','bk_elf_singleres'],
+  L342: let clsName = { knight:'�M�h', mage:'�k�v', elf:'����', dark:'�·t����', illusion:'�۳N�h', dragon:'�s�M�h', warrior:'�Ԥh', royal:'����' }[p.cls] || p.cls;
+  L782: m_elf: [245, 311], f_elf: [166, 241],
+  L793: '�k����': 'm_elf', '�k����': 'f_elf',
+  L800: royal: 'prince', knight: 'm_knight', mage: 'm_mage', elf: 'm_elf',
+  L1036: mage: { m: 'm_mage', f: 'f_mage' }, elf: { m: 'm_elf', f: 'f_elf' },
+  L1050: if(raw.includes('elf')) return 'elf';
+  L1175: else if(c.includes('elf')) curCreate.cls = 'elf';
+  L1180: const titleMap = { royal:'����', knight:'�M�h', mage:'�k�v', elf:'����', dark:'�·t����', illusion:'�۳N�h', dragon:'�s�M�h', warrior:'�Ԥh' };
+  L1187: elf: "����֦���H��������ةR\n�P���R���~���A�L�̶����۵M\n�l�D�ĦX�w�w���ͬ�\n�ù�Ҧ����Ʊ����{�����O�u\n�]�����뤣���w�P�H����Ĳ\n�b�y�˪L�����z���O�@���U\n�إ߿W�۪���ƥͬ��C\n\n�������ϥΪ��Z�����M�h��\n���O�L�i�H�ϥΤj�������Z��\n�ר�i�H�ϥλ��Z���������}�b\n���L�Z���֦���h���u��\n�ӥB����ϥΪk�v���h���]�k\n�i�׬O�ӳ̧��Ū�¾�~�C\n\n�A�Q�n�H���몺
+  L1276: 'm_elf': '�k����', 'f_elf': '�k����',
+  L1297: player.summon = null; player.charmed = null; player.manualCd = {}; player.hots = {}; player.elfEle = null; player.buffs = { haste: 0, brave: 0, blue: 0, cautious: 0, elfcookie: 0, poly: 0, shield: 0 }
+  ... +10 more
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\14-craft-pandora.js
+  L198: req: [{ id: 'new_item_elfwing', cnt: 1 }, { id: 'new_item_169', cnt: 50 }]
+  L202: req: [{ id: 'new_item_elfwing', cnt: 3 }, { id: 'new_item_169', cnt: 150 }]
+  L206: req: [{ id: 'new_item_elfwing', cnt: 3 }, { id: 'new_item_157', cnt: 3 }, { id: 'new_item_173', cnt: 150 }]
+  L249: { result: 'wpn_rapier', req: [{ id: 'wpn_36', cnt: 1 }, { id: 'new_item_elfwing', cnt: 2 }, { id: 'new_item_171', cnt: 25 }, { id: 'new_item_173', cnt: 50 }, { id: 'new_item_158', cnt: 1 }] },
+  L254: { result: 'arm_44', req: [{ id: 'hlm_elf', cnt: 1 }, { id: 'new_item_178', cnt: 3 }, { id: 'new_item_174', cnt: 150 }, { id: 'new_item_150', cnt: 5 }, { id: 'new_item_161', cnt: 1 }, { id: 'new_item_1
+  L255: { result: 'hlm_elf', req: [{ id: 'new_item_172', cnt: 2 }, { id: 'new_item_elfwing', cnt: 1 }, { id: 'new_item_163', cnt: 10 }, { id: 'new_item_171', cnt: 20 }] },
+  L256: { result: 'wpn_elfsword', req: [{ id: 'wpn_35', cnt: 1 }, { id: 'new_item_237', cnt: 5 }, { id: 'new_item_169', cnt: 150 }, { id: 'new_item_171', cnt: 50 }] },
+  L258: { result: 'clk_elf', req: [{ id: 'new_item_174', cnt: 10 }, { id: 'new_item_150', cnt: 2 }, { id: 'new_item_165', cnt: 6 }] },
+  L259: { result: 'shd_elf', req: [{ id: 'arm_109', cnt: 1 }, { id: 'new_item_177', cnt: 2 }, { id: 'new_item_171', cnt: 5 }] },
+  L263: { result: 'wpn_elfbow', req: [{ id: 'new_item_237', cnt: 10 }, { id: 'new_item_164', cnt: 1 }, { id: 'new_item_175', cnt: 2 }, { id: 'new_item_168', cnt: 2 }] },
+  L268: { result: 'wpn_31', req: [{ id: 'new_item_178', cnt: 3 }, { id: 'new_item_elfwing', cnt: 8 }, { id: 'new_item_174', cnt: 20 }, { id: 'new_item_171', cnt: 30 }] },
+  L275: 'npc_elfqueen': [
+  L279: 'npc_elf': [
+  L282: { result: 'new_item_elfwing', req: [{ id: 'new_item_174', cnt: 5 }, { id: 'new_item_165', cnt: 2 }] }
+  L399: { result: 'armguard_archer', req: [{ id: 'item_forgotten_leather', cnt: 1 }, { id: 'new_item_175', cnt: 20 }, { id: 'new_item_172', cnt: 50 }, { id: 'mat_blackmithril_plate', cnt: 3 }, { id: 'new_item
+  L1648: royal: '����', knight: '�M�h', mage: '�k�v', elf: '����',
+  L1833: else if(sid === 'sk_elf_winddash') moveSpeedText += '�A�P���t�e�������A���N���F�氮���t';
+  L1880: if(d.unBonus) _eff.push('�������T�H�[���]�B�~�y��1D20�ˮ`�^');   // ??? v3.5.87 �R�������B�⤸ unDice / sp==='elf'�]DB.items �����s�w�q�Psp �u�s�b���ܨ����A����B���Ʀr�^
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\15-cards.js
+  L22: { key: 'burningwillow',name: '�U�h',       stat: 'hpR',      vals: [1, 2, 3],   maps: ['elf_forest', 'pirate_wild', 'pirate_dungeon', 'elf_grave', 'hidden_cave'] },
+  L39: { key: 'sanctuary',    name: '�·t����t�a', stat: 'mr',     vals: [1, 3, 5],   maps: ['dark_elf_sanctuary', 'cursed_dark_elf_sanctuary', 'collapsed_elder_council_hall'] },
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\16-equip-book.js
+  L226: let sep = (c.group !== lastGroup) ? `<span class="text-slate-500 text-[11px] font-bold px-1 self-center">${c.group}</span>` : '';
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\17-audio.js
+  L22: f_elf: { frame: 166, sound: 1595 }, m_elf: { frame: 245, sound: 1596 },
+  L83: //   ���˸s��(4��)�Gknight=�M�h/�Ԥh/�s�M�h�Bmage=�k�v/�۳N�h�Belf=����/�·t����Broyal=���ڡF�ʧO�� player.avatar(/�k|���D/��f�_�hm) �P�w�C
+  L85: var _SFX_GROUP = { knight: 'knight', warrior: 'knight', dragon: 'knight', mage: 'mage', illusion: 'mage', elf: 'elf', dark: 'elf', royal: 'royal' };
+  L526: '�����w': 'elf_m' };   // ?? v3.5.16 �����w����/���`���M�Ψk����y���]hurt_elf_m�P�Τ���w�^
+  L567: 'town_elf',           // ����˪L
+  L583: royal: 'music1', knight: 'music2', elf: 'music3', mage: 'music4',
+  L592: 'cursed_dark_elf_sanctuary': 'music153', 'collapsed_elder_council_hall': 'music162',   // ?? v3.4.0 �·t����t�a�� BOSS �С]�·t����t�a.md�Gmusic 153��162�F�@��t�a�����w�������q�� battle�^
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\19-equipment-window.js
+  L53: royal: '����', knight: '�M�h', mage: '�k�v', elf: '����',
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\21-relic-book.js
+  L74: let sep = (c.group !== lastGroup) ? `<span class="text-slate-500 text-[11px] font-bold px-1 self-center">${c.group}</span>` : '';
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\22-pets.js
+  L60: '�a�̻h�i': { kind:'spec', tier:0, goldenAtk:2.05, goldenMagic:2.05, acMod:-5, mrBonus:20, lv0:5, hp0:160, mp0:20, hpUp:[12,26], mpUp:[5,7],  hpReg:15, mpReg:10, apm:60, capm:48, stun:0.50, cha:15, evo:nu
+  L1028: } else if (sk.kind === 'selfbuff') {   // ?? �a�̻h�i���w�G�ۨ��ˮ`��K +dr�Pdur ���]petHardenDr ������ɮ��O�Pruntime ��줣�J���^
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\23-summons.js
+  L8: //   ?? v3.2.21 �X�R�G���a�� �y�ͳN(sk_zombie)���l���ݩʺ��F(sk_elf_summon)���l��j�O�ݩʺ��F(sk_elf_summon2) �]�����Ҳ�
+  L11: //     ?�ݩʺ��F�Gv3.2.26 �|�ݩʿW�ߪ��]��/�Y��v�ݩʡP��t 16~18 ticks�^�� spiritAttackOnce�P���F��q�����F���ɯš]_elfSpiritKingOverride�Pjs/07�^�X�XHP ����ϾԳ��ʺA
+  L164: if (owner.cls === 'elf') return (owner.lv || 1) >= 48 ? ZOMBIE_TIERS[0] : null;   // ����G48+ �T�w Lv10/HP100
+  L372: sk_elf_summon:  { lv: 40, strong: false, mrPenBase: 10, hitLvOff: 10, dmgMult: 1.00, ele: {
+  L377: sk_elf_summon2: { lv: 50, strong: true, mrPenBase: 20, hitLvOff: 20, dmgMult: 1.18, ele: {
+  L393: const base = king ? SPIRIT_KING : (SPIRIT_DEF[skId] || SPIRIT_DEF.sk_elf_summon);
+  L397: function _spiritIsKing(skId) { return skId === 'sk_elf_summon2' && player && player.mastery === 'e_spirit'; }
+  L414: if (s.skId === 'sk_elf_summon' || s.skId === 'sk_elf_summon2') return _spiritDerive(s);
+  L417: const SUMMON_V2_SKILLS = ['sk_summon', 'sk_zombie', 'sk_elf_summon', 'sk_elf_summon2'];
+  L418: const SUMMON_V2_TITLES = { sk_summon: '�l�ꪫ', sk_zombie: '�L���H�q', sk_elf_summon: '���F', sk_elf_summon2: '���F' };
+  L456: function summonV2CastFor(skId, silent) {   // castSkill ���y�J�f�]sk_summon/sk_zombie/sk_elf_summon/sk_elf_summon2�^�Gtrue=���\�]MP �� castSkillInner ���^
+  L472: } else if (skId === 'sk_elf_summon' || skId === 'sk_elf_summon2') {   // ?? �ݩʺ��F�G�̪��a�ݩʡP�@�� 1 ���]?? v3.2.25 ���F��q�אּ�@�غ��F���P���A�[���ơ^
+  L473: const ele = player.elfEle;
+  L551: if (typeof threatWrap === 'function') threatWrap(s, () => { if (s.skId === 'sk_elf_summon' || s.skId === 'sk_elf_summon2') spiritAttackOnce(s, t); else summonV2AttackOnce(s, d, t); });
+  L552: else if (s.skId === 'sk_elf_summon' || s.skId === 'sk_elf_summon2') spiritAttackOnce(s, t);   // ?? �ݩʺ��F�G���a���ħL�@�Τ����]�ħL�I�s�I�� js/07�^
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\25-clan-system.js
+  L24: royal:'����', knight:'�M�h', elf:'����', mage:'�k�v', dark:'�·t����',
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\26-world-channel.js
+  L195: function _wcLevelFromText(q, fallback) {
+  L565: function _wcTrialLevelFromText(q) {
+  L577: let lv = _wcTrialLevelFromText(q);
+  L703: let lv = _wcLevelFromText(q, _wcMyLv());
+  L724: elf: '�ݩʤ����M�w�A��Ǥ���A�}���C�N������t�ܦh�C',
+  L918: elf: '�ݧA���}�٬O�C�A�}��ӱ��A�C��O�q�C', dark: '�ӱ���j�סA�O�q�U�ˮ`�C',
+  L2905: elf: male ? '�k����' : '�k����', dark: male ? '�k�·t����' : '�k�·t����', dragon: male ? '�k�s�M�h' : '�k�s�M�h',
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\27-offline-rewards.js
+  L1257: let worldTree = Array.isArray(player.skills) && player.skills.includes('sk_elf_worldtree');
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\28-pvp-arena.js
+  L174: let m = { royal: '���l', knight: '�k�M�h', mage: '�k�k�v', elf: '�k����', dark: '�k�·t����', illusion: '�k�۳N�h', dragon: '�k�s�M�h', warrior: '�k�Ԥh' };
+  L304: let div = card.cls === 'knight' ? 2 : (['elf', 'dark', 'dragon', 'warrior'].indexOf(card.cls) >= 0 ? 3 : (card.cls === 'illusion' ? 4 : 5));
+  L313: mob._pvpDuelFoe = true;                       // ?? �M�����аO�]killMob �]�˾ڦ��P�ӡ^
+  L347: if (!m || !m._pvpDuelFoe || m._pvpCls !== 'mage' || !m._magCd) return null;
+  L516: if (!mapState.mobs.some(function (m) { return m && m._pvpDuelFoe; })) return;
+  L659: let isFoe = !!(mob && mob._pvpDuelFoe && _duel && mob.uid === _duel.uid && !mob._dead);
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\29-siege-v2-data.js
+  L785: "notes": "�ܨ��u�x�F����ޥ�class_elf_standard�A��t�ϥζ·t���upoly_override�C�ޯ�G�T���ڡ������ഫ�����K���@�F���K���@�Ȧۨ�AC�ﵽ10�C",
+  L787: "playerClass": "elf",
+  L788: "classTemplateId": "class_elf_standard",
+  L1202: "class_female_elf": {
+  L1203: "unitId": "class_female_elf",
+  L1243: "animId": "class_female_elf",
+  L1247: "playerClass": "elf",
+  L1248: "classTemplateId": "class_elf_standard",
+  L1846: "class_male_elf": {
+  L1847: "unitId": "class_male_elf",
+  L1887: "animId": "class_male_elf",
+  L1891: "playerClass": "elf",
+  L1892: "classTemplateId": "class_elf_standard",
+  L3269: "notes": "�ܨ��u�x�F����ޥ�class_elf_standard�A��t�ϥλȥ����upoly_override�C�ޯ�G�T���ڡ������ഫ���s���ͩR�����֡F�ͩR���֬��ߧY�����v���B6���N�o�A���A�OHoT�C",
+  L3271: "playerClass": "elf",
+  L3272: "classTemplateId": "class_elf_standard",
+  L3637: "notes": "�ܨ��u�x�F����ޥ�class_elf_standard�A��t�ϥζ������upoly_override�îM�_����U�˳ơC�ޯ�G�T���ڡ������ഫ����Ǯg���F��Ǯg�������ɩR����1�]��R���C",
+  L3639: "playerClass": "elf",
+  L3640: "classTemplateId": "class_elf_standard",
+  L4005: "notes": "�ܨ��u�x�F����ޥ�class_elf_standard�A��t�ϥΥժ����upoly_override�îM�ȤB�ժ���U�˳ơ�����������C�ޯ�G�T���ڡ������ഫ���ʦL�T�a�F�u������Ĥ�I�k�̡C",
+  L4007: "playerClass": "elf",
+  L4008: "classTemplateId": "class_elf_standard",
+  L7366: "orc_dark_elf": {
+  L7367: "unitId": "orc_dark_elf",
+  L7400: "behavior": "dark_elf_archer_tornado",
+  L7407: "animId": "orc_dark_elf",
+  L10467: "attackId": "sk_elf_triple",
+  L10475: "support1Id": "sk_elf_soul",
+  L10480: "support1Target": "self",
+  L10483: "support2Id": "sk_elf_steelguard",
+  L10488: "support2Target": "self",
+  L10606: "support1Target": "self",
+  L10614: "support2Target": "self",
+  L10641: "attackTarget": "self",
+  L10648: "support1Target": "self",
+  L10656: "support2Target": "self",
+  L10674: "class_female_elf": {
+  L10675: "unitId": "class_female_elf",
+  L10677: "attackId": "sk_elf_triple",
+  L10685: "support1Id": "sk_elf_soul",
+  ... +68 more
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\32-threat.js
+  L29: if (c === 'elf' || c === 'dark') return 1.5;                                            // ����/�·t����
+FILE: C:\Users\user\Desktop\lingeage\idle-lineage-class-20260825-1924\js\sfx-index.js
+  L3: var SFX_INDEX = {"100":"ogg","101":"ogg","1010":"ogg","1013":"ogg","1018":"ogg","102":"ogg","103":"ogg","1030":"ogg","104":"ogg","1041":"ogg","1044":"ogg","1047":"ogg","105":"ogg","1050":"ogg","1053":
+  L4: var BGM_INDEX = {"battle":"mp3","boss":"mp3","create":"mp3","music1":"mp3","music10":"mp3","music122":"mp3","music123":"mp3","music125":"mp3","music128":"mp3","music130":"mp3","music133":"mp3","music1

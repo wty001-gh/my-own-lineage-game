@@ -748,7 +748,8 @@ function castSkillInner(skId) {
                 let res = getPhysicalDmg(dice, t, wpn, arrowData);
                 if(!res.hit) { if (typeof vfxMiss === 'function') vfxMiss(t); hitsLog.push('Miss'); continue; }
                 landed++;
-                if(sk.skillAddDmg) res.dmg = Math.max(1, res.dmg + sk.skillAddDmg);   // ⚔️ 衝擊之暈：一般攻擊傷害 +10
+                if(sk.skillAddDmg) res.dmg = Math.max(1, res.dmg + sk.skillAddDmg);
+                if(sk.bossMult && t.boss) res.dmg = Math.max(1, Math.floor(res.dmg * sk.bossMult));   // 🧭 v3.8.127 對頭目倍率（屠龍奧義等）   // ⚔️ 衝擊之暈：一般攻擊傷害 +10
                 if(skId === 'sk_elf_triple' && wpn && wpn.fullHpMultTriple && t.curHp === t.hp) res.dmg = Math.max(1, Math.floor(res.dmg * wpn.fullHpMultTriple));   // 🏺 遺忘者的狙擊弓：三重矢對滿血敵人傷害 ×2（僅第一箭·命中後 curHp 已降·gate skId 避免衝擊之暈共用此迴圈時誤觸）
                 // 🔮 紅獅 5/5 已於 getPhysicalDmg 內套用（避免重複），此處不再乘
                 // 遠距離物理技能命中滿血被動怪物，賦予 3 秒延遲（整段只觸發一次）
@@ -779,7 +780,7 @@ function castSkillInner(skId) {
             }
 
             // 三重矢：連射發動即判定一次；月光爆裂依「命中次數」判定（每命中一箭各判定一次）
-            if (skId === 'sk_elf_triple') {
+            if (skId === 'sk_elf_triple' || skId === 'sk_elf_triple2') {   // 🧭 v3.8.127 三重矢·改 同享連射／月光爆裂
                 rapidfireProc(arrowData);   // 連射：發動攻擊即判定（不論三箭是否命中）；每箭各自命中判定
                 for (let _m = 0; _m < landed; _m++) moonburstProc(t);   // 月光爆裂：等同命中次數，各 8% 獨立判定（主目標死亡自動轉移）
                 wandLightArrowProc(t);   // 共鳴（裝弓時不生效，保留以求一致）
@@ -850,10 +851,12 @@ function castSkillInner(skId) {
                 });
                 
                 if(dmgArray.length > 0) {
+                    if (sk.bossMult && t && t.boss) totalDmg = Math.max(1, Math.floor(totalDmg * sk.bossMult));   // 🧭 v3.8.127 對頭目倍率
                     if (sk.hpCost && player._setDragonblood5) totalDmg = Math.max(1, Math.floor(totalDmg * 1.2));   // 🐉 龍血5/5：HP消耗技傷害+20%
                     totalDmg = illusionMagicDmg(totalDmg, false);   // 🔮 攻擊技能下拉選單可選的一般傷害法術，不觸發幻覺2/5與5/5
                     totalDmg = Math.max(1, Math.floor(totalDmg * equipSkillDmgMult(sk, skId) * (_autoCastNow ? (_equipWpnField('autoCastDmgMult') || 1) : 1)));   // 🏺 遺物 特定技能傷害倍率（冰錐/光箭/究極光裂術 ×1.5）；🐍 枯竭魔杖：auto 施放傷害 ×autoCastDmgMult(1.5)
                     if (typeof neApplyOutgoingAmp === 'function') { try { totalDmg = neApplyOutgoingAmp(totalDmg, player, t); } catch (e) {} }   // 🪦 v3.8.86 元素／掌握／血宴（魔法）
+                    if (typeof tlApplyOutgoing === 'function') { try { totalDmg = tlApplyOutgoing(totalDmg, player, t, 'magic'); } catch (e) {} }   // 🧭 v3.8.127 天賦／便當
                     t.curHp -= totalDmg;
                     if (typeof moonShatterOnDamage === 'function') moonShatterOnDamage(player, t, totalDmg);
                     if (typeof seOnMagicHit === 'function') { try { seOnMagicHit(t); } catch (e) {} }   // 席琳咒言

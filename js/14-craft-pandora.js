@@ -1153,6 +1153,7 @@ function craftReqHtml(reqArr) {
         else if (materialObtainable(req.id, req.cnt)) { color = 'text-amber-400'; extra = '<span class="text-amber-400 text-xs ml-0.5">(可合成)</span>'; }
         else color = 'text-red-400';
         let _lk = (hasCnt < req.cnt) ? lockedCountId(req.id) : 0;   // ⚡ v3.5.89 收成區域變數：原本同一行對同一 id 呼叫兩次（各自跑一趟倉庫）
+        if (hasCnt < req.cnt && typeof window !== 'undefined' && window.AB_NO_SRC && window.AB_NO_SRC[req.id]) extra += '<span class="text-rose-400 text-xs ml-0.5">(暫未有掉落來源（之後加）)</span>';   // ab.20261022w
         if (_lk > 0) extra += `<span class="text-slate-400 text-xs ml-0.5">(另有 ${_lk} 個已上鎖不計)</span>`;   // 🔒 v3.5.87 顯示口徑＝扣除口徑·但要讓玩家知道差額在鎖定件
         return `<span class="text-sm font-bold leading-none"><span class="${color}">${hasCnt}</span>/${req.cnt} ${reqItem.n}${extra}</span>`;
     }).join('<span class="text-slate-500 mx-2 leading-none">+</span>');
@@ -1609,6 +1610,7 @@ function _pandoraLogBuyOrder(slot) {
 // 黑市輪換（js/03 每 10 秒呼叫一次；force＝全面換貨）。回傳本次是否有商品刷新。
 function refreshPandoraMarket(force) {
     if (typeof player === 'undefined' || !player) return false;
+    try { if (typeof pandoraSellTick === 'function') pandoraSellTick(); } catch (e) {}   // 📢 v3.8.125 寄售 10 分判定
     let nowT = (typeof state !== 'undefined' && state) ? (state.ticks || 0) : 0;
     let m = player.pandoraMarket2;
     let changed = false, latest = null, orderHit = null;
@@ -1618,7 +1620,11 @@ function refreshPandoraMarket(force) {
         let nextMarket = {
             slots: [], seq: 0, lastTick: nowT, lastIdx: PANDORA_SLOT_COUNT - 1,
             buyOrder: m && m.buyOrder ? m.buyOrder : null,
-            notice: m && m.notice ? m.notice : null
+            notice: m && m.notice ? m.notice : null,
+            sellOrder: m && m.sellOrder ? m.sellOrder : null,   // 📢 v3.8.125
+            sellEscrow: m && m.sellEscrow ? m.sellEscrow : false,
+            sellCheckTick: m && m.sellCheckTick != null ? m.sellCheckTick : undefined,
+            sellCancelAt: m && m.sellCancelAt ? m.sellCancelAt : 0
         };
         for (let i = 0; i < PANDORA_SLOT_COUNT; i++) {
             let s = _pandoraStock(nowT, nextMarket);
@@ -1800,6 +1806,7 @@ function pandoraRenderMarket(div) {
                 ${orderItem ? '<button class="pandora-buy-cancel" onclick="pandoraCancelBuyOrder()">取消收購</button>' : ''}
             </div>
         </div>
+        ${typeof pandoraSellPanelHTML === 'function' ? pandoraSellPanelHTML() : ''}
         <div class="pandora-market-grid">${cards}</div>
         ${relicBoard}
         <p id="pandora-msg" class="font-bold text-center shrink-0 empty:hidden">${_pandoraNoticeHTML(m)}</p>

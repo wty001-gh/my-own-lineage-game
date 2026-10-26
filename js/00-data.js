@@ -1,6 +1,8 @@
 ﻿/** 遊戲核心資料庫 */
 // 🏷️ 遊戲版本號（顯示於登入頁面下方·單一真相來源）：更新版本時只改這一行，登入頁面自動同步。
-const GAME_VERSION = 'v3.8.122';   // 🗡️ 金髮女騎士縮小至真夏納身高＋攻速改跟真夏納 ·cache guild.20261008f ·基底 v3.8.121
+const GAME_VERSION = 'v3.10.0';   // ♟️ 自走棋原型（js/70-autobattle.js）·cache ab.20261022a ·基底 v3.8.130
+// prev: 🏛️ 公會擴充（料理/工坊/後勤・gates・複雜評分）＋天賦 MVP ·cache guild.20261012a ·基底 v3.8.122
+// prev: 🗡️ 金髮女騎士縮小至真夏納身高＋攻速改跟真夏納 ·cache guild.20261008f ·基底 v3.8.121
 // prev: 🗡️ 金髮女騎士 sprite（assets/anim·變形控制戒指）·cache guild.20261008e ·基底 v3.8.120
 // prev: 📋 委託板可派遣自己與隊伍中的傭兵（js/51）·cache guild.20261008d ·基底 v3.8.119
 // prev: 🏛️ 公會設施（公會本部／鍛造屋改名＋酒館・宿舍・情報室）＋公會等級野外加成＋成員好感度（js/54-guild-bond）·cache guild.20261008c ·基底 v3.8.118

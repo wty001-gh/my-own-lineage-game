@@ -2500,6 +2500,7 @@ function getPhysicalDmg(diceStr, target, wpn, arrowData, forceHeavy, forceHit, f
     }
     if (typeof neApplyIgnoreDr === 'function') { try { _outDmg = neApplyIgnoreDr(_outDmg, player); } catch (e) {} }   // 🪦 真實死亡
     if (typeof neApplyOutgoingAmp === 'function') { try { _outDmg = neApplyOutgoingAmp(_outDmg, player, target); } catch (e) {} }   // 🪦 掌握心臟／血宴
+    if (typeof tlApplyOutgoing === 'function') { try { _outDmg = tlApplyOutgoing(_outDmg, player, target, 'phys'); } catch (e) {} }   // 🧭 v3.8.127 天賦／便當
     markBossPhysicalHit(target);
     return { dmg: _outDmg, hit: true, heavy: heavy, crit: isCrit, graze: graze, crush: crush, dualx2: _dualX2, chase15: _chase15, ranged: isRanged };
 }
@@ -3083,6 +3084,7 @@ function qiguPlayerAttack(target, wpn) {
     dmg = Math.max(1, Math.floor(dmg * fragileMult(target) * illuLvMult(player)));   // 🔮 脆弱/破甲；🔮 幻術士等級加成 ×(1+等級/50)
     if (typeof neApplyIgnoreDr === 'function') { try { dmg = neApplyIgnoreDr(dmg, player); } catch (e) {} }   // 🪦 v3.8.86 真實死亡（含奇古獸）
     if (typeof neApplyOutgoingAmp === 'function') { try { dmg = neApplyOutgoingAmp(dmg, player, target); } catch (e) {} }   // 🪦 元素／掌握／血宴
+    if (typeof tlApplyOutgoing === 'function') { try { dmg = tlApplyOutgoing(dmg, player, target, 'magic'); } catch (e) {} }   // 🧭 v3.8.127 天賦／便當
     target.curHp -= dmg;
     target.justHit = (ele !== 'none') ? ele : 'magic';
     if (typeof moonShatterOnDamage === 'function') moonShatterOnDamage(player, target, dmg);

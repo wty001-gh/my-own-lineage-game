@@ -419,6 +419,8 @@ function weOnKill(mob) {
                 player.worldEvent.claimed['boss_' + ev.id] = true;
                 gainItem(Math.random() < 0.5 ? 'scroll_guardx_wpn' : 'scroll_guardx_arm', 1, true);
                 gainItem('scroll_blessify', 1, true);
+                // 💎 v3.8.126 限定頭目首次擊破：龍鑽 ×3
+                try { if (typeof DE !== 'undefined' && DE && typeof DE.worldBoss === 'function') DE.worldBoss(); } catch (e) {}
             }
             weScheduleRefresh();
         }

@@ -1413,7 +1413,12 @@ function charPortraitName(p) {
     if (!p) return '';
     return String(p.avatar || CHAR_PORTRAIT_CLS_NAME[p.cls] || '').replace(/['"()\\<>]/g, '');
 }
-function charPortraitUrl(p) { return 'assets/character/' + charPortraitName(p) + '.png'; }
+// 🩹 ab.20261022u：沒有 avatar 時舊版會拼成 assets/character/<職業名>.png（妖精.png 等不存在 → ERR_FILE_NOT_FOUND），改用 assets/ab-class/ 職業圖。
+var CHAR_FB_CLS = { knight:1, royal:1, elf:1, illusion:1, warrior:1, mage:1, dark:1, dragon:1 };
+function charPortraitUrl(p) {
+    if (p && !p.avatar) { var c = CHAR_FB_CLS[p.cls] ? p.cls : 'knight'; return 'assets/ab-class/' + (c === 'elf' ? 'elf.png' : c + '.svg'); }
+    return 'assets/character/' + charPortraitName(p) + '.png';
+}
 
 function _updateUIImpl() {
     if(state.ff) return; // 補跑期間不刷新畫面

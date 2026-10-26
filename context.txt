@@ -1,0 +1,1284 @@
+##### FILE js\00-data.js lines=3611
+--- js\00-data.js:918 match=全屬性 ---
+916|         "relic_steelmonk_staff":   { n: "鋼鐵僧侶的錫杖",     type: "wpn", w2h: true, isWand: true, relic: true, noEnhance: true, dmgS: 18, dmgL: 18, hit: 15, dmgBonus: 16, eff: "magicstrike", ignHardSkin: true, atkSpdPct: 30, str: 5, procHealSkill: { skId: "sk_regen", rate: 5 }, req: "mage", p: 10000, gachaWeight: 0, d: "【遺物】鋼鐵僧侶隨身的錫杖，環音每一響都同時是祝禱與重擊。魔擊（一般限定）；貫穿；攻擊速度增加 30%；一般攻擊命中時 5% 機率觸發體力回復術；力量 +5。" },
+917|         "relic_elder_obsidian_orb":{ n: "長老的黑曜水晶球",   type: "arm", slot: "shield", relic: true, noEnhance: true, ac: 8, block: 10, int: 3, mr: 10, mpR: 10, crushTornado: true, req: "mage,illusion", p: 10000, gachaWeight: 0, d: "【遺物】黑長者懷中的黑曜水晶球，球心封存著一整場風暴。格檔 10（一般限定）；智力 +3、MR+10、MP 自然恢復量 +10；被重擊時，對敵方全體施放龍捲風。" },
+918|         "relic_myriad_avatar":     { n: "百變化身",           type: "arm", slot: "gloves", relic: true, noEnhance: true, ac: 8, polyAtkSpdPct: 20, polyAllStats: 2, req: "all", p: 10000, gachaWeight: 0, d: "【遺物】變形怪首領蛻下的表皮製成的手套，戴上的人連骨相都跟著改變。變身時：攻擊速度增加 20%、全屬性 +2。" },
+919|         "relic_unsealed_baphomet_wand": { n: "解除封印的巴風特魔杖", type: "wpn", isWand: true, relic: true, noEnhance: true, dmgS: 7, dmgL: 6, hit: 20, dmgBonus: 17, ignHardSkin: true, mdmg: 3, extraMp: 3, procDualSkill: { skn: "熾焰地裂術", rate: 25, parts: [[4, 20, "earth"], [4, 20, "fire"]] }, req: "mage,illusion", p: 10000, gachaWeight: 0, d: "【遺物】掙脫封印的巴風特魔杖，杖中的魔神之力再無拘束。共鳴（一般限定）；貫穿；魔法傷害 +3、額外魔法點數 +3；攻擊時 25% 機率觸發熾焰地裂術（必定命中，對目標同時造成地屬性與火屬性魔法傷害，受魔法傷害影響）。" },
+920|         "relic_sphinx_black_wing": { n: "人面獅身的漆黑羽翼", type: "arm", slot: "cloak", relic: true, noEnhance: true, ac: 7, er: 5, drPerEr: 5, req: "all", p: 10000, gachaWeight: 0, d: "【遺物】黑斯芬克斯的漆黑羽翼，展開便讓謎語與刀鋒都失了準頭。ER+5；傷害減免+（ER÷5）。" },
+--- js\00-data.js:1406 match=精靈水晶 ---
+1404|         "new_item_225": { n: "被偷的項鍊", p: 1, gachaWeight: 0 },
+1405|         "new_item_226": { n: "被偷的戒指", p: 1, gachaWeight: 0 },
+1406|         "new_item_228": { n: "污染的精靈水晶(水)", p: 1, gachaWeight: 0 },
+1407|         "new_item_229": { n: "污染的精靈水晶(火)", p: 1, gachaWeight: 0 },
+1408|         "new_item_230": { n: "污染的精靈水晶(地)", p: 1, gachaWeight: 0 },
+--- js\00-data.js:1407 match=精靈水晶 ---
+1405|         "new_item_226": { n: "被偷的戒指", p: 1, gachaWeight: 0 },
+1406|         "new_item_228": { n: "污染的精靈水晶(水)", p: 1, gachaWeight: 0 },
+1407|         "new_item_229": { n: "污染的精靈水晶(火)", p: 1, gachaWeight: 0 },
+1408|         "new_item_230": { n: "污染的精靈水晶(地)", p: 1, gachaWeight: 0 },
+1409|         "new_item_231": { n: "污染的精靈水晶(風)", p: 1, gachaWeight: 0 },
+--- js\00-data.js:1408 match=精靈水晶 ---
+1406|         "new_item_228": { n: "污染的精靈水晶(水)", p: 1, gachaWeight: 0 },
+1407|         "new_item_229": { n: "污染的精靈水晶(火)", p: 1, gachaWeight: 0 },
+1408|         "new_item_230": { n: "污染的精靈水晶(地)", p: 1, gachaWeight: 0 },
+1409|         "new_item_231": { n: "污染的精靈水晶(風)", p: 1, gachaWeight: 0 },
+1410|         "new_item_232": { n: "邪惡蜥蜴之鱗", p: 1, gachaWeight: 0 },
+--- js\00-data.js:1409 match=精靈水晶 ---
+1407|         "new_item_229": { n: "污染的精靈水晶(火)", p: 1, gachaWeight: 0 },
+1408|         "new_item_230": { n: "污染的精靈水晶(地)", p: 1, gachaWeight: 0 },
+1409|         "new_item_231": { n: "污染的精靈水晶(風)", p: 1, gachaWeight: 0 },
+1410|         "new_item_232": { n: "邪惡蜥蜴之鱗", p: 1, gachaWeight: 0 },
+1411|         "new_item_233": { n: "神秘魔力恢復藥水", p: 1, gachaWeight: 0 },
+--- js\00-data.js:1720 match=精靈水晶 ---
+1718|         "bk_counter_barrier": { type: "skillbk", n: "技術書(反擊屏障)", p: 30000, sk: "sk_counter_barrier", gachaWeight: 1, d: "記載著「反擊屏障」術式的古老魔法書，研讀後可將咒文銘刻於記憶。" },
+1719| 
+1720|         // ===== 妖精精靈水晶 =====
+1721|         "bk_elf_mr": { type: "skillbk", n: "精靈水晶(魔法防禦)", p: 3000, sk: "sk_elf_mr", gachaWeight: 0 },
+1722|         "bk_elf_mind": { type: "skillbk", n: "精靈水晶(心靈轉換)", p: 3000, sk: "sk_elf_mind", gachaWeight: 0 },
+--- js\00-data.js:1721 match=精靈水晶 ---
+1719| 
+1720|         // ===== 妖精精靈水晶 =====
+1721|         "bk_elf_mr": { type: "skillbk", n: "精靈水晶(魔法防禦)", p: 3000, sk: "sk_elf_mr", gachaWeight: 0 },
+1722|         "bk_elf_mind": { type: "skillbk", n: "精靈水晶(心靈轉換)", p: 3000, sk: "sk_elf_mind", gachaWeight: 0 },
+1723|         "bk_elf_worldtree": { type: "skillbk", n: "精靈水晶(世界樹的呼喚)", p: 3000, sk: "sk_elf_worldtree", gachaWeight: 0 },
+--- js\00-data.js:1722 match=精靈水晶 ---
+1720|         // ===== 妖精精靈水晶 =====
+1721|         "bk_elf_mr": { type: "skillbk", n: "精靈水晶(魔法防禦)", p: 3000, sk: "sk_elf_mr", gachaWeight: 0 },
+1722|         "bk_elf_mind": { type: "skillbk", n: "精靈水晶(心靈轉換)", p: 3000, sk: "sk_elf_mind", gachaWeight: 0 },
+1723|         "bk_elf_worldtree": { type: "skillbk", n: "精靈水晶(世界樹的呼喚)", p: 3000, sk: "sk_elf_worldtree", gachaWeight: 0 },
+1724|         "bk_elf_triple": { type: "skillbk", n: "精靈水晶(三重矢)", p: 3000, sk: "sk_elf_triple", gachaWeight: 10 },
+--- js\00-data.js:1723 match=精靈水晶 ---
+1721|         "bk_elf_mr": { type: "skillbk", n: "精靈水晶(魔法防禦)", p: 3000, sk: "sk_elf_mr", gachaWeight: 0 },
+1722|         "bk_elf_mind": { type: "skillbk", n: "精靈水晶(心靈轉換)", p: 3000, sk: "sk_elf_mind", gachaWeight: 0 },
+1723|         "bk_elf_worldtree": { type: "skillbk", n: "精靈水晶(世界樹的呼喚)", p: 3000, sk: "sk_elf_worldtree", gachaWeight: 0 },
+1724|         "bk_elf_triple": { type: "skillbk", n: "精靈水晶(三重矢)", p: 3000, sk: "sk_elf_triple", gachaWeight: 10 },
+1725| 
+--- js\00-data.js:1724 match=精靈水晶 ---
+1722|         "bk_elf_mind": { type: "skillbk", n: "精靈水晶(心靈轉換)", p: 3000, sk: "sk_elf_mind", gachaWeight: 0 },
+1723|         "bk_elf_worldtree": { type: "skillbk", n: "精靈水晶(世界樹的呼喚)", p: 3000, sk: "sk_elf_worldtree", gachaWeight: 0 },
+1724|         "bk_elf_triple": { type: "skillbk", n: "精靈水晶(三重矢)", p: 3000, sk: "sk_elf_triple", gachaWeight: 10 },
+1725| 
+1726|         "bk_elf_purify": { type: "skillbk", n: "精靈水晶(淨化精神)", p: 7500, sk: "sk_elf_purify", gachaWeight: 0 },
+--- js\00-data.js:1726 match=精靈水晶 ---
+1724|         "bk_elf_triple": { type: "skillbk", n: "精靈水晶(三重矢)", p: 3000, sk: "sk_elf_triple", gachaWeight: 10 },
+1725| 
+1726|         "bk_elf_purify": { type: "skillbk", n: "精靈水晶(淨化精神)", p: 7500, sk: "sk_elf_purify", gachaWeight: 0 },
+1727|         "bk_elf_eleres": { type: "skillbk", n: "精靈水晶(屬性防禦)", p: 7500, sk: "sk_elf_eleres", gachaWeight: 0 },
+1728|         "bk_elf_release": { type: "skillbk", n: "精靈水晶(釋放元素)", p: 7500, sk: "sk_elf_release", gachaWeight: 0 },
+--- js\00-data.js:1727 match=精靈水晶 ---
+1725| 
+1726|         "bk_elf_purify": { type: "skillbk", n: "精靈水晶(淨化精神)", p: 7500, sk: "sk_elf_purify", gachaWeight: 0 },
+1727|         "bk_elf_eleres": { type: "skillbk", n: "精靈水晶(屬性防禦)", p: 7500, sk: "sk_elf_eleres", gachaWeight: 0 },
+1728|         "bk_elf_release": { type: "skillbk", n: "精靈水晶(釋放元素)", p: 7500, sk: "sk_elf_release", gachaWeight: 0 },
+1729|         "bk_elf_soul": { type: "skillbk", n: "精靈水晶(魂體轉換)", p: 7500, sk: "sk_elf_soul", gachaWeight: 20 },
+--- js\00-data.js:1728 match=精靈水晶 ---
+1726|         "bk_elf_purify": { type: "skillbk", n: "精靈水晶(淨化精神)", p: 7500, sk: "sk_elf_purify", gachaWeight: 0 },
+1727|         "bk_elf_eleres": { type: "skillbk", n: "精靈水晶(屬性防禦)", p: 7500, sk: "sk_elf_eleres", gachaWeight: 0 },
+1728|         "bk_elf_release": { type: "skillbk", n: "精靈水晶(釋放元素)", p: 7500, sk: "sk_elf_release", gachaWeight: 0 },
+1729|         "bk_elf_soul": { type: "skillbk", n: "精靈水晶(魂體轉換)", p: 7500, sk: "sk_elf_soul", gachaWeight: 20 },
+1730| 
+--- js\00-data.js:1729 match=精靈水晶 ---
+1727|         "bk_elf_eleres": { type: "skillbk", n: "精靈水晶(屬性防禦)", p: 7500, sk: "sk_elf_eleres", gachaWeight: 0 },
+1728|         "bk_elf_release": { type: "skillbk", n: "精靈水晶(釋放元素)", p: 7500, sk: "sk_elf_release", gachaWeight: 0 },
+1729|         "bk_elf_soul": { type: "skillbk", n: "精靈水晶(魂體轉換)", p: 7500, sk: "sk_elf_soul", gachaWeight: 20 },
+1730| 
+1731|         "bk_elf_singleres": { type: "skillbk", n: "精靈水晶(單屬性防禦)", p: 15000, sk: "sk_elf_singleres", gachaWeight: 0 },
+--- js\00-data.js:1731 match=單屬性防禦 ---
+1729|         "bk_elf_soul": { type: "skillbk", n: "精靈水晶(魂體轉換)", p: 7500, sk: "sk_elf_soul", gachaWeight: 20 },
+1730| 
+1731|         "bk_elf_singleres": { type: "skillbk", n: "精靈水晶(單屬性防禦)", p: 15000, sk: "sk_elf_singleres", gachaWeight: 0 },
+1732|         "bk_elf_firewpn": { type: "skillbk", n: "精靈水晶(火焰武器)", p: 15000, sk: "sk_elf_firewpn", gachaWeight: 0 },
+1733|         "bk_elf_windshot": { type: "skillbk", n: "精靈水晶(風之神射)", p: 15000, sk: "sk_elf_windshot", gachaWeight: 0 },
+--- js\00-data.js:1732 match=精靈水晶 ---
+1730| 
+1731|         "bk_elf_singleres": { type: "skillbk", n: "精靈水晶(單屬性防禦)", p: 15000, sk: "sk_elf_singleres", gachaWeight: 0 },
+1732|         "bk_elf_firewpn": { type: "skillbk", n: "精靈水晶(火焰武器)", p: 15000, sk: "sk_elf_firewpn", gachaWeight: 0 },
+1733|         "bk_elf_windshot": { type: "skillbk", n: "精靈水晶(風之神射)", p: 15000, sk: "sk_elf_windshot", gachaWeight: 0 },
+1734|         "bk_elf_winddash": { type: "skillbk", n: "精靈水晶(風之疾走)", p: 15000, sk: "sk_elf_winddash", gachaWeight: 0 },
+--- js\00-data.js:1733 match=精靈水晶 ---
+1731|         "bk_elf_singleres": { type: "skillbk", n: "精靈水晶(單屬性防禦)", p: 15000, sk: "sk_elf_singleres", gachaWeight: 0 },
+1732|         "bk_elf_firewpn": { type: "skillbk", n: "精靈水晶(火焰武器)", p: 15000, sk: "sk_elf_firewpn", gachaWeight: 0 },
+1733|         "bk_elf_windshot": { type: "skillbk", n: "精靈水晶(風之神射)", p: 15000, sk: "sk_elf_windshot", gachaWeight: 0 },
+1734|         "bk_elf_winddash": { type: "skillbk", n: "精靈水晶(風之疾走)", p: 15000, sk: "sk_elf_winddash", gachaWeight: 0 },
+1735|         "bk_elf_earthguard": { type: "skillbk", n: "精靈水晶(大地防護)", p: 15000, sk: "sk_elf_earthguard", gachaWeight: 0 },
+--- js\00-data.js:1734 match=精靈水晶 ---
+1732|         "bk_elf_firewpn": { type: "skillbk", n: "精靈水晶(火焰武器)", p: 15000, sk: "sk_elf_firewpn", gachaWeight: 0 },
+1733|         "bk_elf_windshot": { type: "skillbk", n: "精靈水晶(風之神射)", p: 15000, sk: "sk_elf_windshot", gachaWeight: 0 },
+1734|         "bk_elf_winddash": { type: "skillbk", n: "精靈水晶(風之疾走)", p: 15000, sk: "sk_elf_winddash", gachaWeight: 0 },
+1735|         "bk_elf_earthguard": { type: "skillbk", n: "精靈水晶(大地防護)", p: 15000, sk: "sk_elf_earthguard", gachaWeight: 0 },
+1736|         "bk_elf_groundtrap": { type: "skillbk", n: "精靈水晶(地面障礙)", p: 15000, sk: "sk_elf_groundtrap", gachaWeight: 0 },
+--- js\00-data.js:1735 match=精靈水晶 ---
+1733|         "bk_elf_windshot": { type: "skillbk", n: "精靈水晶(風之神射)", p: 15000, sk: "sk_elf_windshot", gachaWeight: 0 },
+1734|         "bk_elf_winddash": { type: "skillbk", n: "精靈水晶(風之疾走)", p: 15000, sk: "sk_elf_winddash", gachaWeight: 0 },
+1735|         "bk_elf_earthguard": { type: "skillbk", n: "精靈水晶(大地防護)", p: 15000, sk: "sk_elf_earthguard", gachaWeight: 0 },
+1736|         "bk_elf_groundtrap": { type: "skillbk", n: "精靈水晶(地面障礙)", p: 15000, sk: "sk_elf_groundtrap", gachaWeight: 0 },
+1737| 
+--- js\00-data.js:1736 match=精靈水晶 ---
+1734|         "bk_elf_winddash": { type: "skillbk", n: "精靈水晶(風之疾走)", p: 15000, sk: "sk_elf_winddash", gachaWeight: 0 },
+1735|         "bk_elf_earthguard": { type: "skillbk", n: "精靈水晶(大地防護)", p: 15000, sk: "sk_elf_earthguard", gachaWeight: 0 },
+1736|         "bk_elf_groundtrap": { type: "skillbk", n: "精靈水晶(地面障礙)", p: 15000, sk: "sk_elf_groundtrap", gachaWeight: 0 },
+1737| 
+1738|         "bk_elf_magicerase": { type: "skillbk", n: "精靈水晶(魔法消除)", p: 30000, sk: "sk_elf_magicerase", gachaWeight: 40 },
+--- js\00-data.js:1738 match=魔法消除 ---
+1736|         "bk_elf_groundtrap": { type: "skillbk", n: "精靈水晶(地面障礙)", p: 15000, sk: "sk_elf_groundtrap", gachaWeight: 0 },
+1737| 
+1738|         "bk_elf_magicerase": { type: "skillbk", n: "精靈水晶(魔法消除)", p: 30000, sk: "sk_elf_magicerase", gachaWeight: 40 },
+1739|         "bk_elf_summon": { type: "skillbk", n: "精靈水晶(召喚屬性精靈)", p: 30000, sk: "sk_elf_summon", gachaWeight: 20 },
+1740|         "bk_elf_dancefire": { type: "skillbk", n: "精靈水晶(舞躍之火)", p: 30000, sk: "sk_elf_dancefire", gachaWeight: 10 },
+--- js\00-data.js:1739 match=精靈水晶 ---
+1737| 
+1738|         "bk_elf_magicerase": { type: "skillbk", n: "精靈水晶(魔法消除)", p: 30000, sk: "sk_elf_magicerase", gachaWeight: 40 },
+1739|         "bk_elf_summon": { type: "skillbk", n: "精靈水晶(召喚屬性精靈)", p: 30000, sk: "sk_elf_summon", gachaWeight: 20 },
+1740|         "bk_elf_dancefire": { type: "skillbk", n: "精靈水晶(舞躍之火)", p: 30000, sk: "sk_elf_dancefire", gachaWeight: 10 },
+1741|         "bk_elf_stormeye": { type: "skillbk", n: "精靈水晶(暴風之眼)", p: 30000, sk: "sk_elf_stormeye", gachaWeight: 10 },
+--- js\00-data.js:1740 match=精靈水晶 ---
+1738|         "bk_elf_magicerase": { type: "skillbk", n: "精靈水晶(魔法消除)", p: 30000, sk: "sk_elf_magicerase", gachaWeight: 40 },
+1739|         "bk_elf_summon": { type: "skillbk", n: "精靈水晶(召喚屬性精靈)", p: 30000, sk: "sk_elf_summon", gachaWeight: 20 },
+1740|         "bk_elf_dancefire": { type: "skillbk", n: "精靈水晶(舞躍之火)", p: 30000, sk: "sk_elf_dancefire", gachaWeight: 10 },
+1741|         "bk_elf_stormeye": { type: "skillbk", n: "精靈水晶(暴風之眼)", p: 30000, sk: "sk_elf_stormeye", gachaWeight: 10 },
+1742|         "bk_elf_mirror": { type: "skillbk", n: "精靈水晶(鏡反射)", p: 16000, sk: "sk_elf_mirror", gachaWeight: 1, d: "封存著「鏡反射」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+--- js\00-data.js:1741 match=精靈水晶 ---
+1739|         "bk_elf_summon": { type: "skillbk", n: "精靈水晶(召喚屬性精靈)", p: 30000, sk: "sk_elf_summon", gachaWeight: 20 },
+1740|         "bk_elf_dancefire": { type: "skillbk", n: "精靈水晶(舞躍之火)", p: 30000, sk: "sk_elf_dancefire", gachaWeight: 10 },
+1741|         "bk_elf_stormeye": { type: "skillbk", n: "精靈水晶(暴風之眼)", p: 30000, sk: "sk_elf_stormeye", gachaWeight: 10 },
+1742|         "bk_elf_mirror": { type: "skillbk", n: "精靈水晶(鏡反射)", p: 16000, sk: "sk_elf_mirror", gachaWeight: 1, d: "封存著「鏡反射」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1743|         "bk_elf_earthshield": { type: "skillbk", n: "精靈水晶(大地屏障)", p: 30000, sk: "sk_elf_earthshield", gachaWeight: 10 },
+--- js\00-data.js:1742 match=精靈水晶 ---
+1740|         "bk_elf_dancefire": { type: "skillbk", n: "精靈水晶(舞躍之火)", p: 30000, sk: "sk_elf_dancefire", gachaWeight: 10 },
+1741|         "bk_elf_stormeye": { type: "skillbk", n: "精靈水晶(暴風之眼)", p: 30000, sk: "sk_elf_stormeye", gachaWeight: 10 },
+1742|         "bk_elf_mirror": { type: "skillbk", n: "精靈水晶(鏡反射)", p: 16000, sk: "sk_elf_mirror", gachaWeight: 1, d: "封存著「鏡反射」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1743|         "bk_elf_earthshield": { type: "skillbk", n: "精靈水晶(大地屏障)", p: 30000, sk: "sk_elf_earthshield", gachaWeight: 10 },
+1744|         "bk_elf_lifespring": { type: "skillbk", n: "精靈水晶(生命之泉)", p: 30000, sk: "sk_elf_lifespring", gachaWeight: 10 },
+--- js\00-data.js:1743 match=精靈水晶 ---
+1741|         "bk_elf_stormeye": { type: "skillbk", n: "精靈水晶(暴風之眼)", p: 30000, sk: "sk_elf_stormeye", gachaWeight: 10 },
+1742|         "bk_elf_mirror": { type: "skillbk", n: "精靈水晶(鏡反射)", p: 16000, sk: "sk_elf_mirror", gachaWeight: 1, d: "封存著「鏡反射」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1743|         "bk_elf_earthshield": { type: "skillbk", n: "精靈水晶(大地屏障)", p: 30000, sk: "sk_elf_earthshield", gachaWeight: 10 },
+1744|         "bk_elf_lifespring": { type: "skillbk", n: "精靈水晶(生命之泉)", p: 30000, sk: "sk_elf_lifespring", gachaWeight: 10 },
+1745|         "bk_elf_earthbless": { type: "skillbk", n: "精靈水晶(大地的祝福)", p: 30000, sk: "sk_elf_earthbless", gachaWeight: 10, d: "封存著「大地的祝福」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+--- js\00-data.js:1744 match=精靈水晶 ---
+1742|         "bk_elf_mirror": { type: "skillbk", n: "精靈水晶(鏡反射)", p: 16000, sk: "sk_elf_mirror", gachaWeight: 1, d: "封存著「鏡反射」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1743|         "bk_elf_earthshield": { type: "skillbk", n: "精靈水晶(大地屏障)", p: 30000, sk: "sk_elf_earthshield", gachaWeight: 10 },
+1744|         "bk_elf_lifespring": { type: "skillbk", n: "精靈水晶(生命之泉)", p: 30000, sk: "sk_elf_lifespring", gachaWeight: 10 },
+1745|         "bk_elf_earthbless": { type: "skillbk", n: "精靈水晶(大地的祝福)", p: 30000, sk: "sk_elf_earthbless", gachaWeight: 10, d: "封存著「大地的祝福」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1746| 
+--- js\00-data.js:1745 match=精靈水晶 ---
+1743|         "bk_elf_earthshield": { type: "skillbk", n: "精靈水晶(大地屏障)", p: 30000, sk: "sk_elf_earthshield", gachaWeight: 10 },
+1744|         "bk_elf_lifespring": { type: "skillbk", n: "精靈水晶(生命之泉)", p: 30000, sk: "sk_elf_lifespring", gachaWeight: 10 },
+1745|         "bk_elf_earthbless": { type: "skillbk", n: "精靈水晶(大地的祝福)", p: 30000, sk: "sk_elf_earthbless", gachaWeight: 10, d: "封存著「大地的祝福」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1746| 
+1747|         "bk_elf_summon2": { type: "skillbk", n: "精靈水晶(召喚強力屬性精靈)", p: 60000, sk: "sk_elf_summon2", gachaWeight: 1 },
+--- js\00-data.js:1747 match=精靈水晶 ---
+1745|         "bk_elf_earthbless": { type: "skillbk", n: "精靈水晶(大地的祝福)", p: 30000, sk: "sk_elf_earthbless", gachaWeight: 10, d: "封存著「大地的祝福」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1746| 
+1747|         "bk_elf_summon2": { type: "skillbk", n: "精靈水晶(召喚強力屬性精靈)", p: 60000, sk: "sk_elf_summon2", gachaWeight: 1 },
+1748|         "bk_elf_lifebless": { type: "skillbk", n: "精靈水晶(生命的祝福)", p: 60000, sk: "sk_elf_lifebless", gachaWeight: 5 },
+1749|         "bk_elf_seal": { type: "skillbk", n: "精靈水晶(封印禁地)", p: 60000, sk: "sk_elf_seal", gachaWeight: 10 },
+--- js\00-data.js:1748 match=精靈水晶 ---
+1746| 
+1747|         "bk_elf_summon2": { type: "skillbk", n: "精靈水晶(召喚強力屬性精靈)", p: 60000, sk: "sk_elf_summon2", gachaWeight: 1 },
+1748|         "bk_elf_lifebless": { type: "skillbk", n: "精靈水晶(生命的祝福)", p: 60000, sk: "sk_elf_lifebless", gachaWeight: 5 },
+1749|         "bk_elf_seal": { type: "skillbk", n: "精靈水晶(封印禁地)", p: 60000, sk: "sk_elf_seal", gachaWeight: 10 },
+1750|         "bk_elf_muddywater": { type: "skillbk", n: "精靈水晶(污濁之水)", p: 16000, sk: "sk_elf_muddywater", gachaWeight: 1, d: "封存著「污濁之水」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+--- js\00-data.js:1749 match=封印禁地 ---
+1747|         "bk_elf_summon2": { type: "skillbk", n: "精靈水晶(召喚強力屬性精靈)", p: 60000, sk: "sk_elf_summon2", gachaWeight: 1 },
+1748|         "bk_elf_lifebless": { type: "skillbk", n: "精靈水晶(生命的祝福)", p: 60000, sk: "sk_elf_lifebless", gachaWeight: 5 },
+1749|         "bk_elf_seal": { type: "skillbk", n: "精靈水晶(封印禁地)", p: 60000, sk: "sk_elf_seal", gachaWeight: 10 },
+1750|         "bk_elf_muddywater": { type: "skillbk", n: "精靈水晶(污濁之水)", p: 16000, sk: "sk_elf_muddywater", gachaWeight: 1, d: "封存著「污濁之水」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1751|         "bk_elf_blazewpn": { type: "skillbk", n: "精靈水晶(烈炎武器)", p: 60000, sk: "sk_elf_blazewpn", gachaWeight: 1 },
+--- js\00-data.js:1750 match=污濁之水 ---
+1748|         "bk_elf_lifebless": { type: "skillbk", n: "精靈水晶(生命的祝福)", p: 60000, sk: "sk_elf_lifebless", gachaWeight: 5 },
+1749|         "bk_elf_seal": { type: "skillbk", n: "精靈水晶(封印禁地)", p: 60000, sk: "sk_elf_seal", gachaWeight: 10 },
+1750|         "bk_elf_muddywater": { type: "skillbk", n: "精靈水晶(污濁之水)", p: 16000, sk: "sk_elf_muddywater", gachaWeight: 1, d: "封存著「污濁之水」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1751|         "bk_elf_blazewpn": { type: "skillbk", n: "精靈水晶(烈炎武器)", p: 60000, sk: "sk_elf_blazewpn", gachaWeight: 1 },
+1752|         "bk_elf_flamesoul": { type: "skillbk", n: "精靈水晶(烈焰之魂)", p: 16000, sk: "sk_elf_flamesoul", gachaWeight: 1, d: "封存著「烈焰之魂」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+--- js\00-data.js:1751 match=精靈水晶 ---
+1749|         "bk_elf_seal": { type: "skillbk", n: "精靈水晶(封印禁地)", p: 60000, sk: "sk_elf_seal", gachaWeight: 10 },
+1750|         "bk_elf_muddywater": { type: "skillbk", n: "精靈水晶(污濁之水)", p: 16000, sk: "sk_elf_muddywater", gachaWeight: 1, d: "封存著「污濁之水」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1751|         "bk_elf_blazewpn": { type: "skillbk", n: "精靈水晶(烈炎武器)", p: 60000, sk: "sk_elf_blazewpn", gachaWeight: 1 },
+1752|         "bk_elf_flamesoul": { type: "skillbk", n: "精靈水晶(烈焰之魂)", p: 16000, sk: "sk_elf_flamesoul", gachaWeight: 1, d: "封存著「烈焰之魂」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1753|         "bk_elf_physboost": { type: "skillbk", n: "精靈水晶(體能激發)", p: 16000, sk: "sk_elf_physboost", gachaWeight: 20, d: "封存著「體能激發」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+--- js\00-data.js:1752 match=精靈水晶 ---
+1750|         "bk_elf_muddywater": { type: "skillbk", n: "精靈水晶(污濁之水)", p: 16000, sk: "sk_elf_muddywater", gachaWeight: 1, d: "封存著「污濁之水」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1751|         "bk_elf_blazewpn": { type: "skillbk", n: "精靈水晶(烈炎武器)", p: 60000, sk: "sk_elf_blazewpn", gachaWeight: 1 },
+1752|         "bk_elf_flamesoul": { type: "skillbk", n: "精靈水晶(烈焰之魂)", p: 16000, sk: "sk_elf_flamesoul", gachaWeight: 1, d: "封存著「烈焰之魂」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1753|         "bk_elf_physboost": { type: "skillbk", n: "精靈水晶(體能激發)", p: 16000, sk: "sk_elf_physboost", gachaWeight: 20, d: "封存著「體能激發」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1754|         "bk_elf_energyboost": { type: "skillbk", n: "精靈水晶(能量激發)", p: 16000, sk: "sk_elf_energyboost", gachaWeight: 20, d: "封存著「能量激發」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+--- js\00-data.js:1753 match=精靈水晶 ---
+1751|         "bk_elf_blazewpn": { type: "skillbk", n: "精靈水晶(烈炎武器)", p: 60000, sk: "sk_elf_blazewpn", gachaWeight: 1 },
+1752|         "bk_elf_flamesoul": { type: "skillbk", n: "精靈水晶(烈焰之魂)", p: 16000, sk: "sk_elf_flamesoul", gachaWeight: 1, d: "封存著「烈焰之魂」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1753|         "bk_elf_physboost": { type: "skillbk", n: "精靈水晶(體能激發)", p: 16000, sk: "sk_elf_physboost", gachaWeight: 20, d: "封存著「體能激發」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1754|         "bk_elf_energyboost": { type: "skillbk", n: "精靈水晶(能量激發)", p: 16000, sk: "sk_elf_energyboost", gachaWeight: 20, d: "封存著「能量激發」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1755|         "bk_elf_attrfire": { type: "skillbk", n: "精靈水晶(屬性之火)", p: 16000, sk: "sk_elf_attrfire", gachaWeight: 1, d: "封存著「屬性之火」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+--- js\00-data.js:1754 match=精靈水晶 ---
+1752|         "bk_elf_flamesoul": { type: "skillbk", n: "精靈水晶(烈焰之魂)", p: 16000, sk: "sk_elf_flamesoul", gachaWeight: 1, d: "封存著「烈焰之魂」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1753|         "bk_elf_physboost": { type: "skillbk", n: "精靈水晶(體能激發)", p: 16000, sk: "sk_elf_physboost", gachaWeight: 20, d: "封存著「體能激發」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1754|         "bk_elf_energyboost": { type: "skillbk", n: "精靈水晶(能量激發)", p: 16000, sk: "sk_elf_energyboost", gachaWeight: 20, d: "封存著「能量激發」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1755|         "bk_elf_attrfire": { type: "skillbk", n: "精靈水晶(屬性之火)", p: 16000, sk: "sk_elf_attrfire", gachaWeight: 1, d: "封存著「屬性之火」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1756|         "bk_elf_preciseshot": { type: "skillbk", n: "精靈水晶(精準射擊)", p: 16000, sk: "sk_elf_preciseshot", gachaWeight: 1, d: "封存著「精準射擊」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+--- js\00-data.js:1755 match=精靈水晶 ---
+1753|         "bk_elf_physboost": { type: "skillbk", n: "精靈水晶(體能激發)", p: 16000, sk: "sk_elf_physboost", gachaWeight: 20, d: "封存著「體能激發」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1754|         "bk_elf_energyboost": { type: "skillbk", n: "精靈水晶(能量激發)", p: 16000, sk: "sk_elf_energyboost", gachaWeight: 20, d: "封存著「能量激發」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1755|         "bk_elf_attrfire": { type: "skillbk", n: "精靈水晶(屬性之火)", p: 16000, sk: "sk_elf_attrfire", gachaWeight: 1, d: "封存著「屬性之火」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1756|         "bk_elf_preciseshot": { type: "skillbk", n: "精靈水晶(精準射擊)", p: 16000, sk: "sk_elf_preciseshot", gachaWeight: 1, d: "封存著「精準射擊」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1757|         "bk_elf_stormshot": { type: "skillbk", n: "精靈水晶(暴風神射)", p: 60000, sk: "sk_elf_stormshot", gachaWeight: 1 },
+--- js\00-data.js:1756 match=精靈水晶 ---
+1754|         "bk_elf_energyboost": { type: "skillbk", n: "精靈水晶(能量激發)", p: 16000, sk: "sk_elf_energyboost", gachaWeight: 20, d: "封存著「能量激發」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1755|         "bk_elf_attrfire": { type: "skillbk", n: "精靈水晶(屬性之火)", p: 16000, sk: "sk_elf_attrfire", gachaWeight: 1, d: "封存著「屬性之火」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1756|         "bk_elf_preciseshot": { type: "skillbk", n: "精靈水晶(精準射擊)", p: 16000, sk: "sk_elf_preciseshot", gachaWeight: 1, d: "封存著「精準射擊」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1757|         "bk_elf_stormshot": { type: "skillbk", n: "精靈水晶(暴風神射)", p: 60000, sk: "sk_elf_stormshot", gachaWeight: 1 },
+1758|         "bk_elf_steelguard": { type: "skillbk", n: "精靈水晶(鋼鐵防護)", p: 60000, sk: "sk_elf_steelguard", gachaWeight: 1, d: "封存著「鋼鐵防護」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+--- js\00-data.js:1757 match=精靈水晶 ---
+1755|         "bk_elf_attrfire": { type: "skillbk", n: "精靈水晶(屬性之火)", p: 16000, sk: "sk_elf_attrfire", gachaWeight: 1, d: "封存著「屬性之火」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1756|         "bk_elf_preciseshot": { type: "skillbk", n: "精靈水晶(精準射擊)", p: 16000, sk: "sk_elf_preciseshot", gachaWeight: 1, d: "封存著「精準射擊」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1757|         "bk_elf_stormshot": { type: "skillbk", n: "精靈水晶(暴風神射)", p: 60000, sk: "sk_elf_stormshot", gachaWeight: 1 },
+1758|         "bk_elf_steelguard": { type: "skillbk", n: "精靈水晶(鋼鐵防護)", p: 60000, sk: "sk_elf_steelguard", gachaWeight: 1, d: "封存著「鋼鐵防護」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1759|         "bk_elf_watervital": { type: "skillbk", n: "精靈水晶(水之元氣)", p: 4000, sk: "sk_elf_watervital", gachaWeight: 10, d: "封存著「水之元氣」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+--- js\00-data.js:1758 match=精靈水晶 ---
+1756|         "bk_elf_preciseshot": { type: "skillbk", n: "精靈水晶(精準射擊)", p: 16000, sk: "sk_elf_preciseshot", gachaWeight: 1, d: "封存著「精準射擊」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1757|         "bk_elf_stormshot": { type: "skillbk", n: "精靈水晶(暴風神射)", p: 60000, sk: "sk_elf_stormshot", gachaWeight: 1 },
+1758|         "bk_elf_steelguard": { type: "skillbk", n: "精靈水晶(鋼鐵防護)", p: 60000, sk: "sk_elf_steelguard", gachaWeight: 1, d: "封存著「鋼鐵防護」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1759|         "bk_elf_watervital": { type: "skillbk", n: "精靈水晶(水之元氣)", p: 4000, sk: "sk_elf_watervital", gachaWeight: 10, d: "封存著「水之元氣」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1760|         // ===== 黑暗精靈水晶（黑暗妖精魔法，賽帝亞販售；潘朵拉抽不到） =====
+--- js\00-data.js:1759 match=精靈水晶 ---
+1757|         "bk_elf_stormshot": { type: "skillbk", n: "精靈水晶(暴風神射)", p: 60000, sk: "sk_elf_stormshot", gachaWeight: 1 },
+1758|         "bk_elf_steelguard": { type: "skillbk", n: "精靈水晶(鋼鐵防護)", p: 60000, sk: "sk_elf_steelguard", gachaWeight: 1, d: "封存著「鋼鐵防護」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1759|         "bk_elf_watervital": { type: "skillbk", n: "精靈水晶(水之元氣)", p: 4000, sk: "sk_elf_watervital", gachaWeight: 10, d: "封存著「水之元氣」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1760|         // ===== 黑暗精靈水晶（黑暗妖精魔法，賽帝亞販售；潘朵拉抽不到） =====
+1761|         "bk_dark_str":       { type: "skillbk", n: "黑暗精靈水晶(力量提升)", p: 500,   sk: "sk_dark_str",       gachaWeight: 0 },
+--- js\00-data.js:1760 match=精靈水晶 ---
+1758|         "bk_elf_steelguard": { type: "skillbk", n: "精靈水晶(鋼鐵防護)", p: 60000, sk: "sk_elf_steelguard", gachaWeight: 1, d: "封存著「鋼鐵防護」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1759|         "bk_elf_watervital": { type: "skillbk", n: "精靈水晶(水之元氣)", p: 4000, sk: "sk_elf_watervital", gachaWeight: 10, d: "封存著「水之元氣」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1760|         // ===== 黑暗精靈水晶（黑暗妖精魔法，賽帝亞販售；潘朵拉抽不到） =====
+1761|         "bk_dark_str":       { type: "skillbk", n: "黑暗精靈水晶(力量提升)", p: 500,   sk: "sk_dark_str",       gachaWeight: 0 },
+1762|         "bk_dark_mrup":      { type: "skillbk", n: "黑暗精靈水晶(影之防護)", p: 500,   sk: "sk_dark_mrup",      gachaWeight: 0 },
+--- js\00-data.js:1761 match=精靈水晶 ---
+1759|         "bk_elf_watervital": { type: "skillbk", n: "精靈水晶(水之元氣)", p: 4000, sk: "sk_elf_watervital", gachaWeight: 10, d: "封存著「水之元氣」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+1760|         // ===== 黑暗精靈水晶（黑暗妖精魔法，賽帝亞販售；潘朵拉抽不到） =====
+1761|         "bk_dark_str":       { type: "skillbk", n: "黑暗精靈水晶(力量提升)", p: 500,   sk: "sk_dark_str",       gachaWeight: 0 },
+1762|         "bk_dark_mrup":      { type: "skillbk", n: "黑暗精靈水晶(影之防護)", p: 500,   sk: "sk_dark_mrup",      gachaWeight: 0 },
+1763|         "bk_dark_stealth":   { type: "skillbk", n: "黑暗精靈水晶(暗隱術)",   p: 500,   sk: "sk_dark_stealth",   gachaWeight: 0 },
+--- js\00-data.js:1762 match=精靈水晶 ---
+1760|         // ===== 黑暗精靈水晶（黑暗妖精魔法，賽帝亞販售；潘朵拉抽不到） =====
+1761|         "bk_dark_str":       { type: "skillbk", n: "黑暗精靈水晶(力量提升)", p: 500,   sk: "sk_dark_str",       gachaWeight: 0 },
+1762|         "bk_dark_mrup":      { type: "skillbk", n: "黑暗精靈水晶(影之防護)", p: 500,   sk: "sk_dark_mrup",      gachaWeight: 0 },
+1763|         "bk_dark_stealth":   { type: "skillbk", n: "黑暗精靈水晶(暗隱術)",   p: 500,   sk: "sk_dark_stealth",   gachaWeight: 0 },
+1764|         "bk_dark_poison":    { type: "skillbk", n: "黑暗精靈水晶(附加劇毒)", p: 500,   sk: "sk_dark_poison",    gachaWeight: 0 },
+--- js\00-data.js:1763 match=精靈水晶 ---
+1761|         "bk_dark_str":       { type: "skillbk", n: "黑暗精靈水晶(力量提升)", p: 500,   sk: "sk_dark_str",       gachaWeight: 0 },
+1762|         "bk_dark_mrup":      { type: "skillbk", n: "黑暗精靈水晶(影之防護)", p: 500,   sk: "sk_dark_mrup",      gachaWeight: 0 },
+1763|         "bk_dark_stealth":   { type: "skillbk", n: "黑暗精靈水晶(暗隱術)",   p: 500,   sk: "sk_dark_stealth",   gachaWeight: 0 },
+1764|         "bk_dark_poison":    { type: "skillbk", n: "黑暗精靈水晶(附加劇毒)", p: 500,   sk: "sk_dark_poison",    gachaWeight: 0 },
+1765|         "bk_dark_refine":    { type: "skillbk", n: "黑暗精靈水晶(提煉魔石)", p: 500,   sk: "sk_dark_refine",    gachaWeight: 0 },
+--- js\00-data.js:1764 match=精靈水晶 ---
+1762|         "bk_dark_mrup":      { type: "skillbk", n: "黑暗精靈水晶(影之防護)", p: 500,   sk: "sk_dark_mrup",      gachaWeight: 0 },
+1763|         "bk_dark_stealth":   { type: "skillbk", n: "黑暗精靈水晶(暗隱術)",   p: 500,   sk: "sk_dark_stealth",   gachaWeight: 0 },
+1764|         "bk_dark_poison":    { type: "skillbk", n: "黑暗精靈水晶(附加劇毒)", p: 500,   sk: "sk_dark_poison",    gachaWeight: 0 },
+1765|         "bk_dark_refine":    { type: "skillbk", n: "黑暗精靈水晶(提煉魔石)", p: 500,   sk: "sk_dark_refine",    gachaWeight: 0 },
+1766|         "bk_dark_dex":       { type: "skillbk", n: "黑暗精靈水晶(敏捷提升)", p: 2500,  sk: "sk_dark_dex",       gachaWeight: 0 },
+--- js\00-data.js:1765 match=精靈水晶 ---
+1763|         "bk_dark_stealth":   { type: "skillbk", n: "黑暗精靈水晶(暗隱術)",   p: 500,   sk: "sk_dark_stealth",   gachaWeight: 0 },
+1764|         "bk_dark_poison":    { type: "skillbk", n: "黑暗精靈水晶(附加劇毒)", p: 500,   sk: "sk_dark_poison",    gachaWeight: 0 },
+1765|         "bk_dark_refine":    { type: "skillbk", n: "黑暗精靈水晶(提煉魔石)", p: 500,   sk: "sk_dark_refine",    gachaWeight: 0 },
+1766|         "bk_dark_dex":       { type: "skillbk", n: "黑暗精靈水晶(敏捷提升)", p: 2500,  sk: "sk_dark_dex",       gachaWeight: 0 },
+1767|         "bk_dark_poisonres": { type: "skillbk", n: "黑暗精靈水晶(毒性抵抗)", p: 2500,  sk: "sk_dark_poisonres", gachaWeight: 0 },
+--- js\00-data.js:1766 match=精靈水晶 ---
+1764|         "bk_dark_poison":    { type: "skillbk", n: "黑暗精靈水晶(附加劇毒)", p: 500,   sk: "sk_dark_poison",    gachaWeight: 0 },
+1765|         "bk_dark_refine":    { type: "skillbk", n: "黑暗精靈水晶(提煉魔石)", p: 500,   sk: "sk_dark_refine",    gachaWeight: 0 },
+1766|         "bk_dark_dex":       { type: "skillbk", n: "黑暗精靈水晶(敏捷提升)", p: 2500,  sk: "sk_dark_dex",       gachaWeight: 0 },
+1767|         "bk_dark_poisonres": { type: "skillbk", n: "黑暗精靈水晶(毒性抵抗)", p: 2500,  sk: "sk_dark_poisonres", gachaWeight: 0 },
+1768|         "bk_dark_burn":      { type: "skillbk", n: "黑暗精靈水晶(燃燒鬥志)", p: 2500,  sk: "sk_dark_burn",      gachaWeight: 0 },
+--- js\00-data.js:1767 match=精靈水晶 ---
+1765|         "bk_dark_refine":    { type: "skillbk", n: "黑暗精靈水晶(提煉魔石)", p: 500,   sk: "sk_dark_refine",    gachaWeight: 0 },
+1766|         "bk_dark_dex":       { type: "skillbk", n: "黑暗精靈水晶(敏捷提升)", p: 2500,  sk: "sk_dark_dex",       gachaWeight: 0 },
+1767|         "bk_dark_poisonres": { type: "skillbk", n: "黑暗精靈水晶(毒性抵抗)", p: 2500,  sk: "sk_dark_poisonres", gachaWeight: 0 },
+1768|         "bk_dark_burn":      { type: "skillbk", n: "黑暗精靈水晶(燃燒鬥志)", p: 2500,  sk: "sk_dark_burn",      gachaWeight: 0 },
+1769|         "bk_dark_walkhaste": { type: "skillbk", n: "黑暗精靈水晶(行走加速)", p: 2500,  sk: "sk_dark_walkhaste", gachaWeight: 0 },
+--- js\00-data.js:1768 match=精靈水晶 ---
+1766|         "bk_dark_dex":       { type: "skillbk", n: "黑暗精靈水晶(敏捷提升)", p: 2500,  sk: "sk_dark_dex",       gachaWeight: 0 },
+1767|         "bk_dark_poisonres": { type: "skillbk", n: "黑暗精靈水晶(毒性抵抗)", p: 2500,  sk: "sk_dark_poisonres", gachaWeight: 0 },
+1768|         "bk_dark_burn":      { type: "skillbk", n: "黑暗精靈水晶(燃燒鬥志)", p: 2500,  sk: "sk_dark_burn",      gachaWeight: 0 },
+1769|         "bk_dark_walkhaste": { type: "skillbk", n: "黑暗精靈水晶(行走加速)", p: 2500,  sk: "sk_dark_walkhaste", gachaWeight: 0 },
+1770|         "bk_dark_fang":      { type: "skillbk", n: "黑暗精靈水晶(暗影之牙)", p: 12500, sk: "sk_dark_fang",      gachaWeight: 10 },
+--- js\00-data.js:1769 match=精靈水晶 ---
+1767|         "bk_dark_poisonres": { type: "skillbk", n: "黑暗精靈水晶(毒性抵抗)", p: 2500,  sk: "sk_dark_poisonres", gachaWeight: 0 },
+1768|         "bk_dark_burn":      { type: "skillbk", n: "黑暗精靈水晶(燃燒鬥志)", p: 2500,  sk: "sk_dark_burn",      gachaWeight: 0 },
+1769|         "bk_dark_walkhaste": { type: "skillbk", n: "黑暗精靈水晶(行走加速)", p: 2500,  sk: "sk_dark_walkhaste", gachaWeight: 0 },
+1770|         "bk_dark_fang":      { type: "skillbk", n: "黑暗精靈水晶(暗影之牙)", p: 12500, sk: "sk_dark_fang",      gachaWeight: 10 },
+1771|         "bk_dark_dodge":     { type: "skillbk", n: "黑暗精靈水晶(暗影閃避)", p: 12500, sk: "sk_dark_dodge",     gachaWeight: 10 },
+--- js\00-data.js:1770 match=精靈水晶 ---
+1768|         "bk_dark_burn":      { type: "skillbk", n: "黑暗精靈水晶(燃燒鬥志)", p: 2500,  sk: "sk_dark_burn",      gachaWeight: 0 },
+1769|         "bk_dark_walkhaste": { type: "skillbk", n: "黑暗精靈水晶(行走加速)", p: 2500,  sk: "sk_dark_walkhaste", gachaWeight: 0 },
+1770|         "bk_dark_fang":      { type: "skillbk", n: "黑暗精靈水晶(暗影之牙)", p: 12500, sk: "sk_dark_fang",      gachaWeight: 10 },
+1771|         "bk_dark_dodge":     { type: "skillbk", n: "黑暗精靈水晶(暗影閃避)", p: 12500, sk: "sk_dark_dodge",     gachaWeight: 10 },
+1772|         "bk_dark_crit":      { type: "skillbk", n: "黑暗精靈水晶(會心一擊)", p: 12500, sk: "sk_dark_crit",      gachaWeight: 10 },
+--- js\00-data.js:1771 match=精靈水晶 ---
+1769|         "bk_dark_walkhaste": { type: "skillbk", n: "黑暗精靈水晶(行走加速)", p: 2500,  sk: "sk_dark_walkhaste", gachaWeight: 0 },
+1770|         "bk_dark_fang":      { type: "skillbk", n: "黑暗精靈水晶(暗影之牙)", p: 12500, sk: "sk_dark_fang",      gachaWeight: 10 },
+1771|         "bk_dark_dodge":     { type: "skillbk", n: "黑暗精靈水晶(暗影閃避)", p: 12500, sk: "sk_dark_dodge",     gachaWeight: 10 },
+1772|         "bk_dark_crit":      { type: "skillbk", n: "黑暗精靈水晶(會心一擊)", p: 12500, sk: "sk_dark_crit",      gachaWeight: 10 },
+1773|         "bk_dark_erup":      { type: "skillbk", n: "黑暗精靈水晶(迴避提升)", p: 12500, sk: "sk_dark_erup",      gachaWeight: 10 },
+--- js\00-data.js:1772 match=精靈水晶 ---
+1770|         "bk_dark_fang":      { type: "skillbk", n: "黑暗精靈水晶(暗影之牙)", p: 12500, sk: "sk_dark_fang",      gachaWeight: 10 },
+1771|         "bk_dark_dodge":     { type: "skillbk", n: "黑暗精靈水晶(暗影閃避)", p: 12500, sk: "sk_dark_dodge",     gachaWeight: 10 },
+1772|         "bk_dark_crit":      { type: "skillbk", n: "黑暗精靈水晶(會心一擊)", p: 12500, sk: "sk_dark_crit",      gachaWeight: 10 },
+1773|         "bk_dark_erup":      { type: "skillbk", n: "黑暗精靈水晶(迴避提升)", p: 12500, sk: "sk_dark_erup",      gachaWeight: 10 },
+1774|         "bk_dark_double":    { type: "skillbk", n: "黑暗精靈水晶(雙重破壞)", p: 12500, sk: "sk_dark_double",    gachaWeight: 10 },
+--- js\00-data.js:1773 match=精靈水晶 ---
+1771|         "bk_dark_dodge":     { type: "skillbk", n: "黑暗精靈水晶(暗影閃避)", p: 12500, sk: "sk_dark_dodge",     gachaWeight: 10 },
+1772|         "bk_dark_crit":      { type: "skillbk", n: "黑暗精靈水晶(會心一擊)", p: 12500, sk: "sk_dark_crit",      gachaWeight: 10 },
+1773|         "bk_dark_erup":      { type: "skillbk", n: "黑暗精靈水晶(迴避提升)", p: 12500, sk: "sk_dark_erup",      gachaWeight: 10 },
+1774|         "bk_dark_double":    { type: "skillbk", n: "黑暗精靈水晶(雙重破壞)", p: 12500, sk: "sk_dark_double",    gachaWeight: 10 },
+1775|         "bk_dark_armorbreak":{ type: "skillbk", n: "黑暗精靈水晶(破壞盔甲)", p: 12500, sk: "sk_dark_armorbreak", gachaWeight: 1 },
+--- js\00-data.js:1774 match=精靈水晶 ---
+1772|         "bk_dark_crit":      { type: "skillbk", n: "黑暗精靈水晶(會心一擊)", p: 12500, sk: "sk_dark_crit",      gachaWeight: 10 },
+1773|         "bk_dark_erup":      { type: "skillbk", n: "黑暗精靈水晶(迴避提升)", p: 12500, sk: "sk_dark_erup",      gachaWeight: 10 },
+1774|         "bk_dark_double":    { type: "skillbk", n: "黑暗精靈水晶(雙重破壞)", p: 12500, sk: "sk_dark_double",    gachaWeight: 10 },
+1775|         "bk_dark_armorbreak":{ type: "skillbk", n: "黑暗精靈水晶(破壞盔甲)", p: 12500, sk: "sk_dark_armorbreak", gachaWeight: 1 },
+1776|         // ===== 記憶水晶（幻術士法術，史菲爾販售）=====
+--- js\00-data.js:1775 match=精靈水晶 ---
+1773|         "bk_dark_erup":      { type: "skillbk", n: "黑暗精靈水晶(迴避提升)", p: 12500, sk: "sk_dark_erup",      gachaWeight: 10 },
+1774|         "bk_dark_double":    { type: "skillbk", n: "黑暗精靈水晶(雙重破壞)", p: 12500, sk: "sk_dark_double",    gachaWeight: 10 },
+1775|         "bk_dark_armorbreak":{ type: "skillbk", n: "黑暗精靈水晶(破壞盔甲)", p: 12500, sk: "sk_dark_armorbreak", gachaWeight: 1 },
+1776|         // ===== 記憶水晶（幻術士法術，史菲爾販售）=====
+1777|         "mem_ogre":       { type: "skillbk", n: "記憶水晶(幻覺：歐吉)", p: 1800,  sk: "sk_illu_ogre",       gachaWeight: 0, d: "封存幻術「幻覺：歐吉」的記憶水晶，凝視其中便能窺見扭曲現實的祕法。" },
+--- js\00-data.js:2151 match=封印禁地 ---
+2149|         "fafurion": { hard: true, n: "法利昂", lv: 93, s: "L", beh: "主動", race: "龍", boss: true, e: "water", hp: 130000, ac: -80, mr: 250, exp: 9400, goldMin: 18236, goldMax: 28524, atkSpd: 2, dmg: [5, 79], db: 101, hit: 128, mag: { skn: "巨水炮", cd: 50, dmg: [3, 100], db: 250, ele: "water" }, mag2: { skn: "寒冰噴吐", cd: 70, chance: 0.3, dmg: [4, 100], db: 399, ele: "water", sec: { type: "freeze", pbase: 200 } }, mag3: { skn: "冰裂術", cd: 70, dmg: [1, 100], db: 200, ele: "water", ext_freeze: 666 } },
+2150|         "valakas": { hard: true, n: "巴拉卡斯", lv: 95, s: "L", beh: "主動", race: "龍", boss: true, e: "fire", hp: 200000, ac: -99, mr: 200, exp: 10000, goldMin: 20236, goldMax: 36524, atkSpd: 4, dmg: [5, 96], db: 122, hit: 128, mag: { skn: "火牢", cd: 50, chance: 0.1, type: "burn", d: 200, tick: 3, dur: 21 }, mag2: { skn: "流星雨", cd: 100, dmg: [5, 100], db: 560, ele: "fire", sec: { type: "scald", tick: 3, d: 100, dur: 15, pbase: 200 } }, mag3: { skn: "火焰噴吐", cd: 170, dmg: [2, 100], db: 1200, ele: "fire" } },
+2151|         "lindvior": { hard: true, n: "林德拜爾", lv: 90, s: "L", beh: "主動", race: "龍", boss: true, noAutoTeleport: true, e: "wind", hp: 120000, ac: -90, mr: 200, exp: 7922, goldMin: 13236, goldMax: 21524, atkSpd: 1, dmg: [3, 86], db: 26, hit: 128, mag: { skn: "封印禁地", cd: 50, chance: 0.1, type: "silence", pbase: 250 }, mag2: { skn: "閃電風暴", cd: 70, dmg: [7, 100], db: 299, ele: "wind" }, mag3: { skn: "電擊", cd: 90, chance: 0.5, dmg: [1, 500], db: 599, ele: "wind", sec: { type: "paralyze", pbase: 200 } } },
+2152|         // ===== 🐉 v3.7.57 侵蝕的安塔瑞斯巢穴（副本怪·普攻=同級一般怪2倍 DPS 手填·王類走 boss 曲線自動≈2.05×）=====
+2153|         "ant_kama_nan":   { n: "喀瑪南", lv: 53, s: "S", beh: "主動", race: "喀瑪", e: "fire",  hp: 1900, ac: -40, mr: 80, exp: 2026, goldMin: 380, goldMax: 660, atkSpd: 2, dmg: [4, 59], db: 120, hit: 30, mag: { skn: "礦石投擲", cd: 50, chance: 0.5, dmg: [4, 20], db: 100, ele: "none" } },
+--- js\00-data.js:2575 match=精靈水晶 ---
+2573|                 { id: "npc_elpin", n: "埃爾頻", title: "雜貨商人", type: "shop", d: "店裡擺滿旅人路上少不了的小東西。販售各種日常消耗品。" },
+2574|                 { id: "npc_wh_elf", n: "艾爾", title: "倉庫", type: "warehouse", d: "沉默寡言的守庫人，替你看顧每一枚硬幣。存放物品與金幣，四個存檔角色共用。" },
+2575| 				{ id: "npc_linda", n: "琳達", title: "精靈魔法商人", type: "shop", d: "精靈族的水晶在她手中閃著微光。販賣各種基本精靈水晶。" },
+2576|                 { id: "npc_elion", n: "艾利溫", title: "妖精屬性學習", type: "quest", d: "掌管妖精元素契約的智者，他會引領你做出一生只有一次的抉擇。妖精選擇屬性魔法的重要NPC，四種屬性只能選擇一種。" },
+2577|                 { id: "npc_nalien", n: "那翰", title: "製作", type: "craft", d: "指間流轉著森林的旋律，他能將你的素材化為動聽之器。提供協助製作魔法笛子。" },
+--- js\00-data.js:2711 match=精靈水晶 ---
+2709|                 { id: "npc_skvati", n: "史克瓦提", title: "雜貨商人", type: "shop", d: "黑暗妖精商人史克瓦提，攤上既有日常所需，也有暗影鍛成的兵刃。販售日常消耗品與基礎的黑暗妖精武器。" },
+2710|                 { id: "npc_wh_silent", n: "雷亞斯", title: "倉庫", type: "warehouse", d: "存放物品與金幣，四個存檔角色共用。" },
+2711|                 { id: "npc_saedia", n: "賽帝亞", title: "魔法商人", type: "shop", d: "通曉暗影晶體的賽帝亞。販賣黑暗精靈水晶。" },
+2712|                 { id: "npc_kupu", n: "庫普", title: "製作", type: "craft", d: "黑暗妖精的鋒刃巨匠庫普，以銀與暗影鍛造致命之器。鍛造銀與黑暗妖精的鋼爪、雙刀、十字弓。" },
+2713|                 { id: "npc_kororanz", n: "可羅蘭斯", title: "製作", type: "craft", d: "鑽研拉斯塔巴德古史的鍛造師可羅蘭斯。集齊封印的歷史書八頁可製成製作武器秘笈，再以軍王／武官武器與聖地遺物等鍛成五件傳說武器。" },
+--- js\00-data.js:2760 match=reqE ---
+2758|         // ================= 【法師魔法】 =================
+2759|         // 一階魔法 (Lv 4)
+2760|         "sk_heal1": { n: "初級治癒術", type: "heal", justiceHeal: true, tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 4, valBase: 0, valDice: [1, 15], healDice: [1, 20], healBase: 20, classicHeal: { baseDice: 2, sides: 4 }, msg: "你感覺舒服了一點。" },
+2761|         "sk_sunlight": { n: "日光術", type: "buff", tier: 1, reqM: 4, reqE: 8, reqK: 16, reqI: 10, reqDk: 15, mp: 4, dur: 7200, msg: "你更容易被怪物發現了。" },
+2762|         "sk_shield": { n: "保護罩", type: "buff", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 2, dur: 1200, d: { ac: 2 } },
+--- js\00-data.js:2761 match=reqE ---
+2759|         // 一階魔法 (Lv 4)
+2760|         "sk_heal1": { n: "初級治癒術", type: "heal", justiceHeal: true, tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 4, valBase: 0, valDice: [1, 15], healDice: [1, 20], healBase: 20, classicHeal: { baseDice: 2, sides: 4 }, msg: "你感覺舒服了一點。" },
+2761|         "sk_sunlight": { n: "日光術", type: "buff", tier: 1, reqM: 4, reqE: 8, reqK: 16, reqI: 10, reqDk: 15, mp: 4, dur: 7200, msg: "你更容易被怪物發現了。" },
+2762|         "sk_shield": { n: "保護罩", type: "buff", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 2, dur: 1200, d: { ac: 2 } },
+2763|         "sk_lightarrow": { n: "光箭", type: "atk", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 3, dmgType: "magic", ele: "none", dmgDice: [1, 10], dmgBase: 8 },
+--- js\00-data.js:2762 match=reqE ---
+2760|         "sk_heal1": { n: "初級治癒術", type: "heal", justiceHeal: true, tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 4, valBase: 0, valDice: [1, 15], healDice: [1, 20], healBase: 20, classicHeal: { baseDice: 2, sides: 4 }, msg: "你感覺舒服了一點。" },
+2761|         "sk_sunlight": { n: "日光術", type: "buff", tier: 1, reqM: 4, reqE: 8, reqK: 16, reqI: 10, reqDk: 15, mp: 4, dur: 7200, msg: "你更容易被怪物發現了。" },
+2762|         "sk_shield": { n: "保護罩", type: "buff", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 2, dur: 1200, d: { ac: 2 } },
+2763|         "sk_lightarrow": { n: "光箭", type: "atk", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 3, dmgType: "magic", ele: "none", dmgDice: [1, 10], dmgBase: 8 },
+2764|         "sk_teleport": { n: "傳送術", type: "manual", tier: 1, reqM: 4, reqE: 8, reqK: 16, reqI: 10, reqDk: 15, mp: 5, mEff: "teleport" },
+--- js\00-data.js:2763 match=reqE ---
+2761|         "sk_sunlight": { n: "日光術", type: "buff", tier: 1, reqM: 4, reqE: 8, reqK: 16, reqI: 10, reqDk: 15, mp: 4, dur: 7200, msg: "你更容易被怪物發現了。" },
+2762|         "sk_shield": { n: "保護罩", type: "buff", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 2, dur: 1200, d: { ac: 2 } },
+2763|         "sk_lightarrow": { n: "光箭", type: "atk", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 3, dmgType: "magic", ele: "none", dmgDice: [1, 10], dmgBase: 8 },
+2764|         "sk_teleport": { n: "傳送術", type: "manual", tier: 1, reqM: 4, reqE: 8, reqK: 16, reqI: 10, reqDk: 15, mp: 5, mEff: "teleport" },
+2765|         "sk_icearrow": { n: "冰箭", type: "atk", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 3, dmgType: "magic", ele: "water", dmgDice: [1, 10], dmgBase: 10 },
+--- js\00-data.js:2764 match=reqE ---
+2762|         "sk_shield": { n: "保護罩", type: "buff", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 2, dur: 1200, d: { ac: 2 } },
+2763|         "sk_lightarrow": { n: "光箭", type: "atk", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 3, dmgType: "magic", ele: "none", dmgDice: [1, 10], dmgBase: 8 },
+2764|         "sk_teleport": { n: "傳送術", type: "manual", tier: 1, reqM: 4, reqE: 8, reqK: 16, reqI: 10, reqDk: 15, mp: 5, mEff: "teleport" },
+2765|         "sk_icearrow": { n: "冰箭", type: "atk", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 3, dmgType: "magic", ele: "water", dmgDice: [1, 10], dmgBase: 10 },
+2766|         "sk_windblade": { n: "風刃", type: "atk", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 3, dmgType: "magic", ele: "wind", dmgDice: [1, 10], dmgBase: 10 },
+--- js\00-data.js:2765 match=reqE ---
+2763|         "sk_lightarrow": { n: "光箭", type: "atk", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 3, dmgType: "magic", ele: "none", dmgDice: [1, 10], dmgBase: 8 },
+2764|         "sk_teleport": { n: "傳送術", type: "manual", tier: 1, reqM: 4, reqE: 8, reqK: 16, reqI: 10, reqDk: 15, mp: 5, mEff: "teleport" },
+2765|         "sk_icearrow": { n: "冰箭", type: "atk", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 3, dmgType: "magic", ele: "water", dmgDice: [1, 10], dmgBase: 10 },
+2766|         "sk_windblade": { n: "風刃", type: "atk", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 3, dmgType: "magic", ele: "wind", dmgDice: [1, 10], dmgBase: 10 },
+2767|         "sk_holy_wpn": { n: "神聖武器", type: "buff", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 10, dur: 1200, d: { extraDmg: 1, extraHit: 1 }, msg: "你的武器暫時被注入了神聖力量。" },
+--- js\00-data.js:2766 match=reqE ---
+2764|         "sk_teleport": { n: "傳送術", type: "manual", tier: 1, reqM: 4, reqE: 8, reqK: 16, reqI: 10, reqDk: 15, mp: 5, mEff: "teleport" },
+2765|         "sk_icearrow": { n: "冰箭", type: "atk", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 3, dmgType: "magic", ele: "water", dmgDice: [1, 10], dmgBase: 10 },
+2766|         "sk_windblade": { n: "風刃", type: "atk", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 3, dmgType: "magic", ele: "wind", dmgDice: [1, 10], dmgBase: 10 },
+2767|         "sk_holy_wpn": { n: "神聖武器", type: "buff", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 10, dur: 1200, d: { extraDmg: 1, extraHit: 1 }, msg: "你的武器暫時被注入了神聖力量。" },
+2768| 
+--- js\00-data.js:2767 match=reqE ---
+2765|         "sk_icearrow": { n: "冰箭", type: "atk", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 3, dmgType: "magic", ele: "water", dmgDice: [1, 10], dmgBase: 10 },
+2766|         "sk_windblade": { n: "風刃", type: "atk", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 3, dmgType: "magic", ele: "wind", dmgDice: [1, 10], dmgBase: 10 },
+2767|         "sk_holy_wpn": { n: "神聖武器", type: "buff", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 10, dur: 1200, d: { extraDmg: 1, extraHit: 1 }, msg: "你的武器暫時被注入了神聖力量。" },
+2768| 
+2769|         // 二階魔法 (Lv 8)
+--- js\00-data.js:2770 match=reqE ---
+2768| 
+2769|         // 二階魔法 (Lv 8)
+2770|         "sk_antidote": { n: "解毒術", type: "heal", tier: 2, reqM: 8, reqE: 16, mp: 8, msg: "你感覺毒素消退了。" },
+2771|         "sk_cold_shiver": { n: "寒冷戰慄", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 9, dmgType: "magic", ele: "none", dmgDice: [2, 10], dmgBase: 10, lifesteal: true, healSlot: true },
+2772|         "sk_poison_curse": { n: "毒咒", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 10, dmgType: "magic", status: { kind: "poison", pbase: 100, dur: 15, tick: 3, dmg: [1, 8] }, msg: "你使目標中毒了。" },
+--- js\00-data.js:2771 match=reqE ---
+2769|         // 二階魔法 (Lv 8)
+2770|         "sk_antidote": { n: "解毒術", type: "heal", tier: 2, reqM: 8, reqE: 16, mp: 8, msg: "你感覺毒素消退了。" },
+2771|         "sk_cold_shiver": { n: "寒冷戰慄", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 9, dmgType: "magic", ele: "none", dmgDice: [2, 10], dmgBase: 10, lifesteal: true, healSlot: true },
+2772|         "sk_poison_curse": { n: "毒咒", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 10, dmgType: "magic", status: { kind: "poison", pbase: 100, dur: 15, tick: 3, dmg: [1, 8] }, msg: "你使目標中毒了。" },
+2773|         "sk_ench_wpn": { n: "擬似魔法武器", type: "buff", tier: 2, reqM: 8, reqE: 16, mp: 20, dur: 1800, d: { extraDmg: 2 }, msg: "你的武器暫時被注入了魔法力量。" },
+--- js\00-data.js:2772 match=reqE ---
+2770|         "sk_antidote": { n: "解毒術", type: "heal", tier: 2, reqM: 8, reqE: 16, mp: 8, msg: "你感覺毒素消退了。" },
+2771|         "sk_cold_shiver": { n: "寒冷戰慄", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 9, dmgType: "magic", ele: "none", dmgDice: [2, 10], dmgBase: 10, lifesteal: true, healSlot: true },
+2772|         "sk_poison_curse": { n: "毒咒", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 10, dmgType: "magic", status: { kind: "poison", pbase: 100, dur: 15, tick: 3, dmg: [1, 8] }, msg: "你使目標中毒了。" },
+2773|         "sk_ench_wpn": { n: "擬似魔法武器", type: "buff", tier: 2, reqM: 8, reqE: 16, mp: 20, dur: 1800, d: { extraDmg: 2 }, msg: "你的武器暫時被注入了魔法力量。" },
+2774|         "sk_reveal": { n: "無所遁形術", type: "buff", tier: 2, reqM: 8, reqE: 16, mp: 8, dur: 180 },
+--- js\00-data.js:2773 match=reqE ---
+2771|         "sk_cold_shiver": { n: "寒冷戰慄", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 9, dmgType: "magic", ele: "none", dmgDice: [2, 10], dmgBase: 10, lifesteal: true, healSlot: true },
+2772|         "sk_poison_curse": { n: "毒咒", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 10, dmgType: "magic", status: { kind: "poison", pbase: 100, dur: 15, tick: 3, dmg: [1, 8] }, msg: "你使目標中毒了。" },
+2773|         "sk_ench_wpn": { n: "擬似魔法武器", type: "buff", tier: 2, reqM: 8, reqE: 16, mp: 20, dur: 1800, d: { extraDmg: 2 }, msg: "你的武器暫時被注入了魔法力量。" },
+2774|         "sk_reveal": { n: "無所遁形術", type: "buff", tier: 2, reqM: 8, reqE: 16, mp: 8, dur: 180 },
+2775|         "sk_load_up": { n: "負重強化", type: "buff", tier: 2, reqM: 8, reqE: 16, reqD: 16, mp: 10, dur: 1800, label: "增益", msg: "感覺到身體變輕了。" },   // 🔧 改版：負重上限+50（持續1800秒，效果結束才再施放）
+--- js\00-data.js:2774 match=reqE ---
+2772|         "sk_poison_curse": { n: "毒咒", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 10, dmgType: "magic", status: { kind: "poison", pbase: 100, dur: 15, tick: 3, dmg: [1, 8] }, msg: "你使目標中毒了。" },
+2773|         "sk_ench_wpn": { n: "擬似魔法武器", type: "buff", tier: 2, reqM: 8, reqE: 16, mp: 20, dur: 1800, d: { extraDmg: 2 }, msg: "你的武器暫時被注入了魔法力量。" },
+2774|         "sk_reveal": { n: "無所遁形術", type: "buff", tier: 2, reqM: 8, reqE: 16, mp: 8, dur: 180 },
+2775|         "sk_load_up": { n: "負重強化", type: "buff", tier: 2, reqM: 8, reqE: 16, reqD: 16, mp: 10, dur: 1800, label: "增益", msg: "感覺到身體變輕了。" },   // 🔧 改版：負重上限+50（持續1800秒，效果結束才再施放）
+2776|         "sk_firearrow": { n: "火箭", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 3, dmgType: "magic", ele: "fire", dmgDice: [2, 10], dmgBase: 10 },
+--- js\00-data.js:2775 match=reqE ---
+2773|         "sk_ench_wpn": { n: "擬似魔法武器", type: "buff", tier: 2, reqM: 8, reqE: 16, mp: 20, dur: 1800, d: { extraDmg: 2 }, msg: "你的武器暫時被注入了魔法力量。" },
+2774|         "sk_reveal": { n: "無所遁形術", type: "buff", tier: 2, reqM: 8, reqE: 16, mp: 8, dur: 180 },
+2775|         "sk_load_up": { n: "負重強化", type: "buff", tier: 2, reqM: 8, reqE: 16, reqD: 16, mp: 10, dur: 1800, label: "增益", msg: "感覺到身體變輕了。" },   // 🔧 改版：負重上限+50（持續1800秒，效果結束才再施放）
+2776|         "sk_firearrow": { n: "火箭", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 3, dmgType: "magic", ele: "fire", dmgDice: [2, 10], dmgBase: 10 },
+2777|         "sk_hell_fang": { n: "地獄之牙", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 3, dmgType: "magic", ele: "earth", dmgDice: [2, 10], dmgBase: 10 },
+--- js\00-data.js:2776 match=reqE ---
+2774|         "sk_reveal": { n: "無所遁形術", type: "buff", tier: 2, reqM: 8, reqE: 16, mp: 8, dur: 180 },
+2775|         "sk_load_up": { n: "負重強化", type: "buff", tier: 2, reqM: 8, reqE: 16, reqD: 16, mp: 10, dur: 1800, label: "增益", msg: "感覺到身體變輕了。" },   // 🔧 改版：負重上限+50（持續1800秒，效果結束才再施放）
+2776|         "sk_firearrow": { n: "火箭", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 3, dmgType: "magic", ele: "fire", dmgDice: [2, 10], dmgBase: 10 },
+2777|         "sk_hell_fang": { n: "地獄之牙", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 3, dmgType: "magic", ele: "earth", dmgDice: [2, 10], dmgBase: 10 },
+2778| 
+--- js\00-data.js:2777 match=reqE ---
+2775|         "sk_load_up": { n: "負重強化", type: "buff", tier: 2, reqM: 8, reqE: 16, reqD: 16, mp: 10, dur: 1800, label: "增益", msg: "感覺到身體變輕了。" },   // 🔧 改版：負重上限+50（持續1800秒，效果結束才再施放）
+2776|         "sk_firearrow": { n: "火箭", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 3, dmgType: "magic", ele: "fire", dmgDice: [2, 10], dmgBase: 10 },
+2777|         "sk_hell_fang": { n: "地獄之牙", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 3, dmgType: "magic", ele: "earth", dmgDice: [2, 10], dmgBase: 10 },
+2778| 
+2779|         // 三階魔法 (Lv 12)
+--- js\00-data.js:2780 match=reqE ---
+2778| 
+2779|         // 三階魔法 (Lv 12)
+2780|         "sk_aurora": { n: "極光雷電", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 13, dmgType: "magic", ele: "wind", target: "all", dmgDice: [4, 10] },
+2781|         "sk_undead_bane": { n: "起死回生術", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 15, dmgType: "magic", instakill: { tag: "undead", cap: 12 } },   // 🔧 即死成功率最高 60%
+2782|         "sk_heal_mid": { n: "中級治癒術", type: "heal", justiceHeal: true, tier: 3, reqM: 12, reqE: 24, mp: 11, valDice: [1, 30], healDice: [1, 50], healBase: 50, classicHeal: { baseDice: 4, sides: 8 }, msg: "你感覺舒服了一點。" },
+--- js\00-data.js:2781 match=reqE ---
+2779|         // 三階魔法 (Lv 12)
+2780|         "sk_aurora": { n: "極光雷電", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 13, dmgType: "magic", ele: "wind", target: "all", dmgDice: [4, 10] },
+2781|         "sk_undead_bane": { n: "起死回生術", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 15, dmgType: "magic", instakill: { tag: "undead", cap: 12 } },   // 🔧 即死成功率最高 60%
+2782|         "sk_heal_mid": { n: "中級治癒術", type: "heal", justiceHeal: true, tier: 3, reqM: 12, reqE: 24, mp: 11, valDice: [1, 30], healDice: [1, 50], healBase: 50, classicHeal: { baseDice: 4, sides: 8 }, msg: "你感覺舒服了一點。" },
+2783|         "sk_dark_blind": { n: "闇盲咒術", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 20, dmgType: "magic", status: { kind: "blind", pbase: 150, hit: 4, dur: 10 } },
+--- js\00-data.js:2782 match=reqE ---
+2780|         "sk_aurora": { n: "極光雷電", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 13, dmgType: "magic", ele: "wind", target: "all", dmgDice: [4, 10] },
+2781|         "sk_undead_bane": { n: "起死回生術", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 15, dmgType: "magic", instakill: { tag: "undead", cap: 12 } },   // 🔧 即死成功率最高 60%
+2782|         "sk_heal_mid": { n: "中級治癒術", type: "heal", justiceHeal: true, tier: 3, reqM: 12, reqE: 24, mp: 11, valDice: [1, 30], healDice: [1, 50], healBase: 50, classicHeal: { baseDice: 4, sides: 8 }, msg: "你感覺舒服了一點。" },
+2783|         "sk_dark_blind": { n: "闇盲咒術", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 20, dmgType: "magic", status: { kind: "blind", pbase: 150, hit: 4, dur: 10 } },
+2784|         "sk_shield2": { n: "鎧甲護持", type: "buff", tier: 3, reqM: 12, reqE: 24, mp: 20, dur: 1800, d: { ac: 3 }, msg: "你的盔甲暫時被注入了魔法力量。" },
+--- js\00-data.js:2783 match=reqE ---
+2781|         "sk_undead_bane": { n: "起死回生術", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 15, dmgType: "magic", instakill: { tag: "undead", cap: 12 } },   // 🔧 即死成功率最高 60%
+2782|         "sk_heal_mid": { n: "中級治癒術", type: "heal", justiceHeal: true, tier: 3, reqM: 12, reqE: 24, mp: 11, valDice: [1, 30], healDice: [1, 50], healBase: 50, classicHeal: { baseDice: 4, sides: 8 }, msg: "你感覺舒服了一點。" },
+2783|         "sk_dark_blind": { n: "闇盲咒術", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 20, dmgType: "magic", status: { kind: "blind", pbase: 150, hit: 4, dur: 10 } },
+2784|         "sk_shield2": { n: "鎧甲護持", type: "buff", tier: 3, reqM: 12, reqE: 24, mp: 20, dur: 1800, d: { ac: 3 }, msg: "你的盔甲暫時被注入了魔法力量。" },
+2785|         "sk_chill": { n: "寒冰氣息", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 9, dmgType: "magic", ele: "water", target: "all", dmgDice: [5, 5], dmgBase: 5 },
+--- js\00-data.js:2784 match=reqE ---
+2782|         "sk_heal_mid": { n: "中級治癒術", type: "heal", justiceHeal: true, tier: 3, reqM: 12, reqE: 24, mp: 11, valDice: [1, 30], healDice: [1, 50], healBase: 50, classicHeal: { baseDice: 4, sides: 8 }, msg: "你感覺舒服了一點。" },
+2783|         "sk_dark_blind": { n: "闇盲咒術", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 20, dmgType: "magic", status: { kind: "blind", pbase: 150, hit: 4, dur: 10 } },
+2784|         "sk_shield2": { n: "鎧甲護持", type: "buff", tier: 3, reqM: 12, reqE: 24, mp: 20, dur: 1800, d: { ac: 3 }, msg: "你的盔甲暫時被注入了魔法力量。" },
+2785|         "sk_chill": { n: "寒冰氣息", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 9, dmgType: "magic", ele: "water", target: "all", dmgDice: [5, 5], dmgBase: 5 },
+2786|         "sk_energy_sense": { n: "能量感測", type: "manual", tier: 3, reqM: 12, reqE: 24, mp: 8, mEff: "sense" },
+--- js\00-data.js:2785 match=reqE ---
+2783|         "sk_dark_blind": { n: "闇盲咒術", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 20, dmgType: "magic", status: { kind: "blind", pbase: 150, hit: 4, dur: 10 } },
+2784|         "sk_shield2": { n: "鎧甲護持", type: "buff", tier: 3, reqM: 12, reqE: 24, mp: 20, dur: 1800, d: { ac: 3 }, msg: "你的盔甲暫時被注入了魔法力量。" },
+2785|         "sk_chill": { n: "寒冰氣息", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 9, dmgType: "magic", ele: "water", target: "all", dmgDice: [5, 5], dmgBase: 5 },
+2786|         "sk_energy_sense": { n: "能量感測", type: "manual", tier: 3, reqM: 12, reqE: 24, mp: 8, mEff: "sense" },
+2787| 
+--- js\00-data.js:2786 match=reqE ---
+2784|         "sk_shield2": { n: "鎧甲護持", type: "buff", tier: 3, reqM: 12, reqE: 24, mp: 20, dur: 1800, d: { ac: 3 }, msg: "你的盔甲暫時被注入了魔法力量。" },
+2785|         "sk_chill": { n: "寒冰氣息", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 9, dmgType: "magic", ele: "water", target: "all", dmgDice: [5, 5], dmgBase: 5 },
+2786|         "sk_energy_sense": { n: "能量感測", type: "manual", tier: 3, reqM: 12, reqE: 24, mp: 8, mEff: "sense" },
+2787| 
+2788|         // 四階魔法 (Lv 16)
+--- js\00-data.js:2789 match=reqE ---
+2787| 
+2788|         // 四階魔法 (Lv 16)
+2789|         "sk_fireball": { n: "燃燒的火球", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 16, dmgType: "magic", ele: "fire", target: "all", dmgDice: [5, 9] },
+2790|         "sk_fireball_burst": { n: "爆裂的火球", type: "atk", tier: 4, mp: 20, dmgType: "magic", ele: "fire", target: "all", dmgDice: [6, 10] },   // 🏺 遺物「烈焰巫師的正式長袍」：已學燃燒的火球時，於施法瞬間替換（castSkillInner→_fireballMorphId·js/07；傭兵鏡像 js/06）；特效由 js/09 SPELL_FX 直接註冊「爆裂的火球」；非可學技能
+2791|         "sk_darkwave": { n: "闇黑波動", type: "atk", tier: 4, dmgType: "magic", ele: "none", target: "all", dmgDice: [5, 9] },   // 🏺 遺物「被差遣的迷你闇精靈」奇古獸 procSkill(8%) 用；非可學技能·對全體造成無屬性魔法傷害
+--- js\00-data.js:2792 match=reqE ---
+2790|         "sk_fireball_burst": { n: "爆裂的火球", type: "atk", tier: 4, mp: 20, dmgType: "magic", ele: "fire", target: "all", dmgDice: [6, 10] },   // 🏺 遺物「烈焰巫師的正式長袍」：已學燃燒的火球時，於施法瞬間替換（castSkillInner→_fireballMorphId·js/07；傭兵鏡像 js/06）；特效由 js/09 SPELL_FX 直接註冊「爆裂的火球」；非可學技能
+2791|         "sk_darkwave": { n: "闇黑波動", type: "atk", tier: 4, dmgType: "magic", ele: "none", target: "all", dmgDice: [5, 9] },   // 🏺 遺物「被差遣的迷你闇精靈」奇古獸 procSkill(8%) 用；非可學技能·對全體造成無屬性魔法傷害
+2792|         "sk_dex_up": { n: "通暢氣脈術", type: "buff", tier: 4, reqM: 16, reqE: 32, mp: 45, dur: 1200, d: { dex: 5 }, msg: "你覺得身手變得更靈活。" },
+2793|         "sk_break": { n: "壞物術", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 20, dmgType: "magic", status: { kind: "broken", pbase: 150, dur: 25 } },
+2794|         "sk_vampire": { n: "吸血鬼之吻", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 13, dmgType: "magic", ele: "none", dmgDice: [3, 10], dmgBase: 15, lifesteal: true, healSlot: true },
+--- js\00-data.js:2793 match=reqE ---
+2791|         "sk_darkwave": { n: "闇黑波動", type: "atk", tier: 4, dmgType: "magic", ele: "none", target: "all", dmgDice: [5, 9] },   // 🏺 遺物「被差遣的迷你闇精靈」奇古獸 procSkill(8%) 用；非可學技能·對全體造成無屬性魔法傷害
+2792|         "sk_dex_up": { n: "通暢氣脈術", type: "buff", tier: 4, reqM: 16, reqE: 32, mp: 45, dur: 1200, d: { dex: 5 }, msg: "你覺得身手變得更靈活。" },
+2793|         "sk_break": { n: "壞物術", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 20, dmgType: "magic", status: { kind: "broken", pbase: 150, dur: 25 } },
+2794|         "sk_vampire": { n: "吸血鬼之吻", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 13, dmgType: "magic", ele: "none", dmgDice: [3, 10], dmgBase: 15, lifesteal: true, healSlot: true },
+2795|         "sk_slow": { n: "緩速術", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 20, dmgType: "magic", status: { kind: "slow", pbase: 150, dur: 30 } },
+--- js\00-data.js:2794 match=reqE ---
+2792|         "sk_dex_up": { n: "通暢氣脈術", type: "buff", tier: 4, reqM: 16, reqE: 32, mp: 45, dur: 1200, d: { dex: 5 }, msg: "你覺得身手變得更靈活。" },
+2793|         "sk_break": { n: "壞物術", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 20, dmgType: "magic", status: { kind: "broken", pbase: 150, dur: 25 } },
+2794|         "sk_vampire": { n: "吸血鬼之吻", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 13, dmgType: "magic", ele: "none", dmgDice: [3, 10], dmgBase: 15, lifesteal: true, healSlot: true },
+2795|         "sk_slow": { n: "緩速術", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 20, dmgType: "magic", status: { kind: "slow", pbase: 150, dur: 30 } },
+2796|         "sk_relic_stun": { n: "暈眩", type: "atk", status: { kind: "stun", dur: 2, force: true } },   // 🏺 遺物「地靈的木棍」攻擊命中觸發用（procStatusSkill·非可學技能·force 跳過魔抗故 proc 率＝最終暈眩率·BOSS 免疫仍生效）
+--- js\00-data.js:2795 match=reqE ---
+2793|         "sk_break": { n: "壞物術", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 20, dmgType: "magic", status: { kind: "broken", pbase: 150, dur: 25 } },
+2794|         "sk_vampire": { n: "吸血鬼之吻", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 13, dmgType: "magic", ele: "none", dmgDice: [3, 10], dmgBase: 15, lifesteal: true, healSlot: true },
+2795|         "sk_slow": { n: "緩速術", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 20, dmgType: "magic", status: { kind: "slow", pbase: 150, dur: 30 } },
+2796|         "sk_relic_stun": { n: "暈眩", type: "atk", status: { kind: "stun", dur: 2, force: true } },   // 🏺 遺物「地靈的木棍」攻擊命中觸發用（procStatusSkill·非可學技能·force 跳過魔抗故 proc 率＝最終暈眩率·BOSS 免疫仍生效）
+2797|         "sk_relic_freeze": { n: "冰凍", type: "atk", status: { kind: "freeze", dur: 6, force: true } },   // 🏺 遺物「冰原十字鎬」攻擊命中觸發用（procStatusSkill·非可學技能·force 跳過魔抗故 proc 率＝最終冰凍率·BOSS 免疫仍生效）
+--- js\00-data.js:2804 match=reqE ---
+2802|         "sk_relic_broken": { n: "損壞", type: "atk", status: { kind: "broken", dur: 8, force: true } },   // 🏺 遺物「巨人的拋投石」攻擊命中觸發（procStatusSkill·force·損壞＝敵一般攻擊傷害-2）   // 🏺 遺物「七彩鸚鵡喙」攻擊命中觸發用（procStatusSkill·非可學技能）；怪物用 magicseal(魔法封印) 實現沉默·js/03:367 施法閘讀 st.magicseal
+2803|         "sk_holy_lightning": { n: "致命落雷", type: "atk", tier: 6, dmgType: "magic", ele: "wind", dmgDice: [6, 10] },   // 🏛️ 聖晶魔杖 procSkill 用：6D10 風屬性·走 procFreeMagicSkill（武器 proc 不套法師階級加成·非可學技能）
+2804|         "sk_rock_prison": { n: "岩牢", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 11, dmgType: "magic", ele: "earth", target: "all", dmgDice: [5, 8] },
+2805|         "sk_magic_shield": { n: "魔法屏障", type: "buff", tier: 4, reqM: 16, reqE: 32, mp: 16, dur: 16 },
+2806|         "sk_meditation": { n: "冥想術", type: "buff", tier: 4, reqM: 16, reqE: 32, hpCost: 40, mp: 10, dur: 600, d: { mpR: 5 } },
+--- js\00-data.js:2805 match=reqE ---
+2803|         "sk_holy_lightning": { n: "致命落雷", type: "atk", tier: 6, dmgType: "magic", ele: "wind", dmgDice: [6, 10] },   // 🏛️ 聖晶魔杖 procSkill 用：6D10 風屬性·走 procFreeMagicSkill（武器 proc 不套法師階級加成·非可學技能）
+2804|         "sk_rock_prison": { n: "岩牢", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 11, dmgType: "magic", ele: "earth", target: "all", dmgDice: [5, 8] },
+2805|         "sk_magic_shield": { n: "魔法屏障", type: "buff", tier: 4, reqM: 16, reqE: 32, mp: 16, dur: 16 },
+2806|         "sk_meditation": { n: "冥想術", type: "buff", tier: 4, reqM: 16, reqE: 32, hpCost: 40, mp: 10, dur: 600, d: { mpR: 5 } },
+2807| 
+--- js\00-data.js:2806 match=reqE ---
+2804|         "sk_rock_prison": { n: "岩牢", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 11, dmgType: "magic", ele: "earth", target: "all", dmgDice: [5, 8] },
+2805|         "sk_magic_shield": { n: "魔法屏障", type: "buff", tier: 4, reqM: 16, reqE: 32, mp: 16, dur: 16 },
+2806|         "sk_meditation": { n: "冥想術", type: "buff", tier: 4, reqM: 16, reqE: 32, hpCost: 40, mp: 10, dur: 600, d: { mpR: 5 } },
+2807| 
+2808|         // 五階魔法 (Lv 20)
+--- js\00-data.js:2809 match=reqE ---
+2807| 
+2808|         // 五階魔法 (Lv 20)
+2809|         "sk_mummy_curse": { n: "木乃伊的詛咒", type: "atk", tier: 5, reqM: 20, reqE: 40, mp: 35, dmgType: "magic", status: { kind: "stone", pbase: 100, dur: 6 } },
+2810|         "sk_charm": { n: "迷魅術", type: "manual", tier: 5, reqM: 20, reqE: 40, mp: 30, mEff: "charm" },
+2811|         "sk_thunder": { n: "極道落雷", type: "atk", tier: 5, reqM: 20, reqE: 40, mp: 25, dmgType: "magic", ele: "wind", dmgDice: [5, 8], dmgBase: 40 },
+--- js\00-data.js:2810 match=reqE ---
+2808|         // 五階魔法 (Lv 20)
+2809|         "sk_mummy_curse": { n: "木乃伊的詛咒", type: "atk", tier: 5, reqM: 20, reqE: 40, mp: 35, dmgType: "magic", status: { kind: "stone", pbase: 100, dur: 6 } },
+2810|         "sk_charm": { n: "迷魅術", type: "manual", tier: 5, reqM: 20, reqE: 40, mp: 30, mEff: "charm" },
+2811|         "sk_thunder": { n: "極道落雷", type: "atk", tier: 5, reqM: 20, reqE: 40, mp: 25, dmgType: "magic", ele: "wind", dmgDice: [5, 8], dmgBase: 40 },
+2812|         "sk_heal2": { n: "高級治癒術", type: "heal", justiceHeal: true, tier: 5, reqM: 20, reqE: 40, mp: 20, valDice: [2, 30], healDice: [1, 100], healBase: 100, classicHeal: { baseDice: 10, sides: 8 }, msg: "你感覺舒服了一點。" },
+--- js\00-data.js:2811 match=reqE ---
+2809|         "sk_mummy_curse": { n: "木乃伊的詛咒", type: "atk", tier: 5, reqM: 20, reqE: 40, mp: 35, dmgType: "magic", status: { kind: "stone", pbase: 100, dur: 6 } },
+2810|         "sk_charm": { n: "迷魅術", type: "manual", tier: 5, reqM: 20, reqE: 40, mp: 30, mEff: "charm" },
+2811|         "sk_thunder": { n: "極道落雷", type: "atk", tier: 5, reqM: 20, reqE: 40, mp: 25, dmgType: "magic", ele: "wind", dmgDice: [5, 8], dmgBase: 40 },
+2812|         "sk_heal2": { n: "高級治癒術", type: "heal", justiceHeal: true, tier: 5, reqM: 20, reqE: 40, mp: 20, valDice: [2, 30], healDice: [1, 100], healBase: 100, classicHeal: { baseDice: 10, sides: 8 }, msg: "你感覺舒服了一點。" },
+2813|         "sk_holy_light": { n: "聖潔之光", type: "heal", tier: 5, reqM: 20, reqE: 40, mp: 10, msg: "神聖光芒驅散了詛咒。" },
+--- js\00-data.js:2812 match=reqE ---
+2810|         "sk_charm": { n: "迷魅術", type: "manual", tier: 5, reqM: 20, reqE: 40, mp: 30, mEff: "charm" },
+2811|         "sk_thunder": { n: "極道落雷", type: "atk", tier: 5, reqM: 20, reqE: 40, mp: 25, dmgType: "magic", ele: "wind", dmgDice: [5, 8], dmgBase: 40 },
+2812|         "sk_heal2": { n: "高級治癒術", type: "heal", justiceHeal: true, tier: 5, reqM: 20, reqE: 40, mp: 20, valDice: [2, 30], healDice: [1, 100], healBase: 100, classicHeal: { baseDice: 10, sides: 8 }, msg: "你感覺舒服了一點。" },
+2813|         "sk_holy_light": { n: "聖潔之光", type: "heal", tier: 5, reqM: 20, reqE: 40, mp: 10, msg: "神聖光芒驅散了詛咒。" },
+2814|         "sk_ice_spike": { n: "冰錐", type: "atk", tier: 5, reqM: 20, reqE: 40, mp: 21, dmgType: "magic", ele: "water", dmgDice: [5, 6], dmgBase: 40 },
+--- js\00-data.js:2813 match=reqE ---
+2811|         "sk_thunder": { n: "極道落雷", type: "atk", tier: 5, reqM: 20, reqE: 40, mp: 25, dmgType: "magic", ele: "wind", dmgDice: [5, 8], dmgBase: 40 },
+2812|         "sk_heal2": { n: "高級治癒術", type: "heal", justiceHeal: true, tier: 5, reqM: 20, reqE: 40, mp: 20, valDice: [2, 30], healDice: [1, 100], healBase: 100, classicHeal: { baseDice: 10, sides: 8 }, msg: "你感覺舒服了一點。" },
+2813|         "sk_holy_light": { n: "聖潔之光", type: "heal", tier: 5, reqM: 20, reqE: 40, mp: 10, msg: "神聖光芒驅散了詛咒。" },
+2814|         "sk_ice_spike": { n: "冰錐", type: "atk", tier: 5, reqM: 20, reqE: 40, mp: 21, dmgType: "magic", ele: "water", dmgDice: [5, 6], dmgBase: 40 },
+2815|         "sk_demon_kiss": { n: "惡魔之吻", type: "atk", tier: 3, mp: 0, dmgType: "magic", ele: "earth", dmgDice: [3, 20], procOnly: true },   // 🏛️ 底比斯歐西里斯武器附魔施放（procSkill·不需學習/不耗MP·受魔法傷害公式影響）；procOnly：純武器proc、不顯示於技能列表/下拉
+--- js\00-data.js:2814 match=reqE ---
+2812|         "sk_heal2": { n: "高級治癒術", type: "heal", justiceHeal: true, tier: 5, reqM: 20, reqE: 40, mp: 20, valDice: [2, 30], healDice: [1, 100], healBase: 100, classicHeal: { baseDice: 10, sides: 8 }, msg: "你感覺舒服了一點。" },
+2813|         "sk_holy_light": { n: "聖潔之光", type: "heal", tier: 5, reqM: 20, reqE: 40, mp: 10, msg: "神聖光芒驅散了詛咒。" },
+2814|         "sk_ice_spike": { n: "冰錐", type: "atk", tier: 5, reqM: 20, reqE: 40, mp: 21, dmgType: "magic", ele: "water", dmgDice: [5, 6], dmgBase: 40 },
+2815|         "sk_demon_kiss": { n: "惡魔之吻", type: "atk", tier: 3, mp: 0, dmgType: "magic", ele: "earth", dmgDice: [3, 20], procOnly: true },   // 🏛️ 底比斯歐西里斯武器附魔施放（procSkill·不需學習/不耗MP·受魔法傷害公式影響）；procOnly：純武器proc、不顯示於技能列表/下拉
+2816|         "sk_revenge_spike": { n: "復仇尖石", type: "atk", tier: 5, mp: 0, dmgType: "magic", ele: "earth", dmgDice: [5, 3], dmgBase: 50, procOnly: true },   // 🗡️ 倫得雙刀附魔施放（procSkill·不需學習/不耗MP·受魔法傷害公式影響）；procOnly：純武器proc、不顯示於技能列表/下拉
+--- js\00-data.js:2818 match=reqE ---
+2816|         "sk_revenge_spike": { n: "復仇尖石", type: "atk", tier: 5, mp: 0, dmgType: "magic", ele: "earth", dmgDice: [5, 3], dmgBase: 50, procOnly: true },   // 🗡️ 倫得雙刀附魔施放（procSkill·不需學習/不耗MP·受魔法傷害公式影響）；procOnly：純武器proc、不顯示於技能列表/下拉
+2817|         "sk_earth_collapse": { n: "大地崩裂", type: "atk", tier: 5, mp: 0, dmgType: "magic", ele: "earth", target: "all", dmgDice: [8, 12], procOnly: true },   // 🌑 v3.4.67 冥皇執行劍（解咒版）附魔施放：對全體敵人 8D12 地屬性魔法傷害（受魔法傷害公式影響·target:all 靠 procFreeMagicSkill fan-out）；VFX 沿用地裂術（js/09 SPELL_FX alias）
+2818|         "sk_mana_drain": { n: "魔力奪取", type: "convert", tier: 5, reqM: 20, reqE: 40, hpCost: 50, drain: true },   // 🔧 改為轉換技能（法師/妖精）：消耗HP、需對怪物施展且以異常魔法命中判定，命中吸取 MP=1D(怪物等級/2)；其餘機制比照魂體轉換
+2819|         "sk_dark_shadow": { n: "黑闇之影", type: "atk", tier: 5, reqM: 20, reqE: 40, mp: 25, dmgType: "magic", status: { kind: "blind", pbase: 150, hit: 5, dur: 20 } },
+2820| 
+--- js\00-data.js:2819 match=reqE ---
+2817|         "sk_earth_collapse": { n: "大地崩裂", type: "atk", tier: 5, mp: 0, dmgType: "magic", ele: "earth", target: "all", dmgDice: [8, 12], procOnly: true },   // 🌑 v3.4.67 冥皇執行劍（解咒版）附魔施放：對全體敵人 8D12 地屬性魔法傷害（受魔法傷害公式影響·target:all 靠 procFreeMagicSkill fan-out）；VFX 沿用地裂術（js/09 SPELL_FX alias）
+2818|         "sk_mana_drain": { n: "魔力奪取", type: "convert", tier: 5, reqM: 20, reqE: 40, hpCost: 50, drain: true },   // 🔧 改為轉換技能（法師/妖精）：消耗HP、需對怪物施展且以異常魔法命中判定，命中吸取 MP=1D(怪物等級/2)；其餘機制比照魂體轉換
+2819|         "sk_dark_shadow": { n: "黑闇之影", type: "atk", tier: 5, reqM: 20, reqE: 40, mp: 25, dmgType: "magic", status: { kind: "blind", pbase: 150, hit: 5, dur: 20 } },
+2820| 
+2821|         // 六階魔法 (Lv 24)
+--- js\00-data.js:2822 match=reqE ---
+2820| 
+2821|         // 六階魔法 (Lv 24)
+2822|         "sk_zombie": { n: "造屍術", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 35, dur: 3600, desc: "以死靈魔法喚醒倒下的人形軀殼，使其服從施術者並肩作戰。施術者的力量越成熟，甦醒的亡者也越強韌。", summon: { n: "隨從：人形殭屍", dmgDice: [1, 12], dmgDiv: 5, dmgLvDiv: 20, dmgMult: 0.90, interval: 20, kind: "melee", hitLvOff: 0 } },
+2823|         "sk_haste_spell": { n: "加速術", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 40, dur: 1200, haste: true, msg: "你感到身體變得非常輕盈。" },
+2824|         "sk_cancel": { n: "魔法相消術", type: "heal", tier: 6, reqM: 24, reqE: 48, mp: 40, msg: "你全身上下感到涼意。" },
+--- js\00-data.js:2823 match=reqE ---
+2821|         // 六階魔法 (Lv 24)
+2822|         "sk_zombie": { n: "造屍術", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 35, dur: 3600, desc: "以死靈魔法喚醒倒下的人形軀殼，使其服從施術者並肩作戰。施術者的力量越成熟，甦醒的亡者也越強韌。", summon: { n: "隨從：人形殭屍", dmgDice: [1, 12], dmgDiv: 5, dmgLvDiv: 20, dmgMult: 0.90, interval: 20, kind: "melee", hitLvOff: 0 } },
+2823|         "sk_haste_spell": { n: "加速術", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 40, dur: 1200, haste: true, msg: "你感到身體變得非常輕盈。" },
+2824|         "sk_cancel": { n: "魔法相消術", type: "heal", tier: 6, reqM: 24, reqE: 48, mp: 40, msg: "你全身上下感到涼意。" },
+2825|         "sk_earthquake": { n: "地裂術", type: "atk", tier: 6, reqM: 24, reqE: 48, mp: 25, dmgType: "magic", ele: "earth", dmgDice: [5, 3], dmgBase: 50 },
+--- js\00-data.js:2824 match=reqE ---
+2822|         "sk_zombie": { n: "造屍術", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 35, dur: 3600, desc: "以死靈魔法喚醒倒下的人形軀殼，使其服從施術者並肩作戰。施術者的力量越成熟，甦醒的亡者也越強韌。", summon: { n: "隨從：人形殭屍", dmgDice: [1, 12], dmgDiv: 5, dmgLvDiv: 20, dmgMult: 0.90, interval: 20, kind: "melee", hitLvOff: 0 } },
+2823|         "sk_haste_spell": { n: "加速術", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 40, dur: 1200, haste: true, msg: "你感到身體變得非常輕盈。" },
+2824|         "sk_cancel": { n: "魔法相消術", type: "heal", tier: 6, reqM: 24, reqE: 48, mp: 40, msg: "你全身上下感到涼意。" },
+2825|         "sk_earthquake": { n: "地裂術", type: "atk", tier: 6, reqM: 24, reqE: 48, mp: 25, dmgType: "magic", ele: "earth", dmgDice: [5, 3], dmgBase: 50 },
+2826|         "sk_blaze": { n: "烈炎術", type: "atk", tier: 6, reqM: 24, reqE: 48, mp: 30, dmgType: "magic", ele: "fire", dmgDice: [16, 5], dmgBase: 40 },
+--- js\00-data.js:2825 match=reqE ---
+2823|         "sk_haste_spell": { n: "加速術", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 40, dur: 1200, haste: true, msg: "你感到身體變得非常輕盈。" },
+2824|         "sk_cancel": { n: "魔法相消術", type: "heal", tier: 6, reqM: 24, reqE: 48, mp: 40, msg: "你全身上下感到涼意。" },
+2825|         "sk_earthquake": { n: "地裂術", type: "atk", tier: 6, reqM: 24, reqE: 48, mp: 25, dmgType: "magic", ele: "earth", dmgDice: [5, 3], dmgBase: 50 },
+2826|         "sk_blaze": { n: "烈炎術", type: "atk", tier: 6, reqM: 24, reqE: 48, mp: 30, dmgType: "magic", ele: "fire", dmgDice: [16, 5], dmgBase: 40 },
+2827|         "sk_str_up": { n: "體魄強健術", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 50, dur: 1200, d: { str: 5 }, msg: "你覺得身體充滿了力量。" },
+--- js\00-data.js:2826 match=reqE ---
+2824|         "sk_cancel": { n: "魔法相消術", type: "heal", tier: 6, reqM: 24, reqE: 48, mp: 40, msg: "你全身上下感到涼意。" },
+2825|         "sk_earthquake": { n: "地裂術", type: "atk", tier: 6, reqM: 24, reqE: 48, mp: 25, dmgType: "magic", ele: "earth", dmgDice: [5, 3], dmgBase: 50 },
+2826|         "sk_blaze": { n: "烈炎術", type: "atk", tier: 6, reqM: 24, reqE: 48, mp: 30, dmgType: "magic", ele: "fire", dmgDice: [16, 5], dmgBase: 40 },
+2827|         "sk_str_up": { n: "體魄強健術", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 50, dur: 1200, d: { str: 5 }, msg: "你覺得身體充滿了力量。" },
+2828|         "sk_bless_wpn": { n: "祝福魔法武器", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 20, dur: 1200, d: { extraDmg: 2, extraHit: 2 }, msg: "你的武器暫時被注入了魔法力量。" },
+--- js\00-data.js:2827 match=reqE ---
+2825|         "sk_earthquake": { n: "地裂術", type: "atk", tier: 6, reqM: 24, reqE: 48, mp: 25, dmgType: "magic", ele: "earth", dmgDice: [5, 3], dmgBase: 50 },
+2826|         "sk_blaze": { n: "烈炎術", type: "atk", tier: 6, reqM: 24, reqE: 48, mp: 30, dmgType: "magic", ele: "fire", dmgDice: [16, 5], dmgBase: 40 },
+2827|         "sk_str_up": { n: "體魄強健術", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 50, dur: 1200, d: { str: 5 }, msg: "你覺得身體充滿了力量。" },
+2828|         "sk_bless_wpn": { n: "祝福魔法武器", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 20, dur: 1200, d: { extraDmg: 2, extraHit: 2 }, msg: "你的武器暫時被注入了魔法力量。" },
+2829|         "sk_weaken": { n: "弱化術", type: "atk", tier: 6, reqM: 24, reqE: 48, mp: 25, dmgType: "magic", status: { kind: "weaken", pbase: 150, dur: 30 } },
+--- js\00-data.js:2828 match=reqE ---
+2826|         "sk_blaze": { n: "烈炎術", type: "atk", tier: 6, reqM: 24, reqE: 48, mp: 30, dmgType: "magic", ele: "fire", dmgDice: [16, 5], dmgBase: 40 },
+2827|         "sk_str_up": { n: "體魄強健術", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 50, dur: 1200, d: { str: 5 }, msg: "你覺得身體充滿了力量。" },
+2828|         "sk_bless_wpn": { n: "祝福魔法武器", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 20, dur: 1200, d: { extraDmg: 2, extraHit: 2 }, msg: "你的武器暫時被注入了魔法力量。" },
+2829|         "sk_weaken": { n: "弱化術", type: "atk", tier: 6, reqM: 24, reqE: 48, mp: 25, dmgType: "magic", status: { kind: "weaken", pbase: 150, dur: 30 } },
+2830| 
+--- js\00-data.js:2829 match=reqE ---
+2827|         "sk_str_up": { n: "體魄強健術", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 50, dur: 1200, d: { str: 5 }, msg: "你覺得身體充滿了力量。" },
+2828|         "sk_bless_wpn": { n: "祝福魔法武器", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 20, dur: 1200, d: { extraDmg: 2, extraHit: 2 }, msg: "你的武器暫時被注入了魔法力量。" },
+2829|         "sk_weaken": { n: "弱化術", type: "atk", tier: 6, reqM: 24, reqE: 48, mp: 25, dmgType: "magic", status: { kind: "weaken", pbase: 150, dur: 30 } },
+2830| 
+2831|         // 七階魔法 (Lv 28)
+--- js\00-data.js:2876 match=reqE ---
+2874|         // ================= 【妖精精靈魔法】 =================
+2875|         // 一階 (Lv 10)
+2876|         "sk_elf_mr": { n: "魔法防禦", type: "buff", tier: 1, reqE: 10, mp: 10, dur: 1200, d: { mr: 10 } },
+2877|         "sk_elf_mind": { n: "心靈轉換", type: "convert", tier: 1, reqE: 10, hpCost: 8, mpGain: 2 },
+2878|         "sk_elf_worldtree": { n: "世界樹的呼喚", type: "passive", tier: 1, reqE: 10 },
+--- js\00-data.js:2877 match=reqE ---
+2875|         // 一階 (Lv 10)
+2876|         "sk_elf_mr": { n: "魔法防禦", type: "buff", tier: 1, reqE: 10, mp: 10, dur: 1200, d: { mr: 10 } },
+2877|         "sk_elf_mind": { n: "心靈轉換", type: "convert", tier: 1, reqE: 10, hpCost: 8, mpGain: 2 },
+2878|         "sk_elf_worldtree": { n: "世界樹的呼喚", type: "passive", tier: 1, reqE: 10 },
+2879|         "sk_elf_triple": { n: "三重矢", type: "atk", tier: 1, reqE: 10, mp: 15, dmgType: "physical", ranged: true, reqWpn: "bow", hits: 3 },
+--- js\00-data.js:2878 match=reqE ---
+2876|         "sk_elf_mr": { n: "魔法防禦", type: "buff", tier: 1, reqE: 10, mp: 10, dur: 1200, d: { mr: 10 } },
+2877|         "sk_elf_mind": { n: "心靈轉換", type: "convert", tier: 1, reqE: 10, hpCost: 8, mpGain: 2 },
+2878|         "sk_elf_worldtree": { n: "世界樹的呼喚", type: "passive", tier: 1, reqE: 10 },
+2879|         "sk_elf_triple": { n: "三重矢", type: "atk", tier: 1, reqE: 10, mp: 15, dmgType: "physical", ranged: true, reqWpn: "bow", hits: 3 },
+2880| 
+--- js\00-data.js:2879 match=reqE ---
+2877|         "sk_elf_mind": { n: "心靈轉換", type: "convert", tier: 1, reqE: 10, hpCost: 8, mpGain: 2 },
+2878|         "sk_elf_worldtree": { n: "世界樹的呼喚", type: "passive", tier: 1, reqE: 10 },
+2879|         "sk_elf_triple": { n: "三重矢", type: "atk", tier: 1, reqE: 10, mp: 15, dmgType: "physical", ranged: true, reqWpn: "bow", hits: 3 },
+2880| 
+2881|         // 二階 (Lv 20)
+--- js\00-data.js:2882 match=reqE ---
+2880| 
+2881|         // 二階 (Lv 20)
+2882|         "sk_elf_purify": { n: "淨化精神", type: "buff", tier: 2, reqE: 20, mp: 10, dur: 1200, d: { wis: 3 } },
+2883|         "sk_elf_eleres": { n: "屬性防禦", type: "buff", tier: 2, reqE: 20, mp: 10, dur: 1200, d: { resFire: 10, resWater: 10, resEarth: 10, resWind: 10 } },
+2884|         "sk_elf_release": { n: "釋放元素", type: "atk", tier: 2, reqE: 20, mp: 30, dmgType: "magic", instakill: { tag: "element", cap: 12 } },   // 🔧 即死成功率最高 60%
+--- js\00-data.js:2883 match=reqE ---
+2881|         // 二階 (Lv 20)
+2882|         "sk_elf_purify": { n: "淨化精神", type: "buff", tier: 2, reqE: 20, mp: 10, dur: 1200, d: { wis: 3 } },
+2883|         "sk_elf_eleres": { n: "屬性防禦", type: "buff", tier: 2, reqE: 20, mp: 10, dur: 1200, d: { resFire: 10, resWater: 10, resEarth: 10, resWind: 10 } },
+2884|         "sk_elf_release": { n: "釋放元素", type: "atk", tier: 2, reqE: 20, mp: 30, dmgType: "magic", instakill: { tag: "element", cap: 12 } },   // 🔧 即死成功率最高 60%
+2885|         "sk_elf_soul": { n: "魂體轉換", type: "convert", tier: 2, reqE: 20, hpCost: 50, mpGain: 15 },
+--- js\00-data.js:2884 match=reqE ---
+2882|         "sk_elf_purify": { n: "淨化精神", type: "buff", tier: 2, reqE: 20, mp: 10, dur: 1200, d: { wis: 3 } },
+2883|         "sk_elf_eleres": { n: "屬性防禦", type: "buff", tier: 2, reqE: 20, mp: 10, dur: 1200, d: { resFire: 10, resWater: 10, resEarth: 10, resWind: 10 } },
+2884|         "sk_elf_release": { n: "釋放元素", type: "atk", tier: 2, reqE: 20, mp: 30, dmgType: "magic", instakill: { tag: "element", cap: 12 } },   // 🔧 即死成功率最高 60%
+2885|         "sk_elf_soul": { n: "魂體轉換", type: "convert", tier: 2, reqE: 20, hpCost: 50, mpGain: 15 },
+2886| 
+--- js\00-data.js:2885 match=reqE ---
+2883|         "sk_elf_eleres": { n: "屬性防禦", type: "buff", tier: 2, reqE: 20, mp: 10, dur: 1200, d: { resFire: 10, resWater: 10, resEarth: 10, resWind: 10 } },
+2884|         "sk_elf_release": { n: "釋放元素", type: "atk", tier: 2, reqE: 20, mp: 30, dmgType: "magic", instakill: { tag: "element", cap: 12 } },   // 🔧 即死成功率最高 60%
+2885|         "sk_elf_soul": { n: "魂體轉換", type: "convert", tier: 2, reqE: 20, hpCost: 50, mpGain: 15 },
+2886| 
+2887|         // 三階 (Lv 30) - 需要對應屬性
+--- js\00-data.js:2888 match=單屬性防禦 ---
+2886| 
+2887|         // 三階 (Lv 30) - 需要對應屬性
+2888|         "sk_elf_singleres": { n: "單屬性防禦", type: "buff", tier: 3, reqE: 30, mp: 10, dur: 64, reqEleAny: true },
+2889|         "sk_elf_firewpn": { n: "火焰武器", type: "buff", tier: 3, reqE: 30, mp: 20, dur: 1200, reqEle: "fire", d: { meleeDmg: 3 } },
+2890|         "sk_elf_windshot": { n: "風之神射", type: "buff", tier: 3, reqE: 30, mp: 15, dur: 1200, reqEle: "wind", d: { rangedHit: 5 } },
+--- js\00-data.js:2889 match=reqE ---
+2887|         // 三階 (Lv 30) - 需要對應屬性
+2888|         "sk_elf_singleres": { n: "單屬性防禦", type: "buff", tier: 3, reqE: 30, mp: 10, dur: 64, reqEleAny: true },
+2889|         "sk_elf_firewpn": { n: "火焰武器", type: "buff", tier: 3, reqE: 30, mp: 20, dur: 1200, reqEle: "fire", d: { meleeDmg: 3 } },
+2890|         "sk_elf_windshot": { n: "風之神射", type: "buff", tier: 3, reqE: 30, mp: 15, dur: 1200, reqEle: "wind", d: { rangedHit: 5 } },
+2891|         "sk_elf_winddash": { n: "風之疾走", type: "buff", tier: 3, reqE: 30, mp: 20, dur: 1200, reqEle: "wind", moveSpeedMult: 1.33, moveSpeedReplacesCookie: true },
+--- js\00-data.js:2890 match=reqE ---
+2888|         "sk_elf_singleres": { n: "單屬性防禦", type: "buff", tier: 3, reqE: 30, mp: 10, dur: 64, reqEleAny: true },
+2889|         "sk_elf_firewpn": { n: "火焰武器", type: "buff", tier: 3, reqE: 30, mp: 20, dur: 1200, reqEle: "fire", d: { meleeDmg: 3 } },
+2890|         "sk_elf_windshot": { n: "風之神射", type: "buff", tier: 3, reqE: 30, mp: 15, dur: 1200, reqEle: "wind", d: { rangedHit: 5 } },
+2891|         "sk_elf_winddash": { n: "風之疾走", type: "buff", tier: 3, reqE: 30, mp: 20, dur: 1200, reqEle: "wind", moveSpeedMult: 1.33, moveSpeedReplacesCookie: true },
+2892|         "sk_elf_earthguard": { n: "大地防護", type: "buff", tier: 3, reqE: 30, mp: 15, dur: 1200, reqEle: "earth", d: { ac: 4 } },
+--- js\00-data.js:2891 match=reqE ---
+2889|         "sk_elf_firewpn": { n: "火焰武器", type: "buff", tier: 3, reqE: 30, mp: 20, dur: 1200, reqEle: "fire", d: { meleeDmg: 3 } },
+2890|         "sk_elf_windshot": { n: "風之神射", type: "buff", tier: 3, reqE: 30, mp: 15, dur: 1200, reqEle: "wind", d: { rangedHit: 5 } },
+2891|         "sk_elf_winddash": { n: "風之疾走", type: "buff", tier: 3, reqE: 30, mp: 20, dur: 1200, reqEle: "wind", moveSpeedMult: 1.33, moveSpeedReplacesCookie: true },
+2892|         "sk_elf_earthguard": { n: "大地防護", type: "buff", tier: 3, reqE: 30, mp: 15, dur: 1200, reqEle: "earth", d: { ac: 4 } },
+2893|         "sk_elf_groundtrap": { n: "地面障礙", type: "atk", tier: 3, reqE: 30, mp: 20, dmgType: "magic", reqEle: "earth", target: "all", status: { kind: "slow", pbase: 150, dur: 30 } },   // 🤝 Phase4：改為全體緩速
+--- js\00-data.js:2892 match=reqE ---
+2890|         "sk_elf_windshot": { n: "風之神射", type: "buff", tier: 3, reqE: 30, mp: 15, dur: 1200, reqEle: "wind", d: { rangedHit: 5 } },
+2891|         "sk_elf_winddash": { n: "風之疾走", type: "buff", tier: 3, reqE: 30, mp: 20, dur: 1200, reqEle: "wind", moveSpeedMult: 1.33, moveSpeedReplacesCookie: true },
+2892|         "sk_elf_earthguard": { n: "大地防護", type: "buff", tier: 3, reqE: 30, mp: 15, dur: 1200, reqEle: "earth", d: { ac: 4 } },
+2893|         "sk_elf_groundtrap": { n: "地面障礙", type: "atk", tier: 3, reqE: 30, mp: 20, dmgType: "magic", reqEle: "earth", target: "all", status: { kind: "slow", pbase: 150, dur: 30 } },   // 🤝 Phase4：改為全體緩速
+2894|         "sk_elf_watervital": { n: "水之元氣", type: "buff", tier: 3, reqE: 30, mp: 1, dur: 64, reqEle: "water", noRefresh: true, msg: "水之元氣環繞著你。" },   // 🔧 buff 期間內「下次」受到治癒術（玩家自身瞬間治癒，不含持續回復HoT）時恢復量加倍、觸發後7秒冷卻（見 waterVitalHeal）；noRefresh：效果結束才可再施放
+--- js\00-data.js:2893 match=reqE ---
+2891|         "sk_elf_winddash": { n: "風之疾走", type: "buff", tier: 3, reqE: 30, mp: 20, dur: 1200, reqEle: "wind", moveSpeedMult: 1.33, moveSpeedReplacesCookie: true },
+2892|         "sk_elf_earthguard": { n: "大地防護", type: "buff", tier: 3, reqE: 30, mp: 15, dur: 1200, reqEle: "earth", d: { ac: 4 } },
+2893|         "sk_elf_groundtrap": { n: "地面障礙", type: "atk", tier: 3, reqE: 30, mp: 20, dmgType: "magic", reqEle: "earth", target: "all", status: { kind: "slow", pbase: 150, dur: 30 } },   // 🤝 Phase4：改為全體緩速
+2894|         "sk_elf_watervital": { n: "水之元氣", type: "buff", tier: 3, reqE: 30, mp: 1, dur: 64, reqEle: "water", noRefresh: true, msg: "水之元氣環繞著你。" },   // 🔧 buff 期間內「下次」受到治癒術（玩家自身瞬間治癒，不含持續回復HoT）時恢復量加倍、觸發後7秒冷卻（見 waterVitalHeal）；noRefresh：效果結束才可再施放
+2895| 
+--- js\00-data.js:2894 match=reqE ---
+2892|         "sk_elf_earthguard": { n: "大地防護", type: "buff", tier: 3, reqE: 30, mp: 15, dur: 1200, reqEle: "earth", d: { ac: 4 } },
+2893|         "sk_elf_groundtrap": { n: "地面障礙", type: "atk", tier: 3, reqE: 30, mp: 20, dmgType: "magic", reqEle: "earth", target: "all", status: { kind: "slow", pbase: 150, dur: 30 } },   // 🤝 Phase4：改為全體緩速
+2894|         "sk_elf_watervital": { n: "水之元氣", type: "buff", tier: 3, reqE: 30, mp: 1, dur: 64, reqEle: "water", noRefresh: true, msg: "水之元氣環繞著你。" },   // 🔧 buff 期間內「下次」受到治癒術（玩家自身瞬間治癒，不含持續回復HoT）時恢復量加倍、觸發後7秒冷卻（見 waterVitalHeal）；noRefresh：效果結束才可再施放
+2895| 
+2896|         // 四階 (Lv 40)
+--- js\00-data.js:2897 match=魔法消除 ---
+2895| 
+2896|         // 四階 (Lv 40)
+2897|         "sk_elf_magicerase": { n: "魔法消除", type: "atk", tier: 4, reqE: 40, mp: 30, dmgType: "magic", status: { kind: "mrhalf", pbase: 150, dur: 16 } },
+2898|         "sk_elf_summon": { n: "召喚屬性精靈", type: "buff", tier: 4, reqE: 40, mp: 30, dur: 3600, reqEleAny: true, desc: "向締結契約的元素祈求援助，召來與自身屬性相同的精靈並肩作戰。", summon: { n: "夥伴：{ele}之精靈", dmgDice: [1, 40], elemScale: 20, dmgMult: 1.00, mrPenBase: 10, interval: 10, kind: "ranged", eleFromPlayer: true, hitLvOff: 10 } },   // ⚠️ 以下召喚數值欄位(dmgDice/elemScale/dmgMult/mrPenBase/interval/hitLvOff)已被 _elfSpiritKingOverride(js/07·讀 js/23 _spiritSpec 規格表)無條件覆蓋·僅存參考
+2899|         "sk_elf_dancefire": { n: "舞躍之火", type: "buff", tier: 4, reqE: 40, mp: 30, dur: 1200, reqEle: "fire", d: { meleeDmg: 3 }, msg: "舞動的火焰環繞全隊，所有隊員的近距離傷害提升。" },   // 🔥 v3.8.3 改團隊光環（TEAM_AURA_SKILLS）：任一來源維持即惠及玩家／傭兵／寵物／召喚物／城堡護衛，近距離傷害 +3（原自身 +5）
+--- js\00-data.js:2898 match=reqE ---
+2896|         // 四階 (Lv 40)
+2897|         "sk_elf_magicerase": { n: "魔法消除", type: "atk", tier: 4, reqE: 40, mp: 30, dmgType: "magic", status: { kind: "mrhalf", pbase: 150, dur: 16 } },
+2898|         "sk_elf_summon": { n: "召喚屬性精靈", type: "buff", tier: 4, reqE: 40, mp: 30, dur: 3600, reqEleAny: true, desc: "向締結契約的元素祈求援助，召來與自身屬性相同的精靈並肩作戰。", summon: { n: "夥伴：{ele}之精靈", dmgDice: [1, 40], elemScale: 20, dmgMult: 1.00, mrPenBase: 10, interval: 10, kind: "ranged", eleFromPlayer: true, hitLvOff: 10 } },   // ⚠️ 以下召喚數值欄位(dmgDice/elemScale/dmgMult/mrPenBase/interval/hitLvOff)已被 _elfSpiritKingOverride(js/07·讀 js/23 _spiritSpec 規格表)無條件覆蓋·僅存參考
+2899|         "sk_elf_dancefire": { n: "舞躍之火", type: "buff", tier: 4, reqE: 40, mp: 30, dur: 1200, reqEle: "fire", d: { meleeDmg: 3 }, msg: "舞動的火焰環繞全隊，所有隊員的近距離傷害提升。" },   // 🔥 v3.8.3 改團隊光環（TEAM_AURA_SKILLS）：任一來源維持即惠及玩家／傭兵／寵物／召喚物／城堡護衛，近距離傷害 +3（原自身 +5）
+2900|         "sk_elf_stormeye": { n: "暴風之眼", type: "buff", tier: 4, reqE: 40, mp: 40, dur: 1200, reqEle: "wind", d: { rangedDmg: 2, rangedHit: 2 } },
+--- js\00-data.js:2899 match=reqE ---
+2897|         "sk_elf_magicerase": { n: "魔法消除", type: "atk", tier: 4, reqE: 40, mp: 30, dmgType: "magic", status: { kind: "mrhalf", pbase: 150, dur: 16 } },
+2898|         "sk_elf_summon": { n: "召喚屬性精靈", type: "buff", tier: 4, reqE: 40, mp: 30, dur: 3600, reqEleAny: true, desc: "向締結契約的元素祈求援助，召來與自身屬性相同的精靈並肩作戰。", summon: { n: "夥伴：{ele}之精靈", dmgDice: [1, 40], elemScale: 20, dmgMult: 1.00, mrPenBase: 10, interval: 10, kind: "ranged", eleFromPlayer: true, hitLvOff: 10 } },   // ⚠️ 以下召喚數值欄位(dmgDice/elemScale/dmgMult/mrPenBase/interval/hitLvOff)已被 _elfSpiritKingOverride(js/07·讀 js/23 _spiritSpec 規格表)無條件覆蓋·僅存參考
+2899|         "sk_elf_dancefire": { n: "舞躍之火", type: "buff", tier: 4, reqE: 40, mp: 30, dur: 1200, reqEle: "fire", d: { meleeDmg: 3 }, msg: "舞動的火焰環繞全隊，所有隊員的近距離傷害提升。" },   // 🔥 v3.8.3 改團隊光環（TEAM_AURA_SKILLS）：任一來源維持即惠及玩家／傭兵／寵物／召喚物／城堡護衛，近距離傷害 +3（原自身 +5）
+2900|         "sk_elf_stormeye": { n: "暴風之眼", type: "buff", tier: 4, reqE: 40, mp: 40, dur: 1200, reqEle: "wind", d: { rangedDmg: 2, rangedHit: 2 } },
+2901|         "sk_elf_earthshield": { n: "大地屏障", type: "buff", tier: 4, reqE: 40, mp: 50, dur: 8, reqEle: "earth" },
+--- js\00-data.js:2900 match=reqE ---
+2898|         "sk_elf_summon": { n: "召喚屬性精靈", type: "buff", tier: 4, reqE: 40, mp: 30, dur: 3600, reqEleAny: true, desc: "向締結契約的元素祈求援助，召來與自身屬性相同的精靈並肩作戰。", summon: { n: "夥伴：{ele}之精靈", dmgDice: [1, 40], elemScale: 20, dmgMult: 1.00, mrPenBase: 10, interval: 10, kind: "ranged", eleFromPlayer: true, hitLvOff: 10 } },   // ⚠️ 以下召喚數值欄位(dmgDice/elemScale/dmgMult/mrPenBase/interval/hitLvOff)已被 _elfSpiritKingOverride(js/07·讀 js/23 _spiritSpec 規格表)無條件覆蓋·僅存參考
+2899|         "sk_elf_dancefire": { n: "舞躍之火", type: "buff", tier: 4, reqE: 40, mp: 30, dur: 1200, reqEle: "fire", d: { meleeDmg: 3 }, msg: "舞動的火焰環繞全隊，所有隊員的近距離傷害提升。" },   // 🔥 v3.8.3 改團隊光環（TEAM_AURA_SKILLS）：任一來源維持即惠及玩家／傭兵／寵物／召喚物／城堡護衛，近距離傷害 +3（原自身 +5）
+2900|         "sk_elf_stormeye": { n: "暴風之眼", type: "buff", tier: 4, reqE: 40, mp: 40, dur: 1200, reqEle: "wind", d: { rangedDmg: 2, rangedHit: 2 } },
+2901|         "sk_elf_earthshield": { n: "大地屏障", type: "buff", tier: 4, reqE: 40, mp: 50, dur: 8, reqEle: "earth" },
+2902|         "sk_elf_lifespring": { n: "生命之泉", type: "heal", tier: 4, reqE: 40, mp: 50, reqEle: "water", valDice: [4, 35], healDice: [5, 50], healBase: 250, fullRestore: true, ignoreWaterVital: true, healCooldownTicks: 200, msg: "生命之泉使傷勢完全復原。" },
+--- js\00-data.js:2901 match=reqE ---
+2899|         "sk_elf_dancefire": { n: "舞躍之火", type: "buff", tier: 4, reqE: 40, mp: 30, dur: 1200, reqEle: "fire", d: { meleeDmg: 3 }, msg: "舞動的火焰環繞全隊，所有隊員的近距離傷害提升。" },   // 🔥 v3.8.3 改團隊光環（TEAM_AURA_SKILLS）：任一來源維持即惠及玩家／傭兵／寵物／召喚物／城堡護衛，近距離傷害 +3（原自身 +5）
+2900|         "sk_elf_stormeye": { n: "暴風之眼", type: "buff", tier: 4, reqE: 40, mp: 40, dur: 1200, reqEle: "wind", d: { rangedDmg: 2, rangedHit: 2 } },
+2901|         "sk_elf_earthshield": { n: "大地屏障", type: "buff", tier: 4, reqE: 40, mp: 50, dur: 8, reqEle: "earth" },
+2902|         "sk_elf_lifespring": { n: "生命之泉", type: "heal", tier: 4, reqE: 40, mp: 50, reqEle: "water", valDice: [4, 35], healDice: [5, 50], healBase: 250, fullRestore: true, ignoreWaterVital: true, healCooldownTicks: 200, msg: "生命之泉使傷勢完全復原。" },
+2903|         "sk_elf_earthbless": { n: "大地的祝福", type: "buff", tier: 4, reqE: 40, mp: 35, dur: 1200, reqEle: "earth", d: { ac: 7 } },
+--- js\00-data.js:2902 match=reqE ---
+2900|         "sk_elf_stormeye": { n: "暴風之眼", type: "buff", tier: 4, reqE: 40, mp: 40, dur: 1200, reqEle: "wind", d: { rangedDmg: 2, rangedHit: 2 } },
+2901|         "sk_elf_earthshield": { n: "大地屏障", type: "buff", tier: 4, reqE: 40, mp: 50, dur: 8, reqEle: "earth" },
+2902|         "sk_elf_lifespring": { n: "生命之泉", type: "heal", tier: 4, reqE: 40, mp: 50, reqEle: "water", valDice: [4, 35], healDice: [5, 50], healBase: 250, fullRestore: true, ignoreWaterVital: true, healCooldownTicks: 200, msg: "生命之泉使傷勢完全復原。" },
+2903|         "sk_elf_earthbless": { n: "大地的祝福", type: "buff", tier: 4, reqE: 40, mp: 35, dur: 1200, reqEle: "earth", d: { ac: 7 } },
+2904| 
+--- js\00-data.js:2903 match=reqE ---
+2901|         "sk_elf_earthshield": { n: "大地屏障", type: "buff", tier: 4, reqE: 40, mp: 50, dur: 8, reqEle: "earth" },
+2902|         "sk_elf_lifespring": { n: "生命之泉", type: "heal", tier: 4, reqE: 40, mp: 50, reqEle: "water", valDice: [4, 35], healDice: [5, 50], healBase: 250, fullRestore: true, ignoreWaterVital: true, healCooldownTicks: 200, msg: "生命之泉使傷勢完全復原。" },
+2903|         "sk_elf_earthbless": { n: "大地的祝福", type: "buff", tier: 4, reqE: 40, mp: 35, dur: 1200, reqEle: "earth", d: { ac: 7 } },
+2904| 
+2905|         // 五階 (Lv 50)
+--- js\00-data.js:2906 match=reqE ---
+2904| 
+2905|         // 五階 (Lv 50)
+2906|         "sk_elf_summon2": { n: "召喚強力屬性精靈", type: "buff", tier: 5, reqE: 50, mp: 50, dur: 3600, reqEleAny: true, desc: "以更深的元素契約呼喚高位精靈。精通精靈之道的妖精，甚至能使精靈王親臨戰場。", summon: { n: "夥伴：強力{ele}之精靈", dmgDice: [2, 40], elemScale: 10, dmgMult: 1.18, mrPenBase: 20, interval: 10, kind: "ranged", eleFromPlayer: true, hitLvOff: 20 } },   // ⚠️ 以下召喚數值欄位(dmgDice/elemScale/dmgMult/mrPenBase/interval/hitLvOff)已被 _elfSpiritKingOverride(js/07·讀 js/23 _spiritSpec 規格表)無條件覆蓋·僅存參考
+2907|         "sk_elf_lifebless": { n: "生命的祝福", type: "heal", justiceHeal: true, tier: 5, reqE: 50, mp: 30, reqEle: "water", valDice: [1, 20], healDice: [1, 28], healBase: 28, classicHeal: { baseDice: 12, sides: 12, mult: 0.8 }, groupHeal: true, healCooldownTicks: 60, msg: "生命的祝福立即治癒全隊。" },
+2908|         "sk_elf_seal": { n: "封印禁地", type: "atk", tier: 5, reqE: 50, mp: 40, dmgType: "magic", reqEleAny: true, status: { kind: "magicseal", pbase: 100, dur: 8 } },
+--- js\00-data.js:2907 match=reqE ---
+2905|         // 五階 (Lv 50)
+2906|         "sk_elf_summon2": { n: "召喚強力屬性精靈", type: "buff", tier: 5, reqE: 50, mp: 50, dur: 3600, reqEleAny: true, desc: "以更深的元素契約呼喚高位精靈。精通精靈之道的妖精，甚至能使精靈王親臨戰場。", summon: { n: "夥伴：強力{ele}之精靈", dmgDice: [2, 40], elemScale: 10, dmgMult: 1.18, mrPenBase: 20, interval: 10, kind: "ranged", eleFromPlayer: true, hitLvOff: 20 } },   // ⚠️ 以下召喚數值欄位(dmgDice/elemScale/dmgMult/mrPenBase/interval/hitLvOff)已被 _elfSpiritKingOverride(js/07·讀 js/23 _spiritSpec 規格表)無條件覆蓋·僅存參考
+2907|         "sk_elf_lifebless": { n: "生命的祝福", type: "heal", justiceHeal: true, tier: 5, reqE: 50, mp: 30, reqEle: "water", valDice: [1, 20], healDice: [1, 28], healBase: 28, classicHeal: { baseDice: 12, sides: 12, mult: 0.8 }, groupHeal: true, healCooldownTicks: 60, msg: "生命的祝福立即治癒全隊。" },
+2908|         "sk_elf_seal": { n: "封印禁地", type: "atk", tier: 5, reqE: 50, mp: 40, dmgType: "magic", reqEleAny: true, status: { kind: "magicseal", pbase: 100, dur: 8 } },
+2909|         "sk_elf_muddywater": { n: "污濁之水", type: "atk", tier: 5, reqE: 50, mp: 20, dmgType: "magic", ele: "water", reqEle: "water", bossOnly: true, status: { kind: "muddywater", force: true, dur: 32 }, desc: "只能對頭目施放；必定命中，使其HP自然恢復量減半", msg: "污濁的水流纏繞著目標，阻滯其生命力的匯聚。" },   // 🌊 五階水靈異常：bossOnly=只對頭目施放·force=跳過命中判定(必中)·dur單位秒·效果=js/03 頭目每5秒%回血減半·純異常技(無傷害骰)→js/07 守衛=目標狀態結束前不重複施放
+--- js\00-data.js:2908 match=封印禁地 ---
+2906|         "sk_elf_summon2": { n: "召喚強力屬性精靈", type: "buff", tier: 5, reqE: 50, mp: 50, dur: 3600, reqEleAny: true, desc: "以更深的元素契約呼喚高位精靈。精通精靈之道的妖精，甚至能使精靈王親臨戰場。", summon: { n: "夥伴：強力{ele}之精靈", dmgDice: [2, 40], elemScale: 10, dmgMult: 1.18, mrPenBase: 20, interval: 10, kind: "ranged", eleFromPlayer: true, hitLvOff: 20 } },   // ⚠️ 以下召喚數值欄位(dmgDice/elemScale/dmgMult/mrPenBase/interval/hitLvOff)已被 _elfSpiritKingOverride(js/07·讀 js/23 _spiritSpec 規格表)無條件覆蓋·僅存參考
+2907|         "sk_elf_lifebless": { n: "生命的祝福", type: "heal", justiceHeal: true, tier: 5, reqE: 50, mp: 30, reqEle: "water", valDice: [1, 20], healDice: [1, 28], healBase: 28, classicHeal: { baseDice: 12, sides: 12, mult: 0.8 }, groupHeal: true, healCooldownTicks: 60, msg: "生命的祝福立即治癒全隊。" },
+2908|         "sk_elf_seal": { n: "封印禁地", type: "atk", tier: 5, reqE: 50, mp: 40, dmgType: "magic", reqEleAny: true, status: { kind: "magicseal", pbase: 100, dur: 8 } },
+2909|         "sk_elf_muddywater": { n: "污濁之水", type: "atk", tier: 5, reqE: 50, mp: 20, dmgType: "magic", ele: "water", reqEle: "water", bossOnly: true, status: { kind: "muddywater", force: true, dur: 32 }, desc: "只能對頭目施放；必定命中，使其HP自然恢復量減半", msg: "污濁的水流纏繞著目標，阻滯其生命力的匯聚。" },   // 🌊 五階水靈異常：bossOnly=只對頭目施放·force=跳過命中判定(必中)·dur單位秒·效果=js/03 頭目每5秒%回血減半·純異常技(無傷害骰)→js/07 守衛=目標狀態結束前不重複施放
+2910|         "sk_elf_blazewpn": { n: "烈炎武器", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "fire", d: { meleeDmg: 5, meleeHit: 5 } },
+--- js\00-data.js:2909 match=污濁之水 ---
+2907|         "sk_elf_lifebless": { n: "生命的祝福", type: "heal", justiceHeal: true, tier: 5, reqE: 50, mp: 30, reqEle: "water", valDice: [1, 20], healDice: [1, 28], healBase: 28, classicHeal: { baseDice: 12, sides: 12, mult: 0.8 }, groupHeal: true, healCooldownTicks: 60, msg: "生命的祝福立即治癒全隊。" },
+2908|         "sk_elf_seal": { n: "封印禁地", type: "atk", tier: 5, reqE: 50, mp: 40, dmgType: "magic", reqEleAny: true, status: { kind: "magicseal", pbase: 100, dur: 8 } },
+2909|         "sk_elf_muddywater": { n: "污濁之水", type: "atk", tier: 5, reqE: 50, mp: 20, dmgType: "magic", ele: "water", reqEle: "water", bossOnly: true, status: { kind: "muddywater", force: true, dur: 32 }, desc: "只能對頭目施放；必定命中，使其HP自然恢復量減半", msg: "污濁的水流纏繞著目標，阻滯其生命力的匯聚。" },   // 🌊 五階水靈異常：bossOnly=只對頭目施放·force=跳過命中判定(必中)·dur單位秒·效果=js/03 頭目每5秒%回血減半·純異常技(無傷害骰)→js/07 守衛=目標狀態結束前不重複施放
+2910|         "sk_elf_blazewpn": { n: "烈炎武器", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "fire", d: { meleeDmg: 5, meleeHit: 5 } },
+2911|         "sk_elf_flamesoul": { n: "烈焰之魂", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1280, reqEle: "fire", noRefresh: true },   // 🔧 持續內近距離一般攻擊武器擲骰必定最大值（見 getPhysicalDmg）；noRefresh：效果結束才可再施放
+--- js\00-data.js:2910 match=reqE ---
+2908|         "sk_elf_seal": { n: "封印禁地", type: "atk", tier: 5, reqE: 50, mp: 40, dmgType: "magic", reqEleAny: true, status: { kind: "magicseal", pbase: 100, dur: 8 } },
+2909|         "sk_elf_muddywater": { n: "污濁之水", type: "atk", tier: 5, reqE: 50, mp: 20, dmgType: "magic", ele: "water", reqEle: "water", bossOnly: true, status: { kind: "muddywater", force: true, dur: 32 }, desc: "只能對頭目施放；必定命中，使其HP自然恢復量減半", msg: "污濁的水流纏繞著目標，阻滯其生命力的匯聚。" },   // 🌊 五階水靈異常：bossOnly=只對頭目施放·force=跳過命中判定(必中)·dur單位秒·效果=js/03 頭目每5秒%回血減半·純異常技(無傷害骰)→js/07 守衛=目標狀態結束前不重複施放
+2910|         "sk_elf_blazewpn": { n: "烈炎武器", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "fire", d: { meleeDmg: 5, meleeHit: 5 } },
+2911|         "sk_elf_flamesoul": { n: "烈焰之魂", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1280, reqEle: "fire", noRefresh: true },   // 🔧 持續內近距離一般攻擊武器擲骰必定最大值（見 getPhysicalDmg）；noRefresh：效果結束才可再施放
+2912|         "sk_elf_stormshot": { n: "暴風神射", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "wind", d: { rangedDmg: 6, rangedHit: 3 } },
+--- js\00-data.js:2911 match=reqE ---
+2909|         "sk_elf_muddywater": { n: "污濁之水", type: "atk", tier: 5, reqE: 50, mp: 20, dmgType: "magic", ele: "water", reqEle: "water", bossOnly: true, status: { kind: "muddywater", force: true, dur: 32 }, desc: "只能對頭目施放；必定命中，使其HP自然恢復量減半", msg: "污濁的水流纏繞著目標，阻滯其生命力的匯聚。" },   // 🌊 五階水靈異常：bossOnly=只對頭目施放·force=跳過命中判定(必中)·dur單位秒·效果=js/03 頭目每5秒%回血減半·純異常技(無傷害骰)→js/07 守衛=目標狀態結束前不重複施放
+2910|         "sk_elf_blazewpn": { n: "烈炎武器", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "fire", d: { meleeDmg: 5, meleeHit: 5 } },
+2911|         "sk_elf_flamesoul": { n: "烈焰之魂", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1280, reqEle: "fire", noRefresh: true },   // 🔧 持續內近距離一般攻擊武器擲骰必定最大值（見 getPhysicalDmg）；noRefresh：效果結束才可再施放
+2912|         "sk_elf_stormshot": { n: "暴風神射", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "wind", d: { rangedDmg: 6, rangedHit: 3 } },
+2913|         "sk_elf_preciseshot": { n: "精準射擊", type: "buff", tier: 5, reqE: 50, mp: 15, dur: 64, reqEle: "wind", noRefresh: true, msg: "你的目光變得無比銳利，攻擊精準無比。" },   // 🏹 持續內一般攻擊擲骰1由必定未命中→必定命中（最高命中率可達100%·見 getPhysicalDmg）；noRefresh：效果結束才可再施放
+--- js\00-data.js:2912 match=reqE ---
+2910|         "sk_elf_blazewpn": { n: "烈炎武器", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "fire", d: { meleeDmg: 5, meleeHit: 5 } },
+2911|         "sk_elf_flamesoul": { n: "烈焰之魂", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1280, reqEle: "fire", noRefresh: true },   // 🔧 持續內近距離一般攻擊武器擲骰必定最大值（見 getPhysicalDmg）；noRefresh：效果結束才可再施放
+2912|         "sk_elf_stormshot": { n: "暴風神射", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "wind", d: { rangedDmg: 6, rangedHit: 3 } },
+2913|         "sk_elf_preciseshot": { n: "精準射擊", type: "buff", tier: 5, reqE: 50, mp: 15, dur: 64, reqEle: "wind", noRefresh: true, msg: "你的目光變得無比銳利，攻擊精準無比。" },   // 🏹 持續內一般攻擊擲骰1由必定未命中→必定命中（最高命中率可達100%·見 getPhysicalDmg）；noRefresh：效果結束才可再施放
+2914|         "sk_elf_steelguard": { n: "鋼鐵防護", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "earth", d: { ac: 10 } },   // 🛡️ 鋼鐵防護：僅施法者自身 AC-10；不再提供全隊百分比減傷
+--- js\00-data.js:2913 match=reqE ---
+2911|         "sk_elf_flamesoul": { n: "烈焰之魂", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1280, reqEle: "fire", noRefresh: true },   // 🔧 持續內近距離一般攻擊武器擲骰必定最大值（見 getPhysicalDmg）；noRefresh：效果結束才可再施放
+2912|         "sk_elf_stormshot": { n: "暴風神射", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "wind", d: { rangedDmg: 6, rangedHit: 3 } },
+2913|         "sk_elf_preciseshot": { n: "精準射擊", type: "buff", tier: 5, reqE: 50, mp: 15, dur: 64, reqEle: "wind", noRefresh: true, msg: "你的目光變得無比銳利，攻擊精準無比。" },   // 🏹 持續內一般攻擊擲骰1由必定未命中→必定命中（最高命中率可達100%·見 getPhysicalDmg）；noRefresh：效果結束才可再施放
+2914|         "sk_elf_steelguard": { n: "鋼鐵防護", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "earth", d: { ac: 10 } },   // 🛡️ 鋼鐵防護：僅施法者自身 AC-10；不再提供全隊百分比減傷
+2915|         "sk_elf_attrfire": { n: "屬性之火", type: "buff", tier: 5, reqE: 50, mp: 20, dur: 320, reqEle: "fire", noRefresh: true, msg: "屬性之火在你的攻擊中燃燒。" },   // 🔧 一般攻擊30%機率傷害×1.5（見 playerAttack，與燃燒鬥志同效）；noRefresh：效果結束才可再施放
+--- js\00-data.js:2914 match=reqE ---
+2912|         "sk_elf_stormshot": { n: "暴風神射", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "wind", d: { rangedDmg: 6, rangedHit: 3 } },
+2913|         "sk_elf_preciseshot": { n: "精準射擊", type: "buff", tier: 5, reqE: 50, mp: 15, dur: 64, reqEle: "wind", noRefresh: true, msg: "你的目光變得無比銳利，攻擊精準無比。" },   // 🏹 持續內一般攻擊擲骰1由必定未命中→必定命中（最高命中率可達100%·見 getPhysicalDmg）；noRefresh：效果結束才可再施放
+2914|         "sk_elf_steelguard": { n: "鋼鐵防護", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "earth", d: { ac: 10 } },   // 🛡️ 鋼鐵防護：僅施法者自身 AC-10；不再提供全隊百分比減傷
+2915|         "sk_elf_attrfire": { n: "屬性之火", type: "buff", tier: 5, reqE: 50, mp: 20, dur: 320, reqEle: "fire", noRefresh: true, msg: "屬性之火在你的攻擊中燃燒。" },   // 🔧 一般攻擊30%機率傷害×1.5（見 playerAttack，與燃燒鬥志同效）；noRefresh：效果結束才可再施放
+2916|         "sk_elf_physboost": { n: "體能激發", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 960, reqEle: "earth", noRefresh: true, loadFreeRegen: true, msg: "體能激發，負重之下仍能調息。" },   // 🔧 負重狀態仍可自然恢復HP/MP（見 js/03 _regenHP/_regenMP 與 hasLoadFreeRegen）；noRefresh：效果結束才可再施放
+--- js\00-data.js:2915 match=reqE ---
+2913|         "sk_elf_preciseshot": { n: "精準射擊", type: "buff", tier: 5, reqE: 50, mp: 15, dur: 64, reqEle: "wind", noRefresh: true, msg: "你的目光變得無比銳利，攻擊精準無比。" },   // 🏹 持續內一般攻擊擲骰1由必定未命中→必定命中（最高命中率可達100%·見 getPhysicalDmg）；noRefresh：效果結束才可再施放
+2914|         "sk_elf_steelguard": { n: "鋼鐵防護", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "earth", d: { ac: 10 } },   // 🛡️ 鋼鐵防護：僅施法者自身 AC-10；不再提供全隊百分比減傷
+2915|         "sk_elf_attrfire": { n: "屬性之火", type: "buff", tier: 5, reqE: 50, mp: 20, dur: 320, reqEle: "fire", noRefresh: true, msg: "屬性之火在你的攻擊中燃燒。" },   // 🔧 一般攻擊30%機率傷害×1.5（見 playerAttack，與燃燒鬥志同效）；noRefresh：效果結束才可再施放
+2916|         "sk_elf_physboost": { n: "體能激發", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 960, reqEle: "earth", noRefresh: true, loadFreeRegen: true, msg: "體能激發，負重之下仍能調息。" },   // 🔧 負重狀態仍可自然恢復HP/MP（見 js/03 _regenHP/_regenMP 與 hasLoadFreeRegen）；noRefresh：效果結束才可再施放
+2917|         "sk_elf_energyboost": { n: "能量激發", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 960, reqEle: "fire", noRefresh: true, loadFreeRegen: true, msg: "能量激發，負重之下仍能調息。" },   // 🔧 同體能激發，火屬性版本
+--- js\00-data.js:2916 match=reqE ---
+2914|         "sk_elf_steelguard": { n: "鋼鐵防護", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "earth", d: { ac: 10 } },   // 🛡️ 鋼鐵防護：僅施法者自身 AC-10；不再提供全隊百分比減傷
+2915|         "sk_elf_attrfire": { n: "屬性之火", type: "buff", tier: 5, reqE: 50, mp: 20, dur: 320, reqEle: "fire", noRefresh: true, msg: "屬性之火在你的攻擊中燃燒。" },   // 🔧 一般攻擊30%機率傷害×1.5（見 playerAttack，與燃燒鬥志同效）；noRefresh：效果結束才可再施放
+2916|         "sk_elf_physboost": { n: "體能激發", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 960, reqEle: "earth", noRefresh: true, loadFreeRegen: true, msg: "體能激發，負重之下仍能調息。" },   // 🔧 負重狀態仍可自然恢復HP/MP（見 js/03 _regenHP/_regenMP 與 hasLoadFreeRegen）；noRefresh：效果結束才可再施放
+2917|         "sk_elf_energyboost": { n: "能量激發", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 960, reqEle: "fire", noRefresh: true, loadFreeRegen: true, msg: "能量激發，負重之下仍能調息。" },   // 🔧 同體能激發，火屬性版本
+2918|         "sk_elf_mirror": { n: "鏡反射", type: "buff", tier: 5, reqE: 50, mp: 10, dur: 16, msg: "你的周身浮現一面鏡子。" },   // 🪞 受魔法傷害時 精神%機率（每1點精神+1%），對施法者造成等量必中固定傷害（見 applyMobMagic）；type:buff → 自動施放且效果結束才再施放
+--- js\00-data.js:2917 match=reqE ---
+2915|         "sk_elf_attrfire": { n: "屬性之火", type: "buff", tier: 5, reqE: 50, mp: 20, dur: 320, reqEle: "fire", noRefresh: true, msg: "屬性之火在你的攻擊中燃燒。" },   // 🔧 一般攻擊30%機率傷害×1.5（見 playerAttack，與燃燒鬥志同效）；noRefresh：效果結束才可再施放
+2916|         "sk_elf_physboost": { n: "體能激發", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 960, reqEle: "earth", noRefresh: true, loadFreeRegen: true, msg: "體能激發，負重之下仍能調息。" },   // 🔧 負重狀態仍可自然恢復HP/MP（見 js/03 _regenHP/_regenMP 與 hasLoadFreeRegen）；noRefresh：效果結束才可再施放
+2917|         "sk_elf_energyboost": { n: "能量激發", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 960, reqEle: "fire", noRefresh: true, loadFreeRegen: true, msg: "能量激發，負重之下仍能調息。" },   // 🔧 同體能激發，火屬性版本
+2918|         "sk_elf_mirror": { n: "鏡反射", type: "buff", tier: 5, reqE: 50, mp: 10, dur: 16, msg: "你的周身浮現一面鏡子。" },   // 🪞 受魔法傷害時 精神%機率（每1點精神+1%），對施法者造成等量必中固定傷害（見 applyMobMagic）；type:buff → 自動施放且效果結束才再施放
+2919|         // ================= 【黑暗妖精魔法】 =================
+--- js\00-data.js:2918 match=reqE ---
+2916|         "sk_elf_physboost": { n: "體能激發", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 960, reqEle: "earth", noRefresh: true, loadFreeRegen: true, msg: "體能激發，負重之下仍能調息。" },   // 🔧 負重狀態仍可自然恢復HP/MP（見 js/03 _regenHP/_regenMP 與 hasLoadFreeRegen）；noRefresh：效果結束才可再施放
+2917|         "sk_elf_energyboost": { n: "能量激發", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 960, reqEle: "fire", noRefresh: true, loadFreeRegen: true, msg: "能量激發，負重之下仍能調息。" },   // 🔧 同體能激發，火屬性版本
+2918|         "sk_elf_mirror": { n: "鏡反射", type: "buff", tier: 5, reqE: 50, mp: 10, dur: 16, msg: "你的周身浮現一面鏡子。" },   // 🪞 受魔法傷害時 精神%機率（每1點精神+1%），對施法者造成等量必中固定傷害（見 applyMobMagic）；type:buff → 自動施放且效果結束才再施放
+2919|         // ================= 【黑暗妖精魔法】 =================
+2920|         // 一階（黑暗妖精 Lv15）
+--- js\00-data.js:2974 match=全屬性 ---
+2972|         "sk_dragon_terror":        { n: "恐懼無助", type: "atk", tier: 2, reqDk: 30, mp: 0, hpCost: 12, fixedStatus: { kind: "terror", chance: 0.10, dur: 16 }, noRecastStatus: "terror" },
+2973|         "sk_dragon_lavabolt":      { n: "岩漿之箭", type: "atk", tier: 2, reqDk: 30, mp: 0, hpCost: 16, dmgType: "magic", ele: "fire", multiDmg: [[10, 8]] },
+2974|         "sk_dragon_awaken_falion": { n: "覺醒：法利昂", type: "buff", label: "增益", tier: 2, reqDk: 30, mp: 30, hpCost: 20, dur: 600, noRefresh: true, awaken: true, d: { resFire: 15, resWater: 15, resEarth: 15, resWind: 15 }, msg: "你引動法利昂之力，魔抗與全屬性抗性大增。" },
+2975|         // —— 三階龍魔法（Lv45）——
+2976|         "sk_dragon_deadlybody":    { n: "致命身軀", type: "buff", label: "增益", tier: 3, reqDk: 45, mp: 0, hpCost: 50, dur: 300, noRefresh: true, msg: "你的身軀化為致命的反擊之刃。" },
+##### FILE js\07-skills-cast.js lines=1217
+--- js\07-skills-cast.js:435 match=reqE ---
+433|     let needLv = skillReqLv(sk, skId);   // 🏅 集中化：含魔導精通特例
+434|     if(!__granted && (needLv === undefined || player.lv < needLv)) return false;
+435|     if(!__granted && sk.reqEle && player.elfEle !== sk.reqEle) return false;      // 屬性不符
+436|     if(!__granted && sk.reqEleAny && !player.elfEle) return false;                 // 尚未選擇屬性
+437| 
+--- js\07-skills-cast.js:436 match=reqE ---
+434|     if(!__granted && (needLv === undefined || player.lv < needLv)) return false;
+435|     if(!__granted && sk.reqEle && player.elfEle !== sk.reqEle) return false;      // 屬性不符
+436|     if(!__granted && sk.reqEleAny && !player.elfEle) return false;                 // 尚未選擇屬性
+437| 
+438|     // 🏺 烈焰巫師的正式長袍：燃燒的火球→爆裂的火球。
+--- js\07-skills-cast.js:439 match=reqE ---
+437| 
+438|     // 🏺 烈焰巫師的正式長袍：燃燒的火球→爆裂的火球。
+439|     // ⚠️ v3.6.65 必須放在**等級/屬性閘之後**：爆裂的火球是「非可學技能」（無 reqM/reqE），
+440|     //    原本在函式開頭就替換 → skillReqLv 回 undefined → 上面那道閘直接 return false ＝穿上長袍後火球完全放不出來。
+441|     //    閘門要驗的是玩家實際學會的「燃燒的火球」，替換只作用於後續的傷害/MP/特效。
+--- js\07-skills-cast.js:786 match=污濁之水 ---
+784|         } else {
+785|             let targets = sk.target === 'all' ? mapState.mobs.filter(m => m && m.curHp > 0 && !m._dead) : [getTarget()].filter(m => m && m.curHp > 0);   // 🛡️ v2.6.69 審計#7：排除同 tick 已死屍體（killMob 只標記·settleDeadMobs 才移除）——原本對屍體結算的傷害會灌進 _burstDmg 使魔爆總量膨脹；與傭兵 allyCastMagic 過濾一致
+786|             if(sk.bossOnly) targets = targets.filter(m => m && m.boss);   // 🌊 頭目限定技能（污濁之水）：非頭目不施放、不扣 MP／冷卻
+787|             if(targets.length === 0) return false;
+788| 
+##### FILE js\06-status-allies.js lines=4142
+--- js\06-status-allies.js:3 match=污濁之水 ---
+1| function newMobStatus() {
+2|     return { freeze:0, stun:0, stone:0, sleep:0, paralyze:0, poison:0, poisonTick:30, poisonDmg:0, poisonStacks:0, poisonUnit:0,
+3|              blind:0, blindVal:0, weaken:0, disease:0, vacuum:0, broken:0, slow:0, mrhalf:0, magicseal:0, fragile:0, shatter:0, armorbreak:0, confuse:0, panic:0, guardbreak:0, terror:0, doom:0, strawCurse:0, muddywater:0, bind:0 };   // 🌊 污濁之水：頭目回血減半（js/03）；⚡ v3.7.52 paralyze 麻痺（審判落雷·硬控同暈眩）；🕸️ v3.7.75 bind 束縛
+4| }
+5| // 🕸️ v3.7.75 束縛：被束縛者「原地不動」——本身不是硬控（仍可施法／使用技能），只擋一般攻擊：
+--- js\06-status-allies.js:45 match=污濁之水 ---
+43| }
+44| const STATUS_NAME = { freeze:'冰凍', stun:'暈眩', stone:'石化', sleep:'沉睡', paralyze:'麻痺', poison:'中毒',
+45|     blind:'目盲', weaken:'弱化', disease:'疾病', vacuum:'真空', broken:'損壞', slow:'緩速', mrhalf:'魔抗減半', magicseal:'魔法封印', fragile:'脆弱', shatter:'碎裂', armorbreak:'破甲', confuse:'混亂', panic:'恐慌', guardbreak:'護衛毀滅', terror:'恐懼', doom:'死神', muddywater:'污濁', bind:'束縛' };   // 🔮 脆弱（白鳥5）：受所有傷害+10%；月光碎裂：AC-10；🐉 護衛毀滅/恐懼/死神；🌊 污濁（污濁之水·頭目回血減半）；🕸️ v3.7.75 束縛
+46| // 特定狀態的專屬套用訊息（接於怪物名稱後）
+47| const STATUS_MSG = { magicseal:'的魔法遭到封印了。' };
+--- js\06-status-allies.js:1343 match=魔法消除 ---
+1341|     }
+1342| }
+1343| // 🔧 傭兵施放「非傷害」攻擊技能：純異常狀態（緩速/弱化/疾病/魔法消除/封印禁地/沉睡之霧/木乃伊詛咒/毒咒/壞物/闇盲/黑闇之影/破壞盔甲…）
+1344| //    與即死類（起死回生術=不死、釋放元素=元素）。比照玩家 castSkill 的非傷害分支，以傭兵自身魔法命中(abnormalMagicHit)判定（player=ally 換身）。
+1345| //    回傳 true=已施放並扣 MP；false=不適用（無目標 / 目標皆已具該狀態 / 無可即死目標 / MP 不足）→ 由呼叫端退回一般攻擊。
+--- js\06-status-allies.js:1351 match=污濁之水 ---
+1349|     let d = ally.d || {};
+1350|     let targets = (sk.target === 'all') ? mapState.mobs.filter(m => m && m.curHp > 0) : [getTarget()].filter(m => m && m.curHp > 0);
+1351|     if (sk.bossOnly) targets = targets.filter(m => m && m.boss);   // 🌊 頭目限定技能（污濁之水）：非頭目時退回一般攻擊，不扣 MP／不播放施法動作
+1352|     if (!targets.length) return false;
+1353|     if (typeof _allySpriteTrigger === 'function') _allySpriteTrigger(ally, 'skill', sk.n);   // 🤝 v3.0.70 隊員戰場 sprite：確認有合法目標後才播放施法動作
+--- js\06-status-allies.js:2172 match=魔法消除 ---
+2170|         if ((ally.mp||0) >= cost) { ally.mp -= cost; allyManaMasteryRefund(ally, cost); allyCastMagic(ally, sk); return true; }
+2171|     } else if (sk && sk.type === 'atk' && (sk.status || sk.instakill)) {
+2172|         if (allyCastNonDamage(ally, sk)) return true;   // 🔧 非傷害攻擊技能（地面障礙/魔法消除/封印禁地/釋放元素…）；不適用則退回物理攻擊+連射
+2173|     }
+2174|     // 退回一般物理攻擊 + 連射（三重矢/魔法 MP 不足、或未選攻擊技能時）
+--- js\06-status-allies.js:2663 match=污濁之水 ---
+2661| function allyActWithSkillGate(ally, actFn) {
+2662|     let _sk = ally._atkSkill ? DB.skills[ally._atkSkill] : null;
+2663|     if (_sk && !allySkillElementOk(ally, ally._atkSkill)) _sk = null;   // 🧝 v3.8.5 換屬性後不可用的屬性攻擊技（地面障礙/封印禁地/污濁之水）→視同未設定，走下方普攻分支（會暫清 _atkSkill·職業 act 內部一律退普攻）
+2664|     let _mpPct = allyCastMpPct(ally);   // 🆕 v2.6.27 施法MP門檻：MP% 高於此值才施放攻擊技（0=不限）；未達→退回普攻·且不重設冷卻(MP 回滿即施放)
+2665|     let _mpOk = (_mpPct <= 0) || ((ally.mp || 0) >= (ally.mmp || 0) * _mpPct / 100);
+--- js\06-status-allies.js:2763 match=reqE ---
+2761| }
+2762| // 🧝 v3.8.5 妖精屬性閘（傭兵版·單一真相）：妖精換屬性後，舊屬性的三/四/五階精靈魔法在他自己身上是「灰色不可用」
+2763| //   （玩家端 canCast js/07:395-396 的 reqEle／reqEleAny 閘）。傭兵路徑原本**完全沒有這道閘** → 隊伍面板照列出來、
+2764| //   自動維持照跑（舊屬性 buff 照吃衍生值又照扣 MP）。用戶要求：擔任傭兵時自動隱藏 → 隱藏＋停止施放成對，
+2765| //   否則會變成「看不到卻還在生效」。
+--- js\06-status-allies.js:2767 match=reqE ---
+2765| //   否則會變成「看不到卻還在生效」。
+2766| //   ⚠️判定必須用 **ally.elfEle**（傭兵快照自帶·buildAlly 深拷貝來源存檔）——不可用 player.elfEle，那是拿隊長的屬性
+2767| //     去判傭兵的技能（也正是 _allySkillOptions 原註解說「不可用 reqEle 判可用性」的原因；改讀 ally 後就成立了）。
+2768| //   granted（裝備/頭盔賦予）比照玩家豁免屬性閘。非妖精職業的技能無 reqEle/reqEleAny → 一律 true，零影響。
+2769| function allySkillElementOk(ally, sid) {
+--- js\06-status-allies.js:2768 match=reqE ---
+2766| //   ⚠️判定必須用 **ally.elfEle**（傭兵快照自帶·buildAlly 深拷貝來源存檔）——不可用 player.elfEle，那是拿隊長的屬性
+2767| //     去判傭兵的技能（也正是 _allySkillOptions 原註解說「不可用 reqEle 判可用性」的原因；改讀 ally 後就成立了）。
+2768| //   granted（裝備/頭盔賦予）比照玩家豁免屬性閘。非妖精職業的技能無 reqEle/reqEleAny → 一律 true，零影響。
+2769| function allySkillElementOk(ally, sid) {
+2770|     let sk = DB.skills[sid]; if (!sk) return true;
+--- js\06-status-allies.js:2771 match=reqE ---
+2769| function allySkillElementOk(ally, sid) {
+2770|     let sk = DB.skills[sid]; if (!sk) return true;
+2771|     if (!sk.reqEle && !sk.reqEleAny) return true;
+2772|     if (ally && ally.grantedSkills && ally.grantedSkills.includes(sid)) return true;
+2773|     let ele = (ally && ally.elfEle) || '';
+--- js\06-status-allies.js:2774 match=reqE ---
+2772|     if (ally && ally.grantedSkills && ally.grantedSkills.includes(sid)) return true;
+2773|     let ele = (ally && ally.elfEle) || '';
+2774|     if (sk.reqEle && ele !== sk.reqEle) return false;   // 屬性不符（換屬性後的舊屬性魔法）
+2775|     if (sk.reqEleAny && !ele) return false;             // 尚未選擇屬性
+2776|     return true;
+--- js\06-status-allies.js:2775 match=reqE ---
+2773|     let ele = (ally && ally.elfEle) || '';
+2774|     if (sk.reqEle && ele !== sk.reqEle) return false;   // 屬性不符（換屬性後的舊屬性魔法）
+2775|     if (sk.reqEleAny && !ele) return false;             // 尚未選擇屬性
+2776|     return true;
+2777| }
+--- js\06-status-allies.js:2917 match=reqE ---
+2915|             // 👑 v2.7.95 召喚也吃「開啟閘」：只召「來源角色有勾選自動施放」的召喚術（比照玩家 autoActions·玩家沒開→傭兵不耗 MP 召喚）；優先強力版 sk_summon>sk_elf_summon2>其他，但每個候選都須通過 _mercAutoOn
+2916|             let _sumSid = (ally.skills.includes('sk_summon') && _mercAutoOn(ally, 'sk_summon')) ? 'sk_summon'
+2917|                 : (ally.skills.includes('sk_elf_summon2') && _mercAutoOn(ally, 'sk_elf_summon2') && allySkillElementOk(ally, 'sk_elf_summon2')) ? 'sk_elf_summon2'   // 🩸 妖精傭兵優先「召喚強力屬性精靈」(上級精靈)：先學的一般版 sk_elf_summon 排在前面，.find 會先抓到它 → 傭兵永遠只召弱版；顯式優先強力版修正。🧝 v3.8.5 屬性精靈召喚是 reqEleAny → 尚未選屬性者不召（比照玩家）
+2918|                 : ally.skills.find(s => { let d = DB.skills[s]; return d && d.type === 'buff' && d.summon && !(s === 'sk_zombie' && typeof necroBookEquipped === 'function' && necroBookEquipped(ally)) && _mercAutoOn(ally, s) && allySkillElementOk(ally, s); });
+2919|             if (_sumSid) {
+--- js\06-status-allies.js:2933 match=reqE ---
+2931| // 🤝 v3.4.45 單體輔助共享（TEAM_SHARE_BUFFS·js/01）：施法者(caster·玩家或傭兵)自己有清單內 buff、隊友(玩家/未倒地傭兵)沒有 → 一次補滿所有缺者（逐一扣施法者 MP·不夠即停）。
+2932| //   與「自動維持勾選」解耦（只看清單＋施法者是否已持有該 buff）。目標寫入 buffs 後對「該目標」重算：玩家 calcStats／傭兵 _allyLevelRecompute（每目標最多重算一次）。
+2933| //   目標合法性只看武器/盾需求（元素 reqEle 不擋受益者·效果與屬性無關）；加速類目標已有任何加速來源(buffs.haste/裝備常駐)→跳過免浪費。
+2934| function _shareBuffLegalForTarget(t, sk) {
+2935|     let w = (t.eq && t.eq.wpn) ? DB.items[t.eq.wpn.id] : null;
+--- js\06-status-allies.js:3085 match=reqE ---
+3083|         if (!_ccBlock && !_castBlock && (ally._convertSkillCd || 0) <= 0 && ally._convertSkill && !mapState.current.startsWith('town_')) {
+3084|             let _cvsk = DB.skills[ally._convertSkill];
+3085|             if (_cvsk && _cvsk.type === 'convert' && ally.skills && ally.skills.includes(ally._convertSkill) && allySkillElementOk(ally, ally._convertSkill)) {   // 🧝 v3.8.5 屬性閘一致性（現行 convert 技皆無 reqEle·未來新增即自動涵蓋）
+3086|                 let _hs = allyHpSkillPct(ally);
+3087|                 let _hpOk = (_hs <= 0) || ((ally.curHp || 0) > (ally.mhp || 1) * _hs / 100);   // 🛡️ 低於停耗HP技門檻→暫停(轉換技耗HP)
+##### FILE js\04-combat-attack.js lines=2637
+##### FILE js\03-combat-core.js lines=3000
+--- js\03-combat-core.js:803 match=污濁之水 ---
+801|             let recentPhysicalHit = m._lastPhysicalHitTick != null && state.ticks - m._lastPhysicalHitTick <= 50;
+802|             let regenPct = recentPhysicalHit ? 0.005 : 0.025;
+803|             if (m.st && (m.st.muddywater || 0) > 0) regenPct *= 0.5;   // 🌊 污濁之水：狀態維持中頭目 HP 自然恢復量減半
+804|             m.curHp = Math.min(m.hp, m.curHp + Math.max(1, Math.floor(m.hp * regenPct)));
+805|             if (!state.ff) renderMobs();
+##### FILE js\08-items-equip.js lines=1560
+--- js\08-items-equip.js:398 match=單屬性 ---
+396|     if (anc) return 'ancient-glow';                        // 單遠古：紫光（原樣）
+397|     if (bless) return 'bless-glow';   // 單祝福（詛咒已於上方優先處理）                        // 單祝福：金光（原樣）
+398|     if (attr) return 'attr-glow-' + attrCanon(item.attr);  // 🔥 單屬性：武器圖示帶該屬性同色系光芒（階級越高越亮，第5階呼吸光）
+399|     return '';
+400| }
+--- js\08-items-equip.js:737 match=reqE ---
+735|         
+736|         // 👇 補上這兩行：確保屬性相符才能吃水晶！
+737|         if(sd.reqEle && player.elfEle !== sd.reqEle) { logSys(`屬性不符，無法學習「${sd.n}」。`); return; }
+738|         if(sd.reqEleAny && !player.elfEle) { logSys(`尚未選擇屬性，無法學習「${sd.n}」。`); return; }
+739| 
+--- js\08-items-equip.js:738 match=reqE ---
+736|         // 👇 補上這兩行：確保屬性相符才能吃水晶！
+737|         if(sd.reqEle && player.elfEle !== sd.reqEle) { logSys(`屬性不符，無法學習「${sd.n}」。`); return; }
+738|         if(sd.reqEleAny && !player.elfEle) { logSys(`尚未選擇屬性，無法學習「${sd.n}」。`); return; }
+739| 
+740|         if(!player.skills.includes(d.sk)) {
+--- js\08-items-equip.js:1257 match=單屬性防禦 ---
+1255|     'sk_bless_wpn':'祝福魔法武器','sk_greater_haste':'加速術','sk_berserk':'狂暴術','sk_holy_dash':'神聖疾走','sk_blizzard_storm':'冰雪颶風','sk_fire_prison':'火牢','sk_invisible':'隱身術','sk_heal_energy_storm':'治癒能量風暴',
+1256|     'sk_holy_barrier':'聖結界','sk_soul_up':'靈魂昇華','sk_solid_shield':'堅固防護','sk_reduction_armor':'增幅防禦','sk_spike_armor':'尖刺盔甲',
+1257|     'sk_counter_barrier':'反擊屏障','sk_elf_mr':'魔法防禦','sk_elf_purify':'淨化精神','sk_elf_eleres':'屬性防禦','sk_elf_singleres':'單屬性防禦',
+1258|     'sk_elf_firewpn':'火焰武器','sk_elf_windshot':'風之神射','sk_elf_winddash':'風之疾走','sk_elf_earthguard':'大地防護','sk_elf_watervital':'水之元氣',
+1259|     'sk_elf_dancefire':'舞躍之火','sk_elf_stormeye':'暴風之眼','sk_elf_earthshield':'大地屏障','sk_elf_earthbless':'大地的祝福','sk_elf_blazewpn':'烈炎武器',
+##### FILE js\10-ui-tabs.js lines=2754
+--- js\10-ui-tabs.js:86 match=reqE ---
+84|     if (!sk || sk.procOnly) return false;
+85|     if (player.cls === 'knight') return sk.reqK !== undefined && sk.reqM === undefined;
+86|     if (player.cls === 'elf') return sk.reqE !== undefined && sk.reqM === undefined;
+87|     if (player.cls === 'dark') return sk.reqD !== undefined;
+88|     if (player.cls === 'illusion') return sk.reqI !== undefined && sk.reqM === undefined;
+--- js\10-ui-tabs.js:125 match=reqE ---
+123|         let grantedSkill = granted.includes(id);
+124|         let needLv = grantedSkill ? 0 : skillReqLv(sk, id);
+125|         let elementOk = !sk.reqEle || player.elfEle === sk.reqEle;
+126|         let elementChosen = !sk.reqEleAny || !!player.elfEle;
+127|         let usable = learned && elementOk && elementChosen && (grantedSkill || needLv === undefined || player.lv >= needLv);
+--- js\10-ui-tabs.js:126 match=reqE ---
+124|         let needLv = grantedSkill ? 0 : skillReqLv(sk, id);
+125|         let elementOk = !sk.reqEle || player.elfEle === sk.reqEle;
+126|         let elementChosen = !sk.reqEleAny || !!player.elfEle;
+127|         let usable = learned && elementOk && elementChosen && (grantedSkill || needLv === undefined || player.lv >= needLv);
+128|         let dim = learned ? (usable ? '' : ' classic-skill-unavailable') : ' classic-skill-unlearned';
+--- js\10-ui-tabs.js:557 match=reqE ---
+555|         let needLv = skillReqLv(sk, sid);   // 🏅 集中化：含魔導精通特例
+556|         if(!__granted && (needLv === undefined || player.lv < needLv)) isAvail = false;
+557|         if(!__granted && sk.reqEle && player.elfEle !== sk.reqEle) isAvail = false;
+558|         if(!__granted && sk.reqEleAny && !player.elfEle) isAvail = false;
+559|         
+--- js\10-ui-tabs.js:558 match=reqE ---
+556|         if(!__granted && (needLv === undefined || player.lv < needLv)) isAvail = false;
+557|         if(!__granted && sk.reqEle && player.elfEle !== sk.reqEle) isAvail = false;
+558|         if(!__granted && sk.reqEleAny && !player.elfEle) isAvail = false;
+559|         
+560|         let dis = isAvail ? '' : 'disabled class="text-slate-500"';
+--- js\10-ui-tabs.js:1879 match=精靈水晶 ---
+1877|     let s=(d.type||'')+'|'+(i.id||'')+'|'+(d.n||'');
+1878|     if(/pot|potion|藥水/.test(s))return 1; if(/scroll|卷軸/.test(s))return 2;
+1879|     if(/skillbk|魔法書|法術書|精靈水晶|技能書/.test(s))return 3;
+1880|     if(/gem|crystal|寶石|水晶/.test(s))return 4; if(/material|材料/.test(s))return 5;
+1881|     if(/quest|任務/.test(s))return 6; return 90;
+##### FILE js\13-shop-save.js lines=2023
+##### FILE js\02-stats-recompute.js lines=1339
+--- js\02-stats-recompute.js:152 match=全屬性 ---
+150|         if (d.int === _mx) d.int += 1; if (d.wis === _mx) d.wis += 1; if (d.cha === _mx) d.cha += 1; } }
+151| 
+152|     // 🏺 v3.7.20 百變化身（手套 polyAllStats/polyAtkSpdPct）：變身時全屬性+N＋攻速+N%。
+153|     //    置於 Phase 1 段（上限夾擠前）→ 屬性實際吃進衍生值（HP/近傷/命中）；變身判定＝套裝變身或藥水變身進行中（與下方 _polyForm 同式）。
+154|     { let _mag = (p.eq && p.eq.gloves) ? DB.items[p.eq.gloves.id] : null;
+--- js\02-stats-recompute.js:608 match=單屬性防禦 ---
+606|     }
+607| 
+608|     // 單屬性防禦：所選屬性抗性 +50
+609|     if(p.buffs.sk_elf_singleres > 0 && p.elfEle) {
+610|         if(p.elfEle === 'fire')  d.resFire  += 50;
+##### FILE afk-wiki.js lines=4957
+--- afk-wiki.js:193 match=reqE ---
+191|   }
+192| 
+193|   // 魔法真正分類:有 reqM＝法師魔法(本職法術,1~10階);否則依 reqE/reqD/reqK/reqI/reqDk 歸為各職業專屬。
+194|   //   日光術等同時帶 reqM 與 reqI/reqDk 的法術歸「法師魔法」(reqM 優先),其可學職業在「可學」行另標。
+195|   function magicCat(id, sk) {
+--- afk-wiki.js:197 match=reqE ---
+195|   function magicCat(id, sk) {
+196|     if (sk.reqM !== undefined) return 'mage';
+197|     if (sk.reqE !== undefined) return 'elf';
+198|     if (sk.reqD !== undefined) return 'dark';
+199|     if (sk.reqK !== undefined) return 'knight';
+--- afk-wiki.js:226 match=reqE ---
+224|       return undefined;   // 三~五階需魔法精通,於「可學」行另標
+225|     }
+226|     var lv = cls === 'mage' ? sk.reqM : (cls === 'knight' ? sk.reqK : sk.reqE);
+227|     if (lv === undefined && cls === 'elf' && typeof MAGIC_MASTERY_SKILLS !== 'undefined' && MAGIC_MASTERY_SKILLS.indexOf(id) >= 0) return sk.reqM;
+228|     return lv;
+--- afk-wiki.js:227 match=MAGIC_MASTERY_SKILLS ---
+225|     }
+226|     var lv = cls === 'mage' ? sk.reqM : (cls === 'knight' ? sk.reqK : sk.reqE);
+227|     if (lv === undefined && cls === 'elf' && typeof MAGIC_MASTERY_SKILLS !== 'undefined' && MAGIC_MASTERY_SKILLS.indexOf(id) >= 0) return sk.reqM;
+228|     return lv;
+229|   }
+--- afk-wiki.js:250 match=reqE ---
+248|     if (only) return '沒有魔法書、學不到——只有裝備「' + only.join('、') + '」才用得出來';
+249|     var p = ['法師 ' + sk.reqM];
+250|     if (sk.reqE !== undefined) p.push('妖精 ' + sk.reqE);
+251|     else if (typeof MAGIC_MASTERY_SKILLS !== 'undefined' && MAGIC_MASTERY_SKILLS.indexOf(id) >= 0) p.push('妖精 ' + sk.reqM + '（需魔導精通）');
+252|     if (sk.reqK !== undefined) p.push('騎士 ' + sk.reqK);
+--- afk-wiki.js:251 match=MAGIC_MASTERY_SKILLS ---
+249|     var p = ['法師 ' + sk.reqM];
+250|     if (sk.reqE !== undefined) p.push('妖精 ' + sk.reqE);
+251|     else if (typeof MAGIC_MASTERY_SKILLS !== 'undefined' && MAGIC_MASTERY_SKILLS.indexOf(id) >= 0) p.push('妖精 ' + sk.reqM + '（需魔導精通）');
+252|     if (sk.reqK !== undefined) p.push('騎士 ' + sk.reqK);
+253|     if (sk.reqD !== undefined) p.push('黑暗妖精 ' + sk.reqD);
+--- afk-wiki.js:425 match=污濁之水 ---
+423|       ]},
+424|       { t: 'p', p: '你、<b>傭兵</b>、<b>召喚物與被迷魅的怪</b>的物理攻擊都算數；<b>魔法傷害不算</b>。所以純法術打頭目，頭目會一直用 2.5% 的速度回血——想單靠法術磨死頭目，每秒輸出必須壓過最大 HP 的 0.5%。' },
+425|       { t: 'p', p: '妖精的<b>污濁之水</b>（五階水靈、只能對頭目放、必中）能讓這個回復量再<b>砍半 32 秒</b>，法系磨頭目很有用。' },
+426|       { t: 'p', p: '攻城的<b>建築物</b>不會回血。' }
+427|     ]},
+--- afk-wiki.js:622 match=精靈水晶 ---
+620|       trials: [
+621|         { n: '精靈頭盔（15 級）', npc: '歐斯 ＠燃柳村', req: '四大妖魔魔法書（都達瑪拉／那魯加／甘地／阿吐巴）各 ×1', from: '對應四種妖魔（燃柳村·妖魔森林、妖精森林周邊、妖精森林·眠龍洞穴）。接取試煉後擊殺必定掉落', rw: '精靈敏捷頭盔＋精靈體質頭盔（一次全拿）' },
+622|         { n: '精靈水晶＋精靈T恤（30 級）', npc: '迷幻森林之母 ＠妖精森林', req: '受詛咒的精靈書 ×1', from: '希爾黛斯（海音·伊娃王國）。接取後必定掉落', rw: '精靈水晶(召喚屬性精靈)＋精靈T恤（一次全拿）' },
+623|         { n: '保護者手套＋精靈水晶（45 級）', npc: '馬沙 ＠威頓村', req: '藍色長笛 ×1、古代鑰匙 ×1', from: '藍色長笛：黑暗精靈（燃柳村·妖魔森林、龍之谷、奇岩、奇岩地監4樓）；古代鑰匙：鋼鐵高崙（歐瑞領域：歐瑞雪原／水晶洞穴／國境要塞／象牙塔 4~5 樓）。接取後必定掉落', rw: '保護者手套＋精靈水晶(召喚強力屬性精靈)（一次全拿）' }
+624|       ],
+--- afk-wiki.js:623 match=精靈水晶 ---
+621|         { n: '精靈頭盔（15 級）', npc: '歐斯 ＠燃柳村', req: '四大妖魔魔法書（都達瑪拉／那魯加／甘地／阿吐巴）各 ×1', from: '對應四種妖魔（燃柳村·妖魔森林、妖精森林周邊、妖精森林·眠龍洞穴）。接取試煉後擊殺必定掉落', rw: '精靈敏捷頭盔＋精靈體質頭盔（一次全拿）' },
+622|         { n: '精靈水晶＋精靈T恤（30 級）', npc: '迷幻森林之母 ＠妖精森林', req: '受詛咒的精靈書 ×1', from: '希爾黛斯（海音·伊娃王國）。接取後必定掉落', rw: '精靈水晶(召喚屬性精靈)＋精靈T恤（一次全拿）' },
+623|         { n: '保護者手套＋精靈水晶（45 級）', npc: '馬沙 ＠威頓村', req: '藍色長笛 ×1、古代鑰匙 ×1', from: '藍色長笛：黑暗精靈（燃柳村·妖魔森林、龍之谷、奇岩、奇岩地監4樓）；古代鑰匙：鋼鐵高崙（歐瑞領域：歐瑞雪原／水晶洞穴／國境要塞／象牙塔 4~5 樓）。接取後必定掉落', rw: '保護者手套＋精靈水晶(召喚強力屬性精靈)（一次全拿）' }
+624|       ],
+625|       attr: { n: '選定屬性魔法', npc: '艾利溫 ＠妖精森林', req: '四種屬性（火／水／風／地）四選一', from: '—', rw: '開啟所選屬性的魔法路線。注意：只能選一種、選了就固定' }
+--- afk-wiki.js:1989 match=全屬性 ---
+1987| 
+1988|   // 裝備收集冊(js/16-equip-book.js):動態讀 EQUIP_CATEGORIES(部位)/EQUIP_CAT_BONUS(全收集加成)。ac 同 buff 慣例(d.ac -= val=變強)→顯示「防禦(AC) −val」。
+1989|   var EB_STAT = { mhp: 'HP', mmp: 'MP', dr: '傷害減免', mr: '魔防', er: '迴避', hpR: 'HP自然恢復', mpR: 'MP自然恢復', weight: '負重上限', petHit: '項圈夥伴命中', extraDmg: '額外傷害', extraHit: '額外命中', allattr: '全屬性' };
+1990|   function ebBonusTxt(b) {
+1991|     if (!b) return '—';
+--- afk-wiki.js:4536 match=reqE ---
+4534|     sk_abs_barrier: ['隔絕結束後還要再等 12 秒才能再施放'],
+4535| 
+4536|     // ===== 妖精專屬(reqE) =====
+4537|     sk_elf_mind: ['換回 2 MP；不佔攻擊/治癒冷卻', '轉換魔法<b>不算「消耗HP的技能」</b>：拿不到龍血 3 件的「龍裔」，龍血精通的 HP 減半也不適用'],
+4538|     sk_elf_worldtree: ['被動：在「區域額外掉落」地圖(妖精森林周邊、妖精森林·眠龍洞穴 1~3 樓等)殺怪，精靈玉掉率 20%→30%、粗糙的米索莉塊與元素石 2%→3%'],
+--- afk-wiki.js:4679 match=reqE ---
+4677| 
+4678|   function magicSpellHTML(id, sk, lvLabel, learnedSet) {
+4679|     var eleReq = sk.reqEle ? '※需' + (ELE_REQ[sk.reqEle] || sk.reqEle) + '屬性' : (sk.reqEleAny ? '※需先選定屬性' : '');
+4680|     var learnCls = learnedSet ? (learnedSet.has(id) ? ' is-learned' : ' is-unlearned') : '';
+4681|     var icon = '<img class="m-wiki-spell-ic" src="assets/icons/skills/' + esc(sk.n) + '.png" alt="" loading="lazy" onerror="this.style.display=\'none\'">';
+--- afk-wiki.js:4730 match=MAGIC_MASTERY_SKILLS ---
+4728|         var lv = reqLvForClass(magicCls, id, sk);
+4729|         if (lv === undefined) continue;
+4730|         var needMastery = (magicCls === 'elf' && sk.reqE === undefined && typeof MAGIC_MASTERY_SKILLS !== 'undefined' && MAGIC_MASTERY_SKILLS.indexOf(id) >= 0);
+4731|         rows.push({ id: id, sk: sk, lv: lv, needMastery: needMastery });
+4732|       }
+--- afk-wiki.js:4768 match=reqE ---
+4766|       list.forEach(function (r) { html += magicSpellHTML(r.id, r.sk, '需 ' + reqName + ' Lv ' + r.sk[reqKey]); });
+4767|     }
+4768|     exclusive(cats.elf, '🍃 妖精專屬魔法', 'reqE', '妖精');
+4769|     exclusive(cats.dark, '🗡 黑暗妖精專屬魔法', 'reqD', '黑暗妖精');
+4770|     exclusive(cats.knight, '⚔️ 騎士專屬魔法', 'reqK', '騎士');
+##### FILE afk-skillbar.js lines=212
+##### FILE afk-offline.js lines=1784
+##### FILE afk-battlebuffs.js lines=107
+##### FILE afk-toggles.js lines=326
+##### FILE afk-anyclass.js lines=146
+##### FILE afk-history.js lines=364
+
+##### SKILL/ITEM ID BLOCKS FROM 00-data.js #####
+BLOCK name=單屬性防禦 approxLine=1730
+"skillbk", n: "精靈水晶(屬性防禦)", p: 7500, sk: "sk_elf_eleres", gachaWeight: 0 },         "bk_elf_release": { type: "skillbk", n: "精靈水晶(釋放元素)", p: 7500, sk: "sk_elf_release", gachaWeight: 0 },         "bk_elf_soul": { type: "skillbk", n: "精靈水晶(魂體轉換)", p: 7500, sk: "sk_elf_soul", gachaWeight: 20 },          "bk_elf_singleres": { type: "skillbk", n: "精靈水晶(單屬性防禦)", p: 15000, sk: "sk_elf_singleres", gachaWeight: 0 },         "bk_elf_firewpn": { type: "skillbk", n: "精靈水晶(火焰武器)", p: 15000, sk: "sk_elf_firewpn", gachaWeight: 0 },         "bk_elf_windshot": { type: "skillbk", n: "精靈水晶(風之神射)", p: 15000, sk: "sk_elf_windshot", gachaWeight: 0 },         "bk_elf_winddash": { type: "skillbk", n: "精靈水晶(風之疾走)", 
+---
+BLOCK name=單屬性防禦 approxLine=2887
+arth: 10, resWind: 10 } },         "sk_elf_release": { n: "釋放元素", type: "atk", tier: 2, reqE: 20, mp: 30, dmgType: "magic", instakill: { tag: "element", cap: 12 } },   // 🔧 即死成功率最高 60%         "sk_elf_soul": { n: "魂體轉換", type: "convert", tier: 2, reqE: 20, hpCost: 50, mpGain: 15 },          // 三階 (Lv 30) - 需要對應屬性         "sk_elf_singleres": { n: "單屬性防禦", type: "buff", tier: 3, reqE: 30, mp: 10, dur: 64, reqEleAny: true },         "sk_elf_firewpn": { n: "火焰武器", type: "buff", tier: 3, reqE: 30, mp: 20, dur: 1200, reqEle: "fire", d: { meleeDmg: 3 } },         "sk_elf_windshot": { n: "風之神射", type: "buff", tier: 3, reqE: 30, mp: 15, dur: 1200, reqEle: "wind", d: { rangedHit: 5 } },         "sk_e
+---
+TOTAL for 單屬性防禦 = 2
+BLOCK name=魔法消除 approxLine=1737
+走)", p: 15000, sk: "sk_elf_winddash", gachaWeight: 0 },         "bk_elf_earthguard": { type: "skillbk", n: "精靈水晶(大地防護)", p: 15000, sk: "sk_elf_earthguard", gachaWeight: 0 },         "bk_elf_groundtrap": { type: "skillbk", n: "精靈水晶(地面障礙)", p: 15000, sk: "sk_elf_groundtrap", gachaWeight: 0 },          "bk_elf_magicerase": { type: "skillbk", n: "精靈水晶(魔法消除)", p: 30000, sk: "sk_elf_magicerase", gachaWeight: 40 },         "bk_elf_summon": { type: "skillbk", n: "精靈水晶(召喚屬性精靈)", p: 30000, sk: "sk_elf_summon", gachaWeight: 20 },         "bk_elf_dancefire": { type: "skillbk", n: "精靈水晶(舞躍之火)", p: 30000, sk: "sk_elf_dancefire", gachaWeight: 10 },         "bk_elf_stormeye": { type: "skillbk", n: "精靈水晶(暴風之
+---
+BLOCK name=魔法消除 approxLine=2896
+, pbase: 150, dur: 30 } },   // 🤝 Phase4：改為全體緩速         "sk_elf_watervital": { n: "水之元氣", type: "buff", tier: 3, reqE: 30, mp: 1, dur: 64, reqEle: "water", noRefresh: true, msg: "水之元氣環繞著你。" },   // 🔧 buff 期間內「下次」受到治癒術（玩家自身瞬間治癒，不含持續回復HoT）時恢復量加倍、觸發後7秒冷卻（見 waterVitalHeal）；noRefresh：效果結束才可再施放          // 四階 (Lv 40)         "sk_elf_magicerase": { n: "魔法消除", type: "atk", tier: 4, reqE: 40, mp: 30, dmgType: "magic", status: { kind: "mrhalf", pbase: 150, dur: 16 } },         "sk_elf_summon": { n: "召喚屬性精靈", type: "buff", tier: 4, reqE: 40, mp: 30, dur: 3600, reqEleAny: true, desc: "向締結契約的元素祈求援助，召來與自身屬性相同的精靈並肩作戰。", summon: { n: "夥伴：{ele}之精靈", dmgDice: [1, 40], elemScale: 20, dmgMult: 1.00, mrPenBase
+---
+TOTAL for 魔法消除 = 2
+BLOCK name=污濁之水 approxLine=1749
+ "精靈水晶(召喚強力屬性精靈)", p: 60000, sk: "sk_elf_summon2", gachaWeight: 1 },         "bk_elf_lifebless": { type: "skillbk", n: "精靈水晶(生命的祝福)", p: 60000, sk: "sk_elf_lifebless", gachaWeight: 5 },         "bk_elf_seal": { type: "skillbk", n: "精靈水晶(封印禁地)", p: 60000, sk: "sk_elf_seal", gachaWeight: 10 },         "bk_elf_muddywater": { type: "skillbk", n: "精靈水晶(污濁之水)", p: 16000, sk: "sk_elf_muddywater", gachaWeight: 1, d: "封存著「污濁之水」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },         "bk_elf_blazewpn": { type: "skillbk", n: "精靈水晶(烈炎武器)", p: 60000, sk: "sk_elf_blazewpn", gachaWeight: 1 },         "bk_elf_flamesoul": { type: "skillbk", n: "精靈水晶(烈焰之魂)", p: 16000, sk: "sk_elf_flamesoul", gachaWeight: 1, d: "封存著「烈焰之魂」精靈之力的水晶，與之共
+---
+BLOCK name=污濁之水 approxLine=1749
+,         "bk_elf_lifebless": { type: "skillbk", n: "精靈水晶(生命的祝福)", p: 60000, sk: "sk_elf_lifebless", gachaWeight: 5 },         "bk_elf_seal": { type: "skillbk", n: "精靈水晶(封印禁地)", p: 60000, sk: "sk_elf_seal", gachaWeight: 10 },         "bk_elf_muddywater": { type: "skillbk", n: "精靈水晶(污濁之水)", p: 16000, sk: "sk_elf_muddywater", gachaWeight: 1, d: "封存著「污濁之水」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },         "bk_elf_blazewpn": { type: "skillbk", n: "精靈水晶(烈炎武器)", p: 60000, sk: "sk_elf_blazewpn", gachaWeight: 1 },         "bk_elf_flamesoul": { type: "skillbk", n: "精靈水晶(烈焰之魂)", p: 16000, sk: "sk_elf_flamesoul", gachaWeight: 1, d: "封存著「烈焰之魂」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },         "bk_elf_physboost": { type: "skillbk", n: "精
+---
+BLOCK name=污濁之水 approxLine=2908
+, healDice: [1, 28], healBase: 28, classicHeal: { baseDice: 12, sides: 12, mult: 0.8 }, groupHeal: true, healCooldownTicks: 60, msg: "生命的祝福立即治癒全隊。" },         "sk_elf_seal": { n: "封印禁地", type: "atk", tier: 5, reqE: 50, mp: 40, dmgType: "magic", reqEleAny: true, status: { kind: "magicseal", pbase: 100, dur: 8 } },         "sk_elf_muddywater": { n: "污濁之水", type: "atk", tier: 5, reqE: 50, mp: 20, dmgType: "magic", ele: "water", reqEle: "water", bossOnly: true, status: { kind: "muddywater", force: true, dur: 32 }, desc: "只能對頭目施放；必定命中，使其HP自然恢復量減半", msg: "污濁的水流纏繞著目標，阻滯其生命力的匯聚。" },   // 🌊 五階水靈異常：bossOnly=只對頭目施放·force=跳過命中判定(必中)·dur單位秒·效果=js/03 頭目每5秒%回血減半·純異常技(無傷害骰)→js/07 守衛=目標狀態結束前不重複施放         "s
+---
+TOTAL for 污濁之水 = 3
+BLOCK name=封印禁地 approxLine=1748
+bless", gachaWeight: 10, d: "封存著「大地的祝福」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },          "bk_elf_summon2": { type: "skillbk", n: "精靈水晶(召喚強力屬性精靈)", p: 60000, sk: "sk_elf_summon2", gachaWeight: 1 },         "bk_elf_lifebless": { type: "skillbk", n: "精靈水晶(生命的祝福)", p: 60000, sk: "sk_elf_lifebless", gachaWeight: 5 },         "bk_elf_seal": { type: "skillbk", n: "精靈水晶(封印禁地)", p: 60000, sk: "sk_elf_seal", gachaWeight: 10 },         "bk_elf_muddywater": { type: "skillbk", n: "精靈水晶(污濁之水)", p: 16000, sk: "sk_elf_muddywater", gachaWeight: 1, d: "封存著「污濁之水」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },         "bk_elf_blazewpn": { type: "skillbk", n: "精靈水晶(烈炎武器)", p: 60000, sk: "sk_elf_blazewpn", gachaWeight: 1 },         "bk_elf_flamesoul
+---
+BLOCK name=封印禁地 approxLine=2150
+ 15, pbase: 200 } }, mag3: { skn: "火焰噴吐", cd: 170, dmg: [2, 100], db: 1200, ele: "fire" } },         "lindvior": { hard: true, n: "林德拜爾", lv: 90, s: "L", beh: "主動", race: "龍", boss: true, noAutoTeleport: true, e: "wind", hp: 120000, ac: -90, mr: 200, exp: 7922, goldMin: 13236, goldMax: 21524, atkSpd: 1, dmg: [3, 86], db: 26, hit: 128, mag: { skn: "封印禁地", cd: 50, chance: 0.1, type: "silence", pbase: 250 }, mag2: { skn: "閃電風暴", cd: 70, dmg: [7, 100], db: 299, ele: "wind" }, mag3: { skn: "電擊", cd: 90, chance: 0.5, dmg: [1, 500], db: 599, ele: "wind", sec: { type: "paralyze", pbase: 200 } } },         // ===== 🐉 v3.7.57 侵蝕的安塔瑞斯巢穴（副本怪·普攻=同級一般怪2倍 DPS 手填·王類走 boss 曲線自動≈2.05×）=====         "ant_kama
+---
+BLOCK name=封印禁地 approxLine=2907
+讀 js/23 _spiritSpec 規格表)無條件覆蓋·僅存參考         "sk_elf_lifebless": { n: "生命的祝福", type: "heal", justiceHeal: true, tier: 5, reqE: 50, mp: 30, reqEle: "water", valDice: [1, 20], healDice: [1, 28], healBase: 28, classicHeal: { baseDice: 12, sides: 12, mult: 0.8 }, groupHeal: true, healCooldownTicks: 60, msg: "生命的祝福立即治癒全隊。" },         "sk_elf_seal": { n: "封印禁地", type: "atk", tier: 5, reqE: 50, mp: 40, dmgType: "magic", reqEleAny: true, status: { kind: "magicseal", pbase: 100, dur: 8 } },         "sk_elf_muddywater": { n: "污濁之水", type: "atk", tier: 5, reqE: 50, mp: 20, dmgType: "magic", ele: "water", reqEle: "water", bossOnly: true, status: { kind: "muddywater", force: true, dur: 32 }, desc: "只能對頭目施放
+---
+TOTAL for 封印禁地 = 3
+BLOCK name=精靈水晶 approxLine=1405
+。" },         "new_item_222": { n: "畢克斯的羽毛", p: 1, gachaWeight: 0 },         "new_item_223": { n: "畢克斯的沙漏", p: 1, gachaWeight: 0 },         "new_item_224": { n: "贖罪聖書", p: 1, gachaWeight: 0 },         "new_item_225": { n: "被偷的項鍊", p: 1, gachaWeight: 0 },         "new_item_226": { n: "被偷的戒指", p: 1, gachaWeight: 0 },         "new_item_228": { n: "污染的精靈水晶(水)", p: 1, gachaWeight: 0 },         "new_item_229": { n: "污染的精靈水晶(火)", p: 1, gachaWeight: 0 },         "new_item_230": { n: "污染的精靈水晶(地)", p: 1, gachaWeight: 0 },         "new_item_231": { n: "污染的精靈水晶(風)", p: 1, gachaWeight: 0 },         "new_item_232": { n: "邪惡蜥蜴之鱗", p: 1, gachaWeight: 0 },         "new_item_233": { n: "神秘魔力恢復藥水", p: 1, gacha
+---
+BLOCK name=精靈水晶 approxLine=1406
+,         "new_item_223": { n: "畢克斯的沙漏", p: 1, gachaWeight: 0 },         "new_item_224": { n: "贖罪聖書", p: 1, gachaWeight: 0 },         "new_item_225": { n: "被偷的項鍊", p: 1, gachaWeight: 0 },         "new_item_226": { n: "被偷的戒指", p: 1, gachaWeight: 0 },         "new_item_228": { n: "污染的精靈水晶(水)", p: 1, gachaWeight: 0 },         "new_item_229": { n: "污染的精靈水晶(火)", p: 1, gachaWeight: 0 },         "new_item_230": { n: "污染的精靈水晶(地)", p: 1, gachaWeight: 0 },         "new_item_231": { n: "污染的精靈水晶(風)", p: 1, gachaWeight: 0 },         "new_item_232": { n: "邪惡蜥蜴之鱗", p: 1, gachaWeight: 0 },         "new_item_233": { n: "神秘魔力恢復藥水", p: 1, gachaWeight: 0 },         "new_item_234": { n: "神秘慎重藥水", p: 1, gachaWeig
+---
+BLOCK name=精靈水晶 approxLine=1407
+      "new_item_224": { n: "贖罪聖書", p: 1, gachaWeight: 0 },         "new_item_225": { n: "被偷的項鍊", p: 1, gachaWeight: 0 },         "new_item_226": { n: "被偷的戒指", p: 1, gachaWeight: 0 },         "new_item_228": { n: "污染的精靈水晶(水)", p: 1, gachaWeight: 0 },         "new_item_229": { n: "污染的精靈水晶(火)", p: 1, gachaWeight: 0 },         "new_item_230": { n: "污染的精靈水晶(地)", p: 1, gachaWeight: 0 },         "new_item_231": { n: "污染的精靈水晶(風)", p: 1, gachaWeight: 0 },         "new_item_232": { n: "邪惡蜥蜴之鱗", p: 1, gachaWeight: 0 },         "new_item_233": { n: "神秘魔力恢復藥水", p: 1, gachaWeight: 0 },         "new_item_234": { n: "神秘慎重藥水", p: 1, gachaWeight: 0 },         "new_item_235": { n: "思克巴女皇的神祕魔杖", p: 1, gachaWeig
+---
+BLOCK name=精靈水晶 approxLine=1408
+"new_item_225": { n: "被偷的項鍊", p: 1, gachaWeight: 0 },         "new_item_226": { n: "被偷的戒指", p: 1, gachaWeight: 0 },         "new_item_228": { n: "污染的精靈水晶(水)", p: 1, gachaWeight: 0 },         "new_item_229": { n: "污染的精靈水晶(火)", p: 1, gachaWeight: 0 },         "new_item_230": { n: "污染的精靈水晶(地)", p: 1, gachaWeight: 0 },         "new_item_231": { n: "污染的精靈水晶(風)", p: 1, gachaWeight: 0 },         "new_item_232": { n: "邪惡蜥蜴之鱗", p: 1, gachaWeight: 0 },         "new_item_233": { n: "神秘魔力恢復藥水", p: 1, gachaWeight: 0 },         "new_item_234": { n: "神秘慎重藥水", p: 1, gachaWeight: 0 },         "new_item_235": { n: "思克巴女皇的神祕魔杖", p: 1, gachaWeight: 0 },         "new_item_236": { n: "說話之島的回憶", p: 1, gachaWeight:
+---
+BLOCK name=精靈水晶 approxLine=1719
+技術書(衝擊之暈)", p: 30000, sk: "sk_shock_stun", gachaWeight: 10 },         "bk_spike_armor": { type: "skillbk", n: "技術書(尖刺盔甲)", p: 30000, sk: "sk_spike_armor", gachaWeight: 1 },         "bk_counter_barrier": { type: "skillbk", n: "技術書(反擊屏障)", p: 30000, sk: "sk_counter_barrier", gachaWeight: 1, d: "記載著「反擊屏障」術式的古老魔法書，研讀後可將咒文銘刻於記憶。" },          // ===== 妖精精靈水晶 =====         "bk_elf_mr": { type: "skillbk", n: "精靈水晶(魔法防禦)", p: 3000, sk: "sk_elf_mr", gachaWeight: 0 },         "bk_elf_mind": { type: "skillbk", n: "精靈水晶(心靈轉換)", p: 3000, sk: "sk_elf_mind", gachaWeight: 0 },         "bk_elf_worldtree": { type: "skillbk", n: "精靈水晶(世界樹的呼喚)", p: 3000, sk: "sk_elf_worldtree", gachaWeight: 0 },         "bk_elf_
+---
+BLOCK name=精靈水晶 approxLine=1720
+ 10 },         "bk_spike_armor": { type: "skillbk", n: "技術書(尖刺盔甲)", p: 30000, sk: "sk_spike_armor", gachaWeight: 1 },         "bk_counter_barrier": { type: "skillbk", n: "技術書(反擊屏障)", p: 30000, sk: "sk_counter_barrier", gachaWeight: 1, d: "記載著「反擊屏障」術式的古老魔法書，研讀後可將咒文銘刻於記憶。" },          // ===== 妖精精靈水晶 =====         "bk_elf_mr": { type: "skillbk", n: "精靈水晶(魔法防禦)", p: 3000, sk: "sk_elf_mr", gachaWeight: 0 },         "bk_elf_mind": { type: "skillbk", n: "精靈水晶(心靈轉換)", p: 3000, sk: "sk_elf_mind", gachaWeight: 0 },         "bk_elf_worldtree": { type: "skillbk", n: "精靈水晶(世界樹的呼喚)", p: 3000, sk: "sk_elf_worldtree", gachaWeight: 0 },         "bk_elf_triple": { type: "skillbk", n: "精靈水晶(三重矢)", p: 3000, sk
+---
+BLOCK name=精靈水晶 approxLine=1721
+haWeight: 1 },         "bk_counter_barrier": { type: "skillbk", n: "技術書(反擊屏障)", p: 30000, sk: "sk_counter_barrier", gachaWeight: 1, d: "記載著「反擊屏障」術式的古老魔法書，研讀後可將咒文銘刻於記憶。" },          // ===== 妖精精靈水晶 =====         "bk_elf_mr": { type: "skillbk", n: "精靈水晶(魔法防禦)", p: 3000, sk: "sk_elf_mr", gachaWeight: 0 },         "bk_elf_mind": { type: "skillbk", n: "精靈水晶(心靈轉換)", p: 3000, sk: "sk_elf_mind", gachaWeight: 0 },         "bk_elf_worldtree": { type: "skillbk", n: "精靈水晶(世界樹的呼喚)", p: 3000, sk: "sk_elf_worldtree", gachaWeight: 0 },         "bk_elf_triple": { type: "skillbk", n: "精靈水晶(三重矢)", p: 3000, sk: "sk_elf_triple", gachaWeight: 10 },          "bk_elf_purify": { type: "skillbk", n: "精靈水晶(淨化精神)", p: 
+---
+BLOCK name=精靈水晶 approxLine=1722
+ier", gachaWeight: 1, d: "記載著「反擊屏障」術式的古老魔法書，研讀後可將咒文銘刻於記憶。" },          // ===== 妖精精靈水晶 =====         "bk_elf_mr": { type: "skillbk", n: "精靈水晶(魔法防禦)", p: 3000, sk: "sk_elf_mr", gachaWeight: 0 },         "bk_elf_mind": { type: "skillbk", n: "精靈水晶(心靈轉換)", p: 3000, sk: "sk_elf_mind", gachaWeight: 0 },         "bk_elf_worldtree": { type: "skillbk", n: "精靈水晶(世界樹的呼喚)", p: 3000, sk: "sk_elf_worldtree", gachaWeight: 0 },         "bk_elf_triple": { type: "skillbk", n: "精靈水晶(三重矢)", p: 3000, sk: "sk_elf_triple", gachaWeight: 10 },          "bk_elf_purify": { type: "skillbk", n: "精靈水晶(淨化精神)", p: 7500, sk: "sk_elf_purify", gachaWeight: 0 },         "bk_elf_eleres": { type: "skillbk", n: "精靈水晶(屬性防禦)", p: 7
+---
+BLOCK name=精靈水晶 approxLine=1723
+{ type: "skillbk", n: "精靈水晶(魔法防禦)", p: 3000, sk: "sk_elf_mr", gachaWeight: 0 },         "bk_elf_mind": { type: "skillbk", n: "精靈水晶(心靈轉換)", p: 3000, sk: "sk_elf_mind", gachaWeight: 0 },         "bk_elf_worldtree": { type: "skillbk", n: "精靈水晶(世界樹的呼喚)", p: 3000, sk: "sk_elf_worldtree", gachaWeight: 0 },         "bk_elf_triple": { type: "skillbk", n: "精靈水晶(三重矢)", p: 3000, sk: "sk_elf_triple", gachaWeight: 10 },          "bk_elf_purify": { type: "skillbk", n: "精靈水晶(淨化精神)", p: 7500, sk: "sk_elf_purify", gachaWeight: 0 },         "bk_elf_eleres": { type: "skillbk", n: "精靈水晶(屬性防禦)", p: 7500, sk: "sk_elf_eleres", gachaWeight: 0 },         "bk_elf_release": { type: "skillbk", n: "精靈水晶(釋放元素)", p: 7500,
+---
+BLOCK name=精靈水晶 approxLine=1725
+ "skillbk", n: "精靈水晶(心靈轉換)", p: 3000, sk: "sk_elf_mind", gachaWeight: 0 },         "bk_elf_worldtree": { type: "skillbk", n: "精靈水晶(世界樹的呼喚)", p: 3000, sk: "sk_elf_worldtree", gachaWeight: 0 },         "bk_elf_triple": { type: "skillbk", n: "精靈水晶(三重矢)", p: 3000, sk: "sk_elf_triple", gachaWeight: 10 },          "bk_elf_purify": { type: "skillbk", n: "精靈水晶(淨化精神)", p: 7500, sk: "sk_elf_purify", gachaWeight: 0 },         "bk_elf_eleres": { type: "skillbk", n: "精靈水晶(屬性防禦)", p: 7500, sk: "sk_elf_eleres", gachaWeight: 0 },         "bk_elf_release": { type: "skillbk", n: "精靈水晶(釋放元素)", p: 7500, sk: "sk_elf_release", gachaWeight: 0 },         "bk_elf_soul": { type: "skillbk", n: "精靈水晶(魂體轉換)", p: 7500, s
+---
+BLOCK name=精靈水晶 approxLine=1726
+: "skillbk", n: "精靈水晶(世界樹的呼喚)", p: 3000, sk: "sk_elf_worldtree", gachaWeight: 0 },         "bk_elf_triple": { type: "skillbk", n: "精靈水晶(三重矢)", p: 3000, sk: "sk_elf_triple", gachaWeight: 10 },          "bk_elf_purify": { type: "skillbk", n: "精靈水晶(淨化精神)", p: 7500, sk: "sk_elf_purify", gachaWeight: 0 },         "bk_elf_eleres": { type: "skillbk", n: "精靈水晶(屬性防禦)", p: 7500, sk: "sk_elf_eleres", gachaWeight: 0 },         "bk_elf_release": { type: "skillbk", n: "精靈水晶(釋放元素)", p: 7500, sk: "sk_elf_release", gachaWeight: 0 },         "bk_elf_soul": { type: "skillbk", n: "精靈水晶(魂體轉換)", p: 7500, sk: "sk_elf_soul", gachaWeight: 20 },          "bk_elf_singleres": { type: "skillbk", n: "精靈水晶(單屬性防禦)", p: 150
+---
+BLOCK name=精靈水晶 approxLine=1727
+type: "skillbk", n: "精靈水晶(三重矢)", p: 3000, sk: "sk_elf_triple", gachaWeight: 10 },          "bk_elf_purify": { type: "skillbk", n: "精靈水晶(淨化精神)", p: 7500, sk: "sk_elf_purify", gachaWeight: 0 },         "bk_elf_eleres": { type: "skillbk", n: "精靈水晶(屬性防禦)", p: 7500, sk: "sk_elf_eleres", gachaWeight: 0 },         "bk_elf_release": { type: "skillbk", n: "精靈水晶(釋放元素)", p: 7500, sk: "sk_elf_release", gachaWeight: 0 },         "bk_elf_soul": { type: "skillbk", n: "精靈水晶(魂體轉換)", p: 7500, sk: "sk_elf_soul", gachaWeight: 20 },          "bk_elf_singleres": { type: "skillbk", n: "精靈水晶(單屬性防禦)", p: 15000, sk: "sk_elf_singleres", gachaWeight: 0 },         "bk_elf_firewpn": { type: "skillbk", n: "精靈水晶(火焰武器)", p:
+---
+BLOCK name=精靈水晶 approxLine=1728
+{ type: "skillbk", n: "精靈水晶(淨化精神)", p: 7500, sk: "sk_elf_purify", gachaWeight: 0 },         "bk_elf_eleres": { type: "skillbk", n: "精靈水晶(屬性防禦)", p: 7500, sk: "sk_elf_eleres", gachaWeight: 0 },         "bk_elf_release": { type: "skillbk", n: "精靈水晶(釋放元素)", p: 7500, sk: "sk_elf_release", gachaWeight: 0 },         "bk_elf_soul": { type: "skillbk", n: "精靈水晶(魂體轉換)", p: 7500, sk: "sk_elf_soul", gachaWeight: 20 },          "bk_elf_singleres": { type: "skillbk", n: "精靈水晶(單屬性防禦)", p: 15000, sk: "sk_elf_singleres", gachaWeight: 0 },         "bk_elf_firewpn": { type: "skillbk", n: "精靈水晶(火焰武器)", p: 15000, sk: "sk_elf_firewpn", gachaWeight: 0 },         "bk_elf_windshot": { type: "skillbk", n: "精靈水晶(風之神射)
+---
+BLOCK name=精靈水晶 approxLine=1730
+ype: "skillbk", n: "精靈水晶(屬性防禦)", p: 7500, sk: "sk_elf_eleres", gachaWeight: 0 },         "bk_elf_release": { type: "skillbk", n: "精靈水晶(釋放元素)", p: 7500, sk: "sk_elf_release", gachaWeight: 0 },         "bk_elf_soul": { type: "skillbk", n: "精靈水晶(魂體轉換)", p: 7500, sk: "sk_elf_soul", gachaWeight: 20 },          "bk_elf_singleres": { type: "skillbk", n: "精靈水晶(單屬性防禦)", p: 15000, sk: "sk_elf_singleres", gachaWeight: 0 },         "bk_elf_firewpn": { type: "skillbk", n: "精靈水晶(火焰武器)", p: 15000, sk: "sk_elf_firewpn", gachaWeight: 0 },         "bk_elf_windshot": { type: "skillbk", n: "精靈水晶(風之神射)", p: 15000, sk: "sk_elf_windshot", gachaWeight: 0 },         "bk_elf_winddash": { type: "skillbk", n: "精靈水晶(風之疾
+---
+BLOCK name=精靈水晶 approxLine=1731
+"skillbk", n: "精靈水晶(釋放元素)", p: 7500, sk: "sk_elf_release", gachaWeight: 0 },         "bk_elf_soul": { type: "skillbk", n: "精靈水晶(魂體轉換)", p: 7500, sk: "sk_elf_soul", gachaWeight: 20 },          "bk_elf_singleres": { type: "skillbk", n: "精靈水晶(單屬性防禦)", p: 15000, sk: "sk_elf_singleres", gachaWeight: 0 },         "bk_elf_firewpn": { type: "skillbk", n: "精靈水晶(火焰武器)", p: 15000, sk: "sk_elf_firewpn", gachaWeight: 0 },         "bk_elf_windshot": { type: "skillbk", n: "精靈水晶(風之神射)", p: 15000, sk: "sk_elf_windshot", gachaWeight: 0 },         "bk_elf_winddash": { type: "skillbk", n: "精靈水晶(風之疾走)", p: 15000, sk: "sk_elf_winddash", gachaWeight: 0 },         "bk_elf_earthguard": { type: "skillbk", n: "精靈水晶(大地
+---
+BLOCK name=精靈水晶 approxLine=1732
+lbk", n: "精靈水晶(魂體轉換)", p: 7500, sk: "sk_elf_soul", gachaWeight: 20 },          "bk_elf_singleres": { type: "skillbk", n: "精靈水晶(單屬性防禦)", p: 15000, sk: "sk_elf_singleres", gachaWeight: 0 },         "bk_elf_firewpn": { type: "skillbk", n: "精靈水晶(火焰武器)", p: 15000, sk: "sk_elf_firewpn", gachaWeight: 0 },         "bk_elf_windshot": { type: "skillbk", n: "精靈水晶(風之神射)", p: 15000, sk: "sk_elf_windshot", gachaWeight: 0 },         "bk_elf_winddash": { type: "skillbk", n: "精靈水晶(風之疾走)", p: 15000, sk: "sk_elf_winddash", gachaWeight: 0 },         "bk_elf_earthguard": { type: "skillbk", n: "精靈水晶(大地防護)", p: 15000, sk: "sk_elf_earthguard", gachaWeight: 0 },         "bk_elf_groundtrap": { type: "skillbk", n: "精靈
+---
+BLOCK name=精靈水晶 approxLine=1733
+k", n: "精靈水晶(單屬性防禦)", p: 15000, sk: "sk_elf_singleres", gachaWeight: 0 },         "bk_elf_firewpn": { type: "skillbk", n: "精靈水晶(火焰武器)", p: 15000, sk: "sk_elf_firewpn", gachaWeight: 0 },         "bk_elf_windshot": { type: "skillbk", n: "精靈水晶(風之神射)", p: 15000, sk: "sk_elf_windshot", gachaWeight: 0 },         "bk_elf_winddash": { type: "skillbk", n: "精靈水晶(風之疾走)", p: 15000, sk: "sk_elf_winddash", gachaWeight: 0 },         "bk_elf_earthguard": { type: "skillbk", n: "精靈水晶(大地防護)", p: 15000, sk: "sk_elf_earthguard", gachaWeight: 0 },         "bk_elf_groundtrap": { type: "skillbk", n: "精靈水晶(地面障礙)", p: 15000, sk: "sk_elf_groundtrap", gachaWeight: 0 },          "bk_elf_magicerase": { type: "skillbk", n
+---
+BLOCK name=精靈水晶 approxLine=1734
+", n: "精靈水晶(火焰武器)", p: 15000, sk: "sk_elf_firewpn", gachaWeight: 0 },         "bk_elf_windshot": { type: "skillbk", n: "精靈水晶(風之神射)", p: 15000, sk: "sk_elf_windshot", gachaWeight: 0 },         "bk_elf_winddash": { type: "skillbk", n: "精靈水晶(風之疾走)", p: 15000, sk: "sk_elf_winddash", gachaWeight: 0 },         "bk_elf_earthguard": { type: "skillbk", n: "精靈水晶(大地防護)", p: 15000, sk: "sk_elf_earthguard", gachaWeight: 0 },         "bk_elf_groundtrap": { type: "skillbk", n: "精靈水晶(地面障礙)", p: 15000, sk: "sk_elf_groundtrap", gachaWeight: 0 },          "bk_elf_magicerase": { type: "skillbk", n: "精靈水晶(魔法消除)", p: 30000, sk: "sk_elf_magicerase", gachaWeight: 40 },         "bk_elf_summon": { type: "skillbk", n:
+---
+BLOCK name=精靈水晶 approxLine=1735
+ "精靈水晶(風之神射)", p: 15000, sk: "sk_elf_windshot", gachaWeight: 0 },         "bk_elf_winddash": { type: "skillbk", n: "精靈水晶(風之疾走)", p: 15000, sk: "sk_elf_winddash", gachaWeight: 0 },         "bk_elf_earthguard": { type: "skillbk", n: "精靈水晶(大地防護)", p: 15000, sk: "sk_elf_earthguard", gachaWeight: 0 },         "bk_elf_groundtrap": { type: "skillbk", n: "精靈水晶(地面障礙)", p: 15000, sk: "sk_elf_groundtrap", gachaWeight: 0 },          "bk_elf_magicerase": { type: "skillbk", n: "精靈水晶(魔法消除)", p: 30000, sk: "sk_elf_magicerase", gachaWeight: 40 },         "bk_elf_summon": { type: "skillbk", n: "精靈水晶(召喚屬性精靈)", p: 30000, sk: "sk_elf_summon", gachaWeight: 20 },         "bk_elf_dancefire": { type: "skillbk", n: "
+---
+BLOCK name=精靈水晶 approxLine=1737
+晶(風之疾走)", p: 15000, sk: "sk_elf_winddash", gachaWeight: 0 },         "bk_elf_earthguard": { type: "skillbk", n: "精靈水晶(大地防護)", p: 15000, sk: "sk_elf_earthguard", gachaWeight: 0 },         "bk_elf_groundtrap": { type: "skillbk", n: "精靈水晶(地面障礙)", p: 15000, sk: "sk_elf_groundtrap", gachaWeight: 0 },          "bk_elf_magicerase": { type: "skillbk", n: "精靈水晶(魔法消除)", p: 30000, sk: "sk_elf_magicerase", gachaWeight: 40 },         "bk_elf_summon": { type: "skillbk", n: "精靈水晶(召喚屬性精靈)", p: 30000, sk: "sk_elf_summon", gachaWeight: 20 },         "bk_elf_dancefire": { type: "skillbk", n: "精靈水晶(舞躍之火)", p: 30000, sk: "sk_elf_dancefire", gachaWeight: 10 },         "bk_elf_stormeye": { type: "skillbk", n: "精靈水
+---
+BLOCK name=精靈水晶 approxLine=1738
+水晶(大地防護)", p: 15000, sk: "sk_elf_earthguard", gachaWeight: 0 },         "bk_elf_groundtrap": { type: "skillbk", n: "精靈水晶(地面障礙)", p: 15000, sk: "sk_elf_groundtrap", gachaWeight: 0 },          "bk_elf_magicerase": { type: "skillbk", n: "精靈水晶(魔法消除)", p: 30000, sk: "sk_elf_magicerase", gachaWeight: 40 },         "bk_elf_summon": { type: "skillbk", n: "精靈水晶(召喚屬性精靈)", p: 30000, sk: "sk_elf_summon", gachaWeight: 20 },         "bk_elf_dancefire": { type: "skillbk", n: "精靈水晶(舞躍之火)", p: 30000, sk: "sk_elf_dancefire", gachaWeight: 10 },         "bk_elf_stormeye": { type: "skillbk", n: "精靈水晶(暴風之眼)", p: 30000, sk: "sk_elf_stormeye", gachaWeight: 10 },         "bk_elf_mirror": { type: "skillbk", n: "精靈水晶(
+---
+BLOCK name=精靈水晶 approxLine=1739
+精靈水晶(地面障礙)", p: 15000, sk: "sk_elf_groundtrap", gachaWeight: 0 },          "bk_elf_magicerase": { type: "skillbk", n: "精靈水晶(魔法消除)", p: 30000, sk: "sk_elf_magicerase", gachaWeight: 40 },         "bk_elf_summon": { type: "skillbk", n: "精靈水晶(召喚屬性精靈)", p: 30000, sk: "sk_elf_summon", gachaWeight: 20 },         "bk_elf_dancefire": { type: "skillbk", n: "精靈水晶(舞躍之火)", p: 30000, sk: "sk_elf_dancefire", gachaWeight: 10 },         "bk_elf_stormeye": { type: "skillbk", n: "精靈水晶(暴風之眼)", p: 30000, sk: "sk_elf_stormeye", gachaWeight: 10 },         "bk_elf_mirror": { type: "skillbk", n: "精靈水晶(鏡反射)", p: 16000, sk: "sk_elf_mirror", gachaWeight: 1, d: "封存著「鏡反射」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },         "bk_elf_earthshi
+---
+BLOCK name=精靈水晶 approxLine=1740
+: "精靈水晶(魔法消除)", p: 30000, sk: "sk_elf_magicerase", gachaWeight: 40 },         "bk_elf_summon": { type: "skillbk", n: "精靈水晶(召喚屬性精靈)", p: 30000, sk: "sk_elf_summon", gachaWeight: 20 },         "bk_elf_dancefire": { type: "skillbk", n: "精靈水晶(舞躍之火)", p: 30000, sk: "sk_elf_dancefire", gachaWeight: 10 },         "bk_elf_stormeye": { type: "skillbk", n: "精靈水晶(暴風之眼)", p: 30000, sk: "sk_elf_stormeye", gachaWeight: 10 },         "bk_elf_mirror": { type: "skillbk", n: "精靈水晶(鏡反射)", p: 16000, sk: "sk_elf_mirror", gachaWeight: 1, d: "封存著「鏡反射」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },         "bk_elf_earthshield": { type: "skillbk", n: "精靈水晶(大地屏障)", p: 30000, sk: "sk_elf_earthshield", gachaWeight: 10 },         "bk_elf_lif
+---
+BLOCK name=精靈水晶 approxLine=1741
+ n: "精靈水晶(召喚屬性精靈)", p: 30000, sk: "sk_elf_summon", gachaWeight: 20 },         "bk_elf_dancefire": { type: "skillbk", n: "精靈水晶(舞躍之火)", p: 30000, sk: "sk_elf_dancefire", gachaWeight: 10 },         "bk_elf_stormeye": { type: "skillbk", n: "精靈水晶(暴風之眼)", p: 30000, sk: "sk_elf_stormeye", gachaWeight: 10 },         "bk_elf_mirror": { type: "skillbk", n: "精靈水晶(鏡反射)", p: 16000, sk: "sk_elf_mirror", gachaWeight: 1, d: "封存著「鏡反射」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },         "bk_elf_earthshield": { type: "skillbk", n: "精靈水晶(大地屏障)", p: 30000, sk: "sk_elf_earthshield", gachaWeight: 10 },         "bk_elf_lifespring": { type: "skillbk", n: "精靈水晶(生命之泉)", p: 30000, sk: "sk_elf_lifespring", gachaWeight: 10 },         "bk_e
+---
+BLOCK name=精靈水晶 approxLine=1742
+k_elf_dancefire", gachaWeight: 10 },         "bk_elf_stormeye": { type: "skillbk", n: "精靈水晶(暴風之眼)", p: 30000, sk: "sk_elf_stormeye", gachaWeight: 10 },         "bk_elf_mirror": { type: "skillbk", n: "精靈水晶(鏡反射)", p: 16000, sk: "sk_elf_mirror", gachaWeight: 1, d: "封存著「鏡反射」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },         "bk_elf_earthshield": { type: "skillbk", n: "精靈水晶(大地屏障)", p: 30000, sk: "sk_elf_earthshield", gachaWeight: 10 },         "bk_elf_lifespring": { type: "skillbk", n: "精靈水晶(生命之泉)", p: 30000, sk: "sk_elf_lifespring", gachaWeight: 10 },         "bk_elf_earthbless": { type: "skillbk", n: "精靈水晶(大地的祝福)", p: 30000, sk: "sk_elf_earthbless", gachaWeight: 10, d: "封存著「大地的祝福」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },      
+---
+BLOCK name=精靈水晶 approxLine=1743
+f_stormeye", gachaWeight: 10 },         "bk_elf_mirror": { type: "skillbk", n: "精靈水晶(鏡反射)", p: 16000, sk: "sk_elf_mirror", gachaWeight: 1, d: "封存著「鏡反射」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },         "bk_elf_earthshield": { type: "skillbk", n: "精靈水晶(大地屏障)", p: 30000, sk: "sk_elf_earthshield", gachaWeight: 10 },         "bk_elf_lifespring": { type: "skillbk", n: "精靈水晶(生命之泉)", p: 30000, sk: "sk_elf_lifespring", gachaWeight: 10 },         "bk_elf_earthbless": { type: "skillbk", n: "精靈水晶(大地的祝福)", p: 30000, sk: "sk_elf_earthbless", gachaWeight: 10, d: "封存著「大地的祝福」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },          "bk_elf_summon2": { type: "skillbk", n: "精靈水晶(召喚強力屬性精靈)", p: 60000, sk: "sk_elf_summon2", gachaWeight: 1 },         
+---
+BLOCK name=精靈水晶 approxLine=1744
+r", gachaWeight: 1, d: "封存著「鏡反射」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },         "bk_elf_earthshield": { type: "skillbk", n: "精靈水晶(大地屏障)", p: 30000, sk: "sk_elf_earthshield", gachaWeight: 10 },         "bk_elf_lifespring": { type: "skillbk", n: "精靈水晶(生命之泉)", p: 30000, sk: "sk_elf_lifespring", gachaWeight: 10 },         "bk_elf_earthbless": { type: "skillbk", n: "精靈水晶(大地的祝福)", p: 30000, sk: "sk_elf_earthbless", gachaWeight: 10, d: "封存著「大地的祝福」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },          "bk_elf_summon2": { type: "skillbk", n: "精靈水晶(召喚強力屬性精靈)", p: 60000, sk: "sk_elf_summon2", gachaWeight: 1 },         "bk_elf_lifebless": { type: "skillbk", n: "精靈水晶(生命的祝福)", p: 60000, sk: "sk_elf_lifebless", gachaWeight: 5 },         "b
+---
+BLOCK name=精靈水晶 approxLine=1746
+d", gachaWeight: 10 },         "bk_elf_lifespring": { type: "skillbk", n: "精靈水晶(生命之泉)", p: 30000, sk: "sk_elf_lifespring", gachaWeight: 10 },         "bk_elf_earthbless": { type: "skillbk", n: "精靈水晶(大地的祝福)", p: 30000, sk: "sk_elf_earthbless", gachaWeight: 10, d: "封存著「大地的祝福」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },          "bk_elf_summon2": { type: "skillbk", n: "精靈水晶(召喚強力屬性精靈)", p: 60000, sk: "sk_elf_summon2", gachaWeight: 1 },         "bk_elf_lifebless": { type: "skillbk", n: "精靈水晶(生命的祝福)", p: 60000, sk: "sk_elf_lifebless", gachaWeight: 5 },         "bk_elf_seal": { type: "skillbk", n: "精靈水晶(封印禁地)", p: 60000, sk: "sk_elf_seal", gachaWeight: 10 },         "bk_elf_muddywater": { type: "skillbk", n: "精靈水晶(污濁
+---
+BLOCK name=精靈水晶 approxLine=1747
+ng", gachaWeight: 10 },         "bk_elf_earthbless": { type: "skillbk", n: "精靈水晶(大地的祝福)", p: 30000, sk: "sk_elf_earthbless", gachaWeight: 10, d: "封存著「大地的祝福」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },          "bk_elf_summon2": { type: "skillbk", n: "精靈水晶(召喚強力屬性精靈)", p: 60000, sk: "sk_elf_summon2", gachaWeight: 1 },         "bk_elf_lifebless": { type: "skillbk", n: "精靈水晶(生命的祝福)", p: 60000, sk: "sk_elf_lifebless", gachaWeight: 5 },         "bk_elf_seal": { type: "skillbk", n: "精靈水晶(封印禁地)", p: 60000, sk: "sk_elf_seal", gachaWeight: 10 },         "bk_elf_muddywater": { type: "skillbk", n: "精靈水晶(污濁之水)", p: 16000, sk: "sk_elf_muddywater", gachaWeight: 1, d: "封存著「污濁之水」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },         "bk_elf_blazew
+---
+BLOCK name=精靈水晶 approxLine=1748
+earthbless", gachaWeight: 10, d: "封存著「大地的祝福」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },          "bk_elf_summon2": { type: "skillbk", n: "精靈水晶(召喚強力屬性精靈)", p: 60000, sk: "sk_elf_summon2", gachaWeight: 1 },         "bk_elf_lifebless": { type: "skillbk", n: "精靈水晶(生命的祝福)", p: 60000, sk: "sk_elf_lifebless", gachaWeight: 5 },         "bk_elf_seal": { type: "skillbk", n: "精靈水晶(封印禁地)", p: 60000, sk: "sk_elf_seal", gachaWeight: 10 },         "bk_elf_muddywater": { type: "skillbk", n: "精靈水晶(污濁之水)", p: 16000, sk: "sk_elf_muddywater", gachaWeight: 1, d: "封存著「污濁之水」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },         "bk_elf_blazewpn": { type: "skillbk", n: "精靈水晶(烈炎武器)", p: 60000, sk: "sk_elf_blazewpn", gachaWeight: 1 },         "bk_elf_flam
+---
+TOTAL for 精靈水晶 = 30
+BLOCK name=全屬性 approxLine=917
+Weight: 0, d: "【遺物】黑長者懷中的黑曜水晶球，球心封存著一整場風暴。格檔 10（一般限定）；智力 +3、MR+10、MP 自然恢復量 +10；被重擊時，對敵方全體施放龍捲風。" },         "relic_myriad_avatar":     { n: "百變化身",           type: "arm", slot: "gloves", relic: true, noEnhance: true, ac: 8, polyAtkSpdPct: 20, polyAllStats: 2, req: "all", p: 10000, gachaWeight: 0, d: "【遺物】變形怪首領蛻下的表皮製成的手套，戴上的人連骨相都跟著改變。變身時：攻擊速度增加 20%、全屬性 +2。" },         "relic_unsealed_baphomet_wand": { n: "解除封印的巴風特魔杖", type: "wpn", isWand: true, relic: true, noEnhance: true, dmgS: 7, dmgL: 6, hit: 20, dmgBonus: 17, ignHardSkin: true, mdmg: 3, extraMp: 3, procDualSkill: { skn: "熾焰地裂術", rate: 25, parts: [[4, 20, "earth"], [4, 20, "fire"]] }, req: "mage,illusion", p: 10000, gachaWeight: 0, d: "【遺
+---
+BLOCK name=全屬性 approxLine=2973
+岩漿之箭", type: "atk", tier: 2, reqDk: 30, mp: 0, hpCost: 16, dmgType: "magic", ele: "fire", multiDmg: [[10, 8]] },         "sk_dragon_awaken_falion": { n: "覺醒：法利昂", type: "buff", label: "增益", tier: 2, reqDk: 30, mp: 30, hpCost: 20, dur: 600, noRefresh: true, awaken: true, d: { resFire: 15, resWater: 15, resEarth: 15, resWind: 15 }, msg: "你引動法利昂之力，魔抗與全屬性抗性大增。" },         // —— 三階龍魔法（Lv45）——         "sk_dragon_deadlybody":    { n: "致命身軀", type: "buff", label: "增益", tier: 3, reqDk: 45, mp: 0, hpCost: 50, dur: 300, noRefresh: true, msg: "你的身軀化為致命的反擊之刃。" },         "sk_dragon_deathlightning":{ n: "奪命之雷", type: "atk", tier: 3, reqDk: 45, mp: 0, hpCost: 35, dmgType: "magic", ele: "wind", target: "all
+---
+TOTAL for 全屬性 = 2

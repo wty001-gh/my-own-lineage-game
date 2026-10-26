@@ -1,0 +1,324 @@
+{
+  "counts": {
+    "fire": 109,
+    "water": 62,
+    "wind": 86,
+    "earth": 254
+  },
+  "byRaceMajor": {
+    "亞人": {
+      "fire": 21,
+      "water": 18,
+      "wind": 24,
+      "earth": 60
+    },
+    "人型": {
+      "fire": 13,
+      "water": 0,
+      "wind": 11,
+      "earth": 26
+    },
+    "構造體": {
+      "fire": 1,
+      "water": 3,
+      "wind": 9,
+      "earth": 18
+    },
+    "惡魔族": {
+      "fire": 30,
+      "water": 2,
+      "wind": 5,
+      "earth": 19
+    },
+    "元素": {
+      "fire": 13,
+      "water": 13,
+      "wind": 8,
+      "earth": 11
+    },
+    "植物": {
+      "fire": 2,
+      "water": 0,
+      "wind": 0,
+      "earth": 4
+    },
+    "動物": {
+      "fire": 3,
+      "water": 14,
+      "wind": 5,
+      "earth": 21
+    },
+    "不死族": {
+      "fire": 8,
+      "water": 9,
+      "wind": 9,
+      "earth": 45
+    },
+    "精靈族": {
+      "fire": 10,
+      "water": 1,
+      "wind": 6,
+      "earth": 16
+    },
+    "昆蟲": {
+      "fire": 6,
+      "water": 1,
+      "wind": 3,
+      "earth": 20
+    },
+    "異界": {
+      "fire": 0,
+      "water": 0,
+      "wind": 1,
+      "earth": 8
+    },
+    "龍族": {
+      "fire": 2,
+      "water": 1,
+      "wind": 5,
+      "earth": 6
+    }
+  },
+  "fixesNonNone": [
+    {
+      "id": "baless",
+      "n": "巴列斯",
+      "old": "earth",
+      "neu": "fire"
+    },
+    {
+      "id": "orc_archer",
+      "n": "妖魔弓箭手",
+      "old": "fire",
+      "neu": "wind"
+    },
+    {
+      "id": "ice_wolf",
+      "n": "冰原狼人",
+      "old": "wind",
+      "neu": "water"
+    },
+    {
+      "id": "skel_archer",
+      "n": "骷髏弓箭手",
+      "old": "earth",
+      "neu": "wind"
+    },
+    {
+      "id": "orc_scout",
+      "n": "妖魔巡守",
+      "old": "fire",
+      "neu": "wind"
+    },
+    {
+      "id": "skel_sniper",
+      "n": "骷髏神射手",
+      "old": "earth",
+      "neu": "wind"
+    },
+    {
+      "id": "nm_015",
+      "n": "艾爾摩法師",
+      "old": "earth",
+      "neu": "fire"
+    },
+    {
+      "id": "nm_039",
+      "n": "夢幻之島鬼火",
+      "old": "earth",
+      "neu": "fire"
+    },
+    {
+      "id": "nm_045",
+      "n": "夢幻之島大鬼火",
+      "old": "earth",
+      "neu": "fire"
+    },
+    {
+      "id": "baphomet",
+      "n": "巴風特",
+      "old": "earth",
+      "neu": "fire"
+    },
+    {
+      "id": "nm_034",
+      "n": "惡魔",
+      "old": "earth",
+      "neu": "fire"
+    },
+    {
+      "id": "ant_kama_flame",
+      "n": "喀瑪焰",
+      "old": "water",
+      "neu": "fire"
+    },
+    {
+      "id": "ant_kama_flame_king",
+      "n": "喀瑪焰王",
+      "old": "water",
+      "neu": "fire"
+    },
+    {
+      "id": "thebes_obelisk",
+      "n": "底比斯 尖碑石奴",
+      "old": "water",
+      "neu": "earth"
+    },
+    {
+      "id": "thebes_obelisk_b",
+      "n": "底比斯 尖碑石奴(黑)",
+      "old": "fire",
+      "neu": "earth"
+    },
+    {
+      "id": "de_train_hellhound",
+      "n": "地獄束縛犬",
+      "old": "earth",
+      "neu": "fire"
+    },
+    {
+      "id": "sanct_cursed_mage",
+      "n": "受詛咒的黑暗妖精法師",
+      "old": "wind",
+      "neu": "fire"
+    },
+    {
+      "id": "pride_imp",
+      "n": "小惡魔",
+      "old": "earth",
+      "neu": "fire"
+    },
+    {
+      "id": "pride_flamesoul_r",
+      "n": "火焰之靈魂(紅)",
+      "old": "earth",
+      "neu": "fire"
+    },
+    {
+      "id": "pride_curse_mage",
+      "n": "受詛咒的艾爾摩法師",
+      "old": "earth",
+      "neu": "fire"
+    },
+    {
+      "id": "abyss_archer",
+      "n": "深淵弓箭手",
+      "old": "earth",
+      "neu": "wind"
+    },
+    {
+      "id": "tomb_guardian_knight",
+      "n": "墳墓守護者騎士",
+      "old": "fire",
+      "neu": "earth"
+    },
+    {
+      "id": "flame_skba",
+      "n": "炎魔的思克巴",
+      "old": "earth",
+      "neu": "fire"
+    },
+    {
+      "id": "flame_imp",
+      "n": "炎魔的小惡魔",
+      "old": "earth",
+      "neu": "fire"
+    },
+    {
+      "id": "flame_baless",
+      "n": "炎魔的巴列斯",
+      "old": "earth",
+      "neu": "fire"
+    },
+    {
+      "id": "flame_demon",
+      "n": "炎魔的惡魔",
+      "old": "earth",
+      "neu": "fire"
+    },
+    {
+      "id": "iv_stone_golem",
+      "n": "象牙塔石頭高崙",
+      "old": "wind",
+      "neu": "earth"
+    },
+    {
+      "id": "iv_iron_golem",
+      "n": "象牙塔鋼鐵高崙",
+      "old": "wind",
+      "neu": "earth"
+    },
+    {
+      "id": "iv_blackmage",
+      "n": "象牙塔黑魔法師",
+      "old": "wind",
+      "neu": "fire"
+    },
+    {
+      "id": "iv_flameslave",
+      "n": "象牙塔炎魔的奴隸",
+      "old": "wind",
+      "neu": "fire"
+    },
+    {
+      "id": "iv_baphomet",
+      "n": "象牙塔巴風特之影",
+      "old": "wind",
+      "neu": "fire"
+    },
+    {
+      "id": "iv_flameshadow",
+      "n": "象牙塔炎魔之影",
+      "old": "wind",
+      "neu": "fire"
+    },
+    {
+      "id": "pirate_skeleton",
+      "n": "海賊骷髏",
+      "old": "earth",
+      "neu": "water"
+    },
+    {
+      "id": "pirate_skelsoldier",
+      "n": "海賊骷髏士兵",
+      "old": "earth",
+      "neu": "water"
+    },
+    {
+      "id": "pirate_skelblade",
+      "n": "海賊骷髏刀手",
+      "old": "earth",
+      "neu": "water"
+    },
+    {
+      "id": "pirate_skelchief",
+      "n": "海賊骷髏首領",
+      "old": "earth",
+      "neu": "water"
+    }
+  ],
+  "fixesNoneCount": 176,
+  "tagged": 511,
+  "sampleNames": [
+    {
+      "id": "dk",
+      "display": "死亡騎士(不死族/地)",
+      "e": "earth"
+    },
+    {
+      "id": "baphomet",
+      "display": "巴風特(惡魔族/火)",
+      "e": "fire"
+    },
+    {
+      "id": "ice_demon",
+      "display": "冰魔(元素/水)",
+      "e": "water"
+    },
+    {
+      "id": "antaras",
+      "display": "安塔瑞斯(龍族/地)",
+      "e": "earth"
+    }
+  ]
+}

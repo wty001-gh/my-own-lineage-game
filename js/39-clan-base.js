@@ -65,6 +65,25 @@ const CB_BUILDINGS = {
         desc: '需冒險者公會 Lv.5。預覽懸賞頭目屬性；每級頭目蓄力預告時間 +0.2 秒；Lv.10 蓄力時常駐顯示頭目弱點屬性。',
         effect: lv => lv <= 0 ? '未建造' : `蓄力預告 +${(lv * 0.2).toFixed(1)} 秒${lv >= 10 ? '・弱點常駐' : ''}`,
         nextEffect: lv => lv >= CB_MAX_LV ? null : `蓄力預告 +${((lv + 1) * 0.2).toFixed(1)} 秒${lv + 1 >= 10 ? '・弱點常駐' : ''}`
+    },
+    // 🏛️ v3.8.123 公會擴充：料理／生產／後勤（design/guild-expand-v1.md）
+    kitchen: {
+        id: 'kitchen', n: '料理屋', emoji: '🍳',
+        desc: '需冒險者公會 Lv.2。解鎖料理／宴會委託；每級派遣歸來體力回復 +5%；完成委託可獲便當（短暫攻防）。Lv.10 每日自動煮 3 份公會大餐。',
+        effect: lv => lv <= 0 ? '未建造' : `體力回復 +${lv * 5}%・解鎖料理委託${lv >= 10 ? '・每日大餐×3' : ''}`,
+        nextEffect: lv => lv >= CB_MAX_LV ? null : `體力回復 +${(lv + 1) * 5}%${lv + 1 >= 10 ? '・每日大餐' : ''}`
+    },
+    workshop: {
+        id: 'workshop', n: '生產工坊', emoji: '🏭',
+        desc: '需冒險者公會 Lv.3。解鎖訂單生產委託；採集／調查資源 +2%/級；委託裝備掉落再 +1%/級（與鍛造屋合計上限 +40%）。Lv.10 每週工坊特製箱。',
+        effect: lv => lv <= 0 ? '未建造' : `資源 +${lv * 2}%・裝備掉落 +${lv}%${lv >= 10 ? '・每週特製箱' : ''}`,
+        nextEffect: lv => lv >= CB_MAX_LV ? null : `資源 +${(lv + 1) * 2}%・裝備掉落 +${lv + 1}%`
+    },
+    logistics: {
+        id: 'logistics', n: '後勤營', emoji: '📦',
+        desc: '需冒險者公會 Lv.4。派遣欄 +0.5/級（與委託板合計最多 10）；委託時長 −2%/級（最快 −20%）；失敗懲罰減輕。Lv.10 每日緊急召回 1 次。',
+        effect: lv => lv <= 0 ? '未建造' : `派遣欄 +${Math.floor(lv / 2)}・時長 −${Math.min(20, lv * 2)}%${lv >= 10 ? '・緊急召回' : ''}`,
+        nextEffect: lv => lv >= CB_MAX_LV ? null : `派遣欄 +${Math.floor((lv + 1) / 2)}・時長 −${Math.min(20, (lv + 1) * 2)}%`
     }
 };
 function cbTavernEvents(lv) { lv = Math.floor(Number(lv) || 0); return (lv >= 1 ? 1 : 0) + (lv >= 4 ? 1 : 0) + (lv >= 7 ? 1 : 0) + (lv >= 10 ? 1 : 0); }
@@ -166,7 +185,10 @@ const CB_UPGRADE_COST = {
     ],
     tavern: _cbGeoCosts([120, 3000], [0, 0], [0, 0], [30000, 80000000], [10, 600]),
     dorm:   _cbGeoCosts([100, 2500], [0, 1200], [0, 0], [20000, 60000000], [10, 600]),
-    intel:  _cbGeoCosts([0, 0], [0, 0], [10, 200], [500000, 100000000], [30, 720])
+    intel:  _cbGeoCosts([0, 0], [0, 0], [10, 200], [500000, 100000000], [30, 720]),
+    kitchen:   _cbGeoCosts([80, 2000], [40, 800], [0, 0], [25000, 50000000], [20, 480]),
+    workshop:  _cbGeoCosts([100, 2500], [80, 1500], [0, 80], [50000, 80000000], [20, 600]),
+    logistics: _cbGeoCosts([150, 3000], [100, 2000], [0, 0], [80000, 100000000], [30, 600])
 };
 
 // ===== 藥水配方 =====
@@ -277,8 +299,8 @@ function ensureClanBase(p) {
     cb.res.wood = Math.max(0, Math.floor(Number(cb.res.wood) || 0));
     cb.res.ore = Math.max(0, Math.floor(Number(cb.res.ore) || 0));
     cb.res.magic = Math.max(0, Math.floor(Number(cb.res.magic) || 0));
-    if (!cb.lv) cb.lv = { keep: 0, blacksmith: 0, training: 0, potion: 0, explore: 0, mage: 0, tavern: 0, dorm: 0, intel: 0 };
-    ['keep', 'blacksmith', 'training', 'potion', 'explore', 'mage', 'tavern', 'dorm', 'intel'].forEach(k => {
+    if (!cb.lv) cb.lv = { keep: 0, blacksmith: 0, training: 0, potion: 0, explore: 0, mage: 0, tavern: 0, dorm: 0, intel: 0, kitchen: 0, workshop: 0, logistics: 0 };
+    ['keep', 'blacksmith', 'training', 'potion', 'explore', 'mage', 'tavern', 'dorm', 'intel', 'kitchen', 'workshop', 'logistics'].forEach(k => {
         cb.lv[k] = Math.max(0, Math.min(CB_MAX_LV, Math.floor(Number(cb.lv[k]) || 0)));
     });
     if (!Array.isArray(cb.queue)) cb.queue = [];
@@ -289,6 +311,7 @@ function ensureClanBase(p) {
     if (!cb.lastProdAt) cb.lastProdAt = Date.now();
     if (!cb.lastSeenAt) cb.lastSeenAt = Date.now();
     if (!cb.trainBank || typeof cb.trainBank !== 'object') cb.trainBank = {};
+    if (!Array.isArray(cb.buffFood)) cb.buffFood = [];
     // 🧭 v3.8.99 探險公會：[{ id, slot, name, lv, cls, map, hours, startAt, endAt, seed }]
     if (!Array.isArray(cb.exped)) cb.exped = [];
     cb.exped = cb.exped.filter(e => e && e.slot && e.map && e.endAt > 0);
@@ -423,6 +446,9 @@ function cbStartUpgrade(bid) {
     let keep = cb.lv.keep || 0;
     if (bid !== 'keep' && cur >= keep) { logSys('其他設施等級不可超過公會本部。請先升級公會本部。'); return; }
     if (bid === 'intel' && !(window.GD && GD.level() >= 5)) { logSys('情報室需冒險者公會 Lv.5。'); return; }
+    if (bid === 'kitchen' && !(window.GD && GD.level() >= 2)) { logSys('料理屋需冒險者公會 Lv.2。'); return; }
+    if (bid === 'workshop' && !(window.GD && GD.level() >= 3)) { logSys('生產工坊需冒險者公會 Lv.3。'); return; }
+    if (bid === 'logistics' && !(window.GD && GD.level() >= 4)) { logSys('後勤營需冒險者公會 Lv.4。'); return; }
     if (cb.queue.some(q => q.bid === bid)) { logSys('此建築已在建造佇列中。'); return; }
     if (cb.queue.length >= cbQueueSlots()) { logSys(`建造佇列已滿（${cbQueueSlots()}）。`); return; }
     let toLv = cur + 1;
@@ -1045,7 +1071,7 @@ function renderClanBaseTab() {
     });
     html += '</div>';
 
-    ['keep', 'blacksmith', 'training', 'potion', 'explore', 'mage', 'tavern', 'dorm', 'intel'].forEach(bid => {
+    ['keep', 'blacksmith', 'training', 'potion', 'explore', 'mage', 'tavern', 'dorm', 'intel', 'kitchen', 'workshop', 'logistics'].forEach(bid => {
         let b = CB_BUILDINGS[bid];
         if (!b) return;
         if (b.locked) {
@@ -1060,7 +1086,10 @@ function renderClanBaseTab() {
         let keepGate = bid !== 'keep' && lv >= (cb.lv.keep || 0) && !isMax;
         let q = _cbQueueFor(bid);
         let inQ = !!q;
-        let guildGate = bid === 'intel' && !(window.GD && GD.level() >= 5);   // 🏛️ v3.8.119 情報室需公會 Lv5
+        let guildGate = (bid === 'intel' && !(window.GD && GD.level() >= 5))
+            || (bid === 'kitchen' && !(window.GD && GD.level() >= 2))
+            || (bid === 'workshop' && !(window.GD && GD.level() >= 3))
+            || (bid === 'logistics' && !(window.GD && GD.level() >= 4));
         let can = !!(cost && !keepGate && !guildGate && !inQ && !isMax && cb.queue.length < cbQueueSlots() && cbCanAfford(cost));
 
         html += '<div class="cb-card"><div class="cb-card-top"><div class="cb-card-main">';

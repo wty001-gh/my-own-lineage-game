@@ -371,7 +371,9 @@ function _summaryFromRaw(s){
             mp: p.mp || 0,
             mmp: p.mmp || p.maxMp || 0,
             ac: p.d && typeof p.d.ac === 'number' ? p.d.ac : '',
-            base: p.base || {}
+            base: p.base || {},
+            talents: p.talents || null,
+            star: p.star || 0
         };   // 🎮 經典模式旗標：供存檔位顯示與傭兵同模式招募限制（🏛️v3.0.83 傳統已取消·未載入過的舊傳統存檔以 classicMode 歸類）；avatar＝職業性別頭像名（assets/character/<avatar>.png）；name 未命名時留空字串（顯示端自行省略）
     } catch(e){ return null; }
 }

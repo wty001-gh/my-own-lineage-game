@@ -257,6 +257,7 @@
                 { contract: null, cooldownUntil: 0 }
             ],
             nameHistory: [],
+            diamondEarn: { day: '', dailyClaimed: false, killDrip: 0, goldEx: 0, crystalEx: 0 },
             updatedAt: Date.now()
         };
     }
@@ -268,6 +269,7 @@
         st.seq = Math.max(0, Math.floor(Number(st.seq) || 0));
         st.lastCheckBucket = Number.isFinite(Number(st.lastCheckBucket)) ? Math.floor(Number(st.lastCheckBucket)) : -1;
         st.diamonds = Math.max(0, Math.floor(Number(st.diamonds) || 0));
+        st.diamondEarn = _normalizeDiamondEarn(st.diamondEarn);
         // v1 僅能保存全遊戲一名玩家 NPC；v2 改為每個符合條件的安全區各自最多一名；
         // v3 同一安全區可各有一位龍鑽／金幣收購 NPC。
         let oldWanderer = st.wanderer && typeof st.wanderer === 'object' ? st.wanderer : null;
@@ -1926,6 +1928,73 @@
         return !!result.ok;
     }
 
+    function _normalizeDiamondEarn(raw) {
+        let e = raw && typeof raw === 'object' ? raw : {};
+        return {
+            day: typeof e.day === 'string' ? e.day : '',
+            dailyClaimed: !!e.dailyClaimed,
+            killDrip: Math.max(0, Math.floor(Number(e.killDrip) || 0)),
+            goldEx: Math.max(0, Math.floor(Number(e.goldEx) || 0)),
+            crystalEx: Math.max(0, Math.floor(Number(e.crystalEx) || 0))
+        };
+    }
+
+    function _diamondEarnDayKey() {
+        try {
+            if (typeof gdDayKey === 'function') return gdDayKey();
+            if (typeof GD !== 'undefined' && GD && typeof GD.dayKey === 'function') return GD.dayKey();
+        } catch (e) {}
+        try {
+            // Asia/Taipei calendar day（箱時間已係台北）
+            let d = new Date();
+            let y = d.getFullYear(), m = String(d.getMonth() + 1).padStart(2, '0'), day = String(d.getDate()).padStart(2, '0');
+            return y + '-' + m + '-' + day;
+        } catch (e) { return '1970-01-01'; }
+    }
+
+    function _rollDiamondEarnDay(st) {
+        st.diamondEarn = _normalizeDiamondEarn(st.diamondEarn);
+        let day = _diamondEarnDayKey();
+        if (st.diamondEarn.day !== day) {
+            st.diamondEarn.day = day;
+            st.diamondEarn.dailyClaimed = false;
+            st.diamondEarn.killDrip = 0;
+            st.diamondEarn.goldEx = 0;
+            st.diamondEarn.crystalEx = 0;
+        }
+        return st.diamondEarn;
+    }
+
+    /** 讀取今日龍鑽取得計數（會自動跨日重置；只讀不強制寫入） */
+    function pandoraGetDiamondEarn() {
+        let st = _readState();
+        let snap = Object.assign({}, _normalizeDiamondEarn(st.diamondEarn));
+        let day = _diamondEarnDayKey();
+        if (snap.day !== day) {
+            snap.day = day;
+            snap.dailyClaimed = false;
+            snap.killDrip = 0;
+            snap.goldEx = 0;
+            snap.crystalEx = 0;
+        }
+        return snap;
+    }
+
+    /**
+     * 原子改寫共用龍鑽＋diamondEarn。
+     * mutator(st) 可改 st.diamonds / st.diamondEarn；回傳欄位會併入結果。
+     * 設 commit:false 可中止寫入。
+     */
+    function pandoraMutateDiamondEarn(mutator) {
+        return _withStateLock(st => {
+            _rollDiamondEarnDay(st);
+            let r = (typeof mutator === 'function' ? mutator(st) : null) || {};
+            st.diamondEarn = _normalizeDiamondEarn(st.diamondEarn);
+            st.diamonds = Math.max(0, Math.floor(Number(st.diamonds) || 0));
+            return Object.assign({ diamonds: st.diamonds, earn: Object.assign({}, st.diamondEarn) }, r);
+        });
+    }
+
     // 匯出／匯入只處理龍之鑽石，不覆蓋叫賣 NPC、遺物布告欄與冷卻中的共用市場資料。
     function pandoraGetSharedDiamonds() {
         return _readState().diamonds;
@@ -1985,6 +2054,8 @@
     window.pandoraGetSharedDiamonds = pandoraGetSharedDiamonds;
     window.pandoraAdjustSharedDiamonds = pandoraAdjustSharedDiamonds;
     window.pandoraRestoreSharedDiamonds = pandoraRestoreSharedDiamonds;
+    window.pandoraGetDiamondEarn = pandoraGetDiamondEarn;
+    window.pandoraMutateDiamondEarn = pandoraMutateDiamondEarn;
 
     setTimeout(wanderingBuyerSystemTick, 1500);
     setInterval(wanderingBuyerSystemTick, 30000);

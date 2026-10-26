@@ -58,11 +58,13 @@ function header() {
       <span style="color:#a8a29e;font-size:12px;align-self:center;margin-left:8px">每日 05:00（台北）刷新・普通委託派遣傭兵執行・頭目懸賞於野外親自討伐</span></div>`;
 }
 function cardHtml(c) {
-    let T = GD.TYPES[c.type];
+    let T = GD.TYPES[c.type] || { emoji: '❓', n: c.type };
+    let g = c.gates || (GD.defaultGates && GD.defaultGates(c.rank, c.type)) || {};
+    let pn = (g.partyMin || 1) + '–' + (g.partyMax || 3);
     return `<div class="gd-card${c.type === 'bounty' ? ' bounty' : ''}${_sel === c.id ? ' sel' : ''}${c.taken ? ' taken' : ''}" onclick="gdUiSel('${c.id}')">
       <span class="rk gd-rk-${c.rank}">${c.rank}</span><div class="ty">${T.emoji} ${T.n}${c.kept ? ' 📌' : ''}</div>
-      <div class="mp">${esc(c.type === 'bounty' ? '討伐目標：' + (c.bossName || '?') : c.mapName)}・${c.type === 'bounty' ? (c.rank === 'S' ? '親自出戰' : '出戰／派遣') : (c.hours < 1 ? c.hours * 60 + ' 分' : c.hours + ' 小時')}</div>
-      <div class="mp">需求：${GD.TRAIT_N[c.trait]} ${c.req}</div>
+      <div class="mp">${esc(c.type === 'bounty' ? '討伐目標：' + (c.bossName || '?') : c.mapName)}・${c.type === 'bounty' ? (c.rank === 'S' ? '親自出戰' : '出戰／派遣') : (c.hours < 1 ? c.hours * 60 + ' 分' : c.hours + ' 小時')}・👥${pn}</div>
+      <div class="mp">需求：${GD.TRAIT_N[c.trait] || c.trait} ${c.req}${(g.clsNeed && g.clsNeed.length) ? '・職:' + g.clsNeed.map(x => GD.CLS_LABEL[x] || x).join('/') : ''}</div>
       <div class="rw">💰 ${c.gold.toLocaleString()}　🎖️ +${c.fame}${c.taken ? (c.cleared ? '　✅ 已完成' : '　📤 已派遣') : (c.accepted ? '　🎯 懸賞中' : '')}</div></div>`;
 }
 function detailHtml() {
@@ -90,30 +92,47 @@ function detailHtml() {
         if (c.rank === 'S') return h;
         h += `<div style="margin-top:8px;color:#a8a29e;font-size:12px">或派遣成員代為討伐（成功率上限 60%，8 小時）：</div>`;
     }
-    h += `<div style="margin:6px 0 4px">派遣成員（最多 3 名）：</div>`;
+    let gates = c.gates || (GD.defaultGates && GD.defaultGates(c.rank, c.type)) || { partyMin: 2, partyMax: 5 };
+    let pmax = gates.partyMax || 5, pmin = gates.partyMin || 2;
+    let gateChk = picked.length ? GD.gatesOk(c, picked) : { ok: false, why: ['請選 ' + pmin + '–' + pmax + ' 人'] };
+    let detail = picked.length && GD.scoreDetail ? GD.scoreDetail(c, picked) : null;
+    rate = detail ? detail.rate : rate;
+    h += `<div style="margin:4px 0;font-size:12px;color:#d6d3d1">門檻：👥 ${pmin}–${pmax}${(gates.clsNeed && gates.clsNeed.length) ? '・職業 ' + gates.clsNeed.map(x => GD.CLS_LABEL[x] || x).join('/') : ''}${(gates.facNeed && gates.facNeed.kitchen) ? '・🍳料理屋' : ''}${(gates.facNeed && gates.facNeed.workshop) ? '・🏭工坊' : ''}${(gates.talentNeed && gates.talentNeed.length) ? '・天賦 ' + gates.talentNeed.map(t => t.id).join(',') : ''}</div>`;
+    if (picked.length && !gateChk.ok) h += `<div style="color:#f87171;font-size:12px">⚠ ${esc((gateChk.why || []).join('；'))}</div>`;
+    h += `<div style="margin:6px 0 4px">派遣成員（${pmin}–${pmax} 名，首位為隊長）：</div>`;
     h += mems.length ? mems.map(m => {
         let on = _pick.indexOf(m.slot) >= 0;
         return `<div class="gd-mem${on ? ' on' : ''}${m.why ? ' no' : ''}" onclick="${m.why ? '' : `gdUiPick('${m.slot}')`}"><div class="av" style="background-image:url('${esc(GD.memberPortrait(m))}')"></div>
-          <div style="flex:1;min-width:0"><div>${on ? '✅ ' : ''}${esc(m.name)}・${GD.CLS_LABEL[m.cls] || m.cls} Lv${m.lv} ${'♥'.repeat(Math.min(5, m.tr.affLv))}</div>
+          <div style="flex:1;min-width:0"><div>${on ? (on && _pick[0] === m.slot ? '👑 ' : '✅ ') : ''}${esc(m.name)}・${GD.CLS_LABEL[m.cls] || m.cls} Lv${m.lv} ${'♥'.repeat(Math.min(5, m.tr.affLv))}</div>
           <div class="tr">${GD.TRAIT_N[c.trait]} ${m.tr[c.trait]}・${GD.TRAIT_N[c.sub]} ${m.tr[c.sub]}・體力 ${Math.max(0, m.tr.stamina - m.st.used)}/${m.tr.stamina}${m.why ? '・<span style="color:#f87171">' + m.why + '</span>' : ''}</div></div></div>`;
     }).join('') : '<div style="color:#a8a29e">沒有可派遣的成員。</div>';
-    h += `<div>預計成功率：<b style="font-size:16px;color:${rate >= 70 ? '#4ade80' : rate >= 40 ? '#fbbf24' : '#f87171'}">${picked.length ? rate + '%' : '—'}</b></div><div class="gd-rate"><i style="width:${rate}%"></i></div>
-      <div style="display:flex;gap:6px"><button onclick="gdUiAuto()">⚡ 自動編成</button><button class="on" style="flex:1;padding:7px" ${picked.length ? '' : 'disabled'} onclick="gdUiDispatch()">📤 派遣</button><button onclick="gdUiKeep('${c.id}')">${c.kept ? '取消收藏' : '📌 收藏'}</button></div>`;
+    h += `<div>預計成功率：<b style="font-size:16px;color:${rate >= 70 ? '#4ade80' : rate >= 40 ? '#fbbf24' : '#f87171'}">${picked.length ? rate + '%' : '—'}</b>${detail ? '　評分 <b>' + detail.S + '</b>' : ''}</div><div class="gd-rate"><i style="width:${rate}%"></i></div>`;
+    if (detail && detail.parts) {
+        let p = detail.parts;
+        h += `<div style="font-size:11px;color:#a8a29e">明細：特性 ${Math.round(p.T_trait)}・隊長 ${Math.round(p.T_leader)}・配合 ${Math.round(p.T_synergy)}・天賦 ${Math.round(p.T_talent)}・星 ${p.T_star.toFixed(1)}・設施 ${Math.round(p.T_fac)}${p.T_gap ? '・等級差 ' + Math.round(p.T_gap) : ''}${p.T_gate ? '・門檻 ' + Math.round(p.T_gate) : ''}</div>`;
+    }
+    h += `<div style="display:flex;gap:6px"><button onclick="gdUiAuto()">⚡ 自動編成</button><button class="on" style="flex:1;padding:7px" ${picked.length && gateChk.ok ? '' : 'disabled'} onclick="gdUiDispatch()">📤 派遣</button><button onclick="gdUiKeep('${c.id}')">${c.kept ? '取消收藏' : '📌 收藏'}</button></div>`;
     return h;
 }
 function membersHtml() {
     let mems = GD.members(true);
     if (!mems.length) return '<div style="color:#a8a29e;padding:20px">沒有可派遣的成員。</div>';
     let bar = (k, v) => `<div class="gd-bar"><b>${GD.TRAIT_N[k]}</b><span><i style="width:${v}%"></i></span>${v}</div>`;
-    return `<div class="gd-mgrid">${mems.map(m => `<div class="gd-mc"><div class="pi" style="background-image:url('${esc(GD.memberPortrait(m))}')"></div><div class="bd">
+    return `<div class="gd-mgrid">${mems.map(m => {
+      let tlLine = (window.TL && TL.summaryLine) ? TL.summaryLine(m.talents || (m.self && player && player.talents)) : '';
+      let canEdit = m.self || String(m.slot).match(/^\d+$/);
+      return `<div class="gd-mc"><div class="pi" style="background-image:url('${esc(GD.memberPortrait(m))}')"></div><div class="bd">
       <div style="font-weight:bold">${esc(m.name)} <span style="color:#a8a29e;font-weight:normal">${GD.CLS_LABEL[m.cls] || m.cls} Lv${m.lv}</span></div>
       <div style="color:#f9a8d4">好感 Lv${m.tr.affLv} ${'♥'.repeat(Math.min(10, m.tr.affLv))}</div>
       ${['power', 'explore', 'talk', 'gather', 'charm'].map(k => bar(k, m.tr[k])).join('')}
-      <div style="font-size:11px;color:#a8a29e">體力 ${Math.max(0, m.tr.stamina - m.st.used)}/${m.tr.stamina}${m.why ? '・' + m.why : ''}</div></div></div>`).join('')}</div>`;
+      <div style="font-size:11px;color:#93c5fd;margin-top:2px">🧭 ${esc(tlLine || '天賦：—')}</div>
+      <div style="font-size:11px;color:#a8a29e">體力 ${Math.max(0, m.tr.stamina - m.st.used)}/${m.tr.stamina}${m.why ? '・' + m.why : ''}</div>
+      ${canEdit ? `<button style="margin-top:4px" onclick="gdUiEditTalent('${esc(m.slot)}')">編輯此角色天賦</button>` : '<div style="font-size:11px;color:#78716c;margin-top:4px">無獨立存檔・不可編天賦</div>'}
+      </div></div>`; }).join('')}</div>`;
 }
 function jobsHtml(full) {
     let g = GD.data(), now = Date.now();
-    let list = g.jobs.map(j => ({ id: j.id, t: `${j.card.rank} ${GD.TYPES[j.card.type].n}・${j.card.mapName}`, who: j.members.map(m => m.name).join('、'), endAt: j.endAt, rate: j.rate }))
+    let list = g.jobs.map(j => ({ id: j.id, t: `${j.card.rank} ${(GD.TYPES[j.card.type] || {}).n || j.card.type}・${j.card.mapName}`, who: j.members.map(m => m.name).join('、'), endAt: j.endAt, rate: j.rate, score: j.score }))
         .concat(GD.legacyJobs().map(e => ({ id: e.id, legacy: true, t: `舊探險（已轉入）・${e.mapName}（${e.hours}時）`, who: e.name, endAt: e.endAt })));
     if (!list.length) return full ? '<div style="color:#a8a29e;padding:20px">目前沒有進行中的委託。</div>' : '<span style="color:#78716c">進行中：無</span>';
     let ready = list.filter(x => now >= x.endAt).length;
@@ -124,10 +143,13 @@ function jobsHtml(full) {
 function guildHtml() {
     let g = GD.data(), lv = GD.level(g), L = k => GD.cbLv(k);
     let rows = GD.LV_UNLOCK.map((t, i) => i ? `<tr style="${lv >= i ? 'color:#fde68a' : 'color:#78716c'}"><td style="padding:3px 8px">${lv >= i ? '✅' : '🔒'} Lv${i}</td><td style="padding:3px 8px">${GD.FAME_LV[i - 1].toLocaleString()}</td><td style="padding:3px 8px">${t}</td></tr>` : '').join('');
-    let fac = [['keep', '🏛️ 公會本部', l => `設施上限 Lv${l}${l >= 10 ? '・公會徽章（特性 +5）' : ''}`], ['explore', '📋 委託板', l => `委託 ${Math.min(12, 6 + Math.floor(l * 0.6))} 張・派遣欄 ${GD.dispatchSlots()}`],
+    let fac = [['keep', '🏛️ 公會本部', l => `設施上限 Lv${l}${l >= 10 ? '・公會徽章（特性 +5）' : ''}`], ['explore', '📋 委託板', l => `委託張數／派遣欄（含後勤） ${GD.dispatchSlots()}`],
                ['tavern', '🍺 酒館', l => `每日好感事件 +${(l >= 1) + (l >= 4) + (l >= 7) + (l >= 10)}`], ['dorm', '🛏️ 宿舍', l => `成員體力 +${l * 10}%${l >= 10 ? '・同居' : ''}`],
                ['intel', '🗺️ 情報室', l => `蓄力預告 +${(l * 0.2).toFixed(1)} 秒${l >= 10 ? '・弱點常駐' : ''}${lv < 5 ? '（公會 Lv5 開放）' : ''}`], ['blacksmith', '⚒️ 鍛造屋', l => `強化 +${(l * 0.5).toFixed(1)}%・委託裝備 +${l * 3}%`],
-               ['training', '🏟️ 訓練場', l => `共享 EXP ${l * 2}%`], ['mage', '🔮 魔法塔', l => `魔傷 +${l}%・調查委託 +${l}%`]];
+               ['training', '🏟️ 訓練場', l => `共享 EXP ${l * 2}%`], ['mage', '🔮 魔法塔', l => `魔傷 +${l}%・調查委託 +${l}%`],
+               ['kitchen', '🍳 料理屋', l => l ? `體力回復・解鎖料理委託${l >= 10 ? '・大餐' : ''}` : (lv < 2 ? '公會 Lv2 開放' : '未建造')],
+               ['workshop', '🏭 生產工坊', l => l ? `資源 +${l * 2}%・裝備掉落 +${l}%` : (lv < 3 ? '公會 Lv3 開放' : '未建造')],
+               ['logistics', '📦 後勤營', l => l ? `派遣欄 +${Math.floor(l / 2)}・時長 −${Math.min(20, l * 2)}%` : (lv < 4 ? '公會 Lv4 開放' : '未建造')]];
     let fc = fac.map(f => `<div style="border:1px solid #44403c;border-radius:8px;padding:6px 8px;background:#1c1917"><b>${f[1]}</b> <span style="color:#fbbf24">Lv${L(f[0])}</span><div style="font-size:12px;color:#a8a29e">${f[2](L(f[0]))}</div></div>`).join('');
     return `<div style="display:flex;gap:12px;flex-wrap:wrap"><div style="flex:1;min-width:380px"><div style="font-weight:bold;color:#fcd34d;margin-bottom:4px">公會等級（名聲）</div>
       <table style="border-collapse:collapse;font-size:12px;width:100%">${rows}</table>
@@ -159,7 +181,13 @@ function rerenderDetail() { let d = document.getElementById('gd-detail'); if (d)
 window.gdUiOpen = open; window.gdUiClose = close;
 window.gdUiTab = t => { _tab = t; render(); };
 window.gdUiSel = id => { _sel = id; _pick = []; render(); };
-window.gdUiPick = s => { let i = _pick.indexOf(s); if (i >= 0) _pick.splice(i, 1); else if (_pick.length < 3) _pick.push(s); rerenderDetail(); };
+window.gdUiPick = s => {
+    let i = _pick.indexOf(s); if (i >= 0) { _pick.splice(i, 1); rerenderDetail(); return; }
+    let c = GD.data().board.find(x => x.id === _sel);
+    let pmax = (c && c.gates && c.gates.partyMax) || 5;
+    if (_pick.length < pmax) _pick.push(s);
+    rerenderDetail();
+};
 window.gdUiDispatch = () => { let r = GD.dispatch(_sel, _pick); if (!r.ok) { try { logSys('<span class="text-red-400">' + r.msg + '</span>'); } catch (e) {} alertMsg(r.msg); return; } _pick = []; render(); };
 window.gdUiKeep = id => { GD.keep(id); render(); };
 window.gdUiRefresh = () => { if (GD.refresh()) { _sel = null; _pick = []; } render(); };
@@ -176,6 +204,12 @@ function alertMsg(m) { let d = document.getElementById('gd-detail'); if (d) { le
 function addBtn() {
     css();
     let cn = document.getElementById('st-classname');
+    if (cn && !document.getElementById('btn-talent-open')) {
+        let tb = document.createElement('span'); tb.id = 'btn-talent-open'; tb.title = '此角色的天賦（個人）'; tb.textContent = '🧭';
+        tb.style.cssText = 'margin-left:4px;cursor:pointer;font-size:13px;line-height:1;padding:1px 4px;border:1px solid #0369a1;border-radius:4px;background:rgba(12,74,110,.55)';
+        tb.onclick = e => { e.stopPropagation(); if (window.TL) TL.openSelf(); };
+        cn.parentNode.insertBefore(tb, cn.nextSibling);
+    }
     if (!cn || document.getElementById('btn-guild-open')) return;
     let b = document.createElement('span'); b.id = 'btn-guild-open'; b.title = '冒險者公會'; b.textContent = '🏛️';
     b.onclick = ev => { ev.stopPropagation(); open(); };

@@ -1,47 +1,5 @@
-# 部署包／備份
-*.zip
-deploy-*/
-backup-*/
-*.bak
-*~
-# 開發暫存／工作資料夾（不屬遊戲本體）
-work/
-from-pc/
-patches/
-slices/
-node_modules/
-# 測試截圖／暫存
-*-contact.jpg
-tmp/
-*.log
-*.tmp
-.DS_Store
-Thumbs.db
-# 根目錄重複／分析（遊戲只載入 js/ 下的副本）
-/00-data.js
-/01-drops-config.js
-/02-stats-recompute.js
-/03-combat-core.js
-/04-combat-attack.js
-/06-status-allies.js
-/07-skills-cast.js
-/08-items-equip.js
-/09-vfx-render.js
-/10-ui-tabs.js
-/11-world-map.js
-/13-shop-save.js
-/15-cards.js
-/33-relic-recycle.js
-NOTES.md
-RESEARCH-REPORT.md
-analyze_mobs.py
-element-report.json
-slices.zip
-context.txt
-deep.txt
-dump_eles.py
-hits.txt
-mob-ele-analysis.txt
-mob-ele-full.txt
-search-results.txt
-sim_elements.py
+
+
+# 本機截圖／對照包
+shots/
+_sidebyside-pack/

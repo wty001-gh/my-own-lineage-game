@@ -1,0 +1,1295 @@
+===== PATTERN: 妖精 =====
+afk-anyclass.js:111: //   妖精(Lv48)學得到——王族只能學一/二階(魔法精通再開到三~五階)、騎士/戰士/幻術士/
+afk-anyclass.js:112: //   龍騎士/黑暗妖精也各自沒有 → 他們裝上書只有「擊殺全隊回 1%」那半段有效
+afk-dex.js:169: var _CLS_CN = { knight: '騎士', mage: '法師', elf: '妖精', dark: '黑暗妖精', illusion: '幻術士', dragon: '龍騎士', warrior: '戰士', royal: '王族' };
+afk-dex.js:859: { id: 'areadrop', title: '🌿 區域額外掉落（妖精森林周邊、眠龍洞穴 1~3 樓）', keys: ['米索莉', '精靈玉', '元素石'], lines: [
+afk-dex.js:864: { id: 'blackstone', title: '⛏ 黑魔石（黑暗妖精素材）', keys: ['黑魔石'], lines: [
+afk-dex.js:869: { id: 'silverore', title: '🪙 銀礦石（黑暗妖精製作材料）', keys: ['銀礦石'], lines: [
+afk-dex.js:892: '<b>取得②</b>：<b>黑暗妖精聖地</b>的怪物（地獄奴隸／受詛咒的黑暗妖精鬥士·法師·騎士／食腐獸／特提斯／翼龍）固定 <b>0.5%</b> 掉（在一般掉落表內，直接搜怪名即可）。',
+afk-extradata.js:31: if (typeof SANCTUARY_MAP_NAMES !== 'undefined' && SANCTUARY_MAP_NAMES[id]) return SANCTUARY_MAP_NAMES[id];   // 🌑 黑暗妖精聖地 3 隱藏圖（js/11 定義）
+afk-extradata.js:118: wpn_11:           { short: '角色創建時的起始武器（黑暗妖精／王族），無法另外取得' },
+afk-history.js:30: var CLS_NAME = { knight: '騎士', mage: '法師', elf: '妖精', dark: '黑暗妖精', illusion: '幻術士', dragon: '龍騎士', warrior: '戰士', royal: '王族' };
+afk-offline.js:892: //   → 回線上後自動施放判定「buff 還在」不重新召喚,精靈就這樣不見(2026-07-07 玩家回報,妖精強力屬性精靈)。
+afk-offline.js:1467: // 🌑 黑暗妖精聖地兩間純 BOSS 房（吉爾塔斯／冥皇丹特斯）：比照「離線＝線上照跑」，照常結算——
+afk-squadsync.js:8: *   （sigSkill）只由「存檔位:名字:倒地:等級」＋妖精屬性組成，**技能清單不在裡面** →
+afk-trackmaps.js:19: *   ① 黑暗妖精聖地(dark_elf_sanctuary) ＝ 補上游的漏
+afk-trackmaps.js:49: { v: 'dark_elf_sanctuary', t: '黑暗妖精聖地' },
+afk-trackmaps.js:58: desc: '可以追蹤黑暗妖精聖地、傲慢之塔2~10樓與象牙塔密室等隱藏區域'
+afk-wiki.js:22: { k: 'elf', n: '妖精' },
+afk-wiki.js:23: { k: 'dark', n: '黑暗妖精' },
+afk-wiki.js:250: if (sk.reqE !== undefined) p.push('妖精 ' + sk.reqE);
+afk-wiki.js:251: else if (typeof MAGIC_MASTERY_SKILLS !== 'undefined' && MAGIC_MASTERY_SKILLS.indexOf(id) >= 0) p.push('妖精 ' + sk.reqM + '（需魔導精通）');
+afk-wiki.js:253: if (sk.reqD !== undefined) p.push('黑暗妖精 ' + sk.reqD);
+afk-wiki.js:254: else if (sk.tier === 1) p.push('黑暗妖精 12');
+afk-wiki.js:255: else if (sk.tier === 2) p.push('黑暗妖精 24');
+afk-wiki.js:295: { n: '出血（匕首 / 單手矛）', d: '普攻命中時有「<b>力量 ÷ 60</b>」機率讓目標流血：每層每秒造成該擊傷害的 <b>20%</b>、持續 8 秒，最多 <b>5 層</b>（滿了新層取代最舊層）。<b>雙手矛只有穿透、不會出血</b>。<br>黑暗妖精「出血精通」：匕首／單手矛／雙刀都能疊到 <b>10 層</b>、每層傷害再 +10%（滿層＝+100%），雙刀也比照匕首觸發。', w: '各種匕首、單手矛、雙刀
+afk-wiki.js:330: royal: ['王子', '公主'], knight: ['男騎士', '女騎士'], mage: ['男法師', '女法師'], elf: ['男妖精', '女妖精'],
+afk-wiki.js:331: dark: ['男黑暗妖精', '女黑暗妖精'], illusion: ['男幻術士', '女幻術士'], dragon: ['男龍騎士', '女龍騎士'], warrior: ['男戰士', '女戰士']
+afk-wiki.js:344: ['魔防（MR）', '職業基礎魔防（妖精最高、騎士最低）＋升級成長＋<b>精神</b>＋裝備魔防（抗魔裝、項鍊每強化 +3、「每強化加魔防」的防具）＋抗魔套裝／屬性·太初詞綴']
+afk-wiki.js:425: { t: 'p', p: '妖精的<b>污濁之水</b>（五階水靈、只能對頭目放、必中）能讓這個回復量再<b>砍半 32 秒</b>，法系磨頭目很有用。' },
+afk-wiki.js:428: { t: '頭目低血狂暴（目前只有黑暗妖精聖地雙 BOSS）', blocks: [
+afk-wiki.js:481: ['① 迴避率（ER）', '有機率<b>整個閃掉（0 傷害）</b>', '主要靠<b>敏捷</b>＋增益/套裝（迴避提升+12、月光3件+5）。<b>非 1:1</b>：50 以內 1 點=1%、超過 50 每 5 點才+1%。<b>只閃物理</b>，魔法與必中技能一律閃不掉（唯一例外：黑暗妖精的<b>暗影閃避</b>，50% 閃掉一次必中傷害魔法）。⚠ 帶<b>笨重的鋼鐵石盾</b>時完全<b>不能靠迴避閃</b>（暗隱術的必閃不
+afk-wiki.js:510: { t: 'p', p: '「<b>藥水霜化</b>」來自巨大骷髏的<b>枯竭詛咒</b>、「<b>汙濁之水</b>」來自妖精型的玩家 NPC，<b>兩個可以同時中、效果相乘</b>（治癒只剩四分之一）。<b>魔法相消術</b>可以解掉這五種。' },
+afk-wiki.js:619: icon: '🍃', name: '妖精',
+afk-wiki.js:621: { n: '精靈頭盔（15 級）', npc: '歐斯 ＠燃柳村', req: '四大妖魔魔法書（都達瑪拉／那魯加／甘地／阿吐巴）各 ×1', from: '對應四種妖魔（燃柳村·妖魔森林、妖精森林周邊、妖精森林·眠龍洞穴）。接取試煉後擊殺必定掉落', rw: '精靈敏捷頭盔＋精靈體質頭盔（一次全拿）' },
+afk-wiki.js:622: { n: '精靈水晶＋精靈T恤（30 級）', npc: '迷幻森林之母 ＠妖精森林', req: '受詛咒的精靈書 ×1', from: '希爾黛斯（海音·伊娃王國）。接取後必定掉落', rw: '精靈水晶(召喚屬性精靈)＋精靈T恤（一次全拿）' },
+afk-wiki.js:625: attr: { n: '選定屬性魔法', npc: '艾利溫 ＠妖精森林', req: '四種屬性（火／水／風／地）四選一', from: '—', rw: '開啟所選屬性的魔法路線。注意：只能選一種、選了就固定' }
+afk-wiki.js:628: icon: '🗡', name: '黑暗妖精',
+afk-wiki.js:638: { n: '幻術士魔杖＋記憶水晶(立方：燃燒)（15 級）', npc: '希蓮恩 ＠歐瑞·希培利亞村莊', req: '污濁安特的水果 ×1、污濁安特的樹枝 ×1、污濁安特的樹皮 ×1', from: '污染的安特（妖精森林·眠龍洞穴 1~3 樓、妖精森林周邊）。接取試煉後擊殺必定掉落', rw: '幻術士魔杖＋記憶水晶(立方：燃燒)（一次全拿）' },
+afk-wiki.js:646: { n: '龍騎士雙手劍＋龍之護鎧書板（15 級）', npc: '普洛凱爾 ＠威頓·貝希摩斯', req: '妖魔搜索文件 ×3', from: '甘地／羅孚／阿吐巴／都達瑪拉妖魔（妖精森林周邊、燃柳村·妖魔森林、妖精森林·眠龍洞穴）。接取試煉後擊殺必定掉落（僅龍騎士）', rw: '龍騎士雙手劍＋龍騎士書板(龍之護鎧)（一次全拿）' },
+afk-wiki.js:675: knight: { n: '騎士 50 級試煉', npc: '迪嘉勒廷 ＠歐瑞·象牙塔（需等級 50）', req: '兩階段依序交付：①丹特斯的召書 ×1 → ②精靈的私語 ×10', from: '丹特斯的召書：黑暗妖精將軍 1%（燃柳村·大洞穴隱遁者村莊／拉斯塔巴德正門／拉斯塔巴德·魔獸訓練場）；精靈的私語：在「燃柳村·精靈墓穴」打任何怪 1% 掉', rw: '完成階段任務後開放「魔族神殿」（拉斯塔巴德領域）。最終試煉：在魔族
+afk-wiki.js:676: elf: { n: '妖精 50 級試煉', npc: '迪嘉勒廷 ＠歐瑞·象牙塔（需等級 50）', req: '兩階段依序交付：①古代黑妖之秘笈 ×1 → ②密封的情報書 ×1', from: '古代黑妖之秘笈：巨大兵蟻 1%（風木領域：沙漠／螞蟻洞窟 1~2 樓）；密封的情報書：在「燃柳村·大洞穴隱遁者村莊地區」打「魔族暗殺團」必掉。魔族暗殺團是特殊怪、不常駐，只有你正卡在這一步（缺密封的情報書）時，在這張圖每打一隻怪才有 1% 
+afk-wiki.js:680: dark: { n: '黑暗妖精 50 級試煉', npc: '布魯迪卡 ＠龍之谷·沉默洞穴（需等級 50）', req: '一階段：交付 混沌鑰匙 ×1', from: '混沌鑰匙：黑暗棲林者 1%（燃柳村·大洞穴隱遁者村莊／拉斯塔巴德·魔族神殿）', rw: '完成階段任務後開放「魔族神殿」（拉斯塔巴德領域）。最終試煉：在魔族神殿打「墮落的司祭」取得「墮落鑰匙」（最終兌換階段必定掉落）×1 交付 → 領取傳說「死亡之指」（每個角色僅
+afk-wiki.js:696: { t: '炎魔交付物（騎士／妖精／法師／王族的最終兌換材料）', lines: ['炎魔之劍（騎士）／炎魔之爪（妖精）／炎魔之眼（法師）／炎魔之心（王族）：50 級試煉走到「最終兌換階段」時，在魔族神殿擊殺「炎魔的惡魔」（Lv61）<b>必定掉落你職業對應的那一種</b>（集滿需求量即停；別職業的材料你打不到）。拿回去找迪嘉勒廷<b>一次領取全部獎勵</b>（每個角色僅能完成一次）。'] },
+afk-wiki.js:716: { n: '黑暗妖精套裝', pcs: 3, items: '黑暗妖精頭箍、黑暗妖精鱗甲、黑暗妖精涼鞋', eff: '防禦(AC) -3、力量 -2、敏捷 +2、HP自然恢復 -2、MP自然恢復 -7，並可變身「高等黑暗精靈」（遠距離傷害 +5、遠距離命中 +5，並採用變身自身的攻擊速度，取代原本的職業／武器攻速）；穿滿生效、卸下消失' },
+afk-wiki.js:894: '打「<b>拉斯塔巴德守門人</b>」有 <b>1%</b> 機率掉 1 把，守門人是 Lv40 的黑暗妖精，<b>只出沒在「拉斯塔巴德·魔獸訓練場」</b>這張地圖（全遊戲唯一會掉軍王鑰匙的怪）。',
+afk-wiki.js:923: '例外：妖精的<b>體能激發／能量激發</b>生效期間，負重狀態下仍可自然恢復 HP／MP。'
+afk-wiki.js:1016: '<b>體質讓「每升一級的 HP 成長」更多</b>：體質貢獻的每級 HP ＝（體質−8）× 成長率，無上限。成長率：騎士／龍騎士／戰士 <b>1.5</b>、法師／妖精 <b>0.8</b>、王族 <b>0.75</b>、黑暗妖精／幻術士 <b>0.5</b>。',
+afk-wiki.js:1031: '妖精「鏡反射」的反彈機率 ＝<b>精神</b>%（每 1 點精神 +1%）。'
+afk-wiki.js:1037: '<b>屬性精靈</b>：固定 <b>1 隻</b>，屬性＝你選的妖精屬性。學了「<b>精靈精通</b>」後，強力屬性精靈會昇華成<b>精靈王</b>（更高等級、更硬、無視部分魔防）。',
+afk-wiki.js:1439: // 🌑 黑暗妖精聖地：3 張 NPC 傳送進入的隱藏圖（不在地圖選單、也不走母樓層傳送）
+afk-wiki.js:1440: h += '<div class="m-wiki-sub">🌑 黑暗妖精聖地（NPC 傳送進入）</div>';
+afk-wiki.js:1442: h += '<div class="m-wiki-kv"><b>' + wDexLink('黑暗妖精聖地') + '</b>　<span class="c-mapunlock">📍 交出 死亡騎士之書 ×1（一般狩獵圖）</span></div>';
+afk-wiki.js:1443: h += '<div class="m-wiki-kv"><b>' + wDexLink('受詛咒的黑暗妖精聖地') + '</b>　<span class="c-mapunlock">📍 交出 死亡騎士之書 ×1（吉爾塔斯 BOSS 房）</span></div>';
+afk-wiki.js:1457: if (npc.darkOnly) t.push('<span class="m-npc-tag" style="color:#c084fc;">🌑 黑暗妖精限定</span>');
+afk-wiki.js:1606: d_crit: ['黑暗妖精天賦本來就 +3% 爆擊，精通再 +3%（合計近／遠 +6%）', '追加攻擊實際是 ×0.5 傷害的連擊（非完整一般攻擊）；裝「暗影 5/5 套裝」才升為 ×1.0'],
+afk-wiki.js:1617: k_dualaxe: ['戰斧投擲 MP 5 → 0', '出血層數上限仍是 5（10 層是黑暗妖精出血精通專屬）：每秒總出血 ×(1＋10%×層數)、滿 5 層 +50%'],
+afk-wiki.js:1681: if (q.attr) html += '<div class="m-wiki-sub">🌿 妖精屬性學習</div>' + questCard(q.attr);
+afk-wiki.js:2503: var EQUIP_FILTERS = [['royal', '王族'], ['knight', '騎士'], ['mage', '法師'], ['elf', '妖精'], ['dark', '黑暗妖精'], ['illusion', '幻術士'], ['dragon', '龍騎士'], ['warrior', '戰士']];   // 順序＝遊戲創角順序(同 CLASSES)
+afk-wiki.js:2590: var EQUIP_REQ_CN = { knight: '騎士', mage: '法師', elf: '妖精', dark: '黑暗妖精', illusion: '幻術士', dragon: '龍騎士', warrior: '戰士', royal: '王族' };
+afk-wiki.js:3023: if (npcId === 'npc_kororanz') html += '<div class="m-wiki-desc" style="margin-top:4px;">・🏛️ <b>聖地遺物</b>（五件傳說武器各需 ×100）取得：持有「<b>死亡騎士之印記</b>」時，在<b>拉斯塔巴德區域</b>擊敗任何怪 <b>0.1%</b> 掉；<b>黑暗妖精聖地</b>的怪則<b>固定 0.5% 掉</b>。印記由拉斯塔巴德地監
+afk-wiki.js:3132: var SET_POLY_LABEL = { dk: '死亡騎士套裝（4 件）', kurt: '克特套裝（4 件）', demon: '惡魔套裝（4 件）', darkelf: '黑暗妖精套裝（3 件）' };
+afk-wiki.js:3299: '🍶 <b>常駐職業藥水（免費、永久、不耗道具）</b>：一招募就自帶自己職業的藥水：<b>全職</b>加速（攻速 +33%）；<b>騎士／龍騎士／戰士／王族</b>再加勇敢（+33%）；<b>妖精</b>餅乾（+15%）；<b>法師</b>慎重（魔攻 +2、MP 恢復 +2）。',
+afk-wiki.js:3324: { c: '🍃 妖精',
+afk-wiki.js:3329: { c: '🗡 黑暗妖精',
+afk-wiki.js:3446: '<tr>' + td('近戰 妖精／黑暗妖精／王族（輕裝）') + td('4', 'center') + '</tr>' +
+afk-wiki.js:3552: //   ⚠ 不能只按職業:實測騎士/妖精/黑暗妖精/龍騎士的「魔杖·奇古獸」男女不同值(妖精連矛也不同),
+afk-wiki.js:3599: + '<div class="m-wiki-desc" style="margin-top:4px;">・同職業<b>男女大多相同</b>，只有少數武器不同（會標成「男 X / 女 Y」）：騎士／龍騎士／黑暗妖精的<b>魔杖・奇古獸</b>，妖精再加上<b>單手矛・雙手矛</b>。</div>'
+afk-wiki.js:3664: var GROWTH_FX = { con: '(體質 − 8) × 職業成長率（騎士/龍騎士/戰士 1.5、法師/妖精 0.8、王族 0.75、黑暗妖精/幻術士 0.5），無上限', wis: '(精神 − 9) × 0.5，無上限' };   // 這兩個是線性公式（每級 HP/MP 額外成長），另有各職業固定每級成長不看屬性
+afk-wiki.js:3868: + '<tr><td><b>負重強化</b>（技能增益，法師／妖精／黑暗妖精可學）</td><td>+50（持續 1800 秒）</td></tr>'
+afk-wiki.js:4202: wDesc('部分模板帶特殊招式：<b>反擊屏障</b>（騎士第二套：擋下一次直擊並<b>立刻反打一次</b>；持續傷害、寵物、召喚不會觸發）、<b>破壞盔甲加強版</b>（黑暗妖精第二套：讓你受到的一般攻擊傷害 <b>+58%</b>）、<b>汙濁之水</b>（妖精模板：你受到的治癒<b>全部減半</b>）。'));
+afk-wiki.js:4520: sk_zombie: ['召喚<b>固定 1 隻</b>人形殭屍（有自己的 HP、會被打死，時間到或倒下自動重召），攻速 1.2 秒', '殭屍等級／血量隨你的等級分階：<br>Lv24→殭屍Lv10/HP100、Lv32→Lv12/200、Lv40→Lv14/400、Lv44→Lv16/500、Lv48→Lv18/600、Lv52→Lv20/800（<b>妖精職業</b>一律最低階 Lv10/HP100）', '傷害走召喚 v2 模型
+afk-wiki.js:4536: // ===== 妖精專屬(reqE) =====
+afk-wiki.js:4538: sk_elf_worldtree: ['被動：在「區域額外掉落」地圖(妖精森林周邊、妖精森林·眠龍洞穴 1~3 樓等)殺怪，精靈玉掉率 20%→30%、粗糙的米索莉塊與元素石 2%→3%'],
+afk-wiki.js:4561: // ===== 黑暗妖精專屬(reqD) =====
+afk-wiki.js:4698: var MAGIC_FILTERS = [['all', '全部'], ['royal', '王族'], ['knight', '騎士'], ['mage', '法師'], ['elf', '妖精'], ['dark', '黑暗妖精'], ['illusion', '幻術士'], ['dragon', '龍騎士'], ['warrior', '戰士']];   // 順序＝全部＋創角職業序(同 CLASSES)
+afk-wiki.js:4768: exclusive(cats.elf, '🍃 妖精專屬魔法', 'reqE', '妖精');
+afk-wiki.js:4769: exclusive(cats.dark, '🗡 黑暗妖精專屬魔法', 'reqD', '黑暗妖精');
+afk-wpnfix.js:36: relic_wing_chaos_blades: ['雙刀'],      // 飛翼的混沌雙刀（黑暗妖精遺物）
+js\00-data.js:348: "wpn_31": { n: "十字弓", type: "wpn", isBow: true, ranged: true, rapidfire: 50, dmgS: 3, dmgL: 2, hit: 3, dmgBonus: 2, spd: 1.0, req: "knight,elf,dark", safe: 6, p: 59400, gachaWeight: 10 },   // 🖤 v3.2.4：黑暗妖精可用改由 req 顯式標示
+js\00-data.js:379: // ===== 黑暗妖精武器：鋼爪（雙手，連擊） =====
+js\00-data.js:427: // ===== 黑暗妖精武器：雙刀（雙手，連擊） =====
+js\00-data.js:444: // ===== 黑暗妖精武器：十字弓（雙手，遠程，連射） =====
+js\00-data.js:465: "glv_dark": { n: "黑暗手套", type: "arm", slot: "gloves", ac: 1, rangedHit: 2, req: "dark", safe: 4, p: 4000, gachaWeight: 90, d: "黑暗妖精的手套，握持間更顯穩準。" },
+js\00-data.js:615: "relic_ogre_mawashi":       { n: "食人妖精的相撲褌",   type: "arm", slot: "shin", relic: true, noEnhance: true, ac: 3, resFire: 5, dr: 5, req: "all", p: 10000, gachaWeight: 0, d: "【遺物】食人妖精纏腰的相撲褌，厚布層層擋下烈焰與重擊。" },
+js\00-data.js:636: "relic_apprentice_wand":    { n: "黑魔法學徒魔杖",   type: "wpn", isWand: true, relic: true, noEnhance: true, ignHardSkin: true, dmgS: 1, dmgL: 1, hit: 6, dmgBonus: 6, extraMp: 6, mpR: 15, req: "mage", p: 10000, gachaWeight: 0,
+js\00-data.js:642: "relic_darkremnant_boots":  { n: "黑暗殘兵的訓練靴", type: "arm", slot: "boots", relic: true, noEnhance: true, ac: 6, dex: 1, req: "all", p: 10000, gachaWeight: 0, d: "【遺物】黑暗妖精殘兵的訓練靴，久經操練、步履輕捷。" },
+js\00-data.js:651: "relic_darkthief_claw":     { n: "黑暗盜賊的兇殺爪", type: "wpn", w2h: true, relic: true, noEnhance: true, dmgS: 17, dmgL: 15, hit: 10, dmgBonus: 13, eff: "combo", comboRate: 50, extraDmg: 10, req: "dark", p: 10000, gachaWeight:
+js\00-data.js:658: "relic_darkelf_grindblade": { n: "黑暗殘兵的研磨利刃", type: "wpn", relic: true, noEnhance: true, ignHardSkin: true, dmgS: 10, dmgL: 12, hit: 15, dmgBonus: 14, req: "royal,knight,elf,dark,dragon", p: 10000, gachaWeight: 0, d: "【遺
+js\00-data.js:659: "relic_darkelf_shootglove": { n: "黑暗殘兵輔助射擊手套", type: "arm", slot: "gloves", relic: true, noEnhance: true, ac: 5, rangedDmg: 2, rangedHit: 2, req: "knight,elf,dark,illusion,dragon,warrior", p: 10000, gachaWeight: 0, d: "【
+js\00-data.js:661: "relic_ogreking_collar":    { n: "食人妖精王的尖刺項圈", type: "acc", slot: "belt", relic: true, noEnhance: true, ac: 0, weightCap: 300, petDmgAll: 3, petHitAll: 3, req: "all", p: 10000, gachaWeight: 0, d: "【遺物】食人妖精王套在獸群頸上的尖刺項圈，號令
+js\00-data.js:667: "relic_remnant_barrier":    { n: "殘兵法師的魔力護盾", type: "arm", slot: "shield", relic: true, noEnhance: true, ac: 4, mr: 20, int: 1, con: -1, req: "elf,mage,dark,illusion", p: 10000, gachaWeight: 0, d: "【遺物】黑暗妖精殘兵法師以殘餘魔力凝成的護盾
+js\00-data.js:720: "relic_troll_belly":        { n: "食人妖精的緩衝肚", type: "arm", slot: "armor", relic: true, noEnhance: true, ac: 0, dr: 20, mr: 20, req: "all", p: 10000, gachaWeight: 0, d: "【遺物】食人妖精厚實的緩衝肚皮，再重的打擊都陷入其中消弭無形。" },
+js\00-data.js:771: "relic_guard_roughgloves": { n: "歷練的警衛粗布手套", type: "arm", slot: "gloves", relic: true, noEnhance: true, ac: 7, str: 1, meleeHit: 1, req: "all", p: 10000, gachaWeight: 0, d: "【遺物】黑暗妖精警衛久經磨練的粗布手套，握槍沉穩有力。" },
+js\00-data.js:775: "relic_dark_manaball":     { n: "漆黑的瑪那水晶球",   type: "arm", slot: "shield", relic: true, noEnhance: true, ac: 7, int: 2, mpR: 10, con: -2, req: "mage,illusion", p: 10000, gachaWeight: 0, d: "【遺物】黑暗妖精法師的漆黑水晶球，魔力汩汩卻侵蝕肉身。" }
+js\00-data.js:828: "relic_pure_maiden_love": { n: "純潔少女的憐愛", type: "acc", slot: "amulet", relic: true, noEnhance: true, ac: 0, dex: 2, int: 2, mpR: 3, relicRole: "女妖精專屬的敏捷、智力與魔力恢復項鍊", req: "elf", reqAvatar: "女妖精", strictAvatar: true, p: 10
+js\00-data.js:830: "relic_general_swordguard": { n: "將軍愛用的握劍護腕", type: "arm", slot: "gloves", relic: true, noEnhance: true, ac: 6, swordStr: 3, relicRole: "主手持單手劍或雙手劍時，進一步強化力量", req: "all", p: 10000, gachaWeight: 0, d: "【遺物】黑暗妖精將軍久經戰陣的護腕，磨
+js\00-data.js:982: "arm_shadowglove": { n: "影子手套", type: "arm", slot: "gloves", ac: 1, con: 1, req: "dark", safe: 6, p: 1720, gachaWeight: 50 },   // 🔧 黑暗妖精：倫得以死亡誓約兌換
+js\00-data.js:983: "arm_shadowmask": { n: "影子面具", type: "arm", slot: "helm", ac: 2, req: "dark", safe: 6, p: 1240, gachaWeight: 50 },   // 🔧 黑暗妖精：康以妖魔長老首級兌換
+js\00-data.js:984: "arm_shadowboots": { n: "影子長靴", type: "arm", slot: "boots", ac: 2, mhp: 50, hpR: 4, req: "dark", safe: 4, p: 2660, gachaWeight: 50 },   // 🔧 黑暗妖精：布魯迪卡以雪怪首級兌換
+js\00-data.js:1049: "wpn_crimson_xbow": { n: "深紅之弩", type: "wpn", isBow: true, ranged: true, rapidfire: 80, w2h: true, dmgS: 3, dmgL: 3, hit: 1, dmgBonus: 0, req: "elf", safe: 6, p: 56000, gachaWeight: 0, procStatus: { kind: "bind", rate: 2
+js\00-data.js:1132: // ===== 🌑 黑暗妖精聖地（依《黑暗妖精聖地.md》·v3.3.33）：任務道具／材料／裝備／真．冥皇套裝 =====
+js\00-data.js:1133: "item_dk_book":        { n: "死亡騎士之書", type: "etc", p: 0, c: "text-amber-300", noUse: true, noSell: true, gachaWeight: 0, d: "記載死亡騎士祕儀的古書。交給長老會議廳的 真．冥皇丹特斯，可選擇進入 黑暗妖精聖地 或 受詛咒的黑暗妖精聖地（每次進入消耗 1 本）。在受詛咒的黑暗妖精聖地擊敗吉爾塔斯後，牠每次復活會再消耗
+js\00-data.js:1140: "mat_de_soul_crystal": { n: "黑暗妖精的靈魂水晶", type: "etc", p: 3000, gachaWeight: 0, d: "受詛咒的黑暗妖精殘留的靈魂結晶，鍛造 真．冥皇 系列防具的材料。" },
+js\00-data.js:1149: "ear_cursed_black": { n: "受詛咒的黑色耳環", type: "etc", p: 60000, gachaWeight: 0, d: "受詛咒的黑暗妖精遺留的黑色耳環，環上縈繞著微弱的怨念。經亞提利歐以淨化藥水洗去怨念後，可重生為靈魂耳環。" },
+js\00-data.js:1166: "new_item_139": { n: "精靈餅乾", type: "pot", req: "elf", p: 1980, c: "text-yellow-200", d: "受精靈祝福的餅乾，妖精食用後能與風的律動同步。", eff: "elfcookie", dur: 300, gachaWeight: 0 },
+js\00-data.js:1244: "doll_男妖精":     { n: "魔法娃娃：男妖精", type: "acc", slot: "doll", req: "all", safe: 0, p: 0, doll: true, dollTier: 3, noEnhance: true, gachaWeight: 0, c: "text-sky-300", hpR: 15, dex: 2, weightCap: 15, d: "三階魔法娃娃。裝於魔法娃娃欄，游標變其模
+js\00-data.js:1245: "doll_女妖精":     { n: "魔法娃娃：女妖精", type: "acc", slot: "doll", req: "all", safe: 0, p: 0, doll: true, dollTier: 3, noEnhance: true, gachaWeight: 0, c: "text-sky-300", mpR: 5, dex: 2, weightCap: 15, d: "三階魔法娃娃。裝於魔法娃娃欄，游標變其模樣
+js\00-data.js:1248: "doll_男黑暗妖精": { n: "魔法娃娃：男黑暗妖精", type: "acc", slot: "doll", req: "all", safe: 0, p: 0, doll: true, dollTier: 3, noEnhance: true, gachaWeight: 0, c: "text-sky-300", hpR: 15, str: 1, dex: 1, weightCap: 15, d: "三階魔法娃娃。裝於魔法娃
+js\00-data.js:1249: "doll_女黑暗妖精": { n: "魔法娃娃：女黑暗妖精", type: "acc", slot: "doll", req: "all", safe: 0, p: 0, doll: true, dollTier: 3, noEnhance: true, gachaWeight: 0, c: "text-sky-300", mpR: 5, str: 1, dex: 1, weightCap: 15, d: "三階魔法娃娃。裝於魔法娃娃
+js\00-data.js:1357: "mat_blackstone2": { n: "二級黑魔石", p: 50,   gachaWeight: 0, d: "黑得吸光的礦石，貼近耳畔彷彿能聽見幽幽暗影的低語。黑暗妖精製作的基礎材料。（野外戰鬥掉落，學習提煉魔石後掉落率提高）" },
+js\00-data.js:1358: "mat_blackstone3": { n: "三級黑魔石", p: 200,  gachaWeight: 0, d: "暗影魔力層層凝結而成的黑石，握於掌中沉甸甸地泛著冷意。黑暗妖精製作的進階材料。（野外戰鬥掉落，學習提煉魔石後掉落率提高）" },
+js\00-data.js:1359: "mat_blackstone4": { n: "四級黑魔石", p: 1000, gachaWeight: 0, d: "千錘百鍊純化至極的黑魔石，暗影之力濃稠得幾乎要溢出表面。黑暗妖精頂級裝備的關鍵材料。（稀有掉落）" },
+js\00-data.js:1446: "item_ancient_book":  { n: "古代黑妖之秘笈", type: "etc", p: 1, c: "text-amber-300", noUse: true, noSell: true, gachaWeight: 0, d: "妖精 50 級試煉任務道具。無法刪除、無法存倉庫、最多持有 1 個。" },
+js\00-data.js:1447: "item_sealed_intel":  { n: "密封的情報書", type: "etc", p: 1, c: "text-amber-300", noUse: true, noSell: true, gachaWeight: 0, d: "妖精 50 級試煉任務道具。無法刪除、無法存倉庫、最多持有 1 個。" },
+js\00-data.js:1449: "item_chaos_key":     { n: "混沌鑰匙", type: "etc", p: 1, c: "text-amber-300", noUse: true, noSell: true, gachaWeight: 0, d: "黑暗妖精 50 級試煉任務道具。最多持有 1 個。" },
+js\00-data.js:1478: "wpn_dual_destroy": { n: "破壞雙刀", type: "wpn", w2h: true, dmgS: 16, dmgL: 10, hit: 6, dmgBonus: 1, str: 1, wis: 2, spd: 0.8, req: "dark", safe: 6, p: 150000, legend: true, gachaWeight: 1, eff: "combo", comboRate: 30, proc
+js\00-data.js:1479: "wpn_claw_destroy": { n: "破壞鋼爪", type: "wpn", w2h: true, dmgS: 19, dmgL: 18, hit: 6, dmgBonus: 1, str: 1, wis: 2, spd: 0.9, req: "dark", safe: 6, p: 150000, legend: true, gachaWeight: 1, eff: "combo", comboRate: 30, proc
+js\00-data.js:1551: "bot_sephia":      { n: "賽菲亞長靴", type: "arm", slot: "boots", ac: 3, rangedHit: 1, req: "elf", safe: 4, p: 12000, gachaWeight: 10, d: "賽菲亞祝福的輕盈長靴，使妖精的步伐如風、箭矢更準。" },
+js\00-data.js:1587: "hlm_darkelf": { n: "黑暗妖精頭箍", type: "arm", slot: "helm", ac: 1, req: "elf,dark", safe: 6, p: 6000, gachaWeight: 30, d: "承載著高等黑暗精靈血脈記憶的頭箍，集齊全套方能喚醒沉睡的暗夜之姿。" },
+js\00-data.js:1588: "amr_darkelf": { n: "黑暗妖精鱗甲", type: "arm", slot: "armor", ac: 1, req: "elf,dark", safe: 6, p: 10000, gachaWeight: 30, d: "以暗影精煉而成的鱗甲，與其餘部件呼應時便流轉著幽冷光澤。" },
+js\00-data.js:1589: "bot_darkelf": { n: "黑暗妖精涼鞋", type: "arm", slot: "boots", ac: 1, req: "elf,dark", safe: 6, p: 6000, gachaWeight: 30, d: "步履無聲的黑暗妖精涼鞋，齊備全套時方顯其敏捷真章。" },
+js\00-data.js:1612: "wpn_ancient_darkelf_sword": { n: "古代黑暗妖精之劍", type: "wpn", dmgS: 12, dmgL: 12, hit: 3, dmgBonus: 1, spd: 0.9, req: "elf", safe: 6, p: 68000, gachaWeight: 1, unBonus: true, dex: 1, mhp: 50, d: "古代黑暗妖精所執的單手劍，劍身流轉著暗夜的寒光。" }
+js\00-data.js:1613: "wpn_ancient_elf_xbow": { n: "古代妖精弩槍", type: "wpn", isBow: true, ranged: true, oneHand: true, rapidfire: 55, dmgS: 3, dmgL: 3, hit: 1, dmgBonus: 2, spd: 1.0, req: "elf", safe: 6, p: 68000, gachaWeight: 1, dex: 1, d: "古代妖
+js\00-data.js:1720: // ===== 妖精精靈水晶 =====
+js\00-data.js:1760: // ===== 黑暗精靈水晶（黑暗妖精魔法，賽帝亞販售；潘朵拉抽不到） =====
+js\00-data.js:1928: "set_13": { n: "黑暗妖精套裝", items: ["hlm_darkelf", "amr_darkelf", "bot_darkelf"] }
+js\00-data.js:1936: "julian_enemy": { n: "朱利安", img: "assets/icons/monsters/朱利安.png", lv: 1, s: "S", beh: "主動", race: "血盟", wild: true, e: "none", pledgeEnemy: true, excludeAvatar: "男妖精", hp: 12, ac: -15, mr: 25, exp: 100, goldMin: 1136, go
+js\00-data.js:1937: "ovi_enemy": { n: "歐薇", img: "assets/icons/monsters/歐薇.png", lv: 1, s: "S", beh: "主動", race: "血盟", wild: true, e: "none", pledgeEnemy: true, excludeAvatar: "女妖精", hp: 10, ac: -18, mr: 25, exp: 100, goldMin: 1136, goldMax
+js\00-data.js:1967: "troll_elf":      { n: "白目玩家(妖精)",   lv: 1, s: "S", beh: "主動", race: "玩家", wild: true, trollPlayer: true, e: "none", hp: 14, ac: -15, mr: 25, exp: 0, goldMin: 0, goldMax: 0, atkSpd: 0.56, dmg: [1, 18], db: 0, hit: 5, sca
+js\00-data.js:1979: "troll2_elf":      { n: "白目玩家(妖精)", lv: 1, s: "S", beh: "主動", race: "玩家", wild: true, trollPlayer: true, e: "none", hp: 16, ac: -25, mr: 100, exp: 0, goldMin: 0, goldMax: 0, atkSpd: 0.4, dmg: [1, 18], db: 0, hit: 5, scal
+js\00-data.js:2056: "ogre": { n: "食人妖精", lv: 22, s: "L", beh: "主動", race: "食人妖精", e: "fire", hp: 250, ac: -6, mr: 10, exp: 485, goldMin: 46, goldMax: 359, atkSpd: 2, dmg: [2, 23], db: 12, hit: 4, mag: { skn: "火牢", cd: 30, chance: 0.1, dmg: 
+js\00-data.js:2075: "ogre_king": { n: "食人妖精王", lv: 30, s: "L", beh: "主動", race: "食人妖精", e: "fire", hp: 400, ac: -13, mr: 20, exp: 901, goldMin: 153, goldMax: 254, atkSpd: 1.7, dmg: [1, 49], db: 5, hit: 36, mag: { skn: "火牢", cd: 30, chance: 
+js\00-data.js:2231: // ===== 拉斯塔巴德地下洞穴：黑暗妖精殘兵 =====
+js\00-data.js:2232: "de_remnant_bow": { n: "黑暗妖精殘兵(弓)", lv: 27, s: "S", beh: "被動", race: "黑暗妖精", e: "none", hp: 216, ac: -11, mr: 27, exp: 730, goldMin: 50, goldMax: 400, atkSpd: 1, dmg: [1, 43], db: 4, hit: 31 },
+js\00-data.js:2233: "de_remnant_sword": { n: "黑暗妖精殘兵(劍)", lv: 29, s: "S", beh: "被動", race: "黑暗妖精", e: "none", hp: 261, ac: -15, mr: 29, exp: 842, goldMin: 50, goldMax: 400, atkSpd: 1.5, dmg: [1, 48], db: 5, hit: 34 },
+js\00-data.js:2234: "de_remnant_xbow": { n: "黑暗妖精殘兵(十字弓)", lv: 29, s: "S", beh: "被動", race: "黑暗妖精", e: "none", hp: 232, ac: -12, mr: 29, exp: 842, goldMin: 50, goldMax: 400, atkSpd: 1, dmg: [1, 44], db: 4, hit: 34 },
+js\00-data.js:2235: "de_remnant_mage": { n: "黑暗妖精殘兵(法師)", lv: 30, s: "S", beh: "被動", race: "黑暗妖精", e: "none", hp: 240, ac: -10, mr: 30, exp: 901, goldMin: 50, goldMax: 400, atkSpd: 2, dmg: [2, 42], db: 22, hit: 28, mag: { skn: "冰錐", cd: 70,
+js\00-data.js:2236: "de_remnant_2h": { n: "黑暗妖精殘兵(雙手劍)", lv: 33, s: "S", beh: "被動", race: "黑暗妖精", e: "none", hp: 330, ac: -20, mr: 40, exp: 1090, goldMin: 50, goldMax: 400, atkSpd: 1, dmg: [1, 50], db: 5, hit: 40 },
+js\00-data.js:2237: "dark_spirit_caller": { n: "黑暗精靈使", lv: 45, s: "S", beh: "被動", race: "黑暗妖精", e: "earth", hp: 550, ac: -38, mr: 45, exp: 2026, goldMin: 50, goldMax: 400, atkSpd: 2, dmg: [2, 59], db: 30, hit: 49, mag: { skn: "邪靈之氣", type:
+js\00-data.js:2238: // ===== 拉斯塔巴德正門：黑暗妖精守軍（主動）=====
+js\00-data.js:2239: "de_gate_xbow": { n: "黑暗妖精警衛(十字弓)", lv: 36, s: "S", beh: "主動", race: "黑暗妖精", e: "none", hp: 240, ac: -20, mr: 10, exp: 1297, goldMin: 118, goldMax: 198, atkSpd: 2, dmg: [2, 51], db: 26, hit: 37 },
+js\00-data.js:2240: "de_gate_apprentice": { n: "黑暗妖精魔法學徒", lv: 26, s: "S", beh: "主動", race: "黑暗妖精", e: "none", hp: 180, ac: -8, mr: 75, exp: 2026, goldMin: 120, goldMax: 200, atkSpd: 2, dmg: [2, 37], db: 19, hit: 22, mag: { skn: "冰錐", cd: 5
+js\00-data.js:2241: "de_gate_spear": { n: "黑暗妖精警衛(矛)", lv: 40, s: "S", beh: "主動", race: "黑暗妖精", e: "none", hp: 800, ac: -23, mr: 30, exp: 1601, goldMin: 153, goldMax: 254, atkSpd: 2, dmg: [2, 57], db: 29, hit: 43 },
+js\00-data.js:2242: "de_gate_patrol": { n: "黑暗妖精巡守", lv: 38, s: "S", beh: "主動", race: "黑暗妖精", e: "none", hp: 500, ac: -20, mr: 40, exp: 1445, goldMin: 241, goldMax: 390, atkSpd: 1, dmg: [1, 52], db: 5, hit: 47 },
+js\00-data.js:2243: "de_gate_soldier": { n: "黑暗妖精士兵", lv: 38, s: "S", beh: "主動", race: "黑暗妖精", e: "none", hp: 500, ac: -28, mr: 35, exp: 1445, goldMin: 241, goldMax: 390, atkSpd: 2, dmg: [2, 54], db: 27, hit: 40 },
+js\00-data.js:2244: "de_gate_general": { n: "黑暗妖精將軍", lv: 43, s: "S", beh: "主動", race: "黑暗妖精", e: "none", hp: 900, ac: -40, mr: 45, exp: 1850, goldMin: 50, goldMax: 400, atkSpd: 2, dmg: [2, 59], db: 30, hit: 46 },
+js\00-data.js:2252: "de_train_gatekeeper": { n: "拉斯塔巴德守門人", lv: 40, s: "S", beh: "主動", race: "黑暗妖精", e: "none", hp: 800, ac: -27, mr: 30, exp: 1601, goldMin: 110, goldMax: 400, atkSpd: 1.5, dmg: [1, 66], db: 7, hit: 50 },
+js\00-data.js:2260: "de_lab_mage":  { n: "黑暗妖精法師", lv: 40, s: "S", beh: "主動", race: "黑暗妖精", e: "none", hp: 500, ac: -32, mr: 70, exp: 1601, goldMin: 10, goldMax: 100, atkSpd: 2, dmg: [2, 57], db: 29, hit: 43, mag: { skn: "冰錐", cd: 70, dmg: 
+js\00-data.js:2261: "de_lab_blackmage": { n: "黑法師", lv: 32, s: "S", beh: "主動", race: "黑暗妖精", e: "none", hp: 380, ac: -22, mr: 25, exp: 1025, goldMin: 120, goldMax: 200, atkSpd: 2, dmg: [2, 45], db: 23, hit: 31, mag: { skn: "極寒冰錐", cd: 60, d
+js\00-data.js:2281: // ===== 🌑 黑暗妖精聖地（依《黑暗妖精聖地.md》·v3.3.33）：7 新一般怪＋2 頭目（重裝歐姆戰士沿用 de_necro_omheavy）=====
+js\00-data.js:2283: "sanct_cursed_fighter": { n: "受詛咒的黑暗妖精鬥士", lv: 46, s: "S", beh: "主動", race: "黑暗妖精", e: "fire", hp: 800, ac: -43, mr: 60, exp: 2117, goldMin: 150, goldMax: 400, atkSpd: 1, dmg: [1, 55], db: 6, hit: 58, mag: { skn: "衝擊之暈",
+js\00-data.js:2284: "sanct_cursed_mage":    { n: "受詛咒的黑暗妖精法師", lv: 48, s: "S", beh: "主動", race: "黑暗妖精", e: "wind", hp: 750, ac: -38, mr: 120, exp: 2305, goldMin: 150, goldMax: 400, atkSpd: 2, dmg: [2, 60], db: 30, hit: 53, mag: { skn: "黑暗落雷
+js\00-data.js:2285: "sanct_cursed_knight":  { n: "受詛咒的黑暗妖精騎士", lv: 50, s: "S", beh: "主動", race: "黑暗妖精", e: "earth", hp: 1100, ac: -52, mr: 50, exp: 2501, goldMin: 180, goldMax: 420, atkSpd: 1, dmg: [1, 70], db: 7, hit: 63, mag: { skn: "黑暗地裂
+js\00-data.js:2385: "obli_troll":       { n: "遺忘之島食人妖精", lv: 37, s: "L", beh: "主動", race: "食人妖精", e: "fire", hp: 300, ac: -16, mr: 10, exp: 1370, goldMin: 10, goldMax: 100, atkSpd: 2, dmg: [2, 52], db: 27, hit: 38, mag: { skn: "火牢", cd: 30,
+js\00-data.js:2395: "obli_trollking":   { n: "遺忘之島食人妖精王", lv: 45, s: "L", beh: "主動", race: "食人妖精", e: "fire", hp: 480, ac: -18, mr: 20, exp: 2026, goldMin: 10, goldMax: 100, atkSpd: 2, dmg: [2, 59], db: 30, hit: 49, mag: { skn: "火牢", cd: 30
+js\00-data.js:2414: "de_thief":       { n: "黑暗妖精盜賊", lv: 28, s: "S", beh: "主動", race: "黑暗妖精", e: "wind", hp: 500, ac: -18, mr: 20, exp: 785, goldMin: 87, goldMax: 150, atkSpd: 2, dmg: [2, 40], db: 20, hit: 25 },
+js\00-data.js:2421: "beast_tamer":    { n: "馴獸師", lv: 40, s: "S", beh: "主動", race: "黑暗妖精", e: "none", hp: 600, ac: -30, mr: 35, exp: 1601, goldMin: 265, goldMax: 429, atkSpd: 2, dmg: [2, 57], db: 29, hit: 43 },
+js\00-data.js:2571: n: "妖精森林",
+js\00-data.js:2576: { id: "npc_elion", n: "艾利溫", title: "妖精屬性學習", type: "quest", d: "掌管妖精元素契約的智者，他會引領你做出一生只有一次的抉擇。妖精選擇屬性魔法的重要NPC，四種屬性只能選擇一種。" },
+js\00-data.js:2578: { id: "npc_narupa", n: "娜魯帕", title: "製作", type: "craft", d: "妖精族的巧手匠人，最懂得貼合妖精身形的工藝。提供協助製作各種妖精專用裝備。" },
+js\00-data.js:2586: { id: "npc_mother", n: "迷幻森林之母", title: "試煉", type: "quest", d: "迷幻森林的守護之母，她的恩賜只賜予能洗淨黑暗之人。主持妖精的 30 級試煉：達等級後接取任務，淨化受詛咒的書，一次完成領取全部恩賜。" }
+js\00-data.js:2602: { id: "npc_os", n: "歐斯", title: "試煉", type: "quest", d: "考驗妖精意志的試煉者。主持妖精的 15 級試煉：達等級後接取任務，收集四大妖魔魔法書，一次完成領取全部獎勵。" }
+js\00-data.js:2654: "town_elder_council": {   // 🌑 黑暗妖精聖地樞紐（依《黑暗妖精聖地.md》·v3.3.33）
+js\00-data.js:2657: { id: "npc_dantes_lord", n: "真．冥皇丹特斯", title: "聖地引路人", type: "quest", d: "端坐於骸骨王座的真．冥皇丹特斯。交出 死亡騎士之書 可進入 黑暗妖精聖地 或 受詛咒的黑暗妖精聖地（各消耗 1 本）；交出 吉爾塔斯的封印 則會被傳送至 崩壞的長老會議廳（消耗 1 個）。" },
+js\00-data.js:2680: { id: "npc_digallatin", n: "迪嘉勒廷", title: "試煉", type: "quest", d: "嚴苛的試煉主持者迪嘉勒廷，只認可真正的強者。主持騎士、妖精、法師與王族的 50 級試煉（需等級 50 接取；完成階段任務後開啟魔族神殿）。" },
+js\00-data.js:2688: { id: "npc_masha", n: "馬沙", title: "試煉", type: "quest", d: "沉默寡言的試煉者馬沙，靜候挑戰者前來。主持騎士、妖精與王族的 45 級試煉：達等級後接取任務，一次完成領取全部獎勵。" },
+js\00-data.js:2706: "town_silent": {   // 🔧 黑暗妖精出生地：沉默洞穴
+js\00-data.js:2709: { id: "npc_skvati", n: "史克瓦提", title: "雜貨商人", type: "shop", d: "黑暗妖精商人史克瓦提，攤上既有日常所需，也有暗影鍛成的兵刃。販售日常消耗品與基礎的黑暗妖精武器。" },
+js\00-data.js:2712: { id: "npc_kupu", n: "庫普", title: "製作", type: "craft", d: "黑暗妖精的鋒刃巨匠庫普，以銀與暗影鍛造致命之器。鍛造銀與黑暗妖精的鋼爪、雙刀、十字弓。" },
+js\00-data.js:2714: { id: "npc_runde", n: "倫得", title: "試煉", type: "quest", darkOnly: true, d: "黑暗妖精的 30 級試煉：達等級後接取任務，呈上以鮮血締結的死亡誓約，換得潛行於暗影中的影子手套。" },
+js\00-data.js:2715: { id: "npc_kang", n: "康", title: "試煉", type: "quest", darkOnly: true, d: "黑暗妖精的 15 級試煉：達等級後接取任務，獻上妖魔長老首級為憑，換得隱沒氣息的影子面具。" },
+js\00-data.js:2716: { id: "npc_brudica", n: "布魯迪卡", title: "試煉", type: "quest", darkOnly: true, d: "黑暗妖精的 45 級試煉：達等級後接取任務，帶回雪怪首級換得影子長靴；並主持黑暗妖精的 50 級試煉。" }
+js\00-data.js:2818: "sk_mana_drain": { n: "魔力奪取", type: "convert", tier: 5, reqM: 20, reqE: 40, hpCost: 50, drain: true },   // 🔧 改為轉換技能（法師/妖精）：消耗HP、需對怪物施展且以異常魔法命中判定，命中吸取 MP=1D(怪物等級/2)；其餘機制比照魂體轉換
+js\00-data.js:2874: // ================= 【妖精精靈魔法】 =================
+js\00-data.js:2906: "sk_elf_summon2": { n: "召喚強力屬性精靈", type: "buff", tier: 5, reqE: 50, mp: 50, dur: 3600, reqEleAny: true, desc: "以更深的元素契約呼喚高位精靈。精通精靈之道的妖精，甚至能使精靈王親臨戰場。", summon: { n: "夥伴：強力{ele}之精靈", dmgDice: [2, 40], elemScale: 10, dmgMul
+js\00-data.js:2919: // ================= 【黑暗妖精魔法】 =================
+js\00-data.js:2920: // 一階（黑暗妖精 Lv15）
+js\00-data.js:2926: // 二階（黑暗妖精 Lv30）
+js\00-data.js:2931: // 三階（黑暗妖精 Lv45）
+js\00-data.js:3109: "rastabad_beast": ["de_gate_general", "de_train_blacktiger", "de_train_tamer", "de_train_cursetamer", "de_train_hellhound", "de_train_soulknight", "de_train_summoner", "de_train_gatekeeper"],   // 🌑 v3.4.21 地獄奴隸移出：地獄奴隸改
+js\00-data.js:3128: // ===== 🌑 黑暗妖精聖地（依《黑暗妖精聖地.md》設定·v3.3.33）：三張圖皆「無法從地圖選單選擇」＝只在 DB.maps（隱藏區前例 hidden-area）·入口＝長老會議廳(town_elder_council) NPC 真．冥皇丹特斯（消耗 死亡騎士之書／吉爾塔斯的封印）=====
+js\00-data.js:3425: if (mob.noDmgCurve) return;   // 🌑 v3.4.4 豁免旗標（用戶拍板）：吉爾塔斯/真‧死亡騎士 冥皇丹特斯＝普攻與技能傷害照定義原值（普攻自調 DPS≈400·技能照《黑暗妖精聖地.md》）·不吃本曲線
+js\01-drops-config.js:62: '黑暗妖精盜賊': [['scroll_acc',0.0001],['wpn_small_katana',2],['wpn_dual_rasta',1],['wpn_xbow_rasta',3],['arm_rasta_leather',0.5],['bot_rasta',1],['shd_rasta',5],['scroll_weapon',0.5],['scroll_armor',0.5],['bk_holy_dash',0.05]
+js\01-drops-config.js:103: '黑暗妖精殘兵(弓)': [['wpn_small_katana', 0.1], ['wpn_bow_rasta', 0.5], ['arm_rasta_leather', 2], ['bot_rasta', 1], ['quest_ring_darkdweller', 0.1]],
+js\01-drops-config.js:104: '黑暗妖精殘兵(劍)': [['wpn_sword_rasta', 0.5], ['clk_dark', 0.1], ['arm_rasta_leather', 3], ['bot_rasta', 2], ['scroll_weapon', 0.5], ['scroll_armor', 1], ['bk_berserk', 0.1], ['bk_dark_str', 1], ['bk_dark_burn', 0.5], ['bk_dar
+js\01-drops-config.js:105: '黑暗妖精殘兵(十字弓)': [['wpn_dagger_rasta', 0.5], ['wpn_xbow_rasta', 1], ['scroll_weapon', 0.5], ['scroll_armor', 1], ['bk_holy_dash', 0.1], ['bk_dark_stealth', 1], ['bk_dark_poison', 1], ['bk_dark_str', 1], ['bk_dark_crit', 0.
+js\01-drops-config.js:106: '黑暗妖精殘兵(法師)': [['wpn_wand_rasta', 0.5], ['amr_rasta_robe', 0.1], ['bk_dark_dex', 1]],
+js\01-drops-config.js:107: '黑暗妖精殘兵(雙手劍)': [['wpn_dual_rasta', 0.5]],
+js\01-drops-config.js:109: // ===== 拉斯塔巴德正門：黑暗妖精守軍 =====
+js\01-drops-config.js:110: '黑暗妖精警衛(十字弓)': [['wpn_xbow_heavy_rasta', 0.5], ['scroll_armor', 0.5], ['scroll_weapon', 0.5], ['bk_holy_dash', 0.05], ['bk_dark_poison', 1], ['bk_dark_burn', 1], ['bk_dark_poisonres', 1]],
+js\01-drops-config.js:111: '黑暗妖精魔法學徒': [['wpn_wand_rasta', 1], ['amr_rasta_robe', 0.1], ['bk_dark_dex', 1], ['mat_black_blood', 1]],
+js\01-drops-config.js:112: '黑暗妖精警衛(矛)': [['wpn_spear_rasta', 0.5], ['arm_rasta_leather', 0.5], ['shd_rasta', 1], ['scroll_armor', 0.5], ['scroll_weapon', 0.5], ['bk_dark_mrup', 1], ['bk_dark_burn', 1], ['bk_dark_fang', 0.1]],
+js\01-drops-config.js:113: '黑暗妖精巡守': [['wpn_small_katana', 1], ['wpn_bow_rasta', 2], ['arm_rasta_leather', 0.5], ['bot_rasta', 1], ['mat_steel_chunk',5]],
+js\01-drops-config.js:114: '黑暗妖精士兵': [['wpn_sword_rasta', 1], ['arm_rasta_leather', 0.5], ['bot_rasta', 1], ['scroll_armor', 0.5], ['scroll_weapon', 0.5], ['bk_dark_poison', 1], ['bk_dark_burn', 1], ['bk_dark_str', 1]],
+js\01-drops-config.js:115: '黑暗妖精將軍': [['scroll_acc',0.001],['scroll_armor', 0.5], ['scroll_weapon', 0.5], ['bk_reduction_armor', 0.05], ['bk_meteor', 0.001], ['bk_dark_poison', 1], ['bk_dark_burn', 1], ['bk_dark_poisonres', 1], ['bk_dark_dex', 0.6
+js\01-drops-config.js:124: // ===== 🌑 黑暗妖精聖地（依《黑暗妖精聖地.md》·v3.3.33）＝掉落鍵以怪名比對 =====
+js\01-drops-config.js:125: '受詛咒的黑暗妖精鬥士': [['mat_holy_relic',0.5],['mat_de_soul_crystal',1],['ear_cursed_black',0.05],['mat_summonorb_core',0.1],['mat_summonorb_shard',1]],
+js\01-drops-config.js:126: '受詛咒的黑暗妖精法師': [['mat_holy_relic',0.5],['mat_de_soul_crystal',1],['ear_cursed_black',0.05],['mat_summonorb_core',0.1],['mat_summonorb_shard',1]],
+js\01-drops-config.js:127: '受詛咒的黑暗妖精騎士': [['mat_holy_relic',0.5],['mat_de_soul_crystal',1],['ear_cursed_black',0.05],['mat_summonorb_core',0.1],['mat_summonorb_shard',1]],
+js\01-drops-config.js:132: '真‧死亡騎士 冥皇丹特斯': [['wpn_cursed_emperor_blade',5],['wpn_emperor_blade',1],['clk_emperor',1],['amr_emperor',1],['hlm_emperor',1],['glv_emperor',1],['bot_emperor',1],['scroll_weapon',100],['scroll_armor',100]],   // 🌑 v3.4.
+js\01-drops-config.js:144: '黑暗妖精法師': [['mat_legion_law', 0.05], ['wpn_wand_rasta', 1], ['amr_rasta_robe', 0.1], ['bk_dark_dex', 1], ['bk_tornado', 0.05], ['bk_ice_spike', 1], ['bk_soul_up', 0.01], ['mat_steel_chunk',5]],
+js\01-drops-config.js:294: '食人妖精': [['wpn_battleaxe',3], ['wpn_giantaxe',1], ['arm_61',0.6], ['scroll_weapon',0.2], ['scroll_armor',0.5], ['bk_fireball',0.1], ['bk_break',0.5], ['bk_elf_release',0.05], ['bk_blaze',0.01], ['acc_demonbane',0.001]],
+js\01-drops-config.js:295: '食人妖精王': [['wpn_battleaxe',3], ['wpn_10',2], ['wpn_giantaxe',0.5], ['wpn_berserker',0.02], ['arm_61',0.5], ['arm_47',0.05], ['scroll_weapon',1], ['scroll_armor',1.5], ['new_item_158',0.5], ['bk_fireball',0.5], ['bk_break
+js\01-drops-config.js:395: '遺忘之島食人妖精': [['item_forgotten_robe',1], ['acc_demonbane',0.1]],
+js\01-drops-config.js:405: '遺忘之島食人妖精王': [['item_forgotten_plate',1], ['rng_mr',0.3], ['new_item_192',0.001]],
+js\01-drops-config.js:432: // ===== 🐜 螞蟻洞窟 新增怪物掉落 + 巨蟻女皇（古代妖精裝備） =====
+js\01-drops-config.js:511: ['食人妖精', 'relic_ogre_mawashi', 0.0001],
+js\01-drops-config.js:532: ['黑暗妖精魔法學徒', 'relic_apprentice_wand', 0.0001],
+js\01-drops-config.js:538: ['黑暗妖精殘兵(弓)', 'relic_darkremnant_boots', 0.0001],
+js\01-drops-config.js:547: ['黑暗妖精盜賊', 'relic_darkthief_claw', 0.0001],
+js\01-drops-config.js:554: ['黑暗妖精殘兵(劍)', 'relic_darkelf_grindblade', 0.0001],
+js\01-drops-config.js:555: ['黑暗妖精殘兵(十字弓)', 'relic_darkelf_shootglove', 0.0001],
+js\01-drops-config.js:557: ['食人妖精王', 'relic_ogreking_collar', 0.0001],
+js\01-drops-config.js:564: ['黑暗妖精殘兵(法師)', 'relic_remnant_barrier', 0.0001],
+js\01-drops-config.js:588: ['黑暗妖精殘兵(雙手劍)', 'relic_veteran_greatsword', 0.0001],
+js\01-drops-config.js:608: ['黑暗妖精警衛(十字弓)', 'relic_modded_crossbow', 0.0001],
+js\01-drops-config.js:618: ['遺忘之島食人妖精', 'relic_troll_belly', 0.0001],
+js\01-drops-config.js:627: ['黑暗妖精巡守', 'relic_handy_quiver', 0.0001],
+js\01-drops-config.js:628: ['黑暗妖精士兵', 'relic_soldier_medal', 0.0001],
+js\01-drops-config.js:664: ['黑暗妖精警衛(矛)', 'relic_guard_roughgloves', 0.0001],
+js\01-drops-config.js:668: ['黑暗妖精法師', 'relic_dark_manaball', 0.0001],
+js\01-drops-config.js:706: ['遺忘之島食人妖精王', 'relic_fire_hide', 0.0001],
+js\01-drops-config.js:736: // 🗡️ v3.4.33 倫得雙刀（黑暗妖精雙刀·雙擊33/貫穿/5% 復仇尖石）：死亡騎士 0.1%／真‧死亡騎士 冥皇丹特斯 1%
+js\01-drops-config.js:757: // 區域額外掉落（眠龍洞穴1~3樓=zone_15/16/17、妖精森林周邊=zone_01 所有怪物）
+js\01-drops-config.js:928: // 🔧 黑暗妖精武器掉落表（怪物名稱 → [[武器ID, 機率%], ...]；於擊殺結算套用，受席琳世界 _dropMult 影響）
+js\01-drops-config.js:971: '魔獸軍王巴蘭卡': [['bk_dragon_deadlybody',1]], '巨大墳墓守護者': [['bk_dragon_deadlybody',0.5]], '黑暗妖精殘兵(劍)': [['bk_dragon_deadlybody',0.3]], '奇美拉': [['bk_dragon_deadlybody',0.3]],
+js\01-drops-config.js:972: '食人妖精王': [['bk_dragon_deadlybody',0.1],['wpn_chain_resonance',0.001]],
+js\01-drops-config.js:998: '黑暗妖精殘兵(法師)': [['bk_warrior_titan_magic',0.001]], '法令軍王蕾雅': [['bk_warrior_titan_magic',0.5]],
+js\01-drops-config.js:1000: '暗殺軍王史雷佛': [['bk_warrior_titan_bullet',0.5]], '黑暗妖精殘兵(十字弓)': [['bk_warrior_titan_bullet',0.001]],
+js\01-drops-config.js:1025: '墳墓守護者法師': [['mem_insight',1]], '受詛咒的艾爾摩法師': [['mem_insight',0.5]], '黑暗妖精法師': [['mem_insight',0.1]], '艾爾摩法師': [['mem_insight',0.05]], '黑暗妖精殘兵(法師)': [['mem_insight',0.1]],
+js\01-drops-config.js:1035: // 🌑 v3.3.33 黑暗妖精聖地：食腐獸 → 記憶水晶(立方：地裂) 0.5%（地獄奴隸的 mem_avatar 0.25% 本表原有）
+js\01-drops-config.js:1052: // === 🏹 妖精試煉 ===
+js\01-drops-config.js:1055: 'item_blueflute': 'elf',                                                         // 馬沙(妖精)：藍色長笛（+古代鑰匙）→ 保護者手套／精靈水晶
+js\01-drops-config.js:1057: // === 🛡️🏹 騎士＋妖精 共用（馬沙：兩職皆需古代鑰匙）===
+js\01-drops-config.js:1059: // === 🗡️ 黑暗妖精試煉（倫得/康/布魯迪卡 影子裝備 + 50 級試煉墮落鑰匙）===
+js\01-drops-config.js:1071: // 值可為「單一職業字串」或「職業陣列」（古代鑰匙＝騎士+妖精共用）。非允許職業擊殺則略過掉落、也不顯示於掉落表。
+js\01-drops-config.js:1151: elf: { logo: 'assets/logo/妖精logo.png', boss: '飛龍', list: {
+js\01-drops-config.js:1157: dark: { logo: 'assets/logo/黑暗妖精logo.png', boss: '飛龍', list: {
+js\01-drops-config.js:1266: // 技能職業需求等級（單一事實來源）：🏅 魔導精通的妖精可學四項法師法術（需求等級沿用法師）
+js\01-drops-config.js:1269: if (sk.reqD !== undefined) return sk.reqD;                                  // 黑暗妖精專屬魔法
+js\01-drops-config.js:1472: elf: {str:11, dex:12, con:12, int:12, wis:12, cha:8, pts:8}, // 妖精基底（可分配8點
+js\01-drops-config.js:1473: dark: {str:12, dex:15, con:8, int:10, wis:11, cha:8, pts:11}, // 黑暗妖精基底（可分配11點，以0計）
+js\01-drops-config.js:1485: // 🏺 遺物「所有寵物額外傷害/命中」：掃玩家＋未倒地傭兵全部裝備欄的 petDmgAll/petHitAll 加總（牧神的放牧棍 傷害+3；食人妖精王的尖刺項圈 傷害/命中各+3；武器/防具/腰帶皆生效）
+js\01-drops-config.js:1964: const ITEM_WEIGHTS = {"混沌之刺":10,"混沌頭盔":5,"混沌斗篷":5,"混沌法袍":15,"混沌手套":5,"死亡斗篷":10,"死亡盔甲":100,"死亡手套":5,"死亡之盾":20,"惡魔王矛":20,"惡魔王雙刀":20,"惡魔王雙手劍":40,"惡魔王魔杖":20,"惡魔王弓":10,"亞連":10,"武士刀":40,"長劍":40,"斧":60,"雙手劍":150,"屠龍劍":180,"騎士范德
+js\01-drops-config.js:1968: // 🌑 v3.3.33 黑暗妖精聖地（依《黑暗妖精聖地.md》重量欄）
+js\01-drops-config.js:1969: Object.assign(ITEM_WEIGHTS, {"吉爾塔斯之劍":100,"吉爾塔斯魔杖":100,"腐壞的長弓":100,"反叛者的盾牌":110,"武官之盾":45,"苦痛項鍊":10,"厄運項鍊":10,"受詛咒的黑色耳環":10,"賢者之戒":5,"真．冥皇披風":10,"真．冥皇護手":30,"真．冥皇鎧甲":100,"真．冥皇鋼靴":100,"真．冥皇面甲":100,"死亡騎士之書":5,"吉爾塔斯的封印":2,"
+js\01-drops-config.js:1973: Object.assign(ITEM_WEIGHTS, {"鎧衛隊的漆黑長槍":180,"人魚的淚滴":3,"妖魔的兜襠布":30,"月牙耳環":3,"楊果里恩的腹甲":50,"蟹人的巨鉗":50,"狂野的鬃毛外套":30,"劇毒的獠牙":150,"歐姆的腳鐐":50,"兵蟻的光澤背甲":450,"鼠人的烤肉叉":60,"海星的分裂腕足":80,"被遺忘的鱷魚靈魂":10,"破舊的蜥蜴甲":30,"資深蜥蜴族護手":10,"黑色疾風":
+js\01-drops-config.js:1977: Object.assign(ITEM_WEIGHTS, {"黑暗殘兵的研磨利刃":40,"黑暗殘兵輔助射擊手套":10,"巨人的木棒殘片":30,"食人妖精王的尖刺項圈":50,"莫妮亞的疾速涼鞋":50,"戰場風化的老舊內衣":5,"夢幻的蘑菇靈魂":10});   // 🏺 遺物 第五批重量（依名稱·v3.1.6）
+js\01-drops-config.js:1984: Object.assign(ITEM_WEIGHTS, {"纏繞炎球":15,"毒液化身":130,"黑夜狼人的駿腿":10,"牛頭怪的殘暴巨斧":130,"食人妖精的緩衝肚":150});   // 🏺 遺物 第十一批重量（依名稱·v3.1.33）
+js\01-drops-config.js:1990: Object.assign(ITEM_WEIGHTS, {"魔法娃娃：雪人":1,"魔法娃娃：野狼寶寶":1,"魔法娃娃：史巴托":1,"魔法娃娃：奎斯坦修":1,"魔法娃娃：稻草人":1,"魔法娃娃：蛇女":1,"魔法娃娃：肥肥":1,"魔法娃娃：希爾黛斯":1,"魔法娃娃：石頭高崙":1,"魔法娃娃：長老":1,"魔法娃娃：雪怪":1,"魔法娃娃：亞力安":1,"魔法娃娃：美人魚":1,"魔法娃娃：小思克巴":1,"魔法娃娃：巨人"
+js\01-drops-config.js:2184: // 職業性別差異＝用戶表B風格（天堂原作攻速表：男騎士全近戰快·女騎士弓稍快、王子斧矛杖快·公主劍匕快、女妖精劍最快·男妖精斧矛較快、法師近戰全慢·女法師杖稍快、女黑妖雙刀90傳奇·男黑妖刃系快）。
+js\01-drops-config.js:2192: '男妖精': { '單手劍':68.57, '單手鈍器':55.38, '弓':60, '十字弓':60, '單手矛':55.38, '雙手矛':51.43, '魔杖':51.43, '匕首':75.79, '雙手劍':60, '雙手鈍器':60, '雙刀':62.61, '鋼爪':68.57, '鎖鏈劍':68.57, '雙斧':55.38, '奇古獸':51.43 },
+js\01-drops-config.js:2193: '女妖精': { '單手劍':68.57, '單手鈍器':55.38, '弓':60, '十字弓':60, '單手矛':49.66, '雙手矛':46.45, '魔杖':38.92, '匕首':75.79, '雙手劍':60, '雙手鈍器':60, '雙刀':62.61, '鋼爪':68.57, '鎖鏈劍':68.57, '雙斧':55.38, '奇古獸':38.92 },
+js\01-drops-config.js:2196: '男黑暗妖精': { '單手劍':65.45, '單手鈍器':60, '弓':51.43, '十字弓':51.43, '單手矛':60, '雙手矛':55.38, '魔杖':49.66, '匕首':84.71, '雙手劍':57.6, '雙手鈍器':57.6, '雙刀':55.38, '鋼爪':72, '鎖鏈劍':65.45, '雙斧':60, '奇古獸':49.66 },
+js\01-drops-config.js:2197: '女黑暗妖精': { '單手劍':65.45, '單手鈍器':60, '弓':51.43, '十字弓':51.43, '單手矛':60, '雙手矛':55.38, '魔杖':51.43, '匕首':84.71, '雙手劍':57.6, '雙手鈍器':57.6, '雙刀':55.38, '鋼爪':72, '鎖鏈劍':65.45, '雙斧':60, '奇古獸':51.43 },
+js\01-drops-config.js:2206: const HITSTUN_TICKS = { '王子':6, '公主':6, '男騎士':5, '女騎士':6, '男妖精':5, '女妖精':5, '男法師':5, '女法師':5, '男黑暗妖精':5, '女黑暗妖精':5, '男龍騎士':5, '女龍騎士':6, '男戰士':6, '女戰士':6, '男幻術士':5, '女幻術士':5 };
+js\01-drops-config.js:2208: const CAST_TICKS = { '王子':14, '公主':14, '男騎士':13, '女騎士':13, '男妖精':12, '女妖精':12, '男法師':10, '女法師':10, '男黑暗妖精':14, '女黑暗妖精':14, '男龍騎士':13, '女龍騎士':13, '男戰士':14, '女戰士':14, '男幻術士':10, '女幻術士':10 };
+js\01-drops-config.js:2210: const ATK_AV_BY_CLS = { royal:'王子', knight:'男騎士', elf:'男妖精', mage:'男法師', dark:'男黑暗妖精', dragon:'男龍騎士', warrior:'男戰士', illusion:'男幻術士' };   // 舊檔缺 avatar → 依職業取男性列
+js\02-stats-recompute.js:82: let _baseCritDmg = (p.cls === 'dark') ? 100 : 50;   // 🔧 黑暗妖精基礎爆擊傷害 100%（其餘職業 50%）；裝備/精通等加成於其上疊加
+js\02-stats-recompute.js:128: if (_setEarly['darkelf'] >= 3) { d.str -= 2; d.dex += 2; }   // 🏝️ 黑暗妖精：力量-2/敏捷+2（提前→敏捷實際吃 AC/迴避/遠距傷害命中、力量實際吃近距傷害命中，否則只改顯示數字不入戰鬥）
+js\02-stats-recompute.js:187: } else if (p.cls === 'dark') {             // 黑暗妖精
+js\02-stats-recompute.js:240: if (player.cls === 'dark') { d.meleeCrit += 3; d.rangedCrit += 3; }   // 🔧 黑暗妖精職業天賦：Lv1 起基礎近/遠爆擊率各 +3%
+js\02-stats-recompute.js:241: if (hasMastery('d_crit')) { d.meleeCrit += 3; d.rangedCrit += 3; }   // 🔧 黑暗妖精爆擊精通：近/遠爆擊率各 +3%
+js\02-stats-recompute.js:303: if(w.mhp) p.mhp += w.mhp;   // 🏛️ 武器 HP 上限加成（古代黑暗妖精之劍 HP+50；同步修正深紅長矛既有 HP+50 失效）
+js\02-stats-recompute.js:442: // ===== 妖精專屬裝備隱藏效果 =====
+js\02-stats-recompute.js:445: d.mr += 5; // 精靈盾牌：妖精裝備時額外 MR+5
+js\02-stats-recompute.js:480: if(setCheck['darkelf'] >= 3) { d.ac -= 3; d.hpR -= 2; d.mpR -= 7; p._setPoly = Object.assign({}, SET_POLY_FORMS.darkelf); }   // 🏝️ 黑暗妖精套裝：AC-3、HP自然恢復-2、MP自然恢復-7、變身高等黑暗精靈（遠距離傷害/命中+5、攻速+30%）（力量-2/敏捷+2 已於 Phase 1 前 _setEa
+js\02-stats-recompute.js:485: if(setCheck['emperor'] >= 5) { d.ac -= 20; p.mhp += 100; p.mmp += 20; d.hpR += 10; d.atkSpdPct += 30; d.meleeDmg += 5; d.rangedDmg += 5; }   // 🌑 v3.3.33 真‧冥皇套裝（披風/鎧甲/面甲/護手/鋼靴 5 件·黑暗妖精聖地.md）：防禦-20、HP+100、MP+20、HP自然恢復+10
+js\02-stats-recompute.js:561: if(p.buffs.elfcookie > 0 || (_mercPots && p.cls === 'elf')) spdMult *= (1/1.15); // 精靈餅乾：攻速+15%（🔧 v3.5.37 1/1.15·取代舊 0.85＝實際+17.6%）；妖精傭兵常駐
+js\02-stats-recompute.js:868: { n:"食人妖精", lv:22, atk:21, wlk:16, cast:17, stun:5 },
+js\02-stats-recompute.js:872: { n:"黑暗妖精運送員", lv:28, atk:38, wlk:24, cast:21, stun:6 },
+js\02-stats-recompute.js:876: { n:"食人妖精王", lv:30, atk:18, wlk:16, cast:13, stun:4 },
+js\02-stats-recompute.js:881: { n:"黑暗妖精刺客", lv:33, atk:17, wlk:18, cast:9, stun:5 },
+js\02-stats-recompute.js:957: '男妖精':'six', '女妖精':'six', '男法師':'six', '女法師':'six',
+js\02-stats-recompute.js:958: '男黑暗妖精':'dark', '女黑暗妖精':'dark',
+js\02-stats-recompute.js:963: const SHANNA_DAGGER_LONG_HITSTUN = new Set(['王子', '女騎士', '女妖精', '男法師', '男黑暗妖精', '女黑暗妖精']);
+js\03-combat-core.js:72: // 🌊 v3.6.20 汙濁之水（玩家NPC二模板·妖精）：目標受到的治癒（藥水與技能）效果減半。
+js\03-combat-core.js:695: if(player.statuses.foulWater > 0) alerts.push("汙濁之水");   // 🌊 v3.6.20 玩家NPC二模板（妖精）：受到治癒效果減半
+js\03-combat-core.js:977: const PURE_BOSS_MAPS = ['antaras_lair', 'fafurion_lair', 'valakas_lair', 'king_baranka_room', 'law_king_room', 'necro_king_room', 'assassin_king_room', 'thebes_temple', 'tikal_altar', 'cursed_dark_elf_sanctuary', 'collap
+js\03-combat-core.js:1040: const TROLL_CLASS_BY_AVATAR = { "王子": "troll_royal", "公主": "troll_royal", "男騎士": "troll_knight", "女騎士": "troll_knight", "男妖精": "troll_elf", "女妖精": "troll_elf", "男法師": "troll_mage", "女法師": "troll_mage", "男黑暗妖精": "troll_da
+js\03-combat-core.js:2099: // 🔥 50級試煉：大洞穴隱遁者村莊地區 1% 出現「魔族暗殺團」（妖精 stage2 收集密封情報書／法師 stage1 收集間諜報告書）
+js\03-combat-core.js:2197: // 🌑 v3.3.33 吉爾塔斯 HP 保留（黑暗妖精聖地.md）：戰敗時持完整的召喚球→js/05 revive 消耗 1 顆並記錄 player.giltasKeep；
+js\03-combat-core.js:2778: // 🔧 黑暗妖精：連擊亦獨立觸發燃燒鬥志(30%×1.5)、雙重破壞(雙刀/鋼爪 45級起10%×2，每5級+1%)，兩者可疊加；先套用於本擊傷害，再依連擊倍率（暗影5/5→100%，否則50%）結算
+js\04-combat-attack.js:111: // 🏅 劍術精通（妖精）：近距離攻擊 5+等級/10% 機率發動看破 ×2
+js\04-combat-attack.js:119: // 🔧 黑暗妖精：燃燒鬥志（30% 傷害×1.5）、雙重破壞（持雙刀/鋼爪時，45級起10%機率傷害×2，每5級+1%，可與燃燒鬥志疊加）
+js\04-combat-attack.js:121: if (player.buffs && player.buffs.sk_elf_attrfire > 0 && Math.random() < 0.30) result.dmg = Math.floor(result.dmg * 1.5);   // 🔧 妖精：屬性之火（一般攻擊30%機率傷害×1.5；與燃燒鬥志同效，火屬性妖精專用）
+js\04-combat-attack.js:166: // 🔧 黑暗妖精：附加劇毒（命中 50%／劇毒精通 100% 使目標中毒：每秒該次攻擊 60%／劇毒精通 200% 傷害，持續 5 秒，最多 1 層，取較高傷害並刷新持續時間）
+js\04-combat-attack.js:447: // ⚠️ 只延長、不縮短：黑暗妖精「附加劇毒」是 1 秒一跳，武器 proc 預設 3 秒一跳。
+js\04-combat-attack.js:1188: // 隨機減免：騎士 (10-AC)/2；妖精/黑暗妖精/龍騎士/戰士 (10-AC)/3；幻術士 (10-AC)/4；王族/法師等 (10-AC)/5
+js\04-combat-attack.js:1194: else if (player.cls === 'dark')      rndDrMax = Math.floor(acGap / 3);   // 🔧 黑暗妖精：(10-AC)/3（同妖精）
+js\04-combat-attack.js:1374: // 🤝 仇恨權重（玩家與傭兵同規則，不分身分）：法師/幻術士、或持弓/遠程武器(弓・十字弓)者＝1；近戰 騎士/戰士/龍騎士＝5；近戰 妖精/黑暗妖精/王族＝4；其餘＝1。（v2.6.30 近戰重裝 3→4・近戰輕裝 2→3；v3.2.81 近戰重裝 4→5・近戰輕裝 3→4）
+js\04-combat-attack.js:1757: // 🌑 v3.3.33 血壁空間（吉爾塔斯·黑暗妖精聖地.md）：mob._reflectWall={kind,until} 期間內，受到該類型（近距離/遠距離/魔法）傷害→反彈同等傷害給攻擊方（玩家或該傭兵）。
+js\04-combat-attack.js:1808: // 🛡️ v3.3.33 反叛者的盾牌（黑暗妖精聖地.md）：受到傷害時 rate(+per×強化)% 機率該次傷害 -amt（玩家＋傭兵、物理＋魔法四路徑共用）
+js\04-combat-attack.js:1944: // 🌊 v3.6.20 汙濁之水（玩家NPC二模板·妖精）：必中·目標受到的治癒（藥水與技能）效果減半（規格無機率/抵抗項）
+js\04-combat-attack.js:2152: // 💚 v3.6.20 生命的祝福（玩家NPC二模板·妖精）：即時恢復場上所有玩家 NPC（trollPlayer·含自己）healDice + 施法者等級 HP；無傷者不施放
+js\04-combat-attack.js:2278: // 🌊 v3.6.20 汙濁之水（玩家NPC二模板·妖精）：必中·你受到的治癒（藥水與技能）效果減半（規格無機率/抵抗項；技能收口 rollHealingSpell·藥水 js/08）
+js\05-kill-progression.js:443: { let main = player.cls === 'knight' && player.trialStage === 1 && mob.n === '黑暗妖精將軍' && !player.inv.some(i => i.id === 'item_dantes_letter');
+js\05-kill-progression.js:444: let ally = mob.n === '黑暗妖精將軍' && typeof allyStageQuestItemActive === 'function' && allyStageQuestItemActive('item_dantes_letter');
+js\05-kill-progression.js:514: // === 🔧 黑魔石掉落（黑暗妖精素材）：沉默洞穴周邊固定掉落（提煉魔石提高）；其餘野外/地監需學提煉魔石才掉（攻城區不掉）===
+js\05-kill-progression.js:516: // 隊伍被動：在場且未倒地的黑暗妖精傭兵學會提煉魔石時，隊長同樣取得黑魔石掉落效果。
+js\05-kill-progression.js:530: // === 🔧 銀礦石掉落（黑暗妖精製作材料）===
+js\05-kill-progression.js:540: // === 🔧 黑暗妖精武器掉落 ===
+js\05-kill-progression.js:562: // === 區域額外掉落：眠龍洞穴1~3樓(zone_15/16/17) / 妖精森林周邊(zone_01) 所有怪物 ===
+js\05-kill-progression.js:1383: // 🌑 v3.4.16 吉爾塔斯 HP 保留（統一收口·用戶：戰鬥中「離開」也適用）：離開 受詛咒的黑暗妖精聖地 的所有路徑
+js\06-status-allies.js:256: if(lv >= 40) return { n:'召喚：食人妖精', dmgDice:[2,11], dmgDiv:4, dmgLvDiv:30, dmgMult:1.08, interval:20, kind:'melee', hitLvOff:7 };
+js\06-status-allies.js:646: // 協力顯示名稱：有取名→角色名；否則用職業中文（騎士/法師/妖精）
+js\06-status-allies.js:650: return ({ knight: '騎士', mage: '法師', elf: '妖精', dark: '黑暗妖精', illusion: '幻術士', dragon: '龍騎士', warrior: '戰士', royal: '王族' })[a.cls] || a.cls || ('存檔' + (a._slot || ''));
+js\06-status-allies.js:788: ally._atkSkill = (ally.config && ally.config.selAtkSkill) || '';   // 攻擊技能選擇（快照；法師施法 / 妖精三重矢）
+js\06-status-allies.js:793: { let _w = (ally.eq && ally.eq.wpn) ? DB.items[ally.eq.wpn.id] : null; ally._rapidfire = (_w && _w.isBow && _w.rapidfire) ? _w.rapidfire : 0; }   // 妖精弓：記錄連射發動機率
+js\06-status-allies.js:1016: let _meleePassive = (ally.cls === 'knight') || allyHasMastery(ally, 'e_sword');   // 🔧 劍術精通：妖精傭兵近戰也可看破
+js\06-status-allies.js:1083: // 🔧 黑暗妖精傭兵：預設攻擊自動維持附加劇毒（學過 sk_dark_poison 即視為常駐增益）；命中 50%／劇毒精通 100% 使目標中毒（與玩家同規則）
+js\06-status-allies.js:1112: if (isCrit && allyHasMastery(ally, 'd_crit')) allyComboAttack(ally, t);   // 🔧 黑暗妖精爆擊精通：傭兵爆擊時追加一次連擊
+js\06-status-allies.js:1453: // 妖精協力：連射（弓）— 依記錄的發動機率追加 1~3 箭，每箭約 30% 傷害，隨機命中場上敵人
+js\06-status-allies.js:1562: let _norm = ((r === 20) || (r !== 1 && hv >= r) || (r === 1 && ally.buffs && ally.buffs.sk_elf_preciseshot > 0));   // 🏹 精準射擊（妖精傭兵·存檔時持有此buff）：擲骰1由必定未命中→必定命中
+js\06-status-allies.js:2138: // 妖精協力：三重矢（3 次物理攻擊）後整體判定一次連射
+js\06-status-allies.js:2153: // 妖精協力一次行動：選定三重矢且裝弓且 MP 足夠→優先施放三重矢；否則一般攻擊；攻擊後判定連射
+js\06-status-allies.js:2166: // 傷害魔法：比照法師，MP 足夠則優先施放（妖精魔法不享有法師倍率，由 allyCastMagic 依職業處理）
+js\06-status-allies.js:2179: // 黑暗妖精協力一次行動：依設定攻擊技能施放破壞盔甲(目標無此狀態且MP足夠)/會心一擊(MP滿)/傷害魔法(v2.7.92·Lv12/24 可學一二階·走 allyCastMagic)/非傷害狀態技；皆不適用則一般攻擊（含連擊與精通）
+js\06-status-allies.js:2216: let t = getTarget(); if (!t || t.curHp <= 0) { allyAttackOnce(ally); allyRapidfire(ally); return false; }   // 🏹 v3.1.77 稽核中#4：普攻後判定連射（allyRapidfire 自帶 isBow+rapidfire 武器閘·非弓=no-op·原僅妖精路徑觸發）
+js\06-status-allies.js:2238: let t = getTarget(); if (!t || t.curHp <= 0) { allyAttackOnce(ally); allyRapidfire(ally); return false; }   // 🏹 v3.1.77 稽核中#4：普攻後判定連射（allyRapidfire 自帶 isBow+rapidfire 武器閘·非弓=no-op·原僅妖精路徑觸發）
+js\06-status-allies.js:2286: let t = getTarget(); if (!t || t.curHp <= 0) { allyAttackOnce(ally); allyRapidfire(ally); return false; }   // 🏹 v3.1.77 稽核中#4：普攻後判定連射（allyRapidfire 自帶 isBow+rapidfire 武器閘·非弓=no-op·原僅妖精路徑觸發）
+js\06-status-allies.js:2319: let t = getTarget(); if (!t || t.curHp <= 0) { allyAttackOnce(ally); allyRapidfire(ally); return false; }   // 🏹 v3.1.77 稽核中#4：普攻後判定連射（allyRapidfire 自帶 isBow+rapidfire 武器閘·非弓=no-op·原僅妖精路徑觸發）
+js\06-status-allies.js:2342: let t = getTarget(); if (!t || t.curHp <= 0) { allyAttackOnce(ally); allyRapidfire(ally); return false; }   // 🏹 v3.1.77 稽核中#4：普攻後判定連射（allyRapidfire 自帶 isBow+rapidfire 武器閘·非弓=no-op·原僅妖精路徑觸發）
+js\06-status-allies.js:2660: // 以「攻擊技能冷卻(_atkSkillCd)」閘門包住職業 act：冷卻好且有攻擊技→本回合施放該技並重設冷卻；否則暫時清空 _atkSkill 讓職業 act 走各自「普攻」路徑(保留妖精連射/黑妖連擊/法師光箭/幻術奇古獸等)。
+js\06-status-allies.js:2762: // 🧝 v3.8.5 妖精屬性閘（傭兵版·單一真相）：妖精換屬性後，舊屬性的三/四/五階精靈魔法在他自己身上是「灰色不可用」
+js\06-status-allies.js:2768: //   granted（裝備/頭盔賦予）比照玩家豁免屬性閘。非妖精職業的技能無 reqEle/reqEleAny → 一律 true，零影響。
+js\06-status-allies.js:2876: if (!allySkillElementOk(ally, sid)) continue;   // 🧝 v3.8.5 妖精換屬性後的舊屬性 buff（火焰武器/烈炎武器/大地防護…）不再維持：面板已隱藏·此處同步停放（原本會照吃 d 加成又照扣 MP）
+js\06-status-allies.js:2917: : (ally.skills.includes('sk_elf_summon2') && _mercAutoOn(ally, 'sk_elf_summon2') && allySkillElementOk(ally, 'sk_elf_summon2')) ? 'sk_elf_summon2'   // 🩸 妖精傭兵優先「召喚強力屬性精靈」(上級精靈)：先學的一般版 sk_elf_summon 排在前面，.find 會先抓到它 → 傭兵
+js\06-status-allies.js:3095: if (state.ticks % _aMpIv === 0 && (ally.mp||0) < (ally.mmp||0) && ((ally.d && ally.d.mpR) || 0) > 0) {   // 🔧 mpR 可能因套裝懲罰（黑暗妖精套裝 -7）為負 → 與玩家回魔一致，只在 >0 時回魔，避免扣傭兵MP
+js\06-status-allies.js:4109: <div class="text-slate-300 text-sm leading-relaxed">招募其他存檔位的角色一起作戰，<b class="text-emerald-300">完全免費</b>。協力傭兵戰鬥中不會陣亡，<b class="text-emerald-300">你死亡並回城／原地復活後仍會留在身邊，可使用各傭兵旁的「解散」或「⚠ 全員退出」</b>；存讀檔不會使其消失。法師以魔法、妖精以弓/三重矢、騎士以物理（
+js\07-skills-cast.js:447: // 🔧 黑暗妖精：會心一擊（消耗 HP 50% + 剩餘所有 MP；傷害 = 重擊一般攻擊(無視硬皮)×爆擊×(消耗MP佔上限%×10)；對血盟 x2）
+js\07-skills-cast.js:1146: // 轉換魔法（妖精／法師下拉，單選）：安全區暫停、MP 達 90% 以上不轉換；
+js\08-items-equip.js:610: // 職業限定檢查（如慎重藥水=法師、勇敢藥水=騎士、精靈餅乾=妖精）
+js\08-items-equip.js:732: let reqLv = skillReqLv(sd, d.sk);   // 🏅 集中化：含魔導精通特例（妖精可學四項法師法術）
+js\08-items-equip.js:770: // 負重強化(sk_load_up)讓法師/妖精能使用的擴充裝備清單（單一來源，裝備判定與商店過濾共用）
+js\08-items-equip.js:780: // ===== 黑暗妖精裝備使用規則 =====
+js\08-items-equip.js:783: // 黑暗妖精無法使用的防具/頭盔/手套/斗篷/盾/T恤/長靴/長袍（依名稱，負重強化清單除外）
+js\08-items-equip.js:794: '神官頭飾','神官法袍','神官長靴','神官斗篷','神官手套',   // 🔧 神官系列：黑暗妖精禁用（僅法師/妖精）
+js\08-items-equip.js:795: '巨蟻女皇的金翅膀'   // 🔧 依文本（騎士/妖精）：黑暗妖精禁用（銀翅膀文本含黑暗妖精則可用）
+js\08-items-equip.js:802: if (id === 'wpn_demon_sword_hidden') return false;              // 👹 隱藏的魔族之劍：適用王族/騎士/妖精/龍騎士（黑暗妖精改用 隱藏的魔族鋼爪）
+js\08-items-equip.js:804: if (tags.includes('匕首') || tags.includes('單手劍') || tags.includes('鋼爪') || tags.includes('雙刀') || tags.includes('武士刀')) return true;   // 🔧 黑暗妖精亦可使用武士刀
+js\08-items-equip.js:807: //    req 必須明確列出 dark 才可用（十字弓 wpn_31 已補 dark 保留現狀）；req:'all' 的一般長弓不可用（黑暗妖精不使用長弓·刻意非疏漏）。
+js\08-items-equip.js:808: //    ⚠️新增弓/十字弓要給黑暗妖精＝req 加 dark；不給＝req 不列 dark（部分十字弓如 拉斯塔巴德重十字弓/惡魔十字弓/寂靜十字弓 即不開放）。
+js\08-items-equip.js:817: return reqAllowsClass(d, 'elf') || reqAllowsClass(d, 'dark');   // 其餘比照妖精可用
+js\08-items-equip.js:910: if (d && d.reqAvatar && player && ((d.strictAvatar && player.avatar !== d.reqAvatar) || (!d.strictAvatar && player.avatar && player.avatar !== d.reqAvatar))) return false;   // 👸 性別頭像限定；strictAvatar（純潔少女的憐愛）要求必須明確為女妖精，舊
+js\08-items-equip.js:913: //    → 妖精選劍術精通後，一般的騎士限定單手武器借得到、同條件的「遺物」卻裝不上（8 件）。改成只跳過 *EquipOk 分派、
+js\08-items-equip.js:916: if (player.cls === 'dark') return darkEquipOk(d, item.id);   // 🔧 黑暗妖精專屬裝備規則
+js\08-items-equip.js:927: // 3. 🏅 劍術精通：妖精可裝備騎士限定的單手武器（非雙手、非弓）——⚠️ 遺物同樣適用（v3.7.83 起遺物也會走到這裡）
+js\08-items-equip.js:961: // 職業/裝備資格統一走 checkCanEquip（含黑暗妖精規則、負重強化、劍術精通例外），與顯示用判定同一來源
+js\08-items-equip.js:1213: foulWater: '汙濁之水'   // 🌊 v3.6.20 玩家NPC二模板（妖精）：受到治癒效果減半
+js\08-items-equip.js:1431: // 處理顯示文字：只顯示 騎士、法師、妖精、黑暗妖精
+js\08-items-equip.js:1435: else if (player.cls === 'elf') clsDisplayName = '妖精';
+js\08-items-equip.js:1436: else if (player.cls === 'dark') clsDisplayName = '黑暗妖精';   // 🔧 黑暗妖精職業名
+js\09-vfx-render.js:1435: const MOB_ANIM_NAMES = new Set([/* 🐍 v3.1.59 提卡爾18怪 */ '提卡爾杰弗雷庫(雄)', '提卡爾杰弗雷庫(雌)', '提卡爾艾庫卡伊拉(藍)', '提卡爾艾庫卡伊拉(黃)', '提卡爾艾庫尤卡(白)', '提卡爾艾庫尤卡(藍)', '提卡爾艾庫巴拉', '提卡爾艾庫巴拉(紅)', '提卡爾艾庫艾托', '提卡爾艾庫艾托(枯竭)', '提卡爾艾庫阿茲特', '提卡爾艾庫阿茲特(黃)', 
+js\09-vfx-render.js:1451: const MOB_ANIM_SPRITE_SHADOW = new Set([/* 🐾 v3.2.17 */ '老虎', '貓', '熊貓', '高麗幼犬', '浣熊', '聖伯納犬', '狐狸', '暴走兔', '小獵犬', '柯利', '袋鼠', '猴子', /* 🐍 v3.1.59 提卡爾18怪皆帶_s */ '提卡爾杰弗雷庫(雄)', '提卡爾杰弗雷庫(雌)', '提卡爾艾庫卡伊拉(藍)', '提卡爾艾庫卡伊拉(黃)', 
+js\09-vfx-render.js:1545: // 🧝🐕 v2.7.72 黑暗妖精法師/恐怖的地獄犬 anchored skill_effect：
+js\09-vfx-render.js:1546: '黑暗妖精法師': { startPfx: 'skill_effect', anchored: { ox: 22, oy: -22, bw: 78, bh: 133 } },
+js\09-vfx-render.js:1595: '朱利安': '玩家男妖精', '月光朱利安': '玩家男妖精', '歐薇': '玩家女妖精', '月之精靈歐薇': '玩家女妖精',
+js\09-vfx-render.js:1597: '闇影格立特': '玩家男黑暗妖精' };
+js\09-vfx-render.js:1745: const MOB_ANIM_8DIR = new Set(['杜賓狗', /* 🐾 v3.2.17 夥伴更新12怪（素材＝寵物八方向共用） */ /* 🔁 v3.2.20 同名怪去重：改讀八方向共用圖·舊根圖已刪（冰人保留spawn·火系等7隻保留特效層不切） */ '哈柏哥布林', '甘地妖魔', '都達瑪拉妖魔', '妖魔巡守', '狂野毒牙', '狂野之毒', '狂野之魔', '食人妖精', '食人妖精王', '狂暴蜥蜴人'
+js\09-vfx-render.js:1889: '亞力安', '人形殭屍', '侏儒', '哥布林', '地靈', '多羅', '妖魔', '妖魔弓箭手', '小惡魔', '巴列斯', '巴風特', '思克巴', '惡魔', '歐吉', '死亡', '狼人', '萊肯', '食人妖精王', '食屍鬼', '骷髏弓箭手', '骷髏斧手', '骷髏槍兵', '黑暗妖精刺客',   // 🧝 v3.0.50 +23 變身（惡魔＝象牙塔惡魔套裝 SET_POLY_FORMS.demon 直
+js\09-vfx-render.js:1890: '反王肯恩', '吸血鬼', '巨人', '白金巡守', '賽尼斯', '銀光巡守', '阿魯巴', '黃金巡守', '黑暗巡守', '黑暗精靈',   // 🧝 v3.0.52 +10 變身（黑暗精靈＝黑暗妖精套裝 高等黑暗精靈 經別名映射）
+js\09-vfx-render.js:1891: '卡士柏', '史巴托', '妖魔巡守', '妖魔鬥士', '巨大牛人', '巴土瑟', '暴走兔', '果凍怪', '格利芬', '歐姆民兵', '獨眼巨人', '甘地妖魔', '石頭高崙', '紙人', '羅孚妖魔', '西瑪', '那魯加妖魔', '都達瑪拉妖魔', '重裝歐姆', '長老', '阿吐巴妖魔', '雪怪', '食人妖精', '馬庫爾', '骷髏', '黑暗妖精運送員', '黑長者', '黑騎士',   // 🧝 
+js\09-vfx-render.js:1893: const MORPH_BATTLE_ALIAS = { '真‧死亡騎士': '死亡騎士', '真‧克特': '克特', '高等黑暗精靈': '黑暗精靈' };   // 套裝變身→同源動畫（v3.0.52 黑暗妖精套裝→黑暗精靈·與 js/19 立繪別名一致）
+js\09-vfx-render.js:1897: //   ⚠️ 未納入(維持單方向·源資料不足)：亞力安(源 spr 損毀)／妖魔弓箭手(回復索引不符)／狼人·巨大牛人·重裝歐姆·食人妖精王·黑暗妖精刺客·黑暗妖精運送員(源資料夾無對應 body)。
+js\09-vfx-render.js:1899: '人形殭屍', '侏儒', '克特', '卡司特王', '卡士柏', '反王肯恩', '吸血鬼', '哥布林', '地靈', '多羅', '妖魔', '妖魔鬥士', '小惡魔', '巨人', '巴列斯', '巴土瑟', '巴風特', '思克巴', '思克巴女皇', '惡魔', '暴走兔', '果凍怪', '格利芬', '歐吉', '歐姆民兵', '死亡', '死亡騎士', '炎魔', '獨眼巨人', '甘地妖魔', '白金巡守', '白
+js\09-vfx-render.js:1902: '狼人', '巨大牛人', '重裝歐姆', '食人妖精王', '黑暗妖精刺客', '黑暗妖精運送員',   // 🐺 v3.5.14 新式完整八方向資料夾替換（用戶提供更新動畫·deploy_new6 專屬部署）
+js\09-vfx-render.js:1909: const CLASS_BATTLE_ANIM = new Set(['男騎士', '女騎士', '男妖精', '女妖精', '王子', '公主', '男法師', '女法師', '男黑暗妖精', '女黑暗妖精', '男龍騎士', '女龍騎士', '男幻術士', '女幻術士', '男戰士', '女戰士']);   // 🗡️ v3.0.70 全 16 avatar（職業動態 CSV 全部轉檔完成）
+js\09-vfx-render.js:1911: // 🗡️ v3.0.70 per-avatar 可用武器變體＋fallback（CSV 規則：裝備列表沒有的武器→各職 fallback 顯示·法師/幻術士=魔杖·黑暗妖精=匕首·戰士=雙手劍·其餘=單手劍）
+js\09-vfx-render.js:1915: '男妖精':     { w: ['unarmed','bow','dagger','sword1','blunt','spear'], fb: 'sword1' },
+js\09-vfx-render.js:1916: '女妖精':     { w: ['unarmed','bow','dagger','sword1','blunt','spear'], fb: 'sword1' },
+js\09-vfx-render.js:1921: '男黑暗妖精': { w: ['unarmed','dagger','sword1','bow','dual','claw','gauntlet'], fb: 'dagger' },
+js\09-vfx-render.js:1922: '女黑暗妖精': { w: ['unarmed','dagger','sword1','bow','dual','claw','gauntlet'], fb: 'dagger' },
+js\09-vfx-render.js:1932: //   變體集依來源 spr 實際動作（戰士無雙手劍動作→退斧；龍騎士有矛動作；黑暗妖精弓=十字弓動作）。部署器＝scratchpad/deploy_true_shanna.js。
+js\09-vfx-render.js:1938: '男妖精':     { w: ['unarmed','bow','dagger','sword1','blunt','spear'], fb: 'sword1' },
+js\09-vfx-render.js:1939: '女妖精':     { w: ['unarmed','bow','dagger','sword1','blunt','spear'], fb: 'sword1' },
+js\09-vfx-render.js:1942: '男黑暗妖精': { w: ['unarmed','dagger','sword1','bow','dual','claw','blunt'], fb: 'dagger' },
+js\09-vfx-render.js:1943: '女黑暗妖精': { w: ['unarmed','dagger','sword1','bow','dual','claw','blunt'], fb: 'dagger' },
+js\09-vfx-render.js:1956: const CLASS_ANIM_8DIR = new Set(['男騎士', '女騎士', '男妖精', '女妖精', '王子', '公主', '男法師', '女法師', '男黑暗妖精', '女黑暗妖精', '男龍騎士', '女龍騎士', '男幻術士', '女幻術士', '男戰士', '女戰士']);   // 🏹 v3.7.65 全 16 職業（八方向共畫布部署完成·含 <武器>_walk 行走幀）
+js\09-vfx-render.js:2028: let pending = form.wpn ? 20 : 18;   // 🗡️ v3.0.70 職業形態多探 2 項：武器專屬 skill（<wpn>_skill_·黑暗妖精雙刀/鋼爪·龍騎士雙手劍/鎖鏈劍·戰士各武器）；🚶 v3.7.65 動作多一組 walk（body/shadow/weapon 共 3）
+js\09-vfx-render.js:2030: // 🏹 弓/十字弓無專屬技能動畫(bow_skill_)：施放技能(如妖精三重矢)時原退回「通用 skill_」空手施法姿勢→改借用弓攻擊(bow_attack)姿勢，持弓者施放技能不再變空手（玩家＋傭兵共用此快取·同套用影子層）
+js\09-vfx-render.js:2163: '雪怪F':[67,82],'食人妖精':[93,118],'食人妖精2':[90,118],'食人妖精F':[92,119],'食人妖精王':[93,112],'食人妖精王2':[90,112],'食人妖精王F':[92,111],'食屍鬼':[72,91],
+js\09-vfx-render.js:2167: '黃金法師2':[69,95],'黃金法師F':[65,94],'黃金騎士':[90,113],'黃金騎士2':[86,113],'黃金騎士F':[88,112],'黑暗妖精刺客':[64,103],'黑暗妖精刺客2':[66,103],'黑暗妖精刺客F':[65,101],
+js\09-vfx-render.js:2168: '黑暗妖精運送員':[70,73],'黑暗妖精運送員2':[67,71],'黑暗妖精運送員F':[68,73],'黑暗巡守':[62,103],'黑暗巡守2':[66,104],'黑暗巡守F':[63,104],'黑暗法師':[59,97],'黑暗法師2':[65,95],
+js\10-ui-tabs.js:609: if(_convRow) _convRow.classList.toggle('hidden', player.cls !== 'elf' && player.cls !== 'mage' && !(player.cls === 'royal' && hasMastery('k_royal_magic')));   // 🔧 轉換技能設置開放給法師/妖精；👑 王族（魔法精通）也開放以使用魔力奪取
+js\10-ui-tabs.js:647: // 🔧 黑暗妖精武器：鋼爪 / 雙刀 / 匕首
+js\10-ui-tabs.js:670: wpn_ancient_darkelf_sword:['單手劍'],   // 🏛️ 古代黑暗妖精之劍：反擊(單手劍)
+js\10-ui-tabs.js:672: wpn_demon_claw_hidden:['鋼爪'],   // 👹 隱藏的魔族鋼爪：鋼爪標籤(雙擊33預設＋貫穿＋黑暗妖精可裝)
+js\10-ui-tabs.js:1257: // 🛡️ 適用職業：以職業 logo 顯示可裝備此裝備的職業（騎士/妖精/法師/黑暗妖精/幻術士；黑暗妖精走 darkEquipOk 真實規則）
+js\10-ui-tabs.js:1259: const _EQ_CLASSES = [['knight','騎士'], ['elf','妖精'], ['mage','法師'], ['dark','黑暗妖精'], ['illusion','幻術士'], ['dragon','龍騎士'], ['warrior','戰士'], ['royal','王族']];
+js\10-ui-tabs.js:2559: // 🧝 v3.8.5 唯一例外＝妖精屬性閘：改讀 **ally.elfEle**（傭兵快照自帶）而非 player.elfEle 就不會誤判。
+js\10-ui-tabs.js:2609: // 🧝 v3.8.5 追加 elfEle：來源妖精換屬性後 refreshAllyOnce 重建快照時名字/等級都沒變 → 簽章不動 → 技能下拉與自動維持勾選會停在舊屬性的清單（該隱藏的沒隱藏）
+js\11-world-map.js:4: {v:'town_silver_knight',t:'銀騎士村'}, {v:'town_elf',t:'妖精森林'}, {v:'town_talking',t:'說話之島'},
+js\11-world-map.js:10: {v:'silver_knight',t:'銀騎士地區'}, {v:'talking_island',t:'說話之島周邊'}, {v:'zone_01',t:'妖精森林周邊'},
+js\11-world-map.js:36: // 🌑 黑暗妖精聖地／受詛咒聖地／崩壞的長老會議廳＝「無法從地圖選單選擇」（MD 設定·只能由 長老會議廳 NPC 真‧冥皇丹特斯 進入）→不列選單；安全區改 town_elder_council(village 群組)
+js\11-world-map.js:92: { key: 'fairyforest', label: '妖精森林', maps: [
+js\11-world-map.js:93: {v:'town_elf', t:'妖精森林村莊'}, {v:'zone_01', t:'妖精森林周邊'},
+js\11-world-map.js:438: // 🌑 v3.4.7 黑暗妖精聖地 3 隱藏圖（NPC 進入·不在任何下拉）→右上角改顯示地名（比照傲慢之塔/遺忘之島）
+js\11-world-map.js:439: const SANCTUARY_MAP_NAMES = { dark_elf_sanctuary: '黑暗妖精聖地', cursed_dark_elf_sanctuary: '受詛咒的黑暗妖精聖地', collapsed_elder_council_hall: '崩壞的長老會議廳' };
+js\11-world-map.js:480: ind.textContent = SANCTUARY_MAP_NAMES[cur];   // 🌑 v3.4.7 黑暗妖精聖地3隱藏圖：比照傲慢之塔/遺忘之島＝隱藏左右下拉、只顯示地名（只能用「回村」離開）
+js\11-world-map.js:495: if (player.cls === 'dark') return 'town_silent';   // 🔧 黑暗妖精：未加入血盟時回沉默洞穴（已加入則上面已回盟主村莊）
+js\11-world-map.js:1405: <div class="text-slate-300 leading-relaxed">${player.cls === 'dark' ? '漢：每個走到極致的黑暗妖精，都要回答同一個問題——<br><span class="text-amber-200 font-bold">你的「信念」是什麼</span>' : `漢：每個走到極限的${({knight:'騎士',mage:'法師',elf:'妖精',illusion:'幻術士',d
+js\11-world-map.js:1501: // ===== 🌑 v3.3.33 真‧冥皇丹特斯（長老會議廳·黑暗妖精聖地.md）：三選項入口 =====
+js\11-world-map.js:1502: //   進入 黑暗妖精聖地／受詛咒的黑暗妖精聖地＝各消耗 1 本 死亡騎士之書；交出 吉爾塔斯的封印＝消耗 1 個→傳送 崩壞的長老會議廳。
+js\11-world-map.js:1516: logSys(`<span class="text-amber-300">你交出了 1 個 ${d0 ? d0.n : costId}，${mapKey === 'collapsed_elder_council_hall' ? '被傳送到了 崩壞的長老會議廳' : '踏入了 ' + (mapKey === 'dark_elf_sanctuary' ? '黑暗妖精聖地' : '受詛咒的黑暗妖精聖地')}……</span>`);
+js\11-world-map.js:1549: <button class="w-full text-left px-3 py-2 rounded bg-indigo-900/60 hover:bg-indigo-800 border border-indigo-500/40 ${books < 1 ? 'opacity-50' : ''}" onclick="sanctuaryEnter('dark_elf_sanctuary','item_dk_book')">⚔️ 進入 黑暗妖
+js\11-world-map.js:1550: <button class="w-full text-left px-3 py-2 rounded bg-rose-900/60 hover:bg-rose-800 border border-rose-500/40 ${books < 1 ? 'opacity-50' : ''}" onclick="sanctuaryEnter('cursed_dark_elf_sanctuary','item_dk_book')">💀 進入 受詛
+js\11-world-map.js:1705: } else if (npc.id === 'npc_runde' || npc.id === 'npc_kang' || npc.id === 'npc_brudica') {   // 🔧 黑暗妖精限定試煉（仿瑞奇/甘特，而非製作）
+js\11-world-map.js:1814: '2725': { g: '2725', f: 1 },   // 🌳 v3.2.90 迷幻森林之母＝妖精石像（用戶提供 NPC/迷幻森林之母/2725-0·88×96 單幀）
+js\11-world-map.js:1842: // 🐉 v3.7.60 威頓村安塔瑞斯三人組（Downloads/NPC 用戶指定素材）：多魯嘉貝爾＝新轉 7618；米米＝914（與妖精森林那翰同素材·異城不撞臉）；萊利的輔佐官＝460（與說話之島法林同素材·異城不撞臉）
+js\11-world-map.js:1864: const NPC_SPR_ROLE = { warehouse: '10669', ally: '51', castleguard: '1222' };   // 🏦 v3.4.74 倉庫通用外型 54→10669（朵琳新造型·妖精森林倉庫=npc_wh_elf 走 FIXED '918' 不受影響）
+js\11-world-map.js:1930: // 妖精森林：埃爾頻=左階梯下空地｜艾爾=主殿門前｜琳達=舞台前｜艾利溫=右側林間石徑｜那翰/娜魯帕=林間空地｜精靈女皇(override)｜精靈=花圃間｜安特(override釘右上)｜潘/芮克妮=空地｜布拉伯=右下屋門廊｜羅賓孫=左下樹屋平台｜迷幻森林之母=右中開闊地(巨石像)
+js\12-npc-quests.js:973: // 🔧 黑暗妖精限定試煉（v3.0.78 接取制）：倫得=30級/康=15級（v3.1.39 交換·key 名 dark15/dark30 未動故與 lv 不對應屬正常）/布魯迪卡=45級＋50級試煉
+js\12-npc-quests.js:982: div.innerHTML = `<div class="p-6 text-red-400">${cfg.npc}：這是黑暗妖精的試煉，外人不得參與。</div>`;
+js\12-npc-quests.js:986: if (npcId === 'npc_brudica') html += `<div class="mt-3">` + build50TrialHTML('布魯迪卡') + `</div>`;   // 🔥 布魯迪卡：追加黑暗妖精 50 級試煉（等級檢查由 build50TrialHTML 處理）
+js\12-npc-quests.js:989: // ===== 🔥 各職業 50 級試煉系統（迪嘉勒廷＝騎士/妖精/法師；布魯迪卡＝黑暗妖精）=====
+js\12-npc-quests.js:992: stages: [ {id:'item_dantes_letter', nm:'丹特斯的召書', cnt:1, hint:'擊殺黑暗妖精將軍'},
+js\12-npc-quests.js:1048: if (!cfg || cfg.npc !== '迪嘉勒廷') { div.innerHTML = `<div class="p-6 text-red-400">迪嘉勒廷：這場試煉只屬於騎士、妖精、法師與王族。</div>`; return; }
+js\12-npc-quests.js:1126: // 🏹 歐斯：妖精 15 級試煉（接取制）
+js\12-npc-quests.js:1128: if (player.cls !== 'elf') { div.innerHTML = `<div class="p-6 text-red-400">歐斯：我有點事想找妖精幫忙，不相關者請離開。</div>`; return; }
+js\12-npc-quests.js:1148: // 🏹 迷幻森林之母：妖精 30 級試煉（接取制）
+js\12-npc-quests.js:1150: if (player.cls !== 'elf') { div.innerHTML = `<div class="p-6 text-red-400">迷幻森林之母：只有妖精聽得見森林的低語。</div>`; return; }
+js\12-npc-quests.js:1153: // 🛡️🏹👑 馬沙（威頓村）：騎士 45／妖精 45／王族 45 級試煉（接取制）
+js\12-npc-quests.js:1156: if (!key) { div.innerHTML = `<div class="p-6 text-red-400">馬沙：這是騎士、妖精與王族的試煉。</div>`; return; }
+js\13-shop-save.js:1: // ===================== 妖精屬性系統 (NPC 艾利溫) =====================
+js\13-shop-save.js:22: elf_forest: 'assets/area/森林.jpg', zone_01: 'assets/area/森林.jpg', mirror_forest: 'assets/area/森林.jpg',   // 🌲 妖魔森林/妖精森林周邊/鏡子森林（野外·共用森林背景）
+js\13-shop-save.js:59: dark_elf_sanctuary: 'assets/area/1920x1080/黑暗妖精聖地.jpg',
+js\13-shop-save.js:60: cursed_dark_elf_sanctuary: 'assets/area/1920x1080/受詛咒的黑暗妖精聖地.jpg',
+js\13-shop-save.js:90: const AREA_1920 = new Set(['亞丁城鎮','伊娃王國','傲慢之塔','傲慢之塔11~20樓','傲慢之塔1樓','傲慢之塔21~30樓','傲慢之塔2~10樓','傲慢之塔31~40樓','傲慢之塔41~50樓','傲慢之塔51~60樓','傲慢之塔61~70樓','傲慢之塔71~80樓','傲慢之塔81~90樓','傲慢之塔91~100樓','冥法軍王之室','冥法軍訓練場','古代巨人之墓','古魯丁',
+js\13-shop-save.js:101: town_elf: '妖精森林村莊', town_talking: '說話之島村莊', town_gludio: '燃柳村莊', town_gludin: '古魯丁村莊', town_witon: '威頓村莊',
+js\13-shop-save.js:105: town_elder_council: '長老會議廳'   // 🌑 v3.3.33 黑暗妖精聖地樞紐安全區
+js\13-shop-save.js:138: document.body.style.boxShadow = e ? `inset 0 0 0 6px ${e.border}` : 'none';   // 攻城獲勝標記改用頭像旁徽章顯示，避免與妖精地屬性黃色邊框衝突
+js\13-shop-save.js:144: <span class="text-5xl mb-4">🚫</span><span class="text-lg">只有妖精能夠選擇屬性。</span></div>`;
+js\13-shop-save.js:266: let cantLearn = d.type === 'skillbk' && !learned && DB.skills[d.sk] && skillReqLv(DB.skills[d.sk], d.sk) === undefined;   // 🔧 該職業無法學習（如黑暗妖精三階以上法師魔法）：以「已習得」相同暗色呈現
+js\13-shop-save.js:342: let clsName = { knight:'騎士', mage:'法師', elf:'妖精', dark:'黑暗妖精', illusion:'幻術士', dragon:'龍騎士', warrior:'戰士', royal:'王族' }[p.cls] || p.cls;
+js\13-shop-save.js:793: '男妖精': 'm_elf', '女妖精': 'f_elf',
+js\13-shop-save.js:794: '男黑暗妖精': 'm_dark', '女黑暗妖精': 'f_dark',
+js\13-shop-save.js:1180: const titleMap = { royal:'王族', knight:'騎士', mage:'法師', elf:'妖精', dark:'黑暗妖精', illusion:'幻術士', dragon:'龍騎士', warrior:'戰士' };
+js\13-shop-save.js:1187: elf: "妖精擁有比人類更長的壽命\n與美麗的外貌，他們順應自然\n追求融合安定的生活\n並對所有的事情表現較為保守\n因此妖精不喜歡與人類接觸\n在『森林之母』的保護之下\n建立獨自的文化生活。\n\n妖精能夠使用的武器比騎士少\n但是他可以使用大部分的武器\n尤其可以使用遠距離攻擊的弓箭\n比其他武器擁有更多的優勢\n而且能夠使用法師的多種魔法\n可謂是個最均衡的職業。\n\n你想要以妖精的身份存活\n就必須取得妖森守護者\n『那
+js\13-shop-save.js:1189: dark: "黑暗妖精承襲妖精的敏銳與長壽\n卻選擇在陰影中磨練自己的道路。\n他們不以守護森林為使命，\n而是追求更快速、更致命的力量，\n在寂靜之中完成一次決定勝負的攻擊。\n\n黑暗妖精能夠使用匕首、雙刀、鋼爪\n與十字弓等武器，\n並以毒與閃避牽制敵人的行動。\n他們的防禦並不穩固，\n但是敏捷的身手與爆發性的殺傷力\n足以在短時間內扭轉戰局。\n\n你若想以黑暗妖精的身份生存，\n就必須習慣孤獨與危險，\n並相信藏在黑暗中的刀
+js\13-shop-save.js:1276: 'm_elf': '男妖精', 'f_elf': '女妖精',
+js\13-shop-save.js:1277: 'm_dark': '男黑暗妖精', 'f_dark': '女黑暗妖精',
+js\13-shop-save.js:1313: gainItem('wpn_11', 1, true, true);        // 🔧 匕首（黑暗妖精起始武器，非歐西斯匕首）
+js\13-shop-save.js:1428: // 勇敢藥水：騎士／龍騎士限定；慎重藥水：法師／幻術士限定；精靈餅乾：妖精限定
+js\14-craft-pandora.js:234: // 👇 新增妖精森林全系列配方
+js\14-craft-pandora.js:292: // 👇 新增羅賓孫的配方（妖精森林：熾炎天使弓）
+js\14-craft-pandora.js:312: // 👇 新增庫普的配方（沉默洞穴：銀與黑暗妖精鋼爪/雙刀/十字弓；武器皆支援席琳製作）
+js\14-craft-pandora.js:414: // 🌑 v3.3.33 長老會議廳・亞提利歐（黑暗妖精聖地.md）：召喚球合成＋真．冥皇系列防具鍛造
+js\14-craft-pandora.js:1648: royal: '王族', knight: '騎士', mage: '法師', elf: '妖精',
+js\14-craft-pandora.js:1649: dark: '黑暗妖精', illusion: '幻術士', dragon: '龍騎士', warrior: '戰士'
+js\15-cards.js:20: { key: 'fairyforest',  name: '妖精森林',   stat: 'mmp',      vals: [3, 5, 10],  maps: ['zone_01', 'zone_15', 'zone_16', 'zone_17'] },
+js\15-cards.js:35: // ⚠️ 以下兩區原本整個漏掉：35 隻該區獨有怪（遺忘之島 obli_* 26 隻、黑暗妖精聖地 sanct_* 9 隻含吉爾塔斯／冥皇丹特斯）
+js\15-cards.js:39: { key: 'sanctuary',    name: '黑暗妖精聖地', stat: 'mr',     vals: [1, 3, 5],   maps: ['dark_elf_sanctuary', 'cursed_dark_elf_sanctuary', 'collapsed_elder_council_hall'] },
+js\17-audio.js:83: //   受傷群組(4組)：knight=騎士/戰士/龍騎士、mage=法師/幻術士、elf=妖精/黑暗妖精、royal=王族；性別由 player.avatar(/女|公主/→f否則m) 判定。
+js\17-audio.js:184: "古代巨人": 1220, "巨大兵蟻": 212, "鼠人": 614, "海星": 623, "長老": 35, "卡司特": 106, "食人妖精": 75, "蛇女": 615, "地獄犬": 427, "希爾黛斯": 727,
+js\17-audio.js:186: "雪人": 750, "紙人": 732, "骷髏鬥士": 57, "奎斯坦修": 618, "爆彈花": 653, "食人妖精王": 75, "莫妮亞": 55, "艾爾摩士兵": 700, "格利芬": 278,
+js\17-audio.js:198: "底比斯 賀洛斯": 49, "歐姆": 770, "狂暴的歐姆": 770, "歐姆裝甲兵": 723, "狂暴的歐姆裝甲兵": 723, "黑暗妖精殘兵(弓)": 458, "黑暗妖精殘兵(劍)": 458,
+js\17-audio.js:199: "黑暗妖精殘兵(十字弓)": 458, "黑暗妖精殘兵(法師)": 458, "黑暗妖精殘兵(雙手劍)": 458, "黑暗精靈使": 458, "黑暗妖精警衛(十字弓)": 458, "黑暗妖精魔法學徒": 458,
+js\17-audio.js:200: "黑暗妖精警衛(矛)": 458, "黑暗妖精巡守": 458, "黑暗妖精士兵": 458, "黑暗妖精將軍": 458, "黑虎": 168, "拉斯塔巴德馴獸師": 79, "受詛咒的馴獸師": 79, "地獄束縛犬": 427,
+js\17-audio.js:202: "火元素守護者": 770, "黑暗妖精法師": 458, "黑法師": 458, "黑暗復仇者": 79, "血色術士": 79, "歐姆戰士": 106, "闇黑君王": 79, "血騎士": 79, "重裝歐姆戰士": 106,
+js\17-audio.js:214: "遺忘之島卡司特": 106, "遺忘之島蛇女": 615, "遺忘之島萊肯": 70, "遺忘之島巨斧牛人": 519, "遺忘之島食人妖精": 75, "遺忘之島楊果里恩": 55, "遺忘之島格利芬": 278,
+js\17-audio.js:216: "遺忘之島食人妖精王": 75, "遺忘之島邪惡蜥蜴": 223, "遺忘之島獨眼巨人": 438, "遺忘之島飛龍": 278, "遺忘之島巨大牛人": 519, "深淵食屍鬼": 72, "深淵弓箭手": 57,
+js\17-audio.js:218: "深淵之主": 427, "魔蝙蝠": 83, "黑暗妖精盜賊": 458, "闇之精靈": 156, "犰狳": 291, "魔熊": 291, "歐姆民兵": 26, "闇精靈王": 156, "金屬蜈蚣": 213,
+js\17-audio.js:229: "巨大牛人": 519, "暴走兔": 83, "果凍怪": 60, "重裝歐姆": 106, "黑暗妖精運送員": 458,   // 🧝 v3.0.58 變身借音：遺忘之島巨大牛人/夢幻之島暴走兔/象牙塔果凍怪/重裝歐姆戰士·v3.0.59 運送員=黑暗妖精警衛
+js\17-audio.js:263: "古代巨人": 1221, "巨大兵蟻": 197, "鼠人": 560, "海星": 575, "長老": 36, "卡司特": 105, "食人妖精": 76, "蛇女": 586, "地獄犬": 424, "希爾黛斯": 730,
+js\17-audio.js:265: "雪人": 751, "紙人": 733, "骷髏鬥士": 58, "奎斯坦修": 557, "爆彈花": 654, "食人妖精王": 76, "莫妮亞": 56, "艾爾摩士兵": 720, "格利芬": 274,
+js\17-audio.js:277: "底比斯 賀洛斯": 50, "歐姆": 772, "狂暴的歐姆": 772, "歐姆裝甲兵": 724, "狂暴的歐姆裝甲兵": 724, "黑暗妖精殘兵(弓)": 460, "黑暗妖精殘兵(劍)": 460,
+js\17-audio.js:278: "黑暗妖精殘兵(十字弓)": 460, "黑暗妖精殘兵(法師)": 460, "黑暗妖精殘兵(雙手劍)": 460, "黑暗精靈使": 460, "黑暗妖精警衛(十字弓)": 460, "黑暗妖精魔法學徒": 460,
+js\17-audio.js:279: "黑暗妖精警衛(矛)": 460, "黑暗妖精巡守": 460, "黑暗妖精士兵": 460, "黑暗妖精將軍": 460, "黑虎": 173, "拉斯塔巴德馴獸師": 80, "受詛咒的馴獸師": 80, "地獄束縛犬": 424,
+js\17-audio.js:281: "火元素守護者": 772, "黑暗妖精法師": 460, "黑法師": 460, "黑暗復仇者": 80, "血色術士": 80, "歐姆戰士": 105, "闇黑君王": 80, "血騎士": 80, "重裝歐姆戰士": 105,
+js\17-audio.js:293: "遺忘之島卡司特": 105, "遺忘之島蛇女": 586, "遺忘之島萊肯": 71, "遺忘之島巨斧牛人": 530, "遺忘之島食人妖精": 76, "遺忘之島楊果里恩": 56, "遺忘之島格利芬": 274,
+js\17-audio.js:295: "遺忘之島食人妖精王": 76, "遺忘之島邪惡蜥蜴": 219, "遺忘之島獨眼巨人": 436, "遺忘之島飛龍": 274, "遺忘之島巨大牛人": 530, "深淵食屍鬼": 73, "深淵弓箭手": 58,
+js\17-audio.js:297: "深淵之主": 424, "魔蝙蝠": 84, "黑暗妖精盜賊": 460, "闇之精靈": 157, "犰狳": 293, "魔熊": 293, "歐姆民兵": 27, "闇精靈王": 157, "金屬蜈蚣": 196,
+js\17-audio.js:308: "巨大牛人": 530, "暴走兔": 84, "果凍怪": 61, "重裝歐姆": 105, "黑暗妖精運送員": 460,   // 🧝 v3.0.58 變身借音：遺忘之島巨大牛人/夢幻之島暴走兔/象牙塔果凍怪/重裝歐姆戰士·v3.0.59 運送員=黑暗妖精警衛
+js\17-audio.js:334: "黑暗妖精士兵": 1096, "黑暗妖精將軍": 1080, "黑暗妖精巡守": 783, "黑暗妖精殘兵(劍)": 1096, "黑暗妖精殘兵(十字弓)": 783, "黑暗妖精殘兵(弓)": 783, "黑暗妖精殘兵(法師)": 1030, "黑暗妖精殘兵(雙手劍)": 1096,
+js\17-audio.js:335: "黑暗妖精法師": 1148, "黑暗妖精盜賊": 903, "黑暗妖精警衛(十字弓)": 783, "黑暗妖精警衛(矛)": 1169, "黑暗妖精魔法學徒": 1030, "黑暗棲林者": 1204, "黑暗精靈": 491, "黑暗精靈使": 1086,
+js\17-audio.js:379: // 🌑 v3.4.0 黑暗妖精聖地雙 BOSS 戰鬥音（黑暗妖精聖地.md·[名, 攻擊, 技能, 受傷, 死亡]）：吉爾塔斯＝用戶指定 1992/1993/1995/1994；真‧死亡騎士 冥皇丹特斯＝借「死亡騎士」同套（攻86/技91/受88/死89·hurt/kill/skill 表無子字串借用故須顯式）＋攻擊疊揮刀聲 248（同死亡騎士）。
+js\17-audio.js:526: '莉絲安': 'elf_m' };   // 🏹 v3.5.16 莉絲安受傷/死亡音套用男妖精語音（hurt_elf_m·用戶指定）
+js\17-audio.js:567: 'town_elf',           // 妖精森林
+js\17-audio.js:579: 'town_elder_council', // 🌑 v3.4.0 長老會議廳（黑暗妖精聖地.md：music 10）
+js\17-audio.js:592: 'cursed_dark_elf_sanctuary': 'music153', 'collapsed_elder_council_hall': 'music162',   // 🌑 v3.4.0 黑暗妖精聖地雙 BOSS 房（黑暗妖精聖地.md：music 153／162；一般聖地未指定→維持通用 battle）
+js\19-equipment-window.js:53: royal: '王族', knight: '騎士', mage: '法師', elf: '妖精',
+js\23-summons.js:10: //     ・造屍術：玩家等級分階（法師 24/32/40/44/48/52 → Lv10~20 殭屍·HP100~800；妖精 48+ 固定 Lv10/HP100）·傷害比照召喚術模型
+js\23-summons.js:34: { n: '食人妖精',   lv: 32, hp: 450, aspd: 13 },
+js\23-summons.js:35: { n: '食人妖精王', lv: 32, hp: 400, aspd: 13, ring: true },
+js\23-summons.js:151: // 🧟 造屍術：玩家等級決定殭屍階級（用戶指定 HP 表）；妖精 48 級以上固定最低階（Lv10/HP100）。
+js\23-summons.js:164: if (owner.cls === 'elf') return (owner.lv || 1) >= 48 ? ZOMBIE_TIERS[0] : null;   // 妖精：48+ 固定 Lv10/HP100
+js\23-summons.js:192: { min: 41, max: 50, lv: 40, hp: 240, ref: '食人妖精', ratio: 1 },
+js\24-pandora-relic-market.js:33: '王子', '公主', '男騎士', '女騎士', '男法師', '女法師', '男妖精', '女妖精',
+js\24-pandora-relic-market.js:34: '男黑暗妖精', '女黑暗妖精', '男幻術士', '女幻術士', '男龍騎士', '女龍騎士', '男戰士', '女戰士'
+js\25-clan-system.js:24: royal:'王族', knight:'騎士', elf:'妖精', mage:'法師', dark:'黑暗妖精',
+js\25-clan-system.js:72: '別問掉寶率','全村的希望','盟主又迷路','補師先別睡','騎士向前衝','妖精站後排','法師沒魔了',
+js\26-world-channel.js:202: // ⚠️ 必須「長名優先」：「黑暗妖精」含有「妖精」、「龍騎士」含有「騎士」，照物件順序掃會被短名搶走。
+js\26-world-channel.js:626: { words: ['黑暗妖精聖地', '妖精聖地', '長老之室', '長老會議廳', '格蘭肯', '提卡爾', '底比斯', '隱藏地圖', '隱藏區域'], lines: [
+js\26-world-channel.js:668: // 🗺️ v3.6.61 「怎麼去」類問題：比對地名回報路線（巴哈實際問法：黑暗妖精聖地怎麼去／象牙塔怎麼去）
+js\26-world-channel.js:1022: '造屍術要對擊倒的怪施放，等級高殭屍跟著變強；妖精的屬性精靈則看你當初簽的屬性契約。',
+js\26-world-channel.js:1162: '徵網婆，女妖精佳，男妖精先不要密。',
+js\26-world-channel.js:1216: '妖精今天又在吵風妖火妖誰比較強。',
+js\26-world-channel.js:1711: ['妖精選錯屬性就毀了，可憐。', '屬性是選擇，不是運氣。'],
+js\26-world-channel.js:2905: elf: male ? '男妖精' : '女妖精', dark: male ? '男黑暗妖精' : '女黑暗妖精', dragon: male ? '男龍騎士' : '女龍騎士',
+js\28-pvp-arena.js:174: let m = { royal: '王子', knight: '男騎士', mage: '男法師', elf: '男妖精', dark: '男黑暗妖精', illusion: '男幻術士', dragon: '男龍騎士', warrior: '男戰士' };
+js\29-siege-v2-data.js:49: "notes": "肯特遠程壓制；HP約同級職業妖精115%，但無配點／萬能藥，命中與傷害較低；共通肯特規則：DR=MIN(9,2+FLOOR(等級/15))+單位加值；HP<35%最終受傷-15%；每名其他肯特專屬守軍再-3%，最多3名／9%",
+js\29-siege-v2-data.js:795: "portraitRow": "男妖精",
+js\29-siege-v2-data.js:877: "notes": "黑暗刺客：玩家能力引用 class_dark_standard（黑暗妖精男女共用）；速度層暫用黑暗騎士 atk／cast／stun，日後有正式刺客資料再替換",
+js\29-siege-v2-data.js:892: "morphFormId": "黑暗妖精刺客",
+js\29-siege-v2-data.js:1204: "name": "女妖精",
+js\29-siege-v2-data.js:1245: "notes": "職業守軍；完整套用女妖精玩家成長、升級配點與萬能藥。技能：三重矢／魂體轉換／大地的祝福；大地祝福為全隊AC改善7的團隊光環。",
+js\29-siege-v2-data.js:1246: "assetSource": "castle/11.城戰守軍/職業守軍/女妖精",
+js\29-siege-v2-data.js:1255: "portraitRow": "女妖精",
+js\29-siege-v2-data.js:1439: "portraitRow": "女黑暗妖精",
+js\29-siege-v2-data.js:1848: "name": "男妖精",
+js\29-siege-v2-data.js:1889: "notes": "職業守軍；完整套用男妖精玩家成長、升級配點與萬能藥。技能：三重矢／魂體轉換／暴風神射；需配置弓與箭，暴風神射提供遠程傷害+6、命中+3。",
+js\29-siege-v2-data.js:1890: "assetSource": "castle/11.城戰守軍/職業守軍/男妖精",
+js\29-siege-v2-data.js:1899: "portraitRow": "男妖精",
+js\29-siege-v2-data.js:2073: "notes": "職業守軍；技能：會心一擊／暗影之牙／迴避提升。完整沿用黑暗妖精物理、會心、額外傷害與ER公式。",
+js\29-siege-v2-data.js:2083: "portraitRow": "男黑暗妖精",
+js\29-siege-v2-data.js:3279: "portraitRow": "男妖精",
+js\29-siege-v2-data.js:3361: "notes": "銀光刺客：玩家能力引用 class_dark_standard（黑暗妖精男女共用）；速度層暫用銀光騎士 atk／cast／stun，日後有正式刺客資料再替換",
+js\29-siege-v2-data.js:3647: "portraitRow": "男妖精",
+js\29-siege-v2-data.js:3729: "notes": "黃金刺客：玩家能力引用 class_dark_standard（黑暗妖精男女共用）；速度層暫用黃金騎士 atk／cast／stun，日後有正式刺客資料再替換；奇岩精銳裝備另加HP+10%、MP+8%、AC-6、MR+12、命中+3、最終傷害+8%、固定DR+2；攻速只採黃金變身，不由裝備重複增加。",
+js\29-siege-v2-data.js:4015: "portraitRow": "男妖精",
+js\29-siege-v2-data.js:4097: "notes": "白金刺客：玩家能力引用 class_dark_standard（黑暗妖精男女共用）；速度層暫用白金騎士 atk／cast／stun，日後有正式刺客資料再替換；亞丁白金精銳：保留職業配點、60點萬能藥與白金變身攻速，再套aden_platinum_gear；可取得所在防區元素塔光環。",
+js\29-siege-v2-data.js:10676: "unitName": "女妖精",
+js\29-siege-v2-data.js:10970: "unitName": "男妖精",
+js\29-siege-v2-data.js:11062: "attackNote": "主動物理會心攻擊；傷害交由現行黑暗妖精武器與會心公式。",
+js\29-siege-v2-data.js:12330: "support1Note": "優先法師、妖精與輔助型目標；無有效後排時才攻擊前線。",
+js\32-threat.js:29: if (c === 'elf' || c === 'dark') return 1.5;                                            // 妖精/黑暗妖精
+js\anim-manifest.js:4: const ANIM_MANIFEST = {"assets/anim/不幸的幻象眼魔":{"attack_":7,"attack_s_":7,"death_":12,"death_s_":12,"hurt_":2,"hurt_s_":2,"idle_":14,"idle_s_":14,"skill_":11,"skill_effect_":11,"skill_s_":11},"assets/anim/不死的木乃伊王":{"attack
+===== PATTERN: 單屬性防禦 =====
+js\00-data.js:1731: "bk_elf_singleres": { type: "skillbk", n: "精靈水晶(單屬性防禦)", p: 15000, sk: "sk_elf_singleres", gachaWeight: 0 },
+js\00-data.js:2888: "sk_elf_singleres": { n: "單屬性防禦", type: "buff", tier: 3, reqE: 30, mp: 10, dur: 64, reqEleAny: true },
+js\02-stats-recompute.js:608: // 單屬性防禦：所選屬性抗性 +50
+js\08-items-equip.js:1257: 'sk_counter_barrier':'反擊屏障','sk_elf_mr':'魔法防禦','sk_elf_purify':'淨化精神','sk_elf_eleres':'屬性防禦','sk_elf_singleres':'單屬性防禦',
+js\09-vfx-render.js:282: '單屬性防禦': { dir:'單屬性防禦', prefix:'2285-0', n:13, fps:14, blend:'screen', h:0.50, overHead:true },
+js\17-audio.js:243: "世界樹的呼喚": 826, "水之元氣": 826, "生命之泉": 826, "屬性防禦": 828, "單屬性防禦": 828, "魔法防禦": 829, "三重矢": 832, "暴風神射": 832, "精準射擊": 832,
+===== PATTERN: 全屬性防禦 =====
+(no hits)
+===== PATTERN: 單屬性 =====
+js\00-data.js:1731: "bk_elf_singleres": { type: "skillbk", n: "精靈水晶(單屬性防禦)", p: 15000, sk: "sk_elf_singleres", gachaWeight: 0 },
+js\00-data.js:2888: "sk_elf_singleres": { n: "單屬性防禦", type: "buff", tier: 3, reqE: 30, mp: 10, dur: 64, reqEleAny: true },
+js\02-stats-recompute.js:608: // 單屬性防禦：所選屬性抗性 +50
+js\08-items-equip.js:398: if (attr) return 'attr-glow-' + attrCanon(item.attr);  // 🔥 單屬性：武器圖示帶該屬性同色系光芒（階級越高越亮，第5階呼吸光）
+js\08-items-equip.js:1257: 'sk_counter_barrier':'反擊屏障','sk_elf_mr':'魔法防禦','sk_elf_purify':'淨化精神','sk_elf_eleres':'屬性防禦','sk_elf_singleres':'單屬性防禦',
+js\09-vfx-render.js:282: '單屬性防禦': { dir:'單屬性防禦', prefix:'2285-0', n:13, fps:14, blend:'screen', h:0.50, overHead:true },
+js\17-audio.js:243: "世界樹的呼喚": 826, "水之元氣": 826, "生命之泉": 826, "屬性防禦": 828, "單屬性防禦": 828, "魔法防禦": 829, "三重矢": 832, "暴風神射": 832, "精準射擊": 832,
+===== PATTERN: 全屬性 =====
+afk-wiki.js:1989: var EB_STAT = { mhp: 'HP', mmp: 'MP', dr: '傷害減免', mr: '魔防', er: '迴避', hpR: 'HP自然恢復', mpR: 'MP自然恢復', weight: '負重上限', petHit: '項圈夥伴命中', extraDmg: '額外傷害', extraHit: '額外命中', allattr: '全屬性' };
+js\00-data.js:918: "relic_myriad_avatar":     { n: "百變化身",           type: "arm", slot: "gloves", relic: true, noEnhance: true, ac: 8, polyAtkSpdPct: 20, polyAllStats: 2, req: "all", p: 10000, gachaWeight: 0, d: "【遺物】變形怪首領蛻下的表皮製成的手套，戴上的人連骨
+js\00-data.js:2974: "sk_dragon_awaken_falion": { n: "覺醒：法利昂", type: "buff", label: "增益", tier: 2, reqDk: 30, mp: 30, hpCost: 20, dur: 600, noRefresh: true, awaken: true, d: { resFire: 15, resWater: 15, resEarth: 15, resWind: 15 }, msg: "你引動
+js\02-stats-recompute.js:152: // 🏺 v3.7.20 百變化身（手套 polyAllStats/polyAtkSpdPct）：變身時全屬性+N＋攻速+N%。
+js\14-craft-pandora.js:1840: s.push('全屬性抗性'+sgn(dd.resFire));   // 🔧 四屬性抗性相同 → 合併為「全屬性抗性」
+js\16-equip-book.js:76: doll:   { stat: 'allattr', val: 1,  label: '全屬性 +1' }   // 🪆 魔法娃娃全收集：六維各+1。實際套用在 js/02 Phase1(屬性須在換算衍生值前計入)；此處僅供收集冊顯示 label，equipCollectionBonus 對 allattr 做 no-op 避免 Phase3 重複套用
+===== PATTERN: 魔法消除 =====
+js\00-data.js:1738: "bk_elf_magicerase": { type: "skillbk", n: "精靈水晶(魔法消除)", p: 30000, sk: "sk_elf_magicerase", gachaWeight: 40 },
+js\00-data.js:2897: "sk_elf_magicerase": { n: "魔法消除", type: "atk", tier: 4, reqE: 40, mp: 30, dmgType: "magic", status: { kind: "mrhalf", pbase: 150, dur: 16 } },
+js\06-status-allies.js:1343: // 🔧 傭兵施放「非傷害」攻擊技能：純異常狀態（緩速/弱化/疾病/魔法消除/封印禁地/沉睡之霧/木乃伊詛咒/毒咒/壞物/闇盲/黑闇之影/破壞盔甲…）
+js\06-status-allies.js:2172: if (allyCastNonDamage(ally, sk)) return true;   // 🔧 非傷害攻擊技能（地面障礙/魔法消除/封印禁地/釋放元素…）；不適用則退回物理攻擊+連射
+js\09-vfx-render.js:105: '魔法消除': { dir:'魔法消除', prefix:'2181-0', n:19, fps:16, blend:'screen', h:1, ax:0.50, ay:0.55 },
+js\17-audio.js:241: "心靈轉換": 813, "魂體轉換": 813, "淨化精神": 814, "魔法消除": 815, "火焰武器": 816, "舞躍之火": 816, "屬性之火": 816, "灼熱武器": 816, "烈炎武器": 819,
+===== PATTERN: 汚濁之水 =====
+(no hits)
+===== PATTERN: 污濁之水 =====
+afk-wiki.js:425: { t: 'p', p: '妖精的<b>污濁之水</b>（五階水靈、只能對頭目放、必中）能讓這個回復量再<b>砍半 32 秒</b>，法系磨頭目很有用。' },
+js\00-data.js:1750: "bk_elf_muddywater": { type: "skillbk", n: "精靈水晶(污濁之水)", p: 16000, sk: "sk_elf_muddywater", gachaWeight: 1, d: "封存著「污濁之水」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:2909: "sk_elf_muddywater": { n: "污濁之水", type: "atk", tier: 5, reqE: 50, mp: 20, dmgType: "magic", ele: "water", reqEle: "water", bossOnly: true, status: { kind: "muddywater", force: true, dur: 32 }, desc: "只能對頭目施放；必定命中，使其HP自然恢
+js\01-drops-config.js:749: // 🌊 精靈水晶(污濁之水)：法利昂 1%／水精靈王 0.01%／黑長者 0.1%
+js\03-combat-core.js:803: if (m.st && (m.st.muddywater || 0) > 0) regenPct *= 0.5;   // 🌊 污濁之水：狀態維持中頭目 HP 自然恢復量減半
+js\06-status-allies.js:3: blind:0, blindVal:0, weaken:0, disease:0, vacuum:0, broken:0, slow:0, mrhalf:0, magicseal:0, fragile:0, shatter:0, armorbreak:0, confuse:0, panic:0, guardbreak:0, terror:0, doom:0, strawCurse:0, muddywater:0, bind:0 };  
+js\06-status-allies.js:45: blind:'目盲', weaken:'弱化', disease:'疾病', vacuum:'真空', broken:'損壞', slow:'緩速', mrhalf:'魔抗減半', magicseal:'魔法封印', fragile:'脆弱', shatter:'碎裂', armorbreak:'破甲', confuse:'混亂', panic:'恐慌', guardbreak:'護衛毀滅', terror:'恐懼', doom:'死神
+js\06-status-allies.js:1351: if (sk.bossOnly) targets = targets.filter(m => m && m.boss);   // 🌊 頭目限定技能（污濁之水）：非頭目時退回一般攻擊，不扣 MP／不播放施法動作
+js\06-status-allies.js:2663: if (_sk && !allySkillElementOk(ally, ally._atkSkill)) _sk = null;   // 🧝 v3.8.5 換屬性後不可用的屬性攻擊技（地面障礙/封印禁地/污濁之水）→視同未設定，走下方普攻分支（會暫清 _atkSkill·職業 act 內部一律退普攻）
+js\07-skills-cast.js:786: if(sk.bossOnly) targets = targets.filter(m => m && m.boss);   // 🌊 頭目限定技能（污濁之水）：非頭目不施放、不扣 MP／冷卻
+js\09-vfx-render.js:59: '污濁之水': { dir:'污濁之水', prefix:'mw', n:10, fps:12, h:1.1, ax:0.50, ay:0.55 },
+js\26-world-channel.js:1033: '頭目會持續回血，太久沒吃到物理傷害還會回得更兇；輸出不能斷，會污濁之水的先上，能壓他的恢復。',
+===== PATTERN: 汚濁 =====
+(no hits)
+===== PATTERN: 污濁 =====
+afk-wiki.js:420: { t: 'tbl', h: ['最近 5 秒內…', '每 5 秒回復', '掛「污濁」時'], rows: [
+afk-wiki.js:425: { t: 'p', p: '妖精的<b>污濁之水</b>（五階水靈、只能對頭目放、必中）能讓這個回復量再<b>砍半 32 秒</b>，法系磨頭目很有用。' },
+afk-wiki.js:468: ['污濁', '<b>頭目專用</b>：頭目每 5 秒的自然回血砍半（詳見上面「頭目會回血」）'],
+afk-wiki.js:638: { n: '幻術士魔杖＋記憶水晶(立方：燃燒)（15 級）', npc: '希蓮恩 ＠歐瑞·希培利亞村莊', req: '污濁安特的水果 ×1、污濁安特的樹枝 ×1、污濁安特的樹皮 ×1', from: '污染的安特（妖精森林·眠龍洞穴 1~3 樓、妖精森林周邊）。接取試煉後擊殺必定掉落', rw: '幻術士魔杖＋記憶水晶(立方：燃燒)（一次全拿）' },
+afk-wiki.js:4551: sk_elf_muddywater: ['只能對頭目施放(場上沒頭目就不放、不耗魔)；必定命中、不會被抵抗', '讓頭目每 5 秒的自然回血砍半 32 秒：被物理打過 0.5%→0.25%、沒被打 2.5%→1.25%', '本身不造成傷害；目標已在污濁中就不重複施放'],
+js\00-data.js:1750: "bk_elf_muddywater": { type: "skillbk", n: "精靈水晶(污濁之水)", p: 16000, sk: "sk_elf_muddywater", gachaWeight: 1, d: "封存著「污濁之水」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1833: "item_ant_fruit":  { n: "污濁安特的水果", p: 0, c: "text-emerald-300", noUse: true, noSell: true, gachaWeight: 0, d: "自腐化安特身上墜落的果實，外皮蒙著一層揮之不去的污濁。希蓮恩的試煉道具。（無法販售）" },
+js\00-data.js:1834: "item_ant_branch": { n: "污濁安特的樹枝", p: 0, c: "text-emerald-300", noUse: true, noSell: true, gachaWeight: 0, d: "從受污染的安特折下的枯枝，仍滲著黯沉的樹液。希蓮恩的試煉道具。（無法販售）" },
+js\00-data.js:1835: "item_ant_bark":   { n: "污濁安特的樹皮", p: 0, c: "text-emerald-300", noUse: true, noSell: true, gachaWeight: 0, d: "剝自腐化安特軀幹的樹皮，紋路間爬滿了黑斑。希蓮恩的試煉道具。（無法販售）" },
+js\00-data.js:2909: "sk_elf_muddywater": { n: "污濁之水", type: "atk", tier: 5, reqE: 50, mp: 20, dmgType: "magic", ele: "water", reqEle: "water", bossOnly: true, status: { kind: "muddywater", force: true, dur: 32 }, desc: "只能對頭目施放；必定命中，使其HP自然恢
+js\01-drops-config.js:749: // 🌊 精靈水晶(污濁之水)：法利昂 1%／水精靈王 0.01%／黑長者 0.1%
+js\03-combat-core.js:803: if (m.st && (m.st.muddywater || 0) > 0) regenPct *= 0.5;   // 🌊 污濁之水：狀態維持中頭目 HP 自然恢復量減半
+js\06-status-allies.js:3: blind:0, blindVal:0, weaken:0, disease:0, vacuum:0, broken:0, slow:0, mrhalf:0, magicseal:0, fragile:0, shatter:0, armorbreak:0, confuse:0, panic:0, guardbreak:0, terror:0, doom:0, strawCurse:0, muddywater:0, bind:0 };  
+js\06-status-allies.js:45: blind:'目盲', weaken:'弱化', disease:'疾病', vacuum:'真空', broken:'損壞', slow:'緩速', mrhalf:'魔抗減半', magicseal:'魔法封印', fragile:'脆弱', shatter:'碎裂', armorbreak:'破甲', confuse:'混亂', panic:'恐慌', guardbreak:'護衛毀滅', terror:'恐懼', doom:'死神
+js\06-status-allies.js:188: ['freeze','stun','stone','sleep','paralyze','blind','weaken','disease','vacuum','broken','slow','mrhalf','magicseal','fragile','shatter','armorbreak','confuse','panic','guardbreak','terror','doom','muddywater','bind'].fo
+js\06-status-allies.js:1351: if (sk.bossOnly) targets = targets.filter(m => m && m.boss);   // 🌊 頭目限定技能（污濁之水）：非頭目時退回一般攻擊，不扣 MP／不播放施法動作
+js\06-status-allies.js:2663: if (_sk && !allySkillElementOk(ally, ally._atkSkill)) _sk = null;   // 🧝 v3.8.5 換屬性後不可用的屬性攻擊技（地面障礙/封印禁地/污濁之水）→視同未設定，走下方普攻分支（會暫清 _atkSkill·職業 act 內部一律退普攻）
+js\07-skills-cast.js:786: if(sk.bossOnly) targets = targets.filter(m => m && m.boss);   // 🌊 頭目限定技能（污濁之水）：非頭目不施放、不扣 MP／冷卻
+js\09-vfx-render.js:59: '污濁之水': { dir:'污濁之水', prefix:'mw', n:10, fps:12, h:1.1, ax:0.50, ay:0.55 },
+js\09-vfx-render.js:1270: let order = ['freeze','stun','stone','sleep','paralyze','bind','blind','weaken','disease','vacuum','broken','slow','mrhalf','magicseal','fragile','shatter','armorbreak','confuse','panic','guardbreak','terror','doom','mud
+js\26-world-channel.js:1033: '頭目會持續回血，太久沒吃到物理傷害還會回得更兇；輸出不能斷，會污濁之水的先上，能壓他的恢復。',
+===== PATTERN: 封印禁地 =====
+js\00-data.js:1749: "bk_elf_seal": { type: "skillbk", n: "精靈水晶(封印禁地)", p: 60000, sk: "sk_elf_seal", gachaWeight: 10 },
+js\00-data.js:2151: "lindvior": { hard: true, n: "林德拜爾", lv: 90, s: "L", beh: "主動", race: "龍", boss: true, noAutoTeleport: true, e: "wind", hp: 120000, ac: -90, mr: 200, exp: 7922, goldMin: 13236, goldMax: 21524, atkSpd: 1, dmg: [3, 86], db
+js\00-data.js:2908: "sk_elf_seal": { n: "封印禁地", type: "atk", tier: 5, reqE: 50, mp: 40, dmgType: "magic", reqEleAny: true, status: { kind: "magicseal", pbase: 100, dur: 8 } },
+js\06-status-allies.js:1343: // 🔧 傭兵施放「非傷害」攻擊技能：純異常狀態（緩速/弱化/疾病/魔法消除/封印禁地/沉睡之霧/木乃伊詛咒/毒咒/壞物/闇盲/黑闇之影/破壞盔甲…）
+js\06-status-allies.js:2172: if (allyCastNonDamage(ally, sk)) return true;   // 🔧 非傷害攻擊技能（地面障礙/魔法消除/封印禁地/釋放元素…）；不適用則退回物理攻擊+連射
+js\06-status-allies.js:2663: if (_sk && !allySkillElementOk(ally, ally._atkSkill)) _sk = null;   // 🧝 v3.8.5 換屬性後不可用的屬性攻擊技（地面障礙/封印禁地/污濁之水）→視同未設定，走下方普攻分支（會暫清 _atkSkill·職業 act 內部一律退普攻）
+js\09-vfx-render.js:69: '封印禁地': { dir:'封印禁地', prefix:'2241-0', n:13, fps:14, blend:'screen', h:1, ax:0.50, ay:0.55 },
+js\17-audio.js:245: "弱化術": 843, "狂暴術": 843, "封印禁地": 845, "靈魂昇華": 807, "衝擊之暈": 110, "釋放元素": 717, "召喚屬性精靈": 139, "召喚強力屬性精靈": 139,
+js\29-siege-v2-data.js:4005: "notes": "變身守軍；完整引用class_elf_standard，攻速使用白金巡守poly_override並套亞丁白金精銳裝備／元素塔光環。技能：三重矢／魂體轉換／封印禁地；優先封鎖敵方施法者。",
+js\29-siege-v2-data.js:11954: "support2Name": "封印禁地",
+===== PATTERN: 精靈水晶 =====
+afk-dex.js:205: // 目前 6 張:MOB_DROPS、黑暗武器(DARK_WEAPON_DROPS)、三階黑精靈水晶(DARK_CRYSTAL_DROPS)、龍騎士(DRAGON_DROPS)、戰士印記(WARRIOR_DROPS)、記憶水晶(MEM_DROPS·幻術士法術書)。
+afk-dex.js:480: //   具名商人(武器商溫諾、魔法商巴耶斯、精靈水晶琳達…)只列「該商人獨有/非通用」的品項。
+afk-wiki.js:622: { n: '精靈水晶＋精靈T恤（30 級）', npc: '迷幻森林之母 ＠妖精森林', req: '受詛咒的精靈書 ×1', from: '希爾黛斯（海音·伊娃王國）。接取後必定掉落', rw: '精靈水晶(召喚屬性精靈)＋精靈T恤（一次全拿）' },
+afk-wiki.js:623: { n: '保護者手套＋精靈水晶（45 級）', npc: '馬沙 ＠威頓村', req: '藍色長笛 ×1、古代鑰匙 ×1', from: '藍色長笛：黑暗精靈（燃柳村·妖魔森林、龍之谷、奇岩、奇岩地監4樓）；古代鑰匙：鋼鐵高崙（歐瑞領域：歐瑞雪原／水晶洞穴／國境要塞／象牙塔 4~5 樓）。接取後必定掉落', rw: '保護者手套＋精靈水晶(召喚強力屬性精靈)（一次全拿）' }
+js\00-data.js:1406: "new_item_228": { n: "污染的精靈水晶(水)", p: 1, gachaWeight: 0 },
+js\00-data.js:1407: "new_item_229": { n: "污染的精靈水晶(火)", p: 1, gachaWeight: 0 },
+js\00-data.js:1408: "new_item_230": { n: "污染的精靈水晶(地)", p: 1, gachaWeight: 0 },
+js\00-data.js:1409: "new_item_231": { n: "污染的精靈水晶(風)", p: 1, gachaWeight: 0 },
+js\00-data.js:1720: // ===== 妖精精靈水晶 =====
+js\00-data.js:1721: "bk_elf_mr": { type: "skillbk", n: "精靈水晶(魔法防禦)", p: 3000, sk: "sk_elf_mr", gachaWeight: 0 },
+js\00-data.js:1722: "bk_elf_mind": { type: "skillbk", n: "精靈水晶(心靈轉換)", p: 3000, sk: "sk_elf_mind", gachaWeight: 0 },
+js\00-data.js:1723: "bk_elf_worldtree": { type: "skillbk", n: "精靈水晶(世界樹的呼喚)", p: 3000, sk: "sk_elf_worldtree", gachaWeight: 0 },
+js\00-data.js:1724: "bk_elf_triple": { type: "skillbk", n: "精靈水晶(三重矢)", p: 3000, sk: "sk_elf_triple", gachaWeight: 10 },
+js\00-data.js:1726: "bk_elf_purify": { type: "skillbk", n: "精靈水晶(淨化精神)", p: 7500, sk: "sk_elf_purify", gachaWeight: 0 },
+js\00-data.js:1727: "bk_elf_eleres": { type: "skillbk", n: "精靈水晶(屬性防禦)", p: 7500, sk: "sk_elf_eleres", gachaWeight: 0 },
+js\00-data.js:1728: "bk_elf_release": { type: "skillbk", n: "精靈水晶(釋放元素)", p: 7500, sk: "sk_elf_release", gachaWeight: 0 },
+js\00-data.js:1729: "bk_elf_soul": { type: "skillbk", n: "精靈水晶(魂體轉換)", p: 7500, sk: "sk_elf_soul", gachaWeight: 20 },
+js\00-data.js:1731: "bk_elf_singleres": { type: "skillbk", n: "精靈水晶(單屬性防禦)", p: 15000, sk: "sk_elf_singleres", gachaWeight: 0 },
+js\00-data.js:1732: "bk_elf_firewpn": { type: "skillbk", n: "精靈水晶(火焰武器)", p: 15000, sk: "sk_elf_firewpn", gachaWeight: 0 },
+js\00-data.js:1733: "bk_elf_windshot": { type: "skillbk", n: "精靈水晶(風之神射)", p: 15000, sk: "sk_elf_windshot", gachaWeight: 0 },
+js\00-data.js:1734: "bk_elf_winddash": { type: "skillbk", n: "精靈水晶(風之疾走)", p: 15000, sk: "sk_elf_winddash", gachaWeight: 0 },
+js\00-data.js:1735: "bk_elf_earthguard": { type: "skillbk", n: "精靈水晶(大地防護)", p: 15000, sk: "sk_elf_earthguard", gachaWeight: 0 },
+js\00-data.js:1736: "bk_elf_groundtrap": { type: "skillbk", n: "精靈水晶(地面障礙)", p: 15000, sk: "sk_elf_groundtrap", gachaWeight: 0 },
+js\00-data.js:1738: "bk_elf_magicerase": { type: "skillbk", n: "精靈水晶(魔法消除)", p: 30000, sk: "sk_elf_magicerase", gachaWeight: 40 },
+js\00-data.js:1739: "bk_elf_summon": { type: "skillbk", n: "精靈水晶(召喚屬性精靈)", p: 30000, sk: "sk_elf_summon", gachaWeight: 20 },
+js\00-data.js:1740: "bk_elf_dancefire": { type: "skillbk", n: "精靈水晶(舞躍之火)", p: 30000, sk: "sk_elf_dancefire", gachaWeight: 10 },
+js\00-data.js:1741: "bk_elf_stormeye": { type: "skillbk", n: "精靈水晶(暴風之眼)", p: 30000, sk: "sk_elf_stormeye", gachaWeight: 10 },
+js\00-data.js:1742: "bk_elf_mirror": { type: "skillbk", n: "精靈水晶(鏡反射)", p: 16000, sk: "sk_elf_mirror", gachaWeight: 1, d: "封存著「鏡反射」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1743: "bk_elf_earthshield": { type: "skillbk", n: "精靈水晶(大地屏障)", p: 30000, sk: "sk_elf_earthshield", gachaWeight: 10 },
+js\00-data.js:1744: "bk_elf_lifespring": { type: "skillbk", n: "精靈水晶(生命之泉)", p: 30000, sk: "sk_elf_lifespring", gachaWeight: 10 },
+js\00-data.js:1745: "bk_elf_earthbless": { type: "skillbk", n: "精靈水晶(大地的祝福)", p: 30000, sk: "sk_elf_earthbless", gachaWeight: 10, d: "封存著「大地的祝福」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1747: "bk_elf_summon2": { type: "skillbk", n: "精靈水晶(召喚強力屬性精靈)", p: 60000, sk: "sk_elf_summon2", gachaWeight: 1 },
+js\00-data.js:1748: "bk_elf_lifebless": { type: "skillbk", n: "精靈水晶(生命的祝福)", p: 60000, sk: "sk_elf_lifebless", gachaWeight: 5 },
+js\00-data.js:1749: "bk_elf_seal": { type: "skillbk", n: "精靈水晶(封印禁地)", p: 60000, sk: "sk_elf_seal", gachaWeight: 10 },
+js\00-data.js:1750: "bk_elf_muddywater": { type: "skillbk", n: "精靈水晶(污濁之水)", p: 16000, sk: "sk_elf_muddywater", gachaWeight: 1, d: "封存著「污濁之水」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1751: "bk_elf_blazewpn": { type: "skillbk", n: "精靈水晶(烈炎武器)", p: 60000, sk: "sk_elf_blazewpn", gachaWeight: 1 },
+js\00-data.js:1752: "bk_elf_flamesoul": { type: "skillbk", n: "精靈水晶(烈焰之魂)", p: 16000, sk: "sk_elf_flamesoul", gachaWeight: 1, d: "封存著「烈焰之魂」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1753: "bk_elf_physboost": { type: "skillbk", n: "精靈水晶(體能激發)", p: 16000, sk: "sk_elf_physboost", gachaWeight: 20, d: "封存著「體能激發」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1754: "bk_elf_energyboost": { type: "skillbk", n: "精靈水晶(能量激發)", p: 16000, sk: "sk_elf_energyboost", gachaWeight: 20, d: "封存著「能量激發」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1755: "bk_elf_attrfire": { type: "skillbk", n: "精靈水晶(屬性之火)", p: 16000, sk: "sk_elf_attrfire", gachaWeight: 1, d: "封存著「屬性之火」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1756: "bk_elf_preciseshot": { type: "skillbk", n: "精靈水晶(精準射擊)", p: 16000, sk: "sk_elf_preciseshot", gachaWeight: 1, d: "封存著「精準射擊」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1757: "bk_elf_stormshot": { type: "skillbk", n: "精靈水晶(暴風神射)", p: 60000, sk: "sk_elf_stormshot", gachaWeight: 1 },
+js\00-data.js:1758: "bk_elf_steelguard": { type: "skillbk", n: "精靈水晶(鋼鐵防護)", p: 60000, sk: "sk_elf_steelguard", gachaWeight: 1, d: "封存著「鋼鐵防護」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1759: "bk_elf_watervital": { type: "skillbk", n: "精靈水晶(水之元氣)", p: 4000, sk: "sk_elf_watervital", gachaWeight: 10, d: "封存著「水之元氣」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1760: // ===== 黑暗精靈水晶（黑暗妖精魔法，賽帝亞販售；潘朵拉抽不到） =====
+js\00-data.js:1761: "bk_dark_str":       { type: "skillbk", n: "黑暗精靈水晶(力量提升)", p: 500,   sk: "sk_dark_str",       gachaWeight: 0 },
+js\00-data.js:1762: "bk_dark_mrup":      { type: "skillbk", n: "黑暗精靈水晶(影之防護)", p: 500,   sk: "sk_dark_mrup",      gachaWeight: 0 },
+js\00-data.js:1763: "bk_dark_stealth":   { type: "skillbk", n: "黑暗精靈水晶(暗隱術)",   p: 500,   sk: "sk_dark_stealth",   gachaWeight: 0 },
+js\00-data.js:1764: "bk_dark_poison":    { type: "skillbk", n: "黑暗精靈水晶(附加劇毒)", p: 500,   sk: "sk_dark_poison",    gachaWeight: 0 },
+js\00-data.js:1765: "bk_dark_refine":    { type: "skillbk", n: "黑暗精靈水晶(提煉魔石)", p: 500,   sk: "sk_dark_refine",    gachaWeight: 0 },
+js\00-data.js:1766: "bk_dark_dex":       { type: "skillbk", n: "黑暗精靈水晶(敏捷提升)", p: 2500,  sk: "sk_dark_dex",       gachaWeight: 0 },
+js\00-data.js:1767: "bk_dark_poisonres": { type: "skillbk", n: "黑暗精靈水晶(毒性抵抗)", p: 2500,  sk: "sk_dark_poisonres", gachaWeight: 0 },
+js\00-data.js:1768: "bk_dark_burn":      { type: "skillbk", n: "黑暗精靈水晶(燃燒鬥志)", p: 2500,  sk: "sk_dark_burn",      gachaWeight: 0 },
+js\00-data.js:1769: "bk_dark_walkhaste": { type: "skillbk", n: "黑暗精靈水晶(行走加速)", p: 2500,  sk: "sk_dark_walkhaste", gachaWeight: 0 },
+js\00-data.js:1770: "bk_dark_fang":      { type: "skillbk", n: "黑暗精靈水晶(暗影之牙)", p: 12500, sk: "sk_dark_fang",      gachaWeight: 10 },
+js\00-data.js:1771: "bk_dark_dodge":     { type: "skillbk", n: "黑暗精靈水晶(暗影閃避)", p: 12500, sk: "sk_dark_dodge",     gachaWeight: 10 },
+js\00-data.js:1772: "bk_dark_crit":      { type: "skillbk", n: "黑暗精靈水晶(會心一擊)", p: 12500, sk: "sk_dark_crit",      gachaWeight: 10 },
+js\00-data.js:1773: "bk_dark_erup":      { type: "skillbk", n: "黑暗精靈水晶(迴避提升)", p: 12500, sk: "sk_dark_erup",      gachaWeight: 10 },
+js\00-data.js:1774: "bk_dark_double":    { type: "skillbk", n: "黑暗精靈水晶(雙重破壞)", p: 12500, sk: "sk_dark_double",    gachaWeight: 10 },
+js\00-data.js:1775: "bk_dark_armorbreak":{ type: "skillbk", n: "黑暗精靈水晶(破壞盔甲)", p: 12500, sk: "sk_dark_armorbreak", gachaWeight: 1 },
+js\00-data.js:2575: { id: "npc_linda", n: "琳達", title: "精靈魔法商人", type: "shop", d: "精靈族的水晶在她手中閃著微光。販賣各種基本精靈水晶。" },
+js\00-data.js:2711: { id: "npc_saedia", n: "賽帝亞", title: "魔法商人", type: "shop", d: "通曉暗影晶體的賽帝亞。販賣黑暗精靈水晶。" },
+js\01-drops-config.js:749: // 🌊 精靈水晶(污濁之水)：法利昂 1%／水精靈王 0.01%／黑長者 0.1%
+js\01-drops-config.js:1055: 'item_blueflute': 'elf',                                                         // 馬沙(妖精)：藍色長笛（+古代鑰匙）→ 保護者手套／精靈水晶
+js\01-drops-config.js:1082: // 🔧 三階黑暗精靈水晶掉落表（怪物名稱 → [[水晶ID, 機率%], ...]；於擊殺結算套用，受席琳世界 _dropMult 影響）
+js\01-drops-config.js:1270: if (sk.reqM !== undefined && (sk.tier === 1 || sk.tier === 2)) return sk.tier === 1 ? 12 : 24;   // 基礎法師魔法：一階 Lv12 / 二階 Lv24（學不到精靈水晶與高階法師魔法）
+js\05-kill-progression.js:543: // === 🔧 三階黑暗精靈水晶掉落 ===
+js\10-ui-tabs.js:1879: if(/skillbk|魔法書|法術書|精靈水晶|技能書/.test(s))return 3;
+js\12-npc-quests.js:715: elf45:      { cls:'elf',      lv:45, npc:'馬沙',         reqs:[['item_blueflute',1],['item_ancientkey',1]], rewards:['arm_102','bk_elf_summon2'] },   // 🔧 v3.1.23 修：原 acc_guardian/bk_elf_wisdom 從未定義→整個馬沙介面崩潰。還原參考版正確獎勵＝保護者
+js\26-world-channel.js:218: { words: ['魂體', '魂體轉換'], name: '精靈水晶(魂體轉換)' },
+js\26-world-channel.js:220: { words: ['生祝', '生命祝福'], name: '精靈水晶(生命的祝福)' },
+js\26-world-channel.js:221: { words: ['雙破', '雙重破壞'], name: '黑暗精靈水晶(雙重破壞)' },
+js\26-world-channel.js:222: { words: ['屬火', '屬性之火'], name: '精靈水晶(屬性之火)' },
+js\26-world-channel.js:224: { words: ['風之疾走'], name: '精靈水晶(風之疾走)' },
+===== PATTERN: 精靈 =====
+afk-anyclass.js:14: *   ⚠️ 反過來說,絕不可把 reqAllowsClass 永久換掉 —— 它同時管職業限定藥水(慎重/勇敢/精靈餅乾)
+afk-dex.js:205: // 目前 6 張:MOB_DROPS、黑暗武器(DARK_WEAPON_DROPS)、三階黑精靈水晶(DARK_CRYSTAL_DROPS)、龍騎士(DRAGON_DROPS)、戰士印記(WARRIOR_DROPS)、記憶水晶(MEM_DROPS·幻術士法術書)。
+afk-dex.js:238: //   ② 商店有賣的非裝備(魔法書/藥水/卷軸/布料/精靈・黑暗水晶…):這些既不一定被怪掉、又不是裝備,
+afk-dex.js:480: //   具名商人(武器商溫諾、魔法商巴耶斯、精靈水晶琳達…)只列「該商人獨有/非通用」的品項。
+afk-dex.js:859: { id: 'areadrop', title: '🌿 區域額外掉落（妖精森林周邊、眠龍洞穴 1~3 樓）', keys: ['米索莉', '精靈玉', '元素石'], lines: [
+afk-dex.js:860: '該區所有怪：精靈玉 20%；粗糙的米索莉塊／元素石 各 2%',
+afk-dex.js:861: '學會「世界樹的呼喚」則為 精靈玉 30%；粗糙的米索莉塊／元素石 各 3%',
+afk-offline.js:892: //   → 回線上後自動施放判定「buff 還在」不重新召喚,精靈就這樣不見(2026-07-07 玩家回報,妖精強力屬性精靈)。
+afk-training.js:231: if (typeof window.summonV2List === 'function') lists.push(window.summonV2List());          // 玩家的召喚術/造屍術/屬性精靈
+afk-training.js:371: // 逐實體量：包住核心「各實體攻擊各包一個仇恨快照視窗」的 threatWrap（寵物/召喚術/造屍術/精靈/骷髏/城堡護衛都走它）
+afk-wiki.js:300: { n: '不死 / 狼人剋星（銀・精靈）', d: '攻擊「不死類」或「狼人」時額外多加 1~20 傷害。打這兩類怪特別有效。', w: '銀斧、精靈短劍、銀長劍，以及銀箭、米索莉箭' },
+afk-wiki.js:621: { n: '精靈頭盔（15 級）', npc: '歐斯 ＠燃柳村', req: '四大妖魔魔法書（都達瑪拉／那魯加／甘地／阿吐巴）各 ×1', from: '對應四種妖魔（燃柳村·妖魔森林、妖精森林周邊、妖精森林·眠龍洞穴）。接取試煉後擊殺必定掉落', rw: '精靈敏捷頭盔＋精靈體質頭盔（一次全拿）' },
+afk-wiki.js:622: { n: '精靈水晶＋精靈T恤（30 級）', npc: '迷幻森林之母 ＠妖精森林', req: '受詛咒的精靈書 ×1', from: '希爾黛斯（海音·伊娃王國）。接取後必定掉落', rw: '精靈水晶(召喚屬性精靈)＋精靈T恤（一次全拿）' },
+afk-wiki.js:623: { n: '保護者手套＋精靈水晶（45 級）', npc: '馬沙 ＠威頓村', req: '藍色長笛 ×1、古代鑰匙 ×1', from: '藍色長笛：黑暗精靈（燃柳村·妖魔森林、龍之谷、奇岩、奇岩地監4樓）；古代鑰匙：鋼鐵高崙（歐瑞領域：歐瑞雪原／水晶洞穴／國境要塞／象牙塔 4~5 樓）。接取後必定掉落', rw: '保護者手套＋精靈水晶(召喚強力屬性精靈)（一次全拿）' }
+afk-wiki.js:670: { n: '雷德的復仇', npc: '雷德 ＠銀騎士村', req: '魔法寶石 ×100，以及五枚部下證明戒指各 ×1（黑暗棲林者／馴獸師／精靈使／喚獸師／黑暗法師戒指）', from: '五戒指皆出自拉斯塔巴德區（黑暗棲林者 0.1%、馴獸師 0.05%、精靈使 0.001%、喚獸師 0.01%、黑暗法師 0.01%；機率極低、相當硬核）', rw: '召喚控制戒指' },
+afk-wiki.js:675: knight: { n: '騎士 50 級試煉', npc: '迪嘉勒廷 ＠歐瑞·象牙塔（需等級 50）', req: '兩階段依序交付：①丹特斯的召書 ×1 → ②精靈的私語 ×10', from: '丹特斯的召書：黑暗妖精將軍 1%（燃柳村·大洞穴隱遁者村莊／拉斯塔巴德正門／拉斯塔巴德·魔獸訓練場）；精靈的私語：在「燃柳村·精靈墓穴」打任何怪 1% 掉', rw: '完成階段任務後開放「魔族神殿」（拉斯塔巴德領域）。最終試煉：在魔族
+afk-wiki.js:716: { n: '黑暗妖精套裝', pcs: 3, items: '黑暗妖精頭箍、黑暗妖精鱗甲、黑暗妖精涼鞋', eff: '防禦(AC) -3、力量 -2、敏捷 +2、HP自然恢復 -2、MP自然恢復 -7，並可變身「高等黑暗精靈」（遠距離傷害 +5、遠距離命中 +5，並採用變身自身的攻擊速度，取代原本的職業／武器攻速）；穿滿生效、卸下消失' },
+afk-wiki.js:1037: '<b>屬性精靈</b>：固定 <b>1 隻</b>，屬性＝你選的妖精屬性。學了「<b>精靈精通</b>」後，強力屬性精靈會昇華成<b>精靈王</b>（更高等級、更硬、無視部分魔防）。',
+afk-wiki.js:1060: '（另外，四大元素精靈王等部分頭目本來就會固定掉特定屬性的萬能藥，那是各自的掉落表，與上面這個通用稀有掉落分開計算。）'
+afk-wiki.js:1593: k_cleave: ['攻速加成 +20% → +50%（乘算，與加速術／勇敢／精靈餅乾相乘）', '持切割武器即常駐、不再需要重擊觸發（切割狀態也由 2 秒延長為 4 秒）'],
+afk-wiki.js:1599: m_summon: ['迷魅基準＝異常魔法命中判定（上限 12）；免疫迷魅的怪精通也無效', '造屍術／召喚術：命中與近戰傷害的魅力係數 ×1.2（攻擊段數、隻數不變；屬性精靈不吃這條）'],
+afk-wiki.js:1601: e_spirit: ['屬性精靈固定 1 隻，精靈精通<b>不加隻數</b>；改為把「強力屬性精靈」昇華成<b>元素精靈王</b>：等級更高、更硬、傷害更重，命中後 15% 機率釋放同屬性全體法術'],
+afk-wiki.js:2821: '其他來源都是<b>相乘疊加</b>：勇敢藥水 +33%、精靈餅乾 +15%、行走加速 +15%、切割 +20%、裝備上的攻速%、各職業精通。',
+afk-wiki.js:3142: h += '<div class="m-wiki-kv"><b>速度怎麼算</b>：變身會用<b>該型態自己的</b>攻擊間隔／施法冷卻／被擊硬直<b>取代</b>你原本由「職業＋性別×武器」決定的速度（有的變身反而更慢，看下表數字、越小越快）；取代後的<b>攻擊速度</b>仍會再吃加速術／勇敢藥水／精靈餅乾／各精通的<b>相乘</b>加速；<b>但施法間隔完全不受任何加速影響</b>——放技能的快慢只看職業（或變身）本身的施法速度，堆
+afk-wiki.js:3303: '💀 <b>傭兵召喚出來的東西也會被打死</b>：傭兵的殭屍／精靈／召喚物<b>有自己的血量</b>，會被怪鎖定攻擊、也吃你的全隊治癒；<b>隊伍面板最下方有牠們的血條</b>。倒下或時間到會<b>自動重召</b>（需來源角色有勾自動施放、傭兵不在安全區、沒被硬控且 MP 夠）。'
+afk-wiki.js:3326: autocast: '<b>屬性精靈召喚</b>（固定 1 隻；有精靈精通→強力屬性精靈昇華成精靈王）；學得到的話也會常駐火牢／冰雪颶風。',
+afk-wiki.js:3469: '會<b>自動召喚</b>（造屍術／召喚術／屬性精靈、幻術士的歐吉／巫妖／鑽石高崙幻象），發動<b>套裝效果</b>（紅獅／狂怒／麗人／龍血／鐵衛／暗影／月光…）、<b>魔法娃娃</b>與<b>受擊反射</b>（疼痛的歡愉／致命身軀／泰坦／鏡反射）。',
+afk-wiki.js:3600: + '<div class="m-wiki-desc">・加速類效果（加速術／勇敢藥水／精靈餅乾／切割／劍術精通／龍騎士覺醒…）在這個基礎值上<b>相乘疊加</b>，不是覆蓋。<b>變身</b>會直接<b>取代</b>基礎攻速（有的反而更慢），之後才吃加速類乘算。</div>';
+afk-wiki.js:3708: '<div class="m-wiki-desc" style="margin:8px 2px;color:#94a3b8;font-size:12px;">※ 召喚<b>隻數</b>以魅力 <b>60</b> 封頂（實際上限依召喚階級，低階最多 5~6 隻、越高階越少）；傷害與命中用完整魅力、可超過 60，帶寵上限封頂 8。<br>※ <b>屬性精靈固定 1 隻</b>——「精靈精通」是讓它昇華成<b>精靈王</b>，不是變多隻。</
+afk-wiki.js:4501: sk_holy_wpn: ['攻擊不死系怪每擊再加 1~20 傷害(等於臨時聖武器)；但武器本身已剋不死(銀斧/精靈短劍/銀箭等)就不疊加，對狼人無效'],
+afk-wiki.js:4520: sk_zombie: ['召喚<b>固定 1 隻</b>人形殭屍（有自己的 HP、會被打死，時間到或倒下自動重召），攻速 1.2 秒', '殭屍等級／血量隨你的等級分階：<br>Lv24→殭屍Lv10/HP100、Lv32→Lv12/200、Lv40→Lv14/400、Lv44→Lv16/500、Lv48→Lv18/600、Lv52→Lv20/800（<b>妖精職業</b>一律最低階 Lv10/HP100）', '傷害走召喚 v2 模型
+afk-wiki.js:4538: sk_elf_worldtree: ['被動：在「區域額外掉落」地圖(妖精森林周邊、妖精森林·眠龍洞穴 1~3 樓等)殺怪，精靈玉掉率 20%→30%、粗糙的米索莉塊與元素石 2%→3%'],
+afk-wiki.js:4546: sk_elf_summon: ['每擊骰傷依屬性：水/風 2~76、火/地 2~66；再加固定值＝魅力×等級÷係數（水/風 ÷11、火/地 ÷12.5），扣魔防與傷害減免（魔防穿透＝10＋魅力/10）', '固定 1 隻（不隨魅力增加）；Lv40、HP 400、攻速 水/風 1.8s·火/地 1.6s；精靈有自己的 HP，會被打死、時間到或全滅自動重召', '造屍術/召喚術/屬性精靈同時只能開一個，迷魅術可另外並存'],
+afk-wiki.js:4550: sk_elf_summon2: ['骰傷依屬性：水 3~144、火 3~129、地 3~120、風 3~126；固定值＝魅力×等級÷係數（水5.5/火6.2/地6.6/風6.3）、傷害再×1.18、魔防穿透 20＋魅力/10', '固定 1 隻，Lv50、HP 600~720（風最厚）。學「精靈精通」→昇華成同屬性<b>精靈王</b>（Lv60、更硬、傷害×1.3、穿透+30，命中後 15% 釋放同屬性全體法術：水冰雪暴/火火風暴/地震
+js\00-data.js:316: "wpn_elfbow": { n: "精靈弓", type: "wpn", isBow: true, ranged: true, rapidfire: 45, dmgS: 2, dmgL: 2, hit: 0, dmgBonus: 1, spd: 1.0, req: "all", safe: 6, p: 620, gachaWeight: 100 },
+js\00-data.js:320: "wpn_dagger2": { n: "精靈匕首", type: "wpn", dmgS: 4, dmgL: 3, hit: 2, spd: 0.6, req: "all", safe: 6, p: 42, unBonus: true, gachaWeight: 100 },
+js\00-data.js:337: "wpn_24": { n: "精靈之矛", type: "wpn", dmgS: 7, dmgL: 8, hit: 0, spd: 1, req: "all", safe: 6, p: 1180, unBonus: true, gachaWeight: 100 },
+js\00-data.js:340: "wpn_elfsword": { n: "精靈短劍", type: "wpn", dmgS: 8, dmgL: 8, hit: 0, spd: 0.8, req: "all", safe: 6, p: 3680, unBonus: true, gachaWeight: 100 },
+js\00-data.js:480: "wpn_windblade_dagger":{ n: "風刃短劍", type: "wpn", legend: true, dmgS: 23, dmgL: 16, hit: 10, dmgBonus: 10, spd: 0.6, req: "knight,elf,mage,royal,dark", safe: 0, p: 500000, gachaWeight: 0, ignHardSkin: true, mhp: 100, dex:
+js\00-data.js:486: "hlm_elf": { n: "精靈皮盔", type: "arm", slot: "helm", ac: 1, req: "elf,mage", safe: 6, p: 120, gachaWeight: 100 },
+js\00-data.js:503: "arm_50": { n: "精靈敏捷頭盔", type: "arm", slot: "helm", ac: 1, req: "elf", safe: 6, p: 4800, dex: 1, gachaWeight: 20 },
+js\00-data.js:504: "arm_51": { n: "精靈體質頭盔", type: "arm", slot: "helm", ac: 1, req: "elf", safe: 6, p: 4800, con: 1, gachaWeight: 20 },
+js\00-data.js:527: "arm_71": { n: "精靈護胸金屬板", type: "arm", slot: "armor", ac: 4, req: "knight,elf", safe: 6, p: 2240, gachaWeight: 50 },
+js\00-data.js:528: "arm_72": { n: "精靈金屬盔甲", type: "arm", slot: "armor", ac: 6, req: "knight,elf", safe: 6, p: 57200, gachaWeight: 10 },
+js\00-data.js:529: "arm_73": { n: "精靈鏈甲", type: "arm", slot: "armor", ac: 5, req: "knight,elf", safe: 6, p: 2880, gachaWeight: 50 },
+js\00-data.js:546: "arm_85": { n: "精靈T恤", type: "arm", slot: "tshirt", ac: 0, req: "elf", safe: 6, p: 6600, gachaWeight: 20 },
+js\00-data.js:553: "relic_gnomeearth_tshirt": { n: "髒汙的地精靈T恤",     type: "arm", slot: "tshirt", relic: true, noEnhance: true, ac: 7, resFire: -10, req: "all", p: 10000, gachaWeight: 0, d: "【遺物】沾滿污泥的破舊 T 恤，防禦驚人卻格外怕火。" },
+js\00-data.js:627: "relic_darkspirit_shroud":  { n: "暗靈的迷霧披肩",   type: "arm", slot: "armor", relic: true, noEnhance: true, ac: 0, mr: 30, dr: 3, er: 5, req: "all", p: 10000, gachaWeight: 0, d: "【遺物】闇之精靈凝成的迷霧披肩，輕如無物卻魔法難侵。" },
+js\00-data.js:641: "relic_whirlwind_xbow":     { n: "旋風十字弓",       type: "wpn", isBow: true, ranged: true, oneHand: true, relic: true, noEnhance: true, rapidfire: 70, dmgS: 3, dmgL: 3, hit: 13, dmgBonus: 10, mdmg: 2, ele: "wind", procSkill
+js\00-data.js:652: "relic_darkelf_chainsword": { n: "暗精靈鎖鏈劍",     type: "wpn", w2h: true, chainsword: true, weakExpose: true, relic: true, noEnhance: true, dmgS: 22, dmgL: 16, hit: 8, dmgBonus: 8, hpR: 10, extraMp: 5, spellProc: { skn: "吸血
+js\00-data.js:822: // ===== 🏺 遺物 第十五批：元素精靈王與職業特化遺物（單一怪物 0.0001% 掉落） =====
+js\00-data.js:824: "relic_fireking_blast": { n: "火精靈王的爆焰", type: "wpn", w2h: true, relic: true, noEnhance: true, dmgS: 17, dmgL: 21, hit: 15, dmgBonus: 18, eff: "cleave", ele: "fire", hitEchoMagic: { rate: 10, ele: "fire" }, relicRole: "兼具
+js\00-data.js:825: "relic_waterking_caress": { n: "水精靈王的撫摸", type: "wpn", relic: true, noEnhance: true, ignHardSkin: true, dmgS: 17, dmgL: 13, hit: 15, dmgBonus: 15, eff: "combo", comboRate: 35, ele: "water", missGrazeRate: 30, relicRole: 
+js\00-data.js:826: "relic_windking_roar": { n: "風精靈王的狂嘯", type: "wpn", isWand: true, relic: true, noEnhance: true, ignHardSkin: true, dmgS: 3, dmgL: 3, hit: 15, dmgBonus: 15, ele: "wind", windSpellProcRate: 15, relicRole: "強化風屬性主動法術的連鎖爆發",
+js\00-data.js:827: "relic_earthking_resist": { n: "地精靈王的抗拒", type: "wpn", isBow: true, ranged: true, w2h: true, rapidfire: 65, relic: true, noEnhance: true, dmgS: 3, dmgL: 3, hit: 15, dmgBonus: 18, ele: "earth", hurtRapidfire: true, relicR
+js\00-data.js:848: "relic_mini_darkelf":    { n: "被差遣的迷你闇精靈", type: "wpn", qigu: true, relic: true, noEnhance: true, dmgS: 25, dmgL: 25, hit: 0, int: 1, mdmg: 1, extraMp: 11, procSkill: "sk_darkwave", procRateBase: 8, procRatePerEn: 0, rel
+js\00-data.js:954: "clk_elf": { n: "精靈斗篷", type: "arm", slot: "cloak", ac: 1, req: "all", safe: 6, p: 900, gachaWeight: 100 },
+js\00-data.js:996: "shd_elf": { n: "精靈盾牌", type: "arm", slot: "shield", ac: 2, req: "all", safe: 6, p: 3200, gachaWeight: 100, block: 40 },
+js\00-data.js:1166: "new_item_139": { n: "精靈餅乾", type: "pot", req: "elf", p: 1980, c: "text-yellow-200", d: "受精靈祝福的餅乾，妖精食用後能與風的律動同步。", eff: "elfcookie", dur: 300, gachaWeight: 0 },
+js\00-data.js:1306: "quest_ring_elfcaller": { n: "精靈使戒指", p: 1, c: "text-amber-300", gachaWeight: 0, d: "驅使精靈作戰的精靈使所佩之戒。雷德的復仇任務道具，無法裝備。蕾雅部下的證明物。" },
+js\00-data.js:1332: "mat_wind_breath":    { n: "風之氣息", p: 1500, gachaWeight: 0, d: "風精靈呼出的一縷靈息，於掌心仍微微鼓動著看不見的氣流。凝聚自風精靈的元素氣息。" },
+js\00-data.js:1333: "mat_water_breath":   { n: "水之氣息", p: 1500, gachaWeight: 0, d: "水精靈吐納的一抹清涼，似有潺潺水聲在其中流轉不息。凝聚自水精靈的元素氣息。" },
+js\00-data.js:1334: "mat_fire_breath":    { n: "火之氣息", p: 1500, gachaWeight: 0, d: "火精靈呵出的一息餘溫，貼近時仍能感到躍動的炙熱。凝聚自火精靈的元素氣息。" },
+js\00-data.js:1335: "mat_earth_breath":   { n: "土之氣息", p: 1500, gachaWeight: 0, d: "地精靈沉吐的一口厚實氣息，蘊著大地深處的沉穩重量。凝聚自地精靈的元素氣息。" },
+js\00-data.js:1344: "new_item_170": { n: "精靈粉末", p: 1, gachaWeight: 0 },
+js\00-data.js:1373: "new_item_195": { n: "精靈玉", p: 100, gachaWeight: 0 },
+js\00-data.js:1391: "new_item_213": { n: "受詛咒的精靈書", p: 1, c: "text-blue-300", gachaWeight: 0 },
+js\00-data.js:1406: "new_item_228": { n: "污染的精靈水晶(水)", p: 1, gachaWeight: 0 },
+js\00-data.js:1407: "new_item_229": { n: "污染的精靈水晶(火)", p: 1, gachaWeight: 0 },
+js\00-data.js:1408: "new_item_230": { n: "污染的精靈水晶(地)", p: 1, gachaWeight: 0 },
+js\00-data.js:1409: "new_item_231": { n: "污染的精靈水晶(風)", p: 1, gachaWeight: 0 },
+js\00-data.js:1416: "new_item_elfwing": { n: "精靈羽翼", p: 10, gachaWeight: 0 },
+js\00-data.js:1445: "item_elf_whisper":   { n: "精靈的私語", type: "etc", p: 1, c: "text-amber-300", noUse: true, noSell: true, gachaWeight: 0, maxHold: 10, d: "騎士 50 級試煉任務道具。最多持有 10 個；完成交付後會自動清除。" },
+js\00-data.js:1587: "hlm_darkelf": { n: "黑暗妖精頭箍", type: "arm", slot: "helm", ac: 1, req: "elf,dark", safe: 6, p: 6000, gachaWeight: 30, d: "承載著高等黑暗精靈血脈記憶的頭箍，集齊全套方能喚醒沉睡的暗夜之姿。" },
+js\00-data.js:1720: // ===== 妖精精靈水晶 =====
+js\00-data.js:1721: "bk_elf_mr": { type: "skillbk", n: "精靈水晶(魔法防禦)", p: 3000, sk: "sk_elf_mr", gachaWeight: 0 },
+js\00-data.js:1722: "bk_elf_mind": { type: "skillbk", n: "精靈水晶(心靈轉換)", p: 3000, sk: "sk_elf_mind", gachaWeight: 0 },
+js\00-data.js:1723: "bk_elf_worldtree": { type: "skillbk", n: "精靈水晶(世界樹的呼喚)", p: 3000, sk: "sk_elf_worldtree", gachaWeight: 0 },
+js\00-data.js:1724: "bk_elf_triple": { type: "skillbk", n: "精靈水晶(三重矢)", p: 3000, sk: "sk_elf_triple", gachaWeight: 10 },
+js\00-data.js:1726: "bk_elf_purify": { type: "skillbk", n: "精靈水晶(淨化精神)", p: 7500, sk: "sk_elf_purify", gachaWeight: 0 },
+js\00-data.js:1727: "bk_elf_eleres": { type: "skillbk", n: "精靈水晶(屬性防禦)", p: 7500, sk: "sk_elf_eleres", gachaWeight: 0 },
+js\00-data.js:1728: "bk_elf_release": { type: "skillbk", n: "精靈水晶(釋放元素)", p: 7500, sk: "sk_elf_release", gachaWeight: 0 },
+js\00-data.js:1729: "bk_elf_soul": { type: "skillbk", n: "精靈水晶(魂體轉換)", p: 7500, sk: "sk_elf_soul", gachaWeight: 20 },
+js\00-data.js:1731: "bk_elf_singleres": { type: "skillbk", n: "精靈水晶(單屬性防禦)", p: 15000, sk: "sk_elf_singleres", gachaWeight: 0 },
+js\00-data.js:1732: "bk_elf_firewpn": { type: "skillbk", n: "精靈水晶(火焰武器)", p: 15000, sk: "sk_elf_firewpn", gachaWeight: 0 },
+js\00-data.js:1733: "bk_elf_windshot": { type: "skillbk", n: "精靈水晶(風之神射)", p: 15000, sk: "sk_elf_windshot", gachaWeight: 0 },
+js\00-data.js:1734: "bk_elf_winddash": { type: "skillbk", n: "精靈水晶(風之疾走)", p: 15000, sk: "sk_elf_winddash", gachaWeight: 0 },
+js\00-data.js:1735: "bk_elf_earthguard": { type: "skillbk", n: "精靈水晶(大地防護)", p: 15000, sk: "sk_elf_earthguard", gachaWeight: 0 },
+js\00-data.js:1736: "bk_elf_groundtrap": { type: "skillbk", n: "精靈水晶(地面障礙)", p: 15000, sk: "sk_elf_groundtrap", gachaWeight: 0 },
+js\00-data.js:1738: "bk_elf_magicerase": { type: "skillbk", n: "精靈水晶(魔法消除)", p: 30000, sk: "sk_elf_magicerase", gachaWeight: 40 },
+js\00-data.js:1739: "bk_elf_summon": { type: "skillbk", n: "精靈水晶(召喚屬性精靈)", p: 30000, sk: "sk_elf_summon", gachaWeight: 20 },
+js\00-data.js:1740: "bk_elf_dancefire": { type: "skillbk", n: "精靈水晶(舞躍之火)", p: 30000, sk: "sk_elf_dancefire", gachaWeight: 10 },
+js\00-data.js:1741: "bk_elf_stormeye": { type: "skillbk", n: "精靈水晶(暴風之眼)", p: 30000, sk: "sk_elf_stormeye", gachaWeight: 10 },
+js\00-data.js:1742: "bk_elf_mirror": { type: "skillbk", n: "精靈水晶(鏡反射)", p: 16000, sk: "sk_elf_mirror", gachaWeight: 1, d: "封存著「鏡反射」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1743: "bk_elf_earthshield": { type: "skillbk", n: "精靈水晶(大地屏障)", p: 30000, sk: "sk_elf_earthshield", gachaWeight: 10 },
+js\00-data.js:1744: "bk_elf_lifespring": { type: "skillbk", n: "精靈水晶(生命之泉)", p: 30000, sk: "sk_elf_lifespring", gachaWeight: 10 },
+js\00-data.js:1745: "bk_elf_earthbless": { type: "skillbk", n: "精靈水晶(大地的祝福)", p: 30000, sk: "sk_elf_earthbless", gachaWeight: 10, d: "封存著「大地的祝福」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1747: "bk_elf_summon2": { type: "skillbk", n: "精靈水晶(召喚強力屬性精靈)", p: 60000, sk: "sk_elf_summon2", gachaWeight: 1 },
+js\00-data.js:1748: "bk_elf_lifebless": { type: "skillbk", n: "精靈水晶(生命的祝福)", p: 60000, sk: "sk_elf_lifebless", gachaWeight: 5 },
+js\00-data.js:1749: "bk_elf_seal": { type: "skillbk", n: "精靈水晶(封印禁地)", p: 60000, sk: "sk_elf_seal", gachaWeight: 10 },
+js\00-data.js:1750: "bk_elf_muddywater": { type: "skillbk", n: "精靈水晶(污濁之水)", p: 16000, sk: "sk_elf_muddywater", gachaWeight: 1, d: "封存著「污濁之水」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1751: "bk_elf_blazewpn": { type: "skillbk", n: "精靈水晶(烈炎武器)", p: 60000, sk: "sk_elf_blazewpn", gachaWeight: 1 },
+js\00-data.js:1752: "bk_elf_flamesoul": { type: "skillbk", n: "精靈水晶(烈焰之魂)", p: 16000, sk: "sk_elf_flamesoul", gachaWeight: 1, d: "封存著「烈焰之魂」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1753: "bk_elf_physboost": { type: "skillbk", n: "精靈水晶(體能激發)", p: 16000, sk: "sk_elf_physboost", gachaWeight: 20, d: "封存著「體能激發」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1754: "bk_elf_energyboost": { type: "skillbk", n: "精靈水晶(能量激發)", p: 16000, sk: "sk_elf_energyboost", gachaWeight: 20, d: "封存著「能量激發」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1755: "bk_elf_attrfire": { type: "skillbk", n: "精靈水晶(屬性之火)", p: 16000, sk: "sk_elf_attrfire", gachaWeight: 1, d: "封存著「屬性之火」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1756: "bk_elf_preciseshot": { type: "skillbk", n: "精靈水晶(精準射擊)", p: 16000, sk: "sk_elf_preciseshot", gachaWeight: 1, d: "封存著「精準射擊」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1757: "bk_elf_stormshot": { type: "skillbk", n: "精靈水晶(暴風神射)", p: 60000, sk: "sk_elf_stormshot", gachaWeight: 1 },
+js\00-data.js:1758: "bk_elf_steelguard": { type: "skillbk", n: "精靈水晶(鋼鐵防護)", p: 60000, sk: "sk_elf_steelguard", gachaWeight: 1, d: "封存著「鋼鐵防護」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1759: "bk_elf_watervital": { type: "skillbk", n: "精靈水晶(水之元氣)", p: 4000, sk: "sk_elf_watervital", gachaWeight: 10, d: "封存著「水之元氣」精靈之力的水晶，與之共鳴便能領悟其中奧祕。" },
+js\00-data.js:1760: // ===== 黑暗精靈水晶（黑暗妖精魔法，賽帝亞販售；潘朵拉抽不到） =====
+js\00-data.js:1761: "bk_dark_str":       { type: "skillbk", n: "黑暗精靈水晶(力量提升)", p: 500,   sk: "sk_dark_str",       gachaWeight: 0 },
+js\00-data.js:1762: "bk_dark_mrup":      { type: "skillbk", n: "黑暗精靈水晶(影之防護)", p: 500,   sk: "sk_dark_mrup",      gachaWeight: 0 },
+js\00-data.js:1763: "bk_dark_stealth":   { type: "skillbk", n: "黑暗精靈水晶(暗隱術)",   p: 500,   sk: "sk_dark_stealth",   gachaWeight: 0 },
+js\00-data.js:1764: "bk_dark_poison":    { type: "skillbk", n: "黑暗精靈水晶(附加劇毒)", p: 500,   sk: "sk_dark_poison",    gachaWeight: 0 },
+js\00-data.js:1765: "bk_dark_refine":    { type: "skillbk", n: "黑暗精靈水晶(提煉魔石)", p: 500,   sk: "sk_dark_refine",    gachaWeight: 0 },
+js\00-data.js:1766: "bk_dark_dex":       { type: "skillbk", n: "黑暗精靈水晶(敏捷提升)", p: 2500,  sk: "sk_dark_dex",       gachaWeight: 0 },
+js\00-data.js:1767: "bk_dark_poisonres": { type: "skillbk", n: "黑暗精靈水晶(毒性抵抗)", p: 2500,  sk: "sk_dark_poisonres", gachaWeight: 0 },
+js\00-data.js:1768: "bk_dark_burn":      { type: "skillbk", n: "黑暗精靈水晶(燃燒鬥志)", p: 2500,  sk: "sk_dark_burn",      gachaWeight: 0 },
+js\00-data.js:1769: "bk_dark_walkhaste": { type: "skillbk", n: "黑暗精靈水晶(行走加速)", p: 2500,  sk: "sk_dark_walkhaste", gachaWeight: 0 },
+js\00-data.js:1770: "bk_dark_fang":      { type: "skillbk", n: "黑暗精靈水晶(暗影之牙)", p: 12500, sk: "sk_dark_fang",      gachaWeight: 10 },
+js\00-data.js:1771: "bk_dark_dodge":     { type: "skillbk", n: "黑暗精靈水晶(暗影閃避)", p: 12500, sk: "sk_dark_dodge",     gachaWeight: 10 },
+js\00-data.js:1772: "bk_dark_crit":      { type: "skillbk", n: "黑暗精靈水晶(會心一擊)", p: 12500, sk: "sk_dark_crit",      gachaWeight: 10 },
+js\00-data.js:1773: "bk_dark_erup":      { type: "skillbk", n: "黑暗精靈水晶(迴避提升)", p: 12500, sk: "sk_dark_erup",      gachaWeight: 10 },
+js\00-data.js:1774: "bk_dark_double":    { type: "skillbk", n: "黑暗精靈水晶(雙重破壞)", p: 12500, sk: "sk_dark_double",    gachaWeight: 10 },
+js\00-data.js:1775: "bk_dark_armorbreak":{ type: "skillbk", n: "黑暗精靈水晶(破壞盔甲)", p: 12500, sk: "sk_dark_armorbreak", gachaWeight: 1 },
+js\00-data.js:1879: // ===== 💍 賽巴斯（奇岩）寶石加工坊製作：4 屬性戒指 + 4 精靈皮帶 =====
+js\00-data.js:1884: "acc_belt_fire":  { n: "火精靈的皮帶", type: "acc", slot: "belt", ac: 0, resFire: 10,  weightCap: 165, req: "all", safe: 0, p: 10000, gachaWeight: 0, d: "火精靈祝福的皮帶。" },
+js\00-data.js:1885: "acc_belt_water": { n: "水精靈的皮帶", type: "acc", slot: "belt", ac: 0, resWater: 10, weightCap: 165, req: "all", safe: 0, p: 10000, gachaWeight: 0, d: "水精靈祝福的皮帶。" },
+js\00-data.js:1886: "acc_belt_earth": { n: "地精靈的皮帶", type: "acc", slot: "belt", ac: 0, resEarth: 10, weightCap: 165, req: "all", safe: 0, p: 10000, gachaWeight: 0, d: "地精靈祝福的皮帶。" },
+js\00-data.js:1887: "acc_belt_wind":  { n: "風精靈的皮帶", type: "acc", slot: "belt", ac: 0, resWind: 10,  weightCap: 165, req: "all", safe: 0, p: 10000, gachaWeight: 0, d: "風精靈祝福的皮帶。" },
+js\00-data.js:1957: "siege_ovi": { n: "月之精靈歐薇", img: "assets/icons/monsters/月之精靈歐薇.png", lv: 1, s: "S", beh: "主動", race: "血盟", siegeEnemy: true, e: "none", hp: 10, ac: -10, mr: 25, exp: 0, goldMin: 0, goldMax: 0, atkSpd: 0.67, dmg: [1, 8], 
+js\00-data.js:1987: "nm_001": { n: "污染的地精靈", lv: 3, s: "S", beh: "被動", race: "元素", elem: true, e: "earth", hp: 10, ac: 10, mr: 10, exp: 10, goldMin: 11, goldMax: 32, atkSpd: 2, dmg: [2, 4], db: 2, hit: 0 },
+js\00-data.js:2065: "dark_elf": { n: "黑暗精靈", lv: 27, s: "S", beh: "主動", race: "黑暗精靈", e: "earth", hp: 350, ac: -24, mr: 30, exp: 730, goldMin: 126, goldMax: 212, atkSpd: 1.5, dmg: [1, 44], db: 5, hit: 31, mag: { skn: "龍捲風", cd: 110, dmg: [1
+js\00-data.js:2114: "nm_028": { hard: true, n: "夢幻之島火精靈王", lv: 43, s: "L", beh: "主動", race: "元素", elem: true, boss: true, e: "fire", hp: 1500, ac: -53, mr: 45, exp: 3601, goldMin: 450, goldMax: 790, atkSpd: 2, dmg: [3, 67], db: 51, hit: 64,
+js\00-data.js:2115: "nm_029": { hard: true, n: "夢幻之島水精靈王", lv: 43, s: "L", beh: "主動", race: "元素", elem: true, boss: true, e: "water", hp: 2500, ac: -53, mr: 45, exp: 3601, goldMin: 450, goldMax: 790, atkSpd: 2, dmg: [3, 67], db: 51, hit: 64
+js\00-data.js:2116: "nm_030": { hard: true, n: "夢幻之島風精靈王", lv: 43, s: "L", beh: "主動", race: "元素", elem: true, boss: true, e: "wind", hp: 1500, ac: -53, mr: 45, exp: 3601, goldMin: 450, goldMax: 790, atkSpd: 1, dmg: [2, 75], db: 15, hit: 64,
+js\00-data.js:2117: "nm_031": { hard: true, n: "夢幻之島地精靈王", lv: 43, s: "L", beh: "主動", race: "元素", elem: true, boss: true, e: "earth", hp: 2000, ac: -53, mr: 45, exp: 3601, goldMin: 450, goldMax: 790, atkSpd: 3, dmg: [3, 67], db: 51, hit: 64
+js\00-data.js:2237: "dark_spirit_caller": { n: "黑暗精靈使", lv: 45, s: "S", beh: "被動", race: "黑暗妖精", e: "earth", hp: 550, ac: -38, mr: 45, exp: 2026, goldMin: 50, goldMax: 400, atkSpd: 2, dmg: [2, 59], db: 30, hit: 49, mag: { skn: "邪靈之氣", type:
+js\00-data.js:2357: "pride_earth_king":      { n: "土精靈王", lv: 60, s: "L", beh: "主動", race: "元素", e: "earth", hp: 2500, ac: -66, mr: 50, exp: 3601, goldMin: 600, goldMax: 1200, atkSpd: 2, dmg: [2, 97], db: 49, hit: 69, mag: { skn: "巨石之擊", cd
+js\00-data.js:2358: "pride_water_king":      { n: "水精靈王", lv: 60, s: "L", beh: "主動", race: "元素", e: "water", hp: 2500, ac: -66, mr: 50, exp: 3601, goldMin: 600, goldMax: 1200, atkSpd: 2, dmg: [2, 97], db: 49, hit: 69, mag: { skn: "水之矛", cd:
+js\00-data.js:2359: "pride_wind_king":       { n: "風精靈王", lv: 60, s: "L", beh: "主動", race: "元素", e: "wind", hp: 2500, ac: -66, mr: 50, exp: 3601, goldMin: 600, goldMax: 1200, atkSpd: 1, dmg: [1, 88], db: 9, hit: 76, mag: { skn: "龍捲風", cd: 9
+js\00-data.js:2360: "pride_fire_king":       { n: "火精靈王", lv: 60, s: "L", beh: "主動", race: "元素", e: "fire", hp: 2500, ac: -66, mr: 50, exp: 3601, goldMin: 600, goldMax: 1200, atkSpd: 3, dmg: [2, 97], db: 49, hit: 69, mag: { skn: "爆炎的火球", cd
+js\00-data.js:2365: // ===== 🔥 50級試煉擴充：精靈墓穴 =====
+js\00-data.js:2378: "obli_darkelf":     { n: "遺忘之島黑暗精靈", lv: 35, s: "S", beh: "主動", race: "黑暗精靈", e: "earth", hp: 350, ac: -29, mr: 30, exp: 1226, goldMin: 10, goldMax: 100, atkSpd: 1.5, dmg: [1, 57], db: 6, hit: 43, mag: { skn: "龍捲風", cd: 
+js\00-data.js:2410: "mambo_rabbit":   { n: "曼波兔", lv: 50, s: "S", beh: "被動", hard: true, race: "精靈", e: "none", hp: 3000, ac: -40, mr: 65, exp: 2000, goldMin: 493, goldMax: 786, atkSpd: 2, dmg: [2, 71], db: 36, hit: 56, mag: { skn: "跳躍波動", 
+js\00-data.js:2415: "dark_spirit_mob":{ n: "闇之精靈", lv: 25, s: "S", beh: "主動", race: "元素", e: "earth", hp: 120, ac: -14, mr: 35, exp: 626, goldMin: 109, goldMax: 186, atkSpd: 1, dmg: [1, 37], db: 4, hit: 25 },
+js\00-data.js:2419: "dark_spirit_king":{ n: "闇精靈王", lv: 28, s: "L", beh: "被動", race: "元素", e: "earth", hp: 270, ac: -15, mr: 20, exp: 785, goldMin: 135, goldMax: 225, atkSpd: 1, dmg: [1, 43], db: 4, hit: 33 },
+js\00-data.js:2575: { id: "npc_linda", n: "琳達", title: "精靈魔法商人", type: "shop", d: "精靈族的水晶在她手中閃著微光。販賣各種基本精靈水晶。" },
+js\00-data.js:2579: { id: "npc_elfqueen", n: "精靈女皇", title: "製作", type: "craft", d: "端坐於精靈聖域的女皇，唯有她識得奧里哈魯根的鍛造秘法。提供協助製作奧里哈魯根。" },
+js\00-data.js:2580: { id: "npc_elf", n: "精靈", title: "製作", type: "craft", d: "靜守森林深處的精靈，能將原料淬鍊出純粹的光輝。提供協助製作純粹的米索莉塊、精靈羽翼。" },
+js\00-data.js:2584: { id: "npc_brabo", n: "布拉伯", title: "製作", type: "craft", d: "精靈軍械的老匠師，弓與刃的每一處部件都出自他手。提供精靈專屬武器與部件的製作。" },
+js\00-data.js:2585: { id: "npc_robinson", n: "羅賓孫", title: "製作", type: "craft", d: "傳說中的鑄弓人，唯有集齊精靈王與神獸的精魄，才肯點燃那把傳說之炎。蒐集精靈王與獨角獸、格利芬的稀有素材，可打造傳說的熾炎天使弓。" },
+js\00-data.js:2615: { id: "npc_lentis", n: "倫提斯", title: "製作", type: "craft", d: "擅長將軍團之力封入金屬的戒指匠師。以軍團印記與軍王徽印打造四屬性的精靈戒指。" },
+js\00-data.js:2616: { id: "npc_sebas", n: "賽巴斯", title: "寶石加工", type: "craft", d: "奇岩寶石加工坊的巨匠賽巴斯，能將稀世寶石與龍鱗鍛入飾品。製作四屬性戒指與四精靈皮帶。" },
+js\00-data.js:2711: { id: "npc_saedia", n: "賽帝亞", title: "魔法商人", type: "shop", d: "通曉暗影晶體的賽帝亞。販賣黑暗精靈水晶。" },
+js\00-data.js:2791: "sk_darkwave": { n: "闇黑波動", type: "atk", tier: 4, dmgType: "magic", ele: "none", target: "all", dmgDice: [5, 9] },   // 🏺 遺物「被差遣的迷你闇精靈」奇古獸 procSkill(8%) 用；非可學技能·對全體造成無屬性魔法傷害
+js\00-data.js:2874: // ================= 【妖精精靈魔法】 =================
+js\00-data.js:2898: "sk_elf_summon": { n: "召喚屬性精靈", type: "buff", tier: 4, reqE: 40, mp: 30, dur: 3600, reqEleAny: true, desc: "向締結契約的元素祈求援助，召來與自身屬性相同的精靈並肩作戰。", summon: { n: "夥伴：{ele}之精靈", dmgDice: [1, 40], elemScale: 20, dmgMult: 1.00, mrP
+js\00-data.js:2906: "sk_elf_summon2": { n: "召喚強力屬性精靈", type: "buff", tier: 5, reqE: 50, mp: 50, dur: 3600, reqEleAny: true, desc: "以更深的元素契約呼喚高位精靈。精通精靈之道的妖精，甚至能使精靈王親臨戰場。", summon: { n: "夥伴：強力{ele}之精靈", dmgDice: [2, 40], elemScale: 10, dmgMul
+js\01-drops-config.js:42: // ===== 🔥 50級試煉擴充：精靈墓穴 =====
+js\01-drops-config.js:63: '闇之精靈': [['scroll_weapon',0.5],['scroll_armor',0.5],['bk_holy_barrier',0.003],['bk_abs_barrier',0.001],['bk_dark_stealth',1],['bk_dark_poison',1],['bk_dark_mrup',1],['bk_dark_burn',1],['bk_dark_poisonres',1],['bk_dark_do
+js\01-drops-config.js:67: '闇精靈王': [['scroll_weapon',0.5],['scroll_armor',0.5],['bk_bless_wpn',0.1],['bk_berserk',0.1],['bk_soul_up',0.001],['bk_abs_barrier',0.001],['bk_elf_blazewpn',0.05],['bk_dark_stealth',1],['bk_dark_poison',1],['bk_dark_mrup
+js\01-drops-config.js:108: '黑暗精靈使': [['scroll_acc',0.001],['scroll_weapon', 0.5], ['scroll_armor', 1], ['bk_holy_barrier', 0.005], ['bk_dark_stealth', 1], ['bk_dark_poison', 1], ['bk_dark_mrup', 1], ['bk_dark_burn', 1], ['bk_dark_poisonres', 0.5],
+js\01-drops-config.js:198: '夢幻之島地精靈王': [['arm_69', 1], ['arm_63',5], ['scroll_weapon',5], ['scroll_armor',10], ['scroll_revive',1], ['panacea_con',1], ['mat_earth_breath',1], ['relic_earthking_resist',0.0001]],
+js\01-drops-config.js:238: '夢幻之島水精靈王': [['arm_69', 1], ['arm_63',5], ['scroll_weapon',5], ['scroll_armor',10], ['scroll_revive',1], ['panacea_int',1], ['mat_water_breath',1], ['relic_waterking_caress',0.0001]],
+js\01-drops-config.js:248: '夢幻之島火精靈王': [['arm_69', 1], ['arm_63',5], ['scroll_weapon',5], ['scroll_armor',10], ['scroll_revive',1], ['panacea_str',1], ['mat_fire_breath',1], ['relic_fireking_blast',0.0001]],
+js\01-drops-config.js:292: '夢幻之島風精靈王': [['arm_69', 1], ['arm_63',5], ['scroll_weapon',5], ['scroll_armor',10], ['scroll_revive',1], ['panacea_dex',1], ['mat_wind_breath',1], ['relic_windking_roar',0.0001]],
+js\01-drops-config.js:308: '黑暗精靈': [['item_wind_tear',1], ['amr_darkelf',0.1], ['bot_darkelf',0.1], ['wpn_elfbow',0.5], ['clk_elf',0.5], ['arm_71',0.3], ['bk_tornado',0.001], ['bk_invisible',0.001], ['new_item_195',1], ['bk_elf_release',0.1], ['bk
+js\01-drops-config.js:375: '土精靈王': [['rng_earth',0.05], ['acc_130',0.5], ['scroll_weapon',1], ['scroll_attr_earth', 0.18]],
+js\01-drops-config.js:376: '水精靈王': [['arm_69',5], ['rng_water',0.01], ['acc_130',0.5], ['scroll_armor',1], ['scroll_attr_water', 0.18]],
+js\01-drops-config.js:377: '風精靈王': [['arm_69',5], ['rng_wind',0.05], ['acc_130',0.5], ['scroll_armor',1], ['scroll_attr_wind', 0.18], ['wpn_thunder_sword',0.05]],   // 🆕 雷雨之劍 0.05%
+js\01-drops-config.js:378: '火精靈王': [['rng_fire',0.01], ['acc_130',0.5], ['scroll_weapon',1], ['scroll_armor',1], ['scroll_attr_fire', 0.18]],
+js\01-drops-config.js:388: '遺忘之島黑暗精靈': [['hlm_wind',0.1], ['item_forgotten_leather',1], ['rng_mr',0.3], ['hlm_darkelf',0.1], ['mat_black_mithril',0.1]],
+js\01-drops-config.js:449: ['污染的地精靈', 'relic_gnomeearth_tshirt', 0.0001],
+js\01-drops-config.js:523: ['闇之精靈', 'relic_darkspirit_shroud', 0.0001],
+js\01-drops-config.js:537: ['黑暗精靈', 'relic_whirlwind_xbow', 0.0001],
+js\01-drops-config.js:548: ['闇精靈王', 'relic_darkelf_chainsword', 0.0001],
+js\01-drops-config.js:603: ['遺忘之島黑暗精靈', 'relic_forgotten_sniperbow', 0.0001],
+js\01-drops-config.js:749: // 🌊 精靈水晶(污濁之水)：法利昂 1%／水精靈王 0.01%／黑長者 0.1%
+js\01-drops-config.js:752: ['水精靈王', 'bk_elf_muddywater', 0.01],
+js\01-drops-config.js:758: // 粗糙的米索莉塊 / 元素石各 2%，學會「世界樹的呼喚」則各 3%；精靈玉維持 20% / 30%
+js\01-drops-config.js:771: elfcookie: "精靈餅乾", poly: "變身", shield: "保護罩", taming: "誘捕", sk_set_dragonscion: "龍裔"
+js\01-drops-config.js:1053: 'new_item_199': 'elf', 'new_item_200': 'elf', 'new_item_201': 'elf', 'new_item_202': 'elf',   // 歐斯：四大妖魔魔法書（都達瑪拉/那魯加/甘地/阿吐巴）→ 精靈頭盔
+js\01-drops-config.js:1054: 'new_item_213': 'elf',                                                           // 迷幻森林之母：受詛咒的精靈書
+js\01-drops-config.js:1055: 'item_blueflute': 'elf',                                                         // 馬沙(妖精)：藍色長笛（+古代鑰匙）→ 保護者手套／精靈水晶
+js\01-drops-config.js:1082: // 🔧 三階黑暗精靈水晶掉落表（怪物名稱 → [[水晶ID, 機率%], ...]；於擊殺結算套用，受席琳世界 _dropMult 影響）
+js\01-drops-config.js:1105: '夢幻之島風精靈王':   [['bk_dark_erup',1]],
+js\01-drops-config.js:1153: e_spirit: { n: '精靈精通', pos: 'left',   msg: '呼喚元素精靈王降臨',     d: '與元素締結最高階的契約，使強力精靈昇華為精靈王；精靈王能以同屬性的強大法術席捲敵陣。' },
+js\01-drops-config.js:1270: if (sk.reqM !== undefined && (sk.tier === 1 || sk.tier === 2)) return sk.tier === 1 ? 12 : 24;   // 基礎法師魔法：一階 Lv12 / 二階 Lv24（學不到精靈水晶與高階法師魔法）
+js\01-drops-config.js:1964: const ITEM_WEIGHTS = {"混沌之刺":10,"混沌頭盔":5,"混沌斗篷":5,"混沌法袍":15,"混沌手套":5,"死亡斗篷":10,"死亡盔甲":100,"死亡手套":5,"死亡之盾":20,"惡魔王矛":20,"惡魔王雙刀":20,"惡魔王雙手劍":40,"惡魔王魔杖":20,"惡魔王弓":10,"亞連":10,"武士刀":40,"長劍":40,"斧":60,"雙手劍":150,"屠龍劍":180,"騎士范德
+js\01-drops-config.js:1972: Object.assign(ITEM_WEIGHTS, {"妖魔的鍋蓋":50,"哥布林的石刃":70,"妖魔弓箭手的彈簧弓":30,"地靈的木棍":30,"菌菇傘帽":3,"髒汙的地精靈T恤":5,"狼毛披肩":30,"哈士奇的骨棒":30,"侏儒的舊床單":10,"吃剩的魚骨頭":15,"放牧者的皮靴":10,"殭屍的小腿骨":15,"杜賓的尖銳犬齒":10,"安普長老的拐杖":15,"安特的乾枯樹皮":30,"通透的水晶體":30
+js\01-drops-config.js:1975: Object.assign(ITEM_WEIGHTS, {"深海魚的電擊皮":5,"盜掠者的信物":3,"雪人之拳":20,"雪人手套":20,"輕薄的紙披風":1,"黑暗盜賊的兇殺爪":30,"暗精靈鎖鏈劍":35,"浸泡海水的內衣":5,"鬥士的老舊戰斧":120,"寄居蟹的巨大背殼":140,"爆彈花蕊":20,"古代聖甲蟲脛甲":20});   // 🏺 遺物 第四批重量＋雪人手套（依名稱·v3.1.4）
+js\01-drops-config.js:1993: Object.assign(ITEM_WEIGHTS, {"魔力阻抗襯衫":15,"火精靈王的爆焰":150,"水精靈王的撫摸":40,"風精靈王的狂嘯":30,"地精靈王的抗拒":40,"純潔少女的憐愛":5,"破岩法師的秘術":30,"將軍愛用的握劍護腕":30});   // 🏺 遺物 第十五批重量（依規格）
+js\01-drops-config.js:1996: Object.assign(ITEM_WEIGHTS, {"奴隸粗布衫":30,"地獄犬三頭釵":30,"巨魔的再生戒指":5,"烈焰巫師的正式長袍":30,"負重的堅忍巨臂":50,"笨重的鋼鐵石盾":250,"魔力泉源長靴":15,"暗黑的金屬棍棒":30,"召喚儀式的魔術布":10,"斷裂的昆蟲巨鉗":120,"魔力塑造的海洋水晶球":30,"燃燒殆盡的灰燼之拳":10,"死神的鐮刀破片":40,"巨靈的承諾":3,"被差遣的迷你
+js\01-drops-config.js:1998: [['受詛咒的馴獸師','relic_tamer_petarm'],['地獄奴隸','relic_slave_shirt'],['恐怖的地獄犬','relic_cerberus_pin'],['遺忘之島多羅','relic_troll_regen_ring'],['卡士柏','relic_flamemage_robe'],['底比斯 尖碑石奴(黑)','relic_burden_gauntlet'],['小惡魔','relic_imp_
+js\02-stats-recompute.js:254: d.hpR  = 0;   // HP自然恢復量(裝備/精靈斗篷加成)：每次重算先歸零，避免持續疊加且卸下不還原
+js\02-stats-recompute.js:445: d.mr += 5; // 精靈盾牌：妖精裝備時額外 MR+5
+js\02-stats-recompute.js:480: if(setCheck['darkelf'] >= 3) { d.ac -= 3; d.hpR -= 2; d.mpR -= 7; p._setPoly = Object.assign({}, SET_POLY_FORMS.darkelf); }   // 🏝️ 黑暗妖精套裝：AC-3、HP自然恢復-2、MP自然恢復-7、變身高等黑暗精靈（遠距離傷害/命中+5、攻速+30%）（力量-2/敏捷+2 已於 Phase 1 前 _setEa
+js\02-stats-recompute.js:561: if(p.buffs.elfcookie > 0 || (_mercPots && p.cls === 'elf')) spdMult *= (1/1.15); // 精靈餅乾：攻速+15%（🔧 v3.5.37 1/1.15·取代舊 0.85＝實際+17.6%）；妖精傭兵常駐
+js\02-stats-recompute.js:582: if(p.statuses && p.statuses.evilAura > 0) { d.ac += 10; d.er -= 10; }   // 🔧 邪靈之氣減益：AC+10、ER−10（持續6秒，由黑暗精靈使施放）
+js\02-stats-recompute.js:772: //   ⭐ 刻意用比例而不是重算一次：d.aspd 上面經過 spdMult（加速術/勇敢藥水/精靈餅乾/行走加速/切割/劍術/巨斧/
+js\02-stats-recompute.js:877: { n:"黑暗精靈", lv:30, atk:19, wlk:16, cast:10, stun:5 },
+js\02-stats-recompute.js:990: "妖魔弓箭手", "妖魔巡守", "骷髏弓箭手", "黑暗精靈",
+js\02-stats-recompute.js:1034: if (buffs.elfcookie > 0 && !windDashOn) mult *= (1/1.15);  // 精靈餅乾：移速+15%；風之疾走存在時只保留餅乾攻速，不疊加移速
+js\02-stats-recompute.js:1060: darkelf: { n: "高等黑暗精靈", rd: 5, rh: 5,                    atk: 19, wlk: 16, cast: 10, stun: 5, c: "text-violet-300" }     // 速度＝黑暗精靈
+js\03-combat-core.js:2317: if (forceGraze) { hit = true; graze = true; }   // 🏺 水精靈王的撫摸：原本未命中時依機率改判為 50% 擦傷
+js\03-combat-core.js:2363: // 檢查近戰武器 (例如銀斧、精靈短劍)
+js\03-combat-core.js:2450: const WAND_LIGHTARROW_IDS = ['wpn_oakwand', 'wpn_38', 'wpn_witchwand', 'wpn_manawand', 'wpn_crystalwand', 'wpn_baless', 'wpn_wand_rasta', 'wpn_red_crystalwand', 'wpn_laia_wand', 'wpn_icequeen_wand', 'wpn_demon_scythe', '
+js\03-combat-core.js:2628: if (player.classicMode && !classicOk) return;   // 🎮 經典模式：一般連射停用；地精靈王的抗拒受擊連射為指定例外
+js\03-combat-core.js:2665: // 🏺 地精靈王的抗拒：裝備者受到傷害時必定額外發動一次連射；這個受擊觸發在經典模式仍有效。
+js\04-combat-attack.js:43: if (!result.hit && wpn && wpn.missGrazeRate && Math.random() * 100 < wpn.missGrazeRate) result = getPhysicalDmg(dice, target, wpn, arrowData, false, false, false, false, player.eq.wpn, true);   // 🏺 水精靈王的撫摸：未命中時 30% 改判為
+js\04-combat-attack.js:155: if (target.curHp > 0 && wpn && wpn.hitEchoMagic && Math.random() * 100 < (wpn.hitEchoMagic.rate || 0)) { let _he = wpn.hitEchoMagic; target.curHp -= result.dmg; if (typeof terrorVisageOnDamage === 'function') terrorVisag
+js\04-combat-attack.js:1327: if(totalDmg > 0 && player.hp > 0) hurtRapidfireProc();   // 🏺 地精靈王的抗拒：受物理傷害時強制連射（經典亦可）
+js\04-combat-attack.js:1395: // 🧙 v3.2.82 召喚物被攻擊權重（物理/魔法受害者池共用）：召喚術/造屍術＝4·屬性精靈＝3。
+js\04-combat-attack.js:1423: // 🧙 v3.2.21 召喚物 v2 加入受害者池（可被打死→全滅自動重施）：權重見下方 _sumW——v3.2.81 召喚術/造屍術＝4·屬性精靈＝3（原全 3）
+js\04-combat-attack.js:1466: // 👑 灼熱武器維持真正全隊光環：玩家/傭兵由既有注入點取得其他來源加成，寵物/召喚由 forMinion 路徑取得；受益者自己已持有時不再注入，避免同技能重複疊加。royalEd 供魔法型精靈的一般攻擊辨識灼熱武器固定傷害。
+js\04-combat-attack.js:1632: if (totalDmg > 0 && ally.curHp > 0 && typeof allyRapidfire === 'function') _dpsAllyReactWrap(ally, () => allyRapidfire(ally, true, true));   // 🏺 地精靈王的抗拒（傭兵）：受擊強制連射，經典亦可；🎯 DPS 歸該傭兵
+js\04-combat-attack.js:1695: // 死亡時清除所有召喚物與召喚 buff（迷魅術/造屍術/召喚屬性精靈/召喚強力屬性精靈一致處理），
+js\04-combat-attack.js:2014: if (dmg > 0 && ally.curHp > 0 && typeof allyRapidfire === 'function') allyRapidfire(ally, true, true);   // 🏺 地精靈王的抗拒（傭兵）：受魔法傷害時強制連射
+js\04-combat-attack.js:2508: // 🪞 鏡反射（精靈五階・增益）：受到魔法傷害時，精神% 機率（每 1 點精神 +1%）對施法者造成與所受傷害等量的必中固定傷害
+js\04-combat-attack.js:2537: if (dmg > 0 && player.hp > 0) hurtRapidfireProc();   // 🏺 地精靈王的抗拒：受魔法傷害時強制連射（經典亦可）
+js\05-kill-progression.js:457: if ((main || ally) && Math.random() < partyDropRate(0.01)) { let got = grantPartyStageQuestDrop('item_elf_whisper', main); if (got.main || got.allies.length) logSys(`<span class="text-amber-300 font-bold">✦ ${partyQuestD
+js\05-kill-progression.js:543: // === 🔧 三階黑暗精靈水晶掉落 ===
+js\05-kill-progression.js:563: // 粗糙的米索莉塊 / 元素石各 2%，學會「世界樹的呼喚」則各 3%；精靈玉維持 20% / 30%
+js\06-status-allies.js:262: //   HP 鏡像玩家 v2 資料：召喚術＝該怪 v2 hp×隻數·造屍＝ZOMBIE_TIERS.hp·精靈＝SPIRIT_DEF/_KING hp；舊分階 fallback＝100+等級×5。
+js\06-status-allies.js:291: owner = owner || player;   // 🩸 v2.6.25 owner 參數化：分階依 owner.lv、屬性精靈依 owner.elfEle（傭兵召喚共用）
+js\06-status-allies.js:328: if (typeof _elfSpiritKingOverride === 'function') _elfSpiritKingOverride(_sm, owner);   // 👑 v3.2.25 精靈精通→精靈王（傭兵鏡像）
+js\06-status-allies.js:360: if (typeof _elfSpiritKingOverride === 'function') _elfSpiritKingOverride(sm, owner);   // 👑 v3.2.25 讀檔重算後補套精靈王覆寫（否則被 def 原值洗回）
+js\06-status-allies.js:361: _mercSummonRefreshEntity(sm, owner);   // 🧱 v3.5.94 舊分階/精靈路徑同樣回流 lv/mhp（與上面兩條 v2 分支同機制：不同步→受擊判定永遠停在初次召喚等級；精靈王覆寫後才算才吃得到王的 hp）
+js\06-status-allies.js:999: else if (wpn && wpn.missGrazeRate && Math.random() * 100 < wpn.missGrazeRate) _grazeA = true;   // 🏺 水精靈王的撫摸（傭兵）：未命中時 30% 改判擦傷
+js\06-status-allies.js:1071: if (t.curHp > 0 && wpn && wpn.hitEchoMagic && Math.random() * 100 < (wpn.hitEchoMagic.rate || 0)) { t.curHp -= dmg; if (typeof terrorVisageOnDamage === 'function') terrorVisageOnDamage(t, dmg, 'magic'); t.justHit = wpn.h
+js\06-status-allies.js:1294: // 🏺 風精靈王的狂嘯（傭兵）：施展風屬性傷害魔法時 15% 免費追加龍捲風。
+js\06-status-allies.js:1455: if (ally.classicMode && !classicOk) return;   // 🎮 經典模式：一般連射停用；地精靈王的抗拒受擊連射例外
+js\06-status-allies.js:2762: // 🧝 v3.8.5 妖精屬性閘（傭兵版·單一真相）：妖精換屬性後，舊屬性的三/四/五階精靈魔法在他自己身上是「灰色不可用」
+js\06-status-allies.js:2907: // 🩸 v2.6.25 傭兵召喚維持（造屍術/召喚術/精靈召喚·單一召喚·比照玩家 setupSummon·owner=ally）：安全區/硬控(_block)不召；已有存活召喚則不重召；否則扣MP召喚（優先分階召喚術 sk_summon）。buff 由上方遞減·到期(歸0)自動重召。召喚物 tick 於 alliesTick 驅動（輸出歸 _dps.summon·擊殺歸真隊長）。
+js\06-status-allies.js:2917: : (ally.skills.includes('sk_elf_summon2') && _mercAutoOn(ally, 'sk_elf_summon2') && allySkillElementOk(ally, 'sk_elf_summon2')) ? 'sk_elf_summon2'   // 🩸 妖精傭兵優先「召喚強力屬性精靈」(上級精靈)：先學的一般版 sk_elf_summon 排在前面，.find 會先抓到它 → 傭兵
+js\06-status-allies.js:3057: // 🩸 v2.6.25 傭兵召喚物 tick（造屍術/召喚術/精靈召喚·owner=ally）＋🩸 v2.6.26 幻術士幻象召喚（歐吉/巫妖/鑽石高崙·i_illusion 精通·學過該技即召·stat aura 由隊長 teamIlluAura 提供避免雙套）：owner=ally·輸出獨立歸 _dps.summon（不計入本傭兵回合 _dpsAllyTurn·硬控中召喚物仍行動·擊殺獎勵歸真隊長·不換身）。倒地傭兵已於上方 
+js\07-skills-cast.js:8: // 👑 v3.2.25 精靈精通改版：不再增加精靈數量/攻擊段數（改為 召喚強力屬性精靈→精靈王·見 _elfSpiritKingOverride）
+js\07-skills-cast.js:11: // 👑 v3.2.26→v3.4.11 屬性精靈規格鏡像（buildSummon/refreshSummonBalance 兩處套用）：
+js\07-skills-cast.js:12: //   玩家與傭兵都讀 js/23 四屬性表；傭兵保持無敵抽象召喚，但攻擊轉交 spiritAttackOnce 共用命中、傷害與精靈王 AOE。
+js\07-skills-cast.js:19: if (king && typeof SPIRIT_ELE_ZH !== 'undefined' && sm.ele && SPIRIT_ELE_ZH[sm.ele]) sm.n = '夥伴：' + SPIRIT_ELE_ZH[sm.ele] + '之精靈王';
+js\07-skills-cast.js:20: sm._king = king;   // 🧝 傭兵走無敵抽象召喚管線，但保留玩家 v2 的精靈王判定與 15% 全體技能
+js\07-skills-cast.js:58: // 🧝 傭兵屬性精靈保持無敵抽象實體，但攻擊完整改走玩家 v2 精靈公式：四屬性骰值/攻速、命中、裝備、MR穿透、剋制、幻覺光環及精靈王15%全體技。
+js\07-skills-cast.js:61: sm.form = sm.form || sm.n || '屬性精靈';
+js\07-skills-cast.js:86: // 魅力每 20 點增加一段完整攻擊（最多4段）；精靈精通同樣以4隻為上限。
+js\07-skills-cast.js:96: let flat = Math.floor(cha * owner.lv / (sm.elemScale || 20));   // 屬性精靈：魅力 x (等級/scale)
+js\07-skills-cast.js:892: // 🏺 風精靈王的狂嘯：主動施展風屬性傷害魔法時，15% 免費追加一次龍捲風（武器 proc 路徑不會回到此處，避免遞迴）。
+js\07-skills-cast.js:945: // 🧙 v3.2.21 玩家召喚類 v2：sk_summon／sk_zombie（造屍術）／sk_elf_summon(2)（屬性精靈）分流到 js/23（多實體·可被攻擊·浮動框）；迷魅與傭兵維持舊 setupSummon 管線
+js\08-items-equip.js:107: // 🔧 持有上限 maxHold（如精靈的私語=10）：裁切本次獲得量使總持有不超過上限；已達上限則不獲得
+js\08-items-equip.js:610: // 職業限定檢查（如慎重藥水=法師、勇敢藥水=騎士、精靈餅乾=妖精）
+js\08-items-equip.js:789: '力量魔法頭盔','敏捷魔法頭盔','治癒魔法頭盔','精靈體質頭盔','精靈敏捷頭盔','艾爾穆的祝福','死亡騎士頭盔','克特頭盔',
+js\08-items-equip.js:793: '精靈T恤',
+js\08-items-equip.js:823: '精靈皮盔','古老的長袍','巫妖斗篷','黑長者長袍','神官法袍','拉斯塔巴德長袍','喚獸師長袍','黑法師長袍','蕾雅長袍','伊娃之盾',
+js\08-items-equip.js:828: '幽暗十字弓','尤米弓','古老的弩槍','拉斯塔巴德重十字弓','短弓','歐西斯弓','獵人之弓','精靈弓','拉斯塔巴德弓','黑暗十字弓'
+js\08-items-equip.js:840: '古老的鱗甲','金屬蜈蚣皮盔甲','死亡盔甲','鏈甲','抗魔法鏈甲','精靈鏈甲','鱗甲',
+js\08-items-equip.js:842: '水晶手套','巴蘭卡手套','墮落手套','武官手套','腕甲','抗魔法頭盔','巴蘭卡頭盔','武官頭盔','精靈皮盔',
+js\08-items-equip.js:845: '古老的劍','惡魔之劍','黑燄之劍','瑟魯基之劍','克特之劍','黑暗之劍','細劍','大馬士革刀','武士刀','拉斯塔巴德長劍','侵略者之劍','精靈短劍','彎刀','長劍','紅騎士之劍','銀長劍','小侏儒短劍','銀劍','奧里哈魯根的劍身','歐西斯短劍','鎖子甲破壞者','闊劍','長劍的劍身','短劍的劍身',
+js\08-items-equip.js:865: '勇敢皮帶','古老的金屬盔甲','巴風特盔甲','金屬蜈蚣皮盔甲','巴蘭卡盔甲','死亡盔甲','克特盔甲','金屬盔甲','鋼鐵金屬盔甲','死亡騎士盔甲','武官護鎧','皮甲','藤甲','青銅盔甲','精靈金屬盔甲','鏈甲','抗魔法鏈甲','精靈鏈甲','精靈護胸金屬板','鱗甲','歐西斯鏈甲','小藤甲',
+js\08-items-equip.js:873: '覆上奧里哈魯根的角','精靈之矛','帕提森','槍','覆上米索莉的角','三叉戟','歐西斯之矛','潘的角'
+js\08-items-equip.js:893: '小藤甲','歐西斯鏈甲','鱗甲','精靈護胸金屬板','精靈鏈甲','抗魔法鏈甲','鏈甲','青銅盔甲','藤甲','皮甲','金屬盔甲','死亡盔甲','水晶盔甲','古老的鱗甲',
+js\08-items-equip.js:897: '骰子匕首','歐西斯匕首','拉斯塔巴德短劍','精靈匕首','匕首','魔力短劍','米索莉短劍','奧里哈魯根短劍','小武士刀','水晶短劍','混沌之刺',
+js\08-items-equip.js:898: '橡木魔法杖','短劍的劍身','長劍的劍身','闊劍','鎖子甲破壞者','歐西斯短劍','奧里哈魯根的劍身','短劍','銀劍','小侏儒短劍','銀長劍','紅騎士之劍','長劍','彎刀','精靈短劍','侵略者之劍','武士刀','大馬士革刀','細劍','黑暗之劍','克特之劍','死亡騎士的烈炎之劍','惡魔之劍','古老的劍',
+js\08-items-equip.js:1282: if(player.buffs.elfcookie>0)add('精靈餅乾',player.buffs.elfcookie,'精靈餅乾');
+js\08-items-equip.js:1316: //   _skipIconized=true(戰鬥中·圖示可見)：藥水(加速/勇/藍/慎/精靈餅乾)、變身、及 STATUS_ICON_SKILLS 內的技能 皆略過文字（改看圖示）。
+js\08-items-equip.js:1324: if(player.buffs.elfcookie>0 && !_skipIconized) buffs.push(`<span class="text-yellow-300 font-bold">精靈餅乾</span>`);
+js\08-items-equip.js:1349: // 🧙 v3.2.42 稽核修：v2 召喚（召喚術/造屍術/屬性精靈）狀態列顯示——讀 summonsV2 實體（原讀 player.summon 在 v2 恆 null→四個召喚技倒數永不顯示）
+js\09-vfx-render.js:1435: const MOB_ANIM_NAMES = new Set([/* 🐍 v3.1.59 提卡爾18怪 */ '提卡爾杰弗雷庫(雄)', '提卡爾杰弗雷庫(雌)', '提卡爾艾庫卡伊拉(藍)', '提卡爾艾庫卡伊拉(黃)', '提卡爾艾庫尤卡(白)', '提卡爾艾庫尤卡(藍)', '提卡爾艾庫巴拉', '提卡爾艾庫巴拉(紅)', '提卡爾艾庫艾托', '提卡爾艾庫艾托(枯竭)', '提卡爾艾庫阿茲特', '提卡爾艾庫阿茲特(黃)', 
+js\09-vfx-render.js:1438: //    🏆 v2.7.12 依 list.spr 官方定義修正：條目「沒有 101.shadow() 屬性」＝影子烙印在本體(最老世代低編號精靈 29~57)＝本 Set；有 101.shadow(id)＝影子獨立→不加。
+js\09-vfx-render.js:1451: const MOB_ANIM_SPRITE_SHADOW = new Set([/* 🐾 v3.2.17 */ '老虎', '貓', '熊貓', '高麗幼犬', '浣熊', '聖伯納犬', '狐狸', '暴走兔', '小獵犬', '柯利', '袋鼠', '猴子', /* 🐍 v3.1.59 提卡爾18怪皆帶_s */ '提卡爾杰弗雷庫(雄)', '提卡爾杰弗雷庫(雌)', '提卡爾艾庫卡伊拉(藍)', '提卡爾艾庫卡伊拉(黃)', 
+js\09-vfx-render.js:1497: '黑暗精靈':     { startPfx: 'skill_effect', anchored: { ox: -45, oy: 30, bw: 56, bh: 85 } },
+js\09-vfx-render.js:1498: '遺忘之島黑暗精靈': { startPfx: 'skill_effect', anchored: { ox: -45, oy: 30, bw: 56, bh: 85 } },
+js\09-vfx-render.js:1543: // 🧝 v2.7.70 黑暗精靈使 anchored(skill_effect 10幀·body 54×83)：
+js\09-vfx-render.js:1544: '黑暗精靈使': { startPfx: 'skill_effect', anchored: { ox: 11, oy: -28, bw: 54, bh: 83 } },
+js\09-vfx-render.js:1595: '朱利安': '玩家男妖精', '月光朱利安': '玩家男妖精', '歐薇': '玩家女妖精', '月之精靈歐薇': '玩家女妖精',
+js\09-vfx-render.js:1745: const MOB_ANIM_8DIR = new Set(['杜賓狗', /* 🐾 v3.2.17 夥伴更新12怪（素材＝寵物八方向共用） */ /* 🔁 v3.2.20 同名怪去重：改讀八方向共用圖·舊根圖已刪（冰人保留spawn·火系等7隻保留特效層不切） */ '哈柏哥布林', '甘地妖魔', '都達瑪拉妖魔', '妖魔巡守', '狂野毒牙', '狂野之毒', '狂野之魔', '食人妖精', '食人妖精王', '狂暴蜥蜴人'
+js\09-vfx-render.js:1890: '反王肯恩', '吸血鬼', '巨人', '白金巡守', '賽尼斯', '銀光巡守', '阿魯巴', '黃金巡守', '黑暗巡守', '黑暗精靈',   // 🧝 v3.0.52 +10 變身（黑暗精靈＝黑暗妖精套裝 高等黑暗精靈 經別名映射）
+js\09-vfx-render.js:1893: const MORPH_BATTLE_ALIAS = { '真‧死亡騎士': '死亡騎士', '真‧克特': '克特', '高等黑暗精靈': '黑暗精靈' };   // 套裝變身→同源動畫（v3.0.52 黑暗妖精套裝→黑暗精靈·與 js/19 立繪別名一致）
+js\09-vfx-render.js:1899: '人形殭屍', '侏儒', '克特', '卡司特王', '卡士柏', '反王肯恩', '吸血鬼', '哥布林', '地靈', '多羅', '妖魔', '妖魔鬥士', '小惡魔', '巨人', '巴列斯', '巴土瑟', '巴風特', '思克巴', '思克巴女皇', '惡魔', '暴走兔', '果凍怪', '格利芬', '歐吉', '歐姆民兵', '死亡', '死亡騎士', '炎魔', '獨眼巨人', '甘地妖魔', '白金巡守', '白
+js\09-vfx-render.js:2169: '黑暗法師F':[61,94],'黑暗精靈':[94,115],'黑暗精靈2':[94,114],'黑暗精靈F':[93,115],'黑暗騎士':[62,93],'黑暗騎士2':[59,93],'黑暗騎士F':[61,92],'黑長者':[93,92],
+js\10-ui-tabs.js:81: return ({ knight:'騎士技術', mage:'法師魔法', elf:'精靈魔法', dark:'黑妖魔法', illusion:'幻術魔法', dragon:'龍騎魔法', warrior:'戰士技能', royal:'王族魔法' })[player.cls] || '職業技能';
+js\10-ui-tabs.js:140: + (classSkills.length ? '<button class="' + (stateBook.mode === 'class' ? 'active' : '') + '" onclick="classicSkillChooseMode(\'class\')">' + (player.cls === 'elf' ? '精靈' : '職業') + '</button>' : '')
+js\10-ui-tabs.js:439: // ===== 召喚類技能互斥：迷魅 / 召喚 / 造屍 / 召喚屬性精靈 / 召喚強力屬性精靈 同時只能開啟一個 =====
+js\10-ui-tabs.js:480: if (typeof summonV2DismissAll === 'function' && ((player._summonV2Sk || 'sk_summon') === sid)) summonV2DismissAll();   // 🧙 v3.2.21 召喚類 v2（召喚術/造屍術/屬性精靈）：取消勾選當前生效的召喚→全數解散＋關閉自動重施
+js\10-ui-tabs.js:531: player.buffs[pair[1]] = 0;   // 🔧 取消打勾：加速/勇敢/慎重/精靈餅乾/變身/魔法護盾立即失效（變身會在 calcStats 還原原形）
+js\10-ui-tabs.js:685: // 🏺 遺物 第四批（v3.1.4）：鎖鏈劍(暗精靈鎖鏈劍)靠 chainsword 旗標自判免 tag
+js\10-ui-tabs.js:709: // 🏺 遺物 第十六批：三頭釵＝鋼爪（雙擊）、金屬棍棒/灰燼之拳＝單手鈍器（鈍擊）、昆蟲巨鉗＝單手劍+武士刀（反擊+居合）、鐮刀破片＝雙手劍（切割靠 eff）；海洋水晶球(isWand)/迷你闇精靈(qigu)/十字弩弓(isBow) 靠旗標自判免 tag。
+js\10-ui-tabs.js:1879: if(/skillbk|魔法書|法術書|精靈水晶|技能書/.test(s))return 3;
+js\11-world-map.js:16: {v:'elf_grave',t:'精靈墓穴',c:'#67e8f9'}, {v:'hidden_cave',t:'大洞穴隱遁者村莊地區',c:'#a78bfa'}, {v:'giant_tomb',t:'古代巨人之墓',c:'#d6d3d1'}
+js\11-world-map.js:103: {v:'elf_grave', t:'精靈墓穴'}, {v:'hidden_cave', t:'大洞穴隱遁者村莊地區'}
+js\11-world-map.js:1356: player.buffs[player.summon.skId] = 0; player.summon = null;   // 精靈精通解除：收回已召喚屬性精靈
+js\11-world-map.js:1357: logSys('屬性精靈隨著精通的轉移而消散了。');
+js\11-world-map.js:1359: // 🧝 v3.2.21 屬性精靈 v2：精靈精通解除→實體全數收回（自動施放勾選仍在→之後會重新召喚回一般型態）
+js\11-world-map.js:1365: logSys('屬性精靈隨著精通的轉移而消散了。');
+js\11-world-map.js:1367: // 👑 v3.2.25 切入精靈精通：在場的強力屬性精靈收回→自動重施時昇華為精靈王
+js\11-world-map.js:1372: player._summonV2On = on;   // 保留自動重施開關→下個 tick 立即召回精靈王
+js\11-world-map.js:1373: logSys('精靈之力開始昇華——強力精靈將以「精靈王」之姿重新現身。');
+js\11-world-map.js:1930: // 妖精森林：埃爾頻=左階梯下空地｜艾爾=主殿門前｜琳達=舞台前｜艾利溫=右側林間石徑｜那翰/娜魯帕=林間空地｜精靈女皇(override)｜精靈=花圃間｜安特(override釘右上)｜潘/芮克妮=空地｜布拉伯=右下屋門廊｜羅賓孫=左下樹屋平台｜迷幻森林之母=右中開闊地(巨石像)
+js\11-world-map.js:1994: // 安特(847·110×145)釘右上角；精靈女皇(854·11×19極小)原站在迷幻森林之母(2725·88×96 石像)正上方被 100% 蓋住→移到安特讓出的中央空位(可點)
+js\12-npc-quests.js:715: elf45:      { cls:'elf',      lv:45, npc:'馬沙',         reqs:[['item_blueflute',1],['item_ancientkey',1]], rewards:['arm_102','bk_elf_summon2'] },   // 🔧 v3.1.23 修：原 acc_guardian/bk_elf_wisdom 從未定義→整個馬沙介面崩潰。還原參考版正確獎勵＝保護者
+js\12-npc-quests.js:993: {id:'item_elf_whisper', nm:'精靈的私語', cnt:10, hint:'擊殺精靈墓穴的怪物'} ],
+js\12-npc-quests.js:1061: // 🔥 精靈的私語：騎士「交付精靈的私語」階段完成後（trialStage>2，即已通過第二階段交付）
+js\12-npc-quests.js:1062: //   自動清除身上剩餘的精靈的私語（含載入舊存檔的補救、以及曾超收的情況）。回傳清除數量。
+js\12-npc-quests.js:1080: purgeCompletedElfWhisper();   // 🔥 交付精靈的私語階段完成 → 自動清除剩餘的精靈的私語
+js\13-shop-save.js:46: elf_grave: 'assets/area/拉斯塔巴德.jpg', hidden_cave: 'assets/area/拉斯塔巴德.jpg', giant_tomb: 'assets/area/拉斯塔巴德.jpg',   // 🏚️ 精靈墓穴/大洞穴隱遁者村莊地區/古代巨人之墓（野外·拉斯塔巴德背景）
+js\13-shop-save.js:90: const AREA_1920 = new Set(['亞丁城鎮','伊娃王國','傲慢之塔','傲慢之塔11~20樓','傲慢之塔1樓','傲慢之塔21~30樓','傲慢之塔2~10樓','傲慢之塔31~40樓','傲慢之塔41~50樓','傲慢之塔51~60樓','傲慢之塔61~70樓','傲慢之塔71~80樓','傲慢之塔81~90樓','傲慢之塔91~100樓','冥法軍王之室','冥法軍訓練場','古代巨人之墓','古魯丁',
+js\13-shop-save.js:157: : `<p class="text-slate-300 mb-4">選擇一種屬性，首次選擇免費。選擇後將解鎖對應的三、四階精靈魔法。</p>`;
+js\13-shop-save.js:184: // 🧝 v3.2.42 稽核修：換屬性時在場屬性精靈立即收回（保留自動重施開關→下個 tick 以新屬性重新現身；原本舊屬性精靈會一直打到死/到期）
+js\13-shop-save.js:190: logSys('屬性精靈隨著屬性的轉換而消散——牠將以新屬性重新現身。');
+js\13-shop-save.js:1428: // 勇敢藥水：騎士／龍騎士限定；慎重藥水：法師／幻術士限定；精靈餅乾：妖精限定
+js\13-shop-save.js:1717: if(player.summon && ['sk_zombie', 'sk_elf_summon', 'sk_elf_summon2'].includes(player.summon.skId)) player.summon = null;   // 🧟 v3.2.21 造屍術/屬性精靈改走 v2 實體制：清除舊管線殘留（勾選仍在→v2 自動重新召喚）
+js\13-shop-save.js:1753: purgeCompletedElfWhisper();   // 🔥 載入時：若已交付完成精靈的私語階段，自動清除身上殘留的精靈的私語
+js\14-craft-pandora.js:5: // 💍 賽巴斯（奇岩 寶石加工坊）：4 屬性戒指（神聖獨角獸之角×5＋月光之氣息×1＋粗糙的米索莉塊×50＋魔法寶石×30＋四種高品質寶石各×5＋金幣200萬）＋4 精靈皮帶（皮帶×1＋對應龍鱗×3＋元素石×5）
+js\14-craft-pandora.js:64: // 🔮 巴特爾（希培利亞村莊）：龜裂之核＝時空裂痕碎片×100；黑曜石奇古獸＝四種高品質寶石×10＋龜裂之核×2＋原石碎片×30＋精靈粉末×30＋金幣 100 萬
+js\14-craft-pandora.js:309: { id: 'new_item_195', cnt: 1000 }  // 精靈玉
+js\14-craft-pandora.js:362: // 👇 奇岩・倫提斯：四屬性精靈戒指（四軍團印記各×10 ＋ 對應軍王徽印×1）
+js\14-craft-pandora.js:1833: else if(sid === 'sk_elf_winddash') moveSpeedText += '，與神聖疾走互斥，取代精靈餅乾移速';
+js\14-craft-pandora.js:1836: } else if(sk.moveSpeedReplacesCookie) eff.push('取代精靈餅乾的移動速度提升');
+js\17-audio.js:178: "月之精靈歐薇": 25, "魔法師喬": 144, "魔女賽尼斯": 405, "闇影格立特": 23, "妖魔弓箭手": 47, "地靈": 226, "污染的地精靈": 156, "蘑菇": 162, "狼": 83,
+js\17-audio.js:185: "龍龜": 611, "毒蠍": 216, "哈維": 244, "骷髏神射手": 57, "骷髏警衛": 44, "黑暗精靈": 156, "歐吉": 195, "多羅": 254, "伊萊克頓": 617, "強盜": 26,
+js\17-audio.js:190: "影魔": 57, "鬼魂": 499, "巫師": 35, "熔岩高崙": 642, "紅鬼魂": 499, "夢幻之島火精靈王": 156, "夢幻之島水精靈王": 156, "夢幻之島風精靈王": 156,
+js\17-audio.js:191: "夢幻之島地精靈王": 156, "獨角獸": 291, "夢魘": 427, "夢幻之島蘑菇": 162, "夢幻之島鬼火": 499, "夢幻之島火蜥蜴": 635, "夢幻之島殺人蜂": 213, "夢幻之島暴走兔": 83,
+js\17-audio.js:199: "黑暗妖精殘兵(十字弓)": 458, "黑暗妖精殘兵(法師)": 458, "黑暗妖精殘兵(雙手劍)": 458, "黑暗精靈使": 458, "黑暗妖精警衛(十字弓)": 458, "黑暗妖精魔法學徒": 458,
+js\17-audio.js:211: "小幻象眼魔": 39, "馬昆斯吸血鬼": 427, "恐怖的殭屍王": 72, "不滅的巫妖": 765, "土精靈王": 156, "水精靈王": 156, "風精靈王": 156, "火精靈王": 156, "艾莉絲": 427,
+js\17-audio.js:213: "遺忘之島鱷魚": 629, "遺忘之島狼人": 70, "遺忘之島夏洛伯": 55, "遺忘之島亞力安": 261, "遺忘之島黑暗精靈": 458, "遺忘之島歐熊": 291, "遺忘之島蜥蜴人": 494,
+js\17-audio.js:218: "深淵之主": 427, "魔蝙蝠": 83, "黑暗妖精盜賊": 458, "闇之精靈": 156, "犰狳": 291, "魔熊": 291, "歐姆民兵": 26, "闇精靈王": 156, "金屬蜈蚣": 213,
+js\17-audio.js:245: "弱化術": 843, "狂暴術": 843, "封印禁地": 845, "靈魂昇華": 807, "衝擊之暈": 110, "釋放元素": 717, "召喚屬性精靈": 139, "召喚強力屬性精靈": 139,
+js\17-audio.js:257: "月之精靈歐薇": 301, "魔法師喬": 302, "魔女賽尼斯": 407, "闇影格立特": 302, "妖魔弓箭手": 48, "地靈": 258, "污染的地精靈": 157, "蘑菇": 163, "狼": 84,
+js\17-audio.js:264: "龍龜": 600, "毒蠍": 217, "哈維": 245, "骷髏神射手": 58, "骷髏警衛": 45, "黑暗精靈": 157, "歐吉": 191, "多羅": 256, "伊萊克頓": 551, "強盜": 27,
+js\17-audio.js:269: "影魔": 58, "鬼魂": 507, "巫師": 36, "熔岩高崙": 643, "紅鬼魂": 507, "夢幻之島火精靈王": 157, "夢幻之島水精靈王": 157, "夢幻之島風精靈王": 157,
+js\17-audio.js:270: "夢幻之島地精靈王": 157, "獨角獸": 293, "夢魘": 424, "夢幻之島蘑菇": 163, "夢幻之島鬼火": 507, "夢幻之島火蜥蜴": 634, "夢幻之島殺人蜂": 196, "夢幻之島暴走兔": 84,
+js\17-audio.js:278: "黑暗妖精殘兵(十字弓)": 460, "黑暗妖精殘兵(法師)": 460, "黑暗妖精殘兵(雙手劍)": 460, "黑暗精靈使": 460, "黑暗妖精警衛(十字弓)": 460, "黑暗妖精魔法學徒": 460,
+js\17-audio.js:290: "小幻象眼魔": 40, "馬昆斯吸血鬼": 424, "恐怖的殭屍王": 73, "不滅的巫妖": 767, "土精靈王": 157, "水精靈王": 157, "風精靈王": 157, "火精靈王": 157, "艾莉絲": 424,
+js\17-audio.js:292: "遺忘之島鱷魚": 554, "遺忘之島狼人": 71, "遺忘之島夏洛伯": 56, "遺忘之島亞力安": 262, "遺忘之島黑暗精靈": 460, "遺忘之島歐熊": 293, "遺忘之島蜥蜴人": 496,
+js\17-audio.js:297: "深淵之主": 424, "魔蝙蝠": 84, "黑暗妖精盜賊": 460, "闇之精靈": 157, "犰狳": 293, "魔熊": 293, "歐姆民兵": 27, "闇精靈王": 157, "金屬蜈蚣": 196,
+js\17-audio.js:315: "哈士奇": 773, "哈汀之影": 1278, "喚獸師": 1273, "土精靈王": 962, "地之牙": 883, "地元素守護者": 875, "地獄奴隸": 862, "地獄的黑豹": 1053,
+js\17-audio.js:317: "墳墓守護者法師": 1415, "墳墓守護者騎士": 1415, "夢幻之島地精靈王": 962, "夢幻之島大鬼火": 980, "夢幻之島暴走兔": 977, "夢幻之島殺人蜂": 1013, "夢幻之島鎧甲守衛": 1010, "夢幻之島閃電球": 956,
+js\17-audio.js:318: "夢幻之島風精靈王": 974, "夢幻之島鬼火": 980, "夢魘": 872, "奇異鸚鵡": 1482, "妖魔": 249, "妖魔巡守": 249, "妖魔鬥士": 249, "安塔瑞斯": 445,
+js\17-audio.js:330: "遺忘之島格利芬": 503, "遺忘之島歐熊": 290, "遺忘之島獨眼巨人": 434, "遺忘之島萊肯": 248, "遺忘之島阿魯巴": 275, "遺忘之島黑暗精靈": 491, "那魯加妖魔": 249, "邪惡的鐮刀死神": 1050,
+js\17-audio.js:331: "都達瑪拉妖魔": 249, "重裝歐姆戰士": 1217, "重裝蜥蜴人": 1437, "金屬蜈蚣": 1246, "鋼鐵高崙": 768, "闇之精靈": 1083, "闇精靈王": 1099, "闇黑的騎士范德": 1044,
+js\17-audio.js:332: "阿吐巴妖魔": 249, "阿魯巴": 275, "雪人": 748, "風之牙": 889, "風元素守護者": 881, "風精靈王": 974, "風靈之主": 881, "馴獸師": 1191,
+js\17-audio.js:335: "黑暗妖精法師": 1148, "黑暗妖精盜賊": 903, "黑暗妖精警衛(十字弓)": 783, "黑暗妖精警衛(矛)": 1169, "黑暗妖精魔法學徒": 1030, "黑暗棲林者": 1204, "黑暗精靈": 491, "黑暗精靈使": 1086,
+js\17-audio.js:340: //   ⚠️來源怪本身要有攻擊音才借得到；鱷魚家族(gfx 1572/1574)天堂精靈完全無聲→無來源可借（維持靜音）。結果記憶化 _mobAtkResolveCache。
+js\17-audio.js:341: const MOB_ATTACK_ALIAS = { "卡魯塔": "風精靈王", "卡瑞": "死亡騎士" };   // 卡瑞 已有精確對應 86(=死亡騎士)·此處僅記錄用戶意圖·精確對應優先故此別名不觸發
+js\17-audio.js:350: const MOB_ATTACK_SWING = { "死亡騎士": 248, "卡瑞": 248 };   // 死亡騎士/卡瑞 同精靈(gfx240)·攻擊 86(本體聲)＋248(揮刀聲)
+js\22-pets.js:1458: let gfxForm = p.formGfx || p.form;   // 👑 v3.2.25 動態別名：顯示名≠圖檔資料夾（精靈王借用強力精靈圖·強力精靈改用一般精靈圖）
+js\23-summons.js:8: //   🧟 v3.2.21 擴充：玩家的 造屍術(sk_zombie)／召喚屬性精靈(sk_elf_summon)／召喚強力屬性精靈(sk_elf_summon2) 也走本模組
+js\23-summons.js:9: //     ・三系互斥（SUMMON_BUFF_IDS）→ 共用 player.summonsV2 實體清單＋隊伍面板＋js/22 渲染＋js/04 受害者池（權重 召喚術/造屍術＝4·屬性精靈＝3·見 js/04 summonAggroWeight）
+js\23-summons.js:11: //     ・屬性精靈：v3.2.26 四屬性獨立表（骰/縮放逐屬性·攻速 16~18 ticks）走 spiritAttackOnce·精靈精通→精靈王升級（_elfSpiritKingOverride·js/07）——HP 實體＋戰場動態
+js\23-summons.js:55: { n: '闇精靈王', lv: 52, hp: 420, aspd: 18, ring: true },
+js\23-summons.js:105: //   → 50級滿編無精通召喚略勝無精靈精通的強力精靈；階級倍率同時保證 68級單隻仍高於所有低階滿編（含第6隻）。
+js\23-summons.js:150: // ---------- 一之二、造屍術 v2＋屬性精靈 v2（v3.2.21）----------
+js\23-summons.js:364: // 🧝 屬性精靈：v3.2.26 四屬性獨立表走 spiritAttackOnce（骰/縮放逐屬性·攻速 16~18 ticks 依 _spiritDerive）；HP/等級為實體設計值。
+js\23-summons.js:365: // 👑 v3.2.25 精靈精通改版（用戶拍板）：不再增加數量（一律 1 隻）——有精靈精通時，
+js\23-summons.js:366: //    「召喚強力屬性精靈」改為召喚更強大的「<屬性>精靈王」（SPIRIT_KING 獨立參數·使用原強力精靈的動態）；
+js\23-summons.js:367: //    無精通的強力屬性精靈動態改用一般屬性精靈的圖（強力圖成為精靈王專屬）——由 formGfx 欄位分派（js/22 渲染層）。
+js\23-summons.js:369: //   傷害設計：單發＝原 DPS×攻擊間隔（攻速慢→單發重）；強力/精靈王再依 HP 曲線反比（血厚傷低·(基準HP/自身HP)^0.7：風最坦最輕·水火最痛）。
+js\23-summons.js:383: // 👑 精靈王（精靈精通專屬）：HP＝強力×2 循曲線·單發約強力 1.6 倍；攻擊命中後 15% 機率釋放「同屬性全體法術」（每目標約半發威力·吃魔抗/剋制）
+js\23-summons.js:392: function _spiritSpec(skId, ele, king) {   // 實體規格（依技能/屬性/是否精靈王合併）
+js\23-summons.js:399: if (_spiritIsKing(skId)) return (SPIRIT_ELE_ZH[ele] || '') + '之精靈王';   // 🏷️ v3.2.27 更名：〈屬〉之精靈系（圖檔資料夾仍為 X屬性精靈·由 formGfx 對應）
+js\23-summons.js:400: return (SPIRIT_DEF[skId].strong ? '強力' : '') + (SPIRIT_ELE_ZH[ele] || '') + '之精靈';
+js\23-summons.js:418: const SUMMON_V2_TITLES = { sk_summon: '召喚物', sk_zombie: '殭屍隨從', sk_elf_summon: '精靈', sk_elf_summon2: '精靈' };
+js\23-summons.js:472: } else if (skId === 'sk_elf_summon' || skId === 'sk_elf_summon2') {   // 🧝 屬性精靈：依玩家屬性·一律 1 隻（👑 v3.2.25 精靈精通改為昇華精靈王·不再加隻數）
+js\23-summons.js:474: if (!ele || !SPIRIT_ELE_ZH[ele]) { if (!silent) logSys('<span class="text-red-400">尚未選擇屬性，無法召喚屬性精靈。</span>'); return false; }
+js\23-summons.js:478: // 動態分派：精靈王＝原「強力X屬性精靈」圖（專屬）；強力屬性精靈（無精通）與一般精靈＝「X屬性精靈」圖
+js\23-summons.js:479: const gfx = (king ? '強力' : '') + SPIRIT_ELE_ZH[ele] + '屬性精靈';
+js\23-summons.js:482: ? `精靈之力在你的精通下昇華——你召喚了 <span class="text-purple-300 font-bold">${form}</span>！`
+js\23-summons.js:552: else if (s.skId === 'sk_elf_summon' || s.skId === 'sk_elf_summon2') spiritAttackOnce(s, t);   // 🧝 屬性精靈：玩家／傭兵共用公式（傭兵呼叫點見 js/07）
+js\23-summons.js:616: // 🧝 屬性精靈攻擊（v3.4.11 玩家實體／傭兵無敵抽象召喚共用）：
+js\23-summons.js:619: owner = owner || player;   // 🧝 玩家實體／傭兵無敵抽象精靈共用同一傷害公式
+js\23-summons.js:623: const _ia = (typeof teamIlluAura === 'function') ? teamIlluAura(s, true) : null;   // 🩹 幻覺光環：精靈命中吃 eh；md 由 owner.d＋下方其他隊員差額進 summonDamageMult，避免重複計算
+js\23-summons.js:633: const dmg = summonElementDamage(spec.dice || [1, 40], s.ele, t, flat + _sgb.dmg + ((_ia && _ia.royalEd) || 0) + ((_ia && _ia.mel) || 0), mult, mrPen);   // 👑 灼熱武器：魔法型屬性精靈的一般攻擊亦取得全隊額外傷害；🔥 v3.8.3 舞躍之火近距離傷害+3（屬性精靈一般攻擊視為近距
+js\23-summons.js:635: t.curHp -= dmg; if (typeof terrorVisageOnDamage === 'function') terrorVisageOnDamage(t, dmg, 'melee'); mobWake(t);   // 🌅 巨大骷髏：屬性精靈一般攻擊視為近距離
+js\23-summons.js:637: // 👑 v3.2.26 精靈王：攻擊命中後 15% 機率釋放「同屬性全體法術」（冰雪暴/火風暴/龍捲風/震裂術·每目標約半發威力·吃魔抗/剋制/DR）
+js\23-summons.js:644: m.curHp -= pd; if (typeof terrorVisageOnDamage === 'function') terrorVisageOnDamage(m, pd, 'magic'); m.justHit = s.ele; mobWake(m);   // 🌅 巨大骷髏：精靈王範圍技能視為魔法
+js\23-summons.js:654: // 怪物一般攻擊打召喚物（js/04 受害者池·權重 召喚術/造屍術＝4·屬性精靈＝3·見 js/04 summonAggroWeight·v3.2.21 含殭屍/屬性精靈）
+js\23-summons.js:827: // v3.2.40 稽核修：明確施放 sk_summon——原 summonV2Recast() 施的是當前技能，造屍術/屬性精靈在場時會誤重施它白花 MP
+js\26-world-channel.js:218: { words: ['魂體', '魂體轉換'], name: '精靈水晶(魂體轉換)' },
+js\26-world-channel.js:220: { words: ['生祝', '生命祝福'], name: '精靈水晶(生命的祝福)' },
+js\26-world-channel.js:221: { words: ['雙破', '雙重破壞'], name: '黑暗精靈水晶(雙重破壞)' },
+js\26-world-channel.js:222: { words: ['屬火', '屬性之火'], name: '精靈水晶(屬性之火)' },
+js\26-world-channel.js:224: { words: ['風之疾走'], name: '精靈水晶(風之疾走)' },
+js\26-world-channel.js:227: { words: ['餅乾'], name: '精靈餅乾' },
+js\26-world-channel.js:930: key: 'poly', kw: ['變身', '變形', '移動速度', '移速', '加速', '攻擊速度', '攻速', '風之疾走', '神聖疾走', '精靈餅乾', '勇敢藥水', '勇水', '綠水', '變卷', '變戒', '切割', '攻速裝', '攻速加成', '速度公式', '新公式', '施法速度', '施速'],
+js\26-world-channel.js:935: '風之疾走生效時會取代精靈餅乾的移動速度加成，但餅乾的攻擊速度仍保留；舊存檔若兩種疾走同時殘留，以風之疾走為準。',
+js\26-world-channel.js:1018: key: 'summon', kw: ['召喚', '召喚物', '造屍', '屬性精靈', '召喚術', '召喚控制', '召喚戒指'],   // ⚠️ 「召喚物死掉…」的「死掉」會被 death 主題搶走 → 顯式列 '召喚物' 加權
+js\26-world-channel.js:1022: '造屍術要對擊倒的怪施放，等級高殭屍跟著變強；妖精的屬性精靈則看你當初簽的屬性契約。',
+js\29-siege-v2-data.js:7225: "notes": "阿吐巴妖魔為精銳高血前排，保護法師與黑暗精靈。",
+js\29-siege-v2-data.js:7368: "name": "黑暗精靈",
+js\29-siege-v2-data.js:7409: "notes": "黑暗精靈固定為弓箭手；攻擊技能沿用DB.skills龍捲風，MP不足、冷卻或被封魔時改用弓箭。",
+js\29-siege-v2-data.js:7410: "assetSource": "castle/4.妖魔堡/妖堡專屬守軍/黑暗精靈",
+js\29-siege-v2-data.js:13490: "unitName": "黑暗精靈",
+js\anim-manifest.js:4: const ANIM_MANIFEST = {"assets/anim/不幸的幻象眼魔":{"attack_":7,"attack_s_":7,"death_":12,"death_s_":12,"hurt_":2,"hurt_s_":2,"idle_":14,"idle_s_":14,"skill_":11,"skill_effect_":11,"skill_s_":11},"assets/anim/不死的木乃伊王":{"attack
+===== PATTERN: MAGIC_MASTERY =====
+afk-wiki.js:227: if (lv === undefined && cls === 'elf' && typeof MAGIC_MASTERY_SKILLS !== 'undefined' && MAGIC_MASTERY_SKILLS.indexOf(id) >= 0) return sk.reqM;
+afk-wiki.js:251: else if (typeof MAGIC_MASTERY_SKILLS !== 'undefined' && MAGIC_MASTERY_SKILLS.indexOf(id) >= 0) p.push('妖精 ' + sk.reqM + '（需魔導精通）');
+afk-wiki.js:4730: var needMastery = (magicCls === 'elf' && sk.reqE === undefined && typeof MAGIC_MASTERY_SKILLS !== 'undefined' && MAGIC_MASTERY_SKILLS.indexOf(id) >= 0);
+js\01-drops-config.js:1194: const MAGIC_MASTERY_SKILLS = ['sk_blizzard', 'sk_tornado', 'sk_quake', 'sk_fire_storm'];   // 魔導精通可學的法師法術
+js\01-drops-config.js:1288: if (lv === undefined && player.cls === 'elf' && player.mastery === 'e_magic' && skId && MAGIC_MASTERY_SKILLS.includes(skId)) lv = sk.reqM;
+===== PATTERN: reqE =====
+afk-ui.js:192: var modal = null, titleEl, msgEl, reqEl, reqLabel, inputEl, okBtn, cancelBtn, layer = null, showing = false, cb = {}, pendingOk = false, decided = false;
+afk-ui.js:246: reqEl = modal.querySelector('#afk-confirm-req');
+afk-ui.js:298: reqEl.style.display = reqText ? '' : 'none';
+afk-wiki.js:193: // 魔法真正分類:有 reqM＝法師魔法(本職法術,1~10階);否則依 reqE/reqD/reqK/reqI/reqDk 歸為各職業專屬。
+afk-wiki.js:197: if (sk.reqE !== undefined) return 'elf';
+afk-wiki.js:226: var lv = cls === 'mage' ? sk.reqM : (cls === 'knight' ? sk.reqK : sk.reqE);
+afk-wiki.js:250: if (sk.reqE !== undefined) p.push('妖精 ' + sk.reqE);
+afk-wiki.js:4536: // ===== 妖精專屬(reqE) =====
+afk-wiki.js:4679: var eleReq = sk.reqEle ? '※需' + (ELE_REQ[sk.reqEle] || sk.reqEle) + '屬性' : (sk.reqEleAny ? '※需先選定屬性' : '');
+afk-wiki.js:4730: var needMastery = (magicCls === 'elf' && sk.reqE === undefined && typeof MAGIC_MASTERY_SKILLS !== 'undefined' && MAGIC_MASTERY_SKILLS.indexOf(id) >= 0);
+afk-wiki.js:4768: exclusive(cats.elf, '🍃 妖精專屬魔法', 'reqE', '妖精');
+js\00-data.js:2760: "sk_heal1": { n: "初級治癒術", type: "heal", justiceHeal: true, tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 4, valBase: 0, valDice: [1, 15], healDice: [1, 20], healBase: 20, classicHeal: { baseDice: 2, sides: 4 }, msg: "你感覺舒服了一點
+js\00-data.js:2761: "sk_sunlight": { n: "日光術", type: "buff", tier: 1, reqM: 4, reqE: 8, reqK: 16, reqI: 10, reqDk: 15, mp: 4, dur: 7200, msg: "你更容易被怪物發現了。" },
+js\00-data.js:2762: "sk_shield": { n: "保護罩", type: "buff", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 2, dur: 1200, d: { ac: 2 } },
+js\00-data.js:2763: "sk_lightarrow": { n: "光箭", type: "atk", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 3, dmgType: "magic", ele: "none", dmgDice: [1, 10], dmgBase: 8 },
+js\00-data.js:2764: "sk_teleport": { n: "傳送術", type: "manual", tier: 1, reqM: 4, reqE: 8, reqK: 16, reqI: 10, reqDk: 15, mp: 5, mEff: "teleport" },
+js\00-data.js:2765: "sk_icearrow": { n: "冰箭", type: "atk", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 3, dmgType: "magic", ele: "water", dmgDice: [1, 10], dmgBase: 10 },
+js\00-data.js:2766: "sk_windblade": { n: "風刃", type: "atk", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 3, dmgType: "magic", ele: "wind", dmgDice: [1, 10], dmgBase: 10 },
+js\00-data.js:2767: "sk_holy_wpn": { n: "神聖武器", type: "buff", tier: 1, reqM: 4, reqE: 8, reqK: 16, mp: 10, dur: 1200, d: { extraDmg: 1, extraHit: 1 }, msg: "你的武器暫時被注入了神聖力量。" },
+js\00-data.js:2770: "sk_antidote": { n: "解毒術", type: "heal", tier: 2, reqM: 8, reqE: 16, mp: 8, msg: "你感覺毒素消退了。" },
+js\00-data.js:2771: "sk_cold_shiver": { n: "寒冷戰慄", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 9, dmgType: "magic", ele: "none", dmgDice: [2, 10], dmgBase: 10, lifesteal: true, healSlot: true },
+js\00-data.js:2772: "sk_poison_curse": { n: "毒咒", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 10, dmgType: "magic", status: { kind: "poison", pbase: 100, dur: 15, tick: 3, dmg: [1, 8] }, msg: "你使目標中毒了。" },
+js\00-data.js:2773: "sk_ench_wpn": { n: "擬似魔法武器", type: "buff", tier: 2, reqM: 8, reqE: 16, mp: 20, dur: 1800, d: { extraDmg: 2 }, msg: "你的武器暫時被注入了魔法力量。" },
+js\00-data.js:2774: "sk_reveal": { n: "無所遁形術", type: "buff", tier: 2, reqM: 8, reqE: 16, mp: 8, dur: 180 },
+js\00-data.js:2775: "sk_load_up": { n: "負重強化", type: "buff", tier: 2, reqM: 8, reqE: 16, reqD: 16, mp: 10, dur: 1800, label: "增益", msg: "感覺到身體變輕了。" },   // 🔧 改版：負重上限+50（持續1800秒，效果結束才再施放）
+js\00-data.js:2776: "sk_firearrow": { n: "火箭", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 3, dmgType: "magic", ele: "fire", dmgDice: [2, 10], dmgBase: 10 },
+js\00-data.js:2777: "sk_hell_fang": { n: "地獄之牙", type: "atk", tier: 2, reqM: 8, reqE: 16, mp: 3, dmgType: "magic", ele: "earth", dmgDice: [2, 10], dmgBase: 10 },
+js\00-data.js:2780: "sk_aurora": { n: "極光雷電", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 13, dmgType: "magic", ele: "wind", target: "all", dmgDice: [4, 10] },
+js\00-data.js:2781: "sk_undead_bane": { n: "起死回生術", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 15, dmgType: "magic", instakill: { tag: "undead", cap: 12 } },   // 🔧 即死成功率最高 60%
+js\00-data.js:2782: "sk_heal_mid": { n: "中級治癒術", type: "heal", justiceHeal: true, tier: 3, reqM: 12, reqE: 24, mp: 11, valDice: [1, 30], healDice: [1, 50], healBase: 50, classicHeal: { baseDice: 4, sides: 8 }, msg: "你感覺舒服了一點。" },
+js\00-data.js:2783: "sk_dark_blind": { n: "闇盲咒術", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 20, dmgType: "magic", status: { kind: "blind", pbase: 150, hit: 4, dur: 10 } },
+js\00-data.js:2784: "sk_shield2": { n: "鎧甲護持", type: "buff", tier: 3, reqM: 12, reqE: 24, mp: 20, dur: 1800, d: { ac: 3 }, msg: "你的盔甲暫時被注入了魔法力量。" },
+js\00-data.js:2785: "sk_chill": { n: "寒冰氣息", type: "atk", tier: 3, reqM: 12, reqE: 24, mp: 9, dmgType: "magic", ele: "water", target: "all", dmgDice: [5, 5], dmgBase: 5 },
+js\00-data.js:2786: "sk_energy_sense": { n: "能量感測", type: "manual", tier: 3, reqM: 12, reqE: 24, mp: 8, mEff: "sense" },
+js\00-data.js:2789: "sk_fireball": { n: "燃燒的火球", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 16, dmgType: "magic", ele: "fire", target: "all", dmgDice: [5, 9] },
+js\00-data.js:2792: "sk_dex_up": { n: "通暢氣脈術", type: "buff", tier: 4, reqM: 16, reqE: 32, mp: 45, dur: 1200, d: { dex: 5 }, msg: "你覺得身手變得更靈活。" },
+js\00-data.js:2793: "sk_break": { n: "壞物術", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 20, dmgType: "magic", status: { kind: "broken", pbase: 150, dur: 25 } },
+js\00-data.js:2794: "sk_vampire": { n: "吸血鬼之吻", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 13, dmgType: "magic", ele: "none", dmgDice: [3, 10], dmgBase: 15, lifesteal: true, healSlot: true },
+js\00-data.js:2795: "sk_slow": { n: "緩速術", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 20, dmgType: "magic", status: { kind: "slow", pbase: 150, dur: 30 } },
+js\00-data.js:2804: "sk_rock_prison": { n: "岩牢", type: "atk", tier: 4, reqM: 16, reqE: 32, mp: 11, dmgType: "magic", ele: "earth", target: "all", dmgDice: [5, 8] },
+js\00-data.js:2805: "sk_magic_shield": { n: "魔法屏障", type: "buff", tier: 4, reqM: 16, reqE: 32, mp: 16, dur: 16 },
+js\00-data.js:2806: "sk_meditation": { n: "冥想術", type: "buff", tier: 4, reqM: 16, reqE: 32, hpCost: 40, mp: 10, dur: 600, d: { mpR: 5 } },
+js\00-data.js:2809: "sk_mummy_curse": { n: "木乃伊的詛咒", type: "atk", tier: 5, reqM: 20, reqE: 40, mp: 35, dmgType: "magic", status: { kind: "stone", pbase: 100, dur: 6 } },
+js\00-data.js:2810: "sk_charm": { n: "迷魅術", type: "manual", tier: 5, reqM: 20, reqE: 40, mp: 30, mEff: "charm" },
+js\00-data.js:2811: "sk_thunder": { n: "極道落雷", type: "atk", tier: 5, reqM: 20, reqE: 40, mp: 25, dmgType: "magic", ele: "wind", dmgDice: [5, 8], dmgBase: 40 },
+js\00-data.js:2812: "sk_heal2": { n: "高級治癒術", type: "heal", justiceHeal: true, tier: 5, reqM: 20, reqE: 40, mp: 20, valDice: [2, 30], healDice: [1, 100], healBase: 100, classicHeal: { baseDice: 10, sides: 8 }, msg: "你感覺舒服了一點。" },
+js\00-data.js:2813: "sk_holy_light": { n: "聖潔之光", type: "heal", tier: 5, reqM: 20, reqE: 40, mp: 10, msg: "神聖光芒驅散了詛咒。" },
+js\00-data.js:2814: "sk_ice_spike": { n: "冰錐", type: "atk", tier: 5, reqM: 20, reqE: 40, mp: 21, dmgType: "magic", ele: "water", dmgDice: [5, 6], dmgBase: 40 },
+js\00-data.js:2818: "sk_mana_drain": { n: "魔力奪取", type: "convert", tier: 5, reqM: 20, reqE: 40, hpCost: 50, drain: true },   // 🔧 改為轉換技能（法師/妖精）：消耗HP、需對怪物施展且以異常魔法命中判定，命中吸取 MP=1D(怪物等級/2)；其餘機制比照魂體轉換
+js\00-data.js:2819: "sk_dark_shadow": { n: "黑闇之影", type: "atk", tier: 5, reqM: 20, reqE: 40, mp: 25, dmgType: "magic", status: { kind: "blind", pbase: 150, hit: 5, dur: 20 } },
+js\00-data.js:2822: "sk_zombie": { n: "造屍術", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 35, dur: 3600, desc: "以死靈魔法喚醒倒下的人形軀殼，使其服從施術者並肩作戰。施術者的力量越成熟，甦醒的亡者也越強韌。", summon: { n: "隨從：人形殭屍", dmgDice: [1, 12], dmgDiv: 5, dmgLvDiv: 20, dmgMult: 
+js\00-data.js:2823: "sk_haste_spell": { n: "加速術", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 40, dur: 1200, haste: true, msg: "你感到身體變得非常輕盈。" },
+js\00-data.js:2824: "sk_cancel": { n: "魔法相消術", type: "heal", tier: 6, reqM: 24, reqE: 48, mp: 40, msg: "你全身上下感到涼意。" },
+js\00-data.js:2825: "sk_earthquake": { n: "地裂術", type: "atk", tier: 6, reqM: 24, reqE: 48, mp: 25, dmgType: "magic", ele: "earth", dmgDice: [5, 3], dmgBase: 50 },
+js\00-data.js:2826: "sk_blaze": { n: "烈炎術", type: "atk", tier: 6, reqM: 24, reqE: 48, mp: 30, dmgType: "magic", ele: "fire", dmgDice: [16, 5], dmgBase: 40 },
+js\00-data.js:2827: "sk_str_up": { n: "體魄強健術", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 50, dur: 1200, d: { str: 5 }, msg: "你覺得身體充滿了力量。" },
+js\00-data.js:2828: "sk_bless_wpn": { n: "祝福魔法武器", type: "buff", tier: 6, reqM: 24, reqE: 48, mp: 20, dur: 1200, d: { extraDmg: 2, extraHit: 2 }, msg: "你的武器暫時被注入了魔法力量。" },
+js\00-data.js:2829: "sk_weaken": { n: "弱化術", type: "atk", tier: 6, reqM: 24, reqE: 48, mp: 25, dmgType: "magic", status: { kind: "weaken", pbase: 150, dur: 30 } },
+js\00-data.js:2876: "sk_elf_mr": { n: "魔法防禦", type: "buff", tier: 1, reqE: 10, mp: 10, dur: 1200, d: { mr: 10 } },
+js\00-data.js:2877: "sk_elf_mind": { n: "心靈轉換", type: "convert", tier: 1, reqE: 10, hpCost: 8, mpGain: 2 },
+js\00-data.js:2878: "sk_elf_worldtree": { n: "世界樹的呼喚", type: "passive", tier: 1, reqE: 10 },
+js\00-data.js:2879: "sk_elf_triple": { n: "三重矢", type: "atk", tier: 1, reqE: 10, mp: 15, dmgType: "physical", ranged: true, reqWpn: "bow", hits: 3 },
+js\00-data.js:2882: "sk_elf_purify": { n: "淨化精神", type: "buff", tier: 2, reqE: 20, mp: 10, dur: 1200, d: { wis: 3 } },
+js\00-data.js:2883: "sk_elf_eleres": { n: "屬性防禦", type: "buff", tier: 2, reqE: 20, mp: 10, dur: 1200, d: { resFire: 10, resWater: 10, resEarth: 10, resWind: 10 } },
+js\00-data.js:2884: "sk_elf_release": { n: "釋放元素", type: "atk", tier: 2, reqE: 20, mp: 30, dmgType: "magic", instakill: { tag: "element", cap: 12 } },   // 🔧 即死成功率最高 60%
+js\00-data.js:2885: "sk_elf_soul": { n: "魂體轉換", type: "convert", tier: 2, reqE: 20, hpCost: 50, mpGain: 15 },
+js\00-data.js:2888: "sk_elf_singleres": { n: "單屬性防禦", type: "buff", tier: 3, reqE: 30, mp: 10, dur: 64, reqEleAny: true },
+js\00-data.js:2889: "sk_elf_firewpn": { n: "火焰武器", type: "buff", tier: 3, reqE: 30, mp: 20, dur: 1200, reqEle: "fire", d: { meleeDmg: 3 } },
+js\00-data.js:2890: "sk_elf_windshot": { n: "風之神射", type: "buff", tier: 3, reqE: 30, mp: 15, dur: 1200, reqEle: "wind", d: { rangedHit: 5 } },
+js\00-data.js:2891: "sk_elf_winddash": { n: "風之疾走", type: "buff", tier: 3, reqE: 30, mp: 20, dur: 1200, reqEle: "wind", moveSpeedMult: 1.33, moveSpeedReplacesCookie: true },
+js\00-data.js:2892: "sk_elf_earthguard": { n: "大地防護", type: "buff", tier: 3, reqE: 30, mp: 15, dur: 1200, reqEle: "earth", d: { ac: 4 } },
+js\00-data.js:2893: "sk_elf_groundtrap": { n: "地面障礙", type: "atk", tier: 3, reqE: 30, mp: 20, dmgType: "magic", reqEle: "earth", target: "all", status: { kind: "slow", pbase: 150, dur: 30 } },   // 🤝 Phase4：改為全體緩速
+js\00-data.js:2894: "sk_elf_watervital": { n: "水之元氣", type: "buff", tier: 3, reqE: 30, mp: 1, dur: 64, reqEle: "water", noRefresh: true, msg: "水之元氣環繞著你。" },   // 🔧 buff 期間內「下次」受到治癒術（玩家自身瞬間治癒，不含持續回復HoT）時恢復量加倍、觸發後7秒冷卻（見 waterVitalHeal）；noRef
+js\00-data.js:2897: "sk_elf_magicerase": { n: "魔法消除", type: "atk", tier: 4, reqE: 40, mp: 30, dmgType: "magic", status: { kind: "mrhalf", pbase: 150, dur: 16 } },
+js\00-data.js:2898: "sk_elf_summon": { n: "召喚屬性精靈", type: "buff", tier: 4, reqE: 40, mp: 30, dur: 3600, reqEleAny: true, desc: "向締結契約的元素祈求援助，召來與自身屬性相同的精靈並肩作戰。", summon: { n: "夥伴：{ele}之精靈", dmgDice: [1, 40], elemScale: 20, dmgMult: 1.00, mrP
+js\00-data.js:2899: "sk_elf_dancefire": { n: "舞躍之火", type: "buff", tier: 4, reqE: 40, mp: 30, dur: 1200, reqEle: "fire", d: { meleeDmg: 3 }, msg: "舞動的火焰環繞全隊，所有隊員的近距離傷害提升。" },   // 🔥 v3.8.3 改團隊光環（TEAM_AURA_SKILLS）：任一來源維持即惠及玩家／傭兵／寵物／召喚物／城堡護衛
+js\00-data.js:2900: "sk_elf_stormeye": { n: "暴風之眼", type: "buff", tier: 4, reqE: 40, mp: 40, dur: 1200, reqEle: "wind", d: { rangedDmg: 2, rangedHit: 2 } },
+js\00-data.js:2901: "sk_elf_earthshield": { n: "大地屏障", type: "buff", tier: 4, reqE: 40, mp: 50, dur: 8, reqEle: "earth" },
+js\00-data.js:2902: "sk_elf_lifespring": { n: "生命之泉", type: "heal", tier: 4, reqE: 40, mp: 50, reqEle: "water", valDice: [4, 35], healDice: [5, 50], healBase: 250, fullRestore: true, ignoreWaterVital: true, healCooldownTicks: 200, msg: "生命之
+js\00-data.js:2903: "sk_elf_earthbless": { n: "大地的祝福", type: "buff", tier: 4, reqE: 40, mp: 35, dur: 1200, reqEle: "earth", d: { ac: 7 } },
+js\00-data.js:2906: "sk_elf_summon2": { n: "召喚強力屬性精靈", type: "buff", tier: 5, reqE: 50, mp: 50, dur: 3600, reqEleAny: true, desc: "以更深的元素契約呼喚高位精靈。精通精靈之道的妖精，甚至能使精靈王親臨戰場。", summon: { n: "夥伴：強力{ele}之精靈", dmgDice: [2, 40], elemScale: 10, dmgMul
+js\00-data.js:2907: "sk_elf_lifebless": { n: "生命的祝福", type: "heal", justiceHeal: true, tier: 5, reqE: 50, mp: 30, reqEle: "water", valDice: [1, 20], healDice: [1, 28], healBase: 28, classicHeal: { baseDice: 12, sides: 12, mult: 0.8 }, group
+js\00-data.js:2908: "sk_elf_seal": { n: "封印禁地", type: "atk", tier: 5, reqE: 50, mp: 40, dmgType: "magic", reqEleAny: true, status: { kind: "magicseal", pbase: 100, dur: 8 } },
+js\00-data.js:2909: "sk_elf_muddywater": { n: "污濁之水", type: "atk", tier: 5, reqE: 50, mp: 20, dmgType: "magic", ele: "water", reqEle: "water", bossOnly: true, status: { kind: "muddywater", force: true, dur: 32 }, desc: "只能對頭目施放；必定命中，使其HP自然恢
+js\00-data.js:2910: "sk_elf_blazewpn": { n: "烈炎武器", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "fire", d: { meleeDmg: 5, meleeHit: 5 } },
+js\00-data.js:2911: "sk_elf_flamesoul": { n: "烈焰之魂", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1280, reqEle: "fire", noRefresh: true },   // 🔧 持續內近距離一般攻擊武器擲骰必定最大值（見 getPhysicalDmg）；noRefresh：效果結束才可再施放
+js\00-data.js:2912: "sk_elf_stormshot": { n: "暴風神射", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "wind", d: { rangedDmg: 6, rangedHit: 3 } },
+js\00-data.js:2913: "sk_elf_preciseshot": { n: "精準射擊", type: "buff", tier: 5, reqE: 50, mp: 15, dur: 64, reqEle: "wind", noRefresh: true, msg: "你的目光變得無比銳利，攻擊精準無比。" },   // 🏹 持續內一般攻擊擲骰1由必定未命中→必定命中（最高命中率可達100%·見 getPhysicalDmg）；noRefresh：效果結
+js\00-data.js:2914: "sk_elf_steelguard": { n: "鋼鐵防護", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 1200, reqEle: "earth", d: { ac: 10 } },   // 🛡️ 鋼鐵防護：僅施法者自身 AC-10；不再提供全隊百分比減傷
+js\00-data.js:2915: "sk_elf_attrfire": { n: "屬性之火", type: "buff", tier: 5, reqE: 50, mp: 20, dur: 320, reqEle: "fire", noRefresh: true, msg: "屬性之火在你的攻擊中燃燒。" },   // 🔧 一般攻擊30%機率傷害×1.5（見 playerAttack，與燃燒鬥志同效）；noRefresh：效果結束才可再施放
+js\00-data.js:2916: "sk_elf_physboost": { n: "體能激發", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 960, reqEle: "earth", noRefresh: true, loadFreeRegen: true, msg: "體能激發，負重之下仍能調息。" },   // 🔧 負重狀態仍可自然恢復HP/MP（見 js/03 _regenHP/_regenMP 與 hasL
+js\00-data.js:2917: "sk_elf_energyboost": { n: "能量激發", type: "buff", tier: 5, reqE: 50, mp: 30, dur: 960, reqEle: "fire", noRefresh: true, loadFreeRegen: true, msg: "能量激發，負重之下仍能調息。" },   // 🔧 同體能激發，火屬性版本
+js\00-data.js:2918: "sk_elf_mirror": { n: "鏡反射", type: "buff", tier: 5, reqE: 50, mp: 10, dur: 16, msg: "你的周身浮現一面鏡子。" },   // 🪞 受魔法傷害時 精神%機率（每1點精神+1%），對施法者造成等量必中固定傷害（見 applyMobMagic）；type:buff → 自動施放且效果結束才再施放
+js\01-drops-config.js:1273: if (player.cls === 'illusion') return sk.reqI;   // 🔮 幻術士：只學帶 reqI 的法術（記憶水晶＋日光術）；undefined＝不可學（不再誤用 reqE）
+js\01-drops-config.js:1287: let lv = player.cls === 'mage' ? sk.reqM : (player.cls === 'knight' ? sk.reqK : sk.reqE);
+js\06-status-allies.js:2763: //   （玩家端 canCast js/07:395-396 的 reqEle／reqEleAny 閘）。傭兵路徑原本**完全沒有這道閘** → 隊伍面板照列出來、
+js\06-status-allies.js:2767: //     去判傭兵的技能（也正是 _allySkillOptions 原註解說「不可用 reqEle 判可用性」的原因；改讀 ally 後就成立了）。
+js\06-status-allies.js:2768: //   granted（裝備/頭盔賦予）比照玩家豁免屬性閘。非妖精職業的技能無 reqEle/reqEleAny → 一律 true，零影響。
+js\06-status-allies.js:2771: if (!sk.reqEle && !sk.reqEleAny) return true;
+js\06-status-allies.js:2774: if (sk.reqEle && ele !== sk.reqEle) return false;   // 屬性不符（換屬性後的舊屬性魔法）
+js\06-status-allies.js:2775: if (sk.reqEleAny && !ele) return false;             // 尚未選擇屬性
+js\06-status-allies.js:2917: : (ally.skills.includes('sk_elf_summon2') && _mercAutoOn(ally, 'sk_elf_summon2') && allySkillElementOk(ally, 'sk_elf_summon2')) ? 'sk_elf_summon2'   // 🩸 妖精傭兵優先「召喚強力屬性精靈」(上級精靈)：先學的一般版 sk_elf_summon 排在前面，.find 會先抓到它 → 傭兵
+js\06-status-allies.js:2933: //   目標合法性只看武器/盾需求（元素 reqEle 不擋受益者·效果與屬性無關）；加速類目標已有任何加速來源(buffs.haste/裝備常駐)→跳過免浪費。
+js\06-status-allies.js:3085: if (_cvsk && _cvsk.type === 'convert' && ally.skills && ally.skills.includes(ally._convertSkill) && allySkillElementOk(ally, ally._convertSkill)) {   // 🧝 v3.8.5 屬性閘一致性（現行 convert 技皆無 reqEle·未來新增即自動涵蓋）
+js\07-skills-cast.js:435: if(!__granted && sk.reqEle && player.elfEle !== sk.reqEle) return false;      // 屬性不符
+js\07-skills-cast.js:436: if(!__granted && sk.reqEleAny && !player.elfEle) return false;                 // 尚未選擇屬性
+js\07-skills-cast.js:439: // ⚠️ v3.6.65 必須放在**等級/屬性閘之後**：爆裂的火球是「非可學技能」（無 reqM/reqE），
+js\08-items-equip.js:737: if(sd.reqEle && player.elfEle !== sd.reqEle) { logSys(`屬性不符，無法學習「${sd.n}」。`); return; }
+js\08-items-equip.js:738: if(sd.reqEleAny && !player.elfEle) { logSys(`尚未選擇屬性，無法學習「${sd.n}」。`); return; }
+js\10-ui-tabs.js:86: if (player.cls === 'elf') return sk.reqE !== undefined && sk.reqM === undefined;
+js\10-ui-tabs.js:125: let elementOk = !sk.reqEle || player.elfEle === sk.reqEle;
+js\10-ui-tabs.js:126: let elementChosen = !sk.reqEleAny || !!player.elfEle;
+js\10-ui-tabs.js:557: if(!__granted && sk.reqEle && player.elfEle !== sk.reqEle) isAvail = false;
+js\10-ui-tabs.js:558: if(!__granted && sk.reqEleAny && !player.elfEle) isAvail = false;
+===== PATTERN: reqClass =====
+js\00-data.js:273: function _expReqClassicV2(lv) {   // v3.4.58 以前的經典表；僅供 expMigV=3 百分比遷移
+js\13-shop-save.js:1793: let o = _expReqOldV1(lv), n = _expReqClassicV2(lv);
+js\13-shop-save.js:1807: let o = _expReqClassicV2(lv), n = getExpReq(lv);
+js\22-pets.js:164: let oldReq = Math.max(1, Math.floor(_expReqClassicV2(lv) / 10));
+===== PATTERN: sk_erase =====
+(no hits)
+===== PATTERN: sk_seal =====
+afk-wiki.js:4527: sk_seal: ['本身不造成傷害；真空 16 秒，依異常魔法命中判定(等級＋魔法命中 對 怪等＋魔防)'],
+js\00-data.js:1700: "bk_seal": { type: "skillbk", n: "魔法書(魔法封印)", p: 54000, sk: "sk_seal", gachaWeight: 40 },
+js\00-data.js:2849: "sk_seal": { n: "魔法封印", type: "atk", tier: 8, reqM: 32, mp: 30, dmgType: "magic", status: { kind: "vacuum", pbase: 100, dur: 16 } },
+===== PATTERN: sk_dirty =====
+(no hits)
+===== PATTERN: sk_single =====
+(no hits)
+===== PATTERN: sk_all_ele =====
+(no hits)
+===== PATTERN: singleEle =====
+(no hits)
+===== PATTERN: allEle =====
+js\00-data.js:808: "relic_morph_blade":     { n: "不定形的變幻劍",   type: "wpn", w2h: true, chainsword: true, weakExpose: true, relic: true, noEnhance: true, dmgS: 21, dmgL: 17, hit: 17, dmgBonus: 15, str: 1, counterAllEle: true, req: "dragon", 
+js\03-combat-core.js:2386: if (wpn && wpn.counterAllEle && target.e && target.e !== 'none') _ecm = Math.max(_ecm, 1.4);   // 🏺 不定形的變幻劍：一般攻擊剋制地/水/火/風一切屬性之敵（強制 ≥×1.4）
+js\06-status-allies.js:1037: if (wpn && wpn.counterAllEle && t.e && t.e !== 'none') _ecmA = Math.max(_ecmA, 1.4);
+js\10-ui-tabs.js:1120: if (d.counterAllEle)         _eff.push('一般攻擊剋制所有屬性敵人');
+js\14-craft-pandora.js:1935: if(d.counterAllEle) _eff.push('萬象剋制（一般攻擊剋制所有屬性敵人）');
+===== PATTERN: eraseMagic =====
+(no hits)
+===== PATTERN: procStatusSkill =====
+js\00-data.js:481: "wpn_redshadow_dual":  { n: "紅影雙刀", type: "wpn", w2h: true, legend: true, dmgS: 27, dmgL: 18, hit: 10, dmgBonus: 18, spd: 0.8, req: "dark", safe: 0, p: 500000, gachaWeight: 0, eff: "combo", comboRate: 35, ignHardSkin: tr
+js\00-data.js:551: "relic_gremlin_club":      { n: "地靈的木棍",         type: "wpn", relic: true, noEnhance: true, dmgS: 6, dmgL: 3, hit: 2, dmgBonus: 2, procStatusSkill: { skId: "sk_relic_stun", rate: 1 }, req: "royal,knight,elf,mage,illusion
+js\00-data.js:565: "relic_icefield_pick":      { n: "冰原十字鎬",         type: "wpn", relic: true, noEnhance: true, dmgS: 6, dmgL: 4, hit: 5, dmgBonus: 5, procStatusSkill: { skId: "sk_relic_freeze", rate: 1 }, req: "royal,knight,elf,mage,illus
+js\00-data.js:607: "relic_starfish_arm":       { n: "海星的分裂腕足",     type: "wpn", w2h: true, chainsword: true, weakExpose: true, relic: true, noEnhance: true, dmgS: 21, dmgL: 20, hit: 14, dmgBonus: 11, eff: "combo", comboRate: 20, procStatus
+js\00-data.js:631: "relic_parrot_beak":        { n: "七彩鸚鵡喙",       type: "wpn", w2h: true, relic: true, noEnhance: true, dmgS: 20, dmgL: 17, hit: 9, dmgBonus: 12, eff: "cleave", ele: "wind", procStatusSkill: { skId: "sk_relic_silence", rat
+js\00-data.js:675: "relic_icestone_maul":      { n: "冰石的強襲鎚",     type: "wpn", w2h: true, relic: true, noEnhance: true, eff: "crush", ele: "water", onHitEleDmg: { dmg: 10, ele: "water" }, procStatusSkill: { skId: "sk_relic_freeze", rate: 1
+js\00-data.js:678: "relic_mutant_lamia_scale": { n: "變種蛇女的詭異鱗片", type: "wpn", relic: true, noEnhance: true, ignHardSkin: true, unBonus: true, dmgS: 7, dmgL: 7, hit: 9, dmgBonus: 11, procStatusSkill: { skId: "sk_relic_paralyze", rate: 1 }, 
+js\00-data.js:681: "relic_giant_toothpick":    { n: "巨人戰士的牙籤",   type: "wpn", w2h: true, relic: true, noEnhance: true, eff: "cleave", ignHardSkin: true, procStatusSkill: { skId: "sk_relic_stun", rate: 1 }, dmgS: 20, dmgL: 17, hit: 14, dmgB
+js\00-data.js:682: "relic_giant_throwstone":   { n: "巨人的拋投石",     type: "wpn", w2h: true, relic: true, noEnhance: true, eff: "crush", dr: 3, procStatusSkill: { skId: "sk_relic_broken", rate: 5 }, dmgS: 18, dmgL: 24, hit: 12, dmgBonus: 12, 
+js\00-data.js:685: "relic_beholder_gaze":      { n: "眼魔的凝視",       type: "wpn", isWand: true, relic: true, noEnhance: true, eff: "magicstrike", str: 4, procStatusSkill: { skId: "sk_relic_stone", rate: 1 }, dmgS: 9, dmgL: 9, hit: 13, dmgBon
+js\00-data.js:693: "relic_cockatrice_gaze":    { n: "石化雞蛇的凝視",   type: "wpn", w2h: true, chainsword: true, relic: true, noEnhance: true, weakExpose: true, procStatusSkill: { skId: "sk_mummy_curse", rate: 5 }, int: 1, wis: 2, dmgS: 23, dmgL
+js\00-data.js:707: "relic_evillizard_eye":     { n: "邪惡蜥蜴的眼瞳",   type: "wpn", isWand: true, relic: true, noEnhance: true, mpOnHit: true, mpOnHitAmt: 6, procStatusSkill: { skId: "sk_mummy_curse", rate: 3 }, extraMp: 3, dmgS: 3, dmgL: 3, hit
+js\00-data.js:712: "relic_silent_venom":       { n: "沉默的毒液",       type: "wpn", relic: true, noEnhance: true, procStatusSkill: { skId: "sk_relic_silence", rate: 3 }, silencedBonusDmg: 20, dmgS: 8, dmgL: 8, hit: 13, dmgBonus: 13, req: "roya
+js\00-data.js:723: "relic_fearless_charge":    { n: "無所畏懼的突擊",     type: "wpn", w2h: true, chainsword: true, weakExpose: true, relic: true, noEnhance: true, dmgS: 24, dmgL: 16, hit: 15, dmgBonus: 19, str: 2, hpR: 5, procStatusSkill: { skId
+js\00-data.js:755: "relic_eto_whip":       { n: "艾庫艾托的鞭笞藤",     type: "wpn", w2h: true, noBleed: true, relic: true, noEnhance: true, ignHardSkin: true, dmgS: 17, dmgL: 17, hit: 12, dmgBonus: 12, eff: "pierce", pierceChance: 100, procStatus
+js\00-data.js:789: "relic_minotaur_flail":    { n: "牛頭人的流星鎚",     type: "wpn", relic: true, noEnhance: true, dmgS: 9, dmgL: 10, hit: 15, dmgBonus: 15, procStatusSkill: { skId: "sk_relic_stun", rate: 2 }, req: "royal,knight,elf,dragon,illus
+js\00-data.js:807: "relic_corpse_needle":   { n: "屍毒之針",         type: "wpn", isBow: true, ranged: true, oneHand: true, rapidfire: 65, relic: true, noEnhance: true, dmgS: 3, dmgL: 2, hit: 16, dmgBonus: 15, procStatusSkill: { skId: "sk_reli
+js\00-data.js:878: "relic_sr_ushioni_horn": { n: "牛鬼的斷角",         type: "wpn", w2h: true, noBleed: true, relic: true, noEnhance: true, eff: "pierce", pierceChance: 100, ignHardSkin: true, procStatusSkill: { skId: "sk_disease", rate: 15 }, 
+js\00-data.js:1575: "wpn_demonking_spear": { n: "惡魔王矛", type: "wpn", w2h: true, dmgS: 25, dmgL: 25, hit: 2, dmgBonus: 3, spd: 1.1, req: "knight", safe: 6, p: 380000, legend: true, gachaWeight: 1, eff: "pierce", pierceChance: 90, procStatusS
+js\00-data.js:1576: "wpn_demonking_dual": { n: "惡魔王雙刀", type: "wpn", w2h: true, dmgS: 18, dmgL: 16, hit: 5, dmgBonus: 3, spd: 0.8, req: "dark", safe: 6, p: 420000, legend: true, gachaWeight: 1, eff: "combo", procStatusSkill: { skId: "sk_dis
+js\00-data.js:1577: "wpn_demonking_2hsword": { n: "惡魔王雙手劍", type: "wpn", w2h: true, dmgS: 23, dmgL: 24, hit: 1, dmgBonus: 5, spd: 0.9, req: "knight", safe: 6, p: 354510, legend: true, gachaWeight: 1, eff: "cleave", procStatusSkill: { skId: 
+js\00-data.js:1578: "wpn_demonking_wand": { n: "惡魔王魔杖", type: "wpn", w2h: true, dmgS: 12, dmgL: 12, hit: 6, dmgBonus: 2, spd: 1.0, req: "mage", safe: 6, p: 494510, legend: true, gachaWeight: 1, eff: "magicburst", mdmg: 2, mpR: 10, mpOnHit: 
+js\00-data.js:1579: "wpn_demonking_bow": { n: "惡魔王弓", type: "wpn", isBow: true, ranged: true, rapidfire: 90, w2h: true, dmgS: 5, dmgL: 5, hit: 4, dmgBonus: 6, spd: 1.0, req: "elf", safe: 6, p: 547300, legend: true, gachaWeight: 1, procStatu
+js\00-data.js:2796: "sk_relic_stun": { n: "暈眩", type: "atk", status: { kind: "stun", dur: 2, force: true } },   // 🏺 遺物「地靈的木棍」攻擊命中觸發用（procStatusSkill·非可學技能·force 跳過魔抗故 proc 率＝最終暈眩率·BOSS 免疫仍生效）
+js\00-data.js:2797: "sk_relic_freeze": { n: "冰凍", type: "atk", status: { kind: "freeze", dur: 6, force: true } },   // 🏺 遺物「冰原十字鎬」攻擊命中觸發用（procStatusSkill·非可學技能·force 跳過魔抗故 proc 率＝最終冰凍率·BOSS 免疫仍生效）
+js\00-data.js:2798: "sk_relic_paralyze": { n: "麻痺", type: "atk", status: { kind: "stun", dur: 2, force: true } },   // 🏺 遺物「海星的分裂腕足」攻擊命中觸發用（procStatusSkill·非可學技能）；怪物無 paralyze 狀態欄→以 stun 實現「無法行動」效果，日誌標示為麻痺
+js\00-data.js:2800: "sk_relic_slow": { n: "緩速", type: "atk", status: { kind: "slow", dur: 8, force: true } },   // 🐍 遺物「艾庫艾托的鞭笞藤」攻擊命中觸發（procStatusSkill·force·緩速＝敵攻擊間隔+1秒·js/03:367）
+js\00-data.js:2801: "sk_relic_stone": { n: "石化", type: "atk", status: { kind: "stone", dur: 6, force: true } },   // 🏺 遺物「眼魔的凝視」攻擊命中觸發（procStatusSkill·force 跳魔抗→proc 率＝最終石化率·BOSS 免疫仍生效）
+js\00-data.js:2802: "sk_relic_broken": { n: "損壞", type: "atk", status: { kind: "broken", dur: 8, force: true } },   // 🏺 遺物「巨人的拋投石」攻擊命中觸發（procStatusSkill·force·損壞＝敵一般攻擊傷害-2）   // 🏺 遺物「七彩鸚鵡喙」攻擊命中觸發用（procStatusSkill·非可學技能）；怪物用 magicseal(魔法封
+js\03-combat-core.js:2842: // ⚔️ v3.5.97 副手武器的附魔施放（procSkill／spellProc／procStatusSkill／procFireSkillRate 家族）。
+js\03-combat-core.js:2978: weaponSpellProc(target);            // 附魔施放：spellProc/procSkill/procPoison/procStatusSkill（巴風特魔杖/冰之女王魔杖/死亡之指等）
+js\04-combat-attack.js:502: function applyWeaponProcStatusSkill(target, cfg) {
+js\04-combat-attack.js:513: //   ⚠️ 與 procStatusSkill 的差別：那個要有對應技能(skId)，這個直接指定 kind，給沒有技能的純狀態用。
+js\04-combat-attack.js:588: if (wpn.procStatusSkill) applyWeaponProcStatusSkill(target, wpn.procStatusSkill);   // 🌑 惡魔王武器：攻擊時 10% 施放疾病術
+js\06-status-allies.js:1841: if (wpn.procStatusSkill) { let _sv = player; player = ally; try { applyWeaponProcStatusSkill(target, wpn.procStatusSkill); } finally { player = _sv; } }   // 🌑 惡魔王武器：傭兵攻擊時施放疾病術（以傭兵自身魔法命中判定）
+js\08-items-equip.js:278: 'spellProc', 'procSkill', 'procSkill2', 'procStatusSkill', 'procFireSkillRate',
+js\10-ui-tabs.js:1102: if (d.procStatusSkill) {
+js\10-ui-tabs.js:1103: let _statusName = (DB.skills[d.procStatusSkill.skId] && DB.skills[d.procStatusSkill.skId].n) || '異常狀態';
+js\10-ui-tabs.js:1104: _eff.push(`異常攻擊 ${d.procStatusSkill.rate || 0}%（命中時造成${_statusName}）`);
+js\14-craft-pandora.js:1917: if(d.procStatusSkill) {
+js\14-craft-pandora.js:1918: let _statusName = (DB.skills[d.procStatusSkill.skId] && DB.skills[d.procStatusSkill.skId].n) || '異常狀態';
+js\14-craft-pandora.js:1919: _eff.push(`異常攻擊 ${d.procStatusSkill.rate || 0}%（命中時造成${_statusName}）`);
+===== PATTERN: onHitCastSkill =====
+afk-wiki.js:2690: var EQ_PROC_FIELDS = ['spellProc', 'grantSkills', 'onHitCastSkill', 'onHitEleDmg', 'skillDmgMult', 'onDmgHeal', 'mpOnHit',
+js\00-data.js:787: "relic_soulreaper_dual":   { n: "奪魂者雙刃劍",       type: "wpn", w2h: true, relic: true, noEnhance: true, ignHardSkin: true, dmgS: 18, dmgL: 14, hit: 18, dmgBonus: 17, eff: "combo", comboRate: 30, onHitCastSkill: { skId: "sk
+js\00-data.js:875: "relic_sr_tengu_fan":    { n: "天狗的羽扇",         type: "wpn", isBow: true, ranged: true, relic: true, noEnhance: true, rapidfire: 80, ignHardSkin: true, ele: "wind", onHitCastSkill: { skId: "sk_windblade", cdSec: 5 }, mdmg
+js\04-combat-attack.js:268: if (wpn && wpn.onHitCastSkill && target.curHp > 0 && state.ticks >= (player._onHitCastCd || 0)) { player._onHitCastCd = state.ticks + ((wpn.onHitCastSkill.cdSec || 5) * 10); procFreeMagicSkill(target, wpn.onHitCastSkill.
+js\04-combat-attack.js:755: if (sk.lifesteal) { let _h = Math.min(total, player.mhp - player.hp); if (_h > 0) { player.hp += _h; logCombat(`你吸取了 ${_h} 點生命。`, 'heal'); } }   // 🩸 v3.2.43 稽核修：吸血法術（冷徹寒顫等）proc 觸發也回血（比照 castSkill js/07:703·奪魂者雙刃劍 onHit
+js\06-status-allies.js:2057: if (wpn.onHitCastSkill && t.curHp > 0 && !t._dead && state.ticks >= (ally._onHitCastCd || 0)) { ally._onHitCastCd = state.ticks + ((wpn.onHitCastSkill.cdSec || 5) * 10); allyProcFreeMagicSkill(ally, t, wpn.onHitCastSkill
+js\08-items-equip.js:279: 'meleeHitSpell', 'onHitCastSkill', 'dragonStrike', 'hitEchoMagic',
+js\10-ui-tabs.js:844: if (d.onHitCastSkill) out.push(`命中施法（每${d.onHitCastSkill.cdSec || 5}秒觸發${skillName(d.onHitCastSkill.skId)}）`);
+===== PATTERN: onAttack =====
+js\01-drops-config.js:1496: // 🐾 召喚物裝備加成（喚獸師的訓練鞭 summonDmg/summonHit）：掃 owner(玩家或傭兵) 全部裝備欄加總，餵給 summonAttack 的命中/傷害。
+js\07-skills-cast.js:4: function summonAttackCount(sm, owner) {
+js\07-skills-cast.js:40: function summonAttack(sm, owner) {
+js\07-skills-cast.js:88: let hits = summonAttackCount(sm, owner);
+js\07-skills-cast.js:123: if(--sm.cd <= 0) { sm.cd = sm.interval; summonAttack(sm, owner); }
+js\08-items-equip.js:1356: : (typeof summonAttackCount === 'function') ? summonAttackCount(_creature, player) : 1;
+===== PATTERN: buffUntil =====
+js\02-stats-recompute.js:707: (p._golemMrDebuffUntil || 0) > state.ticks,
+js\03-combat-core.js:591: // 🏺 v3.7.52 同型到期重算：_golemMrDebuffUntil（高崙印記 MR-100）／_fangFuryUntil（邪惡利牙攻速+30%）／_spellbladeUntil（魔劍士之刀施法增益）
+js\03-combat-core.js:593: let _tickExpireFields = ['_giltasWandFuryUntil', '_golemMrDebuffUntil', '_fangFuryUntil', '_spellbladeUntil', '_eyePetrifyUntil'];   // 🐉 v3.7.57 +地龍之魔眼增益到期
+js\04-combat-attack.js:1291: let _gmWas = (player._golemMrDebuffUntil || 0) > state.ticks;
+js\04-combat-attack.js:1292: player._golemMrDebuffUntil = state.ticks + golemMarkDurationTicks();
+js\04-combat-attack.js:1590: let _gmaWas = (ally._golemMrDebuffUntil || 0) > state.ticks;
+js\04-combat-attack.js:1591: ally._golemMrDebuffUntil = state.ticks + golemMarkDurationTicks();
+===== PATTERN: cannot.*recast|recast.*buff|hasBuff|buffRemain|durationSec|cdUntilBuff =====
+(no hits)

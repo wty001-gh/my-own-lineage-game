@@ -1,0 +1,2048 @@
+// ===== ♟️ v3.9.0 自走棋原型（Auto-battler）：俯視 4×6 棋盤・頭像棋子・能量技能 =====
+// 獨立模組：唔改舊戰鬥；入口按鈕『♟️ 自走棋』。存檔只新增 player.ab。數值表見 design/auto-battler-390-numbers.md
+(function () {
+'use strict';
+var AB_MOB_ICONS=["CZ2128·達美.png","亞烏菈·貝拉·菲歐拉.png","反王肯恩.png","夏提雅·布拉德弗倫.png","威克提姆.png","娜貝拉爾·伽瑪.png","安茲·烏爾·恭.png","惡夢-底比斯 凱比斯(紅).png","惡夢-底比斯 凱比斯(黑).png","惡夢-底比斯 尖碑石奴(黑).png","惡夢-底比斯 尖碑石奴.png","惡夢-底比斯 尼荷斯(藍).png","惡夢-底比斯 尼荷斯.png","惡夢-底比斯 巴斯(紅).png","惡夢-底比斯 巴斯.png","惡夢-底比斯 斯芬克斯(黑).png","惡夢-底比斯 斯芬克斯.png","惡夢-底比斯 曼陀羅草(白).png","惡夢-底比斯 曼陀羅草.png","惡夢-底比斯 聖甲蟲(藍).png","惡夢-底比斯 聖甲蟲.png","惡夢-底比斯 賀洛斯.png","惡夢-底比斯 阿努斯(黑).png","惡夢-底比斯 阿努斯.png","惡夢-底比斯 阿努比斯.png","惡夢-提卡爾杰弗雷庫(雄).png","惡夢-提卡爾杰弗雷庫(雌).png","惡夢-提卡爾艾庫卡伊拉(藍).png","惡夢-提卡爾艾庫卡伊拉(黃).png","惡夢-提卡爾艾庫尤卡(白).png","惡夢-提卡爾艾庫尤卡(藍).png","惡夢-提卡爾艾庫巴拉(紅).png","惡夢-提卡爾艾庫巴拉.png","惡夢-提卡爾艾庫艾托(枯竭).png","惡夢-提卡爾艾庫艾托.png","惡夢-提卡爾艾庫阿茲特(黃).png","惡夢-提卡爾艾庫阿茲特.png","惡夢-提卡爾薩德司卡(紅).png","惡夢-提卡爾薩德司卡(紫).png","惡夢-提卡爾薩德提歐(藍).png","惡夢-提卡爾薩德提歐(黃).png","惡夢-提卡爾薩德泥偶(黑).png","惡夢-提卡爾薩德泥偶.png","新-遺亡之島亞力安.png","新-遺亡之島卡司特.png","新-遺亡之島卡司特王.png","新-遺亡之島哈維.png","新-遺亡之島夏洛伯.png","新-遺亡之島多羅.png","新-遺亡之島巨大牛人.png","新-遺亡之島巨大鱷魚.png","新-遺亡之島巨斧牛人.png","新-遺亡之島格利芬.png","新-遺亡之島楊果里恩.png","新-遺亡之島歐熊.png","新-遺亡之島狼人.png","新-遺亡之島獨眼巨人.png","新-遺亡之島萊肯.png","新-遺亡之島蛇女.png","新-遺亡之島蜥蜴人.png","新-遺亡之島變形怪.png","新-遺亡之島邪惡蜥蜴.png","新-遺亡之島鏈鎚牛人.png","新-遺亡之島阿魯巴.png","新-遺亡之島飛龍.png","新-遺亡之島食人妖精.png","新-遺亡之島食人妖精王.png","新-遺亡之島鱷魚.png","新-遺亡之島黑暗精靈.png","水之魔女賽尼斯.png","由莉·阿爾法.png","科塞特斯.png","索留香·艾普西隆.png","腐敗-地之牙.png","腐敗-地靈之主.png","腐敗-曼波兔.png","腐敗-水之牙.png","腐敗-水靈之主.png","腐敗-深淵之主.png","腐敗-深淵地靈.png","腐敗-深淵弓箭手.png","腐敗-深淵水靈.png","腐敗-深淵火靈.png","腐敗-深淵風靈.png","腐敗-深淵食屍鬼.png","腐敗-火之牙.png","腐敗-火靈之主.png","腐敗-西斯.png","腐敗-風之牙.png","腐敗-風靈之主.png","艾特利亞斯·歐米伽.png","蒼淵金杖魔女 · 塞蕾娜.png","迪米烏哥斯.png","雅兒貝德.png","露普絲雷其娜·貝塔.png","馬雷·貝羅·菲歐雷.png","高格斯.png"];// ===== 開放白名單（v3.9.0 只開小量內容；舊遊戲資料完全唔郁；設 AB_WL.enabled=false 可全開）=====
+var AB_WL = window.AB_WL = {
+  enabled: true,
+  heroes: ['hero_isolde_knight', 'hero_petra_knight', 'hero_aurelia_royal', 'hero_celine_royal', 'hero_morgana_illusion', 'hero_echo_illusion',
+           'hero_skaldi_warrior', 'hero_brenna_warrior', 'hero_pyria_elf', 'hero_terrae_elf', 'hero_ignis_mage', 'hero_sora_mage',
+           'hero_umbra_dark', 'hero_nyx_dark', 'hero_ignara_dragon', 'hero_cinder_dragon'],
+  sets: ['bone', 'bluepirate', 'steel', 'darkelf', 'dk', 'kurt', 'priest', 'frost', 'demon', 'fourking', 'rebel'],
+  recipes: ['無盡之刃', '疾風劍', '巨人鎧', '大法師杖', '雙抗壁壘', '死神之爪'],
+  mobs: ['nm_thebes_scarab', 'nm_tikal_azt', 'cor_elf_firefang', 'nm_thebes_sphinx', 'cor_elf_waterfang', 'cor_abyss_water', 'cor_elf_waterlord',
+         'cor_elf_windfang', 'cor_abyss_archer', 'cor_elf_windlord', 'cor_abyss_ghoul', 'nm_tikal_mud', 'cor_abyss_sith', 'nm_thebes_obelisk'],
+  bosses: ['nm_tikal_boss_f', 'nm_thebes_horus', 'cor_abyss_lord']
+};
+function wlHero(defId) { return !AB_WL.enabled || AB_WL.heroes.indexOf(defId) >= 0; }
+var ROWS = 4, COLS = 6;                 // 每方 4×6；總棋盤 8 行（0-3 敵、4-7 我）
+var TICK = 100;                          // ms／tick（×速度）
+var CLS = {
+  knight:  { lb:'騎士',   ic:'🛡️', hp:1303, atk:69, def:32, mr:12, rng:1, as:0.8, mana:80,  dmg:'phys', front:true },
+  warrior: { lb:'戰士',   ic:'🪓', hp:1073, atk:93, def:20, mr:8, rng:1, as:0.92, mana:70,  dmg:'phys', front:true },
+  dragon:  { lb:'龍騎士', ic:'🐉', hp:1275, atk:98, def:26, mr:14, rng:1, as:0.75, mana:85, dmg:'phys', front:true },
+  elf:     { lb:'妖精',   ic:'🏹', hp:1106, atk:67, def:10, mr:10, rng:4, as:1, mana:60,  dmg:'phys' },
+  dark:    { lb:'黑暗妖精', ic:'🗡️', hp:920, atk:96, def:16, mr:10, rng:1, as:1.05, mana:65, dmg:'phys', assassin:true },   // 近戰刺客：開場由後排出發，技能突襲敵方殘血後排
+  mage:    { lb:'法師',   ic:'🔥', hp:860, atk:101, def:8, mr:20, rng:4, as:0.65, mana:72,  dmg:'mag' },
+  illusion:{ lb:'幻術士', ic:'🔮', hp:854, atk:83, def:8, mr:20, rng:4, as:0.8, mana:70,  dmg:'mag' },
+  royal:   { lb:'王族',   ic:'👑', hp:900, atk:88, def:15, mr:15, rng:3, as:0.85, mana:80,  dmg:'mag' }
+};
+var RAR = { N:0.80, R:1.00, SR:1.22, SSR:1.50 };
+var STAR_MUL = { 1:1.0, 2:1.5, 3:2.25 };   // 局內 TFT 合成星（1/2/3）技能倍率
+var PERM_SKILL_MUL = window.AB_PERM_SKILL_MUL = { 0:1, 1:1, 2:1, 3:1.15, 4:1.3, 5:1.5 };   // 局外永久星：≥3★ 技能倍率提升
+var MAIN_CD = 12;                        // 主角技能冷卻（秒）
+var MAIN_CLS = { Dknight:'dragon', illusionist:'illusion' };
+var SKILL_NAME = { knight:'嘲諷・盾壁', mage:'爆炎火球', elf:'三重矢', warrior:'旋風斬', dark:'暗影突襲', dragon:'龍息', illusion:'幻象束縛', royal:'王者祝福' };
+var UNIQUE = {
+  hero_isolde_knight:   { n:'銀誓壁壘', fn:'u_isolde' },
+  hero_aurelia_royal:   { n:'王權聖光', fn:'u_aurelia' },
+  hero_morgana_illusion:{ n:'虛像都城', fn:'u_morgana' },
+  hero_skaldi_warrior:  { n:'北境斧王', fn:'u_skaldi' },
+  hero_petra_knight:    { n:'衝擊之暈', fn:'k_shock' },
+  hero_sora_mage:       { n:'潮汐聖詠', fn:'h_sora', healer: true },
+  hero_lumina_mage:     { n:'聖光庇護', fn:'h_lumina', healer: true, hidden: true },
+  hero_nerys_mage:      { n:'春雨祈願', fn:'h_nerys', healer: true, hidden: true }
+};
+// v3.10.0 騎士技能池（來自原作騎士技能書：衝擊之暈／堅固防護／增幅防禦／反擊屏障／治癒魔法頭盔；守護之盾、背水一戰為新增）
+// 基本騎士兵只用「嘲諷・盾壁」；騎士英雄各配一個（新英雄由 KNIGHT_POOL.assign 加一行）。
+var KNIGHT_POOL = window.AB_KNIGHT_POOL = {
+  k_taunt:   { n: '嘲諷・盾壁', src: '原有', d: '半徑 2 嘲諷 knightTaunt 秒＋自身護盾 knightShield×HP' },
+  u_isolde:  { n: '銀誓壁壘', src: '原有', d: '全隊護盾 isoldeShield×HP＋嘲諷（×0.6）' },
+  k_shock:   { n: '衝擊之暈', src: '原作 sk_shock_stun', stun: 1.6, hit: 1.0, d: '對目標 1.0×攻物傷＋暈 1.6 秒（星級加 0.3 秒）' },
+  k_solid:   { n: '堅固防護', src: '原作 sk_solid_shield', dr: 0.30, t: 4, d: '自身受傷 −30%，4 秒' },
+  k_redarm:  { n: '增幅防禦', src: '原作 sk_reduction_armor', def: 15, t: 5, d: '我方前排物防 +15，5 秒' },
+  k_counter: { n: '反擊屏障', src: '原作 sk_counter_barrier', p: 0.30, t: 4, d: '4 秒內反彈 30% 近戰傷害（真傷）' },
+  k_guard:   { n: '守護之盾', src: '新增', share: 0.5, t: 4, d: '最低 HP 隊友 4 秒內所受傷害 50% 由騎士代受' },
+  k_heal:    { n: '治癒之光', src: '原作 治癒魔法頭盔', heal: 1.2, d: '自身＋相鄰隊友回復 1.2×攻' },
+  k_last:    { n: '背水一戰', src: '新增', heal: 0.2, inv: 1.5, d: '施放後本場首次致命傷：保留 1 HP、無敵 1.5 秒、回 20% HP' },
+  assign: { basic: 'k_taunt', hero_isolde_knight: 'u_isolde', hero_petra_knight: 'k_shock' }
+};
+var FALLBACK_POR = { knight:'v8-knight-1-t.webp', royal:'v8-royal-1-t.webp', elf:'v8-elf-1-t.webp', illusion:'v8-illusion-1-t.webp', warrior:'v8-warrior-1-t.webp', mage:'v8-mage-1-t.webp', dark:'v8-dark-1-t.webp', dragon:'v8-dragon-1-t.webp' };
+// 職業頭像：先用遊戲原生 assets/character/<女職業>.png（box 上缺→PC 有），失敗就用 assets/ab-class/ 自繪
+var NATIVE_POR = { knight:'女騎士', royal:'公主', elf:'女妖精', illusion:'女幻術士', warrior:'女戰士', mage:'女法師', dark:'女黑暗妖精', dragon:'女龍騎士' };
+var NATIVE_OK = {};
+function nativePor(cls) { return 'assets/character/' + (NATIVE_POR[cls] || NATIVE_POR.knight) + '.png'; }
+function fbPor(cls) { return 'assets/ab-class/' + (cls === 'elf' ? 'elf.png' : ((CLS[cls] ? cls : 'knight') + '.svg')); }
+function classPor(cls) { return NATIVE_OK[cls] === false ? fbPor(cls) : nativePor(cls); }
+(function probe() { Object.keys(NATIVE_POR).forEach(function (c) { var im = new Image(); im.onload = function () { NATIVE_OK[c] = true; }; im.onerror = function () { NATIVE_OK[c] = false; }; im.src = nativePor(c); }); })();
+var ELE_COL = (typeof _VFX_ELE_COLOR !== 'undefined') ? _VFX_ELE_COLOR : { fire:'#ff7a45', water:'#4fc3f7', wind:'#9ccc65', earth:'#d8a657', magic:'#ce93d8', normal:'#f1f5f9' };
+
+// ---------- 元素（沿用 js/08 isElementCounter：火剋地、地剋風、風剋水、水剋火）----------
+var ELE_NAME = { fire:'火', water:'水', wind:'風', earth:'地' }, ELE_ICON = { fire:'🔥', water:'💧', wind:'🌪️', earth:'🪨' };
+// ===== 平衡參數（全部集中喺度；design/auto-battler-390-balance.md）=====
+var BAL = window.AB_BAL = {
+ "eleAdv": 1.12,
+ "eleDis": 0.89,
+ "heroBonus": {
+  "N": 1.03,
+  "R": 1.06,
+  "SR": 1.1,
+  "SSR": 1.16
+ },
+ "heroSk": 1.15,
+ "wave": {
+  "hp0": 570,
+  "hpLin": 60,
+  "hpGrow": 1.05,
+  "atk0": 37,
+  "atkLin": 3,
+  "atkGrow": 1.05,
+  "def0": 8,
+  "defLin": 2,
+  "mr0": 8,
+  "mrLin": 2,
+  "n": [
+   3,
+   3,
+   4,
+   4,
+   4,
+   5,
+   5,
+   5,
+   6
+  ],
+  "boss": {
+   "hp": 2.0,
+   "atk": 1.15,
+   "hpStep": 0.7
+  },
+  "nRef": 4,
+  "nPow": 0.7
+ },
+ "sk": {
+  "royalHeal": 2.5,
+  "royalBuff": 0.15,
+  "darkHit": 2.1,
+  "isoldeShield": 0.1,
+  "mageAoe": 2.1,
+  "elfShot": 1.4,
+  "warCleave": 1.8,
+  "dragonBreath": 1.6,
+  "illuHit": 1.2,
+  "knightShield": 0.18,
+  "knightTaunt": 1.8,
+  "waterHeal": 1.6,
+  "soraHeal": 0.9,
+  "mageFall": 0.7,
+  "mageStack": 0.92,
+  "darkInv": 0.8,
+  "darkLs": 0.35
+ },
+ "cs": {"knightDr": [0.02, 0.05, 0.07], "knightSh": [0, 0.03, 0.06], "royalAtk": [0.015, 0.13, 0.18], "royalRegen": 0.0165, "elfAs": [0.089, 0.22, 0.33], "illuStun": [1.536, 1.9, 1.294], "illuMana": 1.445, "warAtk": [0.111, 0.151, 0.206], "warRage": 0.136, "mageSp": [0.72, 0.72, 0.82], "darkTeamCrit": 0.026, "darkCrit": [0.10, 0.20, 0.30], "darkAtk": [0.08, 0.15, 0.22], "dragonHp": [0.093, 0.204, 0.307], "dragonAtk": [0.12, 0.2, 0.28]},
+ "heal": { "mul": 0.9, "decayT": 25, "decayMul": 0.45 },   /* v3.10.0 playtest：微減＋提早重傷，防拖局 */
+ "es": {"fireP2": 0.45, "fireP3": 0.7, "fireD2": 0.3, "fireD3": 0.4, "waterSlow": 0.35, "waterFrz": 0.18, "windAs2": 0.1, "windAs3": 0.1, "windBolt": 0.12, "earthDef2": 10, "earthDef3": 18, "earthSh": 0.15, "resAtk": [0.05, 0.12], "resHp": [0.04, 0.1]}
+};   // 第 7 輪（meta 修正）；第 4 輪自動收斂（/tmp/pt/tune.js）
+var ELE_ADV = 1.25, ELE_DIS = 0.75;   // 見 BAL
+function eleCounter(a, b) { if (!a || !b) return false; if (typeof isElementCounter === 'function') return isElementCounter(a, b);
+  return (a === 'fire' && b === 'earth') || (a === 'earth' && b === 'wind') || (a === 'wind' && b === 'water') || (a === 'water' && b === 'fire'); }
+function eleMul(src, tgt) { if (!src || !tgt || !src.ele || !tgt.ele) return 1; if (eleCounter(src.ele, tgt.ele)) return BAL.eleAdv; if (eleCounter(tgt.ele, src.ele)) return BAL.eleDis; return 1; }
+// ---------- 存檔 ----------
+function ensureAb(p) {
+  p = p || (typeof player !== 'undefined' ? player : null);
+  if (!p) return null;
+  var d = { ver: 1, team: [], pos: {}, best: 0, runs: 0, autoMain: true, speed: 1, basic: {}, camps: {}, lastClasses: [], armory: {}, smith: 0, heroEle: {}, mats: {}, cores: 0, ext: 0, campTs: {}, idleTs: 0, dispatch: [], gearBag: [], pityT3: 0, scrolls: {}, enShop: {}, smithTs: 0, focus: null, offPity: 0, exclWpn: {}, dg: { cleared: {}, farm: null, last: null } };
+  if (!p.ab || typeof p.ab !== 'object') p.ab = {};
+  for (var k in d) if (p.ab[k] === undefined) p.ab[k] = d[k];
+  if (!p.ab.basic || typeof p.ab.basic !== 'object') p.ab.basic = {};
+  if (!p.ab.camps || typeof p.ab.camps !== 'object') p.ab.camps = {};
+  if (!Array.isArray(p.ab.lastClasses)) p.ab.lastClasses = [];
+  ['armory', 'heroEle', 'exclWpn'].forEach(function (k) { if (!p.ab[k] || typeof p.ab[k] !== 'object') p.ab[k] = {}; });
+  p.ab.smith = Math.max(0, Math.floor(Number(p.ab.smith) || 0));   // 唔假設上限（上限由 AB_SMITH.maxLv 決定）
+  ['mats', 'campTs'].forEach(function (k) { if (!p.ab[k] || typeof p.ab[k] !== 'object') p.ab[k] = {}; }); if (!Array.isArray(p.ab.dispatch)) p.ab.dispatch = []; if (!Array.isArray(p.ab.gearBag)) p.ab.gearBag = []; if (!p.ab.dg || typeof p.ab.dg !== 'object') p.ab.dg = { cleared: {}, farm: null, last: null }; if (!p.ab.dg.cleared) p.ab.dg.cleared = {}; p.ab.ore = Math.max(0, Number(p.ab.ore) || 0); ['cores', 'ext', 'idleTs'].forEach(function (k) { p.ab[k] = Math.max(0, Number(p.ab[k]) || 0); });
+  if (!Array.isArray(p.ab.team)) p.ab.team = [];
+  if (!p.ab.pos || typeof p.ab.pos !== 'object') p.ab.pos = {};
+  // ab.20261024a：士兵唔再著局外永久裝；舊存檔 c:<職業> 自動卸下
+  var _strip = 0; (p.ab.gearBag || []).forEach(function (g) { if (g && g.on && String(g.on).indexOf('c:') === 0) { g.on = null; _strip++; } });
+  if (_strip) { try { console.log('[ab] 士兵局外裝已自動卸下 ×' + _strip + '（下次存檔寫入）'); } catch (e) {} }
+  return p.ab;
+}
+function abSave() { try { if (typeof player !== 'undefined' && player && player.cls && typeof saveGame === 'function') saveGame(); } catch (e) {} }
+
+// ---------- 名冊 ----------
+var demoMode = false;
+function ownedHeroes() {
+  var hs = (typeof player !== 'undefined' && player && Array.isArray(player.heroes)) ? player.heroes.filter(Boolean) : [];
+  hs = hs.filter(function (h) { return wlHero(h.defId); });
+  if (hs.length) { demoMode = false; return hs; }
+  demoMode = true;   // 冇英雄（新帳未抽卡）→ 示範名冊（唔寫入存檔）
+  if (!S.demo) {
+    var ids = AB_WL.heroes.slice(0, 10);
+    S.demo = ids.map(function (id, i) { var d = window.HERO_DB && HERO_DB[id]; if (!d) return null;
+      return { id: 'demo' + i, defId: id, name: d.name, cls: d.cls, rarity: d.rarity, star: i % 3 === 0 ? 4 : (i % 2 ? 2 : 0), lv: 10 + i * 3, portraitId: d.portraitId, elfEle: d.elfEle || null }; }).filter(Boolean);
+  }
+  return S.demo;
+}
+// 圖鑑用：全名冊 raw defId（唔 filter 白名單、唔用 demo）
+function ownedDefIds() {
+  var set = {}, hs = (typeof player !== 'undefined' && player && Array.isArray(player.heroes)) ? player.heroes : [];
+  hs.forEach(function (h) { if (h && h.defId) set[h.defId] = true; });
+  return set;
+}
+function ownedDefIdList() { return Object.keys(ownedDefIds()); }
+function heroPor(h) {   // ab.20261023a：統一用 heroPortraitUrl（js/47）
+  try { if (typeof window.heroPortraitUrl === 'function') { var u = window.heroPortraitUrl(h); if (u) return u; } } catch (e) {}
+  return fbPor(h.cls);
+}
+function abStar(permStar) { permStar = permStar || 0; return permStar >= 4 ? 3 : (permStar >= 2 ? 2 : 1); }
+function mainInfo() {
+  var p = (typeof player !== 'undefined') ? player : null;
+  var raw = p && p.cls ? String(p.cls) : 'knight';
+  var cls = MAIN_CLS[raw] || (CLS[raw] ? raw : 'knight');
+  var por = fbPor(cls);
+  try { if (p && p.cls && typeof charPortraitUrl === 'function') por = charPortraitUrl(p) || por; } catch (e) {}
+  return { id: 'main', elfEle: (p && p.elfEle) || null, name: (p && p.name) || '主角', cls: cls, rarity: 'SSR', star: 2, lv: (p && p.lv) || 1, por: por, isMain: true };
+}
+
+// ---------- 狀態 ----------
+var S = { open: false, phase: 'place', wave: 1, units: [], sel: null, paused: false, speed: 1, timer: null, t: 0, log: [] };
+window.__AB = S;
+
+var HERO_BONUS = BAL.heroBonus;   // 英雄＝職業底數 × 加成
+function mkUnit(h, side, cell) {
+  var c = CLS[h.cls] || CLS.knight;
+  var ownH = null;
+  if (!h.isMain && h.defId && !h.basic) {
+    try { ownH = ownedHeroes().filter(function (x) { return String(x.id) === String(h.hid || h.id); })[0] || null; } catch (eOwn) { ownH = null; }
+  }
+  var heroLv = h.isMain ? (h.lv || 1) : (h.lv || (ownH && ownH.lv) || 1);
+  var m = h.isMain ? 1 + Math.min(40, heroLv) * 0.01 : (h.defId && !h.basic ? (BAL.heroBonus[h.rarity] || 1.1) * (1 + Math.max(0, heroLv - 1) * AB_EXP.heroStatPerLv) : 1);   // 基本兵冇等級
+  // 局外永久星 vs 局內 TFT 星：名冊英雄（有 fragments、無 pid／permStar）嘅 h.star＝永久星；棋子／商店用 h.star＝1–3 合成星
+  var fromRoster = !!(h.defId && !h.basic && !h.isMain && h.permStar == null && h.fragments != null && !h.pid);
+  var permStar = 0;
+  var st = 1;
+  if (h.permStar != null) { permStar = h.permStar; st = h.star || 1; }
+  else if (fromRoster) { permStar = h.star || 0; st = 1; }
+  else { st = h.star || 1; if (ownH) permStar = ownH.star || 0; }
+  permStar = Math.max(0, Math.min(5, Math.floor(Number(permStar) || 0)));
+  st = Math.max(1, Math.min(3, Math.floor(Number(st) || 1)));
+  var sm = STAR_MUL[st] || 1;
+  var statStar = { 1: 1, 2: 1.8, 3: 3.2 }[st] || 1;
+  var permStat = (h.defId && !h.basic && !h.isMain) ? (1 + permStar * (AB_EXP.heroStatPerStar || 0.05)) : 1;
+  var u = { uid: side + ':' + (h.pid || h.id), hid: h.hid || h.id, defId: h.defId || null, name: h.name, cls: h.cls, side: side, isMain: !!h.isMain,
+    rarity: h.rarity, star: st, permStar: permStar, por: h.por || heroPor(h), hero: !!h.defId,
+    mhp: Math.round(c.hp * m * statStar * permStat * (h.isMain ? 1.3 : 1)), atk: Math.round(c.atk * m * statStar * permStat * (h.isMain ? 1.2 : 1)), def: c.def, mr: c.mr,
+    rng: c.rng, as: c.as, mmana: c.mana, dmgType: c.dmg, cell: cell };
+  u.hp = u.mhp; u.mana = 0; u.shield = 0; u.cdA = 0.1 + Math.random() * 0.4; u.cdM = 0; u.stun = 0; u.taunt = null; u.tauntT = 0; u.buffAtk = 0; u.buffT = 0;
+  u.mainCd = MAIN_CD * 0.5; u.dead = false;
+  u.uniq = (h.defId && UNIQUE[h.defId]) ? UNIQUE[h.defId] : null;
+  u.heroSk = !!h.defId && !u.uniq && !h.basic;
+  if (!h.isMain && side === 'p' && (!h.defId || h.basic)) { var cb = 1 + campLv(h.cls) * CAMP.perLv; u.mhp = Math.round(u.mhp * cb); u.atk = Math.round(u.atk * cb); u.as *= cb; u.campMul = cb; }
+  u.sp = 1; u.mana0 = 0; u.crit = 0.08; u.regen = 0; u.shield0 = 0; u.ele = null; u.items = [];
+  if (!h.isMain && side === 'p') {
+    // 英雄：6 件局外永久裝；基本兵／士兵：唔著永久裝／軍械，只靠營地等級＋場內裝（ab.20261024a）
+    if (h.defId && !h.basic) { var g = heroGear(h.hid || h.id, h.simEq ? { rarity: h.rarity, eq: h.simEq } : null); u.atk = Math.round(u.atk + g.atk); u.def += Math.round(g.def); u.mr += Math.round(g.mr); u.mhp = Math.round(u.mhp + g.hp); u.ele = g.ele; g.fx.forEach(function (fx) { applyFx(u, fx, 1); }); u.sets = g.sets;
+      // ab.20261026f：永久專武（局外），唔佔場內 3 格
+      try { if (window.AB_WPN && h.defId) { u.exclStar = AB_WPN.equipped(h.defId) ? AB_WPN.star(h.defId) : 0; u.exclOn = !!u.exclStar || (AB_WPN.equipped(h.defId) && AB_WPN.owned(h.defId)); if (u.exclOn) { var efx = AB_WPN.fxFor(h.defId); if (efx) applyFx(u, efx, 1); u.exclName = (AB_EXCL[h.defId] || {}).n || '專武'; } else { u.exclStar = 0; } } } catch (eEx) { u.exclStar = 0; }
+    }
+    (h.items || []).slice(0, ITEM_SLOTS).forEach(function (it) { applyFx(u, it.fx, 1); });
+    u.items = (h.items || []).slice(0, ITEM_SLOTS);
+  }
+  // 妖精：元素決定定位（火＝近戰；水／風／地＝遠程）·妖精元素固定，唔受武器影響（元素寶石例外）
+  if (h.cls === 'elf') { var ee = h.elfEle || 'wind'; if (!h.items || !(h.items || []).some(function (x) { return x.fx && x.fx.ele; })) u.ele = ee; u.elfEle = ee;
+    if (ee === 'fire') { u.rng = 1; u.mhp = Math.round(u.mhp * 1.15); u.def += 10; u.as *= 1.05; } }
+  u.hp = u.mhp; u.mana = Math.min(u.mmana, u.mana0); u.shield = Math.round(u.mhp * u.shield0);
+  return u;
+}
+function mkMob(id, cell, wave, boss) {
+  var mb = DB.mobs[id];
+  var ranged = !!(mb.mag && mb.mag.dmg) || /弓|射手|archer/i.test(mb.n || '');
+  var w = wave;
+  var u = { uid: 'e:' + id + ':' + cell, name: mb.n, cls: ranged ? 'mob_r' : 'mob_m', side: 'e', isMain: false, rarity: boss ? 'SSR' : 'N', star: boss ? 3 : (w >= 4 ? 2 : 1),
+    por: mb.img || ('assets/icons/monsters/' + AB_MOB_ICONS[0]), mob: true, mid: id, race: raceLb(mb), ele: (mb.e && mb.e !== 'none' && ELE_NAME[mb.e]) ? mb.e : ((mb.mag && mb.mag.ele && ELE_NAME[mb.mag.ele]) ? mb.mag.ele : null),
+    mhp: Math.round(((AB_DUNGEONS[S.dungeon || 0] || AB_DUNGEONS[0]).hpMul) * (BAL.wave.hp0 + (w - 1) * BAL.wave.hpLin) * Math.pow(BAL.wave.hpGrow, w - 1) * (boss ? BAL.wave.boss.hp * Math.pow(BAL.wave.boss.hpStep || 1, Math.max(0, Math.floor(w / 5) - 1)) : 1)), atk: Math.round(((AB_DUNGEONS[S.dungeon || 0] || AB_DUNGEONS[0]).atkMul) * (BAL.wave.atk0 + (w - 1) * BAL.wave.atkLin) * Math.pow(BAL.wave.atkGrow, w - 1) * (boss ? BAL.wave.boss.atk : 1)), def: BAL.wave.def0 + w * BAL.wave.defLin, mr: BAL.wave.mr0 + w * BAL.wave.mrLin,
+    rng: ranged ? 3 : 1, as: ranged ? 0.7 : 0.8, mmana: boss ? 90 : 0, dmgType: ranged ? 'mag' : 'phys', cell: cell };
+  u.hp = u.mhp; u.mana = 0; u.shield = 0; u.cdA = 0.3 + Math.random() * 0.6; u.cdM = 0; u.stun = 0; u.taunt = null; u.tauntT = 0; u.buffAtk = 0; u.buffT = 0; u.dead = false;
+  return u;
+}
+function raceLb(m) { try { if (typeof MOB_RACE_TO_MAJOR !== 'undefined' && typeof MOB_RACE_MAJOR_LABELS !== 'undefined') { var mj = m.raceMajor || MOB_RACE_TO_MAJOR[m.race]; if (mj && MOB_RACE_MAJOR_LABELS[mj]) return MOB_RACE_MAJOR_LABELS[mj]; } } catch (e) {} return m.race || ''; }
+function waveTag() { var r = {}, e = {}; S.units.forEach(function (u) { if (!u.mob) return; if (u.race) r[u.race] = 1; if (u.ele) e[u.ele] = (e[u.ele] || 0) + 1; });
+  return Object.keys(r).join('/') + (Object.keys(e).length ? ' · ' + Object.keys(e).map(function (k) { return ELE_ICON[k] + ELE_NAME[k] + e[k]; }).join(' ') : ' · 無屬性'); }
+
+// ===================== 地監結構（每個地區＝1 個地監；每張地圖／樓層＝1 關；最後一波＝該樓頭目）=====================
+// 資料來源：MAP_REGIONS（js/11）＋ DB.maps 出怪表（js/00）。全部 data-driven；將來開新階＝改 openTiers。
+var AB_DG = window.AB_DG = {
+  // 開放設定（placeholder＝現有白名單階；正式開放範圍等 design/lineage-classic-open-content.md 決定）
+  openTiers: [1, 2, 3, 4, 5],                 // 用戶決定：全部地圖開放；階只用嚟排序／難度／等級門檻
+  // 依 design/lineage-classic-open-content.md：經典版已開＝OPEN；unknown／未開＝鎖。tierOverride 跟該文件嘅建議階。
+  tierOverride: { training: 1, talking_island: 1, talking_island_port: 1, zone_13: 1, zone_14: 1, silver_knight: 1, zone_01: 1, elf_forest: 1, gludio: 1,
+    zone_15: 2, zone_16: 2, zone_17: 2, zone_06: 2, zone_07: 2, zone_08: 2, zone_09: 3, zone_10: 3, zone_11: 3, zone_12: 3,
+    kent: 2, windwood: 2, desert: 2, zone_22: 2, zone_23: 2, zone_24: 2, zone_25: 2, zone_32: 2, zone_33: 2, giran: 2,
+    zone_18: 3, zone_19: 3, zone_20: 3, zone_21: 3, dragon_valley: 3, zone_26: 3, zone_27: 3, zone_28: 3, zone_29: 4, zone_30: 4, zone_31: 4,
+    heine: 3, eva_kingdom: 3, zone_34: 3, zone_35: 3, zone_36: 3, mirror_forest: 3, fire_dragon: 4, zone_02: 3, zone_03: 3, zone_04: 3, zone_05: 3,
+    zone_37: 4, zone_38: 4, zone_39: 4, zone_40: 4, zone_41: 4, crystal_cave1: 4, crystal_cave2: 4, crystal_cave3: 4, twilight_mt: 4, giant_tomb: 4 },
+  openMaps: null,   // null＝全開。下面係經典版已開清單（保留，切換用）：
+  classicOpenMaps: ['training', 'talking_island', 'talking_island_port', 'zone_13', 'zone_14', 'silver_knight', 'zone_01', 'elf_forest', 'gludio',
+    'zone_15', 'zone_16', 'zone_17', 'zone_06', 'zone_07', 'zone_08', 'zone_09', 'zone_10', 'zone_11', 'zone_12',
+    'kent', 'windwood', 'desert', 'zone_22', 'zone_23', 'zone_24', 'zone_25', 'zone_32', 'zone_33', 'giran',
+    'zone_18', 'zone_19', 'zone_20', 'zone_21', 'dragon_valley', 'zone_26', 'zone_27', 'zone_28', 'zone_29', 'zone_30', 'zone_31',
+    'heine', 'eva_kingdom', 'fire_dragon', 'zone_02', 'zone_03', 'zone_04', 'zone_37', 'zone_38', 'zone_39', 'zone_40', 'zone_41',
+    'crystal_cave1', 'crystal_cave2', 'crystal_cave3', 'twilight_mt'],   // training 文件寫 unknown，新手區當開；null＝改用 openTiers
+  lockMaps: [],
+  curate: { maxTypes: 4, raceW: 2, tierW: 2, freshW: 1 },   // 每關精選怪種：最多 4 種（獨有怪一定保留，可超出）；同族／同階／未喺前關用過優先                               // 強制鎖住（優先於上面兩項）
+  tierLv: [15, 30, 45, 60],                   // 怪物等級 → 階：≤15 T1、≤30 T2、≤45 T3、≤60 T4、>60 T5
+  wavesField: 3, wavesFloor: 4,               // 野外 3 波、地監樓層 4 波（最後一波頭目）
+  lvPerWave: 1.4, bossLvPerWave: 2.1, bossMaxAhead: 9, eliteMaxAhead: 3, stageStep: 1.4,   // 頭目最多比該關有效波數高 8
+   // 頭目用自己等級計強度
+                               // 難度：有效波數 = 地圖普通怪平均等級 / 3 ＋ 關內第幾波
+  expLvOv: { 'zone_12:boss': 47 },                                // 預期等級手動覆蓋（'zone_09' 或 'zone_09:boss'）；預設全部由原作怪物等級推導
+  bossLvOff: 4,                               // 頭目波預期等級＝頭目 lv − 4（四色 lv42–45 → Lv40；死亡騎士見文件）
+  gearTier: [[15, 1, 2], [48, 2, 3], [999, 3, 4]],   // 預期裝備品質：E≤15 T1–T2、≤48 T2–T3、之後 T3–T4，全部衝到安定值
+  stageMul: {"gludio": [2.361, 1.809], "zone_06": [2.033, 2.086], "zone_07": [1.504, 1.23], "zone_08": [1.357, 1.112], "zone_09": [1.155, 1.8], "zone_10": [1.079, 0.86], "zone_11": [2.29, 1.843], "zone_12": [1.94, 1.52]},                               // 每關 [普通倍率, 頭目倍率]（/tmp/pt/lvfit.js 收斂）
+  diff: { lv0: 10, hpPerLv: 0, atkPerLv: 0, hp: 1, atk: 1, bossHp: 1, bossAtk: 1 },   // 第 6 輪收斂值見下方
+  multiBossPow: 0.6,                          // 多頭目同場：每隻 HP 倍率 ÷ n^0.6
+  firstRegion: 'talkingisland',                 // v3.10.0：新手由說話之島開始（原 gludin）
+  starterOrder: { talkingisland: ['talking_island', 'talking_island_port', 'zone_13', 'zone_14'] },
+  reqLvOverride: { talking_island: 1, talking_island_port: 3, zone_13: 5, zone_14: 8 },   // 說話之島周邊 Lv1 可進，日一農場／首通頭目路
+  bossOverride: {                             // 跟原作：
+    zone_09: { boss: ['casper', 'marcus', 'sema', 'batus'], hpMul: 1.3, atkMul: 1.1, ele: { casper: 'fire', marcus: 'water', sema: 'wind', batus: 'earth' } },   // 各自元素（卡士柏/巴土瑟跟技能元素；馬庫爾/西瑪資料係無屬性，按四色補水/風）              // 古魯丁 4 樓：四色法師一齊出
+    zone_12: { boss: ['dk'], hpMul: 1.4, atkMul: 1.1, ahead: 3, escort: ['skeleton', 'ghoul', 'ogre_king'] }  // 古魯丁 7 樓：死亡騎士＋骷髏／食屍鬼護衛（食人妖精王都喺度）
+  },
+  regionTer: { gludin: 'earth' }, floorTer: 'earth', floorTn: '地監'
+};
+function dgTier(lv) { var t = 1; AB_DG.tierLv.forEach(function (x) { if (lv > x) t++; }); return Math.min(5, t); }
+var _dg = null; window.abDgReset = function () { _dg = null; };
+function dgBuild() {
+  if (_dg) return _dg; _dgUsed = {}; _dg = { list: [], byV: {}, mobMaps: {}, reserved: {} };
+  var M = (typeof DB !== 'undefined' && DB.maps) || {}, MB = (typeof DB !== 'undefined' && DB.mobs) || {};
+  Object.keys(M).forEach(function (v) { (M[v] || []).forEach(function (id) { if (MB[id]) (_dg.mobMaps[id] = _dg.mobMaps[id] || {})[v] = 1; }); });
+  Object.keys(AB_DG.bossOverride).forEach(function (v) { var o = AB_DG.bossOverride[v]; o.boss.forEach(function (id) { _dg.reserved[id] = v; }); });
+  var regs = (typeof MAP_REGIONS !== 'undefined') ? MAP_REGIONS : [];
+  var cat = {}; try { Object.keys(MAP_CATEGORIES).forEach(function (k) { MAP_CATEGORIES[k].forEach(function (m) { cat[m.v] = k; }); }); } catch (e) {}
+  var seen = {};
+  function mkStage(v, t, reg) {
+    var spawn = (M[v] || []).filter(function (id) { return MB[id] && !MB[id].noAttack && !MB[id].siegeEnemy && !MB[id].pledgeEnemy; }); if (!spawn.length) return null;
+    var ov = AB_DG.bossOverride[v];
+    var norm = spawn.filter(function (id) { return !MB[id].boss && !(_dg.reserved[id] && _dg.reserved[id] !== v); });
+    var boss = ov ? ov.boss.slice() : spawn.filter(function (id) { return MB[id].boss && !(_dg.reserved[id] && _dg.reserved[id] !== v); });
+    var elite = false; if (!boss.length) { var top = norm.slice().sort(function (a, b) { return (MB[b].lv || 0) - (MB[a].lv || 0); })[0]; if (top) { boss = [top]; elite = true; } }
+    if (!norm.length) norm = spawn.filter(function (id) { return boss.indexOf(id) < 0; }); if (!norm.length) norm = boss.slice();
+    var all = norm.slice(); norm = dgCurate(v, norm, reg);
+    var lvs = norm.map(function (id) { return MB[id].lv || 1; }).sort(function (a, b) { return a - b; }); var avg = lvs.reduce(function (a, x) { return a + x; }, 0) / lvs.length;
+    var p75 = lvs[Math.floor(lvs.length * 0.75)] || avg; var bTier = Math.max.apply(null, boss.map(function (id) { return dgTier(MB[id].lv || 1); }));
+    var tier = AB_DG.tierOverride[v] || Math.max(dgTier(p75), elite ? 1 : bTier); var dataTier = Math.max(dgTier(p75), elite ? 1 : bTier);
+    var floor = cat[v] === 'dungeon' || /地監|樓|洞穴|洞窟|墓/.test(t);
+    var ter = floor ? AB_DG.floorTer : (AB_DG.regionTer[reg.key] || majorEle(norm) || 'earth');
+    var st = { all: all, ov: ov || null, v: v, n: t, reg: reg.key, regN: reg.label, norm: norm, boss: boss, escort: (ov && ov.escort) || [], elite: elite, tier: tier, avgLv: Math.round(avg), p75: p75,
+      dataTier: dataTier, waves: floor ? AB_DG.wavesFloor : AB_DG.wavesField, floor: floor, ter: ter, tn: floor ? AB_DG.floorTn : (TER_TN[ter] || '野外') };
+    st.open = AB_DG.lockMaps.indexOf(v) < 0 && (AB_DG.openMaps ? AB_DG.openMaps.indexOf(v) >= 0 : AB_DG.openTiers.indexOf(tier) >= 0); return st; }
+  function majorEle(ids) { var c = {}; ids.forEach(function (id) { var e = MB[id].e; if (e && ELE_NAME[e]) c[e] = (c[e] || 0) + 1; }); var b = null; Object.keys(c).forEach(function (e) { if (!b || c[e] > c[b]) b = e; }); return b; }
+  regs.forEach(function (reg) { var d = { key: reg.key, n: reg.label, stages: [] };
+    reg.maps.forEach(function (m) { if (/^town_/.test(m.v) || seen[m.v]) return; seen[m.v] = 1; var st = mkStage(m.v, m.t, reg); if (st) { st.idx = d.stages.length; st.d = d; d.stages.push(st); _dg.byV[m.v] = st; } });
+    if (d.stages.length) {
+      var so = (AB_DG.starterOrder || {})[d.key];
+      if (so) { d.stages.sort(function (a, b) { var ia = so.indexOf(a.v), ib = so.indexOf(b.v); return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib); }); d.stages.forEach(function (st, i) { st.idx = i; }); }
+      _dg.list.push(d); } });
+  // 唔喺 MAP_REGIONS、但有頭目或獨有怪嘅地圖 → 放入「其他」地監（規則：一定要收錄）
+  var other = { key: 'other', n: '其他地區', stages: [] };
+  Object.keys(M).forEach(function (v) { if (seen[v] || /^town_/.test(v)) return; var sp = (M[v] || []).filter(function (id) { return MB[id]; });
+    var must = sp.some(function (id) { return MB[id].boss || Object.keys(_dg.mobMaps[id] || {}).length === 1; }); if (!must) return;
+    var t = v; try { Object.keys(MAP_CATEGORIES).forEach(function (k) { MAP_CATEGORIES[k].forEach(function (m) { if (m.v === v) t = m.t; }); }); } catch (e) {}
+    seen[v] = 1; var st = mkStage(v, t, other); if (st) { st.idx = other.stages.length; st.d = other; other.stages.push(st); _dg.byV[v] = st; } });
+  if (other.stages.length) _dg.list.push(other);
+  _dg.list.forEach(function (d) { d.tier = Math.min.apply(null, d.stages.map(function (x) { return x.tier; })); });
+  _dg.list.sort(function (a, b) { return (a.key === AB_DG.firstRegion ? -1 : 0) - (b.key === AB_DG.firstRegion ? -1 : 0) || a.tier - b.tier; });   // 進度排序：古魯丁先，其餘按階
+  return _dg; }
+var _dgUsed = {};
+function dgCurate(v, norm, reg) { var MB = DB.mobs, C = AB_DG.curate; if (norm.length <= C.maxTypes) { norm.forEach(function (id) { (_dgUsed[reg.key] = _dgUsed[reg.key] || {})[id] = 1; }); return norm; }
+  var must = norm.filter(function (id) { return Object.keys(_dg.mobMaps[id] || {}).length === 1; });
+  var rc = {}; norm.forEach(function (id) { var r = MB[id].race || ''; rc[r] = (rc[r] || 0) + 1; }); var race = Object.keys(rc).sort(function (a, b) { return rc[b] - rc[a]; })[0];
+  var lv = norm.map(function (id) { return MB[id].lv || 1; }).sort(function (a, b) { return a - b; }); var tier = dgTier(lv[Math.floor(lv.length * 0.6)]);
+  var used = _dgUsed[reg.key] = _dgUsed[reg.key] || {};
+  var rest = norm.filter(function (id) { return must.indexOf(id) < 0; }).map(function (id) { var m = MB[id]; return { id: id, sc: (m.race === race ? C.raceW : 0) + (dgTier(m.lv || 1) === tier ? C.tierW : 0) + (used[id] ? 0 : C.freshW) + (m.lv || 1) / 1000 }; })
+    .sort(function (a, b) { return b.sc - a.sc; }).map(function (x) { return x.id; });
+  var out = must.concat(rest.slice(0, Math.max(0, C.maxTypes - must.length))); out.forEach(function (id) { used[id] = 1; }); return out; }
+var TER_TN = { fire: '火山', water: '水邊', wind: '平原', earth: '山地' };
+function dgCur() { return S.dg ? (dgBuild().list.filter(function (d) { return d.key === S.dg.d; })[0] || null) : null; }
+function dgStage() { var d = dgCur(); return d ? d.stages[S.dg.s] : null; }
+function dgCleared(v) { var ab = ensureAb(); return !!(ab && ab.dg && ab.dg.cleared[v]) || !!(S.demoClear || {})[v]; }
+function dgUnlocked(st) { if (!st.open) return false; if (hasPlayer() && player.lv < dgReqLv(st)) return false; if (st.idx === 0) return true; var prev = st.d.stages[st.idx - 1]; return dgCleared(prev.v) || !prev.open && dgUnlocked(prev); }
+function dgEffW(st, w) { st = st || dgStage(); if (!st) return w || S.wave; var d = st.d; if (d && d.baseW == null) d.baseW = Math.max(1, Math.round(Math.min.apply(null, d.stages.map(function (x) { return x.avgLv; })) / AB_DG.lvPerWave));
+  return Math.max(1, Math.round((d ? d.baseW : st.avgLv / AB_DG.lvPerWave) + st.idx * AB_DG.stageStep) + (w || S.wave) - 1); }   // 地監內每關平滑遞增
+function dgFirstOpen(key) { var d = dgBuild().list.filter(function (x) { return x.key === key; })[0]; if (!d) return null; var ok = d.stages.filter(function (st) { return dgUnlocked(st); });
+  var nc = ok.filter(function (st) { return !dgCleared(st.v); })[0]; return nc || ok[ok.length - 1] || null; }
+function dgBuildWave(w) {
+  var st = dgStage(), out = [], MB = DB.mobs; if (!st) return out; var we = dgEffW(st, w); var isBoss = w >= st.waves; var taken = {};
+  function place(id, boss, row0) { var wq = boss ? Math.max(we, Math.min(we + (st.elite ? AB_DG.eliteMaxAhead : (st.ov && st.ov.ahead != null ? st.ov.ahead : AB_DG.bossMaxAhead)), Math.round((MB[id].lv || 1) / AB_DG.bossLvPerWave))) : we; var ranged = !!(MB[id].mag && MB[id].mag.dmg) && !boss; var order = boss ? [1, 0, 2, 3] : ranged ? [0, 1, 2, 3] : [3, 2, 1, 0]; var cell = -1;
+    for (var r = 0; r < 4 && cell < 0; r++) for (var t = 0; t < COLS; t++) { var cc = order[r] * COLS + [2, 3, 1, 4, 0, 5][t % 6]; if (!taken[cc]) { cell = cc; break; } }
+    if (cell < 0) return; taken[cell] = 1; var u = mkMob(id, cell, wq, boss); out.push(u); return u; }
+  if (isBoss) {
+    var nb = st.boss.length, k = Math.pow(nb, AB_DG.multiBossPow);
+    st.boss.forEach(function (id) { var u = place(id, true); if (u) { u.mhp = Math.round(u.mhp / k); u.hp = u.mhp; if (st.elite) { u.mhp = Math.round(u.mhp * 0.6); u.hp = u.mhp; } if (st.ov) { if (st.ov.ele && st.ov.ele[id]) { u.ele = st.ov.ele[id]; u.tint = u.ele; } u.mhp = Math.round(u.mhp * (st.ov.hpMul || 1)); u.hp = u.mhp; u.atk = Math.round(u.atk * (st.ov.atkMul || 1)); } } });
+    var esc = st.escort.length ? st.escort : (nb === 1 ? st.norm.slice(0, 2) : []);
+    var ne = Math.max(0, Math.min(5, BAL.wave.n[Math.min(BAL.wave.n.length - 1, Math.floor((we - 1) / 2))] - nb));
+    for (var i = 0; i < ne && esc.length; i++) place(esc[i % esc.length], false);
+  } else {
+    var n = BAL.wave.n[Math.min(BAL.wave.n.length - 1, Math.floor((we - 1) / 2))];
+    for (var j = 0; j < n; j++) place(st.norm[Math.floor(Math.random() * st.norm.length)], false);
+  }
+  var nn = out.filter(function (u) { return u.rarity !== 'SSR'; }).length; var kk = Math.pow((BAL.wave.nRef || 4) / Math.max(1, isBoss ? nn + st.boss.length : nn), BAL.wave.nPow == null ? 0.5 : BAL.wave.nPow);
+  out.forEach(function (u) { if (u.rarity === 'SSR') return; u.mhp = Math.round(u.mhp * kk); u.hp = u.mhp; u.atk = Math.round(u.atk * kk); });
+
+  // 預期等級難度（第 6 輪）：按該關預期玩家等級 E 放大，令「啱等級」普通波 ~0.85、頭目波 ~0.5
+  var D = AB_DG.diff, sm = (AB_DG.stageMul || {})[st.v] || [1, 1], E = dgExpLv(st), lf = Math.max(0, E - D.lv0);
+  out.forEach(function (u) { var b = u.rarity === 'SSR'; var mm = isBoss ? sm[1] : sm[0]; var hm = mm * (1 + D.hpPerLv * lf) * (b ? D.bossHp : D.hp), am = mm * (1 + D.atkPerLv * lf) * (b ? D.bossAtk : D.atk);
+    u.mhp = Math.round(u.mhp * hm); u.hp = u.mhp; u.atk = Math.round(u.atk * am); });
+  return out; }
+// 預期玩家等級：AB_DG.expLv 錨點（地圖 → 等級）喺同一地監內線性插值；冇錨點＝dgReqLv
+function dgExpLv(st, boss) { if (!st) return 1; var MB = DB.mobs, A = AB_DG.expLvOv || {};
+  if (boss) { if (A[st.v + ':boss'] != null) return A[st.v + ':boss']; var bl = Math.max.apply(null, (st.boss || []).map(function (id) { return (MB[id] || {}).lv || 1; }).concat([0]));
+    return Math.max(dgExpLv(st), bl - AB_DG.bossLvOff); }
+  if (A[st.v] != null) return A[st.v]; var r = dgReqLv(st); (st.d ? st.d.stages.slice(0, (st.idx || 0) + 1) : [st]).forEach(function (x) { r = Math.max(r, x.p75 || 1); }); return Math.round(r); }   // 同地監單調   // 原作資料推導：普通波＝地圖普通怪 p75 等級；頭目波＝頭目等級 − bossLvOff
+// 覆蓋報告：每隻頭目／獨有怪喺邊關出現
+function dgCoverage() { var D = dgBuild(), MB = DB.mobs, rows = [];
+  Object.keys(D.mobMaps).forEach(function (id) { var m = MB[id]; var maps = Object.keys(D.mobMaps[id]); var uniq = maps.length === 1; if (!m.boss && !uniq) return;
+    var where = []; maps.forEach(function (v) { var st = D.byV[v]; if (!st) return; if (st.boss.indexOf(id) >= 0) where.push(st.regN + '/' + st.n + '（頭目）'); else if (st.norm.indexOf(id) >= 0 || st.escort.indexOf(id) >= 0) where.push(st.regN + '/' + st.n); });
+    var stOpen = maps.some(function (v) { var st = D.byV[v]; return st && st.open && (st.boss.indexOf(id) >= 0 || st.norm.indexOf(id) >= 0); });
+    rows.push({ id: id, n: m.n, lv: m.lv, tier: dgTier(m.lv || 1), boss: !!m.boss, uniq: uniq, maps: maps, where: where, covered: where.length > 0, open: stOpen }); });
+  return rows; }
+
+// ===================== 經驗／等級（沿用現有 player.exp／checkLvUp／getExpReq／天賦點；英雄沿用 hero.lv/exp）=====================
+var AB_EXP = window.AB_EXP = {
+  killMul: 0.35,         // v3.10.0 playtest：1.0 太快（Lv1→12 一兩場）；整體縮到 35%
+  manualMul: 1,          // v3.10.0：主角唔上場，冇手動主角技加成（保留欄位兼容舊模擬）
+  heroShare: 0.5,        // 隊伍擊殺 EXP：指揮官（主角帳號等級）得 100%；上場英雄每人另得 50%（唔扣指揮官）
+  idleKillsPerH: 240, idleEff: 0.5,   // 離線：農場關普通怪平均 exp × 240 隻/時 × 50%
+  trainPerLv: 0.02,      // 訓練場（js/39 cb.lv.training）每級：所有英雄每小時得「離線隊伍擊殺 EXP」嘅 2%（Lv10 = 20%）
+  heroStatPerLv: 0.012,  // 英雄每級 +1.2% HP/攻（草稿；Lv50 ≈ ×1.59）
+  heroStatPerStar: 0.05, // 局外永久星每星 +5% HP/攻（同場內 TFT 星分開）
+  reqLvFromP75: 5,       // 關卡等級要求 = 該圖普通怪 p75 等級 − 5（資料推導）
+  earlySoftLv: 20,       // Lv < 20 再乘 earlySoft（緩和經典表早期需求極低）
+  earlySoftMin: 0.25     // Lv1 ≈ 25% → 隨等級線性升到 Lv20 = 100%
+};
+window.abEarlySoft = function abEarlySoft() { var L = AB_EXP.earlySoftLv || 0, m = AB_EXP.earlySoftMin || 1; if (!hasPlayer() || !L || player.lv >= L) return 1; return m + (1 - m) * ((player.lv || 1) - 1) / Math.max(1, L - 1); }
+function abGainMainExp(n, src) { if (!hasPlayer() || !n) return 0; n = Math.round(n * (typeof getExpGainMult === 'function' ? getExpGainMult(player.lv) : 1) * abEarlySoft());
+  player.exp = (player.exp || 0) + n; try { if (typeof checkLvUp === 'function') checkLvUp(); } catch (e) {} return n; }
+function abHeroCap(h) { var c = 999; try { c = typeof heroLvCap === 'function' ? heroLvCap(h.star || 0) : 999; } catch (e) {} return Math.min(c, hasPlayer() ? player.lv : 1); }
+function abGainHeroExp(h, n) { if (!h || !n) return; var cap = abHeroCap(h); h.lv = Math.max(1, h.lv || 1); h.exp = (h.exp || 0) + Math.round(n); var up = 0;
+  while (h.lv < cap) { var req = typeof getExpReq === 'function' ? getExpReq(h.lv, h) : 1e9; if (!isFinite(req) || h.exp < req) break; h.exp -= req; h.lv++; up++; }
+  if (h.lv >= cap) h.exp = Math.min(h.exp, typeof getExpReq === 'function' ? Math.max(0, getExpReq(h.lv, h) - 1) : h.exp); if (up) pushLog('⬆ ' + h.name + ' 升到 Lv' + h.lv); }
+// v3.10.0：隊伍（英雄／基本兵）任何擊殺都計「隊伍擊殺 EXP」；指揮官（player.lv）得 100%，上場英雄每人得 heroShare
+function abWaveExp() { if (!hasPlayer() || S.sim) return; var tot = S.waveExp || 0; S.waveExp = 0; if (!tot) return; var man = 1;
+  var g = abGainMainExp(tot * man); var R = S.run || {}; var hs = (R.board || []).filter(function (pc) { return pc.defId && !pc.basic; });
+  hs.forEach(function (pc) { var h = ownedHeroes().filter(function (x) { return String(x.id) === String(pc.hid || pc.id); })[0]; if (h) abGainHeroExp(h, g * AB_EXP.heroShare); });
+  pushLog('✨ 指揮官 EXP +' + g.toLocaleString() + (hs.length ? ' · 上場英雄各 +' + Math.round(g * AB_EXP.heroShare).toLocaleString() : '')); }
+function abIdleExp(h) { var ab = ensureAb(); var fs = ab && ab.dg && ab.dg.farm && dgBuild().byV[ab.dg.farm]; if (!fs) return { main: 0, hero: 0 };
+  var avg = fs.norm.reduce(function (a, id) { return a + (DB.mobs[id].exp || 0); }, 0) / Math.max(1, fs.norm.length);
+  var main = /* 離線隊伍擊殺 EXP */ Math.round(avg * AB_EXP.idleKillsPerH * AB_EXP.idleEff * h * AB_EXP.killMul); var tl = 0; try { tl = typeof cbBldLv === 'function' ? cbBldLv('training') : 0; } catch (e) {}
+  var g = abGainMainExp(main); var he = Math.round(g * AB_EXP.trainPerLv * tl); if (he) ownedHeroes().forEach(function (x) { abGainHeroExp(x, he); }); return { main: g, hero: he, trainLv: tl }; }
+// 委託（js/39 委託板）完成時可呼叫：window.abCommissionExp(n)
+window.abCommissionExp = function (n) { return abGainMainExp(n * AB_EXP.killMul); };
+function dgReqLv(st) { var r = 1; if (!st) return 1; var Ov = AB_DG.reqLvOverride || {};
+  (st.d ? st.d.stages.slice(0, st.idx + 1) : [st]).forEach(function (x) { var base = Ov[x.v] != null ? Ov[x.v] : ((x.p75 || 1) - AB_EXP.reqLvFromP75); r = Math.max(r, base); }); return r; }   // 同地監單調；reqLvOverride 可指定新手關
+// ---------- 舞台：地形元素＋天氣（沿用 js/45 天氣、DB.maps 出怪表）----------
+var AB_STAGES = window.AB_STAGES = [
+  { v:'talking_island', n:'說話之島周邊', ter:'wind',  tn:'平原' },
+  { v:'heine',          n:'海音',         ter:'water', tn:'湖港' },
+  { v:'elf_grave',      n:'精靈墓穴',     ter:'earth', tn:'地底' },
+  { v:'fire_dragon',    n:'火龍窟',       ter:'fire',  tn:'火山' },
+  { v:'zone_03',        n:'歐瑞雪原',     ter:'water', tn:'雪原' },
+  { v:'dragon_valley',  n:'龍之谷',       ter:'earth', tn:'山谷' },
+  { v:'desert',         n:'沙漠',         ter:'fire',  tn:'沙漠' },
+  { v:'mirror_forest',  n:'鏡子森林',     ter:'wind',  tn:'森林' }
+];
+var TER_UP = 0.10, TER_DOWN = 0.10;   // 草稿：同元素 +10%；被地形剋 −10%
+function stageOf(w) { var st = dgStage(); if (st) return st; return AB_STAGES[Math.floor((w - 1) / 3) % AB_STAGES.length]; }
+function stageWeather(st) {
+  try { if (typeof wxIsIndoor === 'function' && wxIsIndoor(st.v)) return null; if (S.wxOverride) return S.wxOverride; if (typeof wxRawWeather === 'function') { var w = wxRawWeather(); return (typeof w === 'string') ? w : (w && w.type) || null; } } catch (e) {}
+  return null;
+}
+function wxInfo(w) { return (w && typeof WX_TYPES !== 'undefined' && WX_TYPES[w]) ? WX_TYPES[w] : null; }
+function applyStage() {
+  var st = stageOf(S.wave), w = stageWeather(st), wi = wxInfo(w);
+  S.stage = st; S.weather = w;
+  S.units.forEach(function (u) { if (u.dead) return; var m = 1;
+    if (u.ele && u.ele === st.ter) m = 1 + TER_UP; else if (u.ele && eleCounter(st.ter, u.ele)) m = 1 - TER_DOWN;
+    if (m !== 1) { u.atk = Math.round(u.atk * m); u.mhp = Math.round(u.mhp * m); u.hp = Math.min(u.hp, u.mhp); if (m > 1) u.hp = Math.round(u.hp * m); }
+    if (wi && wi.key === 'snow') u.as *= 0.95;
+    if (wi && wi.key === 'storm' && u.ele === 'wind') u.boltP = (u.boltP || 0) + 0.10;
+    if (wi && wi.key === 'fog' && u.rng > 1) u.missP = 0.10;
+  });
+  pushLog('🗺 ' + st.n + '（' + ELE_ICON[st.ter] + st.tn + '）' + (wi ? ' · ' + wi.emoji + w : ' · 室內冇天氣'));
+}
+function wxDmgMul(src) { var wi = wxInfo(S.weather); return (wi && wi.ele && src && src.ele && wi.ele[src.ele]) || 1; }
+var _mobPool = null;
+function mobPool() {
+  if (_mobPool) return _mobPool;
+  var set = {}; AB_MOB_ICONS.forEach(function (f) { set['assets/icons/monsters/' + f] = 1; });
+  var norm = [], boss = [];
+  try {
+    Object.keys(DB.mobs).forEach(function (id) { var m = DB.mobs[id];
+      if (!m || !set[m.img] || m.siegeEnemy || m.pledgeEnemy || m.noAttack) return;
+      (m.boss ? boss : norm).push(id); });
+  } catch (e) {}
+  if (AB_WL.enabled) { var nf = AB_WL.mobs.filter(function (id) { return DB.mobs[id]; }), bf = AB_WL.bosses.filter(function (id) { return DB.mobs[id]; }); if (nf.length >= 4) norm = nf; if (bf.length) boss = bf; }
+  _mobPool = { norm: norm, boss: boss };
+  return _mobPool;
+}
+function rc(cell) { return { r: Math.floor(cell / COLS), c: cell % COLS }; }
+function dist(a, b) { var A = rc(a), B = rc(b); return Math.max(Math.abs(A.r - B.r), Math.abs(A.c - B.c)); }
+function occ(cell) { for (var i = 0; i < S.units.length; i++) if (!S.units[i].dead && S.units[i].cell === cell) return S.units[i]; return null; }
+
+// ---------- 酒館（每場 Run）----------
+var GEN_COST = 1, HERO_COST = { N: 2, R: 3, SR: 4, SSR: 5 };
+var SHOP_N = 5, REROLL = 2, BENCH_N = 8, START_GOLD = 8;
+// 上場人數（主角以外）：跟冒險者公會等級成長；data-driven，將來加格就加一行
+var AB_BOARD = window.AB_BOARD = { steps: [[0, 4], [3, 5], [6, 6], [10, 7]], max: 7 };   // v3.10.0：主角唔再上場，每級上場 +1 補返
+function boardMax() { var g = 0; try { g = guildLv(); } catch (e) {} var n = AB_BOARD.steps[0][1]; AB_BOARD.steps.forEach(function (st) { if (g >= st[0]) n = st[1]; }); return Math.min(AB_BOARD.max, n); }
+var HERO_SLOT_P = 0.22;
+// v3.10.0 魅力（player.d.cha）：細幅加成，唔係必堆屬性
+var AB_CHA = window.AB_CHA = { base: 12, royalAtkPer: 0.002, royalAtkCap: 0.08, rerollStep: 20, rerollMin: 1, heroPPer: 0.001, heroPCap: 0.03 };
+function abCha() { try { return hasPlayer() && player.d ? (player.d.cha || 0) : 0; } catch (e) { return 0; } }
+function chaOver() { return Math.max(0, abCha() - AB_CHA.base); }
+function chaRoyalAtk() { return hasPlayer() && player.cls === 'royal' ? Math.min(AB_CHA.royalAtkCap, chaOver() * AB_CHA.royalAtkPer) : 0; }
+function chaReroll() { return Math.max(AB_CHA.rerollMin, REROLL - Math.floor(chaOver() / AB_CHA.rerollStep)); }
+function chaHeroP() { return HERO_SLOT_P + Math.min(AB_CHA.heroPCap, chaOver() * AB_CHA.heroPPer); }                  // 每格出英雄機率（其餘＝8 職業通用兵）
+var HERO_W = { N: 40, R: 35, SR: 25, SSR: 22 };   // v3.10.0：自選帶出場，SSR≈SR
+var CLS_KEYS = Object.keys(CLS);
+// 冒險者公會等級 → 用自己 N/R 英雄取代職業基本兵（草稿數字）
+var AB_GUILD_UNLOCK = window.AB_GUILD_UNLOCK = { N: 3, R: 6 };
+function guildLv() { if (window.__abGuildLv != null) return window.__abGuildLv; try { return (window.GD && GD.level) ? GD.level() : 1; } catch (e) { return 1; }   /* 51-guild 係 IIFE，要經 window.GD */ }
+function basicOk(h) { return h && (h.rarity === 'N' || h.rarity === 'R') && guildLv() >= (AB_GUILD_UNLOCK[h.rarity] || 99); }
+function basicHero(cls) {
+  var ab = ensureAb(); var id = ab && ab.basic ? ab.basic[cls] : (S.demoBasic || {})[cls]; if (demoMode) id = (S.demoBasic || {})[cls];
+  if (!id) return null; var h = ownedHeroes().filter(function (x) { return String(x.id) === String(id); })[0];
+  return (h && h.cls === cls && basicOk(h)) ? h : null;
+}
+function setBasic(cls, id) { if (demoMode) { S.demoBasic = S.demoBasic || {}; S.demoBasic[cls] = id || null; } else { var ab = ensureAb(); ab.basic[cls] = id || null; abSave(); } }
+function openBasicUi() {
+  var old = document.getElementById('ab-basic'); if (old) { old.remove(); return; }
+  var box = el('div', 'ab-basic'); box.id = 'ab-basic';
+  var gl = guildLv(); var hs = ownedHeroes();
+  var h = '<div class="ab-h">⚙ 基本兵設定 · 冒險者公會 Lv' + gl + '（N 需 Lv' + AB_GUILD_UNLOCK.N + '、R 需 Lv' + AB_GUILD_UNLOCK.R + '，草稿）<button class="ab-btn ab-mini" id="ab-basic-x">✕</button></div>';
+  CLS_KEYS.forEach(function (c) { var opts = hs.filter(function (x) { return x.cls === c && (x.rarity === 'N' || x.rarity === 'R'); });
+    var cur = basicHero(c);
+    h += '<label class="ab-brow">' + CLS[c].ic + ' ' + CLS[c].lb + '：<select data-cls="' + c + '"><option value="">（通用' + CLS[c].lb + '兵）</option>' +
+      opts.map(function (x) { var ok = basicOk(x); return '<option value="' + x.id + '"' + (cur && String(cur.id) === String(x.id) ? ' selected' : '') + (ok ? '' : ' disabled') + '>' + x.name + ' ' + x.rarity + (ok ? '' : '（公會 Lv' + AB_GUILD_UNLOCK[x.rarity] + ' 解鎖）') + '</option>'; }).join('') + '</select></label>'; });
+  box.innerHTML = h; root.querySelector('.ab-side').appendChild(box);
+  box.querySelector('#ab-basic-x').onclick = function () { box.remove(); };
+  Array.prototype.forEach.call(box.querySelectorAll('select'), function (sel) { sel.onchange = function () { setBasic(sel.dataset.cls, sel.value); hint('已設定：下次刷新酒館生效'); }; });
+}
+// 職業營地（經營）：永久強化該職業基本兵（每級 +8%，上限 Lv10；補償士兵唔著永久裝）
+// ===== 資源經濟（草稿；目標：專注 1 個營地 ≈14 日到 Lv10；見 design/auto-battler-390-balance.md）=====
+// 擴充點：maxLv 全部讀 config；Lv ≥ extFrom 需要 extMat（新地監材料，暫時 placeholder），將來加地監就加 AB_DUNGEONS + 提高 maxLv。
+var AB_ECON = window.AB_ECON = {
+  firstClearTickets: { base: 5, perTier: 5 },   // 每關首次通關送招募券：base + (tier-1)×perTier（只限首通）
+  mobDropMul: 3,            // 原作怪物掉落表倍率（自走棋每波約 5 隻×60 波≈300 殺/小時；×3≈原作單人掛機約 900 殺/小時）
+  mobGearDropMul: 0.3,      // 原作表入面嘅武器／防具／飾品／遺物：再細啲（原機率 ×0.5）
+  offDropShare: 0.5,        // 離線：農場關怪物材料掉落（非裝備）按線上 50% 計
+  offWavesPerH: 60, offMobsPerWave: 4.5,
+  mats: { knight:'騎士徽章', royal:'王家紋章', elf:'精靈之葉', illusion:'幻象碎片', warrior:'戰士之牙', mage:'魔力結晶', dark:'暗影精華', dragon:'龍鱗' },
+  core: '頭目核心', extMat: { id: 'abyss_shard', n: '深淵碎片（新地監，未開放）' }, extFrom: 10,
+  run: { goldPerWave: 50, endMatsPerWave: 0.12, bossMats: 1, bossCoreP: 0.08,   /* v3.10.0 重平衡（/tmp/pt/pace.js：1 營地 Lv10 中位 13 日）；舊值 200/2/4/0.5 */ bossTicketP: 0.3, bossWpnTicketP: 0.25, bossDiaP: 0.1, manualMul: 1.3, starBonus: 0.05 },
+  idle: { capH: 12, goldPerBestWave: 40, matsBase: 0.5, matsPerBestWave: 0.1 },   // 每小時
+  camp: { capH: 24, matPerLv: 0.25, goldPerLv: 60 },   /* v3.10.0：matPerLv 0.4→0.25；capH 改用 AB_OFFLINE.capH */                               // 每小時（營地自己職業）
+  dispatch: { slots: 2, hours: 4, yield: { N: 4, R: 5, SR: 6, SSR: 8 } },
+  shard: { keepFrag: 100, rate: 1, disabled: true },                              // ab.20261026e：碎片改做升星，唔再換材料
+  campCost: function (lv) { return { gold: 500 * (lv + 1) * (lv + 1), mats: lv >= 1 ? Math.round(12 * Math.pow(lv, 1.6)) : 0, cores: lv >= 5 ? (lv - 4) * 2 : 0, ext: lv >= AB_ECON.extFrom ? 10 * (lv - AB_ECON.extFrom + 1) : 0 }; },
+  smithCost: function (lv) { return { gold: 2000 * (lv + 1) * (lv + 1), mats: lv >= 2 ? 10 * lv : 0, matCls: ['mage', 'warrior'], cores: lv >= 3 ? lv - 2 : 0, ext: lv >= AB_ECON.extFrom ? 10 * (lv - AB_ECON.extFrom + 1) : 0 }; }
+};
+// 敵人地監層（擴充點：新地監加一行；wave 公式乘 hpMul/atkMul）
+var AB_DUNGEONS = window.AB_DUNGEONS = [ { id: 'road', n: '冒險之路', hpMul: 1, atkMul: 1, unlock: 0, setId: null, gearTier: 0 } ];   // 將來：{ id:'abyss', hpMul:2.5, atkMul:2, setId:'<專屬T4套>', gearTier:4, drop:{ ext:[2,4], setP:0.08 } }
+function econ() { var ab = ensureAb(); if (!ab) return null; return ab; }
+function hasPlayer() { return typeof player !== 'undefined' && player && player.cls; }
+function matN(cls) { var ab = econ(); return ab ? (ab.mats[cls] || 0) : 0; }
+function addMat(cls, n) { var ab = econ(); if (!ab || demoMode && !hasPlayer() || !n) return; ab.mats[cls] = (ab.mats[cls] || 0) + n; }
+function addCore(n) { var ab = econ(); if (ab && n) ab.cores = (ab.cores || 0) + n; }
+function canPay(c, cls) { var ab = econ(); if (!ab || !hasPlayer()) return false;
+  if ((player.gold || 0) < c.gold) return false; if ((ab.cores || 0) < (c.cores || 0)) return false; if ((ab.ext || 0) < (c.ext || 0)) return false;
+  var mc = c.matCls || [cls]; for (var i = 0; i < mc.length; i++) if ((ab.mats[mc[i]] || 0) < (c.mats || 0)) return false; return true; }
+function pay(c, cls) { var ab = econ(); player.gold -= c.gold; ab.cores -= c.cores || 0; ab.ext = (ab.ext || 0) - (c.ext || 0); (c.matCls || [cls]).forEach(function (m) { ab.mats[m] -= c.mats || 0; }); }
+function costTxt(c, cls) { var mc = c.matCls || [cls]; return c.gold.toLocaleString() + '💰' + (c.mats ? ' ＋' + mc.map(function (m) { return AB_ECON.mats[m] + '×' + c.mats; }).join('＋') : '') + (c.cores ? ' ＋' + AB_ECON.core + '×' + c.cores : '') + (c.ext ? ' ＋' + AB_ECON.extMat.n + '×' + c.ext : ''); }
+// 一場完結結算（輸／撤退）
+// ===== v3.10.0 自走棋名聲（公會等級 → 上陣人數）=====
+// 目標節奏（每日約 1 小時手動＋8 小時離線）：Lv3≈1.5 日、Lv6≈10 日、Lv10≈2 個月。全部常數喺度調。
+var AB_FAME = window.AB_FAME = { wave: 5, boss: 25, clearFirst: 40, clearRepeat: 8, offPerH: 6, tierMul: 0.25 };
+function abFameMul(st) { return 1 + Math.max(0, ((st && st.tier) || 1) - 1) * AB_FAME.tierMul; }
+function abFameInfo() { var g = null; try { g = (window.GD && GD.data) ? GD.data() : null; } catch (e) {} var lv = guildLv(), f = g ? g.fame : 0, nx = lv >= 10 ? null : GD_FAME_LV_SAFE()[lv];
+  var cap = boardMax(), ncap = null, nlv = null; AB_BOARD.steps.forEach(function (x) { if (nlv == null && x[0] > lv) { nlv = x[0]; ncap = x[1]; } }); return { lv: lv, fame: f, next: nx, cap: cap, ncap: ncap, nlv: nlv }; }
+function GD_FAME_LV_SAFE() { return (window.GD && GD.FAME_LV) ? GD.FAME_LV : [0, 300, 1000, 2500, 5000, 9000, 15000, 24000, 36000, 52000]; }
+function abFameTxt() { var I = abFameInfo(); return '🏛 公會 Lv' + I.lv + ' · 名聲 ' + Math.floor(I.fame).toLocaleString() + (I.next != null ? '/' + I.next.toLocaleString() : '（滿級）') + ' · 上陣 ' + I.cap + (I.ncap ? '（Lv' + I.nlv + ' → ' + I.ncap + '）' : ''); }
+function abFame(n, why) { n = Math.round(n || 0); if (!n || S.sim || !hasPlayer() || !(window.GD && GD.data)) return 0; var g = GD.data(); if (!g) return 0;
+  var lv0 = guildLv(), c0 = boardMax(); g.fame += n; if (S.run) S.run.fame = (S.run.fame || 0) + n; if (why) pushLog('🏛 名聲 +' + n + '（' + why + '）');
+  var lv1 = guildLv(), c1 = boardMax(); if (lv1 > lv0) { var m = '🎉 公會升級！Lv' + lv1 + (c1 > c0 ? ' · 上陣 +' + (c1 - c0) + '（而家 ' + c1 + ' 隻）' : ''); pushLog(m); try { hint(m); } catch (e) {} } return n; }
+function runPayout(waveReached, manual) {
+  if (!hasPlayer()) return; var E = AB_ECON.run, R = S.run || {}; var cls = (R.classes && R.classes.length) ? R.classes : CLS_KEYS.slice(0, 4);
+  var stars = (R.board || []).reduce(function (a, p) { return a + (p.star || 1); }, 0); var mul = (manual ? E.manualMul : 1) * (1 + stars * E.starBonus);
+  var gold = Math.round(E.goldPerWave * waveReached * mul); var mats = Math.round(E.endMatsPerWave * waveReached * mul);
+  player.gold = (player.gold || 0) + gold; abSplitMats(mats, cls); S.lastPay = { gold: gold, mats: mats, fame: R.fame || 0 };
+  pushLog('🏁 結算：💰' + gold + '、材料 ×' + mats + '（' + cls.map(function (c) { return AB_ECON.mats[c]; }).join('／') + '）');
+}
+function bossReward() { if (!hasPlayer()) return; var E = AB_ECON.run, R = S.run || {}; var cls = (R.classes && R.classes.length) ? R.classes : CLS_KEYS.slice(0, 4);
+  for (var i = 0; i < E.bossMats; i++) addMat(cls[Math.floor(Math.random() * cls.length)], 1); var c = Math.random() < E.bossCoreP ? 1 : 0; addCore(c); var tk = abPayTickets(Math.random() < (E.bossTicketP || 0) ? 1 : 0), dm = abPayDiamonds(Math.random() < (E.bossDiaP || 0) ? 1 : 0);
+  var wt = 0; try { if (window.AB_WPN && AB_WPN.payTickets && Math.random() < (E.bossWpnTicketP != null ? E.bossWpnTicketP : 0.25)) wt = AB_WPN.payTickets(1); } catch (eW) {}
+  pushLog('👑 頭目獎勵：材料 ×' + E.bossMats + (c ? '、' + AB_ECON.core + ' ×1' : '') + (tk ? '、英雄招募券 ×1' : '') + (wt ? '、⚔專武券 ×1' : '') + (dm ? '、💎1' : '')); }
+// ===================== v3.10.0 離線收益（自走棋唯一收益來源；舊掛機戰鬥已停用）=====================
+// 基準：農場關（ab.dg.farm＝已通關嘅關卡）有效波數 effW；冇農場關＝冇離線收益。全部常數喺度調。
+var AB_OFFLINE = window.AB_OFFLINE = {
+  capH: [[0, 8], [3, 10], [6, 12], [10, 16]],   // 公會等級 → 離線上限（小時）；營地產出同用
+  minH: 0.05,
+  guildPerLv: 0.02,                              // 每公會等級：金幣／材料 +2%
+  goldPerEffW: 40,                               // 金幣/小時 = effW × 40
+  matsBase: 0.5, matsPerEffW: 0.1,               // 職業材料/小時 = 0.5 + effW × 0.1
+  focusShare: 0.5,                               // 材料一半入「重點營地」職業（ab.focus），其餘平均分上次出戰 4 職業
+  ore: { perH: 1 },                              // 鍛造礦石/小時
+  cores: { perH: 0.05, needBoss: true },         // 頭目核心/小時（農場關要有頭目）
+  gear: { perH: 0.06, maxTier: 2, pityH: 20 },   // 每小時 6% 掉 1 件局外裝；累積 20 小時冇掉 → 保底；tier 上限＝min(關卡階, maxTier)
+  tickets: { perH: 0.25 },
+  diamonds: { perH: 0.1 }                        // 龍之鑽石/小時（共用鑽石）
+};
+function abOffCap() { var g = guildLv(), c = AB_OFFLINE.capH[0][1]; AB_OFFLINE.capH.forEach(function (x) { if (g >= x[0]) c = x[1]; }); return c; }
+function abFloorRand(x) { var n = Math.floor(x); if (Math.random() < x - n) n++; return n; }
+function abOfflineCalc(h, fs) { var O = AB_OFFLINE, best = fs ? (fs.effW0 || dgEffW(fs, fs.waves)) : 0; var gm = 1 + guildLv() * O.guildPerLv;
+  return { h: h, effW: best, gold: Math.round(h * O.goldPerEffW * best * gm), mats: h * (O.matsBase + O.matsPerEffW * best) * gm, ore: h * O.ore.perH, cores: (!O.cores.needBoss || (fs && fs.boss && fs.boss.length)) ? h * O.cores.perH : 0,
+    gearP: h * O.gear.perH, tickets: h * O.tickets.perH, diamonds: h * O.diamonds.perH, gearTier: Math.min(O.gear.maxTier, (fs && fs.tier) || 1) }; }
+function abPayDiamonds(n) { if (!n) return 0; try { if (typeof pandoraAdjustSharedDiamonds === 'function') { var r = pandoraAdjustSharedDiamonds(n); if (r && r.ok === false) return 0; return n; } } catch (e) {} return 0; }
+function abPayTickets(n) { if (!n || !hasPlayer()) return 0; player.gacha = player.gacha || {}; player.gacha.tickets = (player.gacha.tickets || 0) + n; return n; }
+function abSplitMats(n, cls) { var ab = econ(); var f = ab && ab.focus && CLS[ab.focus] ? ab.focus : null; var fN = f ? Math.round(n * AB_OFFLINE.focusShare) : 0; if (fN) addMat(f, fN); for (var i = 0; i < n - fN; i++) addMat(cls[i % cls.length], 1); }
+function collectIdle(now) { var ab = econ(); if (!ab || !hasPlayer()) return null; now = now || Date.now();
+  if (!ab.idleTs) { ab.idleTs = now; return { h: 0 }; } var h = Math.min(abOffCap(), Math.max(0, (now - ab.idleTs) / 3600000)); if (h < AB_OFFLINE.minH) return { h: 0 };
+  var fs = ab.dg && ab.dg.farm && dgBuild().byV[ab.dg.farm]; if (!fs && (ab.best || 0) > 0) fs = { n: '冒險之路（最高第 ' + ab.best + ' 波）', effW0: ab.best, tier: 1, boss: [] };   /* playtest 修正：未有地監通關都按冒險之路最高波計 */
+  if (!fs) { ab.idleTs = now; abSave(); return { h: h, noFarm: true }; }
+  var c = abOfflineCalc(h, fs), cls = ab.lastClasses && ab.lastClasses.length ? ab.lastClasses : CLS_KEYS.slice(0, 4);
+  player.gold += c.gold; var mats = abFloorRand(c.mats); abSplitMats(mats, cls); var ore = abFloorRand(c.ore); ab.ore = (ab.ore || 0) + ore; var cores = abFloorRand(c.cores); addCore(cores);
+  var tk = abPayTickets(abFloorRand(c.tickets)), dm = abPayDiamonds(abFloorRand(c.diamonds));
+  ab.offPity = (ab.offPity || 0) + h; var gearN = 0; var gp = c.gearP; while (gp > 0) { if (Math.random() < Math.min(1, gp)) gearN++; gp -= 1; } if (!gearN && ab.offPity >= AB_OFFLINE.gear.pityH) gearN = 1; if (gearN) ab.offPity = 0;
+  for (var gi = 0; gi < gearN; gi++) grantGear(rollGear(c.gearTier), '離線');
+  var fameOff = abFame(h * AB_FAME.offPerH * abFameMul(fs));
+  var scN = abFloorRand(h * AB_ENCH.src.offlinePerH); for (var si = 0; si < scN; si++) addScroll(rndScroll(), 1);
+  var origN = abOfflineOrigDrops(h, fs); var ex = abIdleExp(h); ab.idleTs = now; abSave();
+  return { origDrops: origN, fame: fameOff, scrolls: scN, h: h, stage: fs.n, gold: c.gold, mats: mats, ore: ore, cores: cores, tickets: tk, diamonds: dm, gear: gearN, exp: ex.main, heroExp: ex.hero }; }
+var RW_ = { N: 1, R: 2, SR: 3, SSR: 4 };
+// 營地被動產出
+function collectCamps(now) { var ab = econ(); if (!ab || !hasPlayer()) return null; now = now || Date.now(); var C = AB_ECON.camp, tot = { gold: 0, mats: 0 };
+  CLS_KEYS.forEach(function (c) { var lv = campLv(c); var ts = ab.campTs[c]; if (!lv) { ab.campTs[c] = now; return; } if (!ts) { ab.campTs[c] = now; return; }
+    var h = Math.min(abOffCap(), Math.max(0, (now - ts) / 3600000)); var m = Math.floor(h * C.matPerLv * lv); var g = Math.round(h * C.goldPerLv * lv);
+    if (m || g) { addMat(c, m); player.gold += g; tot.gold += g; tot.mats += m; ab.campTs[c] = m ? ts + m / (C.matPerLv * lv) * 3600000 : now; if (h >= abOffCap()) ab.campTs[c] = now; } });
+  tot.scrolls = smithScrolls(now); abSave(); return tot; }
+// 公會派遣：未出場英雄去搜集指定職業材料
+function dispatchStart(heroId, matCls, now) { var ab = econ(); if (!ab || !hasPlayer()) return false; now = now || Date.now(); var D = AB_ECON.dispatch;
+  if (ab.dispatch.length >= D.slots) { hint('派遣格已滿'); return false; } if (ab.dispatch.some(function (d) { return d.hid === heroId; })) return false;
+  var h = ownedHeroes().filter(function (x) { return String(x.id) === String(heroId); })[0]; if (!h) return false;
+  ab.dispatch.push({ hid: h.id, name: h.name, rarity: h.rarity, cls: matCls || h.cls, until: now + D.hours * 3600000 }); abSave(); return true; }
+function dispatchCollect(now) { var ab = econ(); if (!ab || !hasPlayer()) return 0; now = now || Date.now(); var got = 0;
+  ab.dispatch = ab.dispatch.filter(function (d) { if (now < d.until) return true; var n = AB_ECON.dispatch.yield[d.rarity] || 4; addMat(d.cls, n); got += n; var DS = AB_ENCH.src.dispatch; if (Math.random() < DS.scrollP) addScroll(rndScroll(), 1, '派遣'); if ((RW_[d.rarity] || 0) >= (RW_[DS.rareMin] || 3) && Math.random() < DS.rareP) addScroll(Math.random() < 0.5 ? 'prot' : (Math.random() < 0.5 ? 'bwpn' : 'barm'), 1, '派遣'); return false; }); abSave(); return got; }
+// 重複英雄碎片 → 職業材料
+function shardConvert() { /* ab.20261026e：停用碎片→材料；碎片只用於局外突破升星 */ return 0; }
+// ===== 永久套裝來源（AB_GEAR_SRC；擴充點：T4–T5 只由 AB_DUNGEONS[].setId 地監掉／用 extMat 打造）=====
+var AB_GEAR_SRC = window.AB_GEAR_SRC = {
+  runEnd: { p: 0.25, perWave: 0.01, maxTier: 2 },          // 每場結算：25%+1%/波 掉 1 件 T1–T2
+  idle: { perH: 0.04, maxTier: 2 },                        // 掛機每小時 4%
+  boss: { p: 0.12, tier: 3 },                              // 頭目 12% 掉 T3 套裝件
+  pity: { t3: 25 },                                        // 連續 25 個頭目冇 T3 → 必掉（保底）
+  ore: { n: '鍛造礦石', perWave: 0.5, boss: 3 },              // 打造專用材料（唔同營地爭職業材料）
+  craft: { 1: { gold: 3000, ore: 12 }, 2: { gold: 9000, ore: 30 }, 3: { gold: 30000, ore: 60, cores: 6, pickSlot: true },
+           4: { locked: true, ext: 30 }, 5: { locked: true, ext: 80 } },
+  salvage: { 1: 4, 2: 10, 3: 25, 4: 0, 5: 0 },             // 重複件 → 鍛造礦石（定向打造＝保底）
+  base: { weapon: { atk: 8 }, armor: { def: 4, hp: 60 }, helm: { hp: 50, mr: 2 }, gloves: { atk: 4, def: 1 }, boots: { def: 2, mr: 3 }, acc: { atk: 3, mr: 4 } },  // 每件 × tier
+  shopMaxTier: 3                                           // 商城／黑市只賣 T1–T3，永不賣 T4–T5
+};
+function setsOfTier(t) { return AB_SETS.filter(function (x) { return x.tier === t; }); }
+function rollGear(maxTier, minTier) { var t = (minTier || 1) + Math.floor(Math.random() * (maxTier - (minTier || 1) + 1)); var pool = setsOfTier(t); if (!pool.length) return null;
+  var st = pool[Math.floor(Math.random() * pool.length)]; var slots = ['weapon', 'armor', 'helm', 'gloves', 'boots', 'acc']; return { set: st.id, tier: t, slot: slots[Math.floor(Math.random() * slots.length)] }; }
+function grantGear(g, src) { var ab = econ(); if (!ab || !g || !hasPlayer()) return; var dup = ab.gearBag.some(function (x) { return x.set === g.set && x.slot === g.slot; });
+  if (dup) { ab.ore = (ab.ore || 0) + (AB_GEAR_SRC.salvage[g.tier] || 0); pushLog('♻ 重複 ' + g.set + '·' + g.slot + ' → ' + AB_GEAR_SRC.ore.n + ' ×' + (AB_GEAR_SRC.salvage[g.tier] || 0)); }
+  else { g.uid = 'g' + Date.now().toString(36) + Math.floor(Math.random() * 1e4); g.on = null; ab.gearBag.push(g); var stn = (AB_SETS_ALL.filter(function (x) { return x.id === g.set; })[0] || {}).n || g.set; var SLN = { weapon: '武器', armor: '盔甲', helm: '頭盔', gloves: '手套', boots: '靴', acc: '飾品' }; pushLog('🎁 ' + (src || '') + '獲得 T' + g.tier + ' ' + stn + '·' + (SLN[g.slot] || g.slot)); } }
+function gearRunEnd(w) { var R = AB_GEAR_SRC.runEnd; var ab0 = econ(); if (ab0 && hasPlayer()) ab0.ore = (ab0.ore || 0) + Math.floor(w * AB_GEAR_SRC.ore.perWave); if (Math.random() < R.p + R.perWave * w) grantGear(rollGear(R.maxTier), '結算'); }
+function gearBoss() { var ab = econ(); if (!ab) return; var B = AB_GEAR_SRC.boss; ab.pityT3 = (ab.pityT3 || 0) + 1; ab.ore = (ab.ore || 0) + AB_GEAR_SRC.ore.boss;
+  if (Math.random() < B.p || ab.pityT3 >= AB_GEAR_SRC.pity.t3) { ab.pityT3 = 0; grantGear(rollGear(B.tier, B.tier), '頭目'); } }
+function gearCraft(tier, cls, setId, slot) { var C = AB_GEAR_SRC.craft[tier]; if (!C || C.locked) { hint('T' + tier + ' 要新地監材料（未開放）'); return false; }
+  var ab = econ(); if (!ab || !hasPlayer()) return false;
+  if ((player.gold || 0) < C.gold || (ab.ore || 0) < C.ore || (ab.cores || 0) < (C.cores || 0)) { hint('唔夠：需要 💰' + C.gold + '＋' + AB_GEAR_SRC.ore.n + '×' + C.ore + (C.cores ? '＋核心×' + C.cores : '')); return false; }
+  player.gold -= C.gold; ab.ore -= C.ore; ab.cores -= C.cores || 0; var g = rollGear(tier, tier); if (!g) return false; if (setId) g.set = setId; if (C.pickSlot && slot) g.slot = slot; grantGear(g, '打造'); abSave(); return true; }
+// 背包件裝備：on = 'h:<heroId>'（士兵唔著局外裝；c: 已廢）；同部位只可一件
+function gearEquip(uid, on) { var ab = econ(); if (!ab) return; var g = ab.gearBag.filter(function (x) { return x.uid === uid; })[0]; if (!g) return;
+  if (on && String(on).indexOf('c:') === 0) { try { console.log('[ab] gearEquip 拒絕士兵目標 ' + on); } catch (e) {} return; }
+  if (on) ab.gearBag.forEach(function (x) { if (x !== g && x.on === on && x.slot === g.slot) x.on = null; }); g.on = on || null; abSave(); }
+
+// ===================== v3.10.0 局外裝強化卷軸（沿用原作 enhanceOutcomeFromRoll：安定值內 100%；超過安定值按武器／防具／飾品規則；失敗＝爆裝）=====================
+var AB_ENCH = window.AB_ENCH = {
+  safe: { weapon: 6, armor: 4, helm: 4, gloves: 4, boots: 4, acc: 0 },          // 局外裝安定值（天堂慣例：武器 6、防具 4、飾品 0）
+  cap: { weapon: 15, armor: 15, helm: 15, gloves: 15, boots: 15, acc: 5 },      // 同原作 ENHANCE_CAP
+  type: { weapon: 'wpn', armor: 'arm', helm: 'arm', gloves: 'arm', boots: 'arm', acc: 'acc' },
+  bonus: { wpn: { atk: [0.04, 0.06] }, arm: { def: [0.03, 0.04], hp: [0.02, 0.03] }, acc: { atk: [0.03, 0.05], mr: [0.03, 0.05] } },   // 每 +1：[安定值內, 超過安定值]（乘該件基礎數值）
+  blessGain: [1, 3],                       // 祝福卷：成功時 +1～+3
+  basicCapSafe: true,                      // 基本兵裝備最多衝到安定值；超安定只限英雄
+  names: { wpn: '對武器施法的卷軸', arm: '對盔甲施法的卷軸', bwpn: '祝福的對武器施法的卷軸', barm: '祝福的對盔甲施法的卷軸', prot: '保護卷軸' },
+  src: {
+    stageClearP: 0.02,                     // 每次通關（任何關）掉 1 張普通卷
+    bossFirst: { scrolls: 3, blessed: 1 }, // 頭目首通必掉
+    bossRepeat: { scrollP: 0.02, blessedP: 0.01, protP: 0.02 },   // 頭目重複
+    offlinePerH: 0.03,                      // 離線每小時（普通卷）
+    dispatch: { scrollP: 0.1, rareP: 0.05, rareMin: 'SR' },        // 派遣完成；SR+ 英雄有機會帶返祝福／保護
+    smithPerLv: 1,                         // 鐵匠每級每日 +1 張（收營地時結算）
+    shop: { gold: { price: 6000, daily: 1 }, tickets: { price: 10, weekly: 2 } }   // 金幣買普通卷（每日上限）；招募券買祝福／保護（每週上限）
+  }
+};
+function enInfo(g) { var sl = g.slot, tp = AB_ENCH.type[sl] || 'arm'; return { tp: tp, safe: AB_ENCH.safe[sl] || 0, cap: AB_ENCH.cap[sl] || 10 }; }
+function enCap(g) { var I = enInfo(g); return (AB_ENCH.basicCapSafe && g.on && String(g.on).indexOf('c:') === 0) ? I.safe : I.cap; }
+function enMul(g, k) { var I = enInfo(g), B = AB_ENCH.bonus[I.tp] || {}, b = B[k]; if (!b) return 1; var en = Math.min(g.en || 0, enCap(g)); var inS = Math.min(en, I.safe), ov = Math.max(0, en - I.safe); return 1 + inS * b[0] + ov * b[1]; }
+function scrolls() { var ab = econ(); if (!ab) return {}; ab.scrolls = ab.scrolls || {}; return ab.scrolls; }
+function addScroll(k, n, src) { if (!n || !hasPlayer()) return; var sc = scrolls(); sc[k] = (sc[k] || 0) + n; if (src) pushLog('📜 ' + src + '：' + AB_ENCH.names[k] + ' ×' + n); }
+function rndScroll() { return Math.random() < 0.5 ? 'wpn' : 'arm'; }
+function enRate(g) { var I = enInfo(g), en = g.en || 0; if (en < I.safe) return 1; if (I.tp === 'wpn') return en < 9 ? 1 / 3 : 1 / 6; return I.safe > 0 ? 1 / Math.max(1, en) : (en <= 0 ? 0.5 : 1 / (en * 2)); }
+function gearEnchant(uid, blessed, useProt) { var ab = econ(); if (!ab || !hasPlayer()) return { ok: false, msg: '要入遊戲角色' }; var g = (ab.gearBag || []).filter(function (x) { return x.uid === uid; })[0]; if (!g) return { ok: false, msg: '搵唔到裝備' };
+  var I = enInfo(g), en = g.en || 0, cap = enCap(g); if (en >= cap) return { ok: false, msg: '已達上限 +' + cap + (cap === I.safe && I.safe < I.cap ? '（基本兵只可衝到安定值）' : '') };
+  var sk = (I.tp === 'wpn' ? 'wpn' : 'arm'); if (blessed) sk = 'b' + sk; var sc = scrolls(); if (!(sc[sk] > 0)) return { ok: false, msg: '冇' + AB_ENCH.names[sk] };
+  var prot = useProt && en >= I.safe; if (prot && !(sc.prot > 0)) return { ok: false, msg: '冇保護卷軸' };
+  sc[sk]--; if (prot) sc.prot--;
+  var oc = typeof enhanceOutcomeFromRoll === 'function' ? enhanceOutcomeFromRoll(I.tp, I.safe, en, Math.random()) : (en < I.safe ? 'ok' : 'break');
+  var res;
+  if (oc === 'ok') { var add = blessed ? AB_ENCH.blessGain[0] + Math.floor(Math.random() * (AB_ENCH.blessGain[1] - AB_ENCH.blessGain[0] + 1)) : 1; g.en = Math.min(cap, en + add); res = { ok: true, msg: '成功！+' + g.en }; }
+  else if (oc === 'none') res = { ok: true, msg: '一瞬間發出光芒（冇變化）' };
+  else if (prot) { g.en = Math.max(0, en - 1); res = { ok: true, msg: '失敗：保護卷軸生效，強化值 −1 → +' + g.en }; }
+  else { ab.gearBag = ab.gearBag.filter(function (x) { return x !== g; }); res = { ok: true, broke: true, msg: '失敗：裝備爆咗' }; }
+  pushLog('🔨 強化 ' + g.set + '·' + g.slot + '：' + res.msg); abSave(); return res; }
+function enShopBuy(k) { var ab = econ(); if (!ab || !hasPlayer()) return { ok: false, msg: '要入遊戲角色' }; var Sx = AB_ENCH.src.shop, now = new Date(), day = now.toDateString(), wk = Math.floor((now - new Date(2026, 0, 5)) / 6048e5);
+  ab.enShop = ab.enShop || {}; if (ab.enShop.day !== day) { ab.enShop.day = day; ab.enShop.d = 0; } if (ab.enShop.wk !== wk) { ab.enShop.wk = wk; ab.enShop.w = {}; }
+  if (k === 'wpn' || k === 'arm') { if (ab.enShop.d >= Sx.gold.daily) return { ok: false, msg: '今日已買滿 ' + Sx.gold.daily + ' 張' }; if (player.gold < Sx.gold.price) return { ok: false, msg: '金幣不足' }; player.gold -= Sx.gold.price; ab.enShop.d++; addScroll(k, 1, '商店'); }
+  else { var w = ab.enShop.w; if ((w[k] || 0) >= Sx.tickets.weekly) return { ok: false, msg: '本週已買滿 ' + Sx.tickets.weekly + ' 張' }; var g = player.gacha || {}; if ((g.tickets || 0) < Sx.tickets.price) return { ok: false, msg: '招募券不足' }; g.tickets -= Sx.tickets.price; w[k] = (w[k] || 0) + 1; addScroll(k, 1, '商店'); }
+  abSave(); return { ok: true, msg: '已購買' }; }
+function smithScrolls(now) { var ab = econ(); if (!ab || !hasPlayer()) return 0; var lv = ab.smith || 0; now = now || Date.now(); if (!ab.smithTs) { ab.smithTs = now; return 0; } var d = Math.floor((now - ab.smithTs) / 864e5); if (d < 1 || !lv) { if (!lv) ab.smithTs = now; return 0; }
+  d = Math.min(d, 3); var n = d * lv * AB_ENCH.src.smithPerLv; for (var i = 0; i < n; i++) addScroll(rndScroll(), 1); ab.smithTs = now; return n; }
+function bagStats(on, cap) { var ab = econ(); var t = { atk: 0, def: 0, mr: 0, hp: 0, cnt: {}, n: 0, over: 0 }; if (!ab || !ab.gearBag) return t;
+  ab.gearBag.forEach(function (g) { if (g.on !== on) return; if (g.tier > cap) { t.over++; return; } var b = AB_GEAR_SRC.base[g.slot] || {};
+    for (var k in b) t[k] += b[k] * g.tier * enMul(g, k); t.cnt[g.set] = (t.cnt[g.set] || 0) + 1; t.n++; }); return t; }
+
+// ===== 自走棋專用掉落表（只影響自走棋；舊遊戲 01-drops-config 唔改）=====
+// 規則：{ items:[DB.items id], set?:AB 套裝 id（入 ab.gearBag）, stages:[地圖 v], mobs:[怪 id]（空＝該關任何怪）, p: 每隻／每次機率, boss:true＝只計頭目 }
+// 武器／非套裝件 → 直接入 player.inv（舊軍械已廢；英雄局外裝用 gearBag）
+var AB_GEAR_DROP = window.AB_GEAR_DROP = [
+  { set: 'bone', items: ['hlm_bone', 'shd_bone', 'amr_bone'], stages: ['zone_06', 'zone_07', 'zone_13', 'zone_14'], mobs: ['skeleton', 'skel_archer', 'sparto', 'skel_axe', 'skel_spear'], p: 0.02 },
+  { set: 'bluepirate', items: ['arm_bluepirate_helm'], stages: [], mobs: ['pirate_skeleton', 'pirate_skelsoldier', 'pirate_skelblade', 'pirate_skelchief'], p: 0.03 },
+  { set: 'priest', items: ['relic_priest_hood', 'relic_priest_gloves', 'relic_priest_collar', 'relic_priest_robe', 'relic_priest_sandals'], stages: ['zone_11'], mobs: ['necromancer'], p: 0.10 },
+  { set: 'frost', items: ['hlm_frost', 'amr_frost', 'bot_frost'], stages: [], mobs: ['ice_queen'], p: 0.35, boss: true },
+  { set: 'kurt', items: ['hlm_kurt', 'amr_kurt', 'arm_97', 'arm_101'], stages: ['zone_09', 'zone_10', 'zone_11', 'zone_12', 'zone_18', 'zone_19', 'zone_20', 'zone_21'], mobs: [], p: 0.12, boss: true, minTier: 3 },   // 收緊：只喺 T3+ 頭目
+  { items: ['wpn_master_axe', 'wpn_demon_axehead'], stages: ['zone_22', 'zone_23', 'zone_24', 'zone_25', 'zone_32', 'zone_33'], mobs: [], p: 0.015 },
+  { items: ['wpn_kukulkan_spear'], stages: [], mobs: ['nm_tikal_boss_m', 'nm_tikal_boss_f'], p: 0.15, boss: true },
+  { items: ['wpn_dragon_2h', 'wpn_chain_annihilator'], stages: ['zone_26', 'zone_27', 'zone_28'], mobs: [], p: 0.015 },
+  { items: ['wpn_golden_scepter'], stages: ['zone_09'], mobs: ['casper', 'marcus', 'sema', 'batus'], p: 0.12, boss: true },
+  { items: ['wpn_manawand', 'wpn_crystalwand'], stages: ['zone_15', 'zone_16', 'zone_17', 'zone_13', 'zone_14'], mobs: [], p: 0.012 },
+  { items: ['wpn_claw_damascus', 'wpn_dual_damascus'], stages: ['zone_24', 'zone_25'], mobs: [], p: 0.012 }
+];
+// 鐵匠打造（武器）：破滅者／嗜血者（龍騎）、倫得雙刀（黑妖）；商城限量：幻術士魔杖
+var AB_SMITH_WPN = window.AB_SMITH_WPN = [
+  { id: 'wpn_chain_destroyer', tier: 3, gold: 40000, ore: 70, cores: 4, mat: 'dragon', mats: 30 },
+  { id: 'wpn_chain_bloodthirst', tier: 3, gold: 60000, ore: 90, cores: 6, mat: 'dragon', mats: 40 },
+  { id: 'wpn_rond_dual', tier: 2, gold: 25000, ore: 45, cores: 2, mat: 'dark', mats: 25 }
+];
+var AB_MALL_LIMITED = window.AB_MALL_LIMITED = [ { id: 'wpn_illu_wand', tier: 1, price: 6000, perWeek: 1 } ];
+function abGiveItem(id, src) { if (!hasPlayer() || !DB.items[id]) return; player.inv = player.inv || []; player.inv.push({ id: id, uid: 'ab' + Date.now().toString(36) + Math.floor(Math.random() * 1e5), cnt: 1, en: 0 }); pushLog('🎁 ' + (src || '') + '獲得「' + DB.items[id].n + '」'); }
+function abDropRoll(u) { if (S.sim || !hasPlayer() || !u || !u.mob) return; var st = dgStage(); var v = st && st.v;
+  AB_GEAR_DROP.forEach(function (r) { if (r.boss && u.rarity !== 'SSR') return; if (r.stages.length && r.stages.indexOf(v) < 0) return; if (r.mobs.length && r.mobs.indexOf(u.mid) < 0) return;
+    if (r.minTier && (!st || st.tier < r.minTier)) return; if (Math.random() >= r.p) return; var id = r.items[Math.floor(Math.random() * r.items.length)];
+    if (r.set) { var stt = AB_SETS_ALL.filter(function (x) { return x.id === r.set; })[0]; var d = DB.items[id] || {}; var sl = { helm: 'helm', armor: 'armor', boots: 'boots', gloves: 'gloves', shield: 'acc', cloak: 'acc' }[d.slot] || 'armor'; grantGear({ set: r.set, tier: stt ? stt.tier : 1, slot: sl }, u.name + '掉落：'); }
+    else abGiveItem(id, u.name + '掉落：'); }); }
+
+// ===== 📦 ab.20261022v 原作怪物掉落表：自走棋殺怪都會 roll 原作 MOB_DROPS 等（製作 NPC 材料）=====
+function abOrigTables() { var o = [];
+  try { if (typeof MOB_DROPS !== 'undefined') o.push(MOB_DROPS); } catch (e) {} try { if (typeof DARK_WEAPON_DROPS !== 'undefined') o.push(DARK_WEAPON_DROPS); } catch (e) {}
+  try { if (typeof DARK_CRYSTAL_DROPS !== 'undefined') o.push(DARK_CRYSTAL_DROPS); } catch (e) {} try { if (typeof DRAGON_DROPS !== 'undefined') o.push(DRAGON_DROPS); } catch (e) {}
+  try { if (typeof WARRIOR_DROPS !== 'undefined') o.push(WARRIOR_DROPS); } catch (e) {} try { if (typeof MEM_DROPS !== 'undefined') o.push(MEM_DROPS); } catch (e) {} return o; }
+var AB_ORE_RATES = { '石頭高崙':100, '鋼鐵高崙':100, '侏儒':50, '侏儒戰士':50, '黑騎士':50, '哈柏哥布林':50, '蜥蜴人':50 };   // 原作銀礦石規則（js/05）
+var AB_EFOREST_STONE = 2;   // 元素石 new_item_165：妖精森林地區關卡每殺 2%（×mobDropMul 3 → 6%；60 波×~5 隻≈300 殺/小時 → 約 18 粒/小時）
+var AB_MAP_DROPS = { silent_outer: [['mat_blackstone2', 20], ['mat_blackstone3', 10]],
+  zone_01: [['new_item_165', AB_EFOREST_STONE]], zone_15: [['new_item_165', AB_EFOREST_STONE]], zone_16: [['new_item_165', AB_EFOREST_STONE]], zone_17: [['new_item_165', AB_EFOREST_STONE]] };
+// 自走棋暫未有來源嘅製作材料（製作 NPC 介面同小百科顯示「暫未有掉落來源（之後加）」）
+var AB_NO_SRC = window.AB_NO_SRC = { mat_nazarick_gearfrag: 'npc_nazarick_smith', panacea_white: 'npc_tas', mat_blackstone4: 'npc_kupu', item_sealed_earth_eye: 'npc_mimi', mat_antharas_heart: 'npc_mimi' };
+[11, 21, 31, 41, 51, 61, 71, 81, 91].forEach(function (f) { AB_NO_SRC['item_pride_pass_' + f] = 'npc_upni'; });   // 原作沉默洞穴周邊黑魔石固定掉落（js/05）
+function abIsGearItem(it) { return !!it && (it.type === 'wpn' || it.type === 'arm' || it.type === 'acc' || !!it.relic); }
+function abOrigEntries(name) { var out = []; abOrigTables().forEach(function (t) { (t[name] || []).forEach(function (e) { var id = Array.isArray(e) ? e[0] : e, pct = Array.isArray(e) ? +e[1] : 0; if (id && pct > 0) out.push([id, pct]); }); });
+  if (AB_ORE_RATES[name]) out.push(['mat_silverore', AB_ORE_RATES[name]]); return out; }
+function abOrigOk(id) { var it = DB.items[id]; if (!it) return false; try { if (typeof trialDropBlocked === 'function' && trialDropBlocked(id)) return false; } catch (e) {} return true; }
+function abGrantOrig(id, n) { if (!n) return 0; try { if (typeof window.gainItem === 'function') { window.gainItem(id, n, true); } else return 0; } catch (e) { return 0; } return n; }
+function abTally(id, n) { if (!n) return; S.dropTally = S.dropTally || {}; S.dropTally[id] = (S.dropTally[id] || 0) + n; }
+function abOrigDrop(u) { if (S.sim || demoMode || !hasPlayer() || !u || !u.mid) return; var mb = DB.mobs[u.mid]; if (!mb || !mb.n) return; var E = AB_ECON;
+  abOrigEntries(mb.n).forEach(function (en) { var id = en[0]; if (!abOrigOk(id)) return; var p = en[1] / 100 * (abIsGearItem(DB.items[id]) ? E.mobGearDropMul : E.mobDropMul);
+    var n = Math.floor(p); if (Math.random() < p - n) n++; abTally(id, abGrantOrig(id, n)); });
+  var st = dgStage(), md = st && AB_MAP_DROPS[st.v]; if (md) md.forEach(function (en) { if (!DB.items[en[0]]) return; var p = en[1] / 100 * E.mobDropMul, n = Math.floor(p); if (Math.random() < p - n) n++; abTally(en[0], abGrantOrig(en[0], n)); }); }
+function abFlushDrops() { var t = S.dropTally; S.dropTally = {}; if (!t) return; var ks = Object.keys(t); if (!ks.length) return;
+  var gear = ks.filter(function (k) { return abIsGearItem(DB.items[k]); }), rest = ks.filter(function (k) { return gear.indexOf(k) < 0; });
+  var nm = function (k) { return ((DB.items[k] || {}).n || k) + '×' + t[k]; };
+  pushLog('📦 原作掉落：' + gear.map(function (k) { return '<b>' + nm(k) + '</b>'; }).concat(rest.slice(0, 8).map(nm)).join('、') + (rest.length > 8 ? ' …等 ' + rest.length + ' 種' : '')); }
+function abOfflineOrigDrops(h, fs) { if (!fs || !fs.norm || !fs.norm.length || !hasPlayer()) return 0; var E = AB_ECON;
+  var kills = h * E.offWavesPerH * E.offMobsPerWave * E.offDropShare, per = kills / fs.norm.length, exp = {};
+  fs.norm.forEach(function (mid) { var mb = DB.mobs[mid]; if (!mb) return; abOrigEntries(mb.n).forEach(function (en) { if (!abOrigOk(en[0]) || abIsGearItem(DB.items[en[0]])) return; exp[en[0]] = (exp[en[0]] || 0) + per * en[1] / 100 * E.mobDropMul; }); });
+  (AB_MAP_DROPS[fs.v] || []).forEach(function (en) { if (DB.items[en[0]]) exp[en[0]] = (exp[en[0]] || 0) + kills * en[1] / 100 * E.mobDropMul; });
+  var tot = 0, got = {}; Object.keys(exp).forEach(function (id) { var n = abFloorRand(exp[id]); if (n > 0) { abGrantOrig(id, n); got[id] = n; tot += n; } }); S.offDropGot = got; return tot; }
+window.AB_ORIG = { drop: function (u) { return abOrigDrop(u); }, entries: abOrigEntries, offline: abOfflineOrigDrops, flush: abFlushDrops, stages: function () { return dgBuild(); }, log: function () { return S.log; }, setStage: function (v) { var st = dgBuild().byV[v]; if (st) S.dg = { d: st.d.key, s: st.idx }; }, dbg: function () { var st = dgStage(); return { sim: !!S.sim, demo: demoMode, hp: !!hasPlayer(), stage: st && st.v }; } };   // 測試／百科用
+function smithWpn(i) { var r = AB_SMITH_WPN[i]; var ab = econ(); if (!r || !ab || !hasPlayer()) return false;
+  if ((player.gold || 0) < r.gold || (ab.ore || 0) < r.ore || (ab.cores || 0) < r.cores || (ab.mats[r.mat] || 0) < r.mats) { hint('唔夠材料'); return false; }
+  player.gold -= r.gold; ab.ore -= r.ore; ab.cores -= r.cores; ab.mats[r.mat] -= r.mats; abGiveItem(r.id, '鐵匠打造：'); abSave(); return true; }
+var CAMP = window.AB_CAMP = { maxLv: 10, perLv: 0.08, /* 補償士兵唔著永久裝：每級 +8%（原 5%） */ cost: function (lv) { return AB_ECON.campCost(lv); },
+  name: { knight:'騎士團', royal:'王室近衛', elf:'妖精森林', illusion:'幻術塔', warrior:'戰士營', mage:'法師學院', dark:'暗影巢穴', dragon:'龍騎士寨' } };
+function campLv(cls) { if (S.sim && window.__campOv != null) return window.__campOv; var ab = ensureAb(); return ab ? Math.max(0, Math.min(CAMP.maxLv, Math.floor(ab.camps[cls] || 0))) : 0; }   // 存檔唔 clamp；讀取先按 config 上限
+function campUp(cls) {
+  if (typeof player === 'undefined' || !player || !player.cls) { hint('要先入遊戲角色先可以升級營地'); return; }
+  var lv = campLv(cls); if (lv >= CAMP.maxLv) return; var c = CAMP.cost(lv);
+  if (!canPay(c, cls)) { hint('唔夠：需要 ' + costTxt(c, cls)); renderCamp(); return; }
+  pay(c, cls); collectCamps(); ensureAb().camps[cls] = lv + 1; abSave(); try { if (typeof updateUI === 'function') updateUI(); } catch (e) {} renderCamp();
+}
+function fxText(fx) { var L = { atkP:'攻', asP:'攻速', spP:'技能', hpP:'HP', crit:'爆擊', regen:'每秒回血', shield0:'開場護盾' }; return Object.keys(fx).map(function (k) { var v = fx[k];
+  return k === 'ele' ? '屬性→' + ELE_NAME[v] : k === 'def' ? '物防+' + v : k === 'mr' ? '魔防+' + v : k === 'mana0' ? '開場能量+' + v : (L[k] || k) + '+' + Math.round(v * 100) + '%'; }).join('、'); }
+// ab.20261022y：局外裝說明（基礎數值×T＋強化＋鐵匠；套裝 2/3/4 件效果＋邊個生效）
+var AB_SLN = { weapon: '武器', armor: '盔甲', helm: '頭盔', gloves: '手套', boots: '靴', acc: '飾品' }, AB_STL = { atk: '攻', def: '物防', mr: '魔防', hp: 'HP' };
+function abSetById(id) { return AB_SETS_ALL.filter(function (x) { return x.id === id; })[0] || null; }
+function abSetOpen(st) { if (!st) return false; var C = AB_GEAR_SRC.craft[st.tier]; return AB_SETS.indexOf(st) >= 0 && !(C && C.locked); }
+function abGearDesc(g, onKey) { var ab = econ(); var st = abSetById(g.set), b = AB_GEAR_SRC.base[g.slot] || {}, sm = 1 + smithLv() * SMITH.gearPerLv, key = onKey || g.on;
+  var stat = Object.keys(b).map(function (k) { return AB_STL[k] + '+' + Math.round(b[k] * g.tier * enMul(g, k) * sm) + '（' + b[k] + '×T' + g.tier + (g.en ? '×強化' : '') + (sm > 1 ? '×鐵匠' : '') + '）'; }).join('、');
+  var n = 0; if (key && ab && ab.gearBag) ab.gearBag.forEach(function (x) { if (x.on === key && x.set === g.set) n++; });
+  var ths = st ? Object.keys(st.b).sort(function (a, c) { return a - c; }) : [];
+  var setL = ths.map(function (th) { var on = key && n >= +th; return { on: on, t: th + ' 件：' + fxText(st.b[th]) }; });
+  var head = (AB_SLN[g.slot] || g.slot) + ' T' + g.tier + ' ' + (st ? st.n : g.set) + (st && st.role ? '（' + st.role + '）' : '');
+  var text = head + '\n基礎：' + stat + '\n套裝' + (key ? '（已裝 ' + n + ' 件）' : '') + '：\n' + setL.map(function (x) { return (x.on ? '✔ ' : '・ ') + x.t; }).join('\n');
+  var html = '<div class="ab-gdesc"><small>基礎：' + stat + '</small><br><small>🔗 ' + (st ? st.n : g.set) + (key ? '（已裝 ' + n + ' 件）' : '') + '：' + setL.map(function (x) { return '<span class="' + (x.on ? 'ab-gd-on' : 'ab-gd-off') + '">' + (x.on ? '✔' : '') + x.t + '</span>'; }).join('　') + '</small></div>';
+  return { text: text, html: html }; }
+window.abGearDesc = abGearDesc;
+
+// ab.20261022z：套裝背包整理版（按套裝分組；格仔細卡；篩選；點一件先喺詳情框顯示說明／動作）
+var AB_SLOT_ORD = ['weapon', 'armor', 'helm', 'gloves', 'boots', 'acc'], AB_SLOT_IC = { weapon: '🗡️', armor: '🛡️', helm: '⛑️', gloves: '🧤', boots: '👢', acc: '💍' };
+var AB_GBS = window.AB_GBS = { camp: { f: 'all', t: 0, sel: null }, hero: { f: 'all', t: 0, sel: null } };
+function abOwnerName(on) { if (!on) return ''; if (on.indexOf('c:') === 0) { var c = on.slice(2); return ((CLS[c] || {}).lb || c) + '兵'; } var h = ownedHeroes().filter(function (x) { return 'h:' + x.id === on; })[0]; return h ? h.name : '英雄'; }
+function abOwnerPor(on) { if (!on) return ''; if (on.indexOf('c:') === 0) return classPor(on.slice(2)); var h = ownedHeroes().filter(function (x) { return 'h:' + x.id === on; })[0]; return h ? heroPor(h) : ''; }
+function abGearBagHtml(o) { var ab = econ(); var bag = (ab && ab.gearBag) || [], st = AB_GBS[o.ctx], esc = function (x) { return String(x).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); };
+  var tiers = []; bag.forEach(function (g) { if (tiers.indexOf(g.tier) < 0) tiers.push(g.tier); }); tiers.sort();
+  var chip = function (k, lb, cur) { return '<button class="ab-gchip' + (cur ? ' on' : '') + '" data-gf="' + k + '">' + lb + '</button>'; };
+  var chips = '<div class="ab-gchips">' + chip('all', '全部 ' + bag.length, st.f === 'all') + chip('free', '未穿 ' + bag.filter(function (g) { return !g.on; }).length, st.f === 'free') + (o.key ? chip('mine', '佢著緊', st.f === 'mine') : '') +
+    AB_SLOT_ORD.map(function (sl) { return chip(sl, AB_SLOT_IC[sl] + AB_SLN[sl], st.f === sl); }).join('') + '<span class="ab-gsep">|</span>' + chip('t0', '全部 T', !st.t) + tiers.map(function (t) { return chip('t' + t, 'T' + t, st.t === t); }).join('') + '</div>';
+  var list = bag.filter(function (g) { if (st.t && g.tier !== st.t) return false; if (st.f === 'free') return !g.on; if (st.f === 'mine') return g.on === o.key; if (AB_SLOT_ORD.indexOf(st.f) >= 0) return g.slot === st.f; return true; });
+  var groups = {}; list.forEach(function (g) { (groups[g.set] = groups[g.set] || []).push(g); });
+  var keys = Object.keys(groups).sort(function (a, b) { var A = abSetById(a) || {}, B = abSetById(b) || {}; return ((B.tier || 0) - (A.tier || 0)) || String(A.n || a).localeCompare(String(B.n || b)); });
+  var sel = bag.filter(function (g) { return g.uid === st.sel; })[0] || null;
+  var gh = keys.map(function (k) { var S_ = abSetById(k) || { n: k, b: {} }, gs = groups[k].slice().sort(function (a, b) { return AB_SLOT_ORD.indexOf(a.slot) - AB_SLOT_ORD.indexOf(b.slot); });
+    var owned = {}; bag.forEach(function (g) { if (g.set === k) owned[g.slot] = 1; });
+    var th = Object.keys(S_.b).map(function (t) { return t + '件 ' + fxText(S_.b[t]); }).join(' · ');
+    return '<div class="ab-gset"><div class="ab-gset-h"><b>' + esc(S_.n) + '</b> <em class="ab-gt t' + (S_.tier || gs[0].tier) + '">T' + (S_.tier || gs[0].tier) + '</em> <small>擁有 ' + Object.keys(owned).length + '/6</small> <small class="ab-gth">' + esc(th) + '</small></div><div class="ab-gcells">' +
+      gs.map(function (g) { var tip = abGearDesc(g, o.key || g.on).text + (g.on ? '\n裝備者：' + abOwnerName(g.on) : '\n未穿'); var over = o.cap && g.tier > o.cap;
+        return '<button class="ab-gcell' + (g.uid === st.sel ? ' sel' : '') + (g.on ? ' worn' : '') + (o.key && g.on === o.key ? ' mine' : '') + (over ? ' over' : '') + '" data-gsel="' + g.uid + '" title="' + esc(tip) + '"><span class="ab-gic">' + AB_SLOT_IC[g.slot] + '</span><span class="ab-gsl">' + AB_SLN[g.slot] + (g.en ? ' <b>+' + g.en + '</b>' : '') + '</span>' +
+          (g.on ? '<span class="ab-gwho"><img src="' + esc(abOwnerPor(g.on)) + '" alt="">' + esc(abOwnerName(g.on)) + '</span>' : '<span class="ab-gwho free">未穿</span>') + '</button>'; }).join('') + '</div></div>'; }).join('');
+  var det = sel ? '<div class="ab-gdet"><div><b>' + AB_SLOT_IC[sel.slot] + ' T' + sel.tier + ' ' + esc((abSetById(sel.set) || {}).n || sel.set) + ' · ' + AB_SLN[sel.slot] + ' +' + (sel.en || 0) + '</b>' + (sel.on ? '　<small>裝備者：' + esc(abOwnerName(sel.on)) + '</small>' : '　<small>未穿</small>') + ' <button class="ab-btn ab-mini" data-gsel="">✕</button></div>' + abGearDesc(sel, o.key || sel.on).html + '<div class="ab-gact">' + (o.action ? o.action(sel) : '') + '</div></div>'
+    : '<div class="ab-gdet ab-gdet-empty"><small>撳一件裝備睇詳細同操作（滑鼠指住都有簡介）。</small></div>';
+  return '<div class="ab-gbag"><div class="ab-brow">🎒 套裝背包 ' + bag.length + ' 件</div>' + chips + det + (gh || '<div class="ab-brow"><small>冇符合篩選嘅裝備。</small></div>') + '</div>'; }
+function abGearBagBind(box, ctx, rerender) { var st = AB_GBS[ctx];
+  box.querySelectorAll('[data-gf]').forEach(function (b) { b.onclick = function () { var v = b.dataset.gf; if (v.charAt(0) === 't' && /^t\d$/.test(v)) st.t = +v.slice(1) || 0; else st.f = v; rerender(); }; });
+  box.querySelectorAll('[data-gsel]').forEach(function (b) { b.onclick = function () { var v = b.dataset.gsel || null; st.sel = (st.sel === v) ? null : v; rerender(); }; }); }
+window.abGearBagHtml = abGearBagHtml; window.abGearBagBind = abGearBagBind;
+function abSetTableHtml() { var slots = Object.keys(AB_GEAR_SRC.base);
+  var per = function (t) { return slots.map(function (sl) { var b = AB_GEAR_SRC.base[sl]; return AB_SLN[sl] + ' ' + Object.keys(b).map(function (k) { return AB_STL[k] + b[k] * t; }).join('/'); }).join('；'); };
+  return '<table class="ab-settbl"><tr><th>套裝</th><th>T</th><th>定位</th><th>套裝效果</th><th>狀態</th></tr>' + AB_SETS_ALL.slice().sort(function (a, c) { return a.tier - c.tier; }).map(function (st) {
+    return '<tr><td>' + st.n + '</td><td>T' + st.tier + '</td><td>' + (st.role || '') + '</td><td>' + Object.keys(st.b).map(function (th) { return th + '件：' + fxText(st.b[th]); }).join('<br>') + '</td><td>' + (abSetOpen(st) ? '開放' : '<b class="ab-bad">未開放</b>') + '</td></tr>'; }).join('') + '</table>' +
+    '<p>每件基礎數值（6 個部位都有：' + slots.map(function (sl) { return AB_SLN[sl]; }).join('、') + '）：</p><ul>' + [1, 2, 3, 4, 5].map(function (t) { return '<li>T' + t + '：' + per(t) + '</li>'; }).join('') + '</ul>'; }
+function smithUp() { if (typeof player === 'undefined' || !player || !player.cls) return; var lv = smithLv(); if (lv >= SMITH.maxLv) return; var c = SMITH.cost(lv);
+  if (!canPay(c)) { hint('唔夠：需要 ' + costTxt(c)); renderCamp(); return; } pay(c); ensureAb().smith = lv + 1; abSave(); renderCamp(); }
+function setArmory(cls, key, val) { var ab = ensureAb(); if (!ab) return; var a = ab.armory[cls]; if (!a || a.id) a = ab.armory[cls] = {}; a[key] = val || null; abSave(); renderCamp(); }
+function renderCamp() {
+  var box = document.getElementById('ab-camp'); if (!box) return;
+  var g = (typeof player !== 'undefined' && player && player.gold) || 0;
+  box.innerHTML = '<div class="ab-h">🏕 職業營地 · 金幣 ' + g.toLocaleString() + '（每級基本兵 HP/攻/攻速/技能 +' + CAMP.perLv * 100 + '%，上限 Lv' + CAMP.maxLv + '，草稿）<button class="ab-btn ab-mini" id="ab-camp-x">✕</button></div>' +
+    (function () { var ab = econ() || { dispatch: [], cores: 0 }; var hs = ownedHeroes().filter(function (h) { return !ab.dispatch.some(function (d) { return d.hid === h.id; }); });
+      return '<div class="ab-brow">📦 ' + AB_ECON.core + ' ' + (ab.cores || 0) + ' · <button class="ab-btn ab-mini" id="ab-c-camp">收取營地產出</button><button class="ab-btn ab-mini" id="ab-c-idle">領取離線掛機</button></div>' +
+      '<div class="ab-brow">🧭 派遣（' + ab.dispatch.length + '/' + AB_ECON.dispatch.slots + '，' + AB_ECON.dispatch.hours + ' 小時）：' + ab.dispatch.map(function (d) { var left = Math.max(0, d.until - Date.now()); return d.name + '→' + AB_ECON.mats[d.cls] + (left ? ' ' + Math.ceil(left / 60000) + '分' : ' ✔'); }).join('、') +
+      ' <select id="ab-d-hero">' + hs.map(function (h) { return '<option value="' + h.id + '">' + h.name + ' ' + h.rarity + '</option>'; }).join('') + '</select><select id="ab-d-mat">' + CLS_KEYS.map(function (c) { return '<option value="' + c + '">' + AB_ECON.mats[c] + '</option>'; }).join('') + '</select><button class="ab-btn ab-mini" id="ab-d-go">派遣</button><button class="ab-btn ab-mini" id="ab-d-col">收派遣</button></div>'; })() +
+    (function () { var ab = econ() || { gearBag: [] }; var SL = { weapon: '武器', armor: '盔甲', helm: '頭盔', gloves: '手套', boots: '靴', acc: '飾品' };
+      var tg = ownedHeroes().map(function (h) { return ['h:' + h.id, h.name]; });   // 士兵唔著局外裝，只畀英雄揀
+      var stName = function (id) { var st = AB_SETS_ALL.filter(function (x) { return x.id === id; })[0]; return st ? st.n : id; };
+      return '<div class="ab-brow">🔨 打造（' + AB_GEAR_SRC.ore.n + ' ' + (ab.ore || 0) + '）：' + [1, 2, 3, 4].map(function (t) { var C = AB_GEAR_SRC.craft[t]; return '<button class="ab-btn ab-mini" data-craft="' + t + '"' + (C.locked ? ' disabled' : '') + '>T' + t + (C.locked ? ' 🔒地監' : ' 💰' + C.gold + '＋礦' + C.ore + (C.cores ? '＋核' + C.cores : '')) + '</button>'; }).join('') +
+        ' <select id="ab-cr-slot">' + Object.keys(SL).map(function (k) { return '<option value="' + k + '">' + SL[k] + '</option>'; }).join('') + '</select>（T3 可揀部位）</div>' +
+        (function () { var sc = scrolls(), N = AB_ENCH.names, Sx = AB_ENCH.src.shop; return '<div class="ab-brow">📜 卷軸：武器 ' + (sc.wpn || 0) + '・盔甲 ' + (sc.arm || 0) + '・祝福武器 ' + (sc.bwpn || 0) + '・祝福盔甲 ' + (sc.barm || 0) + '・保護 ' + (sc.prot || 0) +
+        ' <label><input type="checkbox" id="ab-en-prot"' + (S.enProt ? ' checked' : '') + '> 超安定用保護卷</label> <label><input type="checkbox" id="ab-en-bless"' + (S.enBless ? ' checked' : '') + '> 用祝福卷</label>' +
+        '<br><small>商店：</small><button class="ab-btn ab-mini" data-enbuy="wpn">武器卷 ' + Sx.gold.price + '💰</button><button class="ab-btn ab-mini" data-enbuy="arm">盔甲卷 ' + Sx.gold.price + '💰</button>（每日 ' + Sx.gold.daily + '）' +
+        '<button class="ab-btn ab-mini" data-enbuy="bwpn">祝福武器 ' + Sx.tickets.price + '🎫</button><button class="ab-btn ab-mini" data-enbuy="barm">祝福盔甲 ' + Sx.tickets.price + '🎫</button><button class="ab-btn ab-mini" data-enbuy="prot">保護 ' + Sx.tickets.price + '🎫</button>（每週各 ' + Sx.tickets.weekly + '）</div>'; })() +
+        abGearBagHtml({ ctx: 'camp', action: function (g) { var I = enInfo(g), cp = enCap(g); return ((g.en || 0) >= cp ? '<small>（強化上限 +' + cp + '）</small>' : '<button class="ab-btn ab-mini" data-ench="' + g.uid + '">強化 ' + Math.round(enRate(g) * 1000) / 10 + '%</button><small>' + ((g.en || 0) >= I.safe ? ' ⚠超安定(' + I.safe + ')失敗會爆' : ' 安定 ' + I.safe) + '</small>') +
+          ' 裝備者：<select data-gear="' + g.uid + '"><option value="">（未裝）</option>' + tg.map(function (o) { return '<option value="' + o[0] + '"' + (g.on === o[0] ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select>'; } }); })() +
+    '<div class=\"ab-brow\">⚒ 鐵匠 Lv' + smithLv() + '（永久裝備 +' + Math.round(smithLv() * SMITH.gearPerLv * 100) + '%；已解鎖配方 ' + RECIPE.filter(function (r) { return r.smith <= smithLv(); }).length + '/' + RECIPE.length + '） ' + (smithLv() >= SMITH.maxLv ? '<b>MAX</b>' : '<button class="ab-btn ab-mini" id="ab-smith">升級 ' + costTxt(SMITH.cost(smithLv())) + '</button>') + '</div>' +
+    CLS_KEYS.map(function (c) { var lv = campLv(c);
+      return '<div class="ab-brow">' + CLS[c].ic + ' ' + CAMP.name[c] + ' Lv' + lv + ' · ' + AB_ECON.mats[c] + ' ' + matN(c) + ' <small>（基本兵 HP/攻/攻速/技能 +' + Math.round(lv * CAMP.perLv * 100) + '%）</small> ' +
+      (lv >= CAMP.maxLv ? '<b>MAX</b>' : '<button class="ab-btn ab-mini" data-cls="' + c + '">升級 ' + costTxt(CAMP.cost(lv), c) + '</button>') +
+      '<br><small class="ab-dim">士兵唔著永久裝／軍械；只靠營地等級＋每局場內裝。英雄喺背包著 6 件局外裝。</small></div>'; }).join('');
+  box.querySelector('#ab-camp-x').onclick = function () { box.remove(); };
+  var sb = box.querySelector('#ab-smith'); if (sb) sb.onclick = smithUp;
+  var q = function (id, f) { var b = box.querySelector(id); if (b) b.onclick = f; };
+  box.querySelectorAll('[data-craft]').forEach(function (b) { b.onclick = function () { var sl = box.querySelector('#ab-cr-slot'); gearCraft(+b.dataset.craft, null, null, sl && sl.value); renderCamp(); }; });
+  var pr = box.querySelector('#ab-en-prot'); if (pr) pr.onchange = function () { S.enProt = pr.checked; }; var bl = box.querySelector('#ab-en-bless'); if (bl) bl.onchange = function () { S.enBless = bl.checked; };
+  box.querySelectorAll('[data-ench]').forEach(function (b) { b.onclick = function () { var r = gearEnchant(b.dataset.ench, !!S.enBless, !!S.enProt); hint(r.msg); renderCamp(); }; });
+  box.querySelectorAll('[data-enbuy]').forEach(function (b) { b.onclick = function () { var r = enShopBuy(b.dataset.enbuy); hint(r.msg); renderCamp(); }; });
+  box.querySelectorAll('[data-gear]').forEach(function (sel) { sel.onchange = function () { gearEquip(sel.dataset.gear, sel.value); renderCamp(); }; });
+  abGearBagBind(box, 'camp', renderCamp);
+  q('#ab-c-camp', function () { var r = collectCamps(); hint(r ? '營地：💰' + r.gold + '、材料 ×' + r.mats : '要入遊戲角色'); renderCamp(); });
+  q('#ab-c-idle', function () { var r = collectIdle(); hint(r ? '掛機 ' + r.h.toFixed(1) + ' 小時：💰' + (r.gold || 0) + '、材料 ×' + (r.mats || 0) : '要入遊戲角色'); renderCamp(); });
+  q('#ab-d-go', function () { var h = box.querySelector('#ab-d-hero'), m = box.querySelector('#ab-d-mat'); if (h && h.value) dispatchStart(h.value, m.value); renderCamp(); });
+  q('#ab-d-col', function () { var n = dispatchCollect(); hint('派遣收穫材料 ×' + n); renderCamp(); });
+  Array.prototype.forEach.call(box.querySelectorAll('button[data-cls]'), function (b) { b.onclick = function () { campUp(b.dataset.cls); }; });
+}
+function openCampUi(host) {
+  var old = document.getElementById('ab-camp'); if (old) { old.remove(); return; }
+  var box = el('div', 'ab-basic ab-camp'); box.id = 'ab-camp';
+  if (!host) { box.classList.add('ab-campfloat'); document.body.appendChild(box); } else host.appendChild(box);
+  renderCamp();
+}
+window.openAbCamp = function () { openCampUi(S.open && root ? root.querySelector('.ab-side') : null); };
+// 出發前揀 4 個職業做今場基本兵
+function dgStart(v) { var D = dgBuild(); var st = v && D.byV[v]; if (!st || !dgUnlocked(st)) st = dgFirstOpen(AB_DG.firstRegion) || (D.list[0] && dgFirstOpen(D.list[0].key));
+  if (!st) { S.dg = null; return; } S.dg = { d: st.d.key, s: st.idx }; S.wave = 1; var ab = ensureAb(); if (ab && ab.dg) ab.dg.last = st.v; }
+function dgPickHtml() { var D = dgBuild(); var cur = S.pickStage || (dgFirstOpen(AB_DG.firstRegion) || {}).v; S.pickStage = cur;
+  return '<div class="ab-dgpick"><b>🏰 地監／關卡</b> ' + D.list.map(function (d) { return '<details' + (d.key === AB_DG.firstRegion ? ' open' : '') + '><summary>' + d.n + '（T' + d.tier + '+）</summary>' + d.stages.map(function (st) { var ok = dgUnlocked(st), cl = dgCleared(st.v);
+    return '<button class="ab-btn ab-mini' + (cur === st.v ? ' ab-on' : '') + '" data-stage="' + st.v + '"' + (ok ? '' : ' disabled') + '>' + (cl ? '✔ ' : ok ? '' : '🔒 ') + st.n + ' T' + st.tier + (st.open && !ok && hasPlayer() && player.lv < dgReqLv(st) ? '（Lv' + dgReqLv(st) + '）' : '') + (st.boss.length ? ' 👑' + st.boss.map(function (id) { return DB.mobs[id].n; }).join('/') : '') + '</button>'; }).join('') + '</details>'; }).join('') + '</div>'; }
+var RAR_ORD = { N: 0, R: 1, SR: 2, SSR: 3, UR: 4 };
+function openClassPick() {
+  S.phase = 'pick'; var ab = ensureAb(); var sel = ((ab && ab.lastClasses) || S.demoClasses || []).filter(function (c) { return CLS[c]; }).slice(0, 4);
+  var hsel = ((ab && !demoMode ? ab.lastHeroes : S.demoHeroes) || []).map(String);
+  function hpool() { return ownedHeroes().filter(function (h) { return sel.indexOf(h.cls) >= 0; }).sort(function (a, b) { return (RAR_ORD[b.rarity] || 0) - (RAR_ORD[a.rarity] || 0) || (b.lv || 1) - (a.lv || 1); }); }
+  function hfix() { var ok = hpool().map(function (h) { return String(h.id); }); hsel = hsel.filter(function (id) { return ok.indexOf(id) >= 0; }).slice(0, 4); }
+  function hpickHtml() { hfix(); var hp = hpool();
+    return '<div class="ab-hpick"><b>🦸 自選帶出場英雄（' + hsel.length + '/4，可少過 4）</b> <button class="ab-btn ab-mini" id="ab-hp-auto">自動揀</button> <button class="ab-btn ab-mini" id="ab-hp-clr">清空</button><div class="ab-hpgrid">' +
+      (hp.length ? hp.map(function (h) { var on = hsel.indexOf(String(h.id)) >= 0; return '<button class="ab-hpc r-' + h.rarity + (on ? ' on' : '') + '" data-hid="' + h.id + '"><img src="' + heroPor(h) + '" onerror="this.onerror=null;this.src=\'' + fbPor(h.cls) + '\'" alt=""><span>' + h.name + '</span><em>' + h.rarity + ' · ' + CLS[h.cls].ic + ' Lv' + (h.lv || 1) + '</em></button>'; }).join('') : '<p class="ab-hint">揀咗嘅 4 職業入面你冇英雄——酒館只會出基本兵。</p>') +
+      '</div><p class="ab-hint">酒館英雄格只會出你揀嘅英雄；冇揀／揀少過 4 隻都得，空位就出基本兵。自動揀：SSR＞SR，同稀有度揀等級高，<b>唔會自動揀 R</b>。</p></div>'; }
+  Array.prototype.forEach.call(document.querySelectorAll('#ab-pick'), function (x) { x.remove(); }); var rs0 = document.getElementById('ab-result'); if (rs0) rs0.classList.add('hidden');
+  var box = el('div', 'ab-pick'); box.id = 'ab-pick';
+  function draw() {
+    box.innerHTML = '<button class="ab-btn ab-pickback" id="ab-pick-back">🏠 返回大廳</button><h2>揀 4 個職業做今場基本兵（' + sel.length + '/4）</h2><div class="ab-pickgrid">' + CLS_KEYS.map(function (c) { var bh = basicHero(c);
+      return '<button class="ab-bh ab-pc' + (sel.indexOf(c) >= 0 ? ' on' : '') + '" data-cls="' + c + '"><img src="' + (bh ? heroPor(bh) : classPor(c)) + '" onerror="this.onerror=null;this.src=\'' + fbPor(c) + '\'" alt=""><span>' + CLS[c].ic + ' ' + CLS[c].lb + '</span><em>' + (bh ? '基本兵：' + bh.name : '通用兵') + ' · 營地 Lv' + campLv(c) + '</em>' + (function () { var n = ownedHeroes().filter(function (h) { return h.cls === c; }).length; return '<b class="ab-pcn' + (n ? '' : ' none') + '">英雄 ' + n + '</b>'; })() + '</button>'; }).join('') +
+      '</div>' + (sel.indexOf('elf') >= 0 ? '<div class="ab-elfpick">🏹 妖精元素：' + ['fire', 'water', 'wind', 'earth'].map(function (e) { return '<button class="ab-btn ab-mini' + ((S.pickElf || 'wind') === e ? ' ab-on' : '') + '" data-elf="' + e + '">' + ELE_ICON[e] + ELE_NAME[e] + (e === 'fire' ? '（近戰）' : '（遠程）') + '</button>'; }).join('') + '</div>' : '') + (sel.length === 4 ? hpickHtml() : '<p class="ab-hint">揀夠 4 個職業之後，可以自選最多 4 隻呢啲職業嘅英雄帶出場（每張卡「英雄 N」＝你擁有幾多隻）。</p>') + dgPickHtml() + '<button class="ab-btn ab-go" id="ab-pick-ok"' + (sel.length === 4 ? '' : ' disabled') + '>出發 ▶</button>';
+    Array.prototype.forEach.call(box.querySelectorAll('.ab-pc'), function (b) { b.onclick = function () { var c = b.dataset.cls, i = sel.indexOf(c);
+      if (i >= 0) sel.splice(i, 1); else if (sel.length < 4) sel.push(c); draw(); }; });
+    Array.prototype.forEach.call(box.querySelectorAll('[data-hid]'), function (b) { b.onclick = function () { var id = String(b.dataset.hid), i = hsel.indexOf(id);
+      if (i >= 0) hsel.splice(i, 1); else if (hsel.length < 4) hsel.push(id); else hint('最多帶 4 隻英雄'); draw(); }; });
+    var ba = box.querySelector('#ab-hp-auto'); if (ba) ba.onclick = function () { hsel = hpool().filter(function (h) { return h.rarity !== 'R' && h.rarity !== 'N'; }).slice(0, 4).map(function (h) { return String(h.id); }); draw(); };
+    var bc = box.querySelector('#ab-hp-clr'); if (bc) bc.onclick = function () { hsel = []; draw(); };
+    Array.prototype.forEach.call(box.querySelectorAll('[data-stage]'), function (b) { b.onclick = function () { S.pickStage = b.dataset.stage; draw(); }; });
+    Array.prototype.forEach.call(box.querySelectorAll('[data-elf]'), function (b) { b.onclick = function () { S.pickElf = b.dataset.elf; draw(); }; });
+    box.querySelector('#ab-pick-back').onclick = function () { box.remove(); closeAb(); };
+    box.querySelector('#ab-pick-ok').onclick = function () { if (sel.length !== 4) return; hfix(); if (ab && !demoMode) { ab.lastClasses = sel.slice(); ab.lastHeroes = hsel.slice(); abSave(); } else { S.demoClasses = sel.slice(); S.demoHeroes = hsel.slice(); } box.remove(); newRun(sel, null, hsel.slice()); dgStart(S.pickStage); S.phase = 'place'; toPlace(); };
+  }
+  draw(); root.appendChild(box); render();
+}
+window.abPickClasses = function (arr, stageV, heroes) { var b = document.getElementById('ab-pick'); if (b) b.remove(); newRun(arr, null, heroes); dgStart(stageV); S.phase = 'place'; toPlace(); };
+// ================= 兩層裝備 =================
+// (A) 永久局外裝：只限英雄（每隻 6 件）；基本兵／士兵唔著永久裝／軍械，靠營地等級加成；鐵匠強化永久裝＋解鎖場內合成配方
+var IC = 'assets/icons/';
+var COMP = window.AB_COMP = {
+  sword:  { n:'長劍',   img: IC + 'weapons/叛亂死騎的烈炎巨劍.png', fx: {"atkP": 0.05}, d:'攻 +5.0%' },
+  bow:    { n:'反曲弓', img: IC + 'weapons/叛軍神射手的長弓.png', fx: {"asP": 0.057}, d:'攻速 +5.7%' },
+  staff:  { n:'法杖',   img: IC + 'weapons/安茲的骨杖.png', fx: {"spP": 0.111}, d:'技能 +11.1%' },
+  armor:  { n:'鎖子甲', img: IC + 'armors/反王盔甲.png', fx: {"def": 7}, d:'物防 +7' },
+  cloak:  { n:'魔法披肩', img: IC + 'armors/娜貝拉爾的黑魔法披肩.png', fx: {"mr": 19}, d:'魔防 +19' },
+  belt:   { n:'巨人腰帶', img: IC + 'accessories/惡夢-底比斯歐西里斯腰帶.png', fx: {"hpP": 0.08}, d:'HP +8.0%' },
+  ring:   { n:'魔力戒指', img: IC + 'accessories/惡夢-底比斯賀洛斯戒指.png', fx: {"mana0": 16}, d:'開場魔力 +16' },
+  gloves: { n:'拳套',   img: IC + 'armors/反王手套.png', fx: {"crit": 0.07}, d:'暴擊 +7.0%' },
+  gem_fire:  { n:'火之寶石', gem: true, img: IC + 'items/元素平衡液.png', fx: {"ele": "fire"}, d:'今場轉做火屬性' },
+  gem_water: { n:'水之寶石', gem: true, img: IC + 'items/元素平衡液.png', fx: {"ele": "water"}, d:'今場轉做水屬性' },
+  gem_wind:  { n:'風之寶石', gem: true, img: IC + 'items/元素平衡液.png', fx: {"ele": "wind"}, d:'今場轉做風屬性' },
+  gem_earth: { n:'地之寶石', gem: true, img: IC + 'items/元素平衡液.png', fx: {"ele": "earth"}, d:'今場轉做地屬性' }
+};
+var COMP_KEYS = Object.keys(COMP);   // 掉落池（寶石出現率同其他元件一樣：12 揀 1）
+// v3.10.0 合成平衡：成品≈兩件元件總和 ×1.5（唔會廢過未合）
+// 合成（所有棋子都用得，唔分職業／英雄定基本兵）：smith＝需要鐵匠等級
+var RECIPE_ALL = window.AB_RECIPE_ALL = [
+  { a:'sword', b:'sword', n:'無盡之刃', smith:0, img: IC + 'weapons/席琳．冥皇執行劍.png', fx:{"atkP": 0.12, "crit": 0.10} },
+  { a:'sword', b:'bow',   n:'疾風劍',   smith:0, img: IC + 'weapons/席琳．風刃短劍.png', fx:{"atkP": 0.075, "asP": 0.085} },
+  { a:'armor', b:'belt',  n:'巨人鎧',   smith:0, img: IC + 'armors/大墳墓守護盔甲.png', fx:{"hpP": 0.12, "def": 10} },
+  { a:'staff', b:'ring',  n:'大法師杖', smith:0, img: IC + 'weapons/席琳．聖晶魔杖.png', fx:{"spP": 0.16, "mana0": 24} },
+  { a:'bow',   b:'bow',   n:'連射弓',   smith:1, img: IC + 'weapons/亞烏菈的狩影長弓.png', fx:{ asP:0.18 } },
+  { a:'armor', b:'cloak', n:'雙抗壁壘', smith:1, img: IC + 'armors/反王近衛的誓約鎧.png', fx:{"def": 10, "mr": 28} },
+  { a:'staff', b:'staff', n:'爆裂法典', smith:2, img: IC + 'armors/威克提姆的心象法書.png', fx:{ spP:0.33 } },
+  { a:'gloves', b:'sword', n:'死神之爪', smith:2, img: IC + 'weapons/地獄黑豹的獄炎爪.png', fx:{"crit": 0.105, "atkP": 0.075} },
+  { a:'belt',  b:'ring',  n:'生命之泉', smith:3, img: IC + 'accessories/不滅巫妖的命匣.png', fx:{ hpP:0.22, regen:0.01 } },
+  { a:'cloak', b:'staff', n:'秘法披風', smith:3, img: IC + 'armors/大墳墓奧術法衣.png', fx:{ mr:26, spP:0.22 } }
+];
+var RECIPE = window.AB_RECIPE = RECIPE_ALL.filter(function (r) { return !AB_WL.enabled || AB_WL.recipes.indexOf(r.n) >= 0; });
+// SR/SSR 專武：詳細定義／轉蛋／碎片喺 js/72-excl-wpn.js（ab.20261026f）；呢度留 stub 畀載入順序
+var EXCL = window.AB_EXCL = window.AB_EXCL || {
+  hero_isolde_knight:    { n:'銀誓聖盾', fx:{ def:40, shield0:0.16 } },
+  hero_aurelia_royal:    { n:'王權權杖', fx:{ spP:0.40, mana0:30 } },
+  hero_morgana_illusion: { n:'虛像之瞳', fx:{ spP:0.35, mana0:35 } },
+  hero_skaldi_warrior:   { n:'北境斧王之斧', fx:{ atkP:0.35, asP:0.15 } }
+};
+var EXCL_DEFAULT = window.AB_EXCL_DEFAULT = window.AB_EXCL_DEFAULT || { fx:{ atkP:0.20, hpP:0.20 } };
+var STASH_MAX = 10, ITEM_SLOTS = 3;
+var SMITH = window.AB_SMITH = { maxLv: 10, gearPerLv: 0.05, cost: function (lv) { return AB_ECON.smithCost(lv); } };
+function smithLv() { var ab = ensureAb(); return ab ? ab.smith || 0 : 0; }
+function recipeFor(a, b) { var lv = smithLv(); for (var i = 0; i < RECIPE.length; i++) { var r = RECIPE[i]; if (((r.a === a && r.b === b) || (r.a === b && r.b === a))) return r.smith <= lv ? r : { locked: r }; } return null; }
+function mkComp(k) { return { iid: 'it' + (++S.run.seq), kind: 'comp', key: k, n: COMP[k].n, img: COMP[k].img, fx: COMP[k].fx }; }
+function mkExcl(h) { var e = EXCL[h.defId] || EXCL_DEFAULT; return { iid: 'it' + (++S.run.seq), kind: 'excl', forDef: h.defId, n: e.n || (h.name + '的信物'), img: heroPor(h), fx: e.fx }; }
+function gainItem(it, why) { var R = S.run; if (!R.items) R.items = []; if (R.items.length >= STASH_MAX) { pushLog('背包滿，' + it.n + ' 冇咗'); return; } R.items.push(it); pushLog('🎁 ' + (why || '') + '獲得「' + it.n + '」'); }
+function exclOwner(it) { if (!it || it.kind !== 'excl') return ''; var d = (typeof HERO_DB !== 'undefined' && HERO_DB && HERO_DB[it.forDef]) || {}; var o = ownedHeroes().filter(function (h) { return h.defId === it.forDef; })[0]; return (o && o.name) || d.name || it.forDef; }
+function exclHL(it) { if (!root) return; var on = it && it.kind === 'excl';
+  Array.prototype.forEach.call(root.querySelectorAll('.ab-tok.ab-p'), function (tk) { var u = S.units.filter(function (x) { return 'abt-' + cssId(x.uid) === tk.id; })[0]; var ok = on && u && u.pc && u.pc.defId === it.forDef; tk.classList.toggle('ab-exok', !!(on && ok)); tk.classList.toggle('ab-exno', !!(on && !ok)); });
+  Array.prototype.forEach.call(root.querySelectorAll('.ab-bslot'), function (b) { var ok = b._pc && b._pc.defId === (it && it.forDef); b.classList.toggle('ab-exok', !!(on && ok)); b.classList.toggle('ab-exno', !!(on && b._pc && !ok)); }); }
+function isBasicPc(pc) { return !pc.defId || pc.basic; }
+// v3.9.0 修訂：所有棋子（基本兵＋英雄）都有 3 格場內裝備，全效果（只影響裝備者本身）；合成：背包內兩件互點，或元件拖落已有元件嘅棋子
+function combineItems(x, y) { if (!x || !y || x.kind !== 'comp' || y.kind !== 'comp') return null; var r = recipeFor(x.key, y.key);
+  if (!r) return null; if (r.locked) { hint('「' + r.locked.n + '」要鐵匠 Lv' + r.locked.smith + ' 先解鎖'); return false; }
+  return { iid: 'it' + (++S.run.seq), kind: 'combo', n: r.n, img: r.img, fx: r.fx, from: [x.key, y.key] }; }
+function equipItem(pc, it) {
+  var R = S.run; if (!pc || !it || S.phase !== 'place') return false;
+  pc.items = pc.items || [];
+  if (it.kind === 'excl' && it.forDef !== pc.defId) { hint('「' + it.n + '」係指定英雄嘅專屬（其他裝備唔分職業）'); return false; }
+  var done = false;
+  for (var i = 0; i < pc.items.length && !done; i++) { var c = combineItems(pc.items[i], it); if (c === false) return false;
+    if (c) { pc.items[i] = c; done = true; pushLog('⚒ 合成「' + c.n + '」→ ' + pc.name); } }
+  if (!done) { if (pc.items.length >= ITEM_SLOTS) { hint('每隻棋子最多 ' + ITEM_SLOTS + ' 格，而且合成唔到'); return false; } pc.items.push(it); }
+  R.items.splice(R.items.indexOf(it), 1); S.selItem = null; toPlace(true); return true;
+}
+function stashCombine(a, b) { var R = S.run; var c = combineItems(a, b); if (!c) { if (c !== false) hint('呢兩件冇合成配方'); return false; }
+  R.items.splice(R.items.indexOf(a), 1); R.items.splice(R.items.indexOf(b), 1); R.items.push(c); S.selItem = null; pushLog('⚒ 背包合成「' + c.n + '」'); render(); return true; }
+function unequipAll(pc) { (pc.items || []).forEach(function (it) { gainItem(it, '退返'); }); pc.items = []; }
+// 永久裝備 T1–T5（由現有 p 價格＋legend 分級）
+function itemTier(id) { var d = DB.items[id]; if (!d) return 1; var p = d.p || 0;
+  if (d.legend) return (p >= 300000 || p === 0) ? 5 : 4; if (p === 0) return 3; if (p >= 300000) return 4; if (p >= 60000) return 3; if (p >= 10000) return 2; return 1; }
+var TIER_CAP = window.AB_TIER_CAP = { basic: 2, N: 2, R: 3, SR: 4, SSR: 5 };
+// 永久裝備 → 場內數值
+function gearStats(id, en) {
+  var d = (typeof DB !== 'undefined' && DB.items) ? DB.items[id] : null; if (!d) return null;
+  var o = { atk: 0, def: 0, mr: 0, hp: 0, ele: null }, em = 1 + (en || 0) * 0.05;
+  if (d.type === 'wpn') { o.atk += (((d.dmgS || 0) + (d.dmgL || 0)) / 2 + (d.dmgBonus || 0) + (d.hit || 0) * 0.3) * 1.5 * em; if (d.ele && d.ele !== 'none') o.ele = d.ele; }
+  o.def += Math.max(0, d.ac || 0) * 3 * em; o.mr += (d.mr || 0) * em; o.hp += ((d.hp || d.mhp || 0) + (d.con || 0) * 15) * em;
+  o.atk += ((d.str || 0) + (d.dex || 0) + (d.int || 0)) * 2 * em;
+  return o;
+}
+// ===== 自走棋套裝目錄（精選；全部用現有 DB.items；舊資料不改）=====
+// real＝現有 item.set；prefix＝現有同名系列（冇 set 欄、非遺物嘅防具／飾品）。tier＝套裝等級（決定邊個可用）。
+var AB_SETS_ALL = window.AB_SETS_ALL = [
+  // T1
+  { id:'bone',   n:'骷髏',     tier:1, ds:'set_4',  role:'前排', b:{"2": {"def": 3}, "3": {"hpP": 0.041}} },
+  { id:'silver', n:'銀釘',     tier:1, ds:'set_3',  role:'近戰', b:{ 2:{ atkP:0.08 }, 4:{ crit:0.08, asP:0.06 } } },
+  { id:'mage1',  n:'法師',     tier:1, ds:'set_6',  role:'法系', b:{ 2:{ spP:0.12, mana0:10 } } },
+  { id:'bluepirate', n:'藍海賊', tier:1, real:'bluepirate', role:'通用', b:{"2": {"hpP": 0.01}, "4": {"atkP": 0.013, "asP": 0.01}} },
+  // T2
+  { id:'steel',  n:'鋼鐵',     tier:2, ds:'set_5',  role:'坦克', b:{"2": {"def": 2}, "4": {"hpP": 0.016, "shield0": 0.008}} },
+  { id:'antimag', n:'抗魔',    tier:2, ds:'set_9',  role:'魔防', b:{ 2:{ mr:20 }, 3:{ mr:15, hpP:0.10 } } },
+  { id:'guard',  n:'守護',     tier:2, ds:'set_10', role:'支援', b:{ 2:{ regen:0.01 }, 3:{ shield0:0.10, mana0:15 } } },
+  { id:'darkelf', n:'黑暗妖精', tier:2, ds:'set_13', role:'刺客／妖精', b:{"2": {"crit": 0.014}, "3": {"asP": 0.021, "atkP": 0.014}} },
+  { id:'priest', n:'司祭苦行', tier:3, real:'priest', role:'法系（法師/妖精/幻術/黑妖）', b:{ 2:{ mr:4 }, 4:{ spP:0.035, crit:0.012 } } },
+  // T3（價錢分級係 T4，自走棋目錄降做 T3 填補空檔）
+  { id:'dk',     n:'死亡騎士', tier:3, ds:'set_7',  role:'騎士／前排', b:{"2": {"atkP": 0.016}, "4": {"hpP": 0.027, "def": 3}} },
+  { id:'kurt',   n:'克特',     tier:3, ds:'set_8',  role:'騎士', b:{"2": {"def": 2}, "4": {"shield0": 0.014, "atkP": 0.009}} },
+  // T4
+  { id:'fourking', n:'四大軍王', tier:5, ds:'set_11', role:'通用', b:{"2": {"atkP": 0.012, "hpP": 0.01}, "4": {"crit": 0.012, "asP": 0.012}} },
+  { id:'demon',  n:'惡魔',     tier:4, ds:'set_12', role:'輸出（通用）', b:{ 2:{ atkP:0.015 }, 4:{ crit:0.012, asP:0.01, ele:'fire' } } },
+  { id:'orin',   n:'歐林與西瑪', tier:4, real:'orin', role:'通用', b:{ 2:{ mana0:21, spP:0.1 } } },
+  { id:'icequeen', n:'冰之女王魅力', tier:4, real:'icequeen_charm', role:'王族', b:{ 2:{ mr:18 }, 3:{ spP:0.17, ele:'water' } } },
+  { id:'frost',  n:'寒冰',     tier:3, real:'frost', role:'王族／龍騎', b:{ 2:{ def:3 }, 3:{ hpP:0.025, ele:'water' } } },
+  // T5
+  { id:'rebel',  n:'反王',     tier:5, real:'rebel', role:'近戰', b:{"2": {"hpP": 0.014}, "4": {"def": 3, "atkP": 0.014}} },
+  { id:'cerenis', n:'賽尼斯',  tier:5, real:'cerenis', role:'法系', b:{ 2:{ spP:0.14 }, 4:{ mana0:21, spP:0.07, ele:'water' } } },
+  { id:'serena', n:'蒼淵',     tier:5, real:'serena', role:'法系', b:{ 2:{ spP:0.14 }, 4:{ mr:21, spP:0.1 } } },
+  { id:'naz_guardian', n:'大墳墓守護', tier:5, real:'naz_guardian', role:'坦克', b:{ 2:{ def:18 }, 4:{ shield0:0.14, hpP:0.14 } } },
+  { id:'naz_arcane', n:'大墳墓奧術', tier:5, real:'naz_arcane', role:'法系', b:{ 2:{ spP:0.14 }, 4:{ spP:0.14, mana0:18 } } },
+  { id:'emperor', n:'真．冥皇', tier:5, real:'emperor', role:'輸出', b:{ 2:{ atkP:0.1 }, 4:{ atkP:0.14, crit:0.1 } } }
+];
+var AB_SETS = window.AB_SETS = AB_SETS_ALL.filter(function (st) { return !AB_WL.enabled || AB_WL.sets.indexOf(st.id) >= 0; });
+var _setOf = null;
+function setOfItem(id) {
+  if (!_setOf) { _setOf = {}; try {
+    AB_SETS.forEach(function (st) { if (st.ds && DB.sets && DB.sets[st.ds]) DB.sets[st.ds].items.forEach(function (k) { if (DB.items[k]) _setOf[k] = st; }); });
+    Object.keys(DB.items).forEach(function (k) { var d = DB.items[k]; if (!d || !d.set) return; AB_SETS.forEach(function (st) { if (st.real && d.set === st.real) _setOf[k] = st; }); }); } catch (e) {} }
+  return _setOf[id] || null;
+}
+function setMembers(st) { setOfItem(''); return Object.keys(_setOf).filter(function (k) { return _setOf[k] === st; }); }
+function setBonus(st, n) { var fx = {}; Object.keys(st.b).forEach(function (th) { if (n >= +th) { var b = st.b[th]; for (var k in b) fx[k] = (typeof b[k] === 'number' && fx[k]) ? fx[k] + b[k] : b[k]; } }); return fx; }
+// 英雄：武器（≤上限）＋套裝件（套裝 tier ≤ 上限）；非套裝防具／飾品唔計
+function heroGear(hid, ovH) {
+  var h = ovH || ownedHeroes().filter(function (x) { return String(x.id) === String(hid); })[0]; var t = { atk: 0, def: 0, mr: 0, hp: 0, ele: null, fx: [], sets: [] };
+  if (!h) return t; h.eq = h.eq || {};
+  var cap = TIER_CAP[h.rarity] || 3, cnt = {};
+  Object.keys(h.eq).forEach(function (k) { var e = h.eq[k]; if (!e || !e.id) return; var d = DB.items[e.id]; if (!d) return;
+    if (d.type === 'wpn') { if (itemTier(e.id) > cap) { t.over = (t.over || 0) + 1; return; } }
+    else { var st = setOfItem(e.id); if (!st) { t.skip = (t.skip || 0) + 1; return; } if (st.tier > cap) { t.over = (t.over || 0) + 1; return; } cnt[st.id] = (cnt[st.id] || 0) + 1; }
+    var g = gearStats(e.id, e.en); if (!g) return; t.atk += g.atk; t.def += g.def; t.mr += g.mr; t.hp += g.hp; if (g.ele) t.ele = g.ele; });
+  var bs = bagStats('h:' + h.id, cap); t.atk += bs.atk; t.def += bs.def; t.mr += bs.mr; t.hp += bs.hp; t.over = (t.over || 0) + bs.over; for (var bk in bs.cnt) cnt[bk] = (cnt[bk] || 0) + bs.cnt[bk];
+  var sm = 1 + smithLv() * SMITH.gearPerLv; t.atk *= sm; t.def *= sm; t.mr *= sm; t.hp *= sm;
+  AB_SETS.forEach(function (st) { if (cnt[st.id] >= 2) { var fx = setBonus(st, cnt[st.id]); t.fx.push(fx); t.sets.push(st.n + cnt[st.id]); if (fx.ele && !t.ele) t.ele = fx.ele; } });
+  try { var ab = ensureAb(); if (ab && !demoMode) ab.heroEle[hid] = t.ele || null; } catch (e) {}
+  return t;
+}
+// 已廢（ab.20261024a）：士兵唔著軍械／局外裝；保留函式畀 debug，永遠 return null
+function armoryStats(cls) {
+  return null;
+  var ab = ensureAb(); var a = ab && ab.armory ? ab.armory[cls] : null;
+  var bs = bagStats('c:' + cls, TIER_CAP.basic); if (!a && !bs.n) return null; a = a || {};
+  var inv = (typeof player !== 'undefined' && player && Array.isArray(player.inv)) ? player.inv : [];
+  var o = { atk: 0, def: 0, mr: 0, hp: 0, ele: null, fx: [], name: '' };
+  if (a.set) { var st = AB_SETS.filter(function (x) { return x.id === a.set; })[0];
+    if (st && st.tier <= TIER_CAP.basic) { var own = {}; inv.forEach(function (x) { if (x && setOfItem(x.id) === st) own[x.id] = 1; }); var n = Object.keys(own).length;
+      o.name = st.n + ' ' + n + '/' + setMembers(st).length; if (n >= 2) o.fx.push(setBonus(st, n)); o.setN = n; } }
+  if (a.wpn) { var w = inv.filter(function (x) { return x && x.uid === a.wpn; })[0];
+    if (w && itemTier(w.id) <= TIER_CAP.basic) { var g = gearStats(w.id, w.en); if (g) { o.atk += g.atk; o.ele = g.ele; o.wpnName = DB.items[w.id].n; } } }
+  if (bs.n) { o.atk += bs.atk; o.def += bs.def; o.mr += bs.mr; o.hp += bs.hp; o.bagN = bs.n;
+    AB_SETS.forEach(function (st) { var n = bs.cnt[st.id] || 0; if (a.set === st.id) n += (o.setN || 0); if (n >= 2 && a.set !== st.id) { o.fx.push(setBonus(st, n)); o.name += (o.name ? '＋' : '') + st.n + n; } }); }
+  var sm = 1 + smithLv() * SMITH.gearPerLv; o.atk *= sm; o.def *= sm; o.hp *= sm;
+  return o;
+}
+function applyFx(u, fx, mul) {
+  if (fx.atkP) u.atk = Math.round(u.atk * (1 + fx.atkP * mul)); if (fx.asP) u.as *= (1 + fx.asP * mul); if (fx.spP) u.sp += fx.spP * mul;
+  if (fx.def) u.def += Math.round(fx.def * mul); if (fx.mr) u.mr += Math.round(fx.mr * mul);
+  if (fx.hpP) u.mhp = Math.round(u.mhp * (1 + fx.hpP * mul)); if (fx.mana0) u.mana0 += fx.mana0 * mul; if (fx.crit) u.crit += fx.crit * mul;
+  if (fx.regen) u.regen += fx.regen * mul; if (fx.shield0) u.shield0 += fx.shield0 * mul;
+  if (fx.ele) u.ele = fx.ele;
+}
+function pieceKey(pc) { return pc.defId ? 'h:' + pc.defId : 'g:' + pc.cls + (pc.elfEle ? ':' + pc.elfEle : ''); }
+function costOf(pc) { if (pc.itemKey) return 3; return pc.basic ? GEN_COST : pc.defId ? (HERO_COST[pc.rarity] || 3) : GEN_COST; }
+function rollShop() {
+  var hs = ownedHeroes(); var rc = S.run && S.run.classes && S.run.classes.length ? S.run.classes : null;
+  if (rc) hs = hs.filter(function (h) { return rc.indexOf(h.cls) >= 0; });
+  if (S.run && S.run.heroes) hs = hs.filter(function (h) { return S.run.heroes.indexOf(String(h.id)) >= 0; });   // 只出自選帶出場嘅英雄（0 隻＝全基本兵）   // 酒館只出今場 4 職業嘅英雄；冇就補基本兵
+  var out = [];
+  for (var i = 0; i < SHOP_N; i++) {
+    if (hs.length && Math.random() < (S.sim ? HERO_SLOT_P : chaHeroP())) {
+      var tot = 0; hs.forEach(function (h) { tot += HERO_W[h.rarity] || 30; }); var r = Math.random() * tot, pick = hs[0];
+      for (var j = 0; j < hs.length; j++) { r -= HERO_W[hs[j].rarity] || 30; if (r <= 0) { pick = hs[j]; break; } }
+      out.push({ defId: pick.defId, hid: pick.id, elfEle: pick.elfEle || ((window.HERO_DB && HERO_DB[pick.defId]) || {}).elfEle || null, name: pick.name, cls: pick.cls, rarity: pick.rarity, por: heroPor(pick), star: 1, permStar: pick.star || 0, lv: pick.lv || 1 });
+    } else { var pool = (S.run && S.run.classes && S.run.classes.length) ? S.run.classes : CLS_KEYS; var c = pool[Math.floor(Math.random() * pool.length)]; var bh = basicHero(c);
+      var ev = (c === 'elf') ? ((S.run && S.run.elfEle) || 'wind') : null;
+      if (bh) out.push({ defId: bh.defId, hid: bh.id, elfEle: bh.elfEle || ((window.HERO_DB && HERO_DB[bh.defId]) || {}).elfEle || null, name: bh.name, cls: c, rarity: bh.rarity, por: heroPor(bh), star: 1, basic: true, permStar: 0, lv: bh.lv || 1 }); else out.push({ cls: c, elfEle: ev, name: ev ? ELE_NAME[ev] + CLS[c].lb : CLS[c].lb, rarity: 'N', por: classPor(c), star: 1 }); }
+  }
+  if (Math.random() < 0.15) { var k = COMP_KEYS[Math.floor(Math.random() * COMP_KEYS.length)]; out[SHOP_N - 1] = { itemKey: k, name: COMP[k].n, cls: 'knight', por: COMP[k].img, rarity: 'N' }; }
+  return out;
+}
+function newRun(classes, elfEle, heroes) { S.run = { heroes: heroes ? heroes.map(String).slice(0, 4) : null, gold: START_GOLD, shop: [], board: [], bench: [], seq: 0, items: [], classes: (classes || CLS_KEYS.slice(0, 4)).slice(0, 4), elfEle: elfEle || S.pickElf || 'wind' }; S.run.shop = rollShop(); S.wave = 1; }
+function defaultCell(cls, taken) {
+  var front = CLS[cls] && CLS[cls].front;
+  var rows = front ? [4, 5, 6, 7] : (cls === 'royal' ? [5, 6, 4, 7] : [6, 7, 5, 4]);
+  var cols = [2, 3, 1, 4, 0, 5];
+  for (var i = 0; i < rows.length; i++) for (var j = 0; j < cols.length; j++) { var cell = rows[i] * COLS + cols[j]; if (!taken[cell]) return cell; }
+  return -1;
+}
+function boardTaken() { var t = {}; S.run.board.forEach(function (pc) { t[pc.cell] = 1; }); return t; }
+function buy(i) {
+  var R = S.run, it = R.shop[i]; if (!it) return;
+  if (it.itemKey) { if (R.gold < 3) { hint('金幣唔夠'); return; } if ((R.items || []).length >= STASH_MAX) { hint('背包滿'); return; } R.gold -= 3; R.shop[i] = null; gainItem(mkComp(it.itemKey), '酒館購買：'); render(); return; }
+  if (S.phase !== 'place') { hint('戰鬥中唔可以買棋子（裝備元件就得）'); return; }
+  if (R.gold < costOf(it)) { hint('金幣唔夠'); return; }
+  if (R.bench.length >= BENCH_N && R.board.length >= boardMax() && !wouldMerge(it)) {
+    // 聯盟戰棋式：連埋酒館其他同款一齊買可以湊夠 3 隻 → 一次過買晒並即刻合成
+    var k0 = pieceKey(it), own = R.board.concat(R.bench).filter(function (q) { return pieceKey(q) === k0 && q.star === 1; }).length;
+    var more = []; R.shop.forEach(function (x, j) { if (j !== i && x && !x.itemKey && pieceKey(x) === k0 && (x.star || 1) === 1) more.push(j); });
+    if (own + 1 + more.length >= 3 && own >= 1) { var need = more.slice(0, 2 - own), tot = costOf(it) + need.reduce(function (a2, j) { return a2 + costOf(R.shop[j]); }, 0);
+      if (R.gold >= tot) { var bought = [i].concat(need).map(function (j) { var x = R.shop[j]; R.gold -= costOf(x); R.shop[j] = null; var q = JSON.parse(JSON.stringify(x)); q.pid = 'pc' + (++R.seq); q.paid = costOf(x); return q; });
+        var first = bought.shift(); R.bench.push(first); bought.forEach(function (q) { R.bench.push(q); }); var bl = R.bench.length; merge(); while (R.bench.length > BENCH_N) { hint('後備欄超出'); break; } pushLog('🛒 一次買 ' + (need.length + 1) + ' 隻 ' + it.name + ' 即刻合成'); S.pendBuy = null; toPlace(true); return; }
+      hint('要 ' + tot + '💰 先夠一次買齊 ' + (need.length + 1) + ' 隻合成'); }
+    S.pendBuy = i; hint('後備欄滿：揀一隻（棋盤或後備都得）按 E／拖去商店／撳「賣出已選」，賣完會自動買「' + it.name + '」'); render(); return; }
+  R.gold -= costOf(it); R.shop[i] = null;
+  var pc = JSON.parse(JSON.stringify(it)); pc.pid = 'pc' + (++R.seq); pc.paid = costOf(it);
+  if (R.board.length < boardMax()) { pc.cell = defaultCell(pc.cls, boardTaken()); R.board.push(pc); } else R.bench.push(pc);
+  merge(); toPlace(true);
+}
+// v3.10.0：酒館升星提示（聯盟戰棋式）
+function shopMergeInfo(it) { if (!it || it.itemKey || !S.run) return null; var k = pieceKey(it), own = S.run.board.concat(S.run.bench).filter(function (q) { return pieceKey(q) === k; });
+  var n1 = own.filter(function (q) { return q.star === 1; }).length, n2 = own.filter(function (q) { return q.star === 2; }).length, st = 1;
+  if (n1 + 1 >= 3) { st = 2; if (n2 + 1 >= 3) st = 3; } return { star: st, pair: n1 >= 1, own: own.filter(function (q) { return q.star === 1 || (st === 3 && q.star === 2); }) }; }
+function mergeHL(list) { if (!root) return; var ids = {}; (list || []).forEach(function (q) { ids[q.pid] = 1; });
+  S.units.forEach(function (u) { var tk = document.getElementById('abt-' + cssId(u.uid)); if (tk) tk.classList.toggle('ab-mg', !!(u.pc && ids[u.pc.pid])); });
+  Array.prototype.forEach.call(root.querySelectorAll('.ab-bslot'), function (b) { b.classList.toggle('ab-mg', !!(b._pc && ids[b._pc.pid])); }); }
+function wouldMerge(it) { var k = pieceKey(it), n = 0; S.run.board.concat(S.run.bench).forEach(function (p) { if (pieceKey(p) === k && p.star === 1) n++; }); return n >= 2; }
+function merge() {
+  var R = S.run, again = true;
+  while (again) { again = false;
+    var all = R.board.concat(R.bench), groups = {};
+    all.forEach(function (p) { if (p.star >= 3) return; var k = pieceKey(p) + '#' + p.star; (groups[k] = groups[k] || []).push(p); });
+    Object.keys(groups).forEach(function (k) { var g = groups[k]; if (again || g.length < 3) return;
+      var keep = g.filter(function (p) { return R.board.indexOf(p) >= 0; })[0] || g[0];
+      g.filter(function (p) { return p !== keep; }).slice(0, 2).forEach(function (p) { keep.paid += p.paid; unequipAll(p); rm(p); });
+      keep.star++; S.starFx = keep.pid; pushLog('✨ 合成 ' + keep.name + ' ' + keep.star + '★'); again = true; });
+  }
+}
+function rm(p) { var R = S.run; var i = R.board.indexOf(p); if (i >= 0) R.board.splice(i, 1); i = R.bench.indexOf(p); if (i >= 0) R.bench.splice(i, 1); }
+function sellVal(p) { return Math.max(1, Math.floor((p.paid || 1) * 0.8)); }
+function sell(p) { if (!p || !S.run) return; var onBench = S.run.bench.indexOf(p) >= 0; if (S.phase !== 'place' && !onBench) { hint('戰鬥中只可以賣後備欄嘅棋子'); return; }
+  unequipAll(p); S.run.gold += sellVal(p); rm(p); pushLog('💸 賣出 ' + p.name + ' +' + sellVal(p) + '💰'); S.sel = null; if (S.selBench === p) S.selBench = null; if (S.hoverPc === p) S.hoverPc = null; S.hover = null;
+  if (S.phase !== 'place') { render(); return; }
+  var pb = S.pendBuy; S.pendBuy = null; toPlace(true); if (pb != null && S.run.shop[pb]) buy(pb); }
+function reroll() { if (S.phase !== 'place') return; var rc = chaReroll(); if (S.run.gold < rc) { hint('金幣唔夠'); return; } S.run.gold -= rc; S.run.shop = rollShop(); render(); }
+function benchToBoard(p) {
+  var R = S.run; if (S.phase !== 'place') return;
+  if (R.board.length >= boardMax()) { // 同棋盤上被選中嘅交換，否則提示
+    if (S.sel && S.sel.pc) { var q = S.sel.pc; rm(q); R.bench.push(q); p.cell = q.cell; } else { hint('上場已滿 ' + boardMax() + ' 隻（公會升級先加上限）· 拖後備棋子去棋盤上一隻我方棋子交換，或者先揀棋盤一隻再點後備'); return; }
+  } else p.cell = defaultCell(p.cls, boardTaken());
+  rm(p); R.board.push(p); S.sel = null; toPlace(true);
+}
+function boardToBench(p) { if (S.run.bench.length >= BENCH_N) { hint('板凳滿咗'); return; } rm(p); S.run.bench.push(p); S.sel = null; toPlace(true); }
+function buildTeam() {
+  var R = S.run; if (R.mainCell == null) R.mainCell = 4 * COLS + 2;
+  var out = [];   // v3.10.0：主角唔再上棋盤（上場上限 +1 補返）
+  R.board.forEach(function (pc) { var u = mkUnit(pc, 'p', pc.cell); u.pc = pc; out.push(u); });
+  return out;
+}
+function buildWave(w) {
+  if (S.dg) return dgBuildWave(w);
+  var pool = mobPool(); var out = [];
+  try { var st = stageOf(w), set = {}; pool.norm.forEach(function (id) { set[id] = 1; }); var sm = (DB.maps && DB.maps[st.v]) ? DB.maps[st.v].filter(function (id) { return set[id]; }) : [];
+    if (!AB_WL.enabled && sm.length >= 2) pool = { norm: sm, boss: pool.boss }; } catch (e) {}
+  if (!pool.norm.length) return out;
+  var n = BAL.wave.n[Math.min(BAL.wave.n.length - 1, Math.floor((w - 1) / 2))];
+  var bossWave = (w % 5 === 0) && pool.boss.length;
+  var taken = {};
+  var start = ((w - 1) * 3) % pool.norm.length;
+  for (var i = 0; i < n - (bossWave ? 1 : 0); i++) {
+    var ter = stageOf(w).ter, terP = pool.norm.filter(function (x) { return DB.mobs[x].e === ter; });
+    var id = (terP.length && Math.random() < 0.6) ? terP[Math.floor(Math.random() * terP.length)] : pool.norm[(start + i * 5 + Math.floor(Math.random() * 3)) % pool.norm.length];
+    var ranged = !!(DB.mobs[id].mag && DB.mobs[id].mag.dmg);
+    var rowOrder = ranged ? [0, 1, 2, 3] : [3, 2, 1, 0];
+    var cell = -1;
+    for (var r = 0; r < 4 && cell < 0; r++) for (var t = 0; t < COLS; t++) { var cc = rowOrder[r] * COLS + [2, 3, 1, 4, 0, 5][(t + i) % 6]; if (!taken[cc]) { cell = cc; break; } }
+    taken[cell] = 1; out.push(mkMob(id, cell, w, false));
+  }
+  if (bossWave) { var bid = pool.boss[(w / 5 - 1) % pool.boss.length]; var bc = 1 * COLS + 2; if (taken[bc]) bc = 0 * COLS + 2; out.push(mkMob(bid, bc, w, true)); }
+  // 數量中性：每波總戰力平滑，隻數變多時每隻變弱（避免 3→4→5 隻嘅斷崖）；nRef 係 config
+  var nm = out.filter(function (u) { return u.star < 3 || !bossWave; }).length; var k = Math.pow((BAL.wave.nRef || nm) / Math.max(1, n - (bossWave ? 1 : 0)), BAL.wave.nPow == null ? 0.5 : BAL.wave.nPow);
+  out.forEach(function (u) { if (bossWave && u.rarity === 'SSR') return; u.mhp = Math.round(u.mhp * k); u.hp = u.mhp; u.atk = Math.round(u.atk * k); });
+  return out;
+}
+
+// ---------- 戰鬥 ----------
+function alive(side) { return S.units.filter(function (u) { return !u.dead && u.side === side; }); }
+function foes(u) { return alive(u.side === 'p' ? 'e' : 'p'); }
+function pickTarget(u) {
+  if (u.taunt && !u.taunt.dead && u.tauntT > 0) return u.taunt;
+  var fs = foes(u); var best = null, bd = 99;
+  fs.forEach(function (f) { var d = dist(u.cell, f.cell) + (f.hp / f.mhp) * 0.1; if (d < bd) { bd = d; best = f; } });
+  return best;
+}
+// ===== v3.10.0 戰績・表現統計 =====
+function stOf(u) { return u.st || (u.st = { phys: 0, mag: 0, tru: 0, taken: 0, blocked: 0, heal: 0, kills: 0, casts: 0 }); }
+function meterRows(units) { return units.filter(function (u) { return u.side === 'p' && !u.isMain; }).map(function (u) { var t = stOf(u); return { pid: u.pc ? u.pc.pid : u.uid, name: u.name, por: u.por, star: u.star, cls: u.cls, rarity: u.rarity, dmg: t.phys + t.mag + t.tru, phys: t.phys, mag: t.mag, tru: t.tru, taken: t.taken, blocked: t.blocked, heal: t.heal, kills: t.kills, casts: t.casts }; }); }
+function runMeterAdd(rows) { var R = S.run; if (!R) return; R.meter = R.meter || {}; rows.forEach(function (r) { var m = R.meter[r.pid] || (R.meter[r.pid] = { name: r.name, por: r.por, cls: r.cls, star: r.star, dmg: 0, phys: 0, mag: 0, tru: 0, taken: 0, blocked: 0, heal: 0, kills: 0, casts: 0 });
+  m.star = Math.max(m.star, r.star); m.por = r.por; ['dmg', 'phys', 'mag', 'tru', 'taken', 'blocked', 'heal', 'kills', 'casts'].forEach(function (k) { m[k] += r[k]; }); }); }
+function meterHtml(rows, tab) { var key = tab === 'taken' ? 'taken' : tab === 'heal' ? 'heal' : 'dmg'; rows = rows.slice().sort(function (a, b) { return (b[key] + (key === 'taken' ? b.blocked : 0)) - (a[key] + (key === 'taken' ? a.blocked : 0)); });
+  var mx = Math.max.apply(null, rows.map(function (r) { return r[key] + (key === 'taken' ? r.blocked : 0); }).concat([1])), f = function (n) { return Math.round(n).toLocaleString(); };
+  if (!rows.length) return '<div class="ab-dim ab-dt-n">（未有數據：開打之後會即時更新）</div>';
+  return rows.map(function (r, i) { var a = key === 'dmg' ? [[r.phys, 'ab-mp-phys'], [r.mag, 'ab-mp-mag'], [r.tru, 'ab-mp-tru']] : key === 'taken' ? [[r.taken, 'ab-mp-tk'], [r.blocked, 'ab-mp-bl']] : [[r.heal, 'ab-mp-heal']];
+    var tot = a.reduce(function (s2, x) { return s2 + x[0]; }, 0);
+    return '<div class="ab-mrow' + (i === 0 && tot > 0 ? ' ab-mvp' : '') + '" title="' + r.name + '：物理 ' + f(r.phys) + '・魔法 ' + f(r.mag) + '・真傷 ' + f(r.tru) + '・承受 ' + f(r.taken) + '・護盾吸收 ' + f(r.blocked) + '・治療 ' + f(r.heal) + '・擊殺 ' + r.kills + '・施放 ' + r.casts + '"><img src="' + r.por + '" onerror="this.style.visibility=\'hidden\'" alt=""><div class="ab-mbar"><div class="ab-mname">' + r.name + ' ' + '★'.repeat(r.star || 1) + '<span>' + f(tot) + (key === 'dmg' ? ' · 殺' + r.kills : '') + '</span></div><div class="ab-mtrack">' + a.map(function (x) { return '<i class="' + x[1] + '" style="width:' + (100 * x[0] / mx) + '%"></i>'; }).join('') + '</div></div></div>'; }).join(''); }
+var _mtT = 0;
+function renderMeter(force) { if (!root) return; var box = root.querySelector('#ab-meter'); if (!box) return; var now = Date.now(); if (!force && now - _mtT < 300) return; _mtT = now;
+  var rows = S.phase === 'fight' || !S.lastMeter ? meterRows(S.units) : S.lastMeter; box.innerHTML = meterHtml(rows, S.meterTab || 'dmg');
+  Array.prototype.forEach.call(root.querySelectorAll('[data-mtab]'), function (b) { b.classList.toggle('ab-on', (S.meterTab || 'dmg') === b.dataset.mtab); }); }
+function abHistPush(win, wave, dst) { var ab = ensureAb(); if (!ab || !S.run) return; var R = S.run, M = R.meter || {}, top = Object.keys(M).map(function (k) { return M[k]; }).sort(function (a, b) { return b.dmg - a.dmg; })[0];
+  var h = { t: Date.now(), dg: dst ? dst.d.n : '一般', st: dst ? dst.n : '—', stV: dst ? dst.v : null, wave: wave, win: !!win, lineup: (R.board || []).map(function (p) { return { n: p.name, por: p.por, s: p.star || 1, c: p.cls }; }),
+    mvp: top ? { n: top.name, por: top.por, dmg: Math.round(top.dmg), k: top.kills } : null, pay: S.lastPay || null };
+  ab.history = (ab.history || []).concat([h]).slice(-30); ab.histTot = ab.histTot || { runs: 0, wins: 0, best: {} }; ab.histTot.runs++; if (win) ab.histTot.wins++; var bk = h.dg; if (!ab.histTot.best[bk] || ab.histTot.best[bk].wave < wave) ab.histTot.best[bk] = { wave: wave, st: h.st }; S.lastHist = h; }
+function abHistoryHtml() { var ab = ensureAb() || {}, H = (ab.history || []).slice().reverse(), T = ab.histTot || { runs: 0, wins: 0, best: {} }, f = function (n) { return Math.round(n || 0).toLocaleString(); };
+  var sum = '<div class="ab-hsum"><span>總場數 <b>' + T.runs + '</b></span><span>勝率 <b>' + (T.runs ? Math.round(100 * T.wins / T.runs) : 0) + '%</b></span><span>紀錄（最近）<b>' + H.length + '</b>/30</span></div><div class="ab-hbest">' + (Object.keys(T.best).map(function (k) { return '<span>🏰 ' + k + '：' + T.best[k].st + ' 第 ' + T.best[k].wave + ' 波</span>'; }).join('') || '<span class="ab-dim">未有最佳紀錄</span>') + '</div>';
+  return sum + (H.length ? H.map(function (h) { var d = new Date(h.t); return '<div class="ab-hrow ' + (h.win ? 'ab-hw' : 'ab-hl') + '"><div class="ab-hres">' + (h.win ? '🏆 通關' : '💀 失敗') + '<small>' + (d.getMonth() + 1) + '/' + d.getDate() + ' ' + ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2) + '</small></div><div class="ab-hmid"><b>' + h.dg + ' · ' + h.st + '</b> <small>第 ' + h.wave + ' 波</small><div class="ab-hline">' + h.lineup.map(function (u) { return '<span title="' + u.n + '"><img src="' + u.por + '" onerror="this.style.visibility=\'hidden\'" alt=""><i>' + '★'.repeat(u.s) + '</i></span>'; }).join('') + '</div></div><div class="ab-hmvp">' + (h.mvp ? '⭐ MVP <img src="' + h.mvp.por + '" onerror="this.style.visibility=\'hidden\'" alt=""><b>' + h.mvp.n + '</b><small>傷害 ' + f(h.mvp.dmg) + ' · 殺 ' + h.mvp.k + '</small>' : '') + (h.pay ? '<small>💰' + f(h.pay.gold) + ' · 材料×' + h.pay.mats + '</small>' : '') + '</div></div>'; }).join('') : '<p class="ab-dim">未有戰績：打完一局就會記錄。</p>'); }
+window.abHistoryHtml = abHistoryHtml;
+function hurt(src, tgt, amt, type, opt) {
+  if (!tgt || tgt.dead) return 0;
+  opt = opt || {};
+  if (tgt.invT > 0) { floatTxt(tgt, '閃', '#a78bfa'); return 0; }
+  if (tgt.guardT > 0 && tgt.guardBy && !tgt.guardBy.dead && !opt.guarded) { var gp = tgt.guardP || 0.5; hurt(src, tgt.guardBy, amt * gp, type, { noMana: true, guarded: true, crit: opt.crit }); amt *= (1 - gp); }
+  var a = amt * (1 + (src && src.buffT > 0 ? src.buffAtk : 0));
+  var crit = opt.crit || Math.random() < (src && src.crit != null ? src.crit : 0.08);
+  if (crit) a *= 1.6;
+  var red = type === 'mag' ? 100 / (100 + tgt.mr) : (type === 'true' ? 1 : 100 / (100 + tgt.def + (tgt.defT > 0 ? tgt.defB || 0 : 0)));
+  if (src && src.missP && !opt.noMana && Math.random() < src.missP) { floatTxt(tgt, 'Miss', '#94a3b8'); return 0; }
+  var em = eleMul(src, tgt); a *= em * wxDmgMul(src); if (tgt.dr) a *= (1 - tgt.dr); if (tgt.drT > 0) a *= (1 - (tgt.drB || 0));
+  var d = Math.max(1, Math.round(a * red * (0.9 + Math.random() * 0.2)));
+  if (tgt.shield > 0) { var ab = Math.min(tgt.shield, d); tgt.shield -= ab; d -= ab; if (ab) stOf(tgt).blocked += ab; if (ab) floatTxt(tgt, '🛡' + ab, '#93c5fd'); }
+  if (tgt.reflT > 0 && src && !src.dead && type !== 'true' && !opt.refl && dist(src.cell, tgt.cell) <= 1 && d > 0) hurt(tgt, src, d * tgt.reflP, 'true', { noMana: true, refl: true });
+  if (tgt.lastStand && !tgt.lastUsed && tgt.hp - d <= 0) { tgt.lastUsed = true; d = Math.max(0, tgt.hp - 1); tgt.invT = tgt.lastStand.inv; tgt.hp -= d; heal(tgt, tgt, tgt.mhp * tgt.lastStand.heal); floatTxt(tgt, '背水', '#fde68a'); return d; }
+  var dReal = Math.min(d, Math.max(0, tgt.hp)); tgt.hp -= d; if (src) { src.dmgDone = (src.dmgDone || 0) + Math.min(d, tgt.hp + d); var ss = stOf(src); if (type === 'mag') ss.mag += dReal; else if (type === 'true') ss.tru += dReal; else ss.phys += dReal; } stOf(tgt).taken += dReal;
+  if (src && !opt.noMana) src.mana = Math.min(src.mmana, src.mana + 10 * (src.manaG || 1));
+  tgt.mana = Math.min(tgt.mmana, tgt.mana + 5 * (tgt.manaG || 1));
+  if (em > 1 && d > 0 && Math.random() < 0.3) floatTxt(tgt, '剋!', '#fde047');
+  if (d > 0) floatTxt(tgt, d, type === 'mag' ? (ELE_COL[(src && src.ele) || 'magic']) : (src && src.side === 'e' ? '#fca5a5' : '#f1f5f9'), crit);
+  hitFlash(tgt);
+  if (tgt.hp <= 0) { tgt.hp = 0; tgt.dead = true; if (src) stOf(src).kills++; killFx(tgt); if (tgt.mob && tgt.side === 'e' && !S.sim) { abDropRoll(tgt); abOrigDrop(tgt); try { if (typeof DE !== 'undefined' && DE && DE.tryKillDrip && DB.mobs[tgt.mid]) DE.tryKillDrip(DB.mobs[tgt.mid]); } catch (e) {} } if (tgt.mob && tgt.side === 'e' && !S.sim && DB.mobs[tgt.mid]) S.waveExp = (S.waveExp || 0) + (DB.mobs[tgt.mid].exp || 0) * AB_EXP.killMul; }
+  return d;
+}
+function heal(src, tgt, amt, opt) {
+  if (!tgt || tgt.dead) return 0;
+  opt = opt || {};
+  /* 吸血唔食治療全局 nerf（防拖局係畀治療技）；普療仍乘 BAL.heal */
+  if (!opt.vamp) amt *= (BAL.heal.mul) * ((S.ft || 0) > BAL.heal.decayT ? BAL.heal.decayMul : 1);
+  amt = Math.max(0, amt);
+  var room = Math.max(0, tgt.mhp - tgt.hp);
+  var h = Math.round(Math.min(room, amt));
+  tgt.hp += h;
+  if (src && h > 0) stOf(src).heal += h;
+  if (h > 0) {
+    floatTxt(tgt, (opt.vamp ? '吸血+' : '+') + h, opt.vamp ? '#e879f9' : '#86efac');
+    return h;
+  }
+  /* 滿血時：吸血溢出轉護盾（上限 15% mhp／次），唔係食假綠字——玩家先睇得出有實裝 */
+  if (opt.vamp && amt > 0) {
+    var sh = Math.round(Math.min(amt, tgt.mhp * 0.15));
+    if (sh > 0) {
+      tgt.shield = (tgt.shield || 0) + sh;
+      if (src) stOf(src).heal += sh;
+      floatTxt(tgt, '吸血🛡+' + sh, '#e879f9');
+      return sh;
+    }
+  }
+  return 0;
+}
+function inRadius(cell, r, side) { return S.units.filter(function (x) { return !x.dead && x.side === side && dist(cell, x.cell) <= r; }); }
+function enemySide(u) { return u.side === 'p' ? 'e' : 'p'; }
+
+// 職業基本技能（mul＝星級倍率；主角另 ×1.3）
+var SK = {
+  knight: function (u, t, m) { var es = inRadius(u.cell, 2, enemySide(u)); es.forEach(function (e) { e.taunt = u; e.tauntT = BAL.sk.knightTaunt; });
+    u.shield += Math.round(u.mhp * BAL.sk.knightShield * m); ringFx(u, '#93c5fd', 2); floatTxt(u, '嘲諷！', '#93c5fd'); },
+  mage: function (u, t, m) { if (!t) return; var best = t, bn = 0; foes(u).forEach(function (f) { var n = inRadius(f.cell, 1, f.side).length; if (n > bn) { bn = n; best = f; } });
+    var nm = alive(u.side).filter(function (a) { return a.cls === 'mage'; }).length; m *= Math.pow(BAL.sk.mageStack, Math.max(0, nm - 2));   // 多法師疊加衰減
+    projFx(u, best, '#ff7a45', function () { inRadius(best.cell, 1, best.side).forEach(function (e) { hurt(u, e, u.atk * BAL.sk.mageAoe * m * (e === best ? 1 : BAL.sk.mageFall), 'mag', { noMana: true }); }); ringFx(best, '#ff7a45', 1); }); },
+  elf: function (u, t, m) { if (u.elfEle === 'water') { SK.elfWater(u, t, m); return; } var fs = foes(u).sort(function (a, b) { return dist(u.cell, a.cell) - dist(u.cell, b.cell); }).slice(0, 3);
+    while (fs.length && fs.length < 3) fs.push(fs[0]);
+    fs.forEach(function (f, i) { if (S.sim) { hurt(u, f, u.atk * BAL.sk.elfShot * m, 'phys', { noMana: true }); return; } setTimeout(function () { projFx(u, f, '#9ccc65', function () { hurt(u, f, u.atk * BAL.sk.elfShot * m, 'phys', { noMana: true }); }); }, i * 90); }); },
+  elfWater: function (u, t, m) { var al = alive(u.side); var low = al.slice().sort(function (a, b) { return a.hp / a.mhp - b.hp / b.mhp; })[0]; if (low) { heal(u, low, u.atk * BAL.sk.waterHeal * m); cleanse(low); ringFx(low, '#7dd3fc', 0); }
+    var f = t || foes(u)[0]; if (f) hurt(u, f, u.atk * BAL.sk.elfShot * 0.5 * m, 'mag', { noMana: true }); },
+  warrior: function (u, t, m) { if (!t) return; inRadius(t.cell, 1, t.side).forEach(function (e) { hurt(u, e, u.atk * BAL.sk.warCleave * m, 'phys', { noMana: true }); }); ringFx(t, '#cbd5e1', 1); },
+  dark: function (u, t, m) { var fs = foes(u); if (!fs.length) return; var back = fs.slice().sort(function (a, b) { return (dist(u.cell, b.cell) - dist(u.cell, a.cell)) * 0.5 + ((a.hp / a.mhp) - (b.hp / b.mhp)); })[0];   // 突襲：偏好最遠（後排）＋殘血
+    var spot = adjFree(back.cell); if (spot >= 0) u.cell = spot; var dd = hurt(u, back, u.atk * BAL.sk.darkHit * m, 'phys', { noMana: true, crit: true });
+    if (dd > 0) { var vh = heal(u, u, dd * BAL.sk.darkLs, { vamp: true }); if (vh > 0 && !S.sim) pushLog(u.name + '：暗影吸血 +' + vh); }
+    u.invT = BAL.sk.darkInv; /* 突襲後：吸血（滿血→護盾）＋短暫無敵 */ ringFx(back, '#a78bfa', 0); },
+  dragon: function (u, t, m) { if (!t) return; inRadius(t.cell, 1, t.side).concat([]).forEach(function (e) { hurt(u, e, u.atk * BAL.sk.dragonBreath * m, 'mag', { noMana: true }); e.burn = { t: 3, d: u.atk * 0.15 * m, src: u }; });
+    lineFx(u, t, '#f97316'); },
+  illusion: function (u, t, m) { var fs = foes(u).sort(function (a, b) { return b.atk - a.atk; }).slice(0, m >= 2 ? 3 : 2);
+    fs.forEach(function (f) { hurt(u, f, u.atk * BAL.sk.illuHit * m, 'mag', { noMana: true }); f.stun = Math.max(f.stun, 1.5 + (m - 1) * 0.5); floatTxt(f, '暈', '#e879f9'); ringFx(f, '#e879f9', 0); }); },
+  royal: function (u, t, m) { var al = alive(u.side); var low = al.slice().sort(function (a, b) { return a.hp / a.mhp - b.hp / b.mhp; })[0];
+    if (low) heal(u, low, u.atk * BAL.sk.royalHeal * m); al.forEach(function (a) { a.buffAtk = a.buffT > 0 ? Math.max(a.buffAtk || 0, BAL.sk.royalBuff) : BAL.sk.royalBuff; a.buffT = Math.max(a.buffT || 0, 4); }); ringFx(u, '#fde68a', 3); },
+  mob_m: function (u, t, m) { if (t) { inRadius(t.cell, 1, t.side).forEach(function (e) { hurt(u, e, u.atk * 1.6, 'phys', { noMana: true }); }); ringFx(t, '#ef4444', 1); } },
+  mob_r: function (u, t, m) { if (t) projFx(u, t, '#ef4444', function () { inRadius(t.cell, 1, t.side).forEach(function (e) { hurt(u, e, u.atk * 1.5, 'mag', { noMana: true }); }); }); }
+};
+function cleanse(a) { if (!a) return; a.stun = 0; a.burn = null; a.slowT = 0; a.missP = 0; floatTxt(a, '淨化', '#7dd3fc'); }
+var USK = {
+  h_sora: function (u, t, m) { var al = alive(u.side); al.forEach(function (a) { heal(u, a, u.atk * BAL.sk.soraHeal * m); }); var low = al.slice().sort(function (a, b) { return a.hp / a.mhp - b.hp / b.mhp; })[0]; cleanse(low); ringFx(u, '#7dd3fc', 6); },
+  h_lumina: function (u, t, m) { var low = alive(u.side).slice().sort(function (a, b) { return a.hp / a.mhp - b.hp / b.mhp; })[0]; if (low) { heal(u, low, u.atk * 2.2 * m); low.shield += Math.round(low.mhp * 0.10 * m); cleanse(low); } },
+  h_nerys: function (u, t, m) { alive(u.side).forEach(function (a) { a.hot = { t: 4, v: u.atk * 0.25 * m, src: u }; }); foes(u).slice(0, 2).forEach(function (f) { hurt(u, f, u.atk * 0.8 * m, 'mag', { noMana: true }); }); },
+  k_shock: function (u, t, m) { var K = KNIGHT_POOL.k_shock; if (!t) return; hurt(u, t, u.atk * K.hit * m, 'phys', { noMana: true }); t.stun = Math.max(t.stun, K.stun + (m - 1) * 0.3); floatTxt(t, '暈', '#93c5fd'); ringFx(t, '#93c5fd', 0); },
+  k_solid: function (u, t, m) { var K = KNIGHT_POOL.k_solid; u.drB = K.dr; u.drT = K.t * m; ringFx(u, '#93c5fd', 0); },
+  k_redarm: function (u, t, m) { var K = KNIGHT_POOL.k_redarm; alive(u.side).forEach(function (a) { if (CLS[a.cls] && CLS[a.cls].front) { a.defB = K.def; a.defT = K.t * m; } }); ringFx(u, '#93c5fd', 2); },
+  k_counter: function (u, t, m) { var K = KNIGHT_POOL.k_counter; u.reflP = K.p; u.reflT = K.t * m; ringFx(u, '#e5e7eb', 0); },
+  k_guard: function (u, t, m) { var K = KNIGHT_POOL.k_guard; var low = alive(u.side).filter(function (a) { return a !== u; }).sort(function (a, b) { return a.hp / a.mhp - b.hp / b.mhp; })[0]; if (low) { low.guardBy = u; low.guardT = K.t * m; low.guardP = K.share; ringFx(low, '#93c5fd', 0); } },
+  k_heal: function (u, t, m) { var K = KNIGHT_POOL.k_heal; inRadius(u.cell, 1, u.side).forEach(function (a) { heal(u, a, u.atk * K.heal * m); }); ringFx(u, '#86efac', 1); },
+  k_last: function (u, t, m) { u.lastStand = KNIGHT_POOL.k_last; SK.knight(u, t, m * 0.5); },
+  u_isolde: function (u, t, m) { alive(u.side).forEach(function (a) { a.shield += Math.round(a.mhp * BAL.sk.isoldeShield * m); }); SK.knight(u, t, m * 0.6); },
+  u_aurelia: function (u, t, m) { alive(u.side).forEach(function (a) { heal(u, a, u.atk * 1.8 * m); a.buffAtk = a.buffT > 0 ? Math.max(a.buffAtk || 0, 0.3) : 0.3; a.buffT = Math.max(a.buffT || 0, 5); }); ringFx(u, '#fde68a', 6); },
+  u_morgana: function (u, t, m) { foes(u).forEach(function (f) { f.stun = Math.max(f.stun, 1.2 * m); hurt(u, f, u.atk * 0.9 * m, 'mag', { noMana: true }); ringFx(f, '#e879f9', 0); }); },
+  u_skaldi: function (u, t, m) { var es = inRadius(u.cell, 1, enemySide(u)); if (!es.length && t) es = [t]; var tot = 0;
+    es.forEach(function (e) { tot += hurt(u, e, u.atk * 2.4 * m, 'phys', { noMana: true }); }); heal(u, u, tot * 0.3); ringFx(u, '#cbd5e1', 1); }
+};
+// ab.20261026f：英雄永久星質變（≥3）＋專武質變（≥3）疊加；同倍率分開
+function applySkillQual(u, t, m) {
+  if (!u || u.isMain || !u.hero) return;
+  var ps = u.permStar || 0, ws = u.exclStar || 0;
+  if (ps < 3 && ws < 3) return;
+  var cls = u.cls;
+  // —— 英雄永久星質變 ——
+  if (ps >= 3) {
+    if (cls === 'knight') {
+      inRadius(u.cell, 1, u.side).forEach(function (a) { if (a !== u) a.shield += Math.round(a.mhp * 0.08); });
+      if (ps >= 4) inRadius(u.cell, 2, enemySide(u)).forEach(function (e) { e.slowT = Math.max(e.slowT || 0, 2); });
+      if (ps >= 5) u.shield += Math.round(u.mhp * BAL.sk.knightShield * m * 0.35);
+    } else if (cls === 'royal') {
+      if (t || true) { var lowR = alive(u.side).slice().sort(function (a, b) { return a.hp / a.mhp - b.hp / b.mhp; })[0]; if (lowR) cleanse(lowR); }
+      if (ps >= 4) alive(u.side).forEach(function (a) { a.buffAtk = Math.max(a.buffAtk || 0, 0.22); a.buffT = Math.max(a.buffT || 0, 4); });
+      if (ps >= 5) { var low5 = alive(u.side).slice().sort(function (a, b) { return a.hp / a.mhp - b.hp / b.mhp; })[0]; if (low5) low5.shield += Math.round(low5.mhp * 0.10); }
+    } else if (cls === 'elf') {
+      if (u.elfEle === 'water') { /* heal already done; boost via extra heal */ var lowE = alive(u.side).slice().sort(function (a, b) { return a.hp / a.mhp - b.hp / b.mhp; })[0]; if (lowE) heal(u, lowE, u.atk * BAL.sk.waterHeal * m * 0.25); }
+      else { var extra = foes(u).sort(function (a, b) { return dist(u.cell, a.cell) - dist(u.cell, b.cell); })[3]; if (extra) hurt(u, extra, u.atk * BAL.sk.elfShot * m, 'phys', { noMana: true }); }
+      if (ps >= 4) foes(u).slice(0, 3).forEach(function (f) { f.slowT = Math.max(f.slowT || 0, 1.5); });
+      if (ps >= 5 && t) hurt(u, t, u.atk * 0.4 * m, 'phys', { noMana: true });
+    } else if (cls === 'illusion') {
+      foes(u).slice(0, 3).forEach(function (f) { f.stun = Math.max(f.stun || 0, (f.stun || 0) + 0.6); });
+      if (ps >= 4) { var more = foes(u).sort(function (a, b) { return b.atk - a.atk; })[3]; if (more) { hurt(u, more, u.atk * BAL.sk.illuHit * m * 0.8, 'mag', { noMana: true }); more.stun = Math.max(more.stun, 1.2); } }
+      if (ps >= 5) foes(u).forEach(function (f) { f.mana = Math.max(0, (f.mana || 0) - 20); });
+    } else if (cls === 'warrior') {
+      if (t) inRadius(t.cell, 1, t.side).forEach(function (e) { e.slowT = Math.max(e.slowT || 0, 2); });
+      if (ps >= 4 && t) hurt(u, t, u.atk * 0.5 * m, 'phys', { noMana: true });
+      if (ps >= 5 && t) heal(u, u, u.atk * BAL.sk.warCleave * m * 0.08);
+    } else if (cls === 'mage') {
+      if (t) { var best = t, bn = 0; foes(u).forEach(function (f) { var n = inRadius(f.cell, 1, f.side).length; if (n > bn) { bn = n; best = f; } }); inRadius(best.cell, 1, best.side).forEach(function (e) { e.burn = { t: 3, d: u.atk * 0.18 * m, src: u }; if (ps >= 4) hurt(u, e, u.atk * BAL.sk.mageAoe * m * 0.25 * (e === best ? 0 : 1), 'mag', { noMana: true }); }); }
+      if (ps >= 5) u.mana = Math.min(u.mmana, (u.mana || 0) + 15);
+    } else if (cls === 'dark') {
+      // 吸血加成喺 SK.dark 之後補一擊／延長無敵
+      if (ps >= 4 && t) { var fs = foes(u); var back = fs.slice().sort(function (a, b) { return (dist(u.cell, b.cell) - dist(u.cell, a.cell)) * 0.5 + ((a.hp / a.mhp) - (b.hp / b.mhp)); })[0]; if (back) hurt(u, back, u.atk * 0.6 * m, 'phys', { noMana: true, crit: true }); }
+      if (ps >= 5) u.invT = Math.max(u.invT || 0, (BAL.sk.darkInv || 1) + 0.4);
+      if (ps >= 3) { /* 標記：吸血加強由下方 dark 補丁處理 */ u._permDarkLs = 0.10; }
+    } else if (cls === 'dragon') {
+      if (t) inRadius(t.cell, 1, t.side).forEach(function (e) { if (e.burn) e.burn.d *= 1.4; if (ps >= 4) e.stun = Math.max(e.stun || 0, 0.6); });
+      if (ps >= 5) u.shield += Math.round(u.mhp * 0.12);
+    }
+    // UNIQUE 英雄額外
+    if (u.uniq) {
+      if (u.uniq.fn === 'u_isolde' && ps >= 3) { var lowI = alive(u.side).slice().sort(function (a, b) { return a.hp / a.mhp - b.hp / b.mhp; })[0]; if (lowI) lowI.shield += Math.round(lowI.mhp * 0.06); }
+      if (u.uniq.fn === 'u_aurelia' && ps >= 3) alive(u.side).forEach(function (a) { cleanse(a); });
+      if (u.uniq.fn === 'u_morgana' && ps >= 3) foes(u).sort(function (a, b) { return b.atk - a.atk; }).slice(0, 2).forEach(function (f) { hurt(u, f, u.atk * 0.5 * m, 'mag', { noMana: true }); });
+      if (u.uniq.fn === 'u_skaldi' && ps >= 3) heal(u, u, u.atk * 0.4 * m);
+      if (u.uniq.fn === 'k_shock' && ps >= 3 && t) t.stun = Math.max(t.stun || 0, (t.stun || 0) + 0.5);
+    }
+    if (!S.sim) floatTxt(u, '覺醒' + ps + '★', '#fbbf24');
+  }
+  // —— 專武質變（獨立疊加）——
+  if (ws >= 3 && u.exclOn) {
+    var defId = u.defId;
+    if (defId === 'hero_isolde_knight') {
+      alive(u.side).forEach(function (a) { a.shield += Math.round(a.mhp * BAL.sk.isoldeShield * m * 0.25); });
+      var lowW = alive(u.side).slice().sort(function (a, b) { return a.hp / a.mhp - b.hp / b.mhp; })[0]; if (lowW) lowW.shield += Math.round(lowW.mhp * 0.06);
+      if (ws >= 5) { u.defB = (u.defB || 0) + 20; u.defT = Math.max(u.defT || 0, 5); }
+    } else if (defId === 'hero_aurelia_royal') {
+      alive(u.side).forEach(function (a) { heal(u, a, u.atk * 1.8 * m * 0.3); cleanse(a); if (ws >= 4) { a.buffAtk = Math.max(a.buffAtk || 0, 0.40); a.buffT = Math.max(a.buffT || 0, 5); } });
+      if (ws >= 5) alive(u.side).forEach(function (a) { a.mana = Math.min(a.mmana || 99, (a.mana || 0) + 10); });
+    } else if (defId === 'hero_morgana_illusion') {
+      foes(u).forEach(function (f) { f.stun = Math.max(f.stun || 0, 1.2 * m * 0.4); f.slowT = Math.max(f.slowT || 0, ws >= 4 ? 2 : 0); });
+      foes(u).sort(function (a, b) { return b.atk - a.atk; }).slice(0, 2).forEach(function (f) { hurt(u, f, u.atk * 0.5 * m, 'mag', { noMana: true }); });
+      if (ws >= 5) u.mana = Math.min(u.mmana, (u.mana || 0) + 25);
+    } else if (defId === 'hero_skaldi_warrior') {
+      var es = inRadius(u.cell, ws >= 4 ? 2 : 1, enemySide(u)); var tot = 0;
+      es.forEach(function (e) { tot += hurt(u, e, u.atk * 2.4 * m * 0.2, 'phys', { noMana: true }); });
+      heal(u, u, tot * 0.4); if (ws >= 5) heal(u, u, u.mhp * 0.12);
+    } else if (defId === 'hero_umbra_dark') {
+      var fs2 = foes(u); var back2 = fs2.slice().sort(function (a, b) { return (dist(u.cell, b.cell) - dist(u.cell, a.cell)) * 0.5 + ((a.hp / a.mhp) - (b.hp / b.mhp)); })[0];
+      if (back2) { back2.def = Math.max(0, (back2.def || 0) - 12); if (ws >= 4) hurt(u, back2, u.atk * 0.7 * m, 'phys', { noMana: true, crit: true }); }
+    } else if (defId === 'hero_ignara_dragon') {
+      if (t) inRadius(t.cell, 1, t.side).forEach(function (e) { e.buffAtk = Math.min(e.buffAtk || 0, -0.15); e.buffT = Math.max(e.buffT || 0, 3); if (e.burn) e.burn.t = Math.max(e.burn.t, 4); });
+      if (ws >= 4 && t) hurt(u, t, u.atk * 0.8 * m, 'mag', { noMana: true });
+      if (ws >= 5) { u.as *= 1.2; }
+    } else if (defId === 'hero_ignis_mage') {
+      if (t) { var best2 = t, bn2 = 0; foes(u).forEach(function (f) { var n = inRadius(f.cell, 1, f.side).length; if (n > bn2) { bn2 = n; best2 = f; } }); inRadius(best2.cell, 1, best2.side).forEach(function (e) { e.burn = { t: 3, d: u.atk * 0.2 * m, src: u }; hurt(u, e, u.atk * BAL.sk.mageAoe * m * 0.35, 'mag', { noMana: true }); }); }
+      if (ws >= 5) u.sp = (u.sp || 1) + 0.25;
+    } else if (defId === 'hero_terrae_elf') {
+      var fs3 = foes(u).sort(function (a, b) { return dist(u.cell, a.cell) - dist(u.cell, b.cell); }).slice(0, 1);
+      fs3.forEach(function (f) { hurt(u, f, u.atk * BAL.sk.elfShot * m, 'phys', { noMana: true }); f.slowT = Math.max(f.slowT || 0, 2.5); });
+      if (ws >= 4 && t) hurt(u, t, u.atk * 0.5 * m, 'phys', { noMana: true });
+      if (ws >= 5) u.shield += Math.round(u.mhp * 0.10);
+    } else {
+      // 職業預設專武質變
+      if (cls === 'knight') { u.reflP = Math.max(u.reflP || 0, 0.15); u.reflT = Math.max(u.reflT || 0, 3); if (ws >= 4) u.shield += Math.round(u.mhp * BAL.sk.knightShield * m * 0.2); }
+      else if (cls === 'royal') { var lowX = alive(u.side).slice().sort(function (a, b) { return a.hp / a.mhp - b.hp / b.mhp; })[0]; if (lowX) lowX.shield += Math.round(lowX.mhp * 0.08); }
+      else if (cls === 'elf') { foes(u).slice(0, 3).forEach(function (f) { f.burn = { t: 3, d: u.atk * 0.1 * m, src: u }; }); if (ws >= 4) { var ex = foes(u).sort(function (a, b) { return dist(u.cell, a.cell) - dist(u.cell, b.cell); })[3]; if (ex) hurt(u, ex, u.atk * BAL.sk.elfShot * m, 'phys', { noMana: true }); } }
+      else if (cls === 'illusion') { foes(u).forEach(function (f) { f.missP = Math.max(f.missP || 0, 0.20); }); if (ws >= 5) { var rnd = foes(u)[Math.floor(Math.random() * Math.max(1, foes(u).length))]; if (rnd) rnd.stun = Math.max(rnd.stun || 0, 0.8); } }
+      else if (cls === 'warrior') { if (t) { t.stun = Math.max(t.stun || 0, 0.5); if (ws >= 5) u.mana = Math.min(u.mmana, (u.mana || 0) + 5 * inRadius(t.cell, 1, t.side).length); } }
+      else if (cls === 'mage') { if (t) inRadius(t.cell, 1, t.side).forEach(function (e) { e.burn = { t: Math.max((e.burn && e.burn.t) || 0, 2), d: u.atk * 0.12 * m, src: u }; }); if (ws >= 5 && Math.random() < 0.5 && t) hurt(u, t, u.atk * BAL.sk.mageAoe * m * 0.6, 'mag', { noMana: true }); }
+      else if (cls === 'dark') { u.crit = (u.crit || 0) + 0.20; if (ws >= 4 && t) t.burn = { t: 3, d: u.atk * 0.12 * m, src: u }; }
+      else if (cls === 'dragon') { if (t) inRadius(t.cell, 1, t.side).forEach(function (e) { e.def = Math.max(0, (e.def || 0) - 10); }); if (ws >= 5 && t) heal(u, u, u.atk * BAL.sk.dragonBreath * m * 0.2); }
+    }
+    if (!S.sim) floatTxt(u, '專武' + ws + '★', '#c084fc');
+  }
+}
+function castSkill(u, isMainManual) {
+  stOf(u).casts++;
+  var t = pickTarget(u);
+  var m = STAR_MUL[u.star] || 1; if (u.isMain) m *= 1.3; if (u.heroSk) m *= BAL.heroSk; if (u.campMul) m *= u.campMul; if (u.sp) m *= u.sp;
+  if (!u.isMain && u.hero) m *= (PERM_SKILL_MUL[u.permStar] || 1);   // 局外永久星 ≥3 技能倍率
+  // 專武星 ≥3 額外技能倍率（質變以外嘅數值層）
+  if (!u.isMain && u.hero && (u.exclStar || 0) >= 3) m *= ({ 3: 1.08, 4: 1.14, 5: 1.22 }[u.exclStar] || 1);
+  var name = u.uniq ? u.uniq.n : (SKILL_NAME[u.cls] || '技能');
+  try { (u.uniq ? USK[u.uniq.fn] : SK[u.cls] || SK.mob_m)(u, t, m); } catch (e) { console.warn('[ab] skill', e); }
+  try { applySkillQual(u, t, m); } catch (e2) { console.warn('[ab] skillQual', e2); }
+  // 暗影永久星吸血加強（喺技能本體之後補）
+  if (u._permDarkLs && u.cls === 'dark') { /* 標記已用；實際吸血喺 SK.dark 內用 BAL；呢度補少量治療 */ heal(u, u, u.atk * 0.15 * m, { vamp: true }); u._permDarkLs = 0; }
+  floatTxt(u, name, '#fbbf24', false, true);
+  pushLog((u.side === 'p' ? '' : '敵 ') + u.name + '：' + name + ((u.permStar || 0) >= 3 ? '✦' : '') + ((u.exclStar || 0) >= 3 ? '⚔' : ''));
+  if (u.isMain || u.uniq) shake();
+}
+// ---------- 羈絆（職業 2/4/6＋元素 2/3；可疊加）----------
+var CLS_SYN = window.AB_CLS_SYN = (function () { var C = BAL.cs, P = function (x) { return Math.round(x * 100) + '%'; }, o = {};
+  [2, 4, 6].forEach(function (t, i) {
+    (o.knight = o.knight || {})[t] = '騎士受傷 −' + P(C.knightDr[i]) + (C.knightSh[i] ? '＋開場護盾 ' + P(C.knightSh[i]) : '');
+    (o.royal = o.royal || {})[t] = '全隊攻 +' + P(C.royalAtk[i]) + (t >= 4 ? '＋每秒回 ' + P(C.royalRegen) + ' HP' : '');
+    (o.elf = o.elf || {})[t] = '妖精攻速 +' + P(C.elfAs[i]);
+    (o.illusion = o.illusion || {})[t] = (t >= 6 ? '開場全體敵暈 ' : '開場暈 1 隻敵 ') + C.illuStun[i].toFixed(1) + ' 秒' + (t >= 4 ? '＋全隊能量 +' + P(C.illuMana - 1) : '');
+    (o.warrior = o.warrior || {})[t] = '戰士攻 +' + P(C.warAtk[i]) + (t >= 4 ? '＋HP<50% 攻速 +' + P(C.warRage) : '');
+    (o.mage = o.mage || {})[t] = '法師技能 +' + P(C.mageSp[i]);
+    (o.dark = o.dark || {})[t] = '全隊爆擊 +' + P(C.darkTeamCrit) + '・黑暗妖精爆擊 +' + P(C.darkCrit[i]) + '、攻 +' + P(C.darkAtk[i]);
+    (o.dragon = o.dragon || {})[t] = '龍騎士 HP +' + P(C.dragonHp[i]) + '、攻 +' + P(C.dragonAtk[i]); });
+  return o; })();
+var ELE_SYN = window.AB_ELE_SYN = {   // 第 7 輪：全部加「元素共鳴」攻 +5%/12%、HP +4%/10%（與職業羈絆並存）
+  fire:  { 2:'共鳴＋火屬性普攻 45% 燃燒（每秒 30% 攻，3 秒）', 3:'共鳴＋燃燒機率 70%、每秒 40%' },
+  water: { 2:'共鳴＋水屬性普攻 35% 減速（2 秒）', 3:'共鳴＋再加 18% 凍結 1 秒' },
+  wind:  { 2:'共鳴＋風屬性攻速 +10%', 3:'共鳴＋攻速 +12%＋15% 落雷（60% 攻魔傷）' },
+  earth: { 2:'共鳴＋地屬性物防 +10', 3:'共鳴＋物防 +18＋開場護盾 15%' }
+};
+function tierOf(n, ths) { var t = 0; ths.forEach(function (x) { if (n >= x) t = x; }); return t; }
+function synCounts(side) { var cc = {}, ec = {}; S.units.forEach(function (u) { if (u.dead || u.side !== side || u.mob || u.isMain) return; cc[u.cls] = (cc[u.cls] || 0) + 1; if (u.ele) ec[u.ele] = (ec[u.ele] || 0) + 1; }); return { cc: cc, ec: ec }; }
+function activeSyn() { var c = synCounts('p'), out = [];
+  Object.keys(CLS_SYN).forEach(function (k) { var n = c.cc[k] || 0; if (!n) return; var t = tierOf(n, [2, 4, 6]); out.push({ k: k, n: n, t: t, lb: CLS[k].lb, next: t ? null : 2, txt: t ? CLS_SYN[k][t] : '' }); });
+  Object.keys(ELE_SYN).forEach(function (k) { var n = c.ec[k] || 0; if (!n) return; var t = tierOf(n, [2, 3]); out.push({ k: k, n: n, t: t, lb: ELE_ICON[k] + ELE_NAME[k], ele: true, txt: t ? ELE_SYN[k][t] : '' }); });
+  return out; }
+function applySynergies(side) {
+  side = side || 'p'; var c = synCounts(side), my = alive(side), en = alive(side === 'p' ? 'e' : 'p');
+  function each(f, pred) { my.forEach(function (u) { if (!pred || pred(u)) f(u); }); }
+  var n, t;
+  var CS = BAL.cs, ix = function (t) { return t >= 6 ? 2 : t >= 4 ? 1 : 0; };
+  if (side === 'p' && (!S.sim || window.AB_CHA_SIM != null)) { var ca = S.sim ? (my.some(function (u) { return u.isMain && u.cls === 'royal'; }) ? window.AB_CHA_SIM : 0) : chaRoyalAtk(); if (ca > 0) { each(function (u) { u.atk *= 1 + ca; }); if (!S.sim) pushLog('👑 王者魅力：全隊攻 +' + (ca * 100).toFixed(1) + '%'); } }
+  t = tierOf(c.cc.knight || 0, [2, 4, 6]); if (t) each(function (u) { u.dr = (u.dr || 0) + CS.knightDr[ix(t)]; u.shield += Math.round(u.mhp * CS.knightSh[ix(t)]); }, function (u) { return u.cls === 'knight'; });
+  t = tierOf(c.cc.royal || 0, [2, 4, 6]); if (t) each(function (u) { u.atk = Math.round(u.atk * (1 + CS.royalAtk[ix(t)])); if (t >= 4) u.regen = (u.regen || 0) + CS.royalRegen; });
+  t = tierOf(c.cc.elf || 0, [2, 4, 6]); if (t) each(function (u) { u.as *= 1 + CS.elfAs[ix(t)]; }, function (u) { return u.cls === 'elf'; });
+  t = tierOf(c.cc.illusion || 0, [2, 4, 6]); if (t) { if (t >= 4) each(function (u) { u.manaG = CS.illuMana; }); var tg = t >= 6 ? en : en.slice(0, 1); tg.forEach(function (e) { e.stun = Math.max(e.stun, CS.illuStun[ix(t)]); }); }
+  t = tierOf(c.cc.warrior || 0, [2, 4, 6]); if (t) each(function (u) { u.atk = Math.round(u.atk * (1 + CS.warAtk[ix(t)])); if (t >= 4) u.rageAs = CS.warRage; }, function (u) { return u.cls === 'warrior'; });
+  t = tierOf(c.cc.mage || 0, [2, 4, 6]); if (t) each(function (u) { u.sp += CS.mageSp[ix(t)]; }, function (u) { return u.cls === 'mage'; });
+  t = tierOf(c.cc.dark || 0, [2, 4, 6]); if (t) { each(function (u) { u.crit += CS.darkTeamCrit; }); each(function (u) { u.crit += CS.darkCrit[ix(t)]; u.atk = Math.round(u.atk * (1 + CS.darkAtk[ix(t)])); }, function (u) { return u.cls === 'dark'; }); }
+  t = tierOf(c.cc.dragon || 0, [2, 4, 6]); if (t) each(function (u) { var m = 1 + CS.dragonHp[ix(t)]; u.mhp = Math.round(u.mhp * m); u.hp = Math.round(u.hp * m); u.atk = Math.round(u.atk * (1 + CS.dragonAtk[ix(t)])); }, function (u) { return u.cls === 'dragon'; });
+  var isE = function (e) { return function (u) { return u.ele === e; }; };
+  ['fire', 'water', 'wind', 'earth'].forEach(function (k) { var tt = tierOf(c.ec[k] || 0, [2, 3]); if (!tt) return; var ra = BAL.es.resAtk[tt - 2], rh = BAL.es.resHp[tt - 2];   // 元素共鳴：同元素單位攻/HP 加成（與職業羈絆並存）
+    each(function (u) { u.atk = Math.round(u.atk * (1 + ra)); u.mhp = Math.round(u.mhp * (1 + rh)); u.hp = Math.round(u.hp * (1 + rh)); }, function (u) { return u.ele === k; }); });
+  t = tierOf(c.ec.fire || 0, [2, 3]); if (t) each(function (u) { u.burnP = t >= 3 ? BAL.es.fireP3 : BAL.es.fireP2; u.burnD = t >= 3 ? BAL.es.fireD3 : BAL.es.fireD2; }, isE('fire'));
+  t = tierOf(c.ec.water || 0, [2, 3]); if (t) each(function (u) { u.slowP = BAL.es.waterSlow; u.frzP = t >= 3 ? BAL.es.waterFrz : 0; }, isE('water'));
+  t = tierOf(c.ec.wind || 0, [2, 3]); if (t) each(function (u) { u.as *= 1 + (t >= 3 ? BAL.es.windAs3 : BAL.es.windAs2); u.boltP = t >= 3 ? BAL.es.windBolt : 0; }, isE('wind'));
+  t = tierOf(c.ec.earth || 0, [2, 3]); if (t) each(function (u) { u.def += t >= 3 ? BAL.es.earthDef3 : BAL.es.earthDef2; if (t >= 3) u.shield += Math.round(u.mhp * BAL.es.earthSh); }, isE('earth'));
+  if (S.sim) return;
+  var act = activeSyn().filter(function (x) { return x.t; }); if (act.length) pushLog('羈絆：' + act.map(function (x) { return x.lb + x.n; }).join('、'));
+}
+function onHit(u, t) {
+  if (!t || t.dead) return;
+  if (u.burnP && Math.random() < u.burnP) { t.burn = { t: 3, d: u.atk * u.burnD, src: u }; }
+  if (u.slowP && Math.random() < u.slowP) t.slowT = 2;
+  if (u.frzP && Math.random() < u.frzP) { t.stun = Math.max(t.stun, 1); floatTxt(t, '❄', '#7dd3fc'); }
+  if (u.boltP && Math.random() < u.boltP) { hurt(u, t, u.atk * 0.6, 'mag', { noMana: true }); ringFx(t, '#9ccc65', 0); }
+}
+function adjFree(cell) { var A = rc(cell); var best = -1;
+  for (var dr = -1; dr <= 1; dr++) for (var dc = -1; dc <= 1; dc++) { var r = A.r + dr, c = A.c + dc; if (r < 0 || r > 7 || c < 0 || c >= COLS) continue; var cc = r * COLS + c; if (!occ(cc)) return cc; }
+  return best; }
+function stepToward(u, t) {
+  var A = rc(u.cell), B = rc(t.cell); var best = -1, bd = dist(u.cell, t.cell);
+  for (var dr = -1; dr <= 1; dr++) for (var dc = -1; dc <= 1; dc++) { if (!dr && !dc) continue; var r = A.r + dr, c = A.c + dc;
+    if (r < 0 || r > 7 || c < 0 || c >= COLS) continue; var cc = r * COLS + c; if (occ(cc)) continue;
+    var d = Math.max(Math.abs(r - B.r), Math.abs(c - B.c)) + (dr && dc ? 0.01 : 0); if (d < bd) { bd = d; best = cc; } }
+  if (best >= 0) u.cell = best;
+}
+function tick(dt) {
+  S.t += dt; S.ft = (S.ft || 0) + dt;
+  var all = S.units.slice(); for (var si = all.length - 1; si > 0; si--) { var sj = Math.floor(Math.random() * (si + 1)); var st0 = all[si]; all[si] = all[sj]; all[sj] = st0; }   // 隨機行動次序（避免先手方必勝）
+  all.forEach(function (u) {
+    if (u.dead) return;
+    if (u.regen && u.hp < u.mhp) u.hp = Math.min(u.mhp, u.hp + u.mhp * u.regen * dt);
+    if (u.slowT > 0) u.slowT -= dt;
+    if (u.hot && u.hot.t > 0) { u.hot.t -= dt; heal(u.hot.src, u, u.hot.v * dt); } if (u.invT > 0) u.invT -= dt; if (u.drT > 0) u.drT -= dt; if (u.defT > 0) u.defT -= dt; if (u.reflT > 0) u.reflT -= dt; if (u.guardT > 0) u.guardT -= dt; if (u.buffT > 0) u.buffT -= dt; if (u.tauntT > 0) u.tauntT -= dt;
+    if (u.burn && u.burn.t > 0) { u.burn.t -= dt; u._bt = (u._bt || 0) + dt; if (u._bt >= 1) { u._bt = 0; hurt(u.burn.src, u, u.burn.d, 'true', { noMana: true }); } if (u.dead) return; }
+    if (u.isMain && u.mainCd > 0) u.mainCd -= dt;
+    if (u.isMain && u.mainCd <= 0 && S.autoMain && foes(u).length) { castSkill(u); u.mainCd = MAIN_CD; }
+    if (u.stun > 0) { u.stun -= dt; return; }
+    var t = pickTarget(u); if (!t) return;
+    if (!u.isMain && u.mmana > 0 && u.mana >= u.mmana) { u.mana = 0; castSkill(u); return; }
+    if (dist(u.cell, t.cell) > u.rng) { u.cdM -= dt; if (u.cdM <= 0) { stepToward(u, t); u.cdM = 0.45; } return; }
+    u.cdA -= dt;
+    if (u.cdA <= 0) { u.cdA = 1 / (u.as * (u.slowT > 0 ? 0.8 : 1) * (u.rageAs && u.hp < u.mhp * 0.5 ? 1 + u.rageAs : 1));
+      if (u.rng > 1) projFx(u, t, u.ele ? ELE_COL[u.ele] : (u.dmgType === 'mag' ? '#ce93d8' : '#e2e8f0'), function () { hurt(u, t, u.atk, u.dmgType); onHit(u, t); });
+      else { bumpFx(u, t); hurt(u, t, u.atk, u.dmgType); onHit(u, t); } }
+  });
+  var mainU = S.units.filter(function (x) { return x.isMain; })[0];
+  if (S.sim) { var pa = alive('p').length, ea = alive('e').length; if (!ea || !pa) S.simRes = pa ? 'p' : (ea ? 'e' : 'draw'); return; }
+  if (!alive('e').length) endWave(true);
+  else if (!alive('p').length || (mainU && mainU.dead)) endWave(false);
+}
+function loop() {
+  if (S.phase !== 'fight') return;
+  if (!S.paused) { var dt = TICK / 1000; for (var i = 0; i < S.speed; i++) { tick(dt); if (S.phase !== 'fight') break; } }
+  render();
+}
+function startFight() { S.lastMeter = null;
+  if (S.phase !== 'place') return; S.ft = 0;
+  applySynergies(); applyStage();
+  S.phase = 'fight'; S.paused = false; S.t = 0; pushLog('第 ' + S.wave + ' 波開打！');
+  clearInterval(S.timer); S.timer = setInterval(loop, TICK);
+  render();
+}
+function endWave(win) {
+  clearInterval(S.timer); S.timer = null;
+  var ab = ensureAb(); S.lastPay = null;
+  if (!S.sim) { S.lastMeter = meterRows(S.units); runMeterAdd(S.lastMeter); }
+  abWaveExp(); if (!S.sim) abFlushDrops();
+  var dst = dgStage(), wasBoss = !!(dst && S.wave >= dst.waves);
+  if (win) { var ew = dgEffW(dst, S.wave); pushLog('✔ ' + (dst ? dst.n + ' ' : '') + '第 ' + S.wave + ' 波勝利'); abFame(AB_FAME.wave * abFameMul(dst), (dst && wasBoss) || (!dst && S.wave % 5 === 0) ? '' : '波次');
+    if ((dst && wasBoss && dst.boss && dst.boss.length) || (!dst && S.wave % 5 === 0)) abFame((AB_FAME.boss + AB_FAME.wave) * abFameMul(dst), '擊倒頭目');
+    if (dst && wasBoss) { var fc = !((ab && ab.dg && ab.dg.cleared && ab.dg.cleared[dst.v]) || (S.demoClear && S.demoClear[dst.v])); abFame((fc ? AB_FAME.clearFirst : AB_FAME.clearRepeat) * abFameMul(dst), fc ? '首次通關' : '通關'); if (fc && !demoMode) { var FT = AB_ECON.firstClearTickets, ftn = FT.base + Math.max(0, (dst.tier || 1) - 1) * FT.perTier; if (abPayTickets(ftn)) pushLog('🎫 首次通關獎勵：英雄招募券 ×' + ftn); try { var wtn = Math.max(1, Math.ceil(ftn / 2)); if (window.AB_WPN && AB_WPN.payTickets && AB_WPN.payTickets(wtn)) pushLog('⚔ 首次通關獎勵：專武券 ×' + wtn); } catch (eWt) {} } } if (ab && !demoMode && ew > (ab.best || 0)) ab.best = ew; S.wave++;
+    if (dst && wasBoss) { if (ab && !demoMode && hasPlayer()) { var E2 = AB_ENCH.src; if (Math.random() < E2.stageClearP) addScroll(rndScroll(), 1, '通關');
+        if (dst.boss && dst.boss.length) { if (!ab.dg.cleared[dst.v]) { for (var si = 0; si < E2.bossFirst.scrolls; si++) addScroll(rndScroll(), 1); addScroll(Math.random() < 0.5 ? 'bwpn' : 'barm', E2.bossFirst.blessed); pushLog('📜 頭目首通：卷軸 ×' + E2.bossFirst.scrolls + '＋祝福 ×' + E2.bossFirst.blessed); }
+          else { if (Math.random() < E2.bossRepeat.scrollP) addScroll(rndScroll(), 1, '頭目'); if (Math.random() < E2.bossRepeat.blessedP) addScroll(Math.random() < 0.5 ? 'bwpn' : 'barm', 1, '頭目'); if (Math.random() < E2.bossRepeat.protP) addScroll('prot', 1, '頭目'); } } }
+      if (ab && !demoMode) { ab.dg.cleared[dst.v] = Date.now(); if (!ab.dg.farm || dgEffW(dgBuild().byV[ab.dg.farm], 1) < dgEffW(dst, 1)) ab.dg.farm = dst.v; } else (S.demoClear = S.demoClear || {})[dst.v] = 1;
+      pushLog('🏆 通關 ' + dst.n + '！' + (dst.d.stages[dst.idx + 1] ? '' : ' · 地監完成'));
+      var nx = dst.d.stages[dst.idx + 1]; if (nx && dgUnlocked(nx)) { S.dg.s = nx.idx; S.wave = 1; pushLog('➡ 下一關：' + nx.n + '（T' + nx.tier + '）'); }
+      else { if (nx && !nx.open) pushLog('🔒 ' + nx.n + ' 係 T' + nx.tier + '（未開放）'); S.wave = 1; S.dgDone = true; } } }
+  if (win) { var R = S.run; var inc = 5 + Math.min(5, Math.floor(R.gold / 10)); R.gold += inc; R.shop = rollShop(); pushLog('💰 +' + inc + '（含利息）· 酒館已刷新');
+    var boss = dst ? wasBoss : (S.wave - 1) % 5 === 0; var nd = boss ? 2 : 1; for (var di = 0; di < nd; di++) gainItem(mkComp(COMP_KEYS[Math.floor(Math.random() * COMP_KEYS.length)]), boss ? '頭目掉落：' : '波次掉落：');
+    if (boss) { bossReward(); gearBoss(); }
+    /* ab.20261026f：專武改由大廳專武轉蛋獲得，唔再場內頭目掉落 */ }
+  else { pushLog('✖ 第 ' + S.wave + ' 波失敗（全滅）—— 重新由第 1 波開始'); var lw = Math.max(0, S.wave - 1); if (ab && !demoMode) ab.runs = (ab.runs || 0) + 1; runPayout(Math.max(0, S.wave - 1), true); gearRunEnd(Math.max(0, S.wave - 1)); abHistPush(false, S.wave, dst); S.wave = 1; S.runOver = true; }
+  if (S.dgDone) { S.dgDone = false; runPayout(dgEffW(dst, dst ? dst.waves : 1), true); gearRunEnd(dgEffW(dst, 1)); abHistPush(true, dst ? dst.waves : 0, dst); S.runOver = true; }
+  S.phase = 'result'; S.lastWin = win; abSave(); render();
+}
+function toPlace(keepSel) { if (S.runOver || !S.run) { S.runOver = false; S.units = []; openClassPick(); return; } S.phase = 'place'; S.units = buildTeam().concat(buildWave(S.wave)); if (!keepSel) S.sel = null; else S.sel = null; render(); }
+
+// ---------- UI ----------
+var root = null, boardEl = null, fxEl = null;
+function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+function cellRect(cell) { var A = rc(cell); var bw = boardEl.clientWidth / COLS, bh = boardEl.clientHeight / 8; return { x: A.c * bw + bw / 2, y: A.r * bh + bh / 2, w: bw, h: bh }; }
+function openAb() {
+  if (!root) buildUi();
+  S.open = true; root.classList.remove('hidden');
+  var ab = ensureAb(); S.autoMain = ab ? ab.autoMain !== false : true; S.speed = ab && ab.speed === 2 ? 2 : 1;
+  S.runOver = true; toPlace();
+}
+function closeAb() { Array.prototype.forEach.call(document.querySelectorAll('#ab-pick'), function (x) { x.remove(); }); var rs = document.getElementById('ab-result'); if (rs) rs.classList.add('hidden'); if (S.run && S.runOver === false && S.phase === 'result') S.runOver = true; clearInterval(S.timer); S.timer = null; S.phase = 'place'; S.open = false; if (root) root.classList.add('hidden'); abSave(); try { if (window.abHallRender) window.abHallRender(); } catch (e) {} }
+window.openAutoBattle = openAb; window.closeAutoBattle = closeAb;
+window.abEnsure = ensureAb;
+function buildUi() {
+  root = el('div', 'ab-root hidden'); root.id = 'ab-root';
+  root.innerHTML = '<div class="ab-top"><b>♟️ 自走棋 <span class="ab-ver">v3.10.0</span></b><span id="ab-wave" class="ab-stage"></span><span id="ab-fame" class="ab-fame"></span><span class="ab-sp"></span>' +
+    '<button id="ab-pause" class="ab-btn">⏸ 暫停</button><button id="ab-speed" class="ab-btn">×1</button><button id="ab-close" class="ab-btn ab-x">🏠 返回大廳</button></div>' +
+    '<div class="ab-main ab-lay3">' +
+    '<div class="ab-side ab-left"><div class="ab-h">🔗 羈絆</div><div id="ab-syn" class="ab-syn"></div>' +
+    '<div class="ab-bar"><button id="ab-start" class="ab-btn ab-go">開打 ▶</button><button id="ab-mainsk" class="ab-btn ab-msk" style="display:none">主角技能</button><label class="ab-auto" style="display:none"><input type="checkbox" id="ab-automain"> 自動</label></div><div id="ab-hint" class="ab-hint"></div>' +
+    '<div class="ab-bar ab-tools"><button id="ab-basicbtn" class="ab-btn ab-mini">⚙ 基本兵</button><button id="ab-wikibtn" class="ab-btn ab-mini">📖 小百科</button><button id="ab-campbtn" class="ab-btn ab-mini">🏕 營地</button></div>' +
+    '<div class="ab-h">📊 表現統計 <span class="ab-mtabs"><button class="ab-btn ab-mini" data-mtab="dmg">傷害</button><button class="ab-btn ab-mini" data-mtab="taken">承受</button><button class="ab-btn ab-mini" data-mtab="heal">治療</button></span></div><div id="ab-meter" class="ab-meter"></div>' +
+    '<div class="ab-h">📜 戰報</div><div id="ab-log" class="ab-log"></div></div>' +
+    '<div class="ab-boardwrap"><div id="ab-board" class="ab-board"></div><div id="ab-fx" class="ab-fx"></div><div id="ab-banner" class="ab-banner hidden"></div></div>' +
+    '<div id="ab-result" class="ab-result hidden"><div class="ab-rbox"><h2 id="ab-rtitle"></h2><div id="ab-rtxt" class="ab-dim"></div><div class="ab-h">⭐ 今局表現（全局累計）</div><div id="ab-rmeter" class="ab-meter ab-rmeter"></div><div class="ab-bar"><button id="ab-r-lobby" class="ab-btn ab-go">🏠 返回大廳</button><button id="ab-r-again" class="ab-btn">↻ 再打一局</button></div></div></div>' +
+    '<div class="ab-side ab-right"><div class="ab-h">🔍 棋子資料 <small class="ab-dim">（點／滑過棋子）</small></div><div id="ab-detail" class="ab-detail"></div></div>' +
+    '<div class="ab-bottom"><div class="ab-benchrow"><div class="ab-itemcol"><div class="ab-h">🎒 裝備 <small class="ab-dim">唔分職業・拖去棋子</small><button id="ab-rcbtn" class="ab-btn ab-mini">⚒ 合成表</button></div><div id="ab-items" class="ab-items"></div><div id="ab-itemtip" class="ab-itemtip"></div></div>' +
+    '<div class="ab-benchcol"><div class="ab-h">🪑 後備欄 <small class="ab-dim">W 上落場 · E 賣出 · 拖去商店賣</small><button id="ab-sell" class="ab-btn ab-mini">💸 賣出已選</button><button id="ab-down" class="ab-btn ab-mini">⬇ 落後備</button></div><div id="ab-bench" class="ab-bench"></div></div></div>' +
+    '<div class="ab-shoprow"><div class="ab-shopl"><div class="ab-goldbig">💰 <span id="ab-gold" class="ab-gold"></span></div><div id="ab-cnt" class="ab-dim"></div></div>' +
+    '<div id="ab-shopwrap" class="ab-shopwrap"><div id="ab-shop" class="ab-shop"></div><div id="ab-sellzone" class="ab-sellzone hidden"></div></div>' +
+    '<div class="ab-shopr"><button id="ab-reroll" class="ab-btn ab-roll">🔄 刷新 <span id="ab-rrc">2</span>💰<small>[D]</small></button></div></div></div></div>';
+  document.body.appendChild(root);
+  boardEl = root.querySelector('#ab-board'); fxEl = root.querySelector('#ab-fx');
+  for (var i = 0; i < 8 * COLS; i++) { var c = el('div', 'ab-cell ' + (i < ROWS * COLS ? 'ab-en' : 'ab-my')); c.dataset.cell = i; boardEl.appendChild(c); }
+  boardEl.addEventListener('pointerdown', onDown); boardEl.addEventListener('pointerdown', function (e) { var c = cellAt(e.clientX, e.clientY), u = c >= 0 ? occ(c) : null; if (u) { S.inspect = u; renderDetail(true); } }, true); boardEl.addEventListener('pointermove', function (e) { if (drag) return; var c = cellAt(e.clientX, e.clientY), u = c >= 0 ? occ(c) : null; if (u && u !== S.hover) { S.hover = u; renderDetail(true); } }); boardEl.addEventListener('pointerleave', function () { if (S.hover) { S.hover = null; renderDetail(true); } }); window.addEventListener('pointermove', onMove); window.addEventListener('pointerup', onUp);
+  root.querySelector('#ab-close').onclick = function () { var mid = S.run && !S.runOver && (S.phase === 'fight' || S.wave > 1); if (mid && !window.confirm('今局未完，返回大廳會放棄今局（已攞嘅獎勵照計）。確定？')) return; if (mid) { S.runOver = true; S.phase = 'result'; } closeAb(); };
+  root.querySelector('#ab-r-lobby').onclick = function () { closeAb(); };
+  Array.prototype.forEach.call(root.querySelectorAll('[data-mtab]'), function (b) { b.onclick = function () { S.meterTab = b.dataset.mtab; renderMeter(true); }; });
+  root.querySelector('#ab-r-again').onclick = function () { root.querySelector('#ab-result').classList.add('hidden'); toPlace(); };
+  root.querySelector('#ab-start').onclick = function () { if (S.phase === 'result') toPlace(); else if (S.phase === 'place') startFight(); };
+  root.querySelector('#ab-pause').onclick = function () { S.paused = !S.paused; render(); };
+  root.querySelector('#ab-speed').onclick = function () { S.speed = S.speed === 1 ? 2 : 1; var ab = ensureAb(); if (ab) ab.speed = S.speed; render(); };
+  root.querySelector('#ab-mainsk').onclick = mainManual;
+  root.querySelector('#ab-reroll').onclick = reroll;
+  root.querySelector('#ab-basicbtn').onclick = openBasicUi; root.querySelector('#ab-wikibtn').onclick = openWiki;
+  root.querySelector('#ab-campbtn').onclick = window.openAbCamp; root.querySelector('#ab-rcbtn').onclick = openRecipeChart;
+  root.querySelector('#ab-sell').onclick = function () { if (S.sel && S.sel.pc) sell(S.sel.pc); else if (S.selBench) { sell(S.selBench); S.selBench = null; } else hint('先揀棋盤上一隻（主角唔賣得）'); };
+  root.querySelector('#ab-down').onclick = function () { if (S.sel && S.sel.pc) boardToBench(S.sel.pc); };
+  root.querySelector('#ab-automain').onchange = function (e) { S.autoMain = !!e.target.checked; var ab = ensureAb(); if (ab) ab.autoMain = S.autoMain; };
+  document.addEventListener('keydown', function (e) { if (!S.open) return; if (e.code === 'Space') { e.preventDefault(); if (S.phase === 'fight') { S.paused = !S.paused; render(); } } if (e.key === 'q' || e.key === 'Q') mainManual(); if (e.target && /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return; var k = (e.key || '').toLowerCase();
+    if (k === 'd') reroll(); else if (k === 'e') { var hp = hoverPiece(); if (hp) sell(hp); } else if (k === 'w') { var wp = hoverPiece(); if (!wp || S.phase !== 'place') return; if (S.run.bench.indexOf(wp) >= 0) { S.hoverPc = null; benchToBoard(wp); } else { S.hover = null; boardToBench(wp); } } });
+}
+function hoverPiece() { if (S.hoverPc) return S.hoverPc; if (S.hover && S.hover.pc) return S.hover.pc; return null; }
+function mainManual() { return; if (S.phase !== 'fight') return; var mu = S.units.filter(function (x) { return x.isMain && !x.dead; })[0]; if (!mu || mu.mainCd > 0 || mu.stun > 0) return; castSkill(mu, true); mu.mainCd = MAIN_CD; render(); }
+// 擺位：拖曳或「點選→點格」
+var drag = null;
+function cellAt(x, y) { var r = boardEl.getBoundingClientRect(); if (x < r.left || x > r.right || y < r.top || y > r.bottom) return -1; var c = Math.floor((x - r.left) / (r.width / COLS)), rr = Math.floor((y - r.top) / (r.height / 8)); return rr * COLS + c; }
+function onDown(e) {
+  if (S.phase !== 'place') return;
+  var cell = cellAt(e.clientX, e.clientY); if (cell < 0) return;
+  var u = occ(cell);
+  if (u && u.side === 'p' && S.selItem) { if (u.pc) equipItem(u.pc, S.selItem); else hint('主角唔用場內裝備'); e.preventDefault(); return; }
+  if (u && u.side === 'p') { drag = { u: u, x0: e.clientX, y0: e.clientY, moved: false }; e.preventDefault(); return; }
+  if (S.sel && cell >= ROWS * COLS) { place(S.sel, cell); S.sel = null; render(); }
+}
+var itemDrag = null, benchDrag = null;
+function overShop(e) { var w = root && root.querySelector('#ab-shopwrap'); if (!w) return false; var r = w.getBoundingClientRect(); return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom; }
+function sellZone(p, e) { var z = root && root.querySelector('#ab-sellzone'); if (!z) return; if (!p) { z.classList.add('hidden'); return; } z.classList.remove('hidden'); z.classList.toggle('on', !!(e && overShop(e))); z.textContent = '💸 放手賣出 ' + p.name + '：+' + sellVal(p) + ' 💰'; }
+window.addEventListener('pointermove', function (e) { if (!benchDrag) return; if (Math.abs(e.clientX - benchDrag.x0) + Math.abs(e.clientY - benchDrag.y0) > 8) benchDrag.moved = true; if (benchDrag.moved) { sellZone(benchDrag.p, e); var g = benchDrag.ghost; if (!g) { g = benchDrag.ghost = el('img', 'ab-ghost'); g.src = benchDrag.p.por; document.body.appendChild(g); } g.style.left = e.clientX + 'px'; g.style.top = e.clientY + 'px'; } });
+window.addEventListener('pointerup', function (e) { var d = benchDrag; if (!d) return; benchDrag = null; if (d.ghost) d.ghost.remove(); sellZone(null); if (!d.moved) return; d.b._skipClick = true;
+  if (overShop(e)) { sell(d.p); return; } if (S.phase !== 'place') return; var c = cellAt(e.clientX, e.clientY); if (c < ROWS * COLS) return; var o = occ(c);
+  if (S.run.board.length >= boardMax()) { if (o && o.pc) { S.sel = o; benchToBoard(d.p); } else hint('棋盤已滿：拖去一隻我方棋子上面交換'); return; }
+  benchToBoard(d.p); var u = S.units.filter(function (x) { return x.pc === d.p; })[0]; if (u && (!o || o.side === 'p')) { place(u, c); render(); } });
+function dragTargetPc(e) { var c = cellAt(e.clientX, e.clientY), u = c >= 0 ? occ(c) : null; if (u && u.pc) return u.pc; var el2 = document.elementFromPoint(e.clientX, e.clientY), bs = el2 && el2.closest && el2.closest('.ab-bslot'); return bs && bs._pc ? bs._pc : null; }
+function dropHintFor(pc, it) { if (!pc || !it) return null; if (it.kind === 'excl' && it.forDef !== pc.defId) return '❌ ' + pc.name + '：唔係專屬主人'; var items = pc.items || [];
+  for (var i = 0; i < items.length; i++) { var a = items[i]; if (a.kind === 'comp' && it.kind === 'comp') { var r = recipeFor(a.key, it.key); if (r && r.locked) return '🔒 ' + pc.name + '：' + r.locked.n + ' 要鐵匠 Lv' + r.locked.smith; if (r) return '✨ 放手 → ' + pc.name + ' 身上「' + a.n + '」合成 <b>' + r.n + '</b>（' + fxText(r.fx) + '）'; } }
+  return items.length >= ITEM_SLOTS ? '❌ ' + pc.name + '：3 格已滿' : '➕ 放手 → 裝上 ' + pc.name + '（' + (items.length + 1) + '/' + ITEM_SLOTS + '）'; }
+function onMove(e) { if (itemDrag && Math.abs(e.clientX - itemDrag.x0) + Math.abs(e.clientY - itemDrag.y0) > 8) itemDrag.moved = true;
+  if (itemDrag && itemDrag.moved) { var tp = dragTargetPc(e), dh = dropHintFor(tp, itemDrag.it); if (dh !== S.dropHint) { S.dropHint = dh; renderDetail(true); } } if (!drag) return; if (Math.abs(e.clientX - drag.x0) + Math.abs(e.clientY - drag.y0) > 8) { drag.moved = true; var tk = document.getElementById('abt-' + cssId(drag.u.uid)); if (tk) { var r = boardEl.getBoundingClientRect(); tk.style.left = (e.clientX - r.left) + 'px'; tk.style.top = (e.clientY - r.top) + 'px'; tk.classList.add('ab-drag'); } if (drag.u.pc) sellZone(drag.u.pc, e); } }
+function onUp(e) {
+  if (itemDrag) { var idg = itemDrag; S.dropHint = null; setTimeout(function () { itemDrag = null; exclHL(S.selItem); renderDetail(true); }, 0); if (idg.moved) { var cc = cellAt(e.clientX, e.clientY); var tu = cc >= 0 ? occ(cc) : null; if (tu && tu.pc) equipItem(tu.pc, idg.it); else { var bel = document.elementFromPoint(e.clientX, e.clientY), bs = bel && bel.closest && bel.closest('.ab-bslot'); if (bs && bs._pc) equipItem(bs._pc, idg.it); } } }
+  if (!drag) return; var d = drag; drag = null;
+  sellZone(null); if (d.moved && d.u.pc && overShop(e)) { sell(d.u.pc); return; }
+  if (d.moved) { var cell = cellAt(e.clientX, e.clientY); if (cell >= ROWS * COLS) place(d.u, cell); }
+  else S.sel = (S.sel === d.u) ? null : d.u;
+  render();
+}
+function place(u, cell) {
+  var other = occ(cell); if (other && other !== u) { if (other.side !== 'p') return; other.cell = u.cell; savePos(other); }
+  u.cell = cell; savePos(u);
+}
+function savePos(u) { if (u.isMain) S.run.mainCell = u.cell; else if (u.pc) u.pc.cell = u.cell; }
+function hint(t) { var h = document.getElementById('ab-hint'); if (h) h.textContent = t; }
+function cssId(s) { return String(s).replace(/[^\w-]/g, '_'); }
+function pushLog(t) { if (S.sim) return; S.log.unshift(t); S.log.length = Math.min(S.log.length, 30); }
+// ===== v3.10.0 棋子詳情（數值／技能／裝備）=====
+function skillInfo(u) {
+  var K = BAL.sk, P = function (x) { return Math.round(x * 100) + '%'; }, X = function (x) { return (Math.round(x * 100) / 100) + '×攻'; };
+  if (u.mob) return { n: u.cls === 'mob_r' ? '遠程轟擊' : '重擊', d: '目標及周圍 1 格 ' + (u.cls === 'mob_r' ? '1.5×攻魔傷' : '1.6×攻物傷') };
+  if (u.uniq) { var KP = KNIGHT_POOL[u.uniq.fn]; var UD = { h_sora: '全隊回復 ' + X(K.soraHeal) + '＋淨化最低 HP 隊友', h_lumina: '最低 HP 隊友回復 2.2×攻＋10% HP 護盾＋淨化', h_nerys: '全隊 4 秒持續回復（每秒 0.25×攻）＋對 2 敵 0.8×攻魔傷',
+      u_aurelia: '全隊回復 1.8×攻＋攻擊 +30%，5 秒', u_morgana: '全體敵人暈 1.2 秒＋0.9×攻魔傷', u_skaldi: '周圍 1 格敵人 2.4×攻物傷，回復傷害 30%', u_isolde: '全隊護盾 ' + P(K.isoldeShield) + ' HP＋嘲諷（0.6 倍）' };
+    return enrichSkillInfo(u, { n: u.uniq.n, d: (KP && KP.d && u.uniq.fn !== 'u_isolde' ? KP.d : UD[u.uniq.fn] || ''), uniq: true }); }
+  var D = { knight: '半徑 2 敵人嘲諷 ' + K.knightTaunt + ' 秒＋自身護盾 ' + P(K.knightShield) + ' HP', mage: '敵人最密集處火球 ' + X(K.mageAoe) + ' 魔傷（周圍 ×' + K.mageFall + '）；3 隻以上法師逐隻 ×' + K.mageStack,
+    elf: u.elfEle === 'water' ? '治療最低 HP 隊友 ' + X(K.waterHeal) + '＋淨化，再射 0.5 倍水箭' : '向最近 3 敵各射 ' + X(K.elfShot) + ' 物傷', warrior: '目標周圍 1 格 ' + X(K.warCleave) + ' 物傷',
+    dark: '突襲遠處殘血敵人 ' + X(K.darkHit) + '（必爆），吸血 ' + P(K.darkLs) + '（滿血轉護盾），無敵 ' + K.darkInv + ' 秒', dragon: '目標周圍 1 格 ' + X(K.dragonBreath) + ' 魔傷＋燃燒 3 秒（每秒 0.15×攻）',
+    illusion: '攻擊最高嘅 2 敵（3 星 3 敵）' + X(K.illuHit) + ' 魔傷＋暈 1.5 秒', royal: '最低 HP 隊友回復 ' + X(K.royalHeal) + '＋全隊攻擊 +' + P(K.royalBuff) + '，4 秒' };
+  var base = { n: SKILL_NAME[u.cls] || '技能', d: D[u.cls] || '' };
+  return enrichSkillInfo(u, base);
+}
+function enrichSkillInfo(u, base) {
+  if (!u || !base) return base;
+  var extra = [];
+  if (!u.isMain && u.hero && (u.permStar || 0) >= 3) {
+    var pt = '';
+    try { pt = (window.AB_WPN && AB_WPN.permAwakenText) ? AB_WPN.permAwakenText(u.cls, u.permStar) : ''; } catch (e) {}
+    if (u.uniq) {
+      var UQ = { u_isolde: '永久覺醒：護盾後為最低 HP 隊友再加 6% 護盾', u_aurelia: '永久覺醒：治療時淨化全隊', u_morgana: '永久覺醒：追加攻擊最高 2 敵 0.5×攻', u_skaldi: '永久覺醒：額外自療 0.4×攻', k_shock: '永久覺醒：暈眩 +0.5 秒' };
+      pt = UQ[u.uniq.fn] || pt;
+    }
+    if (pt) extra.push('<span class="ab-gold">✦ 英雄' + u.permStar + '★質變：' + pt + '</span>');
+  }
+  if (!u.isMain && u.hero && (u.exclStar || 0) >= 3 && u.exclOn) {
+    var wt = '';
+    try { wt = (window.AB_WPN && AB_WPN.awakenText) ? AB_WPN.awakenText(u.defId, u.exclStar) : ''; } catch (e2) {}
+    if (wt) extra.push('<span style="color:#c084fc">⚔ 專武' + u.exclStar + '★質變：' + wt + '</span>');
+    else if (u.exclName) extra.push('<span style="color:#c084fc">⚔ 專武' + u.exclStar + '★已覺醒</span>');
+  } else if (!u.isMain && u.hero && u.defId && window.AB_EXCL && AB_EXCL[u.defId]) {
+    if (u.exclOn) extra.push('<span class="ab-dim">專武「' + (u.exclName || AB_EXCL[u.defId].n) + '」' + (u.exclStar || 0) + '★（3★ 起技能質變）</span>');
+    else if (window.AB_WPN && AB_WPN.owned && AB_WPN.owned(u.defId)) extra.push('<span class="ab-dim">專武未裝備</span>');
+    else if (u.rarity === 'SR' || u.rarity === 'SSR') extra.push('<span class="ab-dim">未有專武（專武轉蛋抽取）</span>');
+  }
+  if (extra.length) base.d = (base.d || '') + '<br>' + extra.join('<br>');
+  return base;
+}
+function skillMul(u) { var m = STAR_MUL[u.star] || 1; if (u.isMain) m *= 1.3; if (u.heroSk) m *= BAL.heroSk; if (u.campMul) m *= u.campMul; if (u.sp) m *= u.sp; if (!u.isMain && u.hero) m *= (PERM_SKILL_MUL[u.permStar] || 1); return m; }
+function gearListFor(u) { var ab = ensureAb(); if (!ab || !ab.gearBag || u.side !== 'p' || u.isMain) return null;
+  // 基本兵／士兵唔著局外裝（ab.20261024a）
+  if (!u.hero || (u.pc && u.pc.basic)) return null;
+  var key = 'h:' + u.hid, cap = TIER_CAP[u.rarity] || 3;
+  var SLN = { weapon: '武器', armor: '盔甲', helm: '頭盔', gloves: '手套', boots: '靴', acc: '飾品' }, LB = { atk: '攻', def: '物防', mr: '魔防', hp: 'HP' }, sm = 1 + smithLv() * SMITH.gearPerLv, cnt = {};
+  var rows = ab.gearBag.filter(function (g) { return g.on === key; }).map(function (g) { var b = AB_GEAR_SRC.base[g.slot] || {}, over = g.tier > cap; if (!over) cnt[g.set] = (cnt[g.set] || 0) + 1;
+    var st = (AB_SETS_ALL.filter(function (x) { return x.id === g.set; })[0] || {}).n || g.set;
+    return '<li>' + (SLN[g.slot] || g.slot) + ' <b>T' + g.tier + ' ' + st + ' +' + (g.en || 0) + '</b>：' + (over ? '<span class="ab-bad">超出 T' + cap + ' 上限，唔生效</span>' : Object.keys(b).map(function (k) { return LB[k] + '+' + Math.round(b[k] * g.tier * enMul(g, k) * sm); }).join('、')) + '</li>'; });
+  var sets = AB_SETS.filter(function (st) { return cnt[st.id] >= 2; }).map(function (st) { return '<li>🔗 ' + st.n + ' ' + cnt[st.id] + ' 件：' + fxText(setBonus(st, cnt[st.id])) + '</li>'; });
+  return { key: key, rows: rows, sets: sets, sm: sm }; }
+function detailHtml(u) {
+  var C = CLS[u.cls] || {}, sk = skillInfo(u), m = skillMul(u), r1 = function (x) { return Math.round(x * 100) / 100; };
+  var h = '<div class="ab-dt-hd"><img src="' + u.por + '" onerror="this.style.display=\'none\'" alt=""><div><b>' + u.name + '</b> ' + '★'.repeat(u.star || 1) + (u.hero && (u.permStar || 0) > 0 ? ' <small class="ab-gold">永久' + u.permStar + '★</small>' : '') + '<br><small>' + (u.side === 'e' ? '敵方' : '我方') + ' · ' + (C.lb || (u.mob ? '怪物' : '')) + (u.rarity ? ' · ' + u.rarity : '') + (u.ele ? ' · ' + ELE_ICON[u.ele] + ELE_NAME[u.ele] : '') + (u.isMain ? ' · 主角' : '') + '</small></div></div>';
+  h += '<table class="ab-dt-t"><tr><td>❤ HP</td><td>' + Math.max(0, Math.round(u.hp)) + ' / ' + u.mhp + '</td><td>⚔ 攻擊</td><td>' + u.atk + (u.buffAtk && u.buffT > 0 ? ' <small>(+' + Math.round(u.buffAtk * 100) + '%)</small>' : '') + '</td></tr>' +
+    '<tr><td>⚡ 攻速</td><td>' + r1(u.as) + '/秒</td><td>🎯 射程</td><td>' + u.rng + ' 格</td></tr><tr><td>🛡 物防</td><td>' + u.def + '</td><td>🔰 魔防</td><td>' + u.mr + '</td></tr>' +
+    '<tr><td>💧 能量</td><td>' + (u.isMain ? '冷卻 ' + MAIN_CD + ' 秒' : Math.round(u.mana) + ' / ' + u.mmana) + '</td><td>💥 爆擊</td><td>' + Math.round(u.crit * 100) + '%</td></tr>' +
+    '<tr><td>✨ 技能</td><td>×' + r1(u.sp) + '</td><td>🧪 傷害</td><td>' + (u.dmgType === 'mag' ? '魔法' : '物理') + '</td></tr>' +
+    (u.regen || u.shield0 || u.mana0 ? '<tr><td colspan="4"><small>' + [u.regen ? '每秒回血 ' + r1(u.regen * 100) + '%' : '', u.shield0 ? '開場護盾 ' + Math.round(u.shield0 * 100) + '%' : '', u.mana0 ? '開場能量 ' + Math.round(u.mana0) : ''].filter(Boolean).join('、') + '</small></td></tr>' : '') + '</table>';
+  h += '<div class="ab-dt-sk"><b>' + (u.isMain ? '主角技能' : '技能') + '：' + sk.n + '</b>' + (sk.uniq ? ' <small class="ab-gold">專屬</small>' : '') + '<br><small>' + sk.d + '</small><br><small class="ab-dim">技能倍率 ×' + r1(m) + '（局內星' + (u.isMain ? '×主角' : '') + (u.heroSk ? '×英雄' : '') + (u.campMul ? '×營地' : '') + ((u.permStar || 0) >= 3 ? '×永久' + u.permStar + '★' : '') + '×技能加成）' + (u.isMain ? '' : '；能量滿 ' + u.mmana + ' 施放') + '</small></div>';
+  if (u.hero && u.defId && (u.rarity === 'SR' || u.rarity === 'SSR' || (window.AB_EXCL && AB_EXCL[u.defId]))) {
+    var en = (window.AB_EXCL && AB_EXCL[u.defId]) || null;
+    if (en) {
+      var est = u.exclStar || 0, eon = !!u.exclOn;
+      h += '<div class="ab-h">⚔ 專武</div><div class="ab-dt-n">' + (eon ? '<b>' + en.n + '</b> ' + '★'.repeat(Math.max(1, est)) + ' · ' + fxText(en.fx) + (est >= 3 ? ' <span style="color:#c084fc">質變中</span>' : ' <small class="ab-dim">（3★ 質變）</small>') : '<span class="ab-dim">未裝備／未擁有「' + en.n + '」（大廳專武轉蛋；專武碎片升星）</span>') + '</div>';
+    }
+  }
+  if (u.items && u.items.length) h += '<div class="ab-h">🎒 場內裝備</div><ul class="ab-dt-l">' + u.items.map(function (it) { return '<li><img src="' + it.img + '" alt=""> <b>' + it.n + '</b>：' + fxText(it.fx) + '</li>'; }).join('') + '</ul>';
+  else if (u.side === 'p' && !u.isMain) h += '<div class="ab-dim ab-dt-n">場內裝備：未裝（最多 ' + ITEM_SLOTS + ' 件）</div>';
+  var G = gearListFor(u);
+  if (G) h += '<div class="ab-h">🛡 局外套裝' + (G.sm > 1 ? ' <small class="ab-dim">（鐵匠 ×' + r1(G.sm) + '）</small>' : '') + '</div>' + (G.rows.length ? '<ul class="ab-dt-l">' + G.rows.join('') + G.sets.join('') + '</ul>' : '<div class="ab-dim ab-dt-n">未穿局外裝（' + '英雄頁「換裝」或營地背包' + '）</div>');
+  if (u.sets && u.sets.length) h += '<div class="ab-dim ab-dt-n">生效套裝：' + u.sets.join('、') + '</div>';
+  return h;
+}
+function shopPreviewUnit(sh) { var it = sh.it, pc = JSON.parse(JSON.stringify(it)); pc.star = sh.star || 1; pc.pid = 'preview'; pc.items = []; var u = mkUnit(pc, 'p', -1); u.pc = pc; return u; }
+function shopTip(it, mi) { try { var u = shopPreviewUnit({ it: it, star: mi ? mi.star : 1 }), sk = skillInfo(u); return '【預覽】' + it.name + ' ' + '★'.repeat(u.star) + ' · ' + (CLS[it.cls] || {}).lb + ' · ' + costOf(it) + '💰\nHP ' + u.mhp + ' · 攻 ' + u.atk + ' · 攻速 ' + (Math.round(u.as * 100) / 100) + ' · 射程 ' + u.rng + ' · 物防 ' + u.def + ' · 魔防 ' + u.mr + '\n技能：' + sk.n + ' — ' + sk.d + (mi && mi.star > 1 ? '\n買咗即刻升 ' + mi.star + '★' : ''); } catch (e) { return it.name; } }
+function previewExtra(sh, u) { var it = sh.it, C = CLS[it.cls] || {}, n0 = 0, seen = {}; S.units.forEach(function (x) { if (x.side === 'p' && !x.isMain && !x.dead && x.cls === it.cls) n0++; });
+  var merge = sh.star > 1, n1 = merge ? n0 : n0 + 1, th = [2, 4, 6], nxt = th.filter(function (t) { return t > n1; })[0];
+  var h = '<div class="ab-pv">🛒 預覽（未買）· 費用 ' + costOf(it) + '💰' + (merge ? ' · <b>買咗即刻升 ' + '★'.repeat(sh.star) + '</b>' : '') + '</div>';
+  h += '<div class="ab-dt-n">羈絆：' + (C.ic || '') + ' ' + (C.lb || it.cls) + ' 上場 ' + n0 + ' → <b>' + n1 + '</b>（2/4/6）' + (nxt ? ' · 再 ' + (nxt - n1) + ' 隻到 ' + nxt : '') + (u.ele ? ' · 元素 ' + ELE_ICON[u.ele] + ELE_NAME[u.ele] : '') + (merge ? '（升星唔加人數）' : '') + '</div>';
+  if (it.defId) { var e = EXCL[it.defId]; h += '<div class="ab-dt-n">⚔ 專武：' + (e ? '<b>' + e.n + '</b>（' + fxText(e.fx) + '）· 大廳專武轉蛋獲得，3★ 起技能質變' : '呢隻英雄冇專武（N／R）') + '。</div>'; }
+  return h; }
+// v3.10.0：元件合成表（聯盟戰棋式）
+function ownedComps(except) { var o = {}; var R = S.run || {}; (R.items || []).forEach(function (x) { if (x !== except && x.kind === 'comp') o[x.key] = (o[x.key] || 0) + 1; });
+  (R.board || []).concat(R.bench || []).forEach(function (pc) { (pc.items || []).forEach(function (x) { if (x !== except && x.kind === 'comp') o[x.key] = (o[x.key] || 0) + 1; }); }); return o; }
+function recipeRows(key, except) { var own = ownedComps(except), lv = smithLv();
+  return RECIPE.filter(function (r) { return r.a === key || r.b === key; }).map(function (r) { var other = r.a === key ? r.b : r.a; return { r: r, other: other, lock: r.smith > lv, can: !!own[other] && r.smith <= lv }; }); }
+function recipeHtml(it, dropHint) { if (!it || it.kind !== 'comp') return ''; var rows = recipeRows(it.key, it), C = COMP[it.key];
+  var h = '<div class="ab-pv">⚒ 合成表：' + C.n + '（' + C.d + '）</div>' + (dropHint ? '<div class="ab-rc-drop">' + dropHint + '</div>' : '');
+  h += rows.length ? '<div class="ab-rc">' + rows.map(function (x) { var O = COMP[x.other]; return '<div class="ab-rc-row' + (x.can ? ' can' : '') + (x.lock ? ' lock' : '') + '"><img src="' + C.img + '" alt=""><span>＋</span><img src="' + O.img + '" alt="" title="' + O.n + '"><span>→</span><img src="' + x.r.img + '" alt=""><div><b>' + x.r.n + '</b>' + (x.can ? ' <em>✔ 而家整得</em>' : '') + (x.lock ? ' <em class="ab-bad">🔒 鐵匠 Lv' + x.r.smith + '</em>' : '') + '<br><small>' + O.n + ' · ' + fxText(x.r.fx) + '</small></div></div>'; }).join('') + '</div>' : '<div class="ab-dim ab-dt-n">呢個元件冇合成配方（例如元素寶石）。</div>';
+  return h; }
+function recipeChartHtml() { var lv = smithLv(), own = ownedComps(null);
+  return '<div class="ab-h">⚒ 合成表（鐵匠 Lv' + lv + '）<button class="ab-btn ab-mini" id="ab-rcx">✕</button></div><div class="ab-rc">' + RECIPE.map(function (r) { var A = COMP[r.a], B = COMP[r.b], can = r.smith <= lv && own[r.a] && own[r.b] && (r.a !== r.b || own[r.a] >= 2);
+    return '<div class="ab-rc-row' + (can ? ' can' : '') + (r.smith > lv ? ' lock' : '') + '"><img src="' + A.img + '" alt=""><span>＋</span><img src="' + B.img + '" alt=""><span>→</span><img src="' + r.img + '" alt=""><div><b>' + r.n + '</b>' + (can ? ' <em>✔ 而家整得</em>' : '') + (r.smith > lv ? ' <em class="ab-bad">🔒 鐵匠 Lv' + r.smith + '</em>' : '') + '<br><small>' + A.n + '＋' + B.n + ' · ' + fxText(r.fx) + '</small></div></div>'; }).join('') + '</div><p class="ab-dim">兩件元件：喺裝備欄互點，或者將元件拖去已經有元件嘅棋子。</p>'; }
+function openRecipeChart() { var o = document.getElementById('ab-rcbox'); if (o) { o.remove(); return; } var b = el('div', 'ab-rcbox'); b.id = 'ab-rcbox'; b.innerHTML = recipeChartHtml(); root.appendChild(b); b.querySelector('#ab-rcx').onclick = function () { b.remove(); }; }
+var _dtSig = '', _dtT = 0;
+function renderDetail(force) { if (!root) return; var box = root.querySelector('#ab-detail'); if (!box) return;
+  var hi = (itemDrag && itemDrag.it) || S.hoverItem; if (hi && hi.kind === 'comp' && S.run && (S.run.items || []).indexOf(hi) >= 0) { _dtSig = 'item'; box.innerHTML = recipeHtml(hi, S.dropHint); box.classList.add('ab-preview'); return; }
+  if (S.hoverShop && S.run && S.hoverShop.it && S.hoverShop.it.itemKey && S.run.shop.indexOf(S.hoverShop.it) >= 0) { var sk = S.hoverShop.it, fc = null; try { fc = mkComp(sk.itemKey); } catch (e) {}
+    if (fc) { _dtSig = 'shopitem'; var full = (S.run.items || []).length >= STASH_MAX; box.innerHTML = '<div class="ab-pv">🛒 酒館元件（未買）· 費用 3💰 · 唔分職業' + (full ? ' · <b style="color:#f87171">背包滿（' + STASH_MAX + ' 格）</b>' : '') + (S.run.gold < 3 ? ' · <b style="color:#f87171">金幣唔夠</b>' : '') + '</div>' + recipeHtml(fc); box.classList.add('ab-preview'); return; } }
+  if (S.hoverShop && S.run && S.run.shop.indexOf(S.hoverShop.it) >= 0) { var pu = null; try { pu = shopPreviewUnit(S.hoverShop); } catch (e) {} if (pu) { _dtSig = 'shop'; box.innerHTML = previewExtra(S.hoverShop, pu) + detailHtml(pu); box.classList.add('ab-preview'); return; } }
+  box.classList.remove('ab-preview'); if (_dtSig === 'shop' || _dtSig === 'item' || _dtSig === 'shopitem') force = true;
+  var u = null, pc = S.hoverPc || S.selBench;
+  if (S.hover && S.units.indexOf(S.hover) >= 0) u = S.hover; else if (pc) { try { u = mkUnit(pc, 'p', -1); u.pc = pc; } catch (e) { u = null; } }
+  if (!u) u = (S.sel && S.units.indexOf(S.sel) >= 0) ? S.sel : (S.inspect && S.units.indexOf(S.inspect) >= 0 ? S.inspect : null);
+  var now = Date.now(), sig = u ? u.uid + '|' + S.phase + '|' + (u.items || []).length : '';
+  if (!force && sig === _dtSig && now - _dtT < 400) return; _dtSig = sig; _dtT = now;
+  box.innerHTML = u ? detailHtml(u) : '<div class="ab-dim ab-dt-n">滑過或者點一隻棋子（棋盤／後備欄，敵人都得）就會顯示佢嘅 HP、攻擊、攻速、防禦、射程、能量、技能同裝備加成。</div>'; }
+function render() {
+  if (!root || !S.open) return;
+  var fe = root.querySelector('#ab-fame'); if (fe) fe.textContent = abFameTxt();
+  root.querySelector('#ab-wave').textContent = '第 ' + S.wave + ' 波' + (S.wave % 5 === 0 ? ' · 頭目' : '') + ' · ' + (function () { var st = stageOf(S.wave), wi = wxInfo(stageWeather(st)); return '🗺' + st.n + ' ' + ELE_ICON[st.ter] + st.tn + ' ' + (wi ? wi.emoji + stageWeather(st) : '🏠室內'); })() + ' · 敵：' + waveTag() + (demoMode ? ' · 示範名冊（未有英雄）' : '') + (ensureAb() ? ' · 最高 ' + (ensureAb().best || 0) : '');
+  root.querySelector('#ab-pause').textContent = S.paused ? '▶ 繼續' : '⏸ 暫停';
+  root.querySelector('#ab-speed').textContent = '×' + S.speed;
+  root.querySelector('#ab-automain').checked = !!S.autoMain;
+  var rrc = root.querySelector('#ab-rrc'); if (rrc) rrc.textContent = chaReroll();
+  var st = root.querySelector('#ab-start'); st.textContent = S.phase === 'result' ? (S.runOver ? (S.lastWin ? '回大廳／再出發' : '再來一次 ↻') : (S.lastWin ? '下一回合 ▶' : '再來一次 ↻')) : (S.phase === 'place' ? '開打 ▶' : '戰鬥中…'); st.disabled = S.phase === 'fight';
+  var mu = S.units.filter(function (x) { return x.isMain; })[0];
+  var ms = root.querySelector('#ab-mainsk');
+  ms.textContent = '主角：' + (mu ? SKILL_NAME[mu.cls] : '') + (mu && S.phase === 'fight' && mu.mainCd > 0 ? ' (' + Math.ceil(mu.mainCd) + 's)' : '') + ' [Q]';
+  ms.disabled = !(mu && S.phase === 'fight' && mu.mainCd <= 0 && !mu.dead);
+  var rsl = root.querySelector('#ab-result'); if (rsl) { var showR = S.phase === 'result' && S.runOver && !document.getElementById('ab-pick'); rsl.classList.toggle('hidden', !showR);
+    if (showR) { root.querySelector('#ab-rtitle').textContent = S.lastWin ? '🏆 今局完成！' : '💀 今局結束'; root.querySelector('#ab-rtxt').textContent = (S.lastHist ? S.lastHist.dg + ' · ' + S.lastHist.st + ' · 去到第 ' + S.lastHist.wave + ' 波' : '') + ' · 獎勵已入帳' + (S.lastPay ? '（💰' + S.lastPay.gold + '、材料×' + S.lastPay.mats + (S.lastPay.fame ? '、🏛名聲 +' + S.lastPay.fame : '') + '）' : ''); var RM = (S.run && S.run.meter) || {}; root.querySelector('#ab-rmeter').innerHTML = meterHtml(Object.keys(RM).map(function (k) { return RM[k]; }), 'dmg'); } }
+  var ban = root.querySelector('#ab-banner');
+  if (S.phase === 'result') { ban.classList.remove('hidden'); ban.textContent = S.lastWin ? '勝利！' : '失敗…'; ban.className = 'ab-banner ' + (S.lastWin ? 'ab-win' : 'ab-lose'); } else ban.className = 'ab-banner hidden';
+  if (S.pendBuy != null && S.run && S.run.shop[S.pendBuy] && S.phase === 'place') hint('後備欄滿：揀一隻（棋盤或後備都得）按 E／拖去商店／撳「賣出已選」，賣完會自動買「' + S.run.shop[S.pendBuy].name + '」'); else
+  hint(S.phase === 'place' ? (S.selItem ? '已揀「' + S.selItem.n + '」→ 點棋子或板凳裝上' : S.selBench ? '已揀板凳「' + S.selBench.name + '」：再點一次上場，或者撳賣出' : S.sel ? '已揀「' + S.sel.name + '」→ 點我方空格（下半）擺位' : '拖曳或點選我方棋子再點格仔換位 · 前排近戰、後排遠程') : (S.phase === 'fight' ? 'Space 暫停' : ''));
+  // 棋子
+  var seen = {};
+  S.units.forEach(function (u) {
+    var id = 'abt-' + cssId(u.uid); seen[id] = 1;
+    var tk = document.getElementById(id);
+    if (!tk) { tk = el('div', 'ab-tok ' + (u.side === 'p' ? 'ab-p' : 'ab-e') + (u.isMain ? ' ab-mainu' : '') + (u.mob ? ' ab-mob' : '') + (u.tint ? ' ab-tint ab-tint-' + u.tint : ''));
+      tk.id = id;
+      tk.innerHTML = '<div class="ab-face"><img draggable="false" alt=""></div><span class="ab-ic"></span><span class="ab-stars"></span><div class="ab-hp"><i></i><b></b></div><div class="ab-mp"><i></i></div><div class="ab-tits"></div>';
+      var img = tk.querySelector('img'); img.onerror = function () { this.onerror = null; this.src = u.mob ? 'assets/icons/monsters/' + AB_MOB_ICONS[0] : fbPor(u.cls); }; img.src = u.por;
+      tk.querySelector('.ab-ic').textContent = u.mob ? (u.rng > 1 ? '🎯' : '👊') : (CLS[u.cls] || {}).ic || '';
+      var eb = el('span', 'ab-ele'); tk.appendChild(eb);
+      if (u.mob) { try { var mm = DB.mobs[u.mid]; tk.title = (typeof getMobDisplayName === 'function' ? getMobDisplayName(mm) : u.name) + (u.race ? ' · ' + u.race : ''); } catch (e) {} }
+      tk.querySelector('.ab-face').style.borderColor = u.side === 'e' ? '#ef4444' : ({ N: '#94a3b8', R: '#60a5fa', SR: '#c084fc', SSR: '#fbbf24' }[u.rarity] || '#fff');
+      tk.title = u.name; boardEl.appendChild(tk); }
+    if (!tk.classList.contains('ab-drag') || !drag) { tk.classList.remove('ab-drag'); var r = cellRect(u.cell); tk.style.left = r.x + 'px'; tk.style.top = r.y + 'px'; }
+    tk.querySelector('.ab-stars').textContent = '★'.repeat(u.star);
+    tk.querySelector('.ab-hp i').style.width = (100 * u.hp / u.mhp) + '%';
+    tk.querySelector('.ab-hp b').style.width = Math.min(100, 100 * u.shield / u.mhp) + '%';
+    var mpw = u.isMain ? (100 * (1 - Math.max(0, u.mainCd) / MAIN_CD)) : (u.mmana ? 100 * u.mana / u.mmana : 0);
+    tk.querySelector('.ab-mp i').style.width = mpw + '%';
+    var tits = tk.querySelector('.ab-tits'); var sig2 = (u.items || []).map(function (x) { return x.iid; }).join(); if (tits && tits._s !== sig2) { tits._s = sig2; tits.innerHTML = (u.items || []).map(function (x) { return '<img src="' + x.img + '" title="' + x.n + '" class="ab-k-' + x.kind + '">'; }).join(''); }
+    var ebx = tk.querySelector('.ab-ele'); if (ebx) ebx.textContent = u.ele ? ELE_ICON[u.ele] : '';
+    tk.classList.toggle('ab-dead', u.dead); tk.classList.toggle('ab-sel', S.sel === u); tk.classList.toggle('ab-stun', u.stun > 0);
+  });
+  Array.prototype.slice.call(boardEl.querySelectorAll('.ab-tok')).forEach(function (t) { if (!seen[t.id]) t.remove(); });
+  // 酒館＋板凳
+  var R = S.run; if (!R) return; var RC = { N: '#94a3b8', R: '#60a5fa', SR: '#c084fc', SSR: '#fbbf24' };
+  root.querySelector('#ab-gold').textContent = R.gold; var cn = root.querySelector('#ab-cnt'); if (cn) cn.innerHTML = '上場 <b' + (R.board.length >= boardMax() ? ' class="ab-bad"' : '') + '>' + R.board.length + '/' + boardMax() + '</b>（上限由公會 Lv 決定，棋盤有空格都唔可以超）';
+  var shop = root.querySelector('#ab-shop'); shop.innerHTML = '';
+  if (!shop._hv) { shop._hv = 1; var hv = function (e) { var hit = null; Array.prototype.forEach.call(shop.children, function (c) { var r = c.getBoundingClientRect(); if (c._sh && e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) hit = c._sh; });   // 用座標判斷（disabled 掣唔會觸發滑鼠事件）
+      var cur = S.hoverShop; if ((hit && cur && cur.it === hit.it) || (!hit && !cur)) return; S.hoverShop = hit ? { it: hit.it, star: hit.star } : null; mergeHL(hit ? hit.own : null); renderDetail(true); };
+    // 戰鬥中每格 render 都重建酒館卡 → 撳落同放手唔係同一粒掣，瀏覽器唔會出 click（酒館元件戰鬥中買唔到嘅根本原因）。改喺容器用座標判斷。
+    var shopHit = function (e) { var k = -1; Array.prototype.forEach.call(shop.children, function (c) { var r = c.getBoundingClientRect(); if (c._i != null && e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) k = c; }); return k; };
+    shop.addEventListener('pointerdown', function (e) { if (e.button) return; var c = shopHit(e); shop._dn = c && c !== -1 ? c._i : null; });
+    shop.addEventListener('pointerup', function (e) { if (e.button) return; var c = shopHit(e), d = shop._dn; shop._dn = null; if (c === -1 || !c || d == null || c._i !== d || c.disabled) return; buy(c._i); });
+    shop.addEventListener('pointermove', hv); shop.addEventListener('pointerleave', function () { if (S.hoverShop) { S.hoverShop = null; mergeHL(null); renderDetail(true); } }); }
+  R.shop.forEach(function (it, i) { var b = el('button', 'ab-bh ab-shopit' + (it && it.defId ? ' ab-heroit' : ''));
+    if (!it) { b.disabled = true; b.innerHTML = '<span>（已買）</span>'; shop.appendChild(b); return; }
+    b.disabled = (!it.itemKey && S.phase !== 'place') || R.gold < costOf(it) || (it.itemKey && (R.items || []).length >= STASH_MAX);
+    b.innerHTML = '<img alt="" draggable="false"><span>' + CLS[it.cls].ic + ' ' + it.name + '</span><em style="color:' + (it.defId ? RC[it.rarity] : '#cbd5e1') + '">' + (it.itemKey ? ((R.items || []).length >= STASH_MAX ? '背包滿' : '裝備元件（唔分職業）') : it.basic ? '基本兵·' + it.rarity : it.defId ? '英雄 ' + it.rarity + (UNIQUE[it.defId] ? ' ✦專屬' : '') : CLS[it.cls].lb + '兵') + ' · ' + costOf(it) + '💰</em>';
+    var im = b.querySelector('img'); im.onerror = function () { this.onerror = null; this.src = fbPor(it.cls); }; im.src = it.por;
+    if (S.pendBuy === i) b.classList.add('ab-pend');
+    var mi = shopMergeInfo(it); if (mi && mi.star > 1) { b.classList.add('ab-starup-card'); b.insertAdjacentHTML('beforeend', '<i class="ab-upbadge">⬆' + '★'.repeat(mi.star) + '</i>'); } else if (mi && mi.pair) b.classList.add('ab-pair-card');
+    b.title = shopTip(it, mi);
+    b._sh = { it: it, star: mi ? mi.star : 1, own: mi ? mi.own : null }; b.disabled = b.disabled && S.pendBuy !== i; b._i = i; b.onclick = function (e) { if (e && e.detail === 0) buy(i); }; shop.appendChild(b); });   // 鍵盤 Enter/Space 照買；滑鼠由容器 pointerup 處理
+  root.querySelector('#ab-syn').innerHTML = (activeSyn().map(function (x) { return '<span class="ab-sy' + (x.t ? ' on' : '') + '" title="' + (x.txt || '') + '">' + x.lb + ' ' + x.n + (x.ele ? '/2/3' : '/2/4/6') + (x.txt ? '<small class="ab-dim" style="display:block">' + x.txt + '</small>' : '') + '</span>'; }).join(' ') || '—');
+  var ib = root.querySelector('#ab-items'); ib.innerHTML = '';
+  if (!ib._hv) { ib._hv = 1; ib.addEventListener('pointermove', function (e) { var hit = null; Array.prototype.forEach.call(ib.children, function (c) { var r = c.getBoundingClientRect(); if (c._it && e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) hit = c._it; }); if (hit !== S.hoverItem) { S.hoverItem = hit; renderDetail(true); } });
+    ib.addEventListener('pointerleave', function () { if (S.hoverItem) { S.hoverItem = null; renderDetail(true); } }); }
+  (R.items || []).forEach(function (it) { var b = el('button', 'ab-item' + (S.selItem === it ? ' on' : '') + ' ab-k-' + it.kind);
+    b.title = it.n + '：' + fxText(it.fx) + (it.kind === 'excl' ? '（專屬：只限 ' + exclOwner(it) + '）' : '');
+    b.innerHTML = '<img alt="" draggable="false" src="' + it.img + '"><span>' + it.n + '</span>' + (it.kind === 'excl' ? '<small class="ab-exo">專屬：' + exclOwner(it) + '</small>' : '') + '<small class="ab-itfx">' + fxText(it.fx) + '</small>';
+    b._it = it;
+    b.onmouseenter = function () { var t = root.querySelector('#ab-itemtip'); if (t) t.innerHTML = '<b>' + it.n + '</b>' + (it.kind === 'excl' ? '（專屬：只限 ' + exclOwner(it) + '）' : it.kind === 'combo' ? '（合成）' : '（元件）') + '：' + fxText(it.fx); };
+    b.onpointerdown = function (e) { if (S.phase !== 'place') return; itemDrag = { it: it, x0: e.clientX, y0: e.clientY, moved: false }; exclHL(it); };
+    b.onclick = function () { if (itemDrag && itemDrag.moved) return; if (S.selItem && S.selItem !== it) { stashCombine(S.selItem, it); return; } S.selItem = S.selItem === it ? null : it; render(); }; ib.appendChild(b); });
+  if (!(R.items || []).length) ib.innerHTML = '<span class="ab-hint">（贏波／頭目／酒館會掉元件）</span>';
+  var bench = root.querySelector('#ab-bench'); bench.innerHTML = '';
+  for (var bi = 0; bi < BENCH_N; bi++) { var p = R.bench[bi];
+    var b = el('button', 'ab-bh ab-bslot' + (p && S.selBench === p ? ' on' : ''));
+    if (!p) { b.disabled = true; b.innerHTML = '<span class="ab-empty">空</span>'; bench.appendChild(b); continue; }
+    b.innerHTML = '<img alt="" draggable="false"><span>' + CLS[p.cls].ic + ' ' + p.name + '</span><em style="color:' + (p.defId ? RC[p.rarity] : '#cbd5e1') + '">' + '★'.repeat(p.star) + ((p.items || []).length ? ' 🎒' + p.items.length : '') + '</em>';
+    (function (p, b) { b._pc = p; var im = b.querySelector('img'); im.onerror = function () { this.onerror = null; this.src = fbPor(p.cls); }; im.src = p.por;
+      b.onmouseenter = function () { S.hoverPc = p; renderDetail(true); }; b.onmouseleave = function () { if (S.hoverPc === p) { S.hoverPc = null; renderDetail(true); } };
+      b.onpointerdown = function (e) { benchDrag = { p: p, b: b, x0: e.clientX, y0: e.clientY, moved: false }; };
+      b.onclick = function () { if (b._skipClick) { b._skipClick = false; return; } if (S.selItem) { equipItem(p, S.selItem); return; } if (S.selBench === p || (S.sel && S.sel.pc)) { S.selBench = null; benchToBoard(p); } else { S.selBench = p; render(); } }; })(p, b);
+    bench.appendChild(b); }
+  root.querySelector('#ab-log').innerHTML = S.log.slice(0, 12).map(function (t) { return '<div>' + t + '</div>'; }).join('');
+  if (S.starFx) { var sp = S.starFx; S.starFx = null; var su = S.units.filter(function (u) { return u.pc && u.pc.pid === sp; })[0], sel2 = su ? document.getElementById('abt-' + cssId(su.uid)) : null;
+    if (!sel2) Array.prototype.forEach.call(root.querySelectorAll('.ab-bslot'), function (b) { if (b._pc && b._pc.pid === sp) sel2 = b; });
+    if (sel2) { sel2.classList.remove('ab-starburst'); void sel2.offsetWidth; sel2.classList.add('ab-starburst'); setTimeout(function () { sel2.classList.remove('ab-starburst'); }, 1300); } }
+  renderMeter(S.phase !== 'fight');
+  exclHL(S.selItem);
+  renderDetail();
+}
+// ---------- 特效（純 code；樣式沿用 09-vfx 的 vfx-dmg 飄字）----------
+function tokPos(u) { var r = cellRect(u.cell); return r; }
+function floatTxt(u, txt, col, big, skill) { if (S.sim) return;
+  if (!fxEl || !S.open || fxEl.childElementCount > 160) return;
+  var p = tokPos(u); var d = el('div', 'ab-num' + (big ? ' ab-crit' : '') + (skill ? ' ab-sk' : '')); d.textContent = txt; d.style.color = col || '#fff';
+  d.style.left = (p.x + (Math.random() * 16 - 8)) + 'px'; d.style.top = (p.y - p.h * 0.3) + 'px'; fxEl.appendChild(d); setTimeout(function () { d.remove(); }, 900);
+}
+function projFx(a, b, col, done) {
+  if (S.sim) { done && done(); return; }
+  if (!fxEl) { done && done(); return; }
+  var p = tokPos(a), q = tokPos(b); var o = el('div', 'ab-proj'); o.style.left = p.x + 'px'; o.style.top = p.y + 'px'; o.style.background = 'radial-gradient(circle,#fff 15%,' + col + ' 60%,transparent 100%)'; o.style.boxShadow = '0 0 10px ' + col;
+  fxEl.appendChild(o);
+  var dur = 160 / S.speed;
+  try { o.animate([{ transform: 'translate(-50%,-50%)' }, { transform: 'translate(calc(-50% + ' + (q.x - p.x) + 'px),calc(-50% + ' + (q.y - p.y) + 'px))' }], { duration: dur }); } catch (e) {}
+  setTimeout(function () { o.remove(); if (S.phase === 'fight' && !a.dead) done && done(); else if (S.phase === 'fight') done && done(); }, dur);
+}
+function lineFx(a, b, col) { projFx(a, b, col, null); ringFx(b, col, 1); }
+function ringFx(u, col, rad) { if (S.sim) return; if (!fxEl) return; var p = tokPos(u); var r = el('div', 'ab-ring'); var s = (rad * 2 + 1) * p.w; r.style.width = r.style.height = s + 'px'; r.style.left = p.x + 'px'; r.style.top = p.y + 'px'; r.style.borderColor = col; r.style.boxShadow = '0 0 18px ' + col + ' inset'; fxEl.appendChild(r); setTimeout(function () { r.remove(); }, 500); }
+function bumpFx(a, b) { if (S.sim) return; var tk = document.getElementById('abt-' + cssId(a.uid)); if (!tk) return; var p = tokPos(a), q = tokPos(b); try { tk.querySelector('.ab-face').animate([{ transform: 'translate(0,0)' }, { transform: 'translate(' + (q.x - p.x) * 0.25 + 'px,' + (q.y - p.y) * 0.25 + 'px)' }, { transform: 'translate(0,0)' }], { duration: 180 }); } catch (e) {} }
+function hitFlash(u) { if (S.sim) return; var tk = document.getElementById('abt-' + cssId(u.uid)); if (!tk) return; tk.classList.remove('ab-hit'); void tk.offsetWidth; tk.classList.add('ab-hit'); }
+function killFx(u) { if (S.sim) return; pushLog((u.side === 'p' ? '我方 ' : '') + u.name + ' 倒下'); ringFx(u, u.side === 'p' ? '#ef4444' : '#fbbf24', 0); }
+function shake() { if (S.sim) return; if (!boardEl) return; try { boardEl.animate([{ transform: 'translate(0,0)' }, { transform: 'translate(3px,-2px)' }, { transform: 'translate(-3px,2px)' }, { transform: 'translate(0,0)' }], { duration: 220 }); } catch (e) {} }
+
+// ---------- 入口按鈕 ----------
+function addEntry() {
+  if (document.getElementById('btn-autobattle')) return;
+  var b = el('button', 'btn text-base py-2 font-bold px-0', '♟️ 自走棋'); b.id = 'btn-autobattle'; b.title = 'v3.9.0 自走棋原型（舊玩法不受影響）';
+  b.style.cssText = 'background:linear-gradient(135deg,#312e81 0%,#6366f1 40%,#312e81 100%);color:#e0e7ff;border-color:#818cf8;';
+  b.onclick = openAb;
+  var anchor = document.getElementById('btn-automation');
+  if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(b, anchor.nextSibling);
+  else { b.classList.add('ab-float'); document.body.appendChild(b); }
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addEntry); else addEntry();
+// 公會畫面：注入「🏕 職業營地」按鈕（公會分頁重繪後自動補返）
+setInterval(function () { ['gd-root'].forEach(function (id) { var t = document.getElementById(id);
+  if (t && t.childElementCount && !t.querySelector('.ab-campentry')) {
+    var b = el('button', 'btn ab-campentry', '🏕 職業營地（自走棋）'); b.style.cssText = 'position:fixed;left:12px;bottom:12px;z-index:99990;padding:6px 10px;background:#312e81;color:#e0e7ff;border:1px solid #818cf8;border-radius:8px'; b.onclick = function () { openCampUi(null); };
+    t.appendChild(b); } }); }, 1500);
+// 讀檔後補預設欄位（新欄位 only）
+try { if (typeof player !== 'undefined' && player && player.cls) ensureAb(player); } catch (e) {}
+// ---------- 平衡模擬（headless）----------
+// spec: { cls, star, rarity, defId, items:[fx], elfEle, ele, isMain, lv }
+function simBattle(A, B, o) {
+  o = o || {}; var saved = { units: S.units, wave: S.wave, weather: S.weather, wxo: S.wxOverride, open: S.open, phase: S.phase };
+  S.sim = true; S.simRes = null; S.units = []; S.ft = 0;
+  function build(list, side) { list.forEach(function (sp, i) {
+    var h = { id: 's' + side + i, pid: 's' + side + i, hid: null, name: sp.cls, cls: sp.cls, rarity: sp.rarity || 'N', star: sp.star || 1, defId: sp.defId || null, basic: !sp.defId, items: (sp.items || []).map(function (fx, k) { return { iid: 'x' + k, kind: 'comp', fx: fx }; }), elfEle: sp.elfEle || null, isMain: !!sp.isMain, lv: sp.lv || 1, por: '', simEq: sp.eq || null };
+    var cell = sp.cell != null ? sp.cell : (function () { var front = CLS[sp.cls] && CLS[sp.cls].front && !(sp.cls === 'elf' && sp.elfEle === 'fire'); var r = front ? 4 : 6; return r * COLS + [1, 2, 3, 4, 0, 5][i % 6] + (front ? 0 : 0); })();
+    var u = mkUnit(h, 'p', cell); if (sp.ele) u.ele = sp.ele;
+    if (o.noCamp) { /* sim 唔用營地 */ }
+    if (side === 'e') { var A2 = rc(cell); u.cell = (7 - A2.r) * COLS + A2.c; u.side = 'e'; u.uid = 'e:' + h.id; }
+    u.dmgDone = 0; S.units.push(u); }); }
+  build(A, 'p'); build(B, 'e');
+  if (o.syn !== false) { applySynergies('p'); applySynergies('e'); }
+  S.wave = o.wave || 1; S.wxOverride = o.weather || null; if (o.stage) { var keepStage = stageOf; } 
+  if (o.stageIdx != null) { S.wave = o.stageIdx * 3 + 1; applyStage(); }
+  var t = 0, dt = TICK / 1000, maxT = o.maxT || 90;
+  while (!S.simRes && t < maxT) { tick(dt); t += dt; }
+  var res = { win: S.simRes || 'timeout', t: +t.toFixed(1), p: S.units.filter(function (u) { return u.side === 'p'; }).map(function (u) { return { cls: u.cls, dmg: Math.round(u.dmgDone), hp: Math.max(0, Math.round(u.hp)), mhp: u.mhp }; }),
+    e: S.units.filter(function (u) { return u.side === 'e'; }).map(function (u) { return { cls: u.cls, dmg: Math.round(u.dmgDone), hp: Math.max(0, Math.round(u.hp)), mhp: u.mhp }; }) };
+  S.sim = false; S.units = saved.units; S.wave = saved.wave; S.weather = saved.weather; S.wxOverride = saved.wxo;
+  return res;
+}
+// 波次曲線：玩家隊 vs 真實 buildWave(w)
+function simWave(team, w, o) {
+  o = o || {}; var saved = { units: S.units, wave: S.wave }; S.sim = true; S.simRes = null; S.units = []; S.ft = 0;
+  team.forEach(function (sp, i) { var h = { id: 'w' + i, pid: 'w' + i, name: sp.cls, cls: sp.cls, rarity: sp.rarity || 'N', star: sp.star || 1, defId: sp.defId || null, basic: !sp.defId, items: [], elfEle: sp.elfEle || null, isMain: !!sp.isMain, lv: sp.lv || 1, por: '' };
+    var front = CLS[sp.cls].front; var cell = (front || sp.isMain ? 4 : 6) * COLS + [2, 3, 1, 4, 0, 5][i % 6]; while (S.units.some(function (x) { return x.cell === cell; })) cell++;
+    var u = mkUnit(h, 'p', cell); u.dmgDone = 0; S.units.push(u); });
+  S.wave = w; S.units = S.units.concat(buildWave(w)); applySynergies('p'); applyStage();
+  var t = 0, dt = TICK / 1000; while (!S.simRes && t < 120) { tick(dt); t += dt; }
+  var my = S.units.filter(function (u) { return u.side === 'p'; }); var hpPct = my.reduce(function (a, u) { return a + Math.max(0, u.hp); }, 0) / my.reduce(function (a, u) { return a + u.mhp; }, 0);
+  var r = { win: S.simRes === 'p', t: +t.toFixed(1), hpLeft: +hpPct.toFixed(2) }; S.sim = false; S.units = saved.units; S.wave = saved.wave; return r;
+}
+// 測試掛鉤
+// ===================== 📖 自走棋小百科（v3.9.0）：全部數字即時讀程式常數，唔手寫數值 =====================
+function abWikiHtml() {
+  var P = function (x) { return Math.round(x * 1000) / 10 + '%'; }, J = function (o) { return Object.keys(o).map(function (k) { var v = o[k]; var L = { atkP:'攻', asP:'攻速', spP:'技能', hpP:'HP', crit:'爆擊', regen:'每秒回血', shield0:'開場護盾', def:'物防', mr:'魔防', mana0:'開場魔力', ele:'元素' }; return (L[k] || k) + ' ' + (typeof v === 'number' ? (v < 1 && k !== 'def' && k !== 'mr' && k !== 'mana0' ? '+' + P(v) : '+' + v) : (ELE_NAME[v] || v)); }).join('、'); };
+  var sec = function (id, t, b) { return '<details class="ab-wk-sec" id="abwk-' + id + '"' + (id === 'rule' ? ' open' : '') + '><summary>' + t + '</summary><div>' + b + '</div></details>'; };
+  var tb = function (hd, rows) { return '<table class="ab-wk-t"><tr>' + hd.map(function (x) { return '<th>' + x + '</th>'; }).join('') + '</tr>' + rows.map(function (r) { return '<tr>' + r.map(function (x) { return '<td>' + x + '</td>'; }).join('') + '</tr>'; }).join('') + '</table>'; };
+  var C = BAL.cs, K = BAL.sk, E = BAL.es, h = '';
+  // 1 核心規則
+  h += sec('rule', '① 核心規則', '<ul>' +
+    '<li>每局開始：由 8 大職業揀 <b>4 個</b>做基本部隊；酒館每次出 ' + SHOP_N + ' 格，起始 ' + START_GOLD + '💰，刷新 ' + REROLL + '💰；後備席 ' + BENCH_N + ' 格。</li>' +
+    '<li>酒館每格有 ' + P(HERO_SLOT_P) + ' 機會出你自選帶出場嘅英雄（權重 N ' + HERO_W.N + '／R ' + HERO_W.R + '／SR ' + HERO_W.SR + '／SSR ' + HERO_W.SSR + '），其餘係所揀職業嘅通用兵。價錢：通用兵 ' + GEN_COST + '💰，英雄 N ' + HERO_COST.N + '／R ' + HERO_COST.R + '／SR ' + HERO_COST.SR + '／SSR ' + HERO_COST.SSR + '💰。</li>' +
+    '<li>棋盤每方 ' + ROWS + '×' + COLS + '；上場人數（主角以外）跟冒險者公會等級：' + AB_BOARD.steps.map(function (s) { return '公會 Lv' + s[0] + '＋ → ' + s[1] + ' 人'; }).join('、') + '（上限 ' + AB_BOARD.max + '）。</li>' +
+    '<li>局內 3 隻相同合成升星（TFT）：技能倍率 ' + Object.keys(STAR_MUL).map(function (k) { return k + '★ ×' + STAR_MUL[k]; }).join('、') + '。稀有度屬性倍率：' + Object.keys(RAR).map(function (k) { return k + ' ×' + RAR[k]; }).join('、') + '。另有局外永久星（碎片突破），≥3★ 再乘技能 ' + [3,4,5].map(function (s) { return s + '★×' + (PERM_SKILL_MUL[s]||1); }).join('/') + '。</li>' +
+    '<li>公會 Lv' + AB_GUILD_UNLOCK.N + ' 起可用自己 <b>N</b> 英雄、Lv' + AB_GUILD_UNLOCK.R + ' 起可用 <b>R</b> 英雄取代同職業通用兵（⚙ 基本兵）。</li>' +
+    '<li>主角（指揮官）唔上場；佢嘅等級＝帳號等級，靠隊伍擊殺 EXP 升級。</li></ul>');
+  // 2 職業
+  var cr = CLS_KEYS.map(function (k) { var c = CLS[k]; var sy = CLS_SYN[k] || {}; return [c.ic + ' ' + c.lb, c.hp, c.atk, c.def + '/' + c.mr, c.rng, c.as, c.mana, c.dmg === 'mag' ? '魔' : '物', SKILL_NAME[k], Object.keys(sy).map(function (t) { return '<b>' + t + '</b>：' + sy[t]; }).join('<br>')]; });
+  h += sec('cls', '② 八大職業（基本數值・技能・羈絆 2/4/6）', tb(['職業', 'HP', '攻', '物/魔防', '射程', '攻速', '魔力', '傷害', '技能', '羈絆'], cr) +
+    '<ul><li>技能倍率（×攻×星級）：騎士護盾 ' + P(K.knightShield) + ' HP＋嘲諷 ' + K.knightTaunt + ' 秒；法師火球 ×' + K.mageAoe + '（旁邊 ×' + K.mageFall + '；場上法師多過 2 個，每多 1 個技能 ×' + K.mageStack + '）；妖精三重矢 ×' + K.elfShot + '；戰士旋風斬 ×' + K.warCleave + '；黑妖暗影突襲 ×' + K.darkHit + '（必爆，之後吸血 ' + P(K.darkLs) + '／滿血轉護盾＋無敵 ' + K.darkInv + ' 秒）；龍騎龍息 ×' + K.dragonBreath + '＋燃燒；幻術束縛 ×' + K.illuHit + '＋暈；王族治療 ×' + K.royalHeal + '＋全隊攻 +' + P(K.royalBuff) + '（多個王族唔疊）。</li>' +
+    '<li>英雄專屬技能：' + Object.keys(UNIQUE).map(function (k) { return UNIQUE[k].n; }).join('、') + '；英雄技能 ×' + BAL.heroSk + '，屬性加成 ' + Object.keys(BAL.heroBonus).map(function (r) { return r + ' ×' + BAL.heroBonus[r]; }).join('、') + '。</li></ul>');
+  // 3 元素
+  h += sec('ele', '③ 元素系統', '<ul><li>屬性相剋：剋制 ×' + BAL.eleAdv + '、被剋 ×' + BAL.eleDis + '。</li>' +
+    '<li>妖精出戰前揀元素：火屬妖精＝近戰（射程 1、HP ×1.15、物防 +10、攻速 ×1.05）；風／水／地＝遠程（射程 ' + CLS.elf.rng + '）。其他單位元素來自裝備／元素寶石。</li>' +
+    '<li>元素羈絆（2 / 3 個同元素，同職業羈絆並存）：' + Object.keys(ELE_SYN).map(function (k) { return ELE_ICON[k] + ELE_NAME[k] + '：2＝' + ELE_SYN[k][2] + '；3＝' + ELE_SYN[k][3]; }).join('<br>') + '<br>元素共鳴：攻 +' + P(E.resAtk[0]) + '/' + P(E.resAtk[1]) + '、HP +' + P(E.resHp[0]) + '/' + P(E.resHp[1]) + '。</li>' +
+    '<li>地形：單位元素同地形一樣 → 攻/HP +' + P(TER_UP) + '；被地形剋 → −' + P(TER_DOWN) + '。</li>' +
+    '<li>天氣（室外先有）：雪 → 攻速 −5%；暴風 → 風屬性 +10% 落雷；霧 → 遠程 10% Miss；其他天氣按原遊戲天氣嘅元素傷害倍率。</li></ul>');
+  // 4 裝備
+  h += sec('gear', '④ 裝備', '<ul><li><b>兩層裝備（簡化）：</b>① 局外永久裝——<b>只限英雄</b>，每隻 6 件（武器／盔甲／頭盔／手套／靴／飾品各一），按稀有度上限 N T' + TIER_CAP.N + '、R T' + TIER_CAP.R + '、SR T' + TIER_CAP.SR + '、SSR T' + TIER_CAP.SSR + '；超過上限唔生效。② 場內裝——英雄同基本兵都可以著，只限今局、只對嗰隻單位生效。</li><li><b>基本兵／士兵一律唔著永久裝／軍械</b>；士兵強度靠職業營地等級（每級 HP/攻/攻速/技能 +' + P(CAMP.perLv) + '）同每局場內元件／合成裝。</li></ul>' +
+    tb(['套裝', 'Tier', '定位', '效果'], AB_SETS.map(function (s) { return [s.n, 'T' + s.tier, s.role || '', Object.keys(s.b).map(function (n) { return n + ' 件：' + J(s.b[n]); }).join('<br>')]; })) +
+    '<ul><li>局內裝：每隻 ' + ITEM_SLOTS + ' 格，倉 ' + STASH_MAX + ' 格。<b>唔分職業</b>：任何職業嘅英雄或基本兵都可以裝任何元件／合成裝（例如騎士都可以拎法杖），合成規則同 3 格上限照舊。</li><li>⚔ 專武（SR／SSR）：局外永久裝，大廳專武轉蛋獲得，<b>唔再場內掉落</b>；專武碎片升星，3★ 起技能質變（唔佔場內 3 格）。</li></ul>' +
+    tb(['元件', '效果'], COMP_KEYS.map(function (k) { return [COMP[k].n, COMP[k].d]; })) +
+    tb(['合成', '材料', '效果'], RECIPE.map(function (r) { return [r.n, COMP[r.a].n + '＋' + COMP[r.b].n + (r.smith ? '（鐵匠 Lv' + r.smith + '）' : ''), J(r.fx)]; })));
+  // 5 據點
+  var cc = []; for (var lv = 0; lv < CAMP.maxLv; lv++) { var c1 = AB_ECON.campCost(lv); cc.push(['Lv' + lv + '→' + (lv + 1), c1.gold, c1.mats, c1.cores, c1.ext || 0]); }
+  h += sec('camp', '⑤ 據點營運・資源', '<ul><li>職業營地：每級該職業基本兵 HP/攻/攻速/技能 +' + P(CAMP.perLv) + '（補償士兵唔著永久裝），上限 Lv' + CAMP.maxLv + '（Lv' + AB_ECON.extFrom + ' 之後需要「' + AB_ECON.extMat.n + '」，將來新地監開放再加上限）。<b>營地唔再有軍械套裝／武器下拉</b>——士兵只靠營地等級＋場內裝。鐵匠：每級局外裝（英雄用）+' + P(SMITH.gearPerLv) + '，上限 Lv' + SMITH.maxLv + '；背包著裝目標只得英雄。</li>' +
+    '<li>資源：每波 ' + AB_ECON.run.goldPerWave + '💰、完場每波 ' + AB_ECON.run.endMatsPerWave + ' 職業材料；頭目 ' + AB_ECON.run.bossMats + ' 材料＋' + P(AB_ECON.run.bossCoreP) + ' 掉「' + AB_ECON.core + '」；手動 ×' + AB_ECON.run.manualMul + '。</li>' +
+    '<li>離線：每小時 ' + AB_ECON.idle.goldPerBestWave + '💰×最高波（上限 ' + AB_ECON.idle.capH + ' 小時）；營地每小時產自己職業材料 ' + AB_ECON.camp.matPerLv + '×等級（上限 ' + AB_ECON.camp.capH + ' 小時）。派遣 ' + AB_ECON.dispatch.slots + ' 隊 × ' + AB_ECON.dispatch.hours + ' 小時，收益 ' + Object.keys(AB_ECON.dispatch.yield).map(function (r) { return r + ' ' + AB_ECON.dispatch.yield[r]; }).join('／') + '。<b>英雄碎片唔再換材料</b>——只用於局外突破升星。</li></ul>' +
+    tb(['營地升級', '金幣', '材料', '頭目核心', '深淵碎片'], cc));
+  // 6 地監
+  var dl = []; try { dl = dgBuild().list; } catch (e) {}
+  var nst = dl.reduce(function (a, d) { return a + d.stages.length; }, 0);
+  h += sec('dg', '⑥ 地監（' + dl.length + ' 個・' + nst + ' 關）', '<p>每個地區／城一個地監；有王或者獨有怪嘅地圖必定出現。每關最多 ' + AB_DG.curate.maxTypes + ' 種怪。關卡等級要求＝該圖普通怪 p75 等級 − ' + AB_EXP.reqLvFromP75 + '（可用 reqLvOverride 覆寫；說話之島周邊＝Lv' + ((AB_DG.reqLvOverride||{}).talking_island||1) + '）。首選地區：' + (AB_DG.firstRegion || '') + '。</p>' +
+    tb(['地監', '關卡（頭目）'], dl.map(function (d) { return [d.n, d.stages.map(function (s) { var b = (s.boss || []).map(function (id) { return (DB.mobs[id] || {}).n || id; }).join('/'); return s.n + (b ? '〔' + b + '〕' : ''); }).join('、')]; })) +
+    '<p>古魯丁地監：4F 頭目四色法師（弱王，目標 Lv40 英雄＋全套安定值初中級裝可挑戰）；7F 頭目死亡騎士（難）。</p>');
+  // 7 EXP
+  h += sec('exp', '⑦ 經驗・等級', '<ul><li>隊伍擊殺 EXP：我方任何棋子（英雄或基本兵）打死怪都計；每隻怪＝原資料 exp ×' + AB_EXP.killMul + '，再乘早期軟曲線（指揮官 Lv&lt;' + AB_EXP.earlySoftLv + '：' + P(AB_EXP.earlySoftMin) + '→100%）。</li><li>指揮官（主角帳號等級）得 100%；每隻上場英雄另得 ' + P(AB_EXP.heroShare) + '（唔扣指揮官）；基本兵冇等級。局內冇等級。</li>' +
+    '<li>英雄永久等級：每級 HP/攻 +' + P(AB_EXP.heroStatPerLv) + '；局外永久星每星再 +' + P(AB_EXP.heroStatPerStar || 0.05) + ' HP/攻。等級上限＝50＋10×永久星（0★=50…5★=100），再同指揮官等級取低。</li>' +
+    '<li>重複招募 → <b>英雄碎片</b>（N' + ((typeof HERO_RARITY!=='undefined'&&HERO_RARITY.N&&HERO_RARITY.N.frag)||5) + '／R' + ((HERO_RARITY&&HERO_RARITY.R&&HERO_RARITY.R.frag)||10) + '／SR' + ((HERO_RARITY&&HERO_RARITY.SR&&HERO_RARITY.SR.frag)||20) + '／SSR' + ((HERO_RARITY&&HERO_RARITY.SSR&&HERO_RARITY.SSR.frag)||30) + '）；喺名冊英雄詳情用英雄碎片<b>突破升星</b>（唔再換職業材料；同專武碎片完全分開）。局內 3 合 1 合成星仍然獨立。永久★≥3 技能倍率＋技能質變。</li>' +
+    '<li>永久星技能倍率（≥3★）：' + [3,4,5].map(function (s) { return s + '★ ×' + (PERM_SKILL_MUL[s] || 1); }).join('、') + '（0–2★ ×1，疊加喺局內合成星倍率之上）。</li>' +
+    '<li><b>英雄永久 3★ 技能質變</b>（ab.20261026f）：唔只係倍率——各職業技能行為會變（例如騎士嘲諷護盾隊友、法師火球附燃、暗影追加一擊等）；4／5★ 再強化。有專屬技能嘅英雄另有覆寫。與專武 3★ 質變獨立疊加。</li>' +
+    '<li>離線：農場關普通怪平均 EXP × ' + AB_EXP.idleKillsPerH + ' 隻/小時 × ' + P(AB_EXP.idleEff) + '；離線 EXP 同樣以隊伍擊殺計，全數畀指揮官；訓練場每級所有英雄每小時得離線隊伍擊殺 EXP 嘅 ' + P(AB_EXP.trainPerLv) + '。</li></ul>');
+  // 8 白名單
+  var HD = (typeof HERO_DB !== 'undefined' && HERO_DB) || {};
+  h += sec('wl', '⑧ 現時開放內容（白名單）', '<ul><li>英雄（' + AB_WL.heroes.length + '）：' + AB_WL.heroes.map(function (id) { var d = HD[id] || {}; return (d.name || id) + (d.rarity ? '（' + d.rarity + '）' : ''); }).join('、') + '</li>' +
+    '<li>套裝（' + AB_SETS.length + '）：' + AB_SETS.map(function (s) { return s.n; }).join('、') + '</li><li>合成（' + RECIPE.length + '）：' + RECIPE.map(function (r) { return r.n; }).join('、') + '</li>' +
+    '<li>怪物（' + AB_WL.mobs.length + '）／頭目（' + AB_WL.bosses.length + '）：' + AB_WL.mobs.concat(AB_WL.bosses).map(function (id) { return (DB.mobs[id] || {}).n || id; }).join('、') + '</li></ul>');
+
+  // v3.10.0 新增章節
+  var O = AB_OFFLINE, EN = AB_ENCH, ES = EN.src;
+  h += sec('v310', '⑨ v3.10.0 改動總覽', '<ul><li>舊掛機戰鬥（自動打怪、地圖練功、舊戰鬥畫面）已停用；自走棋係唯一戰鬥。存檔資料全保留。</li><li>自走棋放置層已唔再有城鎮 NPC：商店／倉庫／委託／交易所／轉生入口已移除；強化／打造／派遣一律喺側欄「營地・鐵匠・派遣」。</li><li>新手禮包：英雄招募券 ' + (typeof HERO_STARTER_TICKETS !== 'undefined' ? HERO_STARTER_TICKETS : 50) + ' 張（舊存檔已領過嘅唔受影響）。</li><li>新手地監：說話之島周邊要求 Lv' + ((AB_DG.reqLvOverride||{}).talking_island||1) + '（首選地區）；打通後自動設農場關。</li><li>早期 EXP：擊殺 ×' + AB_EXP.killMul + '，Lv&lt;' + AB_EXP.earlySoftLv + ' 再乘 ' + AB_EXP.earlySoftMin + '→1.0 軟曲線。</li></ul>');
+  h += sec('off', '⑩ 離線收益・掉落', '<ul><li>以「農場關」（通關頭目後自動設為最高已通關關卡）計算；冇農場關就冇離線收益（營地／派遣照計）。</li><li>上限（小時）按公會等級：' + O.capH.map(function (x) { return 'Lv' + x[0] + '＋ ' + x[1] + 'h'; }).join('、') + '；營地產出同用呢個上限。每公會等級收益 +' + P(O.guildPerLv) + '。</li>' +
+    '<li>每小時：金幣 ' + O.goldPerEffW + '×有效波數、職業材料 ' + O.matsBase + '＋' + O.matsPerEffW + '×有效波數（' + P(O.focusShare) + ' 入「重點營地」）、礦石 ' + O.ore.perH + '、頭目核心 ' + O.cores.perH + '（農場關要有頭目）、招募券 ' + O.tickets.perH + '、💎 ' + O.diamonds.perH + '、局外裝 ' + P(O.gear.perH) + '（最高 T' + O.gear.maxTier + '，' + O.gear.pityH + ' 小時保底）、強化卷 ' + ES.offlinePerH + '。EXP 按農場關怪物 EXP 計（主角＋英雄）。</li>' +
+    '<li>每場：金幣 ' + AB_ECON.run.goldPerWave + '×波、材料 ' + AB_ECON.run.endMatsPerWave + '×波；頭目：材料 ' + AB_ECON.run.bossMats + '、核心 ' + P(AB_ECON.run.bossCoreP) + '、英雄招募券 ' + P(AB_ECON.run.bossTicketP) + '、專武券 ' + P(AB_ECON.run.bossWpnTicketP != null ? AB_ECON.run.bossWpnTicketP : 0.25) + '、💎 ' + P(AB_ECON.run.bossDiaP) + '。擊殺仍有原作龍之鑽石微滴（同舊規則同上限）。</li><li>🎫 每關<b>首次通關</b>送英雄招募券 ' + AB_ECON.firstClearTickets.base + '＋（階級−1）×' + AB_ECON.firstClearTickets.perTier + ' 張（第 1 階 5、第 2 階 10、第 3 階 15…）；重打唔會再送，舊存檔已通關嘅關卡唔補發。</li></ul>');
+  h += sec('ench', '⑪ 強化卷軸', '<ul><li>規則沿用原作：安定值內 100% 成功；超過安定值：武器 +9 前 1/3、+9 起 1/6 成功＋1/6 無事；防具 1/目前強化值；飾品 +0 1/2、之後 1/(強化值×2)；失敗＝裝備消失。</li>' +
+    '<li>安定值：' + Object.keys(EN.safe).map(function (k) { return k + ' +' + EN.safe[k]; }).join('、') + '；局外裝只限英雄著，超安定強化照常。</li>' +
+    '<li>卷軸：' + Object.keys(EN.names).map(function (k) { return EN.names[k]; }).join('、') + '。祝福卷成功 +' + EN.blessGain[0] + '～+' + EN.blessGain[1] + '；保護卷：超安定失敗改為強化值 −1，唔會爆。</li>' +
+    '<li>每 +1：武器 攻 +' + P(EN.bonus.wpn.atk[0]) + '（超安定 +' + P(EN.bonus.wpn.atk[1]) + '）；防具 物防 +' + P(EN.bonus.arm.def[0]) + '／HP +' + P(EN.bonus.arm.hp[0]) + '（超安定 +' + P(EN.bonus.arm.def[1]) + '／+' + P(EN.bonus.arm.hp[1]) + '）；飾品 主屬性 +' + P(EN.bonus.acc.atk[0]) + '（超安定 +' + P(EN.bonus.acc.atk[1]) + '）。</li>' +
+    '<li>來源：通關 ' + P(ES.stageClearP) + '；頭目首通 ' + ES.bossFirst.scrolls + ' 張＋祝福 ' + ES.bossFirst.blessed + '；頭目重複 卷 ' + P(ES.bossRepeat.scrollP) + '／祝福 ' + P(ES.bossRepeat.blessedP) + '／保護 ' + P(ES.bossRepeat.protP) + '；離線每小時 ' + ES.offlinePerH + '；派遣 ' + P(ES.dispatch.scrollP) + '（' + ES.dispatch.rareMin + '+ 英雄 ' + P(ES.dispatch.rareP) + ' 祝福／保護）；鐵匠每級每日 ' + ES.smithPerLv + ' 張；商店 ' + ES.shop.gold.price + '💰（每日 ' + ES.shop.gold.daily + '）、祝福／保護 ' + ES.shop.tickets.price + '🎫（每週各 ' + ES.shop.tickets.weekly + '）。</li></ul>');
+  var KP = KNIGHT_POOL; h += sec('knight', '⑫ 騎士技能池', tb(['技能', '來源', '效果', '使用者'], Object.keys(KP).filter(function (k) { return k !== 'assign'; }).map(function (k) { var who = Object.keys(KP.assign).filter(function (a) { return KP.assign[a] === k; }).map(function (a) { return a === 'basic' ? '基本騎士兵' : (((typeof HERO_DB !== 'undefined' && HERO_DB[a]) || {}).name || a); }).join('、'); return [KP[k].n, KP[k].src, KP[k].d, who || '（預留畀之後嘅騎士英雄）']; })));
+  h += sec('healer', '⑬ 治療定位（冇第 9 職業）', '<ul><li>水屬性妖精技能改為「治療＋淨化」：治療最低 HP 隊友 ' + BAL.sk.waterHeal + '×攻，解除暈／燃燒／減速／Miss，再射一發 0.5× 水箭。</li>' +
+    '<li>法師英雄分輸出型同治療型：' + Object.keys(UNIQUE).filter(function (k) { return UNIQUE[k].healer; }).map(function (k) { return UNIQUE[k].n + '（' + ((((typeof HERO_DB !== 'undefined' && HERO_DB[k]) || {}).name) || k) + (UNIQUE[k].hidden ? '，未開放' : '') + '）'; }).join('、') + '。潮汐聖詠＝全隊 ' + BAL.sk.soraHeal + '×攻＋淨化最低 HP 隊友。</li>' +
+    '<li>防拖局：全部治療 ×' + BAL.heal.mul + '；戰鬥超過 ' + BAL.heal.decayT + ' 秒後治療 ×' + BAL.heal.decayMul + '（重傷）。</li></ul>');
+  h += sec('lobby', '⑭ 公會大廳・乾淨放置層', '<ul><li>大廳：中間係英雄立繪（優先 assets/hero-full/；冇就用肖像）；左右箭咀／滑動切換，撳一下睇詳情；左側入口：地監／營地（鐵匠＋派遣合併）／招募／圖鑑／百科／戰績；紅點＝有嘢可以收／升級。未有英雄撳中央提示會去招募。</li><li><b>自走棋放置層已唔再有城鎮 NPC</b>：底部舊碼頭同舊公會掣已移除；唔再經大廳開 interactNPC 舊商人。</li><li>強化／打造／派遣用左側「🏕 營地」或底部「🏰 據點」；英雄換局外裝喺「🎫 招募」名冊。</li><li>底部：上次／農場、🌙 領離線、🏰 據點、⚔ 出發、🎯 重點營地。舊遊戲左右欄（#col-left／#col-right）同戰鬥日誌已隱藏，中央大廳撐滿。</li></ul>');
+  h += sec('layout', '⑮ 棋局畫面・棋子詳情', '<ul><li>佈局（聯盟戰棋式）：上＝回合／關卡；左欄＝羈絆、開打／主角技能、戰報；中＝棋盤；右欄＝棋子資料；下＝裝備欄＋後備欄（' + BENCH_N + ' 格），最底 5 格酒館（左金幣／上場數，右刷新 ' + chaReroll() + '💰）。窄螢幕會改為上下排列。</li>' +
+    '<li>棋子詳情：滑過或者點棋盤／後備欄任何棋子（敵人都得），右欄會列出最終數值（HP、攻擊、攻速、射程、物防、魔防、能量、爆擊、技能倍率；已計星級、營地、局外裝、套裝同場內裝備）。</li>' +
+    '<li>技能：顯示技能名、效果同實際倍率（星級×' + STAR_MUL[2] + '/' + STAR_MUL[3] + '、主角 ×1.3、英雄 ×' + BAL.heroSk + '、營地、技能加成）。</li>' +
+    '<li>裝備：場內裝備（最多 ' + ITEM_SLOTS + ' 件）逐件列加成；局外套裝逐件列 T 級、強化 +N 同實際加成（已計強化同鐵匠），湊夠件數會列出套裝效果；超出稀有度上限嘅會標示唔生效。裝備欄每件都直接顯示效果，滑過會喺下面列全文。</li></ul>');
+  h += sec('tft', '⑯ 操作（聯盟戰棋式）', '<ul><li>佈局：上＝回合／關卡資訊；左＝羈絆（滑過睇效果）、開打、戰報；中＝棋盤；右＝棋子資料（點／滑過棋子）；下＝裝備欄＋後備欄，再下面係 5 格酒館，左邊金幣同上場數，右邊刷新。</li>' +
+    '<li>快捷鍵：D 刷新酒館、E 賣出滑鼠指住嘅棋子、W 將指住嘅棋子上場／落後備、Space 暫停。</li>' +
+    '<li>賣出：棋盤或者後備欄任何一隻都可以賣（拖去酒館位置會顯示賣價；或者揀中再撳「賣出已選」）。賣價＝買入總價 ×80%（最少 1💰），身上場內裝備退返裝備欄。戰鬥中只可以賣後備欄。</li>' +
+    '<li>滿位買嘢：棋盤同後備欄都滿嘅時候撳酒館卡唔會強迫賣棋盤；佢會標住嗰張卡，等你自己揀賣邊隻（棋盤或後備），賣完自動買入。如果買咗會湊夠 3 隻同星（計棋盤＋後備，連埋酒館入面同款一齊買），滿位都照買，一次過買齊並即刻合成。上場數（例如 4/4）係公會等級決定嘅上限；棋盤有空格都唔代表可以再放。</li>' +
+    '<li>拖曳：後備欄棋子可以拖上棋盤（拖到我方棋子上面＝交換）；裝備可以拖去棋盤或後備欄棋子。上場上限由公會等級決定（冇聯盟戰棋嘅買經驗／F 鍵）。</li></ul>');
+  h += sec('fix1022', '⑰ 大廳／結算修正', '<ul><li>每局完咗會彈出結算：「🏠 返回大廳」或者「↻ 再打一局」。揀職業畫面左上角有「🏠 返回大廳」；同一時間只會有一個揀職業畫面。</li><li>棋局右上角「🏠 返回大廳」隨時可以撳；打到一半會先問你確認（放棄今局，已攞獎勵照計）。</li><li>左側「🏕 營地」同底部「🏰 據點」都開職業營地・鐵匠・派遣（合併入口）。</li><li>ab.20261026a／b：NPC 碼頭移除；舊左右欄／戰鬥日誌隱藏；右側功能欄收走；離線改底部「領離線」。</li></ul>');
+  h += sec('nomain', '⑱ 主角唔再上場', '<ul><li>主角唔再以棋子身份上棋盤，亦冇「主角技能 [Q]」；改為上場上限全部 +1：' + AB_BOARD.steps.map(function (x) { return '公會 Lv' + x[0] + '＋ ' + x[1] + ' 隻'; }).join('、') + '（最多 ' + AB_BOARD.max + '）。</li><li>失敗條件改為：我方棋子全滅。</li><li>魅力（王族）嘅全隊攻擊加成、酒館刷新折扣、英雄出現率照舊以全隊被動計。</li><li>舊有主角升級學技能（技能分頁、隊伍技能設定、「魔法傳授者」NPC）喺自走棋版已移除。</li></ul>');
+  h += sec('heropage', '⑲ 英雄頁（名冊）', '<ul><li>大廳「招募」頁直接顯示你擁有嘅英雄頭像格（頭像、名、稀有度、職業、等級、星）。</li><li>點頭像：上面展開詳情：全身立繪、自走棋最終數值（已計等級、局外裝、套裝、鐵匠）、技能效果同倍率、已穿局外裝逐件加成；「🎒 換局外裝」直接用套裝背包穿／卸。</li><li>「招募事務所（抽卡）」掣保留喺頁頂。</li></ul>');
+  h += sec('excl', '⑳ 專武（SR／SSR・ab.20261026f）', '<ul><li>每個 SR／SSR 英雄有一把專屬武器（專武）。N／R 冇專武。</li><li><b>獲取</b>：大廳「⚔ 專武轉蛋」用專武券抽取（頭目約 25% 掉專武券；首次通關送約一半招募券數量嘅專武券；亦可用金幣買／3 張英雄招募券換 1 張專武券）。</li><li><b>唔再</b>喺局內酒館／頭目掉落專武。</li><li><b>碎片分開</b>：重複抽專武 →「專武碎片」（存喺該把武器）；英雄重複 →「英雄碎片」。兩者<b>唔互通</b>，唔可以互相兌換。</li><li>專武升星：專武碎片突破，費用約 15→250（SSR ×1.35），上限 5★。屬性隨星略升。</li><li><b>3★ 起技能質變</b>（同英雄永久 3★ 質變可疊加）：戰鬥行為同詳情說明會變。4／5★ 再強化。</li><li>擁有後預設裝備喺對應英雄；可喺名冊／專武頁卸下。</li><li>招募頁「⚔ 專武庫」一覽擁有專武同專武碎片（篩選：全部／已裝備／未滿星）。</li></ul>');
+  h += sec('starup', '㉑ 酒館升星提示', '<ul><li>酒館卡如果買咗會湊夠 3 隻同星（計棋盤＋後備欄，連環升星都計），張卡會發金色／彩虹光，角落顯示「⬆★★」或「⬆★★★」（升到幾多星）。</li><li>已經有 1 隻同款（1★）嘅卡會有淡色外框，提示湊緊對。</li><li>滑鼠指住酒館卡時，棋盤／後備欄上會一齊合成嘅棋子都會發光。</li><li>合成升星嗰下，升星嘅棋子會爆一下星光。</li></ul>');
+  h += sec('stats', '㉒ 表現統計・戰績', '<ul><li>棋局左欄「📊 表現統計」：每隻我方棋子嘅傷害（物理／魔法／真傷分色）、承受（含護盾吸收）、治療；戰鬥中即時更新，打完保留到下一場開打。滑過橫條睇擊殺、技能施放次數。</li><li>結算畫面列出全局累計表現，第一名標 ⭐ MVP。</li><li>戰績：大廳「📜 戰績」掣，保存最近 30 局：時間、地監／關卡、去到第幾波、勝負、陣容（頭像＋星）、MVP、獎勵；頂部顯示總場數、勝率同每個地監最佳紀錄。</li><li>護盾「施放者」暫時唔計入治療欄，護盾只以「承受方吸收」計。</li></ul>');
+  h += sec('shophover', '㉓ 酒館卡預覽', '<ul><li>滑鼠指住酒館卡：右欄「棋子資料」會顯示「🛒 預覽（未買）」：費用、職業羈絆（上場人數變化同下一個門檻）、元素、最終數值、技能效果同倍率；英雄會列出專屬裝備同已穿局外裝加成。</li><li>如果買咗會升星，預覽直接用升星後嘅星級計數值。滑走就返回之前揀中／指住嘅棋子。</li><li>卡本身亦有簡短提示（數值＋技能）。</li></ul>');
+  h += sec('recipe', '㉔ 元件合成表', '<ul><li>滑鼠指住或者拖住裝備欄嘅元件：右欄顯示呢件元件嘅所有合成（＋另一件 → 成品、效果），而家整得（裝備欄或者棋子身上已有另一件）會綠色標「✔ 而家整得」，未解鎖會標「🔒 鐵匠 Lv」。</li><li>拖住元件經過棋子：右欄頂會提示放手會發生咩（合成咩、裝上第幾格、格滿、專屬唔啱）。</li><li>裝備欄「⚒ 合成表」掣：全部配方一覽。</li></ul>');
+  h += sec('clspool', '㉕ 自選帶出場英雄', '<ul><li>開局揀 4 個職業之後，下面會出你擁有、屬於呢 4 職業嘅英雄頭像（SSR＞SR＞R，再按等級排）；每張職業卡顯示「英雄 N」。</li><li>最多揀 4 隻，<b>可以少過 4 隻或者唔揀</b>；酒館英雄格只會出你揀嘅英雄，揀 0 隻就全部係基本兵。</li><li>「自動揀」：揀稀有度最高、等級最高嘅，<b>永遠唔會自動揀 R</b>；唔會強制加任何英雄。</li><li>會記住上次揀嘅職業同英雄。</li></ul>');
+  h += sec('fame', '㉖ 名聲・公會等級・上陣人數', '<ul><li>自走棋而家會俾<b>名聲</b>（公會名聲，同委託板共用）：每贏 1 波 +' + AB_FAME.wave + '；擊倒頭目 +' + AB_FAME.boss + '；通關一關 +' + AB_FAME.clearRepeat + '，<b>首次通關 +' + AB_FAME.clearFirst + '</b>；離線每小時 +' + AB_FAME.offPerH + '（跟離線上限）。關卡階數每高 1 階 +' + Math.round(AB_FAME.tierMul * 100) + '%。</li><li>公會等級門檻：' + GD_FAME_LV_SAFE().map(function (x, i) { return 'Lv' + (i + 1) + ' ' + x; }).join('、') + '。</li><li>上陣人數：' + AB_BOARD.steps.map(function (x) { return 'Lv' + Math.max(1, x[0]) + '→' + x[1] + ' 隻'; }).join('、') + '。升級會彈「🎉 公會升級！上陣 +1」。</li><li>大廳同棋局頂欄顯示公會 Lv、名聲 x/下一級、而家同下一級上陣人數；結算同戰鬥紀錄都會列名聲。</li><li>大約節奏（每日 1 小時手動＋8 小時離線估算）：Lv3（5 隻）約 1–2 日、Lv6（6 隻）約 1–2 星期、Lv10（7 隻）約 1–2 個月。</li></ul>');
+  h += sec('shopitem', '㉗ 酒館裝備元件', '<ul><li>酒館有時會出 1 張<b>裝備元件</b>卡（唔分職業），每張 3💰；佈陣同戰鬥中都可以買，直接入裝備欄。</li><li>背包滿（' + STASH_MAX + ' 格）或者金幣少過 3 時張卡會變灰，寫「背包滿」。</li><li>滑鼠指住元件卡：右欄顯示呢件元件嘅合成表（同裝備欄一樣）。</li></ul>');
+  h += sec('gddisp', '㉘ 公會委託板派遣', '<ul><li>委託板派遣同「自動編成」會用你擁有嘅英雄（名冊入面嘅英雄）做成員；揀好英雄撳「派遣」就會出發，唔會再彈「成員資料已變更」。</li><li>成員頭像：英雄用佢自己嘅肖像；冇肖像就用職業圖示。</li></ul>');
+  h += sec('origdrop', '㉙ 原作怪物掉落（製作材料）', '<ul><li>自走棋每殺一隻敵方怪，都會用返原作嗰隻怪嘅掉落表（MOB_DROPS、黑暗妖精武器／水晶、龍騎士、戰士印記、記憶水晶表，同埋銀礦石規則）各自判定，物品直接入背包（同原作一樣），製作 NPC 嘅材料就係咁嚟。</li><li>材料、藥水等：原機率 ×' + AB_ECON.mobDropMul + '；武器／防具／飾品／遺物：原機率 ×' + AB_ECON.mobGearDropMul + '。試煉道具照原作規則（未接試煉唔掉）。</li><li>戰報每波結算一次：「📦 原作掉落：…」（裝備粗體）。示範模式唔掉。</li><li>離線：按農場關嘅怪，以每小時 ' + AB_ECON.offWavesPerH + ' 波 × ' + AB_ECON.offMobsPerWave + ' 隻 × ' + Math.round(AB_ECON.offDropShare * 100) + '% 計算材料（唔包裝備）。</li></ul>');
+  h += sec('nosrc', '㊙ 製作材料來源補充', '<ul><li>💎 <b>元素石</b>：妖精森林地區關卡（妖精森林周邊、眠龍洞穴 1–3 樓）每殺 ' + AB_EFOREST_STONE + '%×' + AB_ECON.mobDropMul + '（≈' + (AB_EFOREST_STONE * AB_ECON.mobDropMul) + '%，每小時約 ' + Math.round(300 * AB_EFOREST_STONE * AB_ECON.mobDropMul / 100) + ' 粒）；農場設喺嗰度離線都有。賽巴斯、娜魯帕、妖精 NPC 用。</li><li>布料（白／紅／藍）：原作奇岩「愛弗特」布料商人；騎士面甲：原作奇岩「范吉爾」防具商人（自走棋大廳已唔再開舊商店 NPC；暫靠原作掉落／之後再補來源）。</li><li><b>暫未有掉落來源（之後加）</b>：' + Object.keys(AB_NO_SRC).filter(function (k) { return !/pride_pass_[2-9]/.test(k); }).map(function (k) { var nm = (DB.items[k] || {}).n || k; if (/pride_pass/.test(k)) nm = '傲慢之塔傳送符 11F–91F'; var nn = AB_NO_SRC[k]; try { Object.keys(DB.towns || {}).forEach(function (t) { (DB.towns[t].npcs || []).forEach(function (x) { if (x && x.id === AB_NO_SRC[k]) nn = x.n || nn; }); }); } catch (e) {} return nm + '（' + nn + '）'; }).join('、') + '。製作介面會喺呢啲材料旁邊標示。純白的萬能藥暫時只可以經洗點回收。</li></ul>');
+  h += sec('wpngacha', '㉟ 專武轉蛋・碎片（ab.20261027a）', '<ul><li>入口：大廳左側「⚔ 專武」或招募頁「專武轉蛋」。</li><li>池：已開放白名單內嘅 SR／SSR 專武；權重約 SR 80%／SSR 20%，SSR 保底 40 抽。</li><li>重複 → 該把專武嘅「專武碎片」（SR +15／SSR +25），只用嚟專武突破。</li><li>英雄碎片只用嚟英雄突破；介面會分開標「英雄碎片」「專武碎片」。</li><li><b>專武十連／單抽會彈結果</b>（就算今 session 未抽過英雄都睇到）；大廳招募頁有「⚔ 專武庫」可睇擁有專武、星、專武碎片、已裝備與否。</li></ul>');
+  h += sec('gachares', '㉚ 招募結果彈窗', '<ul><li>單抽／十連之後會彈出結果清單：每隻英雄嘅頭像、名、稀有度（顏色：N 灰／R 藍／SR 紫／SSR 金）、職業。</li><li>SSR、SR 排最前並且發光；第一次抽到標「NEW」入名冊；重複會寫轉咗幾多碎片（N 5／R 10／SR 20／SSR 30，加落嗰隻英雄度）。</li><li>專武轉蛋同樣彈結果（專武名、對應英雄、NEW／重複→專武碎片 +N）；SSR 排頭。</li><li>撳「確定」或者彈窗外面關閉。</li></ul>');
+  h += sec('gearsets', '㉛ 局外裝 T1–T5・套裝一覽', '<p><b>套裝背包用法（新）：</b>背包按套裝分組（T 級高嘅排先），每組一行顯示套裝名、T 級、擁有部位 x/6 同件數效果；每件裝備係一格細卡（部位圖示、+強化、邊個著緊）。滑鼠指住睇簡介，撳一下喺上面詳情框睇完整說明，再喺度強化／揀裝備者（英雄頁就係穿戴／卸下）；再撳一次或 ✕ 收埋。上面篩選：全部／未穿／各部位／T 級。</p><p>每件局外裝＝部位基礎數值 × T 級 × 強化倍率 × 鐵匠加成（每級 +' + Math.round(SMITH.gearPerLv * 100) + '%）。同一隻<b>英雄</b>穿同一套裝夠件數就觸發效果（超出稀有度 T 上限嘅件唔計；基本兵／士兵唔著局外裝）。滑鼠指住背包件會顯示詳細；營地背包同英雄換裝頁每件下面都有寫。T4/T5 而家未開放（要新地監材料）。</p>' + abSetTableHtml());
+  h += sec('cleanlobby', '㉜ 乾淨放置層（ab.20261026b）', '<ul><li>自走棋 AB_ONLY 大廳：左側地監／營地（鐵匠＋派遣合併，派遣／可升級有紅點）／招募／圖鑑／百科／戰績；底部上次／農場＋🌙 領離線、🏰 據點、⚔ 出發、🎯 重點營地；中間英雄立繪。</li><li>已移除：NPC 碼頭、大廳右側功能欄、舊公會（只開舊 clan tab）掣、經 openHub／interactNPC 入舊城鎮商人。</li><li><b>隱藏舊左右欄</b>（#col-left、#col-right）同戰鬥／世界日誌，#col-center 撐滿；HTML 結構保留唔刪。</li><li>舊 DB.towns NPC 資料同存檔結構保留唔郁；只係 UI 冇入口。</li></ul>');
+  h += sec('permqual', '㉞ 英雄永久星技能質變（ab.20261026f）', '<ul><li>名冊英雄永久星 ≥3：技能說明出現「✦ 英雄N★質變」；戰鬥施放時有額外效果（職業預設 + 專屬覆寫）。</li><li>同時裝備 ≥3★ 專武：再疊「⚔ 專武N★質變」。</li><li>兩者同局內 TFT 合成星、永久星倍率一齊計。</li></ul>');
+  h += sec('codex', '㉝ 英雄圖鑑（ab.20261026c）', '<ul><li>大廳左側「📒 圖鑑」：對照 HERO_DB 同白名單，睇邊啲<strong>已開放</strong>英雄仲未抽到。</li><li>摘要：已開放 X／Y 已擁有、未抽到 Z（琥珀色）。</li><li>篩選：全部已開放｜未抽到｜已擁有｜按職業｜按稀有度（SSR→N）；可勾「顯示未開放」（灰階剪影＋鎖＋名「？？？」）。</li><li>擁有判定：帳號名冊 <code>player.heroes</code> 嘅 raw defId（唔用示範名冊、唔因白名單過濾而漏計）。</li><li>已開放未擁有唔好同「未開放」撈亂——未開放唔入抽卡池，預設唔算欠收集。</li><li>點已開放格可睇 blurb／lore／技能（未抽到都睇得）。</li></ul>');
+  return '<div class="ab-h">📖 自走棋小百科 · v3.10.0 <button class="ab-btn ab-mini" id="ab-wiki-x">✕</button></div>' + h;
+}
+function openWiki() { var old = document.getElementById('ab-wiki'); if (old) { old.remove(); return; }
+  var box = el('div', 'ab-wiki'); box.id = 'ab-wiki'; box.innerHTML = abWikiHtml(); document.body.appendChild(box);
+  box.querySelector('#ab-wiki-x').onclick = function () { box.remove(); }; }
+window.abOpenWiki = openWiki;
+window.abEnch = { enchant: gearEnchant, buy: enShopBuy, rate: enRate, info: enInfo, cap: enCap, scrolls: scrolls, mul: enMul };
+window.abHome = { open: openAb, pick: function () { openAb(); openClassPick(); }, camps: function () { openCampUi(null); }, campsIn: function (host) { openCampUi(host); }, wiki: openWiki, collectIdle: collectIdle, collectCamps: collectCamps, dispatchCollect: dispatchCollect,
+  offCap: abOffCap, offPreview: function () { var ab = econ(); if (!ab || !hasPlayer() || !ab.idleTs) return null; var fs = ab.dg && ab.dg.farm && dgBuild().byV[ab.dg.farm]; var h = Math.min(abOffCap(), Math.max(0, (Date.now() - ab.idleTs) / 3600000)); if (!fs && (ab.best || 0) > 0) fs = { n: '冒險之路', effW0: ab.best, tier: 1, boss: [] }; return fs ? abOfflineCalc(h, fs) : { h: h, noFarm: true }; },
+  setFocus: function (c) { var ab = econ(); if (ab) { ab.focus = CLS[c] ? c : null; abSave(); } }, state: function () { return econ(); }, mainPor: function () { try { return mainInfo().por; } catch (e) { return ''; } }, mainInfo: function () { try { return mainInfo(); } catch (e) { return null; } }, classPor: classPor, CLS: CLS, campLv: campLv, matN: matN, dgBuild: dgBuild, guildLv: guildLv, fameTxt: function () { return abFameTxt(); }, fameInfo: function () { return abFameInfo(); }, heroes: function () { return ownedHeroes(); }, ownedDefIds: ownedDefIds, wlHero: wlHero, heroPor: function (h) { try { return heroPor(h); } catch (e) { return ''; } } };
+window.abDebug = { abFame: abFame, abFameInfo: abFameInfo, AB_FAME: AB_FAME, abEarlySoft: abEarlySoft,  S: S, equipItem: equipItem, mkComp: mkComp, detailHtml: detailHtml, buy: buy, sell: sell, render: render, boardMax: boardMax, dgExpLv: dgExpLv, AB_GEAR_DROP: AB_GEAR_DROP, abDropRoll: abDropRoll, smithWpn: smithWpn, AB_EXP: AB_EXP, abGainHeroExp: abGainHeroExp, abIdleExp: abIdleExp, dgReqLv: dgReqLv, dgBuild: dgBuild, dgCoverage: dgCoverage, dgStart: dgStart, dgStage: dgStage, dgEffW: dgEffW, dgUnlocked: dgUnlocked, AB_DG: AB_DG, gearEquip: gearEquip, bagStats: bagStats, grantGear: grantGear, rollGear: rollGear, AB_GEAR_SRC: AB_GEAR_SRC, gearCraft: gearCraft, gearBoss: gearBoss, gearRunEnd: gearRunEnd, AB_ECON: AB_ECON, runPayout: runPayout, bossReward: bossReward, collectIdle: collectIdle, collectCamps: collectCamps, dispatchStart: dispatchStart, dispatchCollect: dispatchCollect, shardConvert: shardConvert, matN: matN, simBattle: simBattle, simWave: simWave, CLS_SYN: CLS_SYN, COMP: COMP, RECIPE: RECIPE, mkUnit: mkUnit, buy: buy, reroll: reroll, sell: sell, rollShop: rollShop, basicHero: basicHero, setBasic: setBasic, guildLv: guildLv, CLS: CLS, tick: tick, startFight: startFight, toPlace: toPlace, mobPool: mobPool, castSkill: castSkill, ensureAb: ensureAb, stageOf: stageOf, stageWeather: stageWeather, setWeather: function (w) { S.wxOverride = w; render(); }, AB_SETS: AB_SETS, setOfItem: setOfItem, setMembers: setMembers, activeSyn: activeSyn, eleMul: eleMul, campUp: campUp, gainItem: function (k) { gainItem(k && EXCL[k] !== undefined ? mkExcl(ownedHeroes().filter(function (h) { return h.defId === k; })[0]) : mkComp(k || 'sword'), 'debug：'); render(); }, equipItem: equipItem, smithUp: smithUp, setArmory: setArmory, heroGear: heroGear, itemTier: itemTier, stashCombine: stashCombine, recipeFor: recipeFor, campLv: campLv, newRun: newRun,
+  simulate: function (sec) { var n = Math.round(sec * 1000 / TICK); for (var i = 0; i < n && S.phase === 'fight'; i++) tick(TICK / 1000); render(); return { phase: S.phase, win: S.lastWin, wave: S.wave, p: alive('p').length, e: alive('e').length }; } };
+})();

@@ -409,6 +409,10 @@ function killMob(idx) {
         // 🔧 金幣不再逐殺輸出於系統日誌；改由 gameLoop 累積、flushAwaySummary 以「掛機期間獲得總金幣」統一顯示。
 
     }
+    // 💎 v3.8.126 掛機微滴龍鑽（0.15%・日限 20・共用）
+    if (!_kbNoReward) {
+        try { if (typeof DE !== 'undefined' && DE && typeof DE.tryKillDrip === 'function') DE.tryKillDrip(mob); } catch (e) {}
+    }
     // 🦴 v3.1.71 用戶要求：取消「怪物直接掉落席琳遺骸」——遺骸唯一取得管道＝席琳結晶（NPC 伊奧兌換）／菈克希絲拆分舊詞綴裝備。
     //    原掉落機率公式已移轉到下方「席琳結晶」掉落（見該區塊）。
     // 🐾 v3.2.17 誘捕捕捉：身上有對應誘捕狀態且擊殺對應動物 → 寵物保管獲得基本等級寵物並失去該狀態

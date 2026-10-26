@@ -24,7 +24,13 @@ function portraitsForCls(cls) { return PORTRAIT_DB.filter(p => p.cls === cls); }
 function portraitEntryOf(p) {
     if (!p || !p.portraitId) return null;
     let e = PORTRAIT_BY_ID[p.portraitId];
-    return e || null;   // v3.8.113：不限職業
+    if (e) return e;
+    // grok:<filename> → assets/portraits/grok-library/<filename>（未入 PORTRAIT_DB 亦可顯示）
+    if (String(p.portraitId).indexOf('grok:') === 0) {
+        let g = String(p.portraitId).slice(5).replace(/\\/g, '/').split('/').pop();
+        if (g) return { id: p.portraitId, cls: p.cls || null, name: g, file: 'assets/portraits/grok-library/' + g, thumb: 'assets/portraits/grok-library/' + g, wide: true, grok: true };
+    }
+    return null;   // v3.8.113：不限職業
 }
 (function () {
     const _origName = charPortraitName, _origUrl = charPortraitUrl;
@@ -90,3 +96,18 @@ function openPortraitPicker(tab) {
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addBtn); else addBtn();
     setInterval(_applyStatusPortraitPos, 1500);
 })();
+
+// ab.20261023a：英雄頭像統一入口——招募結果／英雄頁／自走棋（酒館卡、棋子、板凳）／派遣全部用呢個，同一英雄同一張圖。
+// 優先：英雄專屬立繪 assets/hero-full/<defId>.jpg → 英雄嘅 portraitId 立繪 → 職業預設圖。
+var HERO_FULL_IDS = ["hero_aurelia_royal", "hero_brenna_warrior", "hero_celine_royal", "hero_cinder_dragon", "hero_echo_illusion", "hero_ignara_dragon", "hero_ignis_mage", "hero_isolde_knight", "hero_morgana_illusion", "hero_nyx_dark", "hero_petra_knight", "hero_pyria_elf", "hero_skaldi_warrior", "hero_sora_mage", "hero_terrae_elf", "hero_umbra_dark"];
+function heroPortraitUrl(h) {
+    if (!h) return '';
+    var db = (typeof HERO_DB !== 'undefined' && HERO_DB) || window.HERO_DB || {};
+    var def = h.defId || (db[h.id] ? h.id : null), d = (def && db[def]) || {};
+    if (def && HERO_FULL_IDS.indexOf(def) >= 0) return 'assets/hero-full/' + def + '.jpg';
+    var pid = h.portraitId || d.portraitId, cls = h.cls || d.cls;
+    try { var e = pid && portraitEntryOf({ portraitId: pid, cls: cls }); if (e) return e.file || e.thumb; } catch (x) {}
+    try { if (typeof charPortraitUrl === 'function') return charPortraitUrl({ cls: cls, avatar: null }); } catch (x) {}
+    return '';
+}
+window.heroPortraitUrl = heroPortraitUrl;

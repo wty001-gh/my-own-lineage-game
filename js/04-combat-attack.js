@@ -799,6 +799,7 @@ function procFreeMagicSkill(t, skId, en, areaHit, sourceItem, illusionRecoverMp)
     if (total > 0) total = Math.max(1, Math.floor(total * equipSkillDmgMult(sk, skId)));   // 🏺 遺物 特定技能傷害倍率（觸發路徑：冰之女王魔杖觸發的冰錐等亦吃暴走兔胡蘿蔔 ×1.5）
     if (total > 0) total = illusionMagicDmg(total, true, illusionRecoverMp !== false);   // 🔮 全體免費施法只在第一個目標回MP；5件仍逐目標生效
     if (total > 0 && typeof neApplyOutgoingAmp === 'function') { try { total = neApplyOutgoingAmp(total, player, t); } catch (e) {} }   // 🪦 元素／掌握／血宴（免費魔法·同 castSkill）
+    if (typeof tlApplyOutgoing === 'function') { try { total = tlApplyOutgoing(total, player, t, 'magic'); } catch (e) {} }   // 🧭 v3.8.127 天賦／便當
     if (total > 0) {
         t.curHp -= total; if (typeof terrorVisageOnDamage === 'function') terrorVisageOnDamage(t, total, 'magic'); t.justHit = (sk.ele && sk.ele !== 'none') ? sk.ele : 'magic'; t._spellHurt = true; mobWake(t);   // 🎬 v3.0.14 法術傷害→hurt(含頭目)；🌅 巨大骷髏：免費觸發法術視為魔法
         if(typeof playSpellFx === 'function') { try { playSpellFx(sk.n, t); } catch(e){} }   // ⚡ v2.7.16 娃娃/寵物免費施放(如娃娃克特/聖伯納→極道落雷)也疊法術特效

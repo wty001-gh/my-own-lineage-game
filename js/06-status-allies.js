@@ -949,6 +949,7 @@ function allyQiguAttack(ally, t, wpn) {
     dmg = Math.max(1, Math.floor(dmg * royalAllyMult()));   // 👑 王族魅力加成：傭兵造成傷害 ×(1+魅力/200)
     if (typeof neApplyIgnoreDr === 'function') { try { dmg = neApplyIgnoreDr(dmg, ally); } catch (e) {} }   // 🪦 真實死亡（奇古獸·讀傭兵自身）
     if (typeof neApplyOutgoingAmp === 'function') { try { dmg = neApplyOutgoingAmp(dmg, ally, t); } catch (e) {} }   // 🪦 元素／掌握心臟傷害／血宴（奇古獸無爆擊骰）
+    if (typeof tlApplyOutgoing === 'function') { try { dmg = tlApplyOutgoing(dmg, ally, t, 'magic'); } catch (e) {} }   // 🧭 v3.8.127 天賦／便當（傭兵）
     t.curHp -= dmg; t.justHit = (ele !== 'none') ? ele : 'magic';
     if (t.st && t.st.mrhalf > 0) t.st.mrhalf = 0;
     mobWake(t);
@@ -999,6 +1000,7 @@ function allyAttackOnce(ally, _arrowDelay) {   // 🏹 v3.2.14 _arrowDelay(選�
         dmg = Math.max(1, Math.floor(dmg * allyRlFuryMult(ally)));   // 🔴😡 v2.6.18 紅獅5×狂怒5造傷（法師光箭普攻·原全無·鏡像玩家 procLightArrow）
         dmg = Math.max(1, Math.floor(dmg * royalAllyMult()));   // 👑 王族魅力加成：傭兵造成傷害 ×(1+魅力/200)
         if (typeof neApplyOutgoingAmp === 'function') { try { dmg = neApplyOutgoingAmp(dmg, ally, t); } catch (e) {} }   // 🪦 v3.8.86
+        if (typeof tlApplyOutgoing === 'function') { try { dmg = tlApplyOutgoing(dmg, ally, t, 'magic'); } catch (e) {} }   // 🧭 v3.8.127 天賦／便當（傭兵）
         t.curHp -= dmg; if (typeof moonShatterOnDamage === 'function') moonShatterOnDamage(ally, t, dmg); t.justHit = 'magic'; mobWake(t);
         if (typeof reflectWallOnDamage === 'function') reflectWallOnDamage(t, dmg, 'magic', ally);   // 🌑 v3.4.14 血壁空間：法師光箭普攻主擊＝魔法反射（普攻主擊反射·玩家傭兵一致）
         if (t.curHp > 0 && ally._setIron5 && typeof ironGuardTaunt === 'function' && ironGuardTaunt(t, ally)) logCombat(`<span class="font-bold" style="color:#93c5fd;text-shadow:0 0 6px #3b82f6;">【協力·${ally._allyName}·鐵衛 5/5】</span>嘲諷 <span class="${getMobColor(t.lv)}">${getMobDisplayName(t)}</span>！（3 秒）`, 'player-special');
@@ -1121,6 +1123,8 @@ function allyAttackOnce(ally, _arrowDelay) {   // 🏹 v3.2.14 _arrowDelay(選�
         if (ally.d && ally.d.instakillFull && t.curHp === t.hp) { let _rif = mapState.mobs.findIndex(m => m && m.uid === t.uid); if (_rif !== -1 && tryInstakill(t, { p: ally.d.instakillFull, tag: null }, `【協力·${ally._allyName}】隱蔽的死亡草葉`, _rif)) return; }   // 🏺 v3.1.76 隱蔽的死亡草葉（傭兵）：命中滿血非BOSS怪機率即死（鏡像玩家 js/04:72）
         if (typeof neApplyIgnoreDr === 'function') { try { dmg = neApplyIgnoreDr(dmg, ally); } catch (e) {} }   // 🪦 v3.8.86 真實死亡
         if (typeof neApplyOutgoingAmp === 'function') { try { dmg = neApplyOutgoingAmp(dmg, ally, t); } catch (e) {} }
+        if (typeof tlApplyOutgoing === 'function') { try { dmg = tlApplyOutgoing(dmg, ally, t, 'phys'); } catch (e) {} }   // 🧭 v3.8.127 天賦／便當（傭兵）
+        if (_allyInTriple && _allyTripleSk) { if (_allyTripleSk.skillAddDmg) dmg = Math.max(1, dmg + _allyTripleSk.skillAddDmg); if (_allyTripleSk.bossMult && t.boss) dmg = Math.max(1, Math.floor(dmg * _allyTripleSk.bossMult)); }   // 🧭 v3.8.127 三重矢·改 每箭 +3（同玩家 07 skillAddDmg）
         try { if (typeof cardStarDmgMult === 'function') dmg = Math.max(1, Math.floor(dmg * cardStarDmgMult(t, ally))); } catch (e) {}   // 🎴 v3.8.97 升星傷害（傭兵吃隊長圖鑑）
         try { if (typeof weDmgMult === 'function') dmg = Math.max(1, Math.floor(dmg * weDmgMult(false))); } catch (e) {}
         try { if (typeof wxPhysDmgMult === 'function') dmg = Math.max(1, Math.floor(dmg * wxPhysDmgMult(ally))); } catch (e) {}   // 🌦️ v3.8.99 天氣：武器屬性傷害增減（傭兵）
@@ -1339,8 +1343,10 @@ function allyCastMagic(ally, sk) {
         { let _sidA = sk._sidCache || (sk._sidCache = Object.keys(DB.skills).find(k => DB.skills[k] === sk) || '');   // allyCastMagic 未帶 skId → 反查一次並快取在技能def上（skillDmgMult 以技能id為key）
           totalDmg = Math.max(1, Math.floor(totalDmg * equipSkillDmgMult(sk, _sidA, ally))); }   // 🏺 v3.1.76 遺物 特定技能傷害倍率（傭兵·掃 ally.eq·鏡像玩家 js/07:640）
         // 🔮 攻擊技能下拉選單可選的一般傷害法術，不觸發幻覺2/5與5/5（鏡像玩家 castSkill）
+        if (sk.bossMult && t && t.boss) totalDmg = Math.max(1, Math.floor(totalDmg * sk.bossMult));   // 🧭 v3.8.127 屠龍奧義（傭兵）
         if (sk.hpCost && ally._setDragonblood5) totalDmg = Math.max(1, Math.floor(totalDmg * 1.2));   // 🐉 v3.1.78 龍血5/5（傭兵）：HP消耗技傷害+20%（傷害魔法·鏡像玩家 js/07:642·傭兵確有付HP見 allyDragonAct）
         if (typeof neApplyOutgoingAmp === 'function') { try { totalDmg = neApplyOutgoingAmp(totalDmg, ally, t); } catch (e) {} }   // 🪦 v3.8.86
+        if (typeof tlApplyOutgoing === 'function') { try { totalDmg = tlApplyOutgoing(totalDmg, ally, t, 'magic'); } catch (e) {} }   // 🧭 v3.8.127 天賦／便當（傭兵）
         t.curHp -= totalDmg;
         if (typeof moonShatterOnDamage === 'function') moonShatterOnDamage(ally, t, totalDmg);
         if (typeof seOnMagicHit === 'function') { try { seOnMagicHit(t, ally); } catch (e) {} }   // 席琳咒言（傭兵）
@@ -1571,6 +1577,7 @@ function allyRapidfire(ally, forceProc, classicOk) {
         dmg = Math.max(1, Math.floor(dmg * royalAllyMult()));   // 👑 王族魅力加成：傭兵造成傷害 ×(1+魅力/200)
         if (typeof neApplyIgnoreDr === 'function') { try { dmg = neApplyIgnoreDr(dmg, ally); } catch (e) {} }   // 🪦 真實死亡（連射·讀傭兵）
         if (typeof neApplyOutgoingAmp === 'function') { try { dmg = neApplyOutgoingAmp(dmg, ally, mt); } catch (e) {} }   // 🪦 元素／掌握／血宴
+        if (typeof tlApplyOutgoing === 'function') { try { dmg = tlApplyOutgoing(dmg, ally, mt, 'phys'); } catch (e) {} }   // 🧭 v3.8.127 天賦／便當（傭兵）
         mt.curHp -= dmg; if (typeof terrorVisageOnDamage === 'function') terrorVisageOnDamage(mt, dmg, 'ranged'); mt.justHit = getWpnEle(ally.eq ? ally.eq.wpn : null, wpn, ally); mobWake(mt);   // 🌅 巨大骷髏：傭兵連射視為遠距離
         if (wpn && wpn.bonespike && mt.curHp > 0) mt._bonespike = Math.min(10, (mt._bonespike || 0) + 1);   // 🏺 骸骨意志之弓（傭兵）：連射額外箭矢命中→累積 1 層骨刺（上限 10）
         logCombat(`<span class="text-amber-300 font-bold">【協力·${ally._allyName}·連射】</span>箭矢命中 <span class="${getMobColor(mt.lv)}">${getMobDisplayName(mt)}</span>，造成 ${dmg} 點傷害。`, 'player');
@@ -1707,6 +1714,7 @@ function allyStrikeRoll(ally, t, opts) {
     if (!opts.probe) {
         if (typeof neApplyIgnoreDr === 'function') { try { dmg = neApplyIgnoreDr(dmg, ally); } catch (e) {} }   // 🪦 真實死亡（雙擊／反擊／副手／物理技）
         if (typeof neApplyOutgoingAmp === 'function') { try { dmg = neApplyOutgoingAmp(dmg, ally, t); } catch (e) {} }   // 🪦 元素／掌握傷害／血宴
+        if (typeof tlApplyOutgoing === 'function') { try { dmg = tlApplyOutgoing(dmg, ally, t, 'phys'); } catch (e) {} }   // 🧭 v3.8.127 天賦／便當（傭兵）
     }
     markBossPhysicalHit(t);
     return { hit: true, dmg: dmg, heavy: heavy, crit: isCrit };
@@ -1880,6 +1888,7 @@ function allyProcFreeMagicSkill(ally, t, skId, en, areaHit, sourceItem, illusion
         total = Math.max(1, Math.floor(total * equipSkillDmgMult(sk, skId, ally)));   // 🥕 v3.2.40 稽核修：傭兵武器免費施法也吃技能傷害倍率遺物（冰之女王魔杖冰錐×暴走兔胡蘿蔔1.5 等·鏡像玩家 js/04:500）
         total = _allyIllusionMagicDmg(ally, total, illusionRecoverMp !== false);   // 🔮 全體免費施法只在第一個目標回MP
         if (typeof neApplyOutgoingAmp === 'function') { try { total = neApplyOutgoingAmp(total, ally, t); } catch (e) {} }   // 🪦 元素／掌握／血宴（免費魔法·讀傭兵）
+        if (typeof tlApplyOutgoing === 'function') { try { total = tlApplyOutgoing(total, ally, t, 'magic'); } catch (e) {} }   // 🧭 v3.8.127 天賦／便當（傭兵）
     }
     if (total > 0) {
         if (t.st && t.st.mrhalf > 0) t.st.mrhalf = 0;
@@ -2289,18 +2298,20 @@ function allyReactIai(mob) {
 }
 
 // 妖精協力：三重矢（3 次物理攻擊）後整體判定一次連射
-let _allyInTriple = false;   // 🏺 遺忘者的狙擊弓：三重矢期間旗標（allyAttackOnce 讀取以區分 fullHpMult×3／fullHpMultTriple×2）
+let _allyInTriple = false; let _allyTripleSk = null;   // 🧭 v3.8.127 當前箭技（skillAddDmg/bossMult）   // 🏺 遺忘者的狙擊弓：三重矢期間旗標（allyAttackOnce 讀取以區分 fullHpMult×3／fullHpMultTriple×2）
 let _allyTripleFhmUsed = false;   // 🏺 v3.1.30 三重矢滿血×2 每次施放只吃一箭（審查修：第1箭擊殺滿血怪→重選目標又是滿血→原本第2箭再吃×2·玩家鎖定單一目標天然只有一箭）
-function allyTripleShot(ally) {
-    logCombat(`<span class="text-sky-300 font-bold">【協力·${ally._allyName}】</span>施放 三重矢！`, 'player');
+function allyTripleShot(ally, nHits, skName) {   // 🧭 v3.8.127 nHits/skName：三重矢·改（4 箭）共用
+    nHits = nHits || 3;
+    logCombat(`<span class="text-sky-300 font-bold">【協力·${ally._allyName}】</span>施放 ${skName || '三重矢'}！`, 'player');
     _allyInTriple = true;
+    _allyTripleSk = (DB.skills[ally._atkSkill] && DB.skills[ally._atkSkill].hits === nHits) ? DB.skills[ally._atkSkill] : null;
     _allyTripleFhmUsed = false;
     try {
-        for (let h = 0; h < 3; h++) {
+        for (let h = 0; h < nHits; h++) {
             let t = getTarget(); if (!t || t.curHp <= 0) break;
             allyAttackOnce(ally, h * 90);   // 🏹 v3.2.14 三箭錯開 90ms（原三支同時發射疊成一支）
         }
-    } finally { _allyInTriple = false; }
+    } finally { _allyInTriple = false; _allyTripleSk = null; }
     allyRapidfire(ally);
 }
 // 妖精協力一次行動：選定三重矢且裝弓且 MP 足夠→優先施放三重矢；否則一般攻擊；攻擊後判定連射
@@ -2308,13 +2319,13 @@ function allyElfAct(ally) {
     let t = getTarget(); if (!t || t.curHp <= 0) return false;
     let d = ally.d || {};
     let sk = DB.skills[ally._atkSkill];
-    if (ally._atkSkill === 'sk_elf_triple' && sk) {
+    if ((ally._atkSkill === 'sk_elf_triple' || ally._atkSkill === 'sk_elf_triple2') && sk) {
         // 三重矢優先：裝弓且 MP 足夠
         let wpn = (ally.eq && ally.eq.wpn) ? DB.items[ally.eq.wpn.id] : null;
         let hasBow = !!(wpn && wpn.isBow);
         let cost = Math.max(1, Math.ceil((sk.mp||0) * (1 - (d.mpReduce||0)/100)));
         if (ally._setApprentice5 && (ally.mp||0) < (ally.mmp||0) * 0.3) cost = Math.max(1, Math.ceil(cost / 2));   // 🔮 學徒 5/5（傭兵）：MP<30% 耗魔減半
-        if (hasBow && (ally.mp||0) >= cost) { ally.mp -= cost; allyManaMasteryRefund(ally, cost); allyTripleShot(ally); return true; }
+        if (hasBow && (ally.mp||0) >= cost) { ally.mp -= cost; allyManaMasteryRefund(ally, cost); allyTripleShot(ally, sk.hits || 3, sk.n); return true; }
     } else if (sk && sk.type === 'atk' && sk.dmgType !== 'physical' && (sk.dmgDice || sk.multiDmg)) {
         // 傷害魔法：比照法師，MP 足夠則優先施放（妖精魔法不享有法師倍率，由 allyCastMagic 依職業處理）
         let cost = Math.max(1, Math.ceil((sk.mp||0) * (1 - (d.mpReduce||0)/100)));

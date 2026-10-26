@@ -854,6 +854,18 @@ d.mr += (baseMr + bonusMr);
     if (typeof seApplyStats === 'function') { try { seApplyStats(d, p); } catch (e) {} }   // 席琳：致命爆擊／堅壁重擊減傷
     if (typeof neApplyStats === 'function') { try { neApplyStats(d, p); } catch (e) {} }   // 🪦 納薩力克附魔
     if (typeof seApplyMhpBonus === 'function') { try { seApplyMhpBonus(p); } catch (e) {} }   // 席琳厚帶 MHP
+    // 🧭 v3.8.123 天賦戰鬥葉（主角）
+    if (p === player && window.TL) {
+        try {
+            let cm = TL.combatMods();
+            if (cm) {
+                if (cm.hp && cm.hp !== 1) { p.mhp = Math.max(1, Math.round(p.mhp * cm.hp)); }
+                if (cm.aspd && cm.aspd !== 1 && d.aspd) d.aspd = Math.max(0.2, d.aspd * cm.aspd);
+                d._tlAtk = cm.atk || 1; d._tlMag = cm.mag || 1; d._tlDr = cm.dr || 0; d._tlBoss = cm.boss || 0;
+                if (cm.crit) { d.meleeCrit = (d.meleeCrit || 0) + cm.crit; d.rangedCrit = (d.rangedCrit || 0) + cm.crit; }   // 🧭 v3.8.127 弱點洞察實裝
+            }
+        } catch (e) {}
+    }
     p.hp = Math.min(p.hp, p.mhp);
     p.mp = Math.min(p.mp, p.mmp);
 }
