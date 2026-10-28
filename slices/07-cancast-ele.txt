@@ -1,0 +1,62 @@
+// FILE js\07-skills-cast.js L400-460
+400|// 🏺 遺物 烈焰巫師的正式長袍：裝備者已學會「燃燒的火球」時，其化為「爆裂的火球」。回傳實際要施放的 skId。
+401|function _fireballMorphId(skId) {
+402|    if (skId !== 'sk_fireball') return skId;
+403|    let a = player.eq && player.eq.armor;
+404|    if (a && DB.items[a.id] && DB.items[a.id].fireballBurst && player.skills && player.skills.includes('sk_fireball')) return 'sk_fireball_burst';
+405|    return skId;
+406|}
+407|function applyMoveDashBuffMutex(owner, sid) {
+408|    if (!owner || !owner.buffs || (sid !== 'sk_holy_dash' && sid !== 'sk_elf_winddash')) return;
+409|    owner.buffs[sid === 'sk_holy_dash' ? 'sk_elf_winddash' : 'sk_holy_dash'] = 0;
+410|}
+411|
+412|function castSkillInner(skId) {
+413|    let sk = DB.skills[skId];
+414|    if(!sk) return false;
+415|    if(inAbsBarrier()) return false;   // 🛡️ 絕對屏障：無法施法（自動/手動皆擋）
+416|    if(skId === 'sk_sunlight' && KING_ROOMS[mapState.current]) { logSys('<span class="text-red-400">此區域中，日光術無法生效。</span>'); return false; }   // 🔧 軍王之室／底比斯祭壇：日光術無效
+417|    if(skId === 'sk_magic_shield' && (player.magicShieldCd || 0) > 0) return false;   // 魔法屏障抵擋技能後冷卻中，無法施放
+418|    if(sk.reqJustice && typeof pvpIsJustice === 'function' && !pvpIsJustice()) {   // 💙 v3.5.75 究極光裂術：限正義性向（性向值 ≥ 1000）·自動施放節流提示防洗頻
+419|        _logSilenceOnce(`<span class="text-sky-300">${sk.n} 需要正義性向才能施放。</span>`);
+420|        return false;
+421|    }
+422|
+423|    if(player.statuses.silence > 0) {   // 🔧 沉默：所有魔法皆無法施放（含魔法相消術——只有沉默/魔法封印能擋下相消術）
+424|        _logSilenceOnce(`沉默狀態中，無法施展魔法。`);   // ⏱️ 節流：最多每秒 1 次，避免自動施法洗頻
+425|        return false;
+426|    }
+427|    if(player.statuses.magicseal > 0) {   // 🔧 魔法封印（怪物技能「沉默」所施加）：同上，魔法相消術亦遭封印
+428|        _logSilenceOnce(`魔法封印狀態中，無法施展技能。`);   // ⏱️ 節流：共用沉默時間戳
+429|        return false;
+430|    }
+431|    
+432|    let __granted = player.grantedSkills && player.grantedSkills.includes(skId);
+433|    let needLv = skillReqLv(sk, skId);   // 🏅 集中化：含魔導精通特例
+434|    if(!__granted && (needLv === undefined || player.lv < needLv)) return false;
+435|    if(!__granted && sk.reqEle && player.elfEle !== sk.reqEle) return false;      // 屬性不符
+436|    if(!__granted && sk.reqEleAny && !player.elfEle) return false;                 // 尚未選擇屬性
+437|
+438|    // 🏺 烈焰巫師的正式長袍：燃燒的火球→爆裂的火球。
+439|    // ⚠️ v3.6.65 必須放在**等級/屬性閘之後**：爆裂的火球是「非可學技能」（無 reqM/reqE），
+440|    //    原本在函式開頭就替換 → skillReqLv 回 undefined → 上面那道閘直接 return false ＝穿上長袍後火球完全放不出來。
+441|    //    閘門要驗的是玩家實際學會的「燃燒的火球」，替換只作用於後續的傷害/MP/特效。
+442|    {
+443|        let _morph = _fireballMorphId(skId);
+444|        if (_morph !== skId) { skId = _morph; sk = DB.skills[skId]; }
+445|    }
+446|
+447|    // 🔧 黑暗妖精：會心一擊（消耗 HP 50% + 剩餘所有 MP；傷害 = 重擊一般攻擊(無視硬皮)×爆擊×(消耗MP佔上限%×10)；對血盟 x2）
+448|    if (sk.darkCrit) {
+449|        let _t = getTarget(); if (!_t || _t.curHp <= 0) return false;
+450|        if (player.cds.atkSk > 0) return false;   // ⚔️ v3.1.77 稽核中#11：比照其他攻擊技吃攻擊技冷卻（原分支位於冷卻閘之前＝唯一不受冷卻的 atk 技）
+451|        let _darkCritWpn = player.eq.wpn ? DB.items[player.eq.wpn.id] : null;
+452|        if (_darkCritWpn && _darkCritWpn.darkCritMorph === 'flywing_double') return relicFlywingDouble(_t);
+453|        if ((player.mp || 0) <= 0) return false;   // 🩸 v3.1.77 稽核中#11：MP=0 時倍率為 0 → 燒半血只打 1 點且不觸發 castLock 可反覆自殘·必須有 MP 才施放
+454|        if (player.hp <= player.mhp * 0.5) return false;   // HP 不足以負擔代價
+455|        let mult = (player.mmp > 0 ? player.mp / player.mmp : 0) * 10;   // 100%MP→×10、50%→×5
+456|        player.hp = Math.max(1, Math.floor(player.hp - player.mhp * 0.5));
+457|        player.mp = 0;
+458|        let wpn = player.eq.wpn ? DB.items[player.eq.wpn.id] : null;
+459|        let dice = wpn ? (_t.s === 'L' ? wpn.dmgL : wpn.dmgS) : 2;
+460|        let base = getPhysicalDmg(dice, _t, wpn, null, true, false, false, true);    // forceHeavy＋forceCrit：必中必重必爆（🛡️ v2.6.69 審計#6：爆擊改由 getPhysicalDmg 內部套用一次；原外層再乘(1+爆傷%)＝自然爆擊時重複乘算變 ×4）

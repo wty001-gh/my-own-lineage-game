@@ -1,0 +1,32 @@
+// FILE js\03-combat-core.js L670-700
+670|        logCombat(`你受到出血傷害 ${player.statuses.bleedDmg} 點。`, 'enemy');
+671|        if(player.hp <= 0) { killPlayer(); return; }
+672|        updateUI();
+673|    }
+674|
+675|    // 🌨️🔥 持續傷害型增益（冰雪颶風/火牢…）：各自間隔（stormInterval ticks）到時對全體敵人造成傷害
+676|    if (player.buffs) for (let _ssid of STORM_BUFF_SKILLS) { let _ssk = DB.skills[_ssid]; if (player.buffs[_ssid] > 0 && _ssk && state.ticks % (_ssk.stormInterval || 40) === 0) stormBuffTick(_ssk); }
+677|
+678|    let alerts = [];
+679|    if(player.statuses.stun > 0) alerts.push("暈眩中");
+680|    if(player.statuses.freeze > 0) alerts.push("冰凍中");
+681|    if(player.statuses.stone > 0) alerts.push("石化中");
+682|    if(player.statuses.paralyze > 0) alerts.push("麻痺中");
+683|    if(player.statuses.bind > 0) alerts.push(isRangedArmed(player) ? "束縛中（遠距離不受影響）" : "束縛中（無法一般攻擊）");   // 🕸️ v3.7.75 束縛
+684|    if(player.statuses.silence > 0) alerts.push("沉默中");
+685|    if(player.statuses.magicseal > 0) alerts.push("魔法封印中");
+686|    if(player.statuses.poison > 0) alerts.push("中毒");
+687|    if(player.statuses.burn > 0) alerts.push("灼燒");
+688|    if(player.statuses.scald > 0) alerts.push("燙傷");
+689|    if(player.statuses.bleed > 0) alerts.push("出血");
+690|    if(player.statuses.sleep > 0) alerts.push("沉睡中");
+691|    if(player.statuses.weaken > 0) alerts.push("弱化");
+692|    if(player.statuses.disease > 0) alerts.push("疾病");
+693|    if(player.statuses.blind > 0) alerts.push("目盲");
+694|    if(player.statuses.potionFrost > 0) alerts.push("藥水霜化");
+695|    if(player.statuses.foulWater > 0) alerts.push("汙濁之水");   // 🌊 v3.6.20 玩家NPC二模板（妖精）：受到治癒效果減半
+696|    if(!state.ff) {
+697|        document.getElementById('status-alerts').innerText = alerts.length > 0 ? "[" + alerts.join(", ") + "]" : "";
+698|        document.getElementById('status-alerts').className = alerts.length > 0 ? "text-red-400 text-sm font-bold anim-flash" : "text-sm font-normal";
+699|        renderStatusEffects(); // 每個 tick 即時刷新「狀態」欄的增益/減益顯示
+700|    }

@@ -1,0 +1,82 @@
+// FILE js\07-skills-cast.js L180-260
+180|        let live = mapState.mobs.filter(m => m && m.curHp > 0 && !m._dead);
+181|        if (!live.length) return;
+182|        if (c.kind === 'dmg') {
+183|            let txt = [];
+184|            live.forEach((m, i) => { let d = Math.max(1, Math.floor(summonElementDamage(c.dice, c.ele || 'none', m, player.d.magicDmg || 0, magicDamageCoef(player.d, magicAttrDefense(m, c.ele || 'none'), sk.tier)) * illuLvMult(player) * wpnEnFinalMult(player.eq && player.eq.wpn))); d = illusionMagicDmg(d, true, i === 0); m.curHp -= d; if (typeof moonShatterOnDamage === 'function') moonShatterOnDamage(player, m, d); m.justHit = (c.ele && c.ele !== 'none') ? c.ele : 'magic'; mobWake(m); txt.push(d); });   // 🔮 全體立方每次發動只回一次MP，5件仍逐目標生效
+185|            logCombat(`<span class="font-bold" style="color:#fb923c;text-shadow:0 0 6px #ea580c;">【${sk.n}】</span>對全體造成 ${txt.join('、')} 點傷害。`, 'dot', 'player');   // 🟢 立方傷害＝持續傷害(DoT)→綠色 dot 分類＋玩家來源(src 顯式'player'蓋過 cubeTick 所處的 _combatSrc='summon')
+186|            live.forEach(m => { if (m.curHp <= 0) { let i = mapState.mobs.findIndex(x => x && x.uid === m.uid); if (i !== -1) killMob(i); } });
+187|            renderMobs();
+188|        } else if (c.kind === 'slow') {
+189|            live.forEach(m => applyMobStatus(m, { kind: 'slow', pbase: 150, dur: 4 }, sk.n));
+190|        } else if (c.kind === 'mrdown') {
+191|            let t = getTarget(); if (t && t.curHp > 0) applyMobStatus(t, { kind: 'mrhalf', pbase: 200, dur: c.dur || 4 }, sk.n);   // 以魔抗減半近似 MR 大幅下降
+192|        }
+193|    });
+194|}
+195|// 🔮 幻術精通（i_illusion）：持有 幻覺：歐吉/巫妖/鑽石高崙 增益時，產生對應幻象一同攻擊
+196|//   歐吉：每2秒 3D20+(智力/5)×(1+等級/10) 近戰，命中=等級+10-怪等+智力+怪AC；巫妖：每3秒 同骰魔法必中受MR；鑽石高崙：每1秒 2D20+(智力/5)×(1+等級/5) 近戰，命中+20，10%冰矛圍籬
+197|function illuSummonTick(owner) {
+198|    owner = owner || player;   // 🩸 v2.6.26 owner 參數化：owner=player 或 i_illusion 傭兵(ally)
+199|    if ((owner === player ? player.dead : owner._downed) || !state.running || owner.mastery !== 'i_illusion') return;
+200|    const MAP = {
+201|        sk_illu_ogre:  { iv: 20, dice: [3, 20], div: 10, kind: 'melee', hitOff: 10, n: '歐吉' },
+202|        sk_illu_lich:  { iv: 30, dice: [3, 20], div: 10, kind: 'magic', n: '巫妖' },
+203|        sk_illu_golem: { iv: 10, dice: [2, 20], div: 5,  kind: 'melee', hitOff: 20, n: '鑽石高崙', iceLance: true }
+204|    };
+205|    owner._illuCd = owner._illuCd || {};
+206|    let d = owner.d || {};
+207|    for (let sid in MAP) {
+208|        // 🔮 v3.2.2 玩家與傭兵統一：需該幻覺 buff 生效才召幻象（原傭兵「學過即召」＝隊伍面板關掉也照打·開關名不符實）。
+209|        //    傭兵現可於隊伍面板勾選自動維持幻覺（_isMercSelfBuff 已放行 illuSummon）；未勾＝無 buff＝不召幻象、也不提供光環。
+210|        let _active = (owner.buffs && (owner.buffs[sid] || 0) > 0);
+211|        if (!_active) { owner._illuCd[sid] = 0; continue; }
+212|        let c = MAP[sid];
+213|        if ((owner._illuCd[sid] = (owner._illuCd[sid] || c.iv) - 1) > 0) continue;
+214|        owner._illuCd[sid] = c.iv;
+215|        let t = getTarget(); if (!t || t.curHp <= 0) continue;
+216|        let baseRoll = roll(c.dice[0], c.dice[1]) + Math.floor((d.int || 0) / 5) * (1 + owner.lv / c.div);
+217|        let _illuTier = (DB.skills[sid] && DB.skills[sid].tier) || 0;
+218|        let base = magicBaseDamage(baseRoll, d, 0, true) * magicDamageCoef(d, magicAttrDefense(t, c.ele || 'none'), _illuTier);   // 🔮 幻象：SP／屬性防禦公式 ×(1+幻術專屬法術階級/10)
+219|        let dmg;
+220|        if (c.kind === 'magic') {
+221|            let effMr = (t.st && t.st.mrhalf > 0) ? (t.mr / 2) : t.mr; if (t.st && (t.st.confuse > 0 || t.st.panic > 0)) effMr -= 10;
+222|            dmg = Math.max(1, Math.floor(base * mrMult(Math.max(0, effMr))));   // 巫妖：必中、受MR
+223|        } else {
+224|            let hv = Math.max(1, Math.min(20, owner.lv + c.hitOff - t.lv + (d.int || 0) + mobEffAC(t)));
+225|            let r = roll(1, 20);
+226|            if (!(r === 20 || (r !== 1 && hv >= r))) { if (typeof vfxMiss === 'function') vfxMiss(t); logCombat(`<span class="text-purple-300 font-bold">【幻覺：${c.n}】</span> 的攻擊未命中。`, 'miss', 'summon'); continue; }
+227|            dmg = Math.max(1, Math.floor(base) - (t.dr || 0));
+228|            dmg += traumaPhysicalBonus(t);
+229|        }
+230|        dmg = Math.max(1, Math.floor(dmg * fragileMult(t) * illuLvMult(owner)));   // 🔮 幻覺召喚物：幻術士等級加成 ×(1+等級/50)
+231|        t.curHp -= dmg; t.justHit = (c.kind === 'magic') ? 'magic' : 'none'; mobWake(t);
+232|        logCombat(`<span class="text-purple-300 font-bold">【幻覺：${c.n}】</span>對 <span class="${getMobColor(t.lv)}">${t.n}</span> 造成 ${dmg} 點傷害。`, 'magic', 'summon');
+233|        let idx = mapState.mobs.findIndex(m => m && m.uid === t.uid);
+234|        if (t.curHp <= 0) { if (idx !== -1) killMob(idx); continue; }
+235|        if (c.iceLance && Math.random() < 0.10) { if (owner === player) { if (typeof witchIceLance === 'function') witchIceLance(); } else if (typeof allyWitchIceLance === 'function') { allyWitchIceLance(owner); } }   // 鑽石高崙：10% 冰矛圍籬（傭兵走 allyWitchIceLance）
+236|        renderMobs();
+237|    }
+238|}
+239|// ---------- 手動施放技能 ----------
+240|function manualCast(skId) {
+241|    let sk = DB.skills[skId];
+242|    if(!sk || !player.skills.includes(skId)) return;
+243|    if(inAbsBarrier()) { logSys('絕對屏障期間與世界隔絕，無法行動。'); return; }   // 🛡️ 屏障中不得手動施放任何技能（含本技能再施放）
+244|    if(player.statuses && (player.statuses.silence > 0 || player.statuses.magicseal > 0)) { logSys('你被沉默／魔法封印，無法施放魔法。'); return; }   // 🤐 v3.1.77 稽核中#10：手動施放補沉默/魔法封印閘（castSkillInner 有、原手動沒有→沉默中可傳送逃脫）
+245|    if(sk.reqJustice && typeof pvpIsJustice === 'function' && !pvpIsJustice()) { logSys(`<span class="text-sky-300">${sk.n} 需要正義性向（性向值 ≥ 1000）才能施放。</span>`); return; }   // 💙 v3.5.75 究極光裂術：限正義性向
+246|    // 傳送術：行動限制狀態（石化／麻痺／冰凍／暈眩）無法手動施放
+247|    if(sk.mEff === 'teleport' && player.statuses &&
+248|       (player.statuses.stone > 0 || player.statuses.paralyze > 0 || player.statuses.freeze > 0 || player.statuses.stun > 0 || player.statuses.sleep > 0)) {
+249|        logSys('你目前無法行動（石化／麻痺／冰凍／暈眩），無法使用傳送術。');
+250|        return;
+251|    }
+252|    let __granted = player.grantedSkills && player.grantedSkills.includes(skId);
+253|    let needLv = skillReqLv(sk, skId);   // 🏅 集中化：含魔導精通特例
+254|    if(!__granted && needLv === undefined) { logSys('你的職業無法使用此技能。'); return; }
+255|    if(!__granted && player.lv < needLv) { logSys('等級不足，無法使用此技能。'); return; }
+256|    if((player.manualCd[skId] || 0) > 0) { logSys('技能冷卻中。'); return; }
+257|    let cost = sk.mp ? player.d.getMpCost(sk.mp, sk.tier) : 0;
+258|    if (player._setIllusion3 && isSupportSkill(sk)) cost = Math.max(1, Math.ceil(cost / 2));   // 🔮 幻覺3/5：輔助技能 MP 消耗 -50%
+259|    if (cost > 0 && player.cls === 'elf' && hasMastery('e_magic') && sk.ele && sk.ele !== 'none' && sk.ele === player.elfEle) cost = Math.max(1, Math.ceil(cost * 0.5));   // 🏅 魔導精通：同屬性魔法消耗MP -50%(2026-07 30%→50%)
+260|    if ((sk.n === '加速術' || sk.n === '強力加速術') && playerHasWindHelm()) cost = 0;   // 🏝️ 風之頭盔：加速術/強力加速術免MP（裝備或放在背包皆可）

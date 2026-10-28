@@ -50,6 +50,17 @@ function _portraitUrl(hero) {
     return '';
 }
 
+
+function apCanBreak(h) {
+    try {
+        if (window.AP && typeof AP.canBreakthrough === 'function') return !!AP.canBreakthrough(h);
+        if (typeof heroCanBreakthrough === 'function') return !!heroCanBreakthrough(h);
+    } catch (e) {}
+    return false;
+}
+function apBreakBadge(h) {
+    return apCanBreak(h) ? ' <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-600/90 text-amber-50 align-middle">可突破</span>' : '';
+}
 function openPartyRosterPanel() {
     var div = document.getElementById('interaction-content');
     if (div) renderPartyRoster(div);
@@ -72,7 +83,7 @@ function renderPartyRoster(div) {
         }
         var stars = '★'.repeat(h.star || 0) + '☆'.repeat(Math.max(0, 5 - (h.star || 0)));
         return '<div class="flex items-center justify-between gap-2 bg-slate-800/70 border border-amber-700/50 rounded p-2 text-sm">'
-            + '<span><b class="text-amber-200">' + _esc(h.name) + '</b> '
+            + '<span><b class="text-amber-200">' + _esc(h.name) + '</b>' + apBreakBadge(h) + ' '
             + '<span class="text-slate-400">' + _clsLabel(h.cls) + ' Lv.' + (h.lv || 1) + '/' + AP.lvCap(h.star) + '</span> '
             + '<span class="text-yellow-400 text-xs">' + stars + '</span></span>'
             + '<div class="flex gap-1 shrink-0">'
@@ -95,7 +106,7 @@ function renderPartyRoster(div) {
                 ? '<span class="text-xs text-slate-500 px-2">隊滿</span>'
                 : '<button onclick="partyDeployHero(\'' + _esc(h.id) + '\')" class="btn py-1 px-3 text-xs bg-emerald-900 border-emerald-700 text-emerald-100">上陣</button>');
         return '<div class="flex items-center justify-between gap-2 bg-slate-800/50 border border-slate-600 rounded p-2 text-sm">'
-            + '<span class="min-w-0">' + _rarityBadge(h) + '<b class="text-slate-100">' + _esc(h.name) + '</b> '
+            + '<span class="min-w-0">' + _rarityBadge(h) + '<b class="text-slate-100">' + _esc(h.name) + '</b>' + apBreakBadge(h) + ' '
             + '<span class="text-slate-400 text-xs">' + _clsLabel(h.cls) + ' · Lv.' + (h.lv || 1) + ' · ' + stars + '</span></span>'
             + '<div class="flex gap-1 shrink-0">'
             + '<button onclick="openHeroManagePanel(\'' + _esc(h.id) + '\')" class="btn py-1 px-2 text-xs bg-slate-700 border-slate-500">管理</button>'
@@ -109,22 +120,71 @@ function renderPartyRoster(div) {
         + '<div class="text-amber-200 font-bold text-sm">🎫 招募事務所（角色池）</div>'
         + '<div class="text-xs text-slate-300">英雄招募券：<b class="text-amber-300">' + tickets + '</b>'
         + '　·　SR 保底 ' + pitySr + '/30　·　SSR 保底 ' + pitySsr + '/90</div>'
-        + '<div class="text-[11px] text-slate-500">權重 N60%／R27%／SR10%／SSR3%。重複→碎片（用來突破升星，唔換材料）。券同公會膠囊抽卡券分開。</div>'
+        + '<div class="text-[11px] text-slate-500">全部英雄起手 1★；升星只靠英雄碎片突破。1★ 等級上限 50，每突破 +1★ 上限 +10。重複→碎片；夠數會提示可突破。</div>'
         + '<div class="flex flex-wrap gap-2">'
         + '<button onclick="apHeroGachaPull(1)" class="btn py-1.5 px-3 text-xs bg-amber-900 border-amber-600 text-amber-100"' + (tickets < 1 ? ' disabled style="opacity:.45"' : '') + '>單抽（1 券）</button>'
         + '<button onclick="apHeroGachaPull(10)" class="btn py-1.5 px-3 text-xs bg-violet-900 border-violet-600 text-violet-100"' + (tickets < 10 ? ' disabled style="opacity:.45"' : '') + '>十連（10 券）</button>'
         + '</div></div>';
-    var W = window.AB_WPN, wtk = (W && W.tickets) ? W.tickets() : 0, wpity = (player.gacha && player.gacha.wpnPitySsr) || 0;
+    var W = window.AB_WPN, Sset = window.AB_SET, wtk = (W && W.tickets) ? W.tickets() : 0, wpity = (player.gacha && player.gacha.wpnPitySsr) || 0;
+    var pityCap = (Sset && Sset.GACHA && Sset.GACHA.pitySsr) || (W && W.GACHA && W.GACHA.pitySsr) || 60;
     var wpnBox = '<div class="border border-fuchsia-700/60 rounded p-2 bg-fuchsia-950/30 flex flex-col gap-2">'
-        + '<div class="text-fuchsia-200 font-bold text-sm">⚔ 專武轉蛋（SR／SSR 專屬武器）</div>'
-        + '<div class="text-xs text-slate-300">專武券：<b class="text-fuchsia-300">' + wtk + '</b>　·　SSR 保底 ' + wpity + '/40</div>'
-        + '<div class="text-[11px] text-slate-500">只抽已開放 SR／SSR 專武。重複→該把「專武碎片」（同英雄碎片完全分開）。3★ 起技能質變。</div>'
+        + '<div class="text-fuchsia-200 font-bold text-sm">🛡 專屬裝備轉蛋（武器／防具／飾品）</div>'
+        + '<div class="text-xs text-slate-300">專屬裝備券：<b class="text-fuchsia-300">' + wtk + '</b>　·　SSR 英雄件保底 ' + wpity + '/' + pityCap + '</div>'
+        + '<div class="text-[11px] text-slate-500">槽位 武器40%／防具30%／飾品30%。開放英雄專屬件；重複→該英雄「專屬碎片」（三件共用，同英雄碎片分開）。武器 3★ 起技能質變；三件齊開套裝質變（固定數字）。</div>'
         + '<div class="flex flex-wrap gap-2">'
-        + '<button onclick="apWpnGachaPull(1)" class="btn py-1.5 px-3 text-xs bg-fuchsia-900 border-fuchsia-600 text-fuchsia-100"' + (wtk < 1 ? ' disabled style="opacity:.45"' : '') + '>單抽（1 專武券）</button>'
-        + '<button onclick="apWpnGachaPull(10)" class="btn py-1.5 px-3 text-xs bg-violet-950 border-violet-600 text-violet-100"' + (wtk < 10 ? ' disabled style="opacity:.45"' : '') + '>十連（10 專武券）</button>'
-        + '<button onclick="apWpnBuyGold(1)" class="btn py-1.5 px-3 text-xs bg-slate-800 border-slate-500">買 1 券（💰' + ((W && W.GACHA && W.GACHA.ticketGold) || 800) + '）</button>'
-        + '<button onclick="apWpnExchange(1)" class="btn py-1.5 px-3 text-xs bg-slate-800 border-slate-500">3 英雄券→1 專武券</button>'
+        + '<button onclick="apWpnGachaPull(1)" class="btn py-1.5 px-3 text-xs bg-fuchsia-900 border-fuchsia-600 text-fuchsia-100"' + (wtk < 1 ? ' disabled style="opacity:.45"' : '') + '>單抽（1 裝備券）</button>'
+        + '<button onclick="apWpnGachaPull(10)" class="btn py-1.5 px-3 text-xs bg-violet-950 border-violet-600 text-violet-100"' + (wtk < 10 ? ' disabled style="opacity:.45"' : '') + '>十連（10 裝備券）</button>'
+        + '<button onclick="apWpnBuyGold(1)" class="btn py-1.5 px-3 text-xs bg-slate-800 border-slate-500">買 1 券（💰' + ((W && W.GACHA && W.GACHA.ticketGold) || 800) + '・持有💰' + (player.gold || 0) + '／裝備券 ' + wtk + '）</button>'
+        + '<button onclick="apWpnExchange(1)" class="btn py-1.5 px-3 text-xs bg-slate-800 border-slate-500">3 英雄券→1 裝備券（持有招募券 ' + tickets + '／裝備券 ' + wtk + '）</button>'
         + '</div></div>';
+    // 職業指定卷（含兌換；顯示持有數）
+    var clsBox = (function () {
+        if (!Sset || !Sset.CLS_KEYS) return '';
+        var exMode = window._apClsExMode || null; // null | 'equip' | 'hero'
+        var eqCost = (Sset.GACHA && Sset.GACHA.exchangeClsEquipCost) || 5;
+        var hrCost = (Sset.GACHA && Sset.GACHA.exchangeClsHeroCost) || 3;
+        var heroTkNow = tickets;
+        var wpnTkNow = wtk;
+        var rows = Sset.CLS_KEYS.map(function (c) {
+            var lb = (Sset.CLS_LB && Sset.CLS_LB[c]) || c;
+            var ht = Sset.clsTk('hero', c) || 0, et = Sset.clsTk('equip', c) || 0;
+            return '<div class="flex flex-wrap items-center gap-1.5 text-xs bg-slate-900/50 rounded px-2 py-1">'
+                + '<span class="text-sky-200 w-14 shrink-0">' + lb + '</span>'
+                + '<button onclick="apClsHeroPull(\'' + c + '\')" class="btn py-0.5 px-2 text-[11px] bg-amber-900/80 border-amber-600"' + (ht < 1 ? ' disabled style="opacity:.4"' : '') + '>英雄券 ' + ht + '</button>'
+                + '<button onclick="apClsEquipPull(\'' + c + '\')" class="btn py-0.5 px-2 text-[11px] bg-fuchsia-900/80 border-fuchsia-600"' + (et < 1 ? ' disabled style="opacity:.4"' : '') + '>裝備券 ' + et + '</button>'
+                + '</div>';
+        }).join('');
+        var pickRow = '';
+        if (exMode === 'equip' || exMode === 'hero') {
+            var kindLb = exMode === 'equip' ? '職業裝備券' : '職業英雄券';
+            var can = exMode === 'equip' ? (wpnTkNow >= eqCost) : (heroTkNow >= hrCost);
+            pickRow = '<div class="flex flex-col gap-1 rounded border border-sky-700/40 bg-slate-950/60 p-1.5">'
+                + '<div class="text-[11px] text-sky-200">揀職業換 <b>' + kindLb + '</b>（而家持有：'
+                + (exMode === 'equip' ? ('專屬裝備券 <b class="text-fuchsia-300">' + wpnTkNow + '</b>／需 ' + eqCost) : ('英雄招募券 <b class="text-amber-300">' + heroTkNow + '</b>／需 ' + hrCost))
+                + '）</div>'
+                + '<div class="flex flex-wrap gap-1">'
+                + Sset.CLS_KEYS.map(function (c) {
+                    var lb = (Sset.CLS_LB && Sset.CLS_LB[c]) || c;
+                    var own = Sset.clsTk(exMode === 'equip' ? 'equip' : 'hero', c) || 0;
+                    var fn = exMode === 'equip' ? 'apClsEquipExchange' : 'apClsHeroExchange';
+                    return '<button onclick="' + fn + '(\'' + c + '\')" class="btn py-0.5 px-2 text-[11px] bg-sky-900/80 border-sky-600"'
+                        + (!can ? ' disabled style="opacity:.4"' : '') + '>' + lb + '（持有 ' + own + '）</button>';
+                }).join('')
+                + '<button onclick="apClsExToggle(null)" class="btn py-0.5 px-2 text-[11px] bg-slate-800 border-slate-600">取消</button>'
+                + '</div></div>';
+        }
+        return '<div class="border border-sky-800/50 rounded p-2 bg-sky-950/20 flex flex-col gap-1.5">'
+            + '<div class="text-sky-200 font-bold text-sm">🎟 職業指定卷</div>'
+            + '<div class="text-[11px] text-slate-500">取得：頭目／通關機率掉落（跟今場出戰職業）；或用上方兌換。職業英雄券只抽該職；職業裝備券只抽該職三件套。</div>'
+            + '<div class="flex flex-wrap gap-2">'
+            + '<button onclick="apClsExToggle(\'equip\')" class="btn py-1 px-2 text-[11px] bg-fuchsia-950 border-fuchsia-700"'
+            + (exMode === 'equip' ? ' style="outline:1px solid #e879f9"' : '') + '>' + eqCost + ' 專屬裝備券 → 1 自選職業裝備券（持有裝備券 ' + wpnTkNow + '）</button>'
+            + '<button onclick="apClsExToggle(\'hero\')" class="btn py-1 px-2 text-[11px] bg-amber-950 border-amber-700"'
+            + (exMode === 'hero' ? ' style="outline:1px solid #fbbf24"' : '') + '>' + hrCost + ' 英雄招募券 → 1 自選職業英雄券（持有招募券 ' + heroTkNow + '）</button>'
+            + '</div>'
+            + pickRow
+            + rows + '</div>';
+    })();
 
     // —— 專武庫（擁有專武一覽；專武碎片同英雄碎片分開）——
     var wpnBagFilter = window._apWpnBagFilter || 'all';
@@ -162,28 +222,28 @@ function renderPartyRoster(div) {
                 : '<span class="text-[11px] text-slate-500 px-1">未擁有對應英雄</span>';
             return '<div class="flex items-center justify-between gap-2 bg-slate-900/60 border border-fuchsia-900/50 rounded p-2 text-sm">'
                 + '<div class="min-w-0"><div><b style="color:' + col + '">[' + _esc(x.rarity) + ']</b> <b class="text-fuchsia-100">' + _esc(x.name) + '</b>'
-                + ' <span class="text-slate-400 text-xs">' + _esc(x.heroName || '') + '</span></div>'
-                + '<div class="text-[11px] text-slate-400">' + stars + ' · 專武碎片 <b class="text-fuchsia-300">' + (x.fragments || 0) + '</b> · '
+                + ' <span class="text-slate-400 text-xs">' + _esc(x.heroName || '') + (x.slot ? '・' + _esc((window.AB_SET && AB_SET.SLOT_LB && AB_SET.SLOT_LB[x.slot]) || x.slot) : '') + '</span></div>'
+                + '<div class="text-[11px] text-slate-400">' + stars + ' · 專屬碎片 <b class="text-fuchsia-300">' + (x.fragments || 0) + '</b> · '
                 + (x.equipped ? '<span class="text-emerald-300">已裝備</span>' : '<span class="text-slate-500">未裝備</span>') + '</div></div>'
                 + '<div class="shrink-0">' + act + '</div></div>';
         }).join('');
         if (!list.length) {
-            rows = '<div class="text-sm text-slate-500">未擁有專武——用上方專武券抽取</div>';
+            rows = '<div class="text-sm text-slate-500">未擁有專屬裝備——用上方裝備券抽取</div>';
         } else if (!shown.length) {
             rows = '<div class="text-sm text-slate-500">呢個篩選冇結果</div>';
         }
         return '<div class="border border-fuchsia-800/50 rounded p-2 bg-slate-950/40 flex flex-col gap-2">'
             + '<div class="flex flex-wrap items-center justify-between gap-2">'
-            + '<div class="text-fuchsia-200 font-bold text-sm">⚔ 專武庫（' + list.length + '）</div>'
+            + '<div class="text-fuchsia-200 font-bold text-sm">🛡 專屬裝備庫（' + list.length + '）</div>'
             + '<div class="flex flex-wrap gap-1">' + filtBtn('all', '全部') + filtBtn('eq', '已裝備') + filtBtn('unmax', '未滿星') + '</div></div>'
-            + '<div class="text-[11px] text-slate-500">專武碎片只用於專武突破，同英雄碎片完全分開。</div>'
+            + '<div class="text-[11px] text-slate-500">專屬碎片按英雄共用（武器／防具／飾品升星同一池），同英雄碎片完全分開。</div>'
             + '<div class="flex flex-col gap-1.5 max-h-56 overflow-y-auto">' + rows + '</div></div>';
     })();
 
     div.innerHTML = '<div class="flex flex-col gap-3 p-1">'
         + '<div><div class="text-amber-300 font-bold text-base">🪪 名冊編隊（主角 + 最多 ' + AP.MAX + ' 英雄）</div>'
-        + '<div class="text-xs text-slate-400 mt-1">每個創角欄係獨立帳號。上場英雄來自本帳抽卡；裝備由隊長背包轉移，只寫本帳。創角固定 Lv1，起手送 ' + (typeof HERO_STARTER_TICKETS !== 'undefined' ? HERO_STARTER_TICKETS : 50) + ' 張招募券。</div></div>'
-        + gachaBox + wpnBox + wpnBagBox
+        + '<div class="text-xs text-slate-400 mt-1">每個創角欄係獨立帳號。上場英雄來自本帳抽卡；裝備由隊長背包轉移，只寫本帳。創角固定 Lv1，起手送 ' + (typeof HERO_STARTER_TICKETS !== 'undefined' ? HERO_STARTER_TICKETS : 70) + ' 張英雄券 + 30 張專屬裝備券（100 抽）。</div></div>'
+        + gachaBox + wpnBox + clsBox + wpnBagBox
         + '<div class="text-sm font-bold text-sky-300">目前編隊（' + filled + '/' + AP.MAX + '）</div>'
         + '<div class="flex flex-col gap-1.5">' + partySlots + '</div>'
         + '<div class="text-sm font-bold text-emerald-300">名冊（' + heroes.length + '）</div>'
@@ -268,30 +328,93 @@ function renderHeroManagePanel(div, heroId) {
         + (lore ? '<div class="text-xs text-slate-400 leading-relaxed border border-slate-700/80 rounded p-2 bg-slate-900/50">' + _esc(lore) + '</div>' : '')
         + breakHtml
         + (function(){ try {
+            var Sset = window.AB_SET, defId = h.defId; if (!defId) return '';
+            if (Sset && Sset.enabled) {
+              var fr = Sset.frags(defId) || 0;
+              var slots = Sset.SLOTS || ['weapon','armor','accessory'];
+              var lb = Sset.SLOT_LB || {};
+              var rows = slots.map(function (slot) {
+                var pk = Sset.pieceKey(defId, slot);
+                var pc = (Sset.PIECES && Sset.PIECES[pk]) || null;
+                if (!pc) return '';
+                var owned = Sset.owned(defId, slot);
+                var st = owned ? Sset.star(defId, slot) : 0;
+                var eq = owned && Sset.equipped(defId, slot);
+                var cost = owned ? Sset.starCost(defId, slot) : null;
+                var can = owned && cost != null && fr >= cost && st < 5;
+                var line = '<div class="flex flex-wrap items-center justify-between gap-1 border-t border-fuchsia-900/40 pt-1 mt-1">'
+                  + '<div class="min-w-0"><div class="text-xs text-fuchsia-100"><b>' + _esc(lb[slot]||slot) + '</b> ' + _esc(pc.n) + ' <span class="text-slate-500">(' + pc.rarity + ')</span></div>';
+                if (!owned) line += '<div class="text-[11px] text-slate-500">未擁有</div></div></div>';
+                else {
+                  line += '<div class="text-[11px] text-slate-400">' + st + '★' + (st < 5 && cost != null ? ' · 下一星 −' + cost : ' · 滿星')
+                    + ' · ' + (eq ? '<span class="text-emerald-300">已裝備</span>' : '<span class="text-slate-500">未裝備</span>') + '</div></div>'
+                    + '<div class="flex gap-1 shrink-0">'
+                    + '<button onclick="partySetBreakthrough(\'' + _esc(defId) + '\',\'' + slot + '\')" class="btn py-0.5 px-2 text-[11px] ' + (can ? 'bg-fuchsia-800 border-fuchsia-500' : 'bg-slate-800 border-slate-600 opacity-60') + '"' + (can ? '' : ' disabled') + '>突破</button>'
+                    + '<button onclick="partySetToggle(\'' + _esc(defId) + '\',\'' + slot + '\')" class="btn py-0.5 px-2 text-[11px] bg-slate-700 border-slate-500">' + (eq ? '卸下' : '裝備') + '</button>'
+                    + '</div></div>';
+                }
+                return line;
+              }).join('');
+              var setOn = Sset.setComplete(defId);
+              var sb = Sset.setBonus(defId);
+              var setLine = setOn && sb
+                ? '<div class="text-[11px] text-emerald-200 mt-1">✦ 套裝質變：' + _esc(sb.text || '') + '</div>'
+                : '<div class="text-[11px] text-slate-500 mt-1">三件齊裝備先開套裝質變（固定效果，唔跟平均★）。</div>';
+              var aw = '';
+              try { if (window.AB_WPN && AB_WPN.awakenText && Sset.owned(defId,'weapon') && Sset.star(defId,'weapon') >= 3) aw = AB_WPN.awakenText(defId, Sset.star(defId,'weapon')) || ''; } catch (eA) {}
+              return '<div class="rounded border border-fuchsia-700/60 bg-fuchsia-950/30 p-2 flex flex-col gap-0.5">'
+                + '<div class="text-sm text-fuchsia-100 font-bold">🛡 專屬三件套 · 共用碎片 <b class="text-fuchsia-300">' + fr + '</b></div>'
+                + rows + setLine
+                + (aw ? '<div class="text-[11px] text-fuchsia-200">武器質變：' + _esc(aw) + '</div>' : '')
+                + '</div>';
+            }
+            // fallback 舊專武 UI
             if (!window.AB_WPN || !AB_EXCL || !AB_EXCL[h.defId]) return '';
             var e = AB_EXCL[h.defId], rec = AB_WPN.rec(h.defId), owned = !!(rec && rec.owned);
-            var st = owned ? (rec.star||0) : 0, fr = owned ? (rec.fragments||0) : 0;
+            var st = owned ? (rec.star||0) : 0, fr2 = owned ? (rec.fragments||0) : 0;
             var cost = owned ? AB_WPN.starCost(h.defId) : null;
-            var can = owned && cost != null && fr >= cost && st < 5;
+            var can = owned && cost != null && fr2 >= cost && st < 5;
             var eq = owned && rec.equipped !== false;
-            var aw = (owned && st >= 3 && AB_WPN.awakenText) ? AB_WPN.awakenText(h.defId, st) : '';
             var html = '<div class="rounded border border-fuchsia-700/60 bg-fuchsia-950/30 p-2 flex flex-col gap-1">'
               + '<div class="text-sm text-fuchsia-100 font-bold">⚔ 專武：' + _esc(e.n) + '（' + e.rarity + '）</div>';
-            if (!owned) html += '<div class="text-xs text-slate-400">未擁有——去大廳「專武轉蛋」抽取。重複抽會得「專武碎片」（同英雄碎片分開）。</div>';
+            if (!owned) html += '<div class="text-xs text-slate-400">未擁有——去「專屬裝備轉蛋」抽取。</div>';
             else {
-              html += '<div class="text-xs text-slate-300">專武 ' + st + '★ · 專武碎片 ' + fr
-                + (st < 5 && cost != null ? ' · 下一星要 <b class="' + (can ? 'text-emerald-300' : 'text-rose-300') + '">' + cost + '</b>' : ' · 已滿星')
-                + ' · ' + (eq ? '<span class="text-emerald-300">已裝備</span>' : '<span class="text-slate-500">未裝備</span>') + '</div>';
-              if (aw) html += '<div class="text-[11px] text-fuchsia-200">質變：' + _esc(aw) + '</div>';
-              else if (st < 3) html += '<div class="text-[11px] text-slate-500">3★ 起為呢隻英雄帶來技能質變（同英雄永久 3★ 質變可疊加）。</div>';
+              html += '<div class="text-xs text-slate-300">專武 ' + st + '★ · 碎片 ' + fr2 + '</div>';
               html += '<div class="flex flex-wrap gap-2">'
-                + '<button onclick="partyWpnBreakthrough(\'' + _esc(h.defId) + '\')" class="btn py-1.5 px-3 text-xs ' + (can ? 'bg-fuchsia-800 border-fuchsia-500 text-fuchsia-50' : 'bg-slate-800 border-slate-600 text-slate-400 opacity-60') + '"' + (can ? '' : ' disabled') + '>⚔ 專武突破' + (st < 5 && cost != null ? '（−' + cost + ' 專武碎片）' : '') + '</button>'
-                + '<button onclick="partyWpnToggle(\'' + _esc(h.defId) + '\')" class="btn py-1.5 px-3 text-xs bg-slate-700 border-slate-500">' + (eq ? '卸下專武' : '裝備專武') + '</button></div>';
+                + '<button onclick="partyWpnBreakthrough(\'' + _esc(h.defId) + '\')" class="btn py-1.5 px-3 text-xs ' + (can ? 'bg-fuchsia-800 border-fuchsia-500 text-fuchsia-50' : 'bg-slate-800 border-slate-600 text-slate-400 opacity-60') + '"' + (can ? '' : ' disabled') + '>突破</button>'
+                + '<button onclick="partyWpnToggle(\'' + _esc(h.defId) + '\')" class="btn py-1.5 px-3 text-xs bg-slate-700 border-slate-500">' + (eq ? '卸下' : '裝備') + '</button></div>';
             }
             html += '</div>';
             return html;
           } catch (eW) { return ''; } })()
-        + '<div class="text-sm text-slate-300">已學技能：<span class="text-cyan-300">' + _esc(skList) + '</span></div>'
+        + (function () {
+            try {
+              var api = window.AB_SKILL_API, defId = h.defId, rar = h.rarity || (def && def.rarity) || 'N';
+              var abSk = null, power = '', mulTxt = '';
+              if (api && api.resolveByDef && defId) abSk = api.resolveByDef(defId);
+              if (!abSk && api && api.resolve) abSk = api.resolve({ defId: defId, cls: h.cls, rarity: rar, hero: true, uniq: (window.UNIQUE && UNIQUE[defId]) || null });
+              // UNIQUE name override
+              var uniq = (typeof UNIQUE !== 'undefined' && UNIQUE[defId]) || null;
+              var n = uniq ? uniq.n : (abSk && abSk.name);
+              if (abSk && api.powerOf) power = api.powerOf(abSk.id) || abSk.power || '';
+              // preview mul at 1★ perm0（名冊）
+              var m = 1;
+              if (!(uniq)) m *= ((window.AB_BAL && AB_BAL.heroSk) || 1.15);
+              var perm = Math.max(0, Math.min(5, Math.floor(Number(h.star) || 0)));
+              var PM = window.AB_PERM_SKILL_MUL || { 0:1,1:1,2:1,3:1.15,4:1.3,5:1.5 };
+              m *= (PM[perm] || 1);
+              mulTxt = '總倍率 ×' + (Math.round(m * 100) / 100) + '（1★局內・永久' + perm + '★）';
+              if (!n) return '<div class="text-sm text-slate-300">已學技能：<span class="text-cyan-300">' + _esc(skList) + '</span></div>';
+              return '<div class="text-sm text-slate-300">已學技能：<span class="text-cyan-300">' + _esc(skList) + '</span></div>'
+                + '<div class="text-sm text-amber-200/90">⚔ 自走棋技能：<b>' + _esc(n) + '</b>' + (uniq ? ' <span class="text-amber-400 text-xs">專屬</span>' : '')
+                + (power ? ' <span class="text-fuchsia-300 text-xs">［本體 ' + _esc(power) + '］</span>' : '')
+                + ' <span class="text-emerald-300 text-xs">' + mulTxt + '</span>'
+                + (abSk && abSk.desc ? '<div class="text-[11px] text-slate-400 mt-0.5">' + _esc(abSk.desc) + '</div>' : '')
+                + '</div>';
+            } catch (eAb) {
+              return '<div class="text-sm text-slate-300">已學技能：<span class="text-cyan-300">' + _esc(skList) + '</span></div>';
+            }
+          })()
         + '<div class="flex flex-wrap gap-2">' + eqBtn + bookBtn
         + '<button onclick="partyRemoveAndRefresh(\'' + _esc(heroId) + '\')" class="btn py-2 px-3 text-sm bg-red-950 border-red-700 text-red-200">下陣</button>'
         + '</div>'
@@ -514,6 +637,13 @@ function apHeroGachaPull(n) {
     });
     if (okN) {
         logSys('<span class="text-amber-300">招募 ×' + okN + '：</span> ' + lines.join('　'));
+        try {
+            var canN = 0;
+            results.forEach(function (r) {
+                if (r && r.ok && r.result && r.result.duplicate && r.result.hero && apCanBreak(r.result.hero)) canN++;
+            });
+            if (canN) logSys('<span class="text-amber-200">⭐ ' + canN + ' 名英雄碎片已夠，可去「管理」突破升星</span>');
+        } catch (eB) {}
     } else if (lines.length) {
         logSys('<span class="text-red-400">' + lines[0] + '</span>');
     }
@@ -522,7 +652,7 @@ function apHeroGachaPull(n) {
     if (okN) { try { apShowGachaResults(results.filter(function (r) { return r && r.ok; })); } catch (e) { console.warn('gacha popup', e); } }
 }
 window.apHeroGachaPull = apHeroGachaPull;
-// ab.20261022y／ab.20261027a：抽卡結果彈窗（英雄／專武共用 CSS）；SSR/SR 排頭兼發光
+// ab.20261022y／ab.20261027c：抽卡結果彈窗（英雄／專武共用 CSS）；SSR/SR 排頭兼發光
 var AP_RAR_ORD = { SSR: 1, SR: 2, R: 3, N: 4 };
 function apGachaPor(defId) {
     var d = (typeof HERO_DB !== 'undefined' && HERO_DB[defId]) || {};
@@ -558,7 +688,7 @@ function apShowGachaResults(list) {
     var html = rows.map(function (o) { var r = o.r, d = (typeof HERO_DB !== 'undefined' && HERO_DB[r.defId]) || {}, dup = r.result && r.result.duplicate, h = r.result && r.result.hero;
         return '<div class="gr-c r-' + r.rarity + '" style="--rc:' + col(r.rarity) + '"><img src="' + _esc(apGachaPor(r.defId)) + '" data-def="' + _esc(r.defId) + '" alt=""><span class="gr-r">' + r.rarity + '</span>'
             + (dup ? '' : '<span class="gr-new">NEW</span>') + '<div class="gr-n">' + _esc((r.entry && r.entry.name) || d.name || r.defId) + '</div><div class="gr-k">' + _esc(clsL(d.cls || (h && h.cls))) + '</div>'
-            + (dup ? '<div class="gr-dup">重複 → ' + _esc(((h && h.name) || '') ) + ' 英雄碎片 +' + ((r.entry && r.entry.fragments) || 0) + '</div>' : '<div class="gr-dup" style="color:#4ade80">新英雄入名冊</div>') + '</div>'; }).join('');
+            + (dup ? '<div class="gr-dup">重複 → ' + _esc(((h && h.name) || '') ) + ' 英雄碎片 +' + ((r.entry && r.entry.fragments) || 0) + (apCanBreak(h) ? ' · <b style="color:#fbbf24">碎片足夠，可去管理突破</b>' : '') + '</div>' : '<div class="gr-dup" style="color:#4ade80">新英雄 · 起手 1★</div>') + '</div>'; }).join('');
     var box = document.createElement('div'); box.id = 'ap-gacha-res';
     box.innerHTML = '<div class="gr-box"><h3>🎫 招募結果 ×' + list.length + '</h3><div class="gr-sum">' + ['SSR', 'SR', 'R', 'N'].filter(function (k) { return cnt[k]; }).map(function (k) { return '<b style="color:' + col(k) + '">' + k + ' ×' + cnt[k] + '</b>'; }).join('　') + '　·　新英雄 ' + newN + '・重複 ' + (list.length - newN) + '（重複按稀有度轉英雄碎片：' + ['N', 'R', 'SR', 'SSR'].map(function (k) { return k + ' ' + ((typeof HERO_RARITY !== 'undefined' && HERO_RARITY[k] && HERO_RARITY[k].frag) || '?'); }).join('／') + '）</div><div class="gr-grid">' + html + '</div><button class="gr-x" id="ap-gacha-x">確定</button></div>';
     document.body.appendChild(box);
@@ -602,13 +732,13 @@ function partyWpnToggle(defId) {
     } catch (e) { openPartyRosterPanel(); }
 }
 function apWpnGachaPull(n) {
-    if (!window.AB_WPN || typeof AB_WPN.pullMany !== 'function') { logSys('<span class="text-red-400">專武轉蛋未載入。</span>'); return; }
+    if (!window.AB_WPN || typeof AB_WPN.pullMany !== 'function') { logSys('<span class="text-red-400">專屬裝備轉蛋未載入。</span>'); return; }
     n = Math.max(1, Math.min(100, Math.floor(Number(n) || 1)));
-    if (AB_WPN.tickets() < n) { logSys('<span class="text-red-400">專武券不足（要 ' + n + '，持有 ' + AB_WPN.tickets() + '）。</span>'); return; }
+    if (AB_WPN.tickets() < n) { logSys('<span class="text-red-400">專屬裝備券不足（要 ' + n + '，持有 ' + AB_WPN.tickets() + '）。</span>'); return; }
     var results = AB_WPN.pullMany(n);
     var ok = results.filter(function (r) { return r && r.ok; });
     if (ok.length) {
-      logSys('<span class="text-fuchsia-300">專武轉蛋 ×' + ok.length + '</span>');
+      logSys('<span class="text-fuchsia-300">專屬裝備 ×' + ok.length + '</span>');
     } else if (results[0] && results[0].msg) logSys('<span class="text-red-400">' + results[0].msg + '</span>');
     // 同英雄轉蛋：先刷新名冊／專武庫，再彈結果（避免 refresh 蓋過彈窗）
     openPartyRosterPanel();
@@ -641,27 +771,32 @@ function apShowWpnGachaResults(list) {
         .sort(function (a, b) { return ((AP_RAR_ORD[a.r.rarity] || 9) - (AP_RAR_ORD[b.r.rarity] || 9)) || (a.i - b.i); });
     var html = rows.map(function (o) {
         var r = o.r;
-        var e = (window.AB_EXCL && AB_EXCL[r.defId]) || {}, dup = !!(r.result && r.result.duplicate);
+        var slot = r.slot || 'weapon';
+        var slotLb = (window.AB_SET && AB_SET.SLOT_LB && AB_SET.SLOT_LB[slot]) || ({ weapon: '武器', armor: '防具', accessory: '飾品' }[slot] || slot);
+        var pc = null;
+        try { if (window.AB_SET && AB_SET.PIECES) pc = AB_SET.PIECES[AB_SET.pieceKey(r.defId, slot)]; } catch (eP) {}
+        var e = pc || (window.AB_EXCL && AB_EXCL[r.defId]) || {}, dup = !!(r.result && r.result.duplicate);
         var d = (typeof HERO_DB !== 'undefined' && HERO_DB[r.defId]) || {};
         var por = '';
         try { if (typeof heroPortraitUrl === 'function') por = heroPortraitUrl({ defId: r.defId, cls: d.cls, portraitId: d.portraitId }) || ''; } catch (x) {}
         if (!por) por = apGachaPor(r.defId);
-        // 顯示今次獲得嘅專武碎片（grant 回傳），唔顯示庫存總數
         var gain = 0;
         if (dup) {
             if (r.result && r.result.fragments != null) gain = r.result.fragments;
             else if (r.entry && r.entry.fragments != null) gain = r.entry.fragments;
         }
+        var nm = e.n || (r.entry && r.entry.name) || r.defId;
+        var hn = e.heroName || d.name || '';
         return '<div class="gr-c r-' + r.rarity + '" style="--rc:' + col(r.rarity) + '"><img src="' + _esc(por) + '" data-def="' + _esc(r.defId) + '" alt=""><span class="gr-r">' + r.rarity + '</span>'
             + (dup ? '' : '<span class="gr-new">NEW</span>')
-            + '<div class="gr-n">' + _esc(e.n || r.defId) + '</div><div class="gr-k">' + _esc(e.heroName || d.name || '') + ' 專武</div>'
-            + (dup ? '<div class="gr-dup">重複 → 專武碎片 +' + gain + '</div>' : '<div class="gr-dup" style="color:#4ade80">新專武・已裝備</div>') + '</div>';
+            + '<div class="gr-n">' + _esc(nm) + '</div><div class="gr-k">' + _esc(hn) + '・' + slotLb + '</div>'
+            + (dup ? '<div class="gr-dup">重複 → 專屬碎片 +' + gain + '</div>' : '<div class="gr-dup" style="color:#4ade80">新件・已裝備</div>') + '</div>';
     }).join('');
     var box = document.createElement('div'); box.id = 'ap-gacha-res';
     var newN = (list || []).filter(function (r) { return !(r.result && r.result.duplicate); }).length;
     var cnt = {}; (list || []).forEach(function (r) { cnt[r.rarity] = (cnt[r.rarity] || 0) + 1; });
     var sumBits = ['SSR', 'SR'].filter(function (k) { return cnt[k]; }).map(function (k) { return '<b style="color:' + col(k) + '">' + k + ' ×' + cnt[k] + '</b>'; }).join('　');
-    box.innerHTML = '<div class="gr-box" style="border-color:#a21caf"><h3>⚔ 專武轉蛋結果 ×' + (list || []).length + '</h3><div class="gr-sum">' + (sumBits ? sumBits + '　·　' : '') + '新專武 ' + newN + '・重複 ' + ((list || []).length - newN) + '（重複→專武碎片；同英雄碎片分開）</div><div class="gr-grid">' + html + '</div><button class="gr-x" id="ap-gacha-x" style="background:#a21caf">確定</button></div>';
+    box.innerHTML = '<div class="gr-box" style="border-color:#a21caf"><h3>🛡 專屬裝備結果 ×' + (list || []).length + '</h3><div class="gr-sum">' + (sumBits ? sumBits + '　·　' : '') + '新件 ' + newN + '・重複 ' + ((list || []).length - newN) + '（重複→該英雄專屬碎片）</div><div class="gr-grid">' + html + '</div><button class="gr-x" id="ap-gacha-x" style="background:#a21caf">確定</button></div>';
     document.body.appendChild(box);
     Array.prototype.forEach.call(box.querySelectorAll('img[data-def]'), function (im) {
         im.onerror = function () {
@@ -681,8 +816,76 @@ window.partyWpnBreakthrough = partyWpnBreakthrough;
 window.partyWpnToggle = partyWpnToggle;
 window.apShowWpnGachaResults = apShowWpnGachaResults;
 
+function partySetBreakthrough(defId, slot) {
+    if (!window.AB_SET) return;
+    var r = AB_SET.breakthrough(defId, slot);
+    if (!r || !r.ok) { try { logSys('<span class="text-red-400">🛡 突破失敗：' + ((r && r.msg) || '未知') + '</span>'); } catch (e) {} return; }
+    try { logSys('<span class="text-fuchsia-300">🛡 已突破至 ' + r.star + '★</span>'); } catch (e2) {}
+    try {
+      var own = ((player && player.heroes) || []).filter(function (x) { return x && x.defId === defId; })[0];
+      if (own) openHeroManagePanel(own.id); else openPartyRosterPanel();
+    } catch (e3) { openPartyRosterPanel(); }
+}
+function partySetToggle(defId, slot) {
+    if (!window.AB_SET) return;
+    var on = AB_SET.equipped(defId, slot);
+    AB_SET.setEquipped(defId, slot, !on);
+    try {
+      var own = ((player && player.heroes) || []).filter(function (x) { return x && x.defId === defId; })[0];
+      if (own) openHeroManagePanel(own.id); else openPartyRosterPanel();
+    } catch (e) { openPartyRosterPanel(); }
+}
+function apClsHeroPull(cls) {
+    if (!window.AB_SET) { logSys('<span class="text-red-400">職業卷未載入。</span>'); return; }
+    var r = AB_SET.pullClassHero(cls);
+    if (!r || !r.ok) { logSys('<span class="text-red-400">' + ((r && r.msg) || '失敗') + '</span>'); return; }
+    var d = (typeof HERO_DB !== 'undefined' && HERO_DB[r.defId]) || {};
+    logSys('<span class="text-amber-300">🎟 職業英雄券（' + ((AB_SET.CLS_LB && AB_SET.CLS_LB[cls]) || cls) + '）→ ' + (d.name || r.defId) + (r.result && r.result.duplicate ? '（重複→英雄碎片）' : '（新）') + '</span>');
+    openPartyRosterPanel();
+    try { if (typeof updateUI === 'function') updateUI(); } catch (e) {}
+}
+function apClsEquipPull(cls) {
+    if (!window.AB_SET) { logSys('<span class="text-red-400">職業卷未載入。</span>'); return; }
+    var r = AB_SET.pullClassEquip(cls);
+    if (!r || !r.ok) { logSys('<span class="text-red-400">' + ((r && r.msg) || '失敗') + '</span>'); return; }
+    var pc = r.piece || {};
+    logSys('<span class="text-fuchsia-300">🎟 職業裝備券 → ' + (pc.n || r.defId) + '（' + ((AB_SET.SLOT_LB && AB_SET.SLOT_LB[r.slot]) || r.slot) + '）' + (r.result && r.result.duplicate ? ' 重複→專屬碎片' : '') + '</span>');
+    openPartyRosterPanel();
+    try { if (r.ok) apShowWpnGachaResults([r]); } catch (e) {}
+}
+function apClsExToggle(mode) {
+    window._apClsExMode = (mode === 'equip' || mode === 'hero') ? mode : null;
+    try { openPartyRosterPanel(); } catch (e) {}
+}
+function apClsEquipExchange(cls) {
+    if (!window.AB_SET || !AB_SET.exchangeEquipToClsEquip) { logSys('<span class="text-red-400">兌換未載入。</span>'); return; }
+    var r = AB_SET.exchangeEquipToClsEquip(cls);
+    if (!r || !r.ok) { logSys('<span class="text-red-400">' + ((r && r.msg) || '換唔到') + '</span>'); return; }
+    var lb = (AB_SET.CLS_LB && AB_SET.CLS_LB[cls]) || cls;
+    logSys('<span class="text-fuchsia-300">兌換：用 ' + r.spent + ' 專屬裝備券 → 🎟' + lb + '職業裝備券 ×1（而家該職 ' + r.tickets + '；剩專屬裝備券 ' + r.wpnTickets + '）</span>');
+    window._apClsExMode = null;
+    openPartyRosterPanel();
+    try { if (typeof updateUI === 'function') updateUI(); } catch (e) {}
+}
+function apClsHeroExchange(cls) {
+    if (!window.AB_SET || !AB_SET.exchangeHeroToClsHero) { logSys('<span class="text-red-400">兌換未載入。</span>'); return; }
+    var r = AB_SET.exchangeHeroToClsHero(cls);
+    if (!r || !r.ok) { logSys('<span class="text-red-400">' + ((r && r.msg) || '換唔到') + '</span>'); return; }
+    var lb = (AB_SET.CLS_LB && AB_SET.CLS_LB[cls]) || cls;
+    logSys('<span class="text-amber-300">兌換：用 ' + r.spent + ' 英雄招募券 → 🎟' + lb + '職業英雄券 ×1（而家該職 ' + r.tickets + '；剩招募券 ' + r.heroTickets + '）</span>');
+    window._apClsExMode = null;
+    openPartyRosterPanel();
+    try { if (typeof updateUI === 'function') updateUI(); } catch (e) {}
+}
+window.partySetBreakthrough = partySetBreakthrough;
+window.partySetToggle = partySetToggle;
+window.apClsHeroPull = apClsHeroPull;
+window.apClsEquipPull = apClsEquipPull;
+window.apClsExToggle = apClsExToggle;
+window.apClsEquipExchange = apClsEquipExchange;
+window.apClsHeroExchange = apClsHeroExchange;
 
 window.partyHeroBreakthrough = partyHeroBreakthrough;
 
-try { console.info('[account-party] D1 party-ui ready · wpn'); } catch (e) {}
+try { console.info('[account-party] D1 party-ui ready · excl-set'); } catch (e) {}
 })();

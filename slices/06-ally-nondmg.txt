@@ -1,0 +1,92 @@
+// FILE js\06-status-allies.js L1330-1420
+1330|            if (typeof WAND_LIGHTARROW_IDS !== 'undefined' && WAND_LIGHTARROW_IDS.includes(_wi.id) && !ally.classicMode && !allyHasMastery(ally, 'm_strike') && Math.random() < ((d.int || 0) / 60)) { let _rt = _allyProcTarget(getTarget()); if (_rt) allyProcLightArrow(ally, _rt); }   // 共鳴：int/60 免費光箭回魔（同 allyWeaponProcs）；🏅 v2.6.70 魔擊精通傭兵共鳴已改發魔擊→本補償塊(只補回魔·不套傷害proc)不再施放光箭
+1331|        }
+1332|    }
+1333|    renderMobs();
+1334|    // 🔧 傭兵迴響精通：(11-階級)×10% 機率不消耗MP立刻再施放一次（迴響觸發的不再連鎖）
+1335|    let _aEchoRate = (11 - (sk.tier || 1)) / 10;
+1336|    if (sk.target !== 'all') _aEchoRate *= 2;   // 🏅 迴響精通（傭兵）：單體傷害魔法觸發機率加倍（全體沿用原機率）
+1337|    if (allyHasMastery(ally, 'm_echo') && !ally._echoing && Math.random() < _aEchoRate) {
+1338|        ally._echoing = true;
+1339|        logCombat(`<span class="font-bold" style="color:#93c5fd;text-shadow:0 0 6px #3b82f6;">【協力·${ally._allyName}·迴響】</span>${sk.n} 的魔力迴盪不息，再次轟出！`, 'magic');
+1340|        try { allyCastMagic(ally, sk); } finally { ally._echoing = false; }
+1341|    }
+1342|}
+1343|// 🔧 傭兵施放「非傷害」攻擊技能：純異常狀態（緩速/弱化/疾病/魔法消除/封印禁地/沉睡之霧/木乃伊詛咒/毒咒/壞物/闇盲/黑闇之影/破壞盔甲…）
+1344|//    與即死類（起死回生術=不死、釋放元素=元素）。比照玩家 castSkill 的非傷害分支，以傭兵自身魔法命中(abnormalMagicHit)判定（player=ally 換身）。
+1345|//    回傳 true=已施放並扣 MP；false=不適用（無目標 / 目標皆已具該狀態 / 無可即死目標 / MP 不足）→ 由呼叫端退回一般攻擊。
+1346|function allyCastNonDamage(ally, sk) {
+1347|    if (!sk || sk.type !== 'atk' || sk.dmgDice || sk.multiDmg || sk.dmgType === 'physical') return false;   // 僅處理「無傷害骰的魔法狀態/即死技」
+1348|    if (!sk.status && !sk.instakill) return false;
+1349|    let d = ally.d || {};
+1350|    let targets = (sk.target === 'all') ? mapState.mobs.filter(m => m && m.curHp > 0) : [getTarget()].filter(m => m && m.curHp > 0);
+1351|    if (sk.bossOnly) targets = targets.filter(m => m && m.boss);   // 🌊 頭目限定技能（污濁之水）：非頭目時退回一般攻擊，不扣 MP／不播放施法動作
+1352|    if (!targets.length) return false;
+1353|    if (typeof _allySpriteTrigger === 'function') _allySpriteTrigger(ally, 'skill', sk.n);   // 🤝 v3.0.70 隊員戰場 sprite：確認有合法目標後才播放施法動作
+1354|    // 即死技：需有「非BOSS且具對應tag」的目標，否則退回一般攻擊（避免對無效目標空放浪費 MP，與玩家 autoCastSpells 一致）
+1355|    if (sk.instakill) {
+1356|        let tag = sk.instakill.tag;
+1357|        if (!targets.some(m => !m.boss && (!tag || mobHasTag(m, tag)))) return false;
+1358|    }
+1359|    // 純異常狀態：所有存活目標皆已具該狀態 → 退回一般攻擊（不重複施放、不浪費 MP，與玩家 castSkill 8235 一致）
+1360|    if (sk.status && targets.every(m => m.st && m.st[sk.status.kind] > 0)) return false;
+1361|    let cost = Math.max(1, Math.ceil((sk.mp || 0) * (1 - (d.mpReduce || 0) / 100)));
+1362|    if (allyHasMastery(ally, 'i_mana')) cost *= 2;   // 🔮 v3.1.78 魔力精通（傭兵）：攻擊技 MP 消耗加倍（與 MP 上限加倍配套·原 inline 公式漏掉·buff 維持走 getMpCost 已含）
+1363|        cost = _allyWpnFullHpMpHalf(ally, cost);   // 🏺 v3.1.80 巫師的黑暗魔導書（傭兵）：滿血時攻擊技 MP 減半
+1364|    if (ally._setApprentice5 && (ally.mp || 0) < (ally.mmp || 0) * 0.3) cost = Math.max(1, Math.ceil(cost / 2));   // 🔮 學徒 5/5（傭兵）：MP<30% 耗魔減半（與魔導精通疊加）
+1365|    if (allyHasMastery(ally, 'e_magic') && sk.ele && sk.ele !== 'none' && sk.ele === ally.elfEle) cost = Math.max(1, Math.ceil(cost * 0.5));   // 🏅 魔導精通（傭兵）：同屬性 MP -50%(2026-07 30%→50%)
+1366|    if (_allyRoyalFreeCast) cost = 0;   // 👑 v2.7.94 王族魔法精通：免MP額外施放（allyRoyalFreeCast·鏡像玩家 js/07:302 _royalFreeCast）
+1367|    if ((ally.mp || 0) < cost) return false;
+1368|    ally.mp -= cost; allyManaMasteryRefund(ally, cost);
+1369|    let _sv = player; player = ally;   // 以傭兵自身魔法命中判定（applyMobStatus/tryInstakill 內部讀 player）
+1370|    let _ikKills = [];                  // 🔧 即死成功的目標 uid：延後到還原 player 後再 killMob（結算與 UI 歸真實玩家）
+1371|    try {
+1372|        logCombat(`<span class="text-emerald-300 font-bold">【協力·${ally._allyName}】</span>施放 ${sk.n}。`, 'magic');
+1373|        targets.forEach(t => {
+1374|            if (!t || t.curHp <= 0) return;
+1375|            if (sk.status) applyMobStatus(t, sk.status, sk.n, magicDamageCoef(d, 0));
+1376|            if (sk.instakill && t.curHp > 0) { let idx = mapState.mobs.findIndex(m => m && m.uid === t.uid); if (idx !== -1 && tryInstakill(t, sk.instakill, sk.n, idx, true)) _ikKills.push(t.uid); }
+1377|        });
+1378|    } finally { player = _sv; }
+1379|    // 🔧 還原 player 後才結算擊殺：經驗/金幣/掉落歸玩家、killMob 結尾的 updateUI 顯示玩家資料（修正換身期間 killMob 造成的左上面板閃爍與獎勵遺失）
+1380|    _ikKills.forEach(uid => { let i = mapState.mobs.findIndex(m => m && m.uid === uid); if (i !== -1) killMob(i); });
+1381|    renderMobs();
+1382|    return true;
+1383|}
+1384|// 🔧 傭兵施放「物理」攻擊技能（騎士衝擊之暈等：以武器揮擊造成物理傷害，命中後附加暈眩/異常/即死）。
+1385|//    比照玩家 castSkill 物理分支(8161~8227)，用 allyStrikeRoll 計傷（含硬皮減傷/脆弱/武器最終倍率）、player=ally 換身判定異常命中。
+1386|//    回傳 true=已施放並扣 MP；false=不適用（無目標 / 武器需求不符 / MP 不足）→ 由呼叫端退回一般攻擊。
+1387|function allyCastPhysicalSkill(ally, sk) {
+1388|    if (!sk || sk.type !== 'atk' || sk.dmgType !== 'physical') return false;
+1389|    let t = getTarget(); if (!t || t.curHp <= 0) return false;
+1390|    if (typeof _allySpriteTrigger === 'function') _allySpriteTrigger(ally, 'skill', sk.n);   // 🤝 v3.0.70 隊員戰場 sprite：施法動作
+1391|    let d = ally.d || {};
+1392|    let wpn = (ally.eq && ally.eq.wpn) ? DB.items[ally.eq.wpn.id] : null;
+1393|    if (sk.reqWpn === 'w2h'    && !(wpn && wpn.w2h && !wpn.isBow)) return false;   // 需雙手武器（🛡️ v2.6.69 審計#4：且非弓·與玩家路徑一致）
+1394|    if (sk.reqWpn === 'bow'    && !(wpn && wpn.isBow))  return false;   // 需弓（🧹 v3.1.79 大掃除：移除 'nonbow' 死閘·全技能無此值）
+1395|    let cost = Math.max(1, Math.ceil((sk.mp || 0) * (1 - (d.mpReduce || 0) / 100)));
+1396|    if (allyHasMastery(ally, 'i_mana')) cost *= 2;   // 🔮 v3.1.78 魔力精通（傭兵）：攻擊技 MP 消耗加倍（與 MP 上限加倍配套·原 inline 公式漏掉·buff 維持走 getMpCost 已含）
+1397|        cost = _allyWpnFullHpMpHalf(ally, cost);   // 🏺 v3.1.80 巫師的黑暗魔導書（傭兵）：滿血時攻擊技 MP 減半
+1398|    if (ally._setApprentice5 && (ally.mp || 0) < (ally.mmp || 0) * 0.3) cost = Math.max(1, Math.ceil(cost / 2));   // 🔮 學徒 5/5（傭兵）：MP<30% 耗魔減半
+1399|    if ((ally.mp || 0) < cost) return false;
+1400|    ally.mp -= cost; allyManaMasteryRefund(ally, cost);
+1401|    let hits = sk.hits || 1, totalDmg = 0, landed = 0, logHits = [];
+1402|    let _royalMult = royalAllyMult();   // 👑 換身前先取王族魅力加成（換身期間 player=ally 會讀到傭兵自身職業，故先快照主玩家的倍率）
+1403|    let _sv = player; player = ally;   // 異常命中(applyMobStatus/tryInstakill)以傭兵自身判定
+1404|    try {
+1405|        for (let h = 0; h < hits; h++) {
+1406|            if (t.curHp <= 0) break;
+1407|            let res = allyStrikeRoll(ally, t, {});   // 一般命中判定（可重擊/爆擊）
+1408|            if (!res.hit) { if (typeof vfxMiss === 'function') vfxMiss(t); logHits.push('Miss'); continue; }
+1409|            landed++;
+1410|            res.dmg = Math.floor(res.dmg * illuLvMult(ally));   // 🔮 幻術士(傭兵)骷髏毀壞：等級加成 ×(1+等級/50)（非幻術士回 1，不影響騎士/龍騎物理技）
+1411|            res.dmg = Math.max(1, Math.floor(res.dmg * _royalMult));   // 👑 王族魅力加成：傭兵造成傷害 ×(1+魅力/200)（換身前已快照）
+1412|            if (sk.skillAddDmg) res.dmg = Math.max(1, res.dmg + sk.skillAddDmg);   // ⚔️ v2.6.69 審計#12：衝擊之暈 +10 固定加值（鏡像玩家 js/07:512·不吃倍率）
+1413|            t.curHp -= res.dmg; t.justHit = getWpnEle(ally.eq ? ally.eq.wpn : null, wpn, ally); mobWake(t);
+1414|            if (typeof reflectWallOnDamage === 'function') reflectWallOnDamage(t, res.dmg, (wpn && (wpn.isBow || wpn.ranged)) ? 'ranged' : 'melee', ally);   // 🌑 v3.4.14 血壁空間：傭兵物理技能每擊反射（衝擊之暈/三重矢·鏡像玩家 js/07 物理分支）
+1415|            totalDmg += res.dmg;
+1416|            if (ally._downed) { logHits.push(res.dmg + '(倒地中止)'); break; }   // ☠️ v3.5.90 反彈把傭兵打成倒地 → 中止剩餘連擊（本擊傷害已計入·迴圈後的 killMob/日誌收尾照常）
+1417|            let mark = (res.heavy && res.crit) ? '會心' : (res.crit ? '爆' : (res.heavy ? '重' : ''));
+1418|            logHits.push(res.dmg + (mark ? '(' + mark + ')' : ''));
+1419|            if (sk.stun && (sk.stunChance == null || Math.random() < sk.stunChance)) applyMobStatus(t, { kind: 'stun', pbase: sk.stun, dur: 6, hitOff: (wpn && wpn.stunHitBonus) ? Math.round(wpn.stunHitBonus / 5) : 0 }, sk.n);   // 🏛️ 傭兵持真．冥皇執行劍：衝擊之暈暈眩命中率 +20%；🛡️ v2.6.69 審計#3：補鏡像 stunChance(10%) 前置骰（原漏→傭兵每擊必判暈＝玩家10倍）
+1420|            if (sk.status) applyMobStatus(t, sk.status, sk.n);

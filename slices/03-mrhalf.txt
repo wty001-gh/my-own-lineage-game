@@ -1,0 +1,72 @@
+// FILE js\03-combat-core.js L2460-2530
+2460|        let alive = mapState.mobs.filter(m => m && m.curHp > 0);
+2461|        if (alive.length === 0) return;
+2462|        t = alive[Math.floor(Math.random() * alive.length)];
+2463|    }
+2464|    if (_ms) { procMagicStrike(t); return; }   // 🏅 改為發動魔擊（含擴散·不再施放光箭/回魔）
+2465|    procLightArrow(t);
+2466|}
+2467|// 光箭傷害：武器共鳴觸發，不耗魔力、不吃冷卻；階級依觸發武器的潘朵拉權重／傳說標記。
+2468|function procLightArrow(t) {
+2469|    let sk = DB.skills['sk_lightarrow'];
+2470|    if (!sk || !t || t.curHp <= 0) return;
+2471|    let effMr = (t.st && t.st.mrhalf > 0) ? (t.mr / 2) : t.mr;
+2472|    let mrFactor = hasMastery('m_resonance') ? 1 : mrMult(effMr);   // 🏅 共鳴精通：光箭無視魔抗
+2473|    let isCrit = Math.random() * 100 < player.d.magicCrit;
+2474|    let _procWpn = player.eq.wpn ? DB.items[player.eq.wpn.id] : null;
+2475|    let spCoef = weaponMagicDamageCoef(player.d, _procWpn, t, sk.ele || 'none');
+2476|    let mageDmgMult = 1.0;
+2477|    let magicCritMult = isCrit ? (1 + player.d.magicCritDmg / 100) : 1.0;
+2478|    let baseMagicDmg = roll(sk.dmgDice[0], sk.dmgDice[1]);
+2479|    let core = magicBaseDamage(baseMagicDmg, player.d, sk.dmgBase || 0, true) * spCoef * magicCritMult;
+2480|    let d = Math.floor(core * mrFactor);
+2481|    d = Math.max(1, d);   // 光箭無屬性，無剋制固定加值
+2482|    d = Math.floor(d * mageDmgMult);
+2483|    d = Math.max(1, Math.floor(d * wpnEnFinalMult(player.eq.wpn)));   // 🔧 武器強化 +11~+20：最終傷害倍率（共鳴光箭比照奇古獸/物理武器；與 tooltip 顯示一致）
+2484|    d = Math.max(1, Math.floor(d * fragileMult(t)));   // 🔮 脆弱（白鳥5）
+2485|    if (hasMastery('m_resonance')) d = Math.max(1, d + 5);   // 🏅 共鳴精通：光箭傷害 +5
+2486|    if (typeof equipSkillDmgMult === 'function') d = Math.max(1, Math.floor(d * equipSkillDmgMult(sk, 'sk_lightarrow')));   // 🏺 v3.2.42 稽核修：共鳴光箭也吃技能傷害倍率遺物（光束強化魔杖 skillDmgMult 自身 proc 原本不生效）
+2487|    d = Math.max(1, Math.floor(d * rlFuryMult()));   // 🔮 紅獅5/5＋😡狂怒5/5：最終傷害
+2488|    d = illusionMagicDmg(d, false);   // 🔮 共鳴本身已有回魔，不觸發幻覺2/5與5/5
+2489|    t.curHp -= d;
+2490|    if (typeof terrorVisageOnDamage === 'function') terrorVisageOnDamage(t, d, 'magic');   // 🌅 巨大骷髏：共鳴光箭視為魔法
+2491|    t.justHit = 'magic';
+2492|    if (t.st && t.st.mrhalf > 0) t.st.mrhalf = 0;
+2493|    mobWake(t);
+2494|    player.mp = Math.min(player.mmp, player.mp + Math.max(1, Math.floor(d / (hasMastery('m_resonance') ? 5 : 10))));   // 共鳴：恢復 傷害/10（🏅 共鳴精通：傷害/5）
+2495|    updateUI();
+2496|    logCombat(`<span class="text-cyan-300 font-bold">【共鳴】</span>光箭對 <span class="${getMobColor(t.lv)}">${t.n}</span> 造成 <span class="${isCrit ? 'text-yellow-500 font-bold' : 'text-cyan-300'}">${d}</span> 點傷害。${isCrit ? ' (爆擊!)' : ''}`, 'magic');
+2497|    if (t.curHp <= 0) {
+2498|        let realIdx = mapState.mobs.findIndex(m => m && m.uid === t.uid);
+2499|        if (realIdx !== -1) killMob(realIdx);
+2500|    } else {
+2501|        renderMobs();
+2502|    }
+2503|    // 🔮 魔女 5/5：累計共鳴次數，每 5 次免費發動一次冰雪暴（sk_blizzard·4×2D10 水屬性全體·免學·不吃法師階級加成）
+2504|    if (player._setWitch5) {
+2505|        player._witchResCnt = (player._witchResCnt || 0) + 1;
+2506|        if (player._witchResCnt >= 5) { player._witchResCnt = 0; if (typeof stormBuffTick === 'function' && DB.skills['sk_blizzard']) stormBuffTick(DB.skills['sk_blizzard'], true); }
+2507|    }
+2508|}
+2509|// ===== 月光爆裂：對指定目標造成 1D30 + 2×強化等級 的風屬性魔法傷害（🔮 v3.4.91 改「受魔法傷害公式影響」：固定魔傷＋SP 係數＋武器特效階級＋屬性防禦＋MR·統一 proc 公式比照紅惡靈逆襲/冰矛圍籬）=====
+2510|function procMoonburst(t) {
+2511|    if (!t || t.curHp <= 0) return;
+2512|    let wpn = player.eq.wpn ? DB.items[player.eq.wpn.id] : null;
+2513|    let en = capWpnEn((player.eq.wpn && player.eq.wpn.en) || 0);
+2514|    let _cm = elementCounterMult('wind', t.e);   // ⚔️ 風剋水 ×1.4、被地剋 ×0.6
+2515|    let counterTxt = (_cm > 1) ? ' <span class="text-emerald-300 font-bold">(剋屬性!)</span>' : (_cm < 1 ? ' <span class="text-rose-300 font-bold">(被剋!)</span>' : '');
+2516|    let effMr = (t.st && t.st.mrhalf > 0) ? (t.mr / 2) : t.mr;   // 破魔減半（比照其他魔法 proc）
+2517|    let core = magicBaseDamage(roll(1, 30) + 2 * en, player.d, 0, true) * weaponMagicDamageCoef(player.d, wpn, t, 'wind');   // 🔮 統一魔法公式：＋固定魔傷(magicDmg)·×SP 係數·×武器特效階級·×(1−目標風屬性防禦)
+2518|    let mbDmg = Math.max(1, Math.floor(core * mrMult(effMr)));   // 受 MR
+2519|    mbDmg = Math.max(1, Math.floor(mbDmg * fragileMult(t) * _cm));   // 🔮 脆弱（白鳥5）＋⚔️屬性剋制 ×1.4/×0.6
+2520|    mbDmg = Math.max(1, Math.floor(mbDmg * enhanceWpnFinalMult(en, wpn)));   // 🔧 武器強化 +11~+20：最終傷害倍率
+2521|    mbDmg = Math.max(1, Math.floor(mbDmg * rlFuryMult()));   // 🔮 紅獅5/5＋😡狂怒5/5：最終傷害
+2522|    if (t.st && t.st.mrhalf > 0) t.st.mrhalf = 0;   // 消耗破魔（比照冰矛圍籬/紅惡靈）
+2523|    t.curHp -= mbDmg;
+2524|    if (typeof terrorVisageOnDamage === 'function') terrorVisageOnDamage(t, mbDmg, 'magic');   // 🌅 巨大骷髏：月光爆裂視為魔法
+2525|    t.justHit = 'wind';
+2526|    logCombat(`<span class="font-bold" style="color:#67e8f9;text-shadow:0 0 6px #06b6d4;">【月光爆裂】</span>對 <span class="${getMobColor(t.lv)}">${t.n}</span> 造成 ${mbDmg} 點風屬性傷害！${counterTxt}`, 'player-special');
+2527|    if (t.curHp <= 0) {
+2528|        let realIdx = mapState.mobs.findIndex(m => m && m.uid === t.uid);
+2529|        if (realIdx !== -1) killMob(realIdx);
+2530|    } else {

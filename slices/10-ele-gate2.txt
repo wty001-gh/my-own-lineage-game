@@ -1,0 +1,52 @@
+// FILE js\10-ui-tabs.js L530-580
+530|                if (!el.checked && player.buffs && (player.buffs[pair[1]] || 0) > 0) {
+531|                    player.buffs[pair[1]] = 0;   // 🔧 取消打勾：加速/勇敢/慎重/精靈餅乾/變身/魔法護盾立即失效（變身會在 calcStats 還原原形）
+532|                    if (typeof calcStats === 'function') calcStats();
+533|                    if (typeof renderStatusEffects === 'function') renderStatusEffects();
+534|                    if (typeof updateUI === 'function') updateUI();
+535|                }
+536|            });
+537|        }
+538|    });
+539|}
+540|
+541|function renderSkillSelects() {
+542|    // 先記住目前選擇，重建後還原（避免穿脫裝備/學技能等呼叫時被重設為「無」）
+543|    let prevAtk = document.getElementById('sel-atk-skill') ? document.getElementById('sel-atk-skill').value : '';
+544|    let prevHeal = document.getElementById('sel-heal-skill') ? document.getElementById('sel-heal-skill').value : '';
+545|    let prevConvert = document.getElementById('sel-convert-skill') ? document.getElementById('sel-convert-skill').value : '';
+546|    let aHtml = '<option value="">無</option>', hHtml = '<option value="">無</option>', cHtml = '<option value="">無</option>';
+547|    let buffHtml = '';
+548|    let sortedSkills = [...player.skills].filter(s => DB.skills[s] && !DB.skills[s].procOnly).sort((a,b) => DB.skills[a].tier - DB.skills[b].tier);   // 🏛️ 過濾 procOnly（惡魔之吻等純武器proc：不顯示於施放下拉/勾選）
+549|    
+550|    sortedSkills.forEach(sid => {
+551|        let sk = DB.skills[sid];
+552|        let skillDisplayName = (sid === 'sk_zombie' && player.eq && player.eq.shield && player.eq.shield.id === 'relic_necro_book') ? '骷髏復生' : sk.n;
+553|        let isAvail = true;
+554|        let __granted = player.grantedSkills && player.grantedSkills.includes(sid);
+555|        let needLv = skillReqLv(sk, sid);   // 🏅 集中化：含魔導精通特例
+556|        if(!__granted && (needLv === undefined || player.lv < needLv)) isAvail = false;
+557|        if(!__granted && sk.reqEle && player.elfEle !== sk.reqEle) isAvail = false;
+558|        if(!__granted && sk.reqEleAny && !player.elfEle) isAvail = false;
+559|        
+560|        let dis = isAvail ? '' : 'disabled class="text-slate-500"';
+561|        
+562|        if(sk.type === 'atk' && !sk.healSlot) aHtml += `<option value="${sid}" ${dis}>${skillDisplayName}</option>`;
+563|        if((sk.type === 'heal' && !sk.autoBuff && !['sk_antidote','sk_holy_light','sk_cancel'].includes(sid)) || (sk.type === 'atk' && sk.healSlot)) hHtml += `<option value="${sid}" ${dis}>${skillDisplayName}</option>`;
+564|        let __isPurify = (sid === 'sk_antidote' || sid === 'sk_holy_light' || sid === 'sk_cancel');
+565|        if(sk.type === 'buff' || (sk.type === 'heal' && sk.autoBuff) || __isPurify) {
+566|            let checked = document.getElementById(`auto-sk-${sid}`)?.checked ? 'checked' : '';
+567|            let sumAttr = sk.summon ? ` onchange="onSummonToggle('${sid}')" data-summon="1" data-unavail="${isAvail?'0':'1'}"` : '';
+568|            // 魔法相消術涵蓋解毒術與聖潔之光：勾選相消時鎖定這兩者
+569|            let __cancelOn = player.skills.includes('sk_cancel') && document.getElementById('auto-sk-sk_cancel')?.checked;
+570|            let __locked = (sid === 'sk_antidote' || sid === 'sk_holy_light') && __cancelOn;
+571|            // 🐉 覺醒互斥（無覺醒精通）：已勾選一種覺醒時，鎖定另外兩種「未勾選」的覺醒；已勾選那一個維持可點以便取消
+572|            let __awakenLocked = sk.awaken && player.mastery !== 'k_awaken' && !document.getElementById('auto-sk-'+sid)?.checked && ['sk_dragon_awaken_antares','sk_dragon_awaken_falion','sk_dragon_awaken_baraka'].some(a => document.getElementById('auto-sk-'+a)?.checked);
+573|            let __awakenAttr = sk.awaken ? ` onchange="onAwakenToggle('${sid}')"` : '';
+574|            let __dis = (!isAvail || __locked || __awakenLocked) ? 'disabled' : '';
+575|            let __purAttr = (sid === 'sk_cancel') ? ` onchange="renderSkillSelects()"` : '';
+576|            // 🔧 一般 buff / HoT 治癒（非召喚/覺醒/淨化）：取消打勾即立即結束（召喚/覺醒已各自有 onchange；淨化為反應式無常駐增益）
+577|            let __autoBuffAttr = (!__isPurify && !sk.summon && !sk.awaken && (sk.type === 'buff' || (sk.type === 'heal' && sk.autoBuff))) ? ` onchange="onAutoBuffToggle('${sid}')"` : '';
+578|            let __span = __isPurify ? 'text-teal-300' : 'text-purple-300';
+579|            let __ttl = __locked ? ' title="魔法相消術已涵蓋此效果"' : (__awakenLocked ? ' title="同時只能使用一種覺醒（需「覺醒精通」才能三種並用）"' : '');
+580|            // 🧙 v3.2.19 召喚術 v2：有召喚控制戒指→技能清單可點「選擇」開召喚物選單（無戒指顯示預設怪名）

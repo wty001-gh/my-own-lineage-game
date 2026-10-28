@@ -1,0 +1,202 @@
+// FILE js\07-skills-cast.js L700-900
+700|            if (player.dead) return true;   // ☠️ v3.5.87 反射反殺：死後中止收尾（不結算擊殺）
+701|            if (sk.mpDmgPct && t.st && t.st.mrhalf > 0) t.st.mrhalf = 0;   // 🔧 心靈破壞（魔法）：受一次魔法傷害後解除魔抗減半（與其他魔法路徑一致）
+702|            logCombat(`施放 <span style="font-weight:700;color:#7dd3fc">${sk.n}</span>，對 <span class="${getMobColor(t.lv)}">${t.n}</span> 造成 ${dmg} 點傷害。`, 'skill');
+703|            if (t.curHp > 0 && sk.status) applyMobStatus(t, sk.status, sk.n, magicDamageCoef(player.d, 0));
+704|            if (t.curHp <= 0) killMob(mapState.targetIdx); else renderMobs();
+705|            return true;
+706|        }
+707|        if(sk.dmgType === 'physical') {
+708|            let t = getTarget();
+709|            if(!t) return false;
+710|            if(sk.reqWpn === 'w2h' && (!player.eq.wpn || !DB.items[player.eq.wpn.id].w2h || DB.items[player.eq.wpn.id].isBow)) {   // 🛡️ v2.6.69 審計#4：「雙手且非弓」——維持雙手限定的同時保留舊版排除弓的設計（w2h 弓不得施放衝擊之暈）
+711|                if (state.ticks - _reqWpnWarnAt > 600) { _reqWpnWarnAt = state.ticks; logSys(`<span class="text-slate-400">${sk.n} 需要「雙手（非弓）武器」，目前武器不符，已暫停施放。</span>`); }   // 🛡️ 審計#15：原本靜默不施放零提示→每 60 秒提示一次
+712|                return false;
+713|            }
+714|            // 三重矢：必須裝備弓（🧹 v3.1.79 大掃除：移除 reqWpn 'nonbow' 死閘——全技能無此值·衝擊之暈實際用 'w2h'·原註解誤導）
+715|            if(sk.reqWpn === 'bow' && (!player.eq.wpn || !DB.items[player.eq.wpn.id].isBow)) return false;
+716|            let wpn = player.eq.wpn ? DB.items[player.eq.wpn.id] : null;
+717|            let arrowData = null;
+718|
+719|            // 👇 施放三重矢等技能時也要扣箭矢（🔧 改在扣 MP/設冷卻「之前」：沒箭時不再空耗 MP 與整段攻擊冷卻）
+720|            if (wpn && wpn.isBow) {
+721|                arrowData = consumeArrow();
+722|                if (!arrowData) return false;
+723|            }
+724|            player.mp -= cost;
+725|            // 👑 魔法精通的免費追加施放是「額外的一次」，它繞過了 521 行的 atkSk 閘門進場，
+726|            //    若在這裡照樣重設冷卻，會把玩家原本已累積的冷卻進度整段吃掉（nextCastCooldown
+727|            //    對正值 current 直接丟棄 carry）→ 平均只剩名目效益的一半。物理與魔法兩條分支都要擋。
+728|            if (!_royalFreeCast) player.cds.atkSk = getAutoCastInterval(player, false, player.cds.atkSk);
+729|
+730|            let dice = wpn ? (t.s === 'L' ? wpn.dmgL : wpn.dmgS) : 2;
+731|            if (arrowData) {
+732|                dice = t.s === 'L' ? arrowData.dmgL : arrowData.dmgS;
+733|            }
+734|
+735|            let hits = sk.hits || 1;
+736|            // 🗼 騎士范德之劍：施展 衝擊之暈 時，本次技能近距離命中 +1（getPhysicalDmg 讀取，迴圈結束後重置）
+737|            player._skillHitBonus = (skId === 'sk_shock_stun' && wpn && wpn.vanderStunHit && !wpn.isBow) ? 1 : 0;
+738|            let totalDmg = 0, landed = 0, hitsLog = [], killed = false, delayDone = false;
+739|
+740|            for(let h = 0; h < hits; h++) {
+741|                if(t.curHp <= 0) break;
+742|                if (typeof playArrowFx === 'function') playArrowFx(player, t, h * 90);   // 🏹 v3.2.14 三重矢：每箭一支箭矢序列幀投射物·錯開 90ms 快速連發（取代原 CSS 風彈·非弓技能如衝擊之暈內部 no-op）
+743|                let res = getPhysicalDmg(dice, t, wpn, arrowData);
+744|                if(!res.hit) { if (typeof vfxMiss === 'function') vfxMiss(t); hitsLog.push('Miss'); continue; }
+745|                landed++;
+746|                if(sk.skillAddDmg) res.dmg = Math.max(1, res.dmg + sk.skillAddDmg);   // ⚔️ 衝擊之暈：一般攻擊傷害 +10
+747|                if(skId === 'sk_elf_triple' && wpn && wpn.fullHpMultTriple && t.curHp === t.hp) res.dmg = Math.max(1, Math.floor(res.dmg * wpn.fullHpMultTriple));   // 🏺 遺忘者的狙擊弓：三重矢對滿血敵人傷害 ×2（僅第一箭·命中後 curHp 已降·gate skId 避免衝擊之暈共用此迴圈時誤觸）
+748|                // 🔮 紅獅 5/5 已於 getPhysicalDmg 內套用（避免重複），此處不再乘
+749|                // 遠距離物理技能命中滿血被動怪物，賦予 3 秒延遲（整段只觸發一次）
+750|                if(!delayDone && t.curHp === t.hp && t.beh === '被動' && res.ranged) { t._delayTicks = 30; delayDone = true; }
+751|                t.curHp -= res.dmg;
+752|                if (typeof moonShatterOnDamage === 'function') moonShatterOnDamage(player, t, res.dmg);
+753|                t.justHit = getWpnEle(player.eq.wpn, wpn);
+754|                if (typeof reflectWallOnDamage === 'function') reflectWallOnDamage(t, res.dmg, res.ranged ? 'ranged' : 'melee', null);   // 🌑 v3.4.14 血壁空間：物理技能每擊反射（衝擊之暈/三重矢·玩家傭兵一致）
+755|                if (player.dead) { player._skillHitBonus = 0; return true; }   // ☠️ v3.5.87 反射反殺：死後中止後續箭/擊與收尾（⚠️ 記得歸零范德命中加成）
+756|                totalDmg += res.dmg;
+757|                let mark = (res.heavy && res.crit) ? '會心' : (res.crit ? '爆' : (res.heavy ? '重' : ''));
+758|                hitsLog.push(res.dmg + (mark ? '(' + mark + ')' : ''));
+759|                mobWake(t);
+760|                if(sk.stun && (sk.stunChance == null || Math.random() < sk.stunChance)) applyMobStatus(t, { kind:'stun', pbase:sk.stun, dur:6, hitOff: (wpn && wpn.stunHitBonus && !wpn.isBow) ? Math.round(wpn.stunHitBonus / 5) : 0 }, sk.n);   // ⚔️ 衝擊之暈：命中時 stunChance(10%) 機率暈眩；🏛️ 真．冥皇執行劍：暈眩命中率 +20%（hitOff +4）
+761|                if(sk.status) applyMobStatus(t, sk.status, sk.n);
+762|                if(t.curHp > 0 && sk.instakill && tryInstakill(t, sk.instakill, sk.n, mapState.targetIdx)) { killed = true; break; }
+763|            }
+764|            player._skillHitBonus = 0;   // 🗼 重置：范德之劍命中加成僅作用於本次技能
+765|
+766|            if(landed > 0) {
+767|                let detail = hits > 1 ? `[${hitsLog.join(', ')}] 共 ${totalDmg}` : `${totalDmg}`;
+768|                let tag = totalDmg > 0 && hitsLog.some(x => x.includes('爆') || x.includes('會心')) ? 'player-crit' : 'player';
+769|                logCombat(`施放 <span style="font-weight:700;color:#7dd3fc">${sk.n}</span>，對 <span class="${getMobColor(t.lv)}">${t.n}</span> 造成 ${detail} 點物理傷害。`, 'skill');
+770|                if(t.curHp <= 0) { if(!killed) killMob(mapState.targetIdx); }
+771|                else renderMobs();
+772|            } else {
+773|                logCombat(`施放 ${sk.n} 未命中 <span class="${getMobColor(t.lv)}">${t.n}</span>。`, 'miss');
+774|            }
+775|
+776|            // 三重矢：連射發動即判定一次；月光爆裂依「命中次數」判定（每命中一箭各判定一次）
+777|            if (skId === 'sk_elf_triple') {
+778|                rapidfireProc(arrowData);   // 連射：發動攻擊即判定（不論三箭是否命中）；每箭各自命中判定
+779|                for (let _m = 0; _m < landed; _m++) moonburstProc(t);   // 月光爆裂：等同命中次數，各 8% 獨立判定（主目標死亡自動轉移）
+780|                wandLightArrowProc(t);   // 共鳴（裝弓時不生效，保留以求一致）
+781|                magicStrikeProc(t);      // 魔擊（裝弓時不生效，保留以求一致）
+782|            }
+783|            return true;
+784|        } else {
+785|            let targets = sk.target === 'all' ? mapState.mobs.filter(m => m && m.curHp > 0 && !m._dead) : [getTarget()].filter(m => m && m.curHp > 0);   // 🛡️ v2.6.69 審計#7：排除同 tick 已死屍體（killMob 只標記·settleDeadMobs 才移除）——原本對屍體結算的傷害會灌進 _burstDmg 使魔爆總量膨脹；與傭兵 allyCastMagic 過濾一致
+786|            if(sk.bossOnly) targets = targets.filter(m => m && m.boss);   // 🌊 頭目限定技能（污濁之水）：非頭目不施放、不扣 MP／冷卻
+787|            if(targets.length === 0) return false;
+788|
+789|            // 防止對「已具有該異常狀態」的目標重複施放異常：
+790|            //   僅限「純異常技」（無傷害骰 dmgDice / multiDmg）；可造成傷害又附加異常的技能（如冰矛圍籬）不在此限。
+791|            //   單體：目標已有該狀態即跳過；範圍(target:'all')：所有存活目標都已有該狀態才跳過。跳過時不消耗 MP / 冷卻。
+792|            if(sk.status && !sk.multiDmg && !sk.dmgDice) {
+793|                let live = targets.filter(m => m && m.curHp > 0);
+794|                if(live.length > 0 && live.every(m => m.st && m.st[sk.status.kind] > 0)) return false;
+795|            }
+796|            
+797|            player.mp -= cost;
+798|            // 👑 魔法精通的免費追加施放是「額外的一次」，它繞過了 521 行的 atkSk 閘門進場，
+799|            //    若在這裡照樣重設冷卻，會把玩家原本已累積的冷卻進度整段吃掉（nextCastCooldown
+800|            //    對正值 current 直接丟棄 carry）→ 平均只剩名目效益的一半。物理與魔法兩條分支都要擋。
+801|            if (!_royalFreeCast) player.cds.atkSk = getAutoCastInterval(player, false, player.cds.atkSk);
+802|            if(sk.hpCost && !_echoFree) player.hp = Math.max(1, player.hp - effHpCost(sk));   // 🔮 混亂/幻想/恐慌：扣除 HP 消耗（迴響連發那次免費；🐉 龍血精通減半）
+803|
+804|            let totalDmgText = [];
+805|            let _burstDmg = 0;   // 🔧 神官魔杖·魔爆：累計本次魔法總傷害
+806|            targets.forEach((t, tidx) => {
+807|                // --- 魔法技能命中滿血被動怪物，賦予 3 秒延遲 ---
+808|                if (t.curHp === t.hp && t.beh === '被動') {
+809|                    t._delayTicks = 30;
+810|                }
+811|
+812|                let effMr = (t.st && t.st.mrhalf > 0) ? (t.mr / 2) : t.mr;
+813|                let mrFactor = (player.eq.wpn && (DB.items[player.eq.wpn.id] || {}).spellIgnoreMr) ? 1 : mrMult(effMr);   // 🏺 v3.6.44 血祭儀式短刀：施放的傷害魔法無視目標魔法抗性
+814|
+815|                let dmgArray = sk.multiDmg || (sk.dmgDice ? [[sk.dmgDice[0], sk.dmgDice[1]]] : []);
+816|                let totalDmg = 0;
+817|                let hitsLog = [];
+818|                let isCrit = Math.random() * 100 < player.d.magicCrit;
+819|    
+820|    // SP／屬性防禦係數後乘上 ×(1+法術階級/10)；屬性防禦依每個目標分別計入。
+821|    let spCoef = magicDamageCoef(player.d, magicAttrDefense(t, sk.ele || 'none'), sk.tier);
+822|    let mageDmgMult = 1.0;
+823|    
+824|    let magicCritMult = isCrit ? (1 + player.d.magicCritDmg / 100) : 1.0;
+825|
+826|                dmgArray.forEach((diceArr, idx) => {
+827|                    let baseMagicDmg = roll(diceArr[0], diceArr[1]);
+828|                    let isLastHit = idx === dmgArray.length - 1;
+829|                    let core = magicBaseDamage(baseMagicDmg, player.d, isLastHit ? (sk.dmgBase || 0) : 0, isLastHit) * spCoef * magicCritMult;
+830|
+831|                    let extraMagicDmg = 0;
+832|                    let fixed = 0;
+833|
+834|                    let d = Math.floor((core + extraMagicDmg) * mrFactor);
+835|                    d = Math.max(1, d) + fixed;
+836|                    d = Math.max(1, Math.floor(d * elementCounterMult(sk.ele, t.e)));   // ⚔️ 屬性剋制：魔法剋怪 ×1.4、被剋 ×0.6（無屬性→×1）
+837|                    if (idx === 0) d = Math.max(1, Math.floor(d * consumeWetMult(t, sk.ele)));   // 🏺 海洋水晶球：潮濕目標受風屬性魔法傷害 ×2 並解除（只在首段骰結算·避免多段各×2）
+838|                    d = Math.floor(d * mageDmgMult);   // 保留流程相容性；目前不再追加舊法師專屬倍率
+839|                    d = Math.max(1, Math.floor(d * rlFuryMult()));   // 🔮 紅獅5/5(×1.1)＋😡狂怒5/5：攻擊技能最終傷害
+840|                    // 🔧 魔導精通同屬性傷害×2 已移除(2026-07 用戶要求)
+841|                    d = Math.max(1, Math.floor(d * fragileMult(t) * illuLvMult(player)));    // 🔮 脆弱（白鳥5）；🔮 幻術士等級加成 ×(1+等級/50)（幻想/混亂）
+842|                    d = Math.max(1, Math.floor(d * wpnEnFinalMult(player.eq.wpn)));   // 🔧 武器強化 +11~+20：最終傷害倍率（也影響玩家施放的傷害魔法；物理技能走 getPhysicalDmg 已含、不在此處）
+843|                    totalDmg += d;
+844|                    hitsLog.push(d);
+845|                });
+846|                
+847|                if(dmgArray.length > 0) {
+848|                    if (sk.hpCost && player._setDragonblood5) totalDmg = Math.max(1, Math.floor(totalDmg * 1.2));   // 🐉 龍血5/5：HP消耗技傷害+20%
+849|                    totalDmg = illusionMagicDmg(totalDmg, false);   // 🔮 攻擊技能下拉選單可選的一般傷害法術，不觸發幻覺2/5與5/5
+850|                    totalDmg = Math.max(1, Math.floor(totalDmg * equipSkillDmgMult(sk, skId) * (_autoCastNow ? (_equipWpnField('autoCastDmgMult') || 1) : 1)));   // 🏺 遺物 特定技能傷害倍率（冰錐/光箭/究極光裂術 ×1.5）；🐍 枯竭魔杖：auto 施放傷害 ×autoCastDmgMult(1.5)
+851|                    t.curHp -= totalDmg;
+852|                    if (typeof moonShatterOnDamage === 'function') moonShatterOnDamage(player, t, totalDmg);
+853|                    _burstDmg += totalDmg;   // 🔧 魔爆累計
+854|                    t.justHit = (sk.ele && sk.ele !== 'none') ? sk.ele : 'magic';
+855|                    t._spellHurt = true;   // 🎬 v3.0.14 法術傷害→hurt 動畫(含頭目·renderMobs 頭目閘放行)
+856|                    if (typeof reflectWallOnDamage === 'function') reflectWallOnDamage(t, totalDmg, 'magic', null);   // 🌑 v3.4.14 血壁空間：傷害魔法技能（單體/全體）＝魔法反射（玩家傭兵一致）
+857|                    let multiText = hitsLog.length > 1 ? `[${hitsLog.join(", ")}] (總和: ${totalDmg})` : `${totalDmg}`;
+858|                    if (isCrit) multiText += " (爆擊!)";
+859|                    totalDmgText.push(`對 <span class="${getMobColor(t.lv)}">${t.n}</span> 造成 <span class="${isCrit?'text-yellow-500 font-bold':'text-cyan-300'}">${multiText} 點傷害</span>`);
+860|                    if (player.dead) return;   // ☠️ v3.5.87 反射反殺：跳過本目標其餘附帶效果（forEach 內·外層另有總守衛）
+861|                                               // ⚡ v3.5.89 守衛移到傷害訊息 push 之後：原本擋在前面會讓被反殺當下印出「施放 冰矛 -> 」的空箭頭殘缺日誌
+862|                } else {
+863|                    // 純狀態/秒殺類魔法（無傷害骰）：不造成直接傷害，只施加效果
+864|                    t.justHit = (sk.ele && sk.ele !== 'none') ? sk.ele : 'magic';
+865|                    totalDmgText.push(`對 <span class="${getMobColor(t.lv)}">${t.n}</span> 施放`);
+866|                }
+867|                mobWake(t);
+868|                if(typeof playSpellFx === 'function') { try { playSpellFx(sk.n, t); } catch(e){} }   // ⚡ v2.7.15 法術特效：技能有註冊 SPELL_FX 者於目標身上疊播天堂原版特效(純視覺·只有註冊者會播)
+869|                if(t.st && t.st.mrhalf > 0) t.st.mrhalf = 0; // 受一次魔法傷害後解除魔抗減半
+870|                if(sk.lifesteal) { let h = Math.min(totalDmg, player.mhp - player.hp); if(h > 0){ player.hp += h; logCombat(`你吸取了 ${h} 點生命。`, 'heal'); } }
+871|                if(sk.freeze) applyMobStatus(t, { kind:'freeze', pbase:sk.freeze, dur:6 }, sk.n);
+872|                if(sk.status) applyMobStatus(t, sk.status, sk.n, spCoef);
+873|                // 🏺 v3.5.27 水靈的魔力珠：原本不具冰凍效果的水屬性傷害魔法 → pct% 機率附加冰凍 dur 秒（頭目免疫冰凍照舊·經典模式停用特效）
+874|                { let _wfW = player.eq.wpn ? DB.items[player.eq.wpn.id] : null;
+875|                  if (_wfW && _wfW.waterFreezeProc && sk.ele === 'water' && dmgArray.length > 0 && !sk.freeze && !(sk.status && sk.status.kind === 'freeze') && !player.classicMode
+876|                      && t.curHp > 0 && !(t.boss && BOSS_IMMUNE.includes('freeze')) && Math.random() * 100 < _wfW.waterFreezeProc.pct) {
+877|                      if (!t.st) t.st = newMobStatus();
+878|                      t.st.freeze = (_wfW.waterFreezeProc.dur || 4) * 10;
+879|                      logCombat(`<span class="font-bold text-sky-300">【${_wfW.n}】</span><span class="${getMobColor(t.lv)}">${t.n}</span> 被寒流冰凍了！`, 'player-special');
+880|                  } }
+881|                if(t.curHp > 0 && sk.instakill) tryInstakill(t, sk.instakill, sk.n, mapState.mobs.findIndex(m => m && m.uid === t.uid));
+882|            });
+883|            
+884|            logCombat(`施放 <span style="font-weight:700;color:#7dd3fc">${sk.n}</span> -> ${totalDmgText.join(" | ")}`, 'skill');
+885|            if (player.dead) return true;   // ☠️ v3.5.87 反射反殺：死後不結算擊殺經驗/掉落與後續 proc
+886|            targets.forEach((t) => {
+887|                if(t.curHp <= 0) {
+888|                    let realIdx = mapState.mobs.findIndex(m => m && m.uid === t.uid);
+889|                    if(realIdx !== -1) killMob(realIdx);
+890|                }
+891|            });
+892|            // 🏺 風精靈王的狂嘯：主動施展風屬性傷害魔法時，15% 免費追加一次龍捲風（武器 proc 路徑不會回到此處，避免遞迴）。
+893|            {
+894|                let _ww = player.eq.wpn ? DB.items[player.eq.wpn.id] : null;
+895|                if (_ww && _ww.windSpellProcRate && sk.ele === 'wind' && _burstDmg > 0 && Math.random() * 100 < _ww.windSpellProcRate) {
+896|                    let _wt = mapState.mobs.find(m => m && m.curHp > 0 && !m._dead);
+897|                    if (_wt) { logCombat(`<span class="font-bold" style="color:#86efac;text-shadow:0 0 6px #16a34a;">【${_ww.n}】</span>狂風共振，額外觸發龍捲風！`, 'player-special'); procFreeMagicSkill(_wt, 'sk_tornado', capWpnEn((player.eq.wpn && player.eq.wpn.en) || 0), false, _ww); }
+898|                }
+899|            }
+900|            // 🔧 神官魔杖·魔爆：施放傷害魔法時依機率(單體 智力/100、全體 智力/60)引爆本次傷害30%的無屬性傷害，均分給場上所有敵人

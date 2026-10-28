@@ -1,0 +1,61 @@
+// FILE js\06-status-allies.js L1-60
+1|function newMobStatus() {
+2|    return { freeze:0, stun:0, stone:0, sleep:0, paralyze:0, poison:0, poisonTick:30, poisonDmg:0, poisonStacks:0, poisonUnit:0,
+3|             blind:0, blindVal:0, weaken:0, disease:0, vacuum:0, broken:0, slow:0, mrhalf:0, magicseal:0, fragile:0, shatter:0, armorbreak:0, confuse:0, panic:0, guardbreak:0, terror:0, doom:0, strawCurse:0, muddywater:0, bind:0 };   // 🌊 污濁之水：頭目回血減半（js/03）；⚡ v3.7.52 paralyze 麻痺（審判落雷·硬控同暈眩）；🕸️ v3.7.75 bind 束縛
+4|}
+5|// 🕸️ v3.7.75 束縛：被束縛者「原地不動」——本身不是硬控（仍可施法／使用技能），只擋一般攻擊：
+6|//   ‧ 被束縛的玩家／傭兵：手上不是遠距離武器就打不出一般攻擊（裝弓/十字弓＝隔空射擊·不受影響）。
+7|//   ‧ 被束縛的怪物：搆不到「裝備遠距離武器」的玩家／傭兵，那一次一般攻擊落空（近戰目標照打）。
+8|//   對頭目無效（BOSS_IMMUNE 已含 bind）。
+9|function isRangedArmed(ent) {
+10|    let w = (ent && ent.eq && ent.eq.wpn) ? DB.items[ent.eq.wpn.id] : null;
+11|    return !!(w && (w.ranged || w.isBow));
+12|}
+13|function bindSelfBlocked(ent) {   // 玩家／傭兵：自己被束縛且非遠距離武器→無法一般攻擊
+14|    let st = (typeof player !== 'undefined' && ent === player) ? player.statuses : (ent && ent.statuses);
+15|    return !!(st && st.bind > 0) && !isRangedArmed(ent);
+16|}
+17|function bindMobBlockedVs(m, target) {   // 怪物：自己被束縛且目標為遠距離武器持有者→這次一般攻擊搆不到
+18|    if (!(m && m.st && m.st.bind > 0) || !isRangedArmed(target)) return false;
+19|    if (state.ticks - (m._bindLogAt == null ? -999 : m._bindLogAt) >= 30) {   // 每 3 秒最多一則（攻速快的怪每 1~2 秒一次會洗版）
+20|        m._bindLogAt = state.ticks;
+21|        logCombat(`<span class="${getMobColor(m.lv)}">${m.n}</span> 被束縛住，構不到遠距離攻擊的你們。`, 'miss');
+22|    }
+23|    return true;
+24|}
+25|function mobEffAC(m, actor) { let _weakOk = (m.weakExpose > 0) && ((actor && actor !== player) ? allyHasMastery(actor, 'k_weakness') : hasMastery('k_weakness')); return (m.ac || 0) + ((m.st && m.st.disease > 0) ? 8 : 0) + ((m.st && (m.st.confuse > 0 || m.st.panic > 0)) ? 5 : 0) + ((m.st && m.st.guardbreak > 0) ? 10 : 0) + (_weakOk ? 3 * Math.min(5, m.weakExpose) : 0) - ((m.st && m.st.shatter > 0) ? 10 : 0) - ((m._acGuardEnd > state.ticks) ? (m._acGuardVal || 0) : 0); }   // 🔮 月光碎裂：AC-10；混亂/恐慌：AC+5；🐉 護衛毀滅：AC+10；🐉 弱點精通：每層弱點曝光 AC+3（更易被命中·讀「攻擊者」精通：傭兵傳 actor→吃傭兵自身精通、玩家/召喚無 actor→吃玩家精通）   // 🗼 鋼鐵防護：暫時降低 AC
+26|function moonShatterOnDamage(owner, target, dmg) {
+27|    if (!owner || !owner._setMoon5 || !target || target._dead || (target.curHp || 0) <= 0 || !(dmg > 0)) return false;
+28|    if (!target.st) target.st = newMobStatus();
+29|    let firstApply = !(target.st.shatter > 0);
+30|    target.st.shatter = 30;   // 月光 5/5：碎裂 3 秒，最多 1 層、重複傷害刷新
+31|    return firstApply;
+32|}
+33|function mobActDisabled(m) {
+34|    let s = m.st; if(!s) return false;
+35|    return s.freeze > 0 || s.stun > 0 || s.stone > 0 || s.sleep > 0 || s.paralyze > 0;   // ⚡ v3.7.52 麻痺＝硬控（審判落雷）
+36|}
+37|// 怪物受到任何傷害時觸發（解除沉睡）
+38|function mobWake(m) {
+39|    if(m.st && m.st.sleep > 0) { m.st.sleep = 0; logCombat(`<span class="${getMobColor(m.lv)}">${m.n}</span> 從沉睡中醒來。`, 'magic'); }
+40|}
+41|function traumaPhysicalBonus(target) {
+42|    return (target && target._trauma && target._trauma.until > state.ticks) ? (target._trauma.dmg || 5) * (target._trauma.s || 1) : 0;
+43|}
+44|const STATUS_NAME = { freeze:'冰凍', stun:'暈眩', stone:'石化', sleep:'沉睡', paralyze:'麻痺', poison:'中毒',
+45|    blind:'目盲', weaken:'弱化', disease:'疾病', vacuum:'真空', broken:'損壞', slow:'緩速', mrhalf:'魔抗減半', magicseal:'魔法封印', fragile:'脆弱', shatter:'碎裂', armorbreak:'破甲', confuse:'混亂', panic:'恐慌', guardbreak:'護衛毀滅', terror:'恐懼', doom:'死神', muddywater:'污濁', bind:'束縛' };   // 🔮 脆弱（白鳥5）：受所有傷害+10%；月光碎裂：AC-10；🐉 護衛毀滅/恐懼/死神；🌊 污濁（污濁之水·頭目回血減半）；🕸️ v3.7.75 束縛
+46|// 特定狀態的專屬套用訊息（接於怪物名稱後）
+47|const STATUS_MSG = { magicseal:'的魔法遭到封印了。' };
+48|// 對 BOSS 無效的行動限制類狀態
+49|const BOSS_IMMUNE = ['freeze','stun','stone','sleep','paralyze','bind'];   // ⚡ v3.7.52 麻痺＝行動限制類·頭目免疫；🕸️ v3.7.75 束縛（行動限制類）亦對頭目無效
+50|// 異常魔法命中判定（玩家對怪物，共用）：命中值 = 玩家等級 + 魔法命中 − (怪等級−10) − 怪MR/10，
+51|// clamp[0,20]，擲 1d20（與一般攻擊相同：擲20必中、擲1必失、其餘 命中值≥骰值 即命中），命中率 5%~95%。
+52|// 異常魔法命中（玩家對怪物）：d20 機制，命中值 hv 上限預設 20（最高 95%）。
+53|// 🔧 傳入 maxHv 可降低成功率上限：maxHv=12 → 最高 60%（起死回生術、迷魅術用）。自然20必中、自然1必失。
+54|function abnormalMagicHit(m, maxHv, hitOff) {
+55|    let hv = player.lv + (player.d.magicHit || 0) + (hitOff || 0) - ((m.lv || 0) - 10) - ((m.mr || 0) / 10);
+56|    hv = Math.max(0, Math.min(maxHv || 20, hv));
+57|    let r = roll(1, 20);
+58|    return (r === 20) || (r !== 1 && hv >= r);
+59|}
+60|function allyAbnormalMagicHit(ally, m, maxHv, hitOff) {

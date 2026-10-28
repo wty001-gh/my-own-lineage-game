@@ -1,0 +1,37 @@
+{
+  "towns_added": [
+    "town_silver_knight",
+    "town_kent_castle",
+    "town_windwood_castle",
+    "town_heine_castle",
+    "town_talking",
+    "town_elf",
+    "town_gludin",
+    "town_gludio",
+    "town_heine",
+    "town_oren",
+    "town_aden",
+    "town_elder_council",
+    "town_pride",
+    "town_ivory_tower",
+    "town_witon",
+    "town_sherine",
+    "town_silent",
+    "town_hyperia",
+    "town_behemoth",
+    "town_flame_audience",
+    "town_pirate_village"
+  ],
+  "versions": {
+    "js/00-data.js": "1b3f40af3d",
+    "js/11-world-map.js": "65cfae880d",
+    "js/33-relic-recycle.js": "33a4c9bd23",
+    "js/08-items-equip.js": "b0e637a2d2",
+    "js/03-combat-core.js": "c704f748d8",
+    "js/04-combat-attack.js": "417f039f76",
+    "js/09-vfx-render.js": "3c7da91b00",
+    "js/34-mob-race.js": "618a73ce04",
+    "afk-traditional.js": "459bd0bdcf",
+    "js/06-status-allies.js": "43d64ac86f"
+  }
+}

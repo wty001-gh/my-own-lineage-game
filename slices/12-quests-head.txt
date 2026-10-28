@@ -1,0 +1,101 @@
+// FILE js\12-npc-quests.js L1-100
+1|// ===== 共用倉庫（存檔角色共用，獨立於存檔位的 localStorage 鍵）=====
+2|// 🎮 經典模式與非經典模式角色的倉庫不共通：依 player.classicMode 切換 localStorage 鍵（傭兵走存檔位、與倉庫無關，仍共通）。
+3|const WH_KEY = 'lineage_idle_warehouse';
+4|// 🎮 模式桶鍵後綴（倉庫桶／圖鑑桶／傭兵同模式招募共用·單一真相）：經典→'_classic'、一般→''。
+5|//   ⚠️v3.0.83 傳統模式已取消：t 參數忽略（一般+傳統→一般、經典+傳統→經典）；舊 '_tradonly'/'_trad' 桶由下方 _mergeTradBuckets 一次性併入。
+6|function modeSuffix(c, t){ return c ? '_classic' : ''; }
+7|function whKey(p){ let _p = (p !== undefined) ? p : player; return WH_KEY + modeSuffix(!!(_p && _p.classicMode), !!(_p && _p.traditionalMode)); }   // 🏛️🎮 依模式組合取對應倉庫桶
+8|const WH_MAX = 5000;   // 倉庫格數上限（🔧 100 → 200 → 500 → 5000）
+9|const WH_NO_STORE = ['item_dk_insignia','item_mastery_proof',   // 🚫 v3.2.17 舊項圈 id 已隨項圈系統移除
+10|    'item_pride_pass_11','item_pride_pass_21','item_pride_pass_31','item_pride_pass_41','item_pride_pass_51','item_pride_pass_61','item_pride_pass_71','item_pride_pass_81','item_pride_pass_91',
+11|    'item_dantes_letter','item_elf_whisper','item_ancient_book','item_sealed_intel','item_spy_report','item_chaos_key','item_royal_order','wpn_shaha_arrow',   // 🗑️ v3.5.87 移除 item_card_book/item_equip_book：收集冊本體已無取得管道且 DB 定義移除（ensureCardBook/ensureEquipBook 仍會濾除舊存檔殘留）；🐉 v3.7.56 移除 item_dragon_egg：幼龍蛋開放存倉
+12|    // 🔥 v3.0.78 試煉接取制：所有試煉道具禁止存入倉庫（既有倉庫存量仍可取出）
+13|    'new_item_196','new_item_198','new_item_206','new_item_144','new_item_208','item_nightvision','item_ancientkey',
+14|    'new_item_204','new_item_205','new_item_203','new_item_214','new_item_212','new_item_240',
+15|    'new_item_199','new_item_200','new_item_201','new_item_202','new_item_213','item_blueflute',
+16|    'item_death_oath','item_orc_elder_head','item_yeti_head','item_fallen_key',
+17|    'item_ant_fruit','item_ant_branch','item_ant_bark','item_elmore_heart','item_time_orb','item_wyvern_blood',
+18|    'new_item_207','new_item_226','new_item_225','item_cyclops_blood','new_item_219','new_item_234',
+19|    'item_demon_search','item_demon_spy','item_yeti_heart','item_soulfire_ash',
+20|    'new_item_197','new_item_211','item_lost_soul','mat_flame_sword','mat_flame_eye','mat_flame_claw','mat_flame_heart'];   // 🚫 禁止存入倉庫（現行陣列內容）：死亡騎士之印記、精通之證、傲慢之塔傳送符(11~91F)、各村莊搜索狀/信件等劇情道具、沙哈之箭、🔥50級試煉任務道具＋全部試煉道具。
+21|    //    （🗑️ 已不在此列：四種項圈＝v3.2.17 隨項圈系統移除、🎴卡片/裝備收集冊＝v3.5.87 移除 DB 定義、潘朵拉抽獎卷＝v3.5.49 隨舊抽獎機移除）
+22|// 倉庫分類過濾（武器 / 防具 / 道具）：存入、取出共用同一個下拉清單
+23|let _whFilter = 'weapon';
+24|let _whQtyInput = '';   // 🔧 倉庫存取「數量」共用輸入（取代 prompt()；空字串或 0 ＝整疊全部）。以模組變數保存→面板每次重繪後數值不流失
+25|let _whSearchInput = '';   // 🔎 倉庫搜尋暫態：2 字以上啟用跨分類模糊篩選，不寫入存檔
+26|function _whQtyVal(){ let v = parseInt(_whQtyInput, 10); return (v > 0) ? v : 0; }   // 0 ＝全部
+27|function whSetQty(v){ _whQtyInput = (v == null) ? '' : String(v); }   // 由輸入框 oninput 呼叫（用具名函式而非 inline 指派 lexical let，與 whSetFilter 同模式·穩定）
+28|function _whEscAttr(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
+29|function _whStripHtml(s){ return String(s || '').replace(/<[^>]*>/g, ''); }
+30|function _whSearchNorm(s){ return String(s || '').toLowerCase().replace(/[\s\u3000\-\_\/\\'"`~!@#$%^&*()[\]{}|:;,.，。！？、＋+=＝<>《》「」『』【】（）]/g, ''); }
+31|function _whSearchActive(){ return _whSearchNorm(_whSearchInput).length >= 2; }
+32|function _whFuzzyIncludes(hay, needle){
+33|    if(!needle) return true;
+34|    if(hay.indexOf(needle) >= 0) return true;
+35|    let j = 0;
+36|    for(let i = 0; i < hay.length && j < needle.length; i++) if(hay[i] === needle[j]) j++;
+37|    return j >= needle.length;
+38|}
+39|function whMatchSearch(it){
+40|    let q = _whSearchNorm(_whSearchInput);
+41|    if(q.length < 2) return true;
+42|    let d = DB.items[it.id] || {};
+43|    let full = (typeof getItemFullName === 'function') ? _whStripHtml(getItemFullName(it)) : '';
+44|    return _whFuzzyIncludes(_whSearchNorm([it.id, d.n || '', full].join(' ')), q);
+45|}
+46|// 🀄 v3.6.04 注音／中文輸入法（IME）組字保護。
+47|//   問題：whSetSearch 會整塊重繪面板（innerHTML）→ 搜尋輸入框元素被換成新的。
+48|//   Chrome 在 IME 組字期間也會持續發 input 事件，於是每打一個注音符號就把「IME 正在編輯的那個元素」
+49|//   砍掉重建 → 組字階段被強制中斷，注音永遠拼不出完整中文字（英數是逐字直接送出，故看起來正常）。
+50|//   修法：compositionstart~compositionend 之間只更新暫存值、不重繪；組字完成才套用並重繪。
+51|let _whComposing = false;     // IME 組字進行中
+52|let _whSearchDirty = false;   // 組字期間有輸入尚未套用
+53|function whSearchCompStart(){ _whComposing = true; }
+54|function whSearchCompEnd(v, pos){
+55|    _whComposing = false;
+56|    _whSearchInput = (v == null) ? '' : String(v);
+57|    _whSearchDirty = true;
+58|    // ⚠️ compositionend 與其後 input 事件的先後順序跨瀏覽器／輸入法不一致：
+59|    //    input 在後（Chrome 現行）→ 由它渲染並清 dirty，此處的 timeout 就跳過；
+60|    //    compositionend 在後（部分實作）→ input 當時 isComposing 仍為 true 沒渲染，改由此處補一次。
+61|    //    setTimeout(0) 讓兩者都跑完再決定 → 保證「恰好渲染一次」，不重複也不遺漏。
+62|    setTimeout(() => { if(_whSearchDirty) whSetSearch(_whSearchInput, pos); }, 0);
+63|}
+64|function whSetSearch(v, pos, ev){
+65|    _whSearchInput = (v == null) ? '' : String(v);
+66|    if(_whComposing || (ev && ev.isComposing)){ _whSearchDirty = true; return; }   // 組字中：只記錄不重繪（重繪＝砍掉 IME 的編輯目標）
+67|    _whSearchDirty = false;
+68|    renderWarehouseNPC(document.getElementById('interaction-content'));
+69|    let el = document.getElementById('wh-search-input');
+70|    if(el){
+71|        el.focus();
+72|        try { let p = Math.min((pos == null ? el.value.length : pos), el.value.length); el.setSelectionRange(p, p); } catch(e){}
+73|    }
+74|}
+75|function whClearSearch(){ _whComposing = false; _whSearchDirty = false; whSetSearch('', 0); }   // 清除鈕：一併重置組字旗標，避免殘留 true 使後續不重繪
+76|// ⚠️ composition 事件**沒有 inline handler 屬性**：HTML 規格的 GlobalEventHandlers 只涵蓋 oninput/onclick 那一批，
+77|//    `oncompositionstart=""` / `oncompositionend=""` 寫在標籤上瀏覽器會直接忽略（實測 handler 從未執行）→ 只能 addEventListener。
+78|//    又因面板每次重繪都會換掉輸入框元素，直接掛在元素上會隨重繪失效 → 改在 document 委派一次（composition 事件會冒泡），永久有效。
+79|document.addEventListener('compositionstart', e => { if (e.target && e.target.id === 'wh-search-input') whSearchCompStart(); });
+80|document.addEventListener('compositionend', e => { if (e.target && e.target.id === 'wh-search-input') whSearchCompEnd(e.target.value, e.target.selectionStart); });
+81|function whCategory(id){
+82|    let d = DB.items[id];
+83|    if(!d) return 'item';
+84|    if(d.type === 'wpn') return 'weapon';                       // 武器
+85|    if(d.type === 'arm' || d.type === 'acc') return 'armor';    // 防具（含飾品）
+86|    return 'item';                                              // 其餘皆道具
+87|}
+88|function whSetFilter(v){ _whFilter = v; _whSubFilter = ''; renderWarehouseNPC(document.getElementById('interaction-content')); }   // 切主分類→重置子分類為「全部」
+89|// 🗄️ 倉庫「子分類」：武器/防具沿用裝備收集冊的圖鑑類型(equipCatKey/EQUIP_CATEGORIES)細分；道具分 卡片/技能/製作/任務/卷軸/其他。空字串 ''＝全部。
+90|let _whSubFilter = '';
+91|function whSetSubFilter(v){ _whSubFilter = v || ''; renderWarehouseNPC(document.getElementById('interaction-content')); }
+92|// 製作材料 id 集合（掃所有配方的 req/mats·排除金幣）：用來把倉庫道具歸入「製作」子分類。延後到首次呼叫才建（確保 js/14 配方已載入）。
+93|let _whCraftMatIds = null;
+94|function _whBuildCraftMatIds(){
+95|    _whCraftMatIds = {};
+96|    let _scan = coll => { if(!coll) return; let groups = Array.isArray(coll) ? [coll] : Object.values(coll);
+97|        for(let g of groups){ if(!Array.isArray(g)) continue; for(let r of g){ let ings = (r && (r.req || r.mats)) || []; for(let m of ings){ if(m && m.id && m.id !== 'gold') _whCraftMatIds[m.id] = true; } } } };
+98|    try { _scan(typeof CRAFT_RECIPES !== 'undefined' && CRAFT_RECIPES); } catch(e){}
+99|    try { _scan(typeof DEMONKING_RECIPES !== 'undefined' && DEMONKING_RECIPES); } catch(e){}
+100|    try { _scan(typeof LUMIEL_RECIPES !== 'undefined' && LUMIEL_RECIPES); } catch(e){}

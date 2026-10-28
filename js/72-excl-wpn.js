@@ -1,4 +1,4 @@
-// ===== ab.20261026f／ab.20261027a 專武（SR/SSR）· 轉蛋 · 專武碎片升星 · 技能質變 · 專武庫 =====
+// ===== ab.20261026f／ab.20261027c 專武（SR/SSR）· 轉蛋 · 專武碎片升星 · 技能質變 · 專武庫 =====
 // 英雄碎片（hero.fragments）同專武碎片（ab.exclWpn[defId].fragments）完全分開，唔互通。
 (function () {
 'use strict';
@@ -61,6 +61,10 @@ var EXCL_NAMED = {
   hero_ignis_mage:       { n: '熾核法杖', fx: { atkP: 0.24, spP: 0.22 } },
   hero_terrae_elf:       { n: '岩根長弓', fx: { atkP: 0.20, asP: 0.10, def: 8 } },
   hero_cassia_knight:    { n: '十二門盾', fx: { def: 32, hpP: 0.14, shield0: 0.10 } },
+  hero_viviane_knight:   { n: '聖光守護盾', fx: { def: 30, hpP: 0.12, shield0: 0.10 } },
+  hero_ophelia_royal:    { n: '宮廷指揮杖', fx: { spP: 0.24, mana0: 20, hpP: 0.08 } },
+  hero_iris_illusion:    { n: '虹彩虛鏡', fx: { spP: 0.30, mana0: 24 } },
+  hero_thyra_warrior:    { n: '戰嚎雙斧', fx: { atkP: 0.30, asP: 0.10 } },
   hero_sylwen_elf:       { n: '世界樹葉弓', fx: { atkP: 0.28, asP: 0.14 } },
   hero_circe_mage:       { n: '獄炎座冠杖', fx: { atkP: 0.30, spP: 0.25 } },
   hero_nocturne_dark:    { n: '無月女帝刃', fx: { atkP: 0.32, crit: 0.12 } },
@@ -134,7 +138,7 @@ function exclEquipped(defId) { var r = exclRec(defId); return !!(r && r.owned &&
 var WPN_STAR_COST_BASE = [15, 40, 80, 150, 250];
 var WPN_STAR_COST_MUL = { SR: 1.0, SSR: 1.35 };
 var WPN_FRAG_GAIN = { SR: 15, SSR: 25 };
-var WPN_GACHA = { srW: 80, ssrW: 20, pitySsr: 40, ticketGold: 800, exchangeHeroTk: 3 };
+var WPN_GACHA = { srW: 80, ssrW: 20, pitySsr: 60, ticketGold: 800, exchangeHeroTk: 3 };
 
 function wpnStarCost(defIdOrRarity, fromStar) {
   var rarity, star;

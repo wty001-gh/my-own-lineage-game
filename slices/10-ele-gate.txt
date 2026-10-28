@@ -1,0 +1,42 @@
+// FILE js\10-ui-tabs.js L100-140
+100|    let granted = (player.grantedSkills || []).filter(id => DB.skills[id]);
+101|    let classLabel = classicSkillClassLabel();
+102|    if (stateBook.mode === 'class' && !classSkills.length) stateBook.mode = 'general';
+103|    if (stateBook.mode === 'equipment' && !granted.length) stateBook.mode = 'general';
+104|    if (stateBook.mode === 'general' && !accessibleGeneral.length && classSkills.length) stateBook.mode = 'class';   // 🔧 無一般魔法職業(騎士/戰士)→預設顯示職業技能，不留空白格
+105|
+106|    let tierAvailable = new Set(accessibleGeneral.map(id => +DB.skills[id].tier));
+107|    let list = [];
+108|    if (stateBook.mode === 'class') list = classSkills.map(id => ({ id:id, tier:null }));
+109|    else if (stateBook.mode === 'equipment') list = granted.map(id => ({ id:id, tier:null }));
+110|    else {
+111|        Array.from(tierAvailable).sort((a,b) => a-b).forEach(tier => {
+112|            let group = accessibleGeneral.filter(id => +DB.skills[id].tier === tier).map(id => ({ id:id, tier:tier }));
+113|            while (group.length % 4) group.push({ id:null, tier:tier });
+114|            list.push.apply(list, group);
+115|        });
+116|    }
+117|    while (list.length < CLASSIC_PAGE_CELLS) list.push({ id:null, tier:null });
+118|    let cells = list.map(entry => {
+119|        let id = entry.id;
+120|        if (!id) return '<div class="classic-skill-cell classic-skill-empty"></div>';
+121|        let sk = DB.skills[id];
+122|        let learned = (player.skills || []).includes(id);
+123|        let grantedSkill = granted.includes(id);
+124|        let needLv = grantedSkill ? 0 : skillReqLv(sk, id);
+125|        let elementOk = !sk.reqEle || player.elfEle === sk.reqEle;
+126|        let elementChosen = !sk.reqEleAny || !!player.elfEle;
+127|        let usable = learned && elementOk && elementChosen && (grantedSkill || needLv === undefined || player.lv >= needLv);
+128|        let dim = learned ? (usable ? '' : ' classic-skill-unavailable') : ' classic-skill-unlearned';
+129|        let img = '<img src="' + getIconUrl(sk, true) + '" onerror="this.style.display=\'none\';" alt="' + sk.n + '">';
+130|        let tierAttr = entry.tier ? ' data-tier="' + entry.tier + '"' : '';
+131|        let select = entry.tier ? 'classicSkillSelectTier(' + entry.tier + ');' : '';
+132|        if (learned && usable && sk.type === 'manual') return '<button class="classic-skill-cell tip-host' + dim + '"' + tierAttr + ' data-tip-skill="' + id + '" title="' + sk.n + '" onclick="' + select + 'manualCast(\'' + id + '\')">' + img + '</button>';
+133|        return '<div class="classic-skill-cell tip-host' + dim + '"' + tierAttr + ' data-tip-skill="' + id + '" title="' + sk.n + '" onclick="' + select + '">' + img + (!learned ? '<span class="classic-skill-lock">◆</span>' : '') + '</div>';
+134|    }).join('');
+135|
+136|    let tierButtons = '';
+137|    for (let t = 1; t <= 10; t++) tierButtons += '<button class="classic-skill-tier-hit tier-' + t + (tierAvailable.has(t) ? '' : ' disabled') + '" ' + (tierAvailable.has(t) ? 'onclick="classicSkillChooseTier(' + t + ')"' : 'disabled') + ' title="' + t + '階一般魔法"></button>';
+138|    let sprite = 538 + stateBook.tier;
+139|    let modeButtons = '<button class="' + (stateBook.mode === 'general' ? 'active' : '') + '" onclick="classicSkillChooseMode(\'general\')">一般</button>'
+140|        + (classSkills.length ? '<button class="' + (stateBook.mode === 'class' ? 'active' : '') + '" onclick="classicSkillChooseMode(\'class\')">' + (player.cls === 'elf' ? '精靈' : '職業') + '</button>' : '')

@@ -1,0 +1,187 @@
+// FILE js\10-ui-tabs.js L2535-2720
+2535|    // 👇 更新陣列名單
+2536|    ['stats', 'equip', 'weapons', 'skill', 'armors', 'items', 'audit', 'pvp', 'clan', 'automation'].forEach(id => { let _e = document.getElementById(`tab-${id}`); if(_e) _e.classList.add('hidden'); });   // 🔧 v2.6.74 自動化設定改分頁內嵌（tab-automation）
+2537|    document.getElementById(`tab-${t}`).classList.remove('hidden');
+2538|    if(typeof setEquipmentPanelEmbedded === 'function') setEquipmentPanelEmbedded(t === 'equip');
+2539|    if(t === 'audit' && typeof renderAuditTab === 'function') renderAuditTab();
+2540|    if(t === 'pvp' && typeof renderPvpTab === 'function') renderPvpTab();
+2541|    if(t === 'clan' && typeof renderClanTab === 'function') renderClanTab();
+2542|    if(t === 'automation' && typeof syncNpcLanguageSetting === 'function') syncNpcLanguageSetting();
+2543|}
+2544|
+2545|// ===== 🤝 協力傭兵隊伍面板（Phase 1：顯示血/魔/經驗條＋每傭兵攻擊技能/治癒魔法設定）=====
+2546|let _squadSigTeam = '';      // 🩹 v3.2.74 拆兩簽章：team 分頁(血/魔/經驗條·含寵物/召喚 HP 5%階)——變動才重建 team DOM
+2547|let _squadSigSkill = '';     // 🩹 v3.2.74 skill 分頁(攻擊/治癒/轉換技能下拉＋自動維持勾選)——只看傭兵名單/等級，戰鬥中寵物/召喚掉血不重建→開啟的技能下拉不會被關掉（原用單一簽章·寵物/召喚每 tick 掉血→整面板重建→下拉自動收合）
+2548|let _squadTab = 'team';      // 目前分頁：team / skill
+2549|let _autoCollapseInit = false;   // 自動化設定收合偏好只在首次套用
+2550|
+2551|// 依某個傭兵「自身的可學技能」產生攻擊／治癒下拉選項（比照 renderSkillSelects 過濾，但讀 ally 而非 player）
+2552|function _allySkillOptions(ally, kind, cur) {
+2553|    let opts = '<option value="">無</option>';
+2554|    let skills = (ally && ally.skills) ? ally.skills : [];
+2555|    let sorted = [...skills].filter(s => DB.skills[s] && !DB.skills[s].procOnly).sort((a, b) => (DB.skills[a].tier || 0) - (DB.skills[b].tier || 0));
+2556|    sorted.forEach(sid => {
+2557|        let sk = DB.skills[sid];
+2558|        // ⚠️ ally.skills 皆為「該傭兵已學會」的技能→一律可選；不可用 skillReqLv 判可用性（那會依『目前玩家』職業誤判，使跨職業傭兵如幻術士的攻擊技全被 disabled）
+2559|        // 🧝 v3.8.5 唯一例外＝妖精屬性閘：改讀 **ally.elfEle**（傭兵快照自帶）而非 player.elfEle 就不會誤判。
+2560|        //    來源角色換屬性後那些魔法在他自己身上已是灰色不可用 → 擔任傭兵時直接不列（施放端 js/06 同步停放）。
+2561|        if (typeof allySkillElementOk === 'function' && !allySkillElementOk(ally, sid)) return;
+2562|        let match = (kind === 'atk')
+2563|            ? (sk.type === 'atk' && !sk.healSlot)
+2564|            : (kind === 'convert')
+2565|            ? (sk.type === 'convert' || sid === 'sk_illu_cube_harmony')   // 🔄 轉換技能欄：type:'convert'（魂體/心靈/魔力奪取）＋ 立方和諧
+2566|            : ((sk.type === 'heal' && !sk.autoBuff && !['sk_antidote', 'sk_holy_light', 'sk_cancel'].includes(sid)) || (sk.type === 'atk' && sk.healSlot));
+2567|        if (!match) return;
+2568|        opts += `<option value="${sid}"${cur === sid ? ' selected' : ''}>${sk.n}</option>`;
+2569|    });
+2570|    return opts;
+2571|}
+2572|// 🆕 v3.0.97 傭兵「自動維持」勾選列：把受 _mercAutoOn 閘控制的技能（buff/召喚/團隊回復/淨化/持續傷害/立方）列成小勾選，逐兵開關。
+2573|//   勾選狀態＝_mercAutoOn(a,sid)（覆寫優先·否則來源角色快照）；toggle→setAllyAutoBuff。無此類技能→不顯示本列。
+2574|function _allyAutoBuffChips(a) {
+2575|    let list = (typeof allyAutoCastableSkills === 'function') ? allyAutoCastableSkills(a) : [];
+2576|    if (!list.length) return '';
+2577|    let s = a._slot;
+2578|    let chips = list.map(it => {
+2579|        let on = (typeof _mercAutoOn === 'function') ? _mercAutoOn(a, it.sid) : false;
+2580|        let name = (it.sid === 'sk_zombie' && a.eq && a.eq.shield && a.eq.shield.id === 'relic_necro_book') ? '骷髏復生' : it.n;
+2581|        return `<label class="flex items-center gap-0.5 px-1 rounded border cursor-pointer" style="border-color:${on ? '#0891b2' : '#475569'};background:${on ? 'rgba(8,145,178,0.18)' : 'rgba(15,23,42,0.4)'};" title="自動維持 ${name}（${it.cat}）"><input type="checkbox" ${on ? 'checked' : ''} onchange="setAllyAutoBuff('${s}','${it.sid}',this.checked)" style="width:11px;height:11px;margin:0;"><span style="color:${on ? '#67e8f9' : '#94a3b8'};">${name}</span></label>`;
+2582|    }).join('');
+2583|    return `<div class="flex flex-col gap-0.5" style="margin-top:1px;"><span class="text-cyan-400 font-bold" style="font-size:10px;">自動維持（增益／召喚／回復／淨化）</span><div class="flex flex-wrap gap-1" style="font-size:10px;line-height:1.4;">${chips}</div></div>`;
+2584|}
+2585|
+2586|function renderSquadPanel() {
+2587|    // 🩹 v3.8.1 補跑期間不重建隊伍面板：傭兵/寵物/召喚物/城堡護衛 的 HP 變動都經由此函式（22 處呼叫·多為每 tick/每擊），
+2588|    //    而它會整區重建 team 分頁 DOM——補跑上千 tick 時是主要拖慢來源（比照 renderMobs/flushTickRender 已有的 catchupActive 閘）。
+2589|    //    補跑結束後由下一個 tick 的各實體 render 或 js/23 的 500ms interval 自動刷新（補跑中面板不可見·無感）。
+2590|    if (typeof catchupActive === 'function' && catchupActive()) return;
+2591|    let panel = document.getElementById('squad-panel');
+2592|    if (!panel) return;
+2593|    if (!_autoCollapseInit) { _autoCollapseInit = true; }   // 🔧 v2.6.76 收合偏好停用：自動化設定已改分頁內嵌(v2.6.74)、傭兵隊伍面板取消收合恆展開（舊 fb5_*_collapsed 偏好不再套用·防「收合過就永遠展不開」）
+2594|    let allies = (player && player.allies) ? player.allies.filter(Boolean) : [];
+2595|    let _pets = (typeof petsOutList === 'function' && player && player.cls) ? petsOutList() : [];   // 🐾 v3.2.17 出戰寵物：顯示於隊伍清單下方
+2596|    let _summons = (typeof summonV2List === 'function' && player && player.cls) ? summonV2List().filter(s => s && !s._downed && (s.hp || 0) > 0) : [];
+2597|    if (typeof necroSkeletonList === 'function' && player && player.cls) _summons = _summons.concat(necroSkeletonList().filter(s => s && !s._downed && (s.hp || 0) > 0));
+2598|    let _summonSk = (typeof summonV2ActiveSk === 'function') ? summonV2ActiveSk() : '';
+2599|    let _summonVisible = _summons.length > 0 || !!(player && player._summonV2On && _summonSk && typeof summonV2Knows === 'function' && summonV2Knows(_summonSk));
+2600|    let _guards = (typeof guardV2List === 'function' && player && player.cls) ? guardV2List() : [];   // 🏰 城堡護衛（可招募的協同角色）
+2601|    if (!allies.length && !_pets.length && !_summonVisible && !_guards.length) { panel.style.display = 'none'; _squadSigTeam = ''; _squadSigSkill = ''; return; }
+2602|    panel.style.display = '';
+2603|    let _sigAllies = allies.map(a => a._slot + ':' + (a._allyName || '') + ':' + (a._downed ? 'D' : '') + ':' + (a.lv || 1)).join('|');
+2604|    let sigTeam = _sigAllies
+2605|        + '||P:' + _pets.map(p => p.uid + ':' + p.lv + ':' + (p._downed ? 'D' : '') + ':' + Math.round(p.hp / Math.max(1, p.mhp) * 20) + ':' + Math.round(p.mp / Math.max(1, p.mmp) * 20) + ':' + Math.round((p.exp || 0) / Math.max(1, petExpReq(p.lv)) * 20) + ':' + (p.potPct || 0) + ':' + Math.ceil((p._reviveCd || 0) / 10)).join('|')
+2606|        + '||S:' + ((typeof summonTeamSignature === 'function') ? summonTeamSignature() : '')   // team 分頁：名單/倒地/等級＋寵物/召喚血量(5%階)變動才重建
+2607|        + '||G:' + ((typeof guardTeamSignature === 'function') ? guardTeamSignature() : '');   // 🏰 城堡護衛血量/倒地/復活倒數變動才重建
+2608|    let sigSkill = _sigAllies + '||E:' + allies.map(a => a.elfEle || '').join(',');   // 🩹 v3.2.74 skill 分頁只看傭兵名單/等級→戰鬥中寵物/召喚掉血不重建·開啟的技能下拉不被關
+2609|    // 🧝 v3.8.5 追加 elfEle：來源妖精換屬性後 refreshAllyOnce 重建快照時名字/等級都沒變 → 簽章不動 → 技能下拉與自動維持勾選會停在舊屬性的清單（該隱藏的沒隱藏）
+2610|    let _squadRebuilt = false;
+2611|    if (sigTeam !== _squadSigTeam) {
+2612|        _squadSigTeam = sigTeam;
+2613|        document.getElementById('squad-tab-team').innerHTML = allies.map(a => {
+2614|            let s = a._slot;
+2615|            if (a._downed) {   // 🤝 Phase 3：倒地→灰顯卡片。返生術＝手動鈕（消耗MP·無冷卻立即）；復活卷軸＝v2.6.6 改自動（15秒冷卻結束身上有卷軸即自動使用），此處只顯示狀態文字（不可點）。每幀更新。
+2616|                return `<div class="bg-slate-900/70 border border-red-900 rounded p-2 flex items-center justify-between gap-2" style="opacity:0.85;">
+2617|                    <div class="text-sm"><span class="font-bold text-slate-400">${a._allyName}</span> <span class="text-slate-600 text-xs">Lv.${a.lv || 1}</span> <span class="text-red-400 font-bold">【倒地】</span></div>
+2618|                    <div class="flex items-center gap-1 shrink-0">
+2619|                        <button id="squad-rez-${s}" class="py-1 px-2 text-xs font-bold rounded border whitespace-nowrap" style="background:#1e3a8a;border-color:#3b82f6;color:#bfdbfe;" onclick="reviveMercenary('${s}','rez')">返生術</button>
+2620|                        <span id="squad-revive-${s}" class="py-1 px-2 text-xs font-bold rounded border whitespace-nowrap" style="background:#3f1d1d;border-color:#7f1d1d;color:#fca5a5;cursor:default;" title="倒地 15 秒後，若身上有復活卷軸將自動使用。">卷軸</span>
+2621|                    </div>
+2622|                </div>`;
+2623|            }
+2624|            return `<div class="bg-slate-800/60 border border-slate-600 rounded p-2 flex flex-col gap-1 ally-compact-card">
+2625|                <div class="ally-compact-head text-sm">
+2626|                    <span class="font-bold text-amber-200 ally-compact-name">${a._allyName}</span>
+2627|                    <span class="text-slate-400 text-xs whitespace-nowrap">Lv.${a.lv || 1}</span>
+2628|                    <div class="bar-bg ally-exp-bar"><div id="squad-exp-${s}" class="bar-fill bg-yellow-500" style="width:0%"></div><div id="squad-exp-txt-${s}" class="bar-text text-white">0%</div></div>
+2629|                </div>
+2630|                <div id="squad-status-${s}" class="text-xs" style="color:#fca5a5;line-height:1.2;"></div>
+2631|                <div class="compact-dual-vitals">
+2632|                    <div class="bar-bg compact-team-bar" title="HP"><div id="squad-hp-${s}" class="bar-fill bg-red-600" style="width:100%"></div><div id="squad-hp-txt-${s}" class="bar-text text-white">0/0</div></div>
+2633|                    <div class="bar-bg compact-team-bar" title="MP"><div id="squad-mp-${s}" class="bar-fill bg-blue-600" style="width:100%"></div><div id="squad-mp-txt-${s}" class="bar-text text-white">0/0</div></div>
+2634|                </div>
+2635|            </div>`;
+2636|        }).join('')
+2637|            + ((typeof renderPetTeamHTML === 'function') ? renderPetTeamHTML() : '')
+2638|            + ((typeof renderSummonTeamHTML === 'function') ? renderSummonTeamHTML() : '')
+2639|            + ((typeof renderMercSummonTeamHTML === 'function') ? renderMercSummonTeamHTML() : '')
+2640|            + ((typeof renderGuardTeamHTML === 'function') ? renderGuardTeamHTML() : '');   // 隊伍排列：傭兵 → 寵物 → 玩家召喚物 → 傭兵召喚物 → 🏰 城堡護衛
+2641|        _squadRebuilt = true;
+2642|    }
+2643|    if (sigSkill !== _squadSigSkill) {
+2644|        _squadSigSkill = sigSkill;
+2645|        document.getElementById('squad-tab-skill').innerHTML = allies.map(a => {
+2646|            let s = a._slot;
+2647|            let hpPct = (a._healHpPct != null) ? a._healHpPct : 70;
+2648|            let potPct = (a._potHpPct != null) ? a._potHpPct : ((a._hpSafePct != null) ? a._hpSafePct : 0);
+2649|            let skillPct = (a._hpSkillPct != null) ? a._hpSkillPct : ((a._hpSafePct != null) ? a._hpSafePct : 0);
+2650|            let mpPct = (a._castMpPct != null) ? a._castMpPct : 0;   // 🆕 v2.6.27 施法MP門檻
+2651|            return `<div class="bg-slate-800/60 border border-slate-600 rounded p-2 flex flex-col gap-1">
+2652|                <div class="text-sm font-bold text-amber-200">${a._allyName} <span class="text-slate-500 text-xs">Lv.${a.lv || 1}</span></div>
+2653|                <div class="flex items-center gap-1 text-xs"><span class="text-cyan-400 font-bold shrink-0" style="width:3rem;">攻擊技能</span><select class="flex-1 min-w-0 bg-slate-900 border border-slate-600 text-cyan-300 px-1 py-1 rounded text-xs outline-none" onchange="setAllyAtkSkill('${s}', this.value)">${_allySkillOptions(a, 'atk', a._atkSkill || '')}</select><span class="shrink-0 flex items-center text-blue-300 whitespace-nowrap" title="MP％ 高於此值才施放攻擊技（0 = 不限）。">MP&gt;<input type="number" min="0" max="100" value="${mpPct}" class="w-10 bg-slate-900 border border-blue-700 text-center text-white rounded" onchange="setAllyCastMp('${s}', this.value)">%</span></div>
+2654|                <div class="flex items-center gap-1 text-xs"><span class="text-green-400 font-bold shrink-0" style="width:3rem;">治癒魔法</span><select class="flex-1 min-w-0 bg-slate-900 border border-slate-600 text-green-300 px-1 py-1 rounded text-xs outline-none" onchange="setAllyHealSkill('${s}', this.value)">${_allySkillOptions(a, 'heal', a._healSkill || '')}</select><span class="shrink-0 flex items-center text-green-300 whitespace-nowrap" title="HP％ 低於此值才施放治癒。">HP&lt;<input type="number" min="0" max="100" value="${hpPct}" class="w-10 bg-slate-900 border border-green-700 text-center text-white rounded" onchange="setAllyHealHp('${s}', this.value)">%</span></div>
+2655|                <div class="flex items-center gap-1 text-xs"><span class="text-purple-400 font-bold shrink-0" style="width:3rem;">轉換技能</span><select class="flex-1 min-w-0 bg-slate-900 border border-slate-600 text-purple-300 px-1 py-1 rounded text-xs outline-none" onchange="setAllyConvertSkill('${s}', this.value)">${_allySkillOptions(a, 'convert', a._convertSkill || '')}</select></div>
+2656|                <div class="flex items-stretch gap-1 text-xs">
+2657|                    <span class="flex-1 flex items-center justify-center gap-0.5 text-amber-400 bg-slate-900/40 border border-amber-800 rounded py-0.5" title="低於此％時，喝隊長設定的藥水回血。0 = 關閉。">HP&lt;<input type="number" min="0" max="100" value="${potPct}" class="w-10 bg-slate-900 border border-amber-700 text-center text-white rounded" onchange="setAllyPotHp('${s}', this.value)">%喝水</span>
+2658|                    <span class="flex-1 flex items-center justify-center gap-0.5 text-rose-400 bg-slate-900/40 border border-rose-800 rounded py-0.5" title="低於此％時，暫停施放消耗 HP 的技能（龍騎士 HP 技／轉換技能／立方和諧），退回普攻。0 = 關閉。">HP&lt;<input type="number" min="0" max="100" value="${skillPct}" class="w-10 bg-slate-900 border border-rose-700 text-center text-white rounded" onchange="setAllyHpSkill('${s}', this.value)">%停技</span>
+2659|                </div>
+2660|                ${_allyAutoBuffChips(a)}
+2661|            </div>`;
+2662|        }).join('');
+2663|        _squadRebuilt = true;
+2664|    }
+2665|    if (_squadRebuilt) switchSquadTab(_squadTab);   // 有任一分頁重建→還原目前分頁與按鈕高亮
+2666|    // 每幀更新血/魔/經驗條（不重建 DOM）
+2667|    allies.forEach(a => {
+2668|        let s = a._slot, el;
+2669|        if (a._downed) {   // 🤝 倒地卡：更新兩種復活鈕（返生術=學會+MP夠即可立即；卷軸=死亡15秒後+持有）
+2670|            let rb = document.getElementById('squad-rez-' + s);
+2671|            if (rb) {
+2672|                let learned = !!(player.skills && player.skills.includes('sk_resurrection'));
+2673|                let rk = DB.skills.sk_resurrection;
+2674|                let cost = rk ? player.d.getMpCost(rk.mp, rk.tier) : Infinity;
+2675|                let ok = learned && !player.dead && (player.mp || 0) >= cost;
+2676|                rb.style.display = learned ? '' : 'none';   // 未學會返生術→不顯示此鈕
+2677|                rb.style.opacity = ok ? '1' : '0.45';
+2678|                rb.title = !learned ? '尚未學會返生術' : (player.dead ? '你已死亡' : ((player.mp || 0) >= cost ? ('立即復活（消耗 ' + cost + ' MP·無冷卻）') : ('MP 不足（需 ' + cost + '）')));
+2679|            }
+2680|            let b = document.getElementById('squad-revive-' + s);
+2681|            if (b) {   // 🎫 v2.6.6：卷軸改自動（狀態顯示·不可點）。倒數中→顯示自動復活秒數；冷卻結束無卷軸→提示補卷軸即自動復活（返生術可手動立即）。
+2682|                let cd = a._reviveCd || 0;
+2683|                if (cd > 0) { b.textContent = '自動 ' + Math.ceil(cd / 10) + 's'; b.style.opacity = '0.7'; b.title = '倒地 15 秒後，若身上有復活卷軸將自動使用（返生術可手動立即復活）。'; }
+2684|                else { let sc = player.inv && player.inv.find(i => i.id === 'scroll_revive'); let n = sc ? (sc.cnt || 0) : 0; b.textContent = n > 0 ? ('卷軸×' + n) : '無卷軸'; b.style.opacity = n > 0 ? '1' : '0.6'; b.title = n > 0 ? '冷卻結束，將自動使用復活卷軸復活。' : '身上無復活卷軸；補充後將自動復活（或用返生術立即復活）。'; }
+2685|            }
+2686|            return;   // 倒地卡無血條，跳過下面 hp/mp/exp 更新
+2687|        }
+2688|        if ((el = document.getElementById('squad-hp-' + s))) {
+2689|            let mhp = Math.max(1, Math.floor(a.mhp || 1)), cur = Math.max(0, Math.floor(a.curHp || 0));
+2690|            el.style.width = Math.max(0, (cur / mhp) * 100) + '%';
+2691|            let t = document.getElementById('squad-hp-txt-' + s); if (t) t.innerText = cur + '/' + mhp;
+2692|        }
+2693|        if ((el = document.getElementById('squad-mp-' + s))) {
+2694|            let mmp = Math.max(1, Math.floor(a.mmp || 1)), cur = Math.max(0, Math.floor(a.mp || 0));
+2695|            el.style.width = Math.max(0, (cur / mmp) * 100) + '%';
+2696|            let t = document.getElementById('squad-mp-txt-' + s); if (t) t.innerText = cur + '/' + mmp;
+2697|        }
+2698|        if ((el = document.getElementById('squad-exp-' + s))) {
+2699|            let req = (typeof getExpReq === 'function') ? getExpReq(a.lv || 1) : 0;
+2700|            let pct = (req > 0 && isFinite(req)) ? ((a.exp || 0) / req) * 100 : 0;
+2701|            el.style.width = Math.min(100, Math.max(0, pct)) + '%';
+2702|            let t = document.getElementById('squad-exp-txt-' + s); if (t) t.innerText = pct >= 100 ? '滿' : pct.toFixed(1) + '%';   // 不即時升級→累積超過一級顯「滿」（解雇可回收）
+2703|        }
+2704|        if ((el = document.getElementById('squad-status-' + s))) {   // 🤝 Phase4：傭兵異常狀態小字（無狀態時空白不佔版面）
+2705|            let _ss = a.statuses || {}, _out = [];
+2706|            [['stun', '暈眩'], ['freeze', '冰凍'], ['stone', '石化'], ['paralyze', '麻痺'], ['sleep', '沉睡'], ['silence', '沉默'], ['magicseal', '魔封'], ['poison', '中毒'], ['burn', '灼燒'], ['scald', '燙傷'], ['bleed', '出血'], ['slowAtk', '緩速'], ['weaken', '弱化'], ['disease', '疾病'], ['blind', '目盲'], ['potionFrost', '藥水霜化'], ['foulWater', '汙濁之水']].forEach(p => { if ((_ss[p[0]] || 0) > 0) _out.push(p[1]); });   // 🌊 v3.6.20 含汙濁之水
+2707|            el.textContent = _out.length ? ('⚠ ' + _out.join('·')) : '';
+2708|        }
+2709|    });
+2710|}
+2711|
+2712|function switchSquadTab(t) {
+2713|    _squadTab = t;
+2714|    ['team', 'skill'].forEach(id => {
+2715|        let e = document.getElementById('squad-tab-' + id); if (e) e.classList.toggle('hidden', id !== t);
+2716|        let b = document.getElementById('squad-tab-btn-' + id);
+2717|        if (b) {
+2718|            let on = (id === t);
+2719|            b.style.background = on ? '#b45309' : '#334155';      // amber-700 / slate-700
+2720|            b.style.borderColor = on ? '#f59e0b' : '#475569';     // amber-500 / slate-600

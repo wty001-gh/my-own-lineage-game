@@ -1,0 +1,112 @@
+// FILE js\04-combat-attack.js L490-600
+490|}
+491|function playerAttrMagicProc(target, inst, wpn) {
+492|    let proc = (typeof getAttrMagicProc === 'function') ? getAttrMagicProc(inst) : null;
+493|    if (!proc || Math.random() * 100 >= proc.rate) return;
+494|    let sk = DB.skills[proc.skId];
+495|    if (!sk) return;
+496|    if (sk.type === 'buff') { applyAttrMagicBuff(player, proc.skId, wpn.n); return; }
+497|    let t = (target && target.curHp > 0) ? target : null;
+498|    if (!t) { let alive = mapState.mobs.filter(m => m && m.curHp > 0 && !m._dead); if (alive.length) t = alive[Math.floor(Math.random() * alive.length)]; }
+499|    if (t) procFreeMagicSkill(t, proc.skId, capWpnEn(inst.en), false, wpn);
+500|}
+501|// 🌑 武器附帶狀態技能 proc（惡魔王武器・疾病術）：攻擊時 rate% 對目標施放指定技能的異常狀態（走 applyMobStatus，含魔法命中抵抗）；玩家與傭兵共用
+502|function applyWeaponProcStatusSkill(target, cfg) {
+503|    if (!cfg) return;
+504|    if (Math.random() * 100 >= (cfg.rate || 10)) return;
+505|    let t = (target && target.curHp > 0) ? target : null;
+506|    if (!t) { let alive = mapState.mobs.filter(m => m && m.curHp > 0); if (!alive.length) return; t = alive[Math.floor(Math.random() * alive.length)]; }
+507|    let sk = DB.skills[cfg.skId];
+508|    if (!sk || !sk.status) return;
+509|    applyMobStatus(t, sk.status, sk.n);
+510|}
+511|// 🕸️ v3.7.75 武器附加異常狀態（procStatus:{kind,rate,dur}）：攻擊時擲 rate%，中了才進 applyMobStatus——
+512|//   成敗仍由「施放者魔法命中 vs 目標魔抗」決定（不帶 force），頭目由 BOSS_IMMUNE 擋。深紅之弩＝2% 束縛 6 秒。
+513|//   ⚠️ 與 procStatusSkill 的差別：那個要有對應技能(skId)，這個直接指定 kind，給沒有技能的純狀態用。
+514|function applyWeaponProcStatus(target, cfg, srcName) {
+515|    if (!cfg || !cfg.kind) return;
+516|    if (Math.random() * 100 >= (cfg.rate || 0)) return;
+517|    let t = (target && target.curHp > 0) ? target : null;
+518|    if (!t) { let alive = mapState.mobs.filter(m => m && m.curHp > 0); if (!alive.length) return; t = alive[Math.floor(Math.random() * alive.length)]; }
+519|    applyMobStatus(t, { kind: cfg.kind, dur: cfg.dur || 6 }, srcName || (STATUS_NAME && STATUS_NAME[cfg.kind]) || '');
+520|}
+521|// ⚔️ v3.5.97 迅猛雙斧副手 proc：副手揮擊原本只結算傷害，武器自身的 proc 欄位完全不判定。
+522|//   ⚠️ 副手只能裝鈍器（warriorDualWieldWpnOk 僅放行單手鈍器／巨斧精通的雙手鈍器），因此這裡**只需涵蓋
+523|//      鈍器上實際存在的欄位**——已用 DB.items 實查：procInstakill(強韌的大腿骨)／stoneInstakill(蛇妖的無慈悲尾刺)／
+524|//      eleBonusDmg(暗黑的金屬棍棒)／selfBreakProc(特產易碎泥偶)／procHealFlat(處刑人的護身斧)／
+525|//      procBurn(熔岩灼燒的雙拳)／onHitEleDmg(冰石的強襲鎚)，共 7 欄 7 把。
+526|//      其餘 proc 欄位（vampPct/hardSkinMult/bonespike…）鈍器上零命中，副手裝不到，不複製以免製造死碼。
+527|//   ⚠️ 語意刻意與主手一致但**不共用**：主手那段內嵌在 playerAttack 的傷害鏈裡（會改 result.dmg、含血壁反殺早退），
+528|//      抽出來共用的風險遠大於收益，故此處為獨立的精簡版，改動主手時請一併檢視這裡。
+529|
+530|// 副手即死 proc：回傳 true＝已即死（呼叫端須跳過一般扣血，比照主手 js/04:66-78 的 return）
+531|function offhandInstakillProc(inst, def, target) {
+532|    if (!def || !target || target.curHp <= 0) return false;
+533|    if (def.procInstakill) {
+534|        let _pk = def.procInstakill, _thp = target.hp || 1;
+535|        if ((!_pk.maxLv || target.lv <= _pk.maxLv) && (!_pk.hpBelow || target.curHp <= Math.max(1, Math.floor((target.hp || 1) * _pk.hpBelow))) && tryInstakill(target, { p: _pk.p, tag: _pk.tag || null }, def.n, mapState.targetIdx)) {
+536|            if (_pk.healPct) { player.hp = Math.min(player.mhp, player.hp + Math.max(1, Math.floor(_thp * _pk.healPct))); updateUI(); }
+537|            return true;
+538|        }
+539|    }
+540|    if (def.stoneInstakill && target.st && target.st.stone > 0 && tryInstakill(target, { p: 1, tag: null }, def.n, mapState.targetIdx)) return true;
+541|    return false;
+542|}
+543|// 副手「扣血前」的傷害修飾：回傳修正後傷害
+544|function offhandDmgMods(def, target, dmg) {
+545|    if (!def) return dmg;
+546|    if (def.selfBreakProc && Math.random() < 0.03) { dmg = Math.max(1, Math.floor(dmg * 1.5)); if (player.statuses) player.statuses.broken = (def.selfBreakProc.dur || 5) * 10; }   // 🐍 特產易碎泥偶：3% 傷害×1.5 並使自身陷入壞物術
+547|    if (def.eleBonusDmg && target.e === def.eleBonusDmg.ele) dmg += (def.eleBonusDmg.add || 0);   // 🏺 暗黑的金屬棍棒：對特定屬性敵人額外固定傷害
+548|    return dmg;
+549|}
+550|// 副手「扣血後」的 proc（目標可能已死，逐項自行守衛 curHp）
+551|function offhandAfterHit(inst, def, target, dmg) {
+552|    if (!def) return;
+553|    if (def.procHealFlat && dmg > 0 && Math.random() * 100 < def.procHealFlat.rate) { player.hp = Math.min(player.mhp, player.hp + def.procHealFlat.hp); logCombat(`<span class="text-emerald-300 font-bold">【${def.n}】</span>恢復了 ${def.procHealFlat.hp} 點 HP。`, 'heal'); }   // 🏺 處刑人的護身斧
+554|    if (def.procBurn && target.curHp > 0 && (def.procBurn.magicHit ? abnormalMagicHit(target) : (!def.procBurn.rate || Math.random() * 100 < def.procBurn.rate))) target._burnDot = { left: (def.procBurn.dur || 6) * 10, dmg: def.procBurn.dmg || 10, tick: (def.procBurn.tick || 1) * 10 };   // 🏺 熔岩灼燒的雙拳；🔥 v3.7.52 magicHit（副手口徑一致）
+555|    if (target.curHp > 0 && def.onHitEleDmg && (!def.onHitEleDmg.rate || Math.random() * 100 < def.onHitEleDmg.rate)) { let _oh = def.onHitEleDmg; target.curHp -= _oh.dmg; target.justHit = _oh.ele; mobWake(target); logCombat(`<span class="font-bold" style="color:${RELIC_ELE_COLOR[_oh.ele] || '#e2e8f0'};">附加 ${_oh.dmg} 點${RELIC_ELE_LABEL[_oh.ele] || ''}屬性傷害。</span>`, 'player-special'); }   // 🏺 冰石的強襲鎚
+556|}
+557|
+558|// ⚔️ v3.5.97 instOverride：指定要判定的武器實例（迅猛雙斧副手＝player.eq.offwpn）。
+559|//   ⚠️ 傳入時會**跳過魔法娃娃區塊**——娃娃 proc 是「角色每次攻擊」的效果，不隨武器數量倍增；
+560|//      副手揮擊只該觸發副手「武器自己」的 proc。
+561|function weaponSpellProc(target, attackHit, instOverride) {
+562|    // 🪆 魔法娃娃 proc（玩家專用·攻擊時觸發；置於武器判定之前→無武器也生效；經典模式亦正常生效）
+563|    if (!instOverride) {
+564|        let _dl = player.eq.doll ? DB.items[player.eq.doll.id] : null;
+565|        if (_dl) {
+566|            if (_dl.procBonusDmg && target && target.curHp > 0 && Math.random() * 100 < _dl.procBonusDmg.rate) {
+567|                let _add = _dl.procBonusDmg.dmg;
+568|                target.curHp -= _add; target.justHit = target.justHit || 'phys'; mobWake(target);
+569|                logCombat(`<span class="font-bold text-amber-300">【${_dl.n}】</span>額外造成 ${_add} 點傷害。`, 'player-special');
+570|                let _ri = mapState.mobs.findIndex(m => m && m.uid === target.uid);
+571|                if (target.curHp <= 0) { if (_ri !== -1) killMob(_ri); } else if (!state.ff) renderMobs();
+572|            }
+573|            if (_dl.procPoisonRate) applyWeaponProcPoison(target, { rate: _dl.procPoisonRate, dmg: [2, 5], dur: 10, tick: 3 }, wpnEnFinalMult(player.eq.wpn));
+574|            if (_dl.procSkill && Math.random() * 100 < (_dl.procRateBase || 1)) {
+575|                let _t2 = (target && target.curHp > 0) ? target : null;
+576|                if (!_t2) { let _al = mapState.mobs.filter(m => m && m.curHp > 0); if (_al.length) _t2 = _al[Math.floor(Math.random() * _al.length)]; }
+577|                if (_t2) procFreeMagicSkill(_t2, _dl.procSkill, 0, false, _dl);
+578|            }
+579|        }
+580|    }
+581|    let inst = instOverride || player.eq.wpn;
+582|    let wpn = inst ? DB.items[inst.id] : null;
+583|    if (!wpn) return;
+584|    playerAttrMagicProc(target, inst, wpn);   // ★ 屬性卷軸附加魔法：攻擊時判定，命中與否皆可觸發
+585|    if (wpn.procOnHit && !attackHit) return;   // 🏺 長老的雷電能量：僅一般攻擊實際命中才觸發極道落雷
+586|    if (wpn.procPoison) applyWeaponProcPoison(target, wpn.procPoison, wpnEnFinalMult(inst));   // 🔧 死亡之指：攻擊時毒咒（吃武器強化最終倍率）
+587|    if (wpn.procBurstPoison) applyWeaponBurstPoison(target, wpn.procBurstPoison, capWpnEn(inst.en), wpnEnFinalMult(inst));   // 💥 破壞雙刀/鋼爪：攻擊時猛爆劇毒（吃武器強化最終倍率）
+588|    if (wpn.procStatusSkill) applyWeaponProcStatusSkill(target, wpn.procStatusSkill);   // 🌑 惡魔王武器：攻擊時 10% 施放疾病術
+589|    if (wpn.procStatus) applyWeaponProcStatus(target, wpn.procStatus, wpn.n);   // 🕸️ v3.7.75 深紅之弩：攻擊時 2% 使目標束縛（成敗仍看魔法命中／魔抗·頭目免疫）
+590|    // 🏺 v3.7.20 鋼鐵僧侶的錫杖（procHealSkill）：一般攻擊命中 rate% → 免費觸發指定治癒技能（sk_regen 全隊瞬間治癒·同施法公式吃 spCoef/魔棒倍率）
+591|    if (wpn.procHealSkill && attackHit && Math.random() * 100 < (wpn.procHealSkill.rate || 5)) {
+592|        let _hs = DB.skills[wpn.procHealSkill.skId];
+593|        if (_hs && typeof rollHealingSpell === 'function') {
+594|            let _hc = (typeof healBeneficiaries === 'function') ? healBeneficiaries() : [player];
+595|            let _ht = 0, _hn = 0;
+596|            _hc.forEach(c => {
+597|                let _b = (typeof _supHp === 'function') ? _supHp(c) : (c === player ? player.hp : (c.curHp != null ? c.curHp : c.hp));
+598|                let _h = rollHealingSpell(_hs, player.d, player, c);
+599|                if (typeof _supHeal === 'function') _supHeal(c, _h); else if (c === player) player.hp = Math.min(player.mhp, player.hp + _h); else if (c.curHp != null) c.curHp = Math.min(c.mhp, (c.curHp || 0) + _h); else c.hp = Math.min(c.mhp, (c.hp || 0) + _h);
+600|                let _a = (typeof _supHp === 'function') ? _supHp(c) : (c === player ? player.hp : (c.curHp != null ? c.curHp : c.hp));

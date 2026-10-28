@@ -1,0 +1,221 @@
+// FILE js\13-shop-save.js L1-220
+1|// ===================== 妖精屬性系統 (NPC 艾利溫) =====================
+2|const ELF_ELE = {
+3|    fire:  { name:'火', color:'#ef4444', cls:'text-red-400',     border:'#ef4444' },
+4|    water: { name:'水', color:'#3b82f6', cls:'text-blue-400',    border:'#3b82f6' },
+5|    wind:  { name:'風', color:'#10b981', cls:'text-emerald-400', border:'#10b981' },
+6|    earth: { name:'地', color:'#facc15', cls:'text-yellow-400',  border:'#facc15' }
+7|};
+8|const ELF_SWITCH_COST = 500000;
+9|
+10|const SPECIAL_AREA_BG = {   // 特殊地圖：逐張對應背景
+11|    kent_outer: 'assets/area/1920x1080/肯特外門區.jpg',
+12|    kent_inner: 'assets/area/1920x1080/肯特內城.jpg',
+13|    ww_outer: 'assets/area/1920x1080/風木外門區.jpg',
+14|    ww_inner: 'assets/area/1920x1080/風木內城.jpg',
+15|    heine_outer: 'assets/area/1920x1080/海音外門區.jpg',
+16|    heine_inner: 'assets/area/1920x1080/海音內城.jpg',
+17|    rift_battle: 'assets/area/1920x1080/時空裂痕戰場.jpg',
+18|    desert: 'assets/area/沙漠.jpg',   // 🏜️ 沙漠（野外·專屬背景·完整路徑直接用）
+19|    // 🆕 新狩獵區背景（皆 area-fit 沙漠格式·需 1920×580 條狀圖·放 assets/area/）：
+20|    crystal_cave1: 'assets/area/水晶洞穴.jpg', crystal_cave2: 'assets/area/水晶洞穴.jpg', crystal_cave3: 'assets/area/水晶洞穴.jpg',   // 💎 水晶洞穴（地監·3樓共用）
+21|    fire_dragon: 'assets/area/火龍窟.jpg',   // 🔥 火龍窟（野外）
+22|    elf_forest: 'assets/area/森林.jpg', zone_01: 'assets/area/森林.jpg', mirror_forest: 'assets/area/森林.jpg',   // 🌲 妖魔森林/妖精森林周邊/鏡子森林（野外·共用森林背景）
+23|    zone_15: 'assets/area/洞窟.jpg', zone_16: 'assets/area/洞窟.jpg',   // 🕳️ 眠龍洞穴1~2樓
+24|    zone_17: 'assets/area/龍之谷地監深層.jpg',   // 🐉 眠龍洞穴3樓（改龍之谷地監深層·area-fit）
+25|    zone_22: 'assets/area/洞窟.jpg', zone_23: 'assets/area/洞窟.jpg', zone_24: 'assets/area/洞窟.jpg', zone_25: 'assets/area/洞窟.jpg',   // 🕳️ 沙漠地監1~4樓
+26|    zone_26: 'assets/area/洞窟.jpg', zone_27: 'assets/area/洞窟.jpg', zone_28: 'assets/area/洞窟.jpg',   // 🕳️ 龍之谷地監1~3樓
+27|    zone_29: 'assets/area/龍之谷地監深層.jpg', zone_30: 'assets/area/龍之谷地監深層.jpg', zone_31: 'assets/area/龍之谷地監深層.jpg',   // 🐉 龍之谷地監4~6樓（改深層·area-fit）
+28|    zone_32: 'assets/area/洞窟.jpg',   // 🐜 螞蟻洞窟1樓（共用洞窟背景）
+29|    zone_33: 'assets/area/龍之谷地監深層.jpg',   // 🐜 螞蟻洞窟2樓（改龍之谷地監深層·area-fit）
+30|    zone_37: 'assets/area/象牙塔.jpg', zone_38: 'assets/area/象牙塔.jpg',   // 🏛️ 象牙塔4~5樓
+31|    zone_39: 'assets/area/象牙塔深層.jpg', zone_40: 'assets/area/象牙塔深層.jpg', zone_41: 'assets/area/象牙塔深層.jpg',   // 🏛️ 象牙塔6~8樓（改深層背景·area-fit）
+32|    hidden_lab_nolife: 'assets/area/象牙塔.jpg', hidden_lab_darkmagic: 'assets/area/象牙塔.jpg',   // 🏛️ 隱藏區域 fallback＝轉換前地圖背景（象牙塔4/5樓）；有同名 <區域名>.jpg 則優先
+33|    hidden_seal_spirit: 'assets/area/象牙塔深層.jpg', hidden_seal_monster: 'assets/area/象牙塔深層.jpg', hidden_seal_demon: 'assets/area/象牙塔深層.jpg',   // 🏛️ 隱藏區域 fallback＝象牙塔6~8樓深層背景
+34|    hidden_antqueen: 'assets/area/龍之谷地監深層.jpg',   // 🐜 巨蟻女皇棲息地 fallback＝螞蟻洞窟2樓背景
+35|    heine: 'assets/area/森林.jpg',   // 🌲 海音（野外狩獵·共用森林背景·安全區 town_heine 不變）
+36|    eva_kingdom: 'assets/area/伊娃王國.jpg',   // 🏰 伊娃王國（地監·專屬背景·area-fit）
+37|    windwood: 'assets/area/沙漠.jpg',   // 🏜️ 風木（野外·共用沙漠背景）
+38|    windwood_dungeon: 'assets/area/地監.jpg',   // 🏰 風木地監（攻城獲勝後開放的城堡狩獵區）：實際取此 fallback＝地監.jpg（經 upgradeAreaPath 升級成 1920×1080 版）。下方 applyAreaBackground 雖仍把顯示名補成「風木地監」，但該名不在 AREA_1920 → 不會有同名圖；日後真的放了 assets/area/1920x1080/風木地監.jpg，記得把檔名加進 AREA_1920 才會被採用
+39|    gludio: 'assets/area/城鎮周邊.jpg', kent: 'assets/area/城鎮周邊.jpg', giran: 'assets/area/城鎮周邊.jpg',   // 🏙️ 古魯丁/肯特/奇岩（野外·城鎮周邊·≠村莊周邊）
+40|    training: 'assets/area/村莊周邊.jpg',   // 🆕 新兵修鍊場（套 area-fit·與其餘野外共用村莊周邊背景）
+41|    dream_island: 'assets/area/夢幻之島.jpg',   // 🆕 夢幻之島（套 area-fit·專屬背景）
+42|    zone_02: 'assets/area/歐瑞.jpg', zone_03: 'assets/area/歐瑞.jpg', zone_05: 'assets/area/歐瑞.jpg',   // 🗺️ 歐瑞/歐瑞雪原/國境要塞（野外·共用歐瑞背景）
+43|    zone_04: 'assets/area/艾爾摩.jpg',   // ⚔️ 艾爾摩激戰地（野外·專屬背景）
+44|    zone_09: 'assets/area/地監深層.jpg', zone_10: 'assets/area/地監深層.jpg', zone_11: 'assets/area/地監深層.jpg', zone_12: 'assets/area/地監深層.jpg', zone_14: 'assets/area/地監深層.jpg',   // 🕳️ 古魯丁地監4~7樓＋說話之島地監2樓（改深層背景·area-fit）
+45|    dragon_valley: 'assets/area/龍之谷.jpg', twilight_mt: 'assets/area/龍之谷.jpg',   // 🐉 龍之谷/黃昏山脈（野外·共用龍之谷背景；地監龍之谷 zone_26~31 仍為洞窟.jpg）
+46|    elf_grave: 'assets/area/拉斯塔巴德.jpg', hidden_cave: 'assets/area/拉斯塔巴德.jpg', giant_tomb: 'assets/area/拉斯塔巴德.jpg',   // 🏚️ 精靈墓穴/大洞穴隱遁者村莊地區/古代巨人之墓（野外·拉斯塔巴德背景）
+47|    rastabad_cave1: 'assets/area/拉斯塔巴德.jpg', rastabad_cave2: 'assets/area/拉斯塔巴德.jpg', rastabad_cave3: 'assets/area/拉斯塔巴德.jpg', rastabad_gate: 'assets/area/拉斯塔巴德.jpg', rastabad_beast: 'assets/area/拉斯塔巴德.jpg', dark_magic_lab: 'assets/area/拉斯塔巴德.jpg', necro_training: 'assets/area/拉斯塔巴德.jpg',   // 🏚️ 拉斯塔巴德地下洞穴1~3樓/正門/魔獸訓練場/黑魔法研究室/冥法軍訓練場（地監·拉斯塔巴德背景）
+48|    talking_island_port: 'assets/area/說話之島港口.jpg', oblivion_travel: 'assets/area/說話之島港口.jpg',   // 🏝️ 說話之島港口/遺忘之島途中（共用說話之島港口背景·area-fit）
+49|    oblivion_island: 'assets/area/遺忘之島.jpg',   // 🏝️ 遺忘之島（專屬背景·area-fit）
+50|    antaras_lair: 'assets/area/安塔瑞斯.jpg',   // 🐉 安塔瑞斯棲息地
+51|    fafurion_lair: 'assets/area/法利昂.jpg',   // 🐉 法利昂洞穴
+52|    valakas_lair: 'assets/area/巴拉卡斯.jpg',   // 🐉 巴拉卡斯巢穴（專屬背景）
+53|    silent_outer: 'assets/area/拉斯塔巴德.jpg',   // 🏚️ 沉默洞穴周邊（狩獵·改拉斯塔巴德·area-fit）；安全區 town_silent 仍 silentcave.png 不變
+54|    king_baranka_room: 'assets/area/軍王之室.jpg',  // 👑 魔獸軍王之室（純BOSS房·4室共用軍王之室背景）
+55|    law_king_room: 'assets/area/軍王之室.jpg',      // 👑 法令軍王之室
+56|    necro_king_room: 'assets/area/軍王之室.jpg',    // 👑 冥法軍王之室
+57|    assassin_king_room: 'assets/area/軍王之室.jpg', // 👑 暗殺軍王之室
+58|    elder_room: 'assets/area/軍王之室.jpg',         // 🏛️ 格蘭肯神殿．長老之室（無專屬背景圖·借用軍王之室背景）
+59|    dark_elf_sanctuary: 'assets/area/1920x1080/黑暗妖精聖地.jpg',
+60|    cursed_dark_elf_sanctuary: 'assets/area/1920x1080/受詛咒的黑暗妖精聖地.jpg',
+61|    collapsed_elder_council_hall: 'assets/area/1920x1080/崩壞的長老會議廳.jpg',   // 🌑 v3.3.33 長老會議廳改為安全區 town_elder_council（背景走 TOWN_BG_1920）
+62|    thebes_desert: 'assets/area/底比斯沙漠.jpg',   // 🏛️ 底比斯 沙漠（專屬背景）
+63|    thebes_pyramid: 'assets/area/底比斯.jpg',      // 🏛️ 底比斯 金字塔內部（與祭壇共用底比斯背景）
+64|    thebes_temple: 'assets/area/底比斯.jpg',        // 🏛️ 底比斯 歐西里斯祭壇（純BOSS房）
+65|    sunrise_castle: 'assets/area/1920x1080/日出之國城墎.jpg',
+66|    sunrise_east: 'assets/area/1920x1080/日出之國東之地.jpg',
+67|    sunrise_west: 'assets/area/1920x1080/日出之國西之地.jpg',
+68|    sunrise_north: 'assets/area/1920x1080/日出之國北之地.jpg',   // 🌅 日出之國四區（時空裂痕·日本風 1920×1080）
+69|    arena_pvp: 'assets/area/1920x1080/決鬥競技場.jpg',   // ⚔️ v3.7.13 決鬥競技場（不在 MAP_CATEGORIES→mapDisplayName 回 null·同名圖走不到，逐張指定完整路徑）
+70|    pirate_wild: 'assets/area/古魯丁.jpg',      // 🏴‍☠️ 海賊島（野外·借用古魯丁背景）
+71|    pirate_dungeon: 'assets/area/說話之島地監1樓.jpg' // 🏴‍☠️ 海賊島地監（借用說話之島地監1樓背景）
+72|};
+73|const CATEGORY_AREA_BG = { wild: 'assets/area/村莊周邊.jpg', dungeon: 'assets/area/地監.jpg', siege: 'castle.png', tower: 'assets/area/傲慢之塔.jpg', rift: 'Rift.png' };   // 🆕 野外/地監/傲慢之塔狩獵使用 area-fit；攻城/裂痕有 SPECIAL_AREA_BG 新圖時同樣使用 area-fit，只有退回舊 castle.png/Rift.png 時維持舊版面。🗼 塔狩獵=傲慢之塔.jpg，入口安全區另由 TOWN_AREA_BG.tower 保留 TowerofInsolence.png 不變；🏛️ 底比斯3圖另由 SPECIAL_AREA_BG 覆寫（底比斯沙漠.jpg／底比斯.jpg）
+74|// 🗑️ v3.5.83 移除 AREA_BG_FIT：自 v2.5.2 改為「預設套用 area-fit＋AREA_BG_NOFIT 反向黑名單」後即成零引用死表，
+75|//    但整行註解仍以現行規則的口吻要求「日後新增條狀背景就把路徑加進來」＝保證無效的維護指示；
+76|//    表內 29 個 assets/area/*.jpg 路徑在磁碟上也已全部不存在（現行走 assets/area/1920x1080/）。
+77|// ⚔️ v2.5.2：area-fit(怪物站立帶/2排·見 applyAreaBackground)改「預設全開、僅舊式背景例外」。
+78|//   新版攻城／裂痕 1920×1080 圖必須使用 area-fit，玩家、傭兵、寵物的戰鬥序列幀才會掛上戰鬥舞台。
+79|//   只有仍使用舊 castle.png／Rift.png 的地圖維持舊式置中版面。
+80|const AREA_BG_NOFIT = new Set(['castle.png', 'Rift.png']);
+81|const SPECIAL_TOWN_BG = { town_silent: 'silentcave.png' };                                        // 🔧 安全區逐張對應背景（沉默洞穴）
+82|const TOWN_AREA_BG = { village: 'village.png', castle: 'castle.png', tower: 'TowerofInsolence.png', rift: 'Rift.png' };   // 村莊畫面依分類（🗼 傲慢之塔入口；🌀 時空裂痕入口 Rift.png）
+83|// 🗑️ 移除「同名平面圖 assets/area/<地圖名>.jpg 優先」的非同步探測與其快取 _areaNameBgCache：
+84|//   assets/area 底下的平面 .jpg 已全數清空(只剩 1920x1080 子資料夾) → 探測永遠命不中，
+85|//   卻仍會對每個「名稱不在 AREA_1920」的地圖發出一次保證 404 的請求(例：風木地監)。
+86|//   現行流程＝AREA_1920 同步判定 → 命中取 1920×1080 版，否則走 fallback 圖並經 upgradeAreaPath 升級。
+87|// 🖼️ v3.2.80 高解析場景圖：assets/area/1920x1080/<名>.jpg＝新一批 1920×1080(16:9)全景圖。
+88|//   AREA_1920＝目前資料夾內既有檔名(單一真相·同步判定·無探測閃爍)。狩獵區同名圖＋fallback 圖，凡名稱在此集合者一律優先取 1920x1080 版；安全區走下方 TOWN_BG_1920 逐城對應。
+89|//   ⚠️日後新增 assets/area/1920x1080/ 的圖，檔名(不含 .jpg)務必加進本集合才會被採用（否則退回舊 assets/area/ 或分類 fallback）。
+90|const AREA_1920 = new Set(['亞丁城鎮','伊娃王國','傲慢之塔','傲慢之塔11~20樓','傲慢之塔1樓','傲慢之塔21~30樓','傲慢之塔2~10樓','傲慢之塔31~40樓','傲慢之塔41~50樓','傲慢之塔51~60樓','傲慢之塔61~70樓','傲慢之塔71~80樓','傲慢之塔81~90樓','傲慢之塔91~100樓','冥法軍王之室','冥法軍訓練場','古代巨人之墓','古魯丁','古魯丁地監1樓','古魯丁地監2樓','古魯丁地監3樓','古魯丁地監4樓','古魯丁地監5樓','古魯丁地監6樓','古魯丁地監7樓','國境要塞','地下通道1樓','地下通道2樓','地下通道3樓','地監','地監深層','城鎮周邊','夢幻之島','大洞穴隱遁者村莊地區','奇岩','奇岩地監1樓','奇岩地監2樓','奇岩地監3樓','奇岩地監4樓','奇岩城鎮','妖精森林周邊','妖精森林村莊','妖魔森林','威頓村莊','安塔瑞斯','安塔瑞斯棲息地','巴拉卡斯','巴拉卡斯巢穴','希培利亞','席琳神殿','底比斯','底比斯 歐西里斯祭壇','底比斯 沙漠','底比斯 金字塔內部','底比斯沙漠','拉斯塔巴德','拉斯塔巴德地下洞穴1樓','拉斯塔巴德地下洞穴2樓','拉斯塔巴德地下洞穴3樓','拉斯塔巴德正門','提卡爾 庫庫爾坎祭壇','提卡爾神廟地區','提卡爾神廟地區深處','新兵修練場','時空裂痕入口','暗影神殿','暗殺軍王之室','村莊周邊','格蘭肯神殿．長老之室','森林','歐瑞','歐瑞村莊','歐瑞雪原','歐瑞雪壁','水晶洞穴','水晶洞穴1樓','水晶洞穴2樓','水晶洞穴3樓','沉默洞穴','沉默洞穴周邊','沙漠','沙漠地監1樓','沙漠地監2樓','沙漠地監3樓','沙漠地監4樓','法令軍王之室','法利昂','法利昂洞穴','洞窟','海賊島','海賊島地監','海賊島村莊','海音','海音城鎮','火龍窟','炎魔謁見所','燃柳村莊','眠龍洞穴1樓','眠龍洞穴2樓','眠龍洞穴3樓','精靈墓穴','肯特','艾爾摩','艾爾摩激戰地','荒野','螞蟻洞穴1樓','螞蟻洞穴2樓','螞蟻洞窟1樓','螞蟻洞窟2樓','說話之島周邊','說話之島地監1樓','說話之島地監2樓','說話之島村莊','說話之島港口','象牙塔','象牙塔4樓','象牙塔5樓','象牙塔6樓','象牙塔7樓','象牙塔8樓','象牙塔深層','象牙塔（1~3樓）','貝希摩斯','軍王之室','遺忘之島','銀騎士地區','銀騎士村莊','鏡子森林','風木','魔族神殿','魔獸訓練場','魔獸軍王之室','黃昏山脈','黑魔法研究室','龍之谷','龍之谷地監1樓','龍之谷地監2樓','龍之谷地監3樓','龍之谷地監4樓','龍之谷地監5樓','龍之谷地監6樓','龍之谷地監深層']);
+91|AREA_1920.add('古魯丁村莊');
+92|AREA_1920.add('決鬥競技場');
+93|['肯特外門區','肯特內城','風木外門區','風木內城','海音外門區','海音內城','時空裂痕戰場','日出之國城墎','日出之國東之地','日出之國西之地','日出之國北之地'].forEach(name => AREA_1920.add(name));
+94|['侵蝕的安塔瑞斯巢穴入口','侵蝕的安塔瑞斯巢穴通道','侵蝕的安塔瑞斯巢穴深處','侵蝕的安塔瑞斯棲息地'].forEach(name => AREA_1920.add(name));   // 🐉 v3.7.58 安塔瑞斯副本 4 區專屬背景（名稱對應 js/05 ANTHARAS_AREA_NAMES）
+95|function areaBg1920(name) { return (name && AREA_1920.has(name)) ? ('assets/area/1920x1080/' + name + '.jpg') : null; }   // 名稱→1920 路徑(存在才回傳)
+96|function upgradeAreaPath(path) { if (!path) return path; let m = /^assets\/area\/([^\/]+)\.jpg$/.exec(path); return (m && AREA_1920.has(m[1])) ? ('assets/area/1920x1080/' + m[1] + '.jpg') : path; }   // 舊 assets/area/<名>.jpg fallback 路徑就地升級到 1920×1080(若有新圖)；非此格式(如 castle.png)原樣
+97|// 🏙️ v3.2.80 安全區逐城 1920×1080 背景(town id → 檔名)：命名差異(村/村莊/城鎮/full-width括號)以此表精準對應；未列者(攻城城堡 town_*_castle 等)退回舊 assets/background 通用圖
+98|const TOWN_BG_1920 = {
+99|    town_aden: '亞丁城鎮', town_giran: '奇岩城鎮', town_heine: '海音城鎮', town_oren: '歐瑞村莊',
+100|    town_kent_castle: '肯特城', town_windwood_castle: '風木城', town_heine_castle: '海音城',
+101|    town_elf: '妖精森林村莊', town_talking: '說話之島村莊', town_gludio: '燃柳村莊', town_gludin: '古魯丁村莊', town_witon: '威頓村莊',
+102|    town_hyperia: '希培利亞', town_silver_knight: '銀騎士村莊', town_ivory_tower: '象牙塔（1~3樓）',
+103|    town_sherine: '席琳神殿', town_silent: '沉默洞穴', town_behemoth: '貝希摩斯', town_flame_audience: '炎魔謁見所',
+104|    town_pride: '傲慢之塔1樓', town_rift: '時空裂痕入口', town_pirate_village: '海賊島村莊',
+105|    town_elder_council: '長老會議廳'   // 🌑 v3.3.33 黑暗妖精聖地樞紐安全區
+106|};
+107|function mapDisplayName(v) { for (let _c in MAP_CATEGORIES) { let _e = MAP_CATEGORIES[_c].find(x => x.v === v); if (_e) return _e.t; } return null; }
+108|function applyAreaBackground() {
+109|    let cur = mapState.current, cat = mapCategoryOf(cur);
+110|    let ov = a => `linear-gradient(rgba(15,23,42,${a}), rgba(15,23,42,${a}))`;
+111|    let bv = document.getElementById('battle-view');
+112|    if (bv && cur.startsWith('town_')) {   // 🏙️ v2.6.0：安全區(town_)戰鬥框恆隱藏、絕不套狩獵背景。必須清掉 area-fit/has-bg——否則 CSS `#battle-view.area-fit{display:flex}`(1,1,0) 會蓋過 `.hidden`(0,1,0) 使隱藏的戰鬥框又顯示、露出與安全區同名的狩獵圖(如象牙塔/傲慢之塔安全區顯示名＝有同名 assets/area/<名>.jpg)。
+113|        bv.style.backgroundImage = ''; bv.style.backgroundSize = ''; bv.classList.remove('area-fit'); bv.classList.remove('has-bg');
+114|    } else if (bv) {
+115|        let fbImg = SPECIAL_AREA_BG[cur] || CATEGORY_AREA_BG[cat] || null;   // 既有設定圖(fallback)：特殊地圖逐張優先，否則依分類(野外/地監/攻城)
+116|        let useSrc = null, useFit = false;
+117|        // 🖼️ 優先尋找「同名地圖圖檔」assets/area/1920x1080/[地圖名稱].jpg：以 AREA_1920 集合同步判定(無探測、無 404、無閃爍)；不在集合者一律走 fallback 圖。
+118|        let _nm = mapDisplayName(cur);
+119|        if (!_nm && cur === 'windwood_dungeon') _nm = '風木地監';   // 🏰 風木地監＝動態城堡區(不在 MAP_CATEGORIES)：手動指定同名圖名；'風木地監' 不在 AREA_1920 → 實際取 fbImg(地監.jpg→升級為 1920×1080 版)
+120|        if (!_nm && HIDDEN_AREA_BG[cur]) _nm = HIDDEN_AREA_BG[cur];
+121|        if (!_nm && typeof ANTHARAS_AREA_NAMES !== 'undefined' && ANTHARAS_AREA_NAMES[cur]) _nm = ANTHARAS_AREA_NAMES[cur];   // 🐉 v3.7.58 安塔瑞斯副本 4 區(不在 MAP_CATEGORIES)：顯示名→同名 1920×1080 專屬背景   // 🏛️ 隱藏狩獵區域(不在 MAP_CATEGORIES)：背景＝對應母地圖樓層圖（無生物研究室→象牙塔4樓…惡魔封印室→象牙塔8樓、巨蟻女皇棲息地→螞蟻洞穴2樓）；樓層名須在 AREA_1920 才會採用，否則退回 SPECIAL_AREA_BG（母圖通用背景）
+122|        let _s1920 = areaBg1920(_nm);   // 🖼️ v3.2.80 新版 1920×1080 同名場景圖(同步判定·優先於分類 fallback)
+123|        if (_s1920) { useSrc = _s1920; useFit = true; }
+124|        else if (fbImg) { let _fb = upgradeAreaPath(fbImg); useSrc = _fb.indexOf('/') >= 0 ? _fb : `assets/background/${_fb}`; useFit = !AREA_BG_NOFIT.has(fbImg); }   // ⚔️ 預設 area-fit，僅舊 castle.png/Rift.png 例外；🖼️ fallback 圖亦經 upgradeAreaPath 升級 1920×1080(若有新圖)
+125|        if (useSrc) { bv.style.backgroundImage = `url("${useSrc}")`; bv.style.backgroundSize = useFit ? 'cover' : ''; bv.classList.toggle('area-fit', useFit); bv.classList.add('has-bg'); }   // 🖥️ 條狀比例背景改 cover＋area-fit(戰鬥框由 flex 吃滿地圖面板·背景滿版置中裁切)、其餘清空 inline 回退 CSS 的 cover
+126|        else { bv.style.backgroundImage = ''; bv.style.backgroundSize = ''; bv.classList.remove('area-fit'); bv.classList.remove('has-bg'); }
+127|    }
+128|    let tv = document.getElementById('town-view');
+129|    if (tv) {
+130|        // 🏘️ v3.2.84 城鎮改地圖式 NPC 後，場景背景改由 #town-npc-map(800×450·自帶 _townMapBg) 承載
+131|        //   → town-view 不再鋪舊的半透明底圖與 has-bg 圓角框（移除城鎮舊 assets/background 底圖與框架，只保留新區域）
+132|        tv.style.backgroundImage = ''; tv.classList.remove('has-bg');
+133|    }
+134|}
+135|function applyElfBorder() {
+136|    if(!document.body) return;
+137|    let e = (player.cls === 'elf' && player.elfEle) ? ELF_ELE[player.elfEle] : null;
+138|    document.body.style.boxShadow = e ? `inset 0 0 0 6px ${e.border}` : 'none';   // 攻城獲勝標記改用頭像旁徽章顯示，避免與妖精地屬性黃色邊框衝突
+139|}
+140|
+141|function renderElionUI(div) {
+142|    if(player.cls !== 'elf') {
+143|        div.innerHTML = `<div class="flex flex-col items-center justify-center h-full text-slate-400 py-12">
+144|            <span class="text-5xl mb-4">🚫</span><span class="text-lg">只有妖精能夠選擇屬性。</span></div>`;
+145|        return;
+146|    }
+147|    if(player.lv < 30) {
+148|        div.innerHTML = `<div class="flex flex-col items-center justify-center h-full text-slate-400 py-12">
+149|            <span class="text-5xl mb-4">🔒</span><span class="text-lg">需要達到 Lv 30 才能選擇屬性。</span>
+150|            <span class="text-sm mt-2 text-slate-500">目前等級 Lv ${player.lv}</span></div>`;
+151|        return;
+152|    }
+153|    let cur = player.elfEle ? ELF_ELE[player.elfEle] : null;
+154|    let header = cur
+155|        ? `<p class="text-slate-300 mb-1">目前屬性：<span class="${cur.cls} font-bold text-lg">${cur.name}屬性</span></p>
+156|           <p class="text-sm text-yellow-400 mb-4">轉換屬性需花費 ${ELF_SWITCH_COST.toLocaleString()} 金幣（目前持有 ${player.gold.toLocaleString()}）</p>`
+157|        : `<p class="text-slate-300 mb-4">選擇一種屬性，首次選擇免費。選擇後將解鎖對應的三、四階精靈魔法。</p>`;
+158|    let btns = Object.keys(ELF_ELE).map(k => {
+159|        let e = ELF_ELE[k];
+160|        let isCur = player.elfEle === k;
+161|        return `<button onclick="chooseElfElement('${k}')" ${isCur?'disabled':''}
+162|            class="flex flex-col items-center gap-2 p-4 rounded-lg border-2 transition-transform
+163|            ${isCur ? 'opacity-50 cursor-not-allowed border-slate-600' : 'cursor-pointer hover:scale-105'}"
+164|            style="border-color:${e.border}; background:${e.color}1a;">
+165|            <span class="text-3xl font-bold ${e.cls}">${e.name}</span>
+166|            <span class="text-xs text-slate-400">${isCur?'目前屬性':e.name+'屬性'}</span>
+167|        </button>`;
+168|    }).join('');
+169|    div.innerHTML = `<div class="p-4">${header}<div class="grid grid-cols-2 md:grid-cols-4 gap-3">${btns}</div></div>`;
+170|}
+171|
+172|function chooseElfElement(ele) {
+173|    if(player.cls !== 'elf' || player.lv < 30 || !ELF_ELE[ele]) return;
+174|    if(player.elfEle === ele) return;
+175|    if(player.elfEle) {
+176|        if(player.gold < ELF_SWITCH_COST) { logSys('金幣不足，無法轉換屬性。'); return; }
+177|        if(!confirm(`確定花費 ${ELF_SWITCH_COST.toLocaleString()} 金幣將屬性轉換為「${ELF_ELE[ele].name}」？`)) return;
+178|        player.gold -= ELF_SWITCH_COST;
+179|        logSys(`你花費 ${ELF_SWITCH_COST.toLocaleString()} 金幣，屬性轉換為 <span class="${ELF_ELE[ele].cls}">${ELF_ELE[ele].name}屬性</span>。`);
+180|    } else {
+181|        logSys(`你選擇了 <span class="${ELF_ELE[ele].cls}">${ELF_ELE[ele].name}屬性</span>。`);
+182|    }
+183|    player.elfEle = ele;
+184|    // 🧝 v3.2.42 稽核修：換屬性時在場屬性精靈立即收回（保留自動重施開關→下個 tick 以新屬性重新現身；原本舊屬性精靈會一直打到死/到期）
+185|    if ((player._summonV2Sk === 'sk_elf_summon' || player._summonV2Sk === 'sk_elf_summon2')
+186|        && typeof summonV2List === 'function' && summonV2List().length && typeof summonV2DismissAll === 'function') {
+187|        const _on = player._summonV2On;
+188|        summonV2DismissAll(true);
+189|        player._summonV2On = _on;
+190|        logSys('屬性精靈隨著屬性的轉換而消散——牠將以新屬性重新現身。');
+191|    }
+192|    applyElfBorder();
+193|    calcStats();
+194|    renderTabs();
+195|    renderSkillSelects();
+196|    let div = document.getElementById('interaction-content');
+197|    if(div) renderElionUI(div);
+198|    updateUI();
+199|}
+200|
+201|// ========== 村莊商店 ─ 單頁捲動版 ==========
+202|let _currentShopNpc = ''; // 用來記住目前是哪位商人
+203|
+204|// 根據 NPC ID 取得該商人販售的所有物品
+205|const SHOP_LISTS = {
+206|    npc_boni: ['potion_heal','potion_strong','potion_ult','potion_blue','potion_haste','scroll_poly','scroll_magicbarrier','scroll_teleport','scroll_revive','wpn_5','wpn_22','candle'],   // 🏴‍☠️ 波尼（海賊島村莊 雜貨商人）·🚫 v3.2.17 肉已移除
+207|    npc_linda: ['bk_elf_mr','bk_elf_mind','bk_elf_worldtree','bk_elf_purify','bk_elf_firewpn','bk_elf_windshot','bk_elf_earthguard','bk_elf_eleres','bk_elf_singleres'],
+208|    npc_bayes: ['bk_fireball','bk_vampire','bk_rock_prison','bk_thunder','bk_ice_spike','bk_bless_wpn'],
+209|    npc_gilen: ['bk_heal1','bk_sunlight','bk_shield','bk_lightarrow','bk_teleport','bk_icearrow','bk_windblade','bk_holy_wpn','bk_antidote','bk_cold_shiver','bk_poison_curse','bk_ench_wpn','bk_reveal','bk_load_up','bk_firearrow','bk_hell_fang','bk_heal_mid','bk_shield2','bk_energy_sense','bk_chill','bk_aurora','bk_dark_blind','bk_undead_bane'],
+210|    npc_vangil: ['arm_103','arm_105','arm_108','arm_42','arm_43','hlm_mr','arm_68','arm_66','arm_67','amr_robe','arm_65','arm_63','arm_69','arm_60','arm_61','arm_62','amr_plate'],
+211|    npc_evert: ['new_item_189','new_item_188','new_item_187'],
+212|    npc_wino: ['wpn_shortsword','wpn_9','wpn_scimitar','wpn_37','wpn_invader','wpn_longsword','wpn_damascus','wpn_silversword','wpn_2hsword','wpn_katana','wpn_10','wpn_13','wpn_1','wpn_battleaxe','wpn_19','wpn_38','wpn_20','wpn_silveraxe','wpn_witchwand','wpn_18','wpn_giantaxe','wpn_28','wpn_14','wpn_6','wpn_3','wpn_17','wpn_15','wpn_7','wpn_21','wpn_16','wpn_halberd','wpn_12'],
+213|    npc_skvati: ['potion_heal','potion_strong','potion_ult','potion_blue','potion_haste','scroll_poly','scroll_magicbarrier','scroll_teleport','scroll_revive','wpn_5','wpn_22','candle','wpn_claw_bronze','wpn_claw_steel','wpn_claw_shadow','wpn_claw_damascus','wpn_dual_bronze','wpn_dual_steel','wpn_dual_shadow','wpn_dual_damascus'],
+214|    npc_saedia: ['bk_dark_str','bk_dark_mrup','bk_dark_stealth','bk_dark_poison','bk_dark_refine','bk_dark_dex','bk_dark_poisonres','bk_dark_burn','bk_dark_walkhaste'],
+215|    npc_sphere: ['mem_confuse','mem_mirror','mem_crush','mem_ogre','mem_focus','mem_skullbreak','mem_lich','mem_endure'],   // 🔮 史菲爾只販賣這 8 種記憶水晶；其餘水晶改由掉落/製作/兌換取得（日光術改由吉蘭購得）
+216|    npc_sempal: ['bk_dragon_guardbreak','bk_dragon_slaughter','bk_dragon_flameslash','bk_dragon_terror'],   // 🐉 森帕爾：4 種龍騎士書板（消滅者鎖鏈劍改為潘朵拉/普洛凱爾試煉取得）
+217|    default: ['potion_heal','potion_strong','potion_ult','potion_blue','potion_haste','potion_brave','new_item_140','new_item_139','scroll_poly','scroll_magicbarrier','scroll_teleport','scroll_revive','wpn_5','wpn_22','candle']   // 🚫 v3.2.17 哨子/肉已隨舊項圈系統移除
+218|};
+219|// 🔧 商店販售清單（單一來源）：getShopItemsForNpc 與潘朵拉權重覆寫共用此表
+220|function getShopItemsForNpc(npcId) {

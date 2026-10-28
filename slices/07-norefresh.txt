@@ -1,0 +1,82 @@
+// FILE js\07-skills-cast.js L900-980
+900|            // 🔧 神官魔杖·魔爆：施放傷害魔法時依機率(單體 智力/100、全體 智力/60)引爆本次傷害30%的無屬性傷害，均分給場上所有敵人
+901|            {
+902|                let _bw = player.eq.wpn ? DB.items[player.eq.wpn.id] : null;
+903|                if (_bw && _bw.eff === 'magicburst' && _burstDmg > 0 && !player.classicMode) {   // 🎮 經典模式：停用魔爆
+904|                    let _aoe = (sk.target === 'all') || (targets.length > 1);
+905|                    let _msB = hasMastery('m_strike');   // 🏅 v2.6.71：改發魔擊時觸發率比照原生魔擊＝力量/60（不再吃智力/100或/60）
+906|                    if (Math.random() < (_msB ? ((player.d.str || 0) / 60) : ((player.d.int || 0) / (_aoe ? 60 : 100)))) {
+907|                        if (_msB) {   // 🏅 v2.6.70 魔擊精通：持魔爆武器時，魔爆觸發改為發動魔擊（對施放目標·含擴散·不再引爆30%均分）
+908|                            let _mt = (targets && targets.find(x => x && x.curHp > 0)) || mapState.mobs.find(m => m && m.curHp > 0 && !m._dead);
+909|                            if (_mt) procMagicStrike(_mt);
+910|                        } else {
+911|                        let _live = mapState.mobs.filter(m => m && m.curHp > 0 && !m._dead);
+912|                        if (_live.length) {
+913|                            let _ex = Math.max(1, Math.floor(_burstDmg * 0.3 / _live.length));   // 🔧 v2.6.63：總量30%均分給場上敵人（原每隻各吃30%）
+914|                            logCombat(`<span class="font-bold" style="color:#f0abfc;text-shadow:0 0 6px #c026d3;">【魔爆】</span>魔力過載爆炸，波及全場！`, 'player-special');
+915|                            _live.forEach((m, i) => {
+916|                                let _d = Math.max(1, Math.floor(_ex * fragileMult(m)));
+917|                                _d = illusionMagicDmg(_d, true, i === 0); m.curHp -= _d; if (typeof moonShatterOnDamage === 'function') moonShatterOnDamage(player, m, _d); if (typeof terrorVisageOnDamage === 'function') terrorVisageOnDamage(m, _d, 'magic'); m.justHit = 'magic'; mobWake(m);   // 🔮 魔爆每次發動只回一次MP，5件仍逐目標生效；🌅 巨大骷髏視為魔法
+918|                                logCombat(`魔爆波及 <span class="${getMobColor(m.lv)}">${m.n}</span>，造成 ${_d} 點無屬性傷害。`, 'player');
+919|                                if (m.curHp <= 0) { let ri = mapState.mobs.findIndex(x => x && x.uid === m.uid); if (ri !== -1) killMob(ri); }
+920|                            });
+921|                        }
+922|                        }
+923|                    }
+924|                }
+925|            }
+926|            renderMobs();
+927|            // 🏅 迴響精通：(11-法術階級)×10% 機率不消耗 MP 立刻再施放一次（連發那次不再觸發迴響）
+928|            let _echoRate = (11 - (sk.tier || 1)) / 10;
+929|            if (sk.target !== 'all') _echoRate *= 2;   // 🏅 迴響精通：單體傷害魔法觸發機率加倍（全體傷害魔法沿用原機率）
+930|            if (hasMastery('m_echo') && !_echoFree && Math.random() < _echoRate) {
+931|                logCombat(`<span class="font-bold" style="color:#93c5fd;text-shadow:0 0 6px #3b82f6;">【迴響精通】</span>${sk.n} 的魔力迴盪不息，再次轟出！`, 'magic');
+932|                _echoFree = true;
+933|                try { castSkill(skId); } finally { _echoFree = false; }
+934|            }
+935|            return true;
+936|        }
+937|    }
+938|    
+939|    if(sk.type === 'buff') {
+940|        if(sk.noRefresh && (player.buffs[skId] || 0) > 0) return false;   // 🔧 烈焰之魂等：效果未結束不可再施放（不刷新）
+941|        if(sk.reqWpn === 'w2h' && (!player.eq.wpn || !DB.items[player.eq.wpn.id].w2h)) return false;
+942|        if(sk.reqWpnMelee && (!player.eq.wpn || DB.items[player.eq.wpn.id].isBow || DB.items[player.eq.wpn.id].ranged)) return false;   // 🐉 燃燒擊砍：須裝備近距離武器
+943|        if(sk.reqWpnBlunt && (!player.eq.wpn || !(getWeaponTags(player.eq.wpn.id).includes('單手鈍器') || getWeaponTags(player.eq.wpn.id).includes('雙手鈍器')))) return false;   // ⚔️ 戰斧投擲：須裝備單手／雙手鈍器
+944|        if(sk.reqShield && !player.eq.shield && !(player.eq.wpn && getWeaponTags(player.eq.wpn.id).includes('武士刀'))) return false;   // 武士刀：免盾亦可施展
+945|        // 🧙 v3.2.21 玩家召喚類 v2：sk_summon／sk_zombie（造屍術）／sk_elf_summon(2)（屬性精靈）分流到 js/23（多實體·可被攻擊·浮動框）；迷魅與傭兵維持舊 setupSummon 管線
+946|        if(sk.summon) {
+947|            if (typeof SUMMON_V2_SKILLS !== 'undefined' && SUMMON_V2_SKILLS.includes(skId) && typeof summonV2CastFor === 'function') {
+948|                if (!summonV2CastFor(skId, false)) return false;
+949|                player.mp -= cost; calcStats(); return true;
+950|            }
+951|            setupSummon(skId, sk); player.mp -= cost; calcStats(); return true;
+952|        }
+953|        // 🧹 v3.1.79 大掃除：移除不可達的舊版淨化分支（sk_antidote/sk_holy_light/sk_cancel 的 type 皆為 'heal'→一律在上方 heal 淨化分支處理並 return·永遠到不了本 buff 分支；現行規則＝teamCleanseOne 一次只解一人·舊分支「只解玩家自身」語意已過時）
+954|        player.buffs[skId] = sk.dur;
+955|        applyMoveDashBuffMutex(player, skId);
+956|        if(sk.awaken && player.mastery !== 'k_awaken') { ['sk_dragon_awaken_antares','sk_dragon_awaken_falion','sk_dragon_awaken_baraka'].forEach(_ak => { if(_ak !== skId) player.buffs[_ak] = 0; }); }   // 🐉 覺醒互斥：非覺醒精通時同時只能維持一種覺醒
+957|        if(sk.haste) player.buffs.haste = Math.max(player.buffs.haste || 0, sk.dur); // 加速術 → 套用 haste 效果
+958|        player.mp -= cost;
+959|        if(sk.hpCost) player.hp = Math.max(1, player.hp - effHpCost(sk));  // 消耗 HP（冥想術/堅固防護/隱身術；🐉 龍血精通減半）
+960|        if(sk.costItem && typeof consumeMaterialById === 'function') consumeMaterialById(sk.costItem.id, sk.costItem.qty || 1);   // 🌀 施法材料扣除（背包優先、不足取倉庫；上方已驗存量。目前僅增益型技能使用 costItem，其他類型若要用需自行在該分支扣除）
+961|        logCombat(`施放 ${sk.n}。${sk.msg || ''}`, 'magic');
+962|        calcStats();
+963|        return true;
+964|    }
+965|    return false;
+966|}
+967|
+968|// 💤 【休眠機制】團隊 HoT（持續回復）：整條鏈路目前不可達——DB.skills 內已無任何技能宣告 hot/autoBuff
+969|//    （sk_regen 體力回復術／sk_elf_lifebless 生命的祝福 已改為 classicHeal+groupHeal 的「瞬間全隊治癒」）。
+970|//    機制本身完整且正確，刻意保留以便日後新增持續回復技能：只要在 js/00-data.js 該技能加回
+971|//    `hot: { interval: <每跳 tick 數>, ticks: <總跳數> }` 與 `autoBuff: true`，整條鏈路即自動復活。
+972|//    相關落點：js/03 tick 回復迴圈、js/07 applyTeamHot＋施放分支、js/06 傭兵施放、js/08 狀態圖示、js/10 取消打勾結束。
+973|// 🍃 團隊 HoT（生命的祝福 / 體力回復術）單一真相：施放時登錄「全隊持續回復」到 player.hots[skId]。
+974|//   ・player.hots 為 dict(skId→HoT 實例)→不同技能可並存；同 skId 後放覆蓋先放（取代/刷新）。
+975|//   ・dStats＝施法者衍生值(玩家 player.d 或傭兵 ally.d)→spCoef 由施法者魔法傷害決定；每 interval 於 js/03 tick 對「玩家＋全體非倒地傭兵」各回復一次。
+976|function applyTeamHot(skId, sk, dStats, caster) {
+977|    if (!player.hots) player.hots = {};
+978|    let mDmg = (dStats && dStats.magicDmg) || 0;
+979|    // 🏺 v3.1.80 治癒者的恢復魔棒：施放者（玩家或傭兵）持有團體治癒強化武器 → 此 HoT 每跳回復 ×N（施放時快照·中途換武器不影響已存在的 HoT）
+980|    // 🔧 v3.5.94 斷鏈修復：舊碼讀的 hotHealMult 欄位在 DB.items 已零定義（relic_healer_wand 早已遷移為 groupHealMult），

@@ -32,15 +32,19 @@ function badges() { var api = A(), ab = api.state() || {}, b = {}; var pv = api.
   if (((player.gacha && player.gacha.tickets) || 0) > 0) b.hero = (player.gacha.tickets > 99 ? '99+' : player.gacha.tickets);
   try { var wtk0 = (window.AB_WPN && AB_WPN.tickets) ? AB_WPN.tickets() : ((player.gacha && player.gacha.wpnTickets) || 0); if (wtk0 > 0) b.wpn = wtk0 > 99 ? '99+' : wtk0; } catch (eW) {}
   try { var c = Object.keys(api.CLS).some(function (k) { var lv = api.campLv(k); if (lv >= AB_CAMP.maxLv) return false; var cost = AB_ECON.campCost(lv); return player.gold >= cost.gold && api.matN(k) >= cost.mats && (ab.cores || 0) >= (cost.cores || 0); }); if (c) b.camp = 1; } catch (e) {}
-  try { var miss = abCodexMissCount(); if (miss > 0) b.codex = miss > 99 ? '99+' : miss; } catch (e2) {}
+  try {
+    var miss = 0, brk = 0, ents = abCodexEntries();
+    ents.forEach(function (e) { if (!e.open) return; if (e.canBreak) brk++; else if (!e.owned) miss++; });
+    var tot = miss + brk; if (tot > 0) b.codex = tot > 99 ? '99+' : tot;
+  } catch (e2) {}
   return b; }
 function abCodexMissCount() {
-  var HD = (typeof HERO_DB !== 'undefined' && HERO_DB) || {}, own = {}, api = A();
-  try { own = (api && api.ownedDefIds) ? api.ownedDefIds() : {}; } catch (e) { own = {}; }
-  var n = 0; Object.keys(HD).forEach(function (id) {
-    var open = !(window.AB_WL && AB_WL.enabled) || (typeof wlHero === 'function' ? wlHero(id) : (api && api.wlHero && api.wlHero(id)));
-    if (open && !own[id]) n++;
-  }); return n;
+  var n = 0; try { abCodexEntries().forEach(function (e) { if (e.open && !e.owned) n++; }); } catch (e) {}
+  return n;
+}
+function abCodexBreakCount() {
+  var n = 0; try { abCodexEntries().forEach(function (e) { if (e.open && e.canBreak) n++; }); } catch (e) {}
+  return n;
 }
 function AB_ECON_SLOTS() { try { return AB_ECON.dispatch.slots; } catch (e) { return 2; } }
 function icon(id, ic, t, bd) { return '<button class="abl-ic" id="' + id + '"><i>' + ic + '</i><span>' + t + '</span>' + (bd ? '<em class="abl-bd">' + (bd === 1 ? '!' : bd) + '</em>' : '') + '</button>'; }
@@ -162,15 +166,32 @@ function runNpc() { /* 已廢：唔再經大廳 interactNPC */ }
 function closeHub() { var cp = document.getElementById('ab-camp'); if (cp && cp.closest && cp.closest('#abl-page')) cp.remove(); var c = document.getElementById('town-interaction-container'); var tv = document.getElementById('town-view'); if (c && tv) { tv.appendChild(c); c.classList.add('hidden'); c.classList.remove('flex'); } var b = document.getElementById('abl-hub'); if (b) b.remove(); }
 window.abOpenHub = openHub; window.abNpcAll = npcAll; window.abNpcDropped = npcDropped;
 
-// ===== 📒 英雄圖鑑（ab.20261026c）：已開放未抽到一眼睇 =====
+// ===== 📒 英雄圖鑑（ab.20261028r）：未抽到＋可突破閃爍 =====
 var _cx = { tab: 'open', cls: '', rar: '', showLocked: false };
 function abCodexEntries() {
   var HD = (typeof HERO_DB !== 'undefined' && HERO_DB) || {}, api = A(), C = (api && api.CLS) || {}, own = {};
   try { own = (api && api.ownedDefIds) ? api.ownedDefIds() : {}; } catch (e) { own = {}; }
+  var byDef = {};
+  try {
+    ((typeof player !== 'undefined' && player && player.heroes) || []).forEach(function (h) {
+      if (!h || !h.defId) return;
+      if (!byDef[h.defId]) byDef[h.defId] = h;
+    });
+  } catch (e0) {}
   var wlFn = (typeof wlHero === 'function') ? wlHero : (api && api.wlHero); var RORD = { SSR: 4, SR: 3, R: 2, N: 1 };
+  function canBreakHero(h) {
+    if (!h) return false;
+    try {
+      if (window.AP && typeof AP.canBreakthrough === 'function') return !!AP.canBreakthrough(h);
+      if (typeof heroCanBreakthrough === 'function') return !!heroCanBreakthrough(h);
+    } catch (e1) {}
+    return false;
+  }
   return Object.keys(HD).map(function (id) {
     var d = HD[id] || {}; var open = !(window.AB_WL && AB_WL.enabled) || (wlFn ? !!wlFn(id) : true);
-    return { defId: id, name: d.name || id, cls: d.cls || 'knight', rarity: d.rarity || 'N', portraitId: d.portraitId, blurb: d.blurb || '', lore: d.lore || '', skills: d.skills || [], elfEle: d.elfEle || null, open: open, owned: !!own[id] };
+    var owned = !!own[id]; var hero = owned ? byDef[id] : null;
+    var canBreak = !!(owned && hero && canBreakHero(hero));
+    return { defId: id, name: d.name || id, cls: d.cls || 'knight', rarity: d.rarity || 'N', portraitId: d.portraitId, blurb: d.blurb || '', lore: d.lore || '', skills: d.skills || [], elfEle: d.elfEle || null, open: open, owned: owned, canBreak: canBreak, heroId: hero ? hero.id : null, star: hero ? (hero.star || 0) : 0, fragments: hero ? (hero.fragments || 0) : 0 };
   }).sort(function (a, b) {
     return (RORD[b.rarity] || 0) - (RORD[a.rarity] || 0) || String(a.cls).localeCompare(b.cls) || String(a.name).localeCompare(b.name);
   });
@@ -182,13 +203,15 @@ function abCodexPor(e) {
 function abCodexPage(el) {
   if (!el) return; var api = A(), C = (api && api.CLS) || {}, all = abCodexEntries();
   var opened = all.filter(function (e) { return e.open; }), ownedN = opened.filter(function (e) { return e.owned; }).length, missN = opened.length - ownedN;
+  var breakN = opened.filter(function (e) { return e.canBreak; }).length;
   var list = all.filter(function (e) {
     if (!e.open) {
       if (!_cx.showLocked) return false;
-      if (_cx.tab === 'miss' || _cx.tab === 'own') return false;   // 未開放唔算未抽／已擁有
+      if (_cx.tab === 'miss' || _cx.tab === 'own' || _cx.tab === 'break') return false;   // 未開放唔算未抽／已擁有／可突破
     } else {
       if (_cx.tab === 'miss' && e.owned) return false;
       if (_cx.tab === 'own' && !e.owned) return false;
+      if (_cx.tab === 'break' && !e.canBreak) return false;
     }
     if (_cx.cls && e.cls !== _cx.cls) return false;
     if (_cx.rar && e.rarity !== _cx.rar) return false;
@@ -197,9 +220,10 @@ function abCodexPage(el) {
   var chip = function (k, lab, on) { return '<button type="button" class="ab-cx-chip' + (on ? ' on' : '') + '" data-cx="' + k + '">' + lab + '</button>'; };
   var sum = '<div class="ab-cx-sum"><b>已開放 ' + ownedN + '／' + opened.length + ' 已擁有</b>' +
     (missN ? '<span class="ab-cx-miss">未抽到 ' + missN + '</span>' : '<span class="ab-cx-ok">已開放全部擁有 ✔</span>') +
+    (breakN ? '<span class="ab-cx-break">可突破 ' + breakN + '</span>' : '') +
     '<small>全庫 ' + all.length + (_cx.showLocked ? '（含未開放）' : '') + ' · 顯示 ' + list.length + '</small></div>';
   var filters = '<div class="ab-cx-filters">' +
-    chip('tab:open', '全部已開放', _cx.tab === 'open') + chip('tab:miss', '未抽到', _cx.tab === 'miss') + chip('tab:own', '已擁有', _cx.tab === 'own') +
+    chip('tab:open', '全部已開放', _cx.tab === 'open') + chip('tab:miss', '未抽到', _cx.tab === 'miss') + chip('tab:own', '已擁有', _cx.tab === 'own') + chip('tab:break', '可突破', _cx.tab === 'break') +
     '<span class="ab-cx-sep">｜</span>' +
     ['SSR','SR','R','N'].map(function (r) { return chip('rar:' + r, r, _cx.rar === r); }).join('') +
     '<button type="button" class="ab-cx-chip' + (_cx.rar === '' ? ' on' : '') + '" data-cx="rar:">稀有度·全</button>' +
@@ -208,9 +232,9 @@ function abCodexPage(el) {
     '<button type="button" class="ab-cx-chip' + (_cx.cls === '' ? ' on' : '') + '" data-cx="cls:">職業·全</button>' +
     '<label class="ab-cx-lock"><input type="checkbox" id="ab-cx-lock"' + (_cx.showLocked ? ' checked' : '') + '> 顯示未開放</label></div>';
   var grid = '<div class="ab-cx-grid">' + (list.length ? list.map(function (e) {
-    var cl = C[e.cls] || {}; var st = !e.open ? 'locked' : (e.owned ? 'owned' : 'miss');
+    var cl = C[e.cls] || {}; var st = !e.open ? 'locked' : (e.canBreak ? 'owned break' : (e.owned ? 'owned' : 'miss'));
     var nm = e.open ? e.name : '？？？';
-    var tag = !e.open ? '<i class="ab-cx-tag lock">🔒</i>' : (e.owned ? '<i class="ab-cx-tag ok">✔</i>' : '<i class="ab-cx-tag miss">未抽</i>');
+    var tag = !e.open ? '<i class="ab-cx-tag lock">🔒</i>' : (e.canBreak ? '<i class="ab-cx-tag break">可突破</i>' : (e.owned ? '<i class="ab-cx-tag ok">✔</i>' : '<i class="ab-cx-tag miss">未抽</i>'));
     var por = e.open ? abCodexPor(e) : '';
     return '<button type="button" class="ab-cx-c r-' + e.rarity + ' ' + st + '" data-def="' + e.defId + '"' + (e.open ? '' : ' data-locked="1"') + '>' +
       (e.open ? '<img src="' + por + '" alt="" data-fb="1">' : '<div class="ab-cx-sil" aria-hidden="true">' + (cl.ic || '❔') + '</div>') +
@@ -250,14 +274,51 @@ function abCodexDetail(e) {
   var sk = (e.skills || []).map(function (id) { try { return (DB.skills && DB.skills[id] && DB.skills[id].n) || id; } catch (x) { return id; } }).join('、');
   var old = document.getElementById('abh-pop'); if (old) old.remove(); var p = H('div', 'abh-pop'); p.id = 'abh-pop';
   var st = e.owned ? '<span class="ab-cx-ok">✔ 已擁有</span>' : '<span class="ab-cx-miss">未抽到 · 可喺招募抽</span>';
+  var breakLine = '';
+  if (e.canBreak && e.heroId) {
+    var need = null, fr = e.fragments || 0;
+    try {
+      var hObj = { id: e.heroId, defId: e.defId, star: e.star || 0, fragments: fr, rarity: e.rarity };
+      if (window.AP && typeof AP.starCost === 'function') need = AP.starCost(hObj);
+      else if (typeof heroStarCost === 'function') need = heroStarCost(hObj);
+    } catch (x2) {}
+    breakLine = '<p class="ab-cx-breakline">⭐ 碎片足夠（而家 ' + fr + '／要 ' + (need != null ? need : '?') + '）· 永久★' + (e.star || 0) + '</p>';
+  }
   p.innerHTML = '<div class="abh-popbox abl-det ab-cx-det"><img class="abl-det-img" src="' + abCodexPor(e) + '" alt=""><div><h3><em class="r-' + e.rarity + '">' + e.rarity + '</em> ' + e.name + '</h3>' +
-    '<p>' + (cl.ic || '') + ' ' + (cl.lb || e.cls) + (e.elfEle ? ' · 元素 ' + e.elfEle : '') + ' · ' + st + '</p>' +
-    (sk ? '<p>技能：' + sk + '</p>' : '') + (e.blurb ? '<p><b>' + e.blurb + '</b></p>' : '') + (e.lore ? '<p class="abl-lore">' + e.lore + '</p>' : '') +
-    '<button class="abh-big" id="abh-pop-ok">關閉</button>' + (e.owned ? '' : ' <button class="abh-big" id="abh-pop-gacha">去招募</button>') + '</div></div>';
+    '<p>' + (cl.ic || '') + ' ' + (cl.lb || e.cls) + (e.elfEle ? ' · 元素 ' + e.elfEle : '') + ' · ' + st + '</p>' + breakLine +
+    (function(){
+      var abLine = '';
+      try {
+        var api = window.AB_SKILL_API, uniq = (window.UNIQUE && UNIQUE[e.defId]) || null;
+        var abSk = api && api.resolveByDef ? api.resolveByDef(e.defId) : null;
+        var n = uniq ? uniq.n : (abSk && abSk.name);
+        var power = (abSk && api && api.powerOf) ? (api.powerOf(abSk.id) || '') : '';
+        var m = 1;
+        if (!uniq) m *= ((window.AB_BAL && AB_BAL.heroSk) || 1.15);
+        var perm = Math.max(0, Math.min(5, Math.floor(Number(e.star) || 0)));
+        var PM = window.AB_PERM_SKILL_MUL || {0:1,1:1,2:1,3:1.15,4:1.3,5:1.5};
+        m *= (PM[perm] || 1);
+        if (n) abLine = '<p>⚔ 自走棋技能：<b>' + n + '</b>' + (uniq ? ' <em class="ab-gold">專屬</em>' : '')
+          + (power ? ' <small class="ab-gold">［本體 ' + power + '］</small>' : '')
+          + ' <small class="ab-gold">總倍率 ×' + (Math.round(m*100)/100) + '</small>'
+          + (abSk && abSk.desc ? '<br><small>' + abSk.desc + '</small>' : '') + '</p>';
+      } catch (x) {}
+      return (abLine || '') + (sk ? '<p>圖鑑技能：' + sk + '</p>' : '');
+    })() + (e.blurb ? '<p><b>' + e.blurb + '</b></p>' : '') + (e.lore ? '<p class="abl-lore">' + e.lore + '</p>' : '') +
+    '<button class="abh-big" id="abh-pop-ok">關閉</button>' +
+    (e.canBreak && e.heroId ? ' <button class="abh-big" id="abh-pop-star">⭐ 去突破</button>' : '') +
+    (e.owned ? '' : ' <button class="abh-big" id="abh-pop-gacha">去招募</button>') + '</div></div>';
   document.body.appendChild(p);
   (function (img) { if (img) img.onerror = function () { img.onerror = null; img.src = 'assets/ab-class/' + (e.cls === 'elf' ? 'elf.png' : (e.cls || 'knight') + '.svg'); }; })(p.querySelector('.abl-det-img'));
   p.querySelector('#abh-pop-ok').onclick = function () { p.remove(); };
   var g = p.querySelector('#abh-pop-gacha'); if (g) g.onclick = function () { p.remove(); var hb = document.getElementById('abh-hero'); if (hb) hb.click(); };
+  var sb = p.querySelector('#abh-pop-star');
+  if (sb) sb.onclick = function () {
+    var hid = e.heroId; p.remove();
+    var hb = document.getElementById('abh-hero'); if (hb) hb.click();
+    var f = document.getElementById('abp-fn');
+    if (f) { abHeroPage(f, hid); abHeroPanel(f, function () { if (window.openHeroManagePanel) openHeroManagePanel(hid); }); }
+  };
 }
 window.abCodexPage = abCodexPage;
 

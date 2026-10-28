@@ -1,0 +1,62 @@
+// FILE js\02-stats-recompute.js L590-650
+590|            if(bd.meleeHit) d.meleeHit += bd.meleeHit;
+591|            if(bd.rangedDmg) d.rangedDmg += bd.rangedDmg;
+592|            if(bd.rangedHit) d.rangedHit += bd.rangedHit;
+593|            if(bd.extraDmg) d.extraDmg += bd.extraDmg;
+594|            if(bd.extraHit) d.extraHit += bd.extraHit;
+595|            if(bd.magicDmg) d.magicDmg += bd.magicDmg;
+596|            if(bd.ac) d.ac -= bd.ac;
+597|            if(bd.er) d.er += bd.er;
+598|            if(bd.mpR) d.mpR += bd.mpR;
+599|            if(bd.dr) d.dr += bd.dr;
+600|            if(bd.mr) d.mr += bd.mr;
+601|            if(bd.resFire)  d.resFire  += bd.resFire;
+602|            if(bd.resWater) d.resWater += bd.resWater;
+603|            if(bd.resEarth) d.resEarth += bd.resEarth;
+604|            if(bd.resWind)  d.resWind  += bd.resWind;
+605|        }
+606|    }
+607|
+608|    // 單屬性防禦：所選屬性抗性 +50
+609|    if(p.buffs.sk_elf_singleres > 0 && p.elfEle) {
+610|        if(p.elfEle === 'fire')  d.resFire  += 50;
+611|        if(p.elfEle === 'water') d.resWater += 50;
+612|        if(p.elfEle === 'earth') d.resEarth += 50;
+613|        if(p.elfEle === 'wind')  d.resWind  += 50;
+614|    }
+615|
+616|    // 🏺 v3.5.27 黑騎士的精銳長槍＋鎧衛隊的漆黑塔盾 同時裝備：近距離傷害 +15（格檔100%／經典模式亦可格檔＝js/04 受擊路徑）
+617|    if (p.eq && p.eq.wpn && p.eq.wpn.id === 'relic_bk_lance' && p.eq.shield && p.eq.shield.id === 'relic_guard_towershield') d.meleeDmg += 15;
+618|    // 🏺 v3.7.20 盔甲內襯鎖鏈衣（T恤 liningChain）：裝備「防禦 6 以下」盔甲（def ac 0~6·ac 欄正值=AC−X）→ 額外 AC-10、MR+10（p 參數化→傭兵換身自動鏡像）
+619|    if (p.eq && p.eq.tshirt && p.eq.armor) {
+620|        let _lct = DB.items[p.eq.tshirt.id], _lca = DB.items[p.eq.armor.id];
+621|        if (_lct && _lct.liningChain && _lca && (_lca.ac || 0) >= 0 && (_lca.ac || 0) <= 6) { d.ac -= 10; d.mr += 10; }
+622|    }
+623|
+624|    // 變形卷軸變身依目前武器分流：遠距離武器只能使用遠距離變身，其餘（含空手）只能使用近距離變身。
+625|    // 換武器時 calcStats 會立即重抽相符類型；套裝／武器強制變身 _setPoly 仍保留原本專屬形態。
+626|    // 此正規化對玩家與傭兵換身重算皆執行（player 為可換身全域·buildAlly/_allyLevelRecompute 期間指向傭兵）。
+627|    if(p.poly && p.buffs.poly > 0 && !polyFormMatchesEquippedWeapon(p.poly)) p.poly = getPolyState();
+628|    // 變身：套裝變身（_setPoly，僅穿著套裝時生效、卸下立即消失）優先於藥水變身（buffs.poly 計時）
+629|    let _polyForm = p._setPoly || ((p.buffs.poly > 0 && p.poly) ? p.poly : null);
+630|    if(_polyForm) {
+631|        let pf = _polyForm;
+632|        // 🆕 v3.0.28 速度覆蓋（凡有 atk 者皆套用）：POLY_TIERS 速度型變身、及套裝變身 SET_POLY_FORMS（現在也帶 atk/wlk/cast/stun）。
+633|        //   攻擊間隔＝動畫幀換算秒（APM=1440/幀），之後仍照常 ×spdMult（加速/勇敢/精通疊加）；移動速度 pf.wlk 於出怪排程（js/03）影響重生。
+634|        if(pf.atkApm != null) {   // 指定每分鐘攻擊次數：避免 85／88／90 等速度換算成百分秒後產生累積誤差
+635|            d.aspd = 60 / Math.max(1, pf.atkApm);
+636|            if(pf.castApm != null) d.castLock = d.supportCastLock = 600 / Math.max(1, pf.castApm);
+637|            else if(pf.cast != null) d.castLock = d.supportCastLock = pf.cast;
+638|            if(pf.stun != null) d.hitstun = pf.stun;
+639|        } else if((pf.shanna || pf.trueShanna) && typeof shannaSpeedForActor === 'function') {
+640|            let _ss = pf.trueShanna ? trueShannaSpeedForActor(p) : shannaSpeedForActor(p);   // 🧝 v3.5.21 真夏納：逐武器 APM 查表（值不同·可用家族形狀同夏納）
+641|            if(_ss.apm != null) d.aspd = 60 / Math.max(1, _ss.apm);
+642|            if(_ss.hitstun != null) d.hitstun = _ss.hitstun;
+643|            d.castLock = 600 / (pf.castApm || 80);              // 攻擊／自動施法（夏納80·真夏納85 次/分）
+644|            d.supportCastLock = 600 / (pf.supportCastApm || 72);   // 輔助施法（夏納72·真夏納75 次/分）
+645|        } else if(pf.apm != null) {   // 🌑 v3.4.67 逐武器種類 APM 攻速（冥皇執行劍/烈焰死騎變身）：依當前武器種類查表→6000/APM/100=秒（同 atkSpdBaseItv）；空手/缺項退單手劍
+646|            let _fam = (p.eq && p.eq.wpn && typeof atkSpdFamily === 'function') ? atkSpdFamily(p.eq.wpn.id) : null;
+647|            let _apm = (_fam && pf.apm[_fam]) || pf.apm['單手劍'] || 60;
+648|            d.aspd = Math.round(6000 / Math.max(1, _apm)) / 100;
+649|            if(pf.cast != null) d.castLock = d.supportCastLock = pf.cast;
+650|            if(pf.stun != null) d.hitstun  = pf.stun;

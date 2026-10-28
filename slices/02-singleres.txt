@@ -1,0 +1,102 @@
+// FILE js\02-stats-recompute.js L580-680
+580|    if(p.buffs.cautious > 0 || (_mercPots && p.cls === 'mage')) { d.magicDmg += 2; d.mpR += 2; }      // 慎重藥水；法師傭兵常駐
+581|    if(p.buffs.sk_reduction_armor > 0) d.dr += Math.floor(p.lv/10);   // 增幅防禦：等同傷害減免 floor(等級/10)，併入 DR 顯示與計算
+582|    if(p.statuses && p.statuses.evilAura > 0) { d.ac += 10; d.er -= 10; }   // 🔧 邪靈之氣減益：AC+10、ER−10（持續6秒，由黑暗精靈使施放）
+583|    
+584|    // 技能buff（非屬性部分；STR/DEX/INT/CON/WIS 已於 Phase 1 計入）
+585|    // meleeDmg/meleeHit -> 近距離；rangedDmg/rangedHit -> 遠距離（彼此獨立，依武器種類生效）
+586|    for(let k in p.buffs) {
+587|        if(p.buffs[k] > 0 && DB.skills[k] && DB.skills[k].d) {
+588|            let bd = DB.skills[k].d;
+589|            if(bd.meleeDmg) d.meleeDmg += bd.meleeDmg;
+590|            if(bd.meleeHit) d.meleeHit += bd.meleeHit;
+591|            if(bd.rangedDmg) d.rangedDmg += bd.rangedDmg;
+592|            if(bd.rangedHit) d.rangedHit += bd.rangedHit;
+593|            if(bd.extraDmg) d.extraDmg += bd.extraDmg;
+594|            if(bd.extraHit) d.extraHit += bd.extraHit;
+595|            if(bd.magicDmg) d.magicDmg += bd.magicDmg;
+596|            if(bd.ac) d.ac -= bd.ac;
+597|            if(bd.er) d.er += bd.er;
+598|            if(bd.mpR) d.mpR += bd.mpR;
+599|            if(bd.dr) d.dr += bd.dr;
+600|            if(bd.mr) d.mr += bd.mr;
+601|            if(bd.resFire)  d.resFire  += bd.resFire;
+602|            if(bd.resWater) d.resWater += bd.resWater;
+603|            if(bd.resEarth) d.resEarth += bd.resEarth;
+604|            if(bd.resWind)  d.resWind  += bd.resWind;
+605|        }
+606|    }
+607|
+608|    // 單屬性防禦：所選屬性抗性 +50
+609|    if(p.buffs.sk_elf_singleres > 0 && p.elfEle) {
+610|        if(p.elfEle === 'fire')  d.resFire  += 50;
+611|        if(p.elfEle === 'water') d.resWater += 50;
+612|        if(p.elfEle === 'earth') d.resEarth += 50;
+613|        if(p.elfEle === 'wind')  d.resWind  += 50;
+614|    }
+615|
+616|    // 🏺 v3.5.27 黑騎士的精銳長槍＋鎧衛隊的漆黑塔盾 同時裝備：近距離傷害 +15（格檔100%／經典模式亦可格檔＝js/04 受擊路徑）
+617|    if (p.eq && p.eq.wpn && p.eq.wpn.id === 'relic_bk_lance' && p.eq.shield && p.eq.shield.id === 'relic_guard_towershield') d.meleeDmg += 15;
+618|    // 🏺 v3.7.20 盔甲內襯鎖鏈衣（T恤 liningChain）：裝備「防禦 6 以下」盔甲（def ac 0~6·ac 欄正值=AC−X）→ 額外 AC-10、MR+10（p 參數化→傭兵換身自動鏡像）
+619|    if (p.eq && p.eq.tshirt && p.eq.armor) {
+620|        let _lct = DB.items[p.eq.tshirt.id], _lca = DB.items[p.eq.armor.id];
+621|        if (_lct && _lct.liningChain && _lca && (_lca.ac || 0) >= 0 && (_lca.ac || 0) <= 6) { d.ac -= 10; d.mr += 10; }
+622|    }
+623|
+624|    // 變形卷軸變身依目前武器分流：遠距離武器只能使用遠距離變身，其餘（含空手）只能使用近距離變身。
+625|    // 換武器時 calcStats 會立即重抽相符類型；套裝／武器強制變身 _setPoly 仍保留原本專屬形態。
+626|    // 此正規化對玩家與傭兵換身重算皆執行（player 為可換身全域·buildAlly/_allyLevelRecompute 期間指向傭兵）。
+627|    if(p.poly && p.buffs.poly > 0 && !polyFormMatchesEquippedWeapon(p.poly)) p.poly = getPolyState();
+628|    // 變身：套裝變身（_setPoly，僅穿著套裝時生效、卸下立即消失）優先於藥水變身（buffs.poly 計時）
+629|    let _polyForm = p._setPoly || ((p.buffs.poly > 0 && p.poly) ? p.poly : null);
+630|    if(_polyForm) {
+631|        let pf = _polyForm;
+632|        // 🆕 v3.0.28 速度覆蓋（凡有 atk 者皆套用）：POLY_TIERS 速度型變身、及套裝變身 SET_POLY_FORMS（現在也帶 atk/wlk/cast/stun）。
+633|        //   攻擊間隔＝動畫幀換算秒（APM=1440/幀），之後仍照常 ×spdMult（加速/勇敢/精通疊加）；移動速度 pf.wlk 於出怪排程（js/03）影響重生。
+634|        if(pf.atkApm != null) {   // 指定每分鐘攻擊次數：避免 85／88／90 等速度換算成百分秒後產生累積誤差
+635|            d.aspd = 60 / Math.max(1, pf.atkApm);
+636|            if(pf.castApm != null) d.castLock = d.supportCastLock = 600 / Math.max(1, pf.castApm);
+637|            else if(pf.cast != null) d.castLock = d.supportCastLock = pf.cast;
+638|            if(pf.stun != null) d.hitstun = pf.stun;
+639|        } else if((pf.shanna || pf.trueShanna) && typeof shannaSpeedForActor === 'function') {
+640|            let _ss = pf.trueShanna ? trueShannaSpeedForActor(p) : shannaSpeedForActor(p);   // 🧝 v3.5.21 真夏納：逐武器 APM 查表（值不同·可用家族形狀同夏納）
+641|            if(_ss.apm != null) d.aspd = 60 / Math.max(1, _ss.apm);
+642|            if(_ss.hitstun != null) d.hitstun = _ss.hitstun;
+643|            d.castLock = 600 / (pf.castApm || 80);              // 攻擊／自動施法（夏納80·真夏納85 次/分）
+644|            d.supportCastLock = 600 / (pf.supportCastApm || 72);   // 輔助施法（夏納72·真夏納75 次/分）
+645|        } else if(pf.apm != null) {   // 🌑 v3.4.67 逐武器種類 APM 攻速（冥皇執行劍/烈焰死騎變身）：依當前武器種類查表→6000/APM/100=秒（同 atkSpdBaseItv）；空手/缺項退單手劍
+646|            let _fam = (p.eq && p.eq.wpn && typeof atkSpdFamily === 'function') ? atkSpdFamily(p.eq.wpn.id) : null;
+647|            let _apm = (_fam && pf.apm[_fam]) || pf.apm['單手劍'] || 60;
+648|            d.aspd = Math.round(6000 / Math.max(1, _apm)) / 100;
+649|            if(pf.cast != null) d.castLock = d.supportCastLock = pf.cast;
+650|            if(pf.stun != null) d.hitstun  = pf.stun;
+651|        } else if(pf.atk != null) {
+652|            d.aspd = Math.round(pf.atk * 6000 / 1440) / 100;         // 攻擊間隔（秒）
+653|            if(pf.cast != null) d.castLock = d.supportCastLock = pf.cast; // 施法冷卻下限（tick）
+654|            if(pf.stun != null) d.hitstun  = pf.stun;               // 被擊硬直（tick）
+655|        }
+656|        // 屬性加成（純速度型 POLY_TIERS 無此欄＝+0；套裝變身保留傷害/命中/魔法等加成，與上方速度並存）
+657|        d.meleeDmg  += (pf.md  || 0); d.meleeHit  += (pf.mh || 0);   // 近距離傷害 / 命中
+658|        d.rangedDmg += (pf.rd  || 0); d.rangedHit += (pf.rh || 0);   // 遠距離傷害 / 命中
+659|        d.extraDmg  += (pf.ed  || 0); d.extraHit  += (pf.eh || 0);   // 額外傷害 / 命中
+660|        d.magicDmg  += (pf.mgd || 0);                                // 魔法傷害
+661|        d.extraMp   += (pf.sp  || 0);                                // 額外魔法點數
+662|        d.mpR       += (pf.mpr || 0);                                // MP 自然恢復量
+663|        d.ac        += (pf.ac  || 0);                                // AC（規格 AC-1 以 ac:-1 表示）
+664|        d.er        += (pf.er  || 0);                                // ER
+665|        d.mr        += (pf.mr  || 0);                                // MR
+666|        if(pf.spd) spdMult *= (1 / (1 + pf.spd/100));                // 攻速加快%（舊相容欄位）：速度×(1+spd%)，新設定已改速度覆蓋不帶 spd
+667|    }
+668|    if (d.hitstunReduce > 0) d.hitstun = Math.max(0, (d.hitstun || 0) - d.hitstunReduce);   // 🏺 不動的鋼鐵堅壁：硬直減免統一套用點（置於變身速度覆蓋後→變身形態的 pf.stun 也吃減免·夾下限 0）
+669|
+670|    if(p.buffs.sk_soul_up > 0) { p.mhp = Math.floor(p.mhp * 1.2); p.mmp = Math.floor(p.mmp * 1.2); }
+671|    if (player.skills.includes('sk_warrior_armorbody')) d.dr += Math.floor((10 - d.ac) / (hasMastery('k_tough') ? 5 : 10));   // ⚔️ 護甲身軀：傷害減免 +[(10-AC)/10]；🏅 堅韌精通改 /5
+672|    if (p.buffs.sk_warrior_endurance > 0) p.mhp = Math.floor(p.mhp * (1 + (p.lv / 2) / 100));   // ⚔️ 體能強化：HP上限 +(等級/2)%
+673|    if (_shN('狂怒') >= 3) p.mhp = Math.floor(p.mhp * 1.2);   // 😡 狂怒 3/5：最大HP +20%（於各 flat HP 加成後套用）
+674|    if(p.mastery === 'i_mana') p.mmp = Math.floor(p.mmp * 2);   // 🔮 魔力精通：MP 上限加倍（耗魔亦加倍，見 getMpCost）
+675|    // 血盟 Buff：由角色自行開啟，每小時消耗貢獻；能力依全模式共用血盟等級決定。
+676|    if (typeof getClanBuffStats === 'function') {
+677|        let _cb = getClanBuffStats(p);
+678|        if (_cb) {
+679|            p.mhp += _cb.hp || 0;
+680|            p.mmp += _cb.mp || 0;

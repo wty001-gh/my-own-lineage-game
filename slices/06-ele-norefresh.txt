@@ -1,0 +1,177 @@
+// FILE js\06-status-allies.js L2755-2930
+2755|//   透過重算 ally.d 讓 buff 的衍生值(extraDmg/extraHit/ac/str/攻速/覺醒 HP·MR·免疫/屬性抗性…)生效。排除：召喚(#2未做)/淨化(#6)/立方·颶風·團隊HoT(各自 ally 常駐路徑)/幻覺·大地祝福·鋼鐵防護(隊長團隊增益·避免與 team aura 疊加或浪費 MP)/暗隱術(受擊迴避層#5另處理)。
+2756|// 👑 v2.7.95 傭兵自動施放「開啟閘」：只有「來源角色有勾選自動施放(auto-sk-<id>)」的技能才自動施放（快照存於 config.autoBuffSkills·buildAlly 深拷貝帶入·js/13:713）。
+2757|//   用於所有「會耗 MP 的自動維持行為」：自我 buff(1680)／召喚／團隊 HoT／團隊淨化——比照玩家 autoActions 勾選框(js/07:810-824)，玩家沒開＝傭兵不耗 MP。攻擊/治癒/轉換由隊伍面板下拉單選(＝玩家已指定)故不受此閘。
+2758|function _mercAutoOn(ally, sid) {
+2759|    if (ally && ally._autoBuff && Object.prototype.hasOwnProperty.call(ally._autoBuff, sid)) return !!ally._autoBuff[sid];   // 🆕 v3.0.97 隊伍面板「逐兵自動維持」覆寫優先（setAllyAutoBuff·存 ally._autoBuff·隨存檔）
+2760|    return !!(ally && ally.config && ally.config.autoBuffSkills && ally.config.autoBuffSkills[sid]);   // 否則沿用來源角色存檔的自動施放勾選快照
+2761|}
+2762|// 🧝 v3.8.5 妖精屬性閘（傭兵版·單一真相）：妖精換屬性後，舊屬性的三/四/五階精靈魔法在他自己身上是「灰色不可用」
+2763|//   （玩家端 canCast js/07:395-396 的 reqEle／reqEleAny 閘）。傭兵路徑原本**完全沒有這道閘** → 隊伍面板照列出來、
+2764|//   自動維持照跑（舊屬性 buff 照吃衍生值又照扣 MP）。用戶要求：擔任傭兵時自動隱藏 → 隱藏＋停止施放成對，
+2765|//   否則會變成「看不到卻還在生效」。
+2766|//   ⚠️判定必須用 **ally.elfEle**（傭兵快照自帶·buildAlly 深拷貝來源存檔）——不可用 player.elfEle，那是拿隊長的屬性
+2767|//     去判傭兵的技能（也正是 _allySkillOptions 原註解說「不可用 reqEle 判可用性」的原因；改讀 ally 後就成立了）。
+2768|//   granted（裝備/頭盔賦予）比照玩家豁免屬性閘。非妖精職業的技能無 reqEle/reqEleAny → 一律 true，零影響。
+2769|function allySkillElementOk(ally, sid) {
+2770|    let sk = DB.skills[sid]; if (!sk) return true;
+2771|    if (!sk.reqEle && !sk.reqEleAny) return true;
+2772|    if (ally && ally.grantedSkills && ally.grantedSkills.includes(sid)) return true;
+2773|    let ele = (ally && ally.elfEle) || '';
+2774|    if (sk.reqEle && ele !== sk.reqEle) return false;   // 屬性不符（換屬性後的舊屬性魔法）
+2775|    if (sk.reqEleAny && !ele) return false;             // 尚未選擇屬性
+2776|    return true;
+2777|}
+2778|// 🔮 v2.7.96 幻術士傭兵立方屬性抗性 rider（補 parity）：玩家立方 buff 給 d:{resFire/resEarth/resWind:+30}(recompute 讀 player.buffs)；傭兵立方走 allyCubeTick 不寫 ally.buffs→抗性原本拿不到。改在重算後(buildAlly/_allyLevelRecompute)直接補「已學會＋來源有勾自動施放」的立方抗性到 ally.d（與 allyCubeTick 傷害的勾選閘一致；受屬性攻擊時 js/04:891-894/1007-1010 讀 ally.d.res*）。
+2779|// Helmet-granted and learned versions are the same buff. Prefer the helmet version when both are enabled.
+2780|const _MERC_HELM_BUFF_PRIORITY = { sk_ench_wpn: 'sk_helm_str1', sk_dex_up: 'sk_helm_dex1', sk_reveal: 'sk_helm_str2' };
+2781|function _mercPreferredHelmBuffCovers(ally, sid) {
+2782|    let preferred = _MERC_HELM_BUFF_PRIORITY[sid];
+2783|    if (!preferred || !ally) return false;
+2784|    if (ally.buffs && (ally.buffs[preferred] || 0) > 0) return true;
+2785|    return !!(ally.skills && ally.skills.includes(preferred) && _mercAutoOn(ally, preferred));
+2786|}
+2787|function _applyMercCubeRes(ally) {
+2788|    if (!ally || ally.cls !== 'illusion' || !ally.d || !ally.skills) return;
+2789|    ['sk_illu_cube_burn', 'sk_illu_cube_quake', 'sk_illu_cube_shock'].forEach(function(sid) {
+2790|        if (!ally.skills.includes(sid) || !_mercAutoOn(ally, sid)) return;
+2791|        let cd = DB.skills[sid] && DB.skills[sid].d; if (!cd) return;
+2792|        if (cd.resFire)  ally.d.resFire  = (ally.d.resFire  || 0) + cd.resFire;
+2793|        if (cd.resEarth) ally.d.resEarth = (ally.d.resEarth || 0) + cd.resEarth;
+2794|        if (cd.resWind)  ally.d.resWind  = (ally.d.resWind  || 0) + cd.resWind;
+2795|    });
+2796|}
+2797|function _isMercSelfBuff(sk, sid) {
+2798|    if (!sk || sk.type !== 'buff') return false;
+2799|    if (sid === 'sk_holy_dash' || sid === 'sk_elf_winddash') return false;   // 移動速度只依據主玩家；傭兵不自動維持純移速 buff 以免空耗 MP
+2800|    // 🔮 v3.2.2 用戶要求：幻覺（歐吉/巫妖/鑽石高崙·illuSummon）改為可自動維持→開放給幻術士傭兵的隊伍面板勾選（原 `|| sk.illuSummon` 直接排除→傭兵永不施放）。
+2801|    //    刻意「不」放進 TEAM_AURA_SKILLS：那條路徑有「隊上任一人已維持→不重複施放」去重，會讓玩家開歐吉時傭兵不開自己的歐吉 buff，而 illuSummonTick 需要「自身 buff」才召幻象 → 傭兵幻象會消失。
+2802|    //    幻覺屬性加成走 recompute 通用 buff 迴圈套進自身 ally.d；全隊光環由 teamIlluAura/teamAcBonus 讀 _teamAuraHas（排除受益者自身·無雙算）。
+2803|    if (sk.summon || sk.cube || sk.hot) return false;   // 🖤 v2.7.92 darkStealth 解除排除：稽核證實原「受擊迴避層#5另處理」註解不實（js/04 傭兵受擊路徑無 stealth 檢查）→改為正常維持（吃來源打勾快照閘）＋enemyAttackAlly 消費（100%迴避一次·5秒冷卻·鏡像玩家）
+2804|    if (typeof STORM_BUFF_SKILLS !== 'undefined' && STORM_BUFF_SKILLS.includes && STORM_BUFF_SKILLS.includes(sid)) return false;
+2805|    if (sid === 'sk_antidote' || sid === 'sk_holy_light' || sid === 'sk_cancel') return false;
+2806|    // 🌟 v3.0.99 團隊光環開放傭兵維持；鋼鐵防護現為一般自我增益 AC-10，因此會由每位施法者各自維持。
+2807|    if (sid === 'sk_abs_barrier' || sid === 'sk_elf_earthshield' || sid === 'sk_magic_shield') return false;   // 🚫 v2.6.13 #5b：完全免疫類（絕對屏障/大地屏障/魔法屏障）不給傭兵（自動維持會近乎無敵·用戶決定）→不自動維持免白耗MP
+2808|    return true;
+2809|}
+2810|// 🆕 v3.0.97 傭兵「自動維持」可切換技能清單：列出受 _mercAutoOn 閘控制、可於隊伍面板逐兵開關的已學技能
+2811|//   （自我增益 buff／召喚術／團隊 HoT／淨化／火牢·冰雪颶風／立方）。回傳 [{sid,n,cat}]（cat 供分組/tooltip）。
+2812|//   ⚠️不含：完全免疫類（被 _isMercSelfBuff 排除·刻意不給傭兵）、立方和諧（由轉換技能欄控制）。
+2813|//   🔮 v3.2.2：幻覺（歐吉/巫妖/鑽石高崙）已納入（cat '幻覺'）——勾選＝傭兵自動維持該 buff＝提供全隊光環＋（有 i_illusion 精通時）召出對應幻象攻擊。
+2814|function allyAutoCastableSkills(ally) {
+2815|    if (!ally || !ally.skills) return [];
+2816|    let seen = {}, out = [];
+2817|    for (let i = 0; i < ally.skills.length; i++) {
+2818|        let sid = ally.skills[i]; if (seen[sid]) continue;
+2819|        let sk = DB.skills[sid]; if (!sk) continue;
+2820|        if (!allySkillElementOk(ally, sid)) continue;   // 🧝 v3.8.5 換屬性後不可用的屬性魔法→不列入「自動維持」勾選（同步下方維持迴圈的閘）
+2821|        let cat = null;
+2822|        if (sid === 'sk_antidote' || sid === 'sk_holy_light' || sid === 'sk_cancel') cat = '淨化';
+2823|        else if (sk.type === 'heal' && sk.hot && sk.autoBuff) cat = '團隊回復';
+2824|        else if (typeof STORM_BUFF_SKILLS !== 'undefined' && STORM_BUFF_SKILLS.includes && STORM_BUFF_SKILLS.includes(sid)) cat = '持續傷害';
+2825|        else if (sk.cube && sid !== 'sk_illu_cube_harmony') cat = '立方';
+2826|        else if (sk.type === 'buff' && sk.summon) cat = '召喚';
+2827|        else if (typeof TEAM_AURA_SKILLS !== 'undefined' && TEAM_AURA_SKILLS.includes(sid)) cat = '團隊光環';   // 🌟 真正全隊光環（含大地祝福；鋼鐵防護已改列自我增益）
+2828|        else if (sk.illuSummon && _isMercSelfBuff(sk, sid)) cat = '幻覺';   // 🔮 v3.2.2 幻覺（歐吉/巫妖/鑽石高崙）：勾選＝維持 buff→全隊光環＋幻象召喚（需 i_illusion 精通）
+2829|        else if (_isMercSelfBuff(sk, sid)) cat = '自我增益';
+2830|        if (!cat) continue;
+2831|        seen[sid] = true; out.push({ sid: sid, n: sk.n, cat: cat });
+2832|    }
+2833|    return out;
+2834|}
+2835|const _MERC_AWAKENS = ['sk_dragon_awaken_antares', 'sk_dragon_awaken_falion', 'sk_dragon_awaken_baraka'];
+2836|// 🔮 v3.2.2 攻擊型幻覺光環（會被 recompute 注入玩家 d）：傭兵取得/失去任一 → 需 calcStats 讓玩家即時吃到/退掉。鑽石高崙只給 AC（teamAcBonus 受擊時即時讀）故不在此列。
+2837|const _MERC_ILLU_ATK_AURA = ['sk_illu_avatar', 'sk_illu_ogre', 'sk_illu_lich', 'sk_elf_dancefire'];   // 🔥 v3.8.3 舞躍之火：傭兵取得/失去 → 需刷新玩家 d（recompute 末段注入 teamIlluAura(player).mel 到 d.meleeDmg）
+2838|// 傭兵若在來源存檔中處於卷軸變身，該變身成為受雇期間的維持目標。
+2839|// 到期時直接替該傭兵購買並消耗一張卷軸；不挪用主玩家背包中的卷軸，費用仍套用攻城商店折扣。
+2840|function allyMaintainPoly(ally) {
+2841|    if (!ally || !ally._mercPolyAuto || !ally.poly || !ally.poly.n) return false;
+2842|    if (!ally.buffs) ally.buffs = {};
+2843|    if ((ally.buffs.poly || 0) > 0) { ally._mercPolyNoGoldWarned = false; return false; }
+2844|    let def = DB.items && DB.items.scroll_poly;
+2845|    if (!def) return false;
+2846|    let price = (typeof shopPrice === 'function') ? shopPrice(def.p || 0) : (def.p || 0);
+2847|    if ((player.gold || 0) < price) {
+2848|        if (!ally._mercPolyNoGoldWarned) {
+2849|            logSys(`<span class="text-amber-300">協力·${ally._allyName || allyName(ally)} 的變身已到期；自動購買變形卷軸需要 ${price.toLocaleString()} 金幣，目前金幣不足。</span>`);
+2850|            ally._mercPolyNoGoldWarned = true;
+2851|        }
+2852|        return false;
+2853|    }
+2854|    player.gold -= price;
+2855|    ally.buffs.poly = Math.max(1, Math.floor(def.dur || 1800));
+2856|    ally._mercPolyNoGoldWarned = false;
+2857|    logSys(`<span class="text-emerald-300">自動花費 ${price.toLocaleString()} 金幣購買變形卷軸，協力·${ally._allyName || allyName(ally)} 繼續維持 <span class="${ally.poly.c || 'text-gray-300'}">${ally.poly.n}</span>。</span>`);
+2858|    try { updateUI(); } catch (e) {}
+2859|    return true;
+2860|}
+2861|function allyMaintainBuffs(ally) {
+2862|    if (!ally || ally._downed) return;
+2863|    if (state.ticks % 10 !== 0) return;                 // 每秒一次（比照玩家 buff 遞減節奏；限制重算頻率）
+2864|    if (!ally.buffs) ally.buffs = {};
+2865|    if (ally._waterVitalCd > 0) ally._waterVitalCd--;   // 🤝 v3.4.45 水之元氣單體冷卻遞減（per-entity·每秒一次·比照玩家 js/03:325）
+2866|    let _auraBefore = _MERC_ILLU_ATK_AURA.map(s => ((ally.buffs[s] || 0) > 0) ? '1' : '0').join('');   // 🌟 v3.0.100→🔮 v3.2.2 攻擊型幻覺光環(化身+10／歐吉+4傷+4命／巫妖+2魔傷)前狀態：本傭兵取得/失去任一→末尾 calcStats 刷新玩家 d（玩家攻擊即時吃/退·recompute 末段重注入 teamIlluAura(player)）。高崙 AC 走 teamAcBonus 受擊時即時讀取·不需刷新
+2867|    let changed = false;
+2868|    for (let k in ally.buffs) { if (ally.buffs[k] > 0) { ally.buffs[k]--; if (ally.buffs[k] <= 0) { ally.buffs[k] = 0; changed = true; } } }   // 遞減；到期→需重算移除衍生值
+2869|    if (allyMaintainPoly(ally)) changed = true;   // 變身於同一秒完成續用，重算後不會出現一個 tick 的能力空窗
+2870|    let _ast = ally.statuses || {};
+2871|    let _block = mapState.current.startsWith('town_') || _ast.silence > 0 || _ast.magicseal > 0 || _ast.stun > 0 || _ast.freeze > 0 || _ast.stone > 0 || _ast.paralyze > 0 || _ast.sleep > 0;   // 安全區／沉默／硬控時不施放（仍遞減）
+2872|    if (!_block && ally.skills && ally.skills.length) {
+2873|        for (let sid of ally.skills) {
+2874|            let sk = DB.skills[sid];
+2875|            if (!_isMercSelfBuff(sk, sid)) continue;
+2876|            if (!allySkillElementOk(ally, sid)) continue;   // 🧝 v3.8.5 妖精換屬性後的舊屬性 buff（火焰武器/烈炎武器/大地防護…）不再維持：面板已隱藏·此處同步停放（原本會照吃 d 加成又照扣 MP）
+2877|            // 🆕 v2.7.29 傭兵自我增益改「比照玩家 opt-in」：玩家的 buff 是勾選框控制（auto-sk-<id>·預設未勾＝不施放），
+2878|            //    存於 config.autoBuffSkills（buildAlly 深拷貝已帶入傭兵快照）。傭兵原本無條件維持「所有已學 buff」→會維持玩家根本沒開的 buff 白扣 MP（王族/龍騎士尤其明顯：MP 只出不進）。
+2879|            //    改為：只維持「來源角色有勾選自動施放」的 buff（沒有 config 或未勾＝不維持·與該角色親自遊玩時完全一致）。⚠️summon/HoT 走各自區塊·此閘只管 _isMercSelfBuff 自我增益。
+2880|            if (!_mercAutoOn(ally, sid)) continue;
+2881|            if (_mercPreferredHelmBuffCovers(ally, sid)) continue;   // Equivalent helmet buff is active/enabled; do not spend MP on the learned duplicate.
+2882|            if (typeof TEAM_AURA_SKILLS !== 'undefined' && TEAM_AURA_SKILLS.includes(sid) && _teamAuraHas(sid, ally)) continue;   // 🌟 v3.0.99 團隊光環：隊上其他隊員已維持中→不重複施放（全隊只需一個來源·免白耗MP）
+2883|            // 🩹 v3.0.107 移除「以主要玩家 buff 為判斷依據」閘（原 v2.6.50）：_isMercSelfBuff 全是「自我增益」——靈魂昇華(自身 mHP/mMP×1.2)、力量/敏捷/防禦/武器附魔/加速…都只加持「施法者本人」，主玩家身上有不代表傭兵有。原閘害「主角(法師)也放同一 buff 時，傭兵法師永遠不自我增益」（用戶回報：傭兵法師點亮靈魂昇華卻不施放）。MP 浪費已由 opt-in 開關(_mercAutoOn)把關；團隊光環(TEAM_AURA)另由上方 _teamAuraHas 閘控制·不受此改動影響。
+2884|            if ((ally.buffs[sid] || 0) > 0) continue;   // 已生效（含 noRefresh 語意）；保留「自身」守衛避免同一秒重複施放/MP 空轉
+2885|            if (sk.darkStealth && (ally._darkStealthCd || 0) > state.ticks) continue;   // 🖤 v2.7.92 暗隱術（傭兵）：迴避消費後 5 秒冷卻內不再施放（鏡像玩家 js/07 autocast 閘）
+2886|            let w = (ally.eq && ally.eq.wpn) ? DB.items[ally.eq.wpn.id] : null;
+2887|            if (sk.reqWpn === 'w2h' && (!w || !w.w2h)) continue;
+2888|            if (sk.reqWpnMelee && (!w || w.isBow || w.ranged)) continue;
+2889|            if (sk.reqWpnBlunt && (!ally.eq.wpn || !(getWeaponTags(ally.eq.wpn.id).includes('單手鈍器') || getWeaponTags(ally.eq.wpn.id).includes('雙手鈍器')))) continue;
+2890|            if (sk.reqShield && !ally.eq.shield && !(ally.eq.wpn && getWeaponTags(ally.eq.wpn.id).includes('武士刀'))) continue;
+2891|            if (sk.awaken && ally.mastery !== 'k_awaken' && _MERC_AWAKENS.some(a => (ally.buffs[a] || 0) > 0)) continue;   // 覺醒互斥（覺醒精通可同時三種）
+2892|            if (sk.haste && ((ally.buffs.haste || 0) > 0 || ally._equipHaste)) continue;
+2893|            let cost = (ally.d && typeof ally.d.getMpCost === 'function') ? ally.d.getMpCost(sk.mp, sk.tier) : (sk.mp || 0);
+2894|            if (ally._setIllusion3 && isSupportSkill(sk)) cost = Math.max(1, Math.ceil(cost / 2));   // 🔮 v3.1.77 幻覺3/5（傭兵）：輔助技能 MP 消耗 -50%（鏡像玩家 js/07:178/311）
+2895|            if ((ally.mp || 0) < cost) continue;        // MP 不足→本次不施放（不重設·MP 回滿即補）
+2896|            // 🩸 v3.5.45 用戶要求「傭兵輔助技也正常消耗 HP」：有 hpCost 的 buff 比照攻擊技(allyDragonAct)——取 max(停耗HP技門檻,25%) 安全門檻，HP 低於此→本秒不續放(讓 buff 到期自然掉落·改回血)避免自殺；門檻以上才付 HP。buff 多為 noRefresh+長 dur→到期才重付·扣血很緩·搭配下方 regen 全職 min-1 保底→不會慢性失血停擺。
+2897|            let _hpc = sk.hpCost || 0;
+2898|            if (_hpc > 0) { let _sp = Math.max(allyHpSkillPct(ally) || 0, 25); if ((ally.curHp || 0) <= (ally.mhp || 1) * _sp / 100) continue; }
+2899|            ally.mp -= cost; allyManaMasteryRefund(ally, cost);
+2900|            if (_hpc > 0) ally.curHp = Math.max(1, (ally.curHp || 0) - _hpc);
+2901|            ally.buffs[sid] = sk.dur;
+2902|            if (sk.awaken && ally.mastery !== 'k_awaken') _MERC_AWAKENS.forEach(_ak => { if (_ak !== sid) ally.buffs[_ak] = 0; });
+2903|            if (sk.haste) ally.buffs.haste = Math.max(ally.buffs.haste || 0, sk.dur);
+2904|            changed = true;
+2905|        }
+2906|    }
+2907|    // 🩸 v2.6.25 傭兵召喚維持（造屍術/召喚術/精靈召喚·單一召喚·比照玩家 setupSummon·owner=ally）：安全區/硬控(_block)不召；已有存活召喚則不重召；否則扣MP召喚（優先分階召喚術 sk_summon）。buff 由上方遞減·到期(歸0)自動重召。召喚物 tick 於 alliesTick 驅動（輸出歸 _dps.summon·擊殺歸真隊長）。
+2908|    if (!_block && ally.skills && ally.skills.length) {
+2909|        if (typeof necroBookEquipped === 'function' && necroBookEquipped(ally) && ally.summon && ally.summon.skId === 'sk_zombie') {
+2910|            ally.summon = null;
+2911|            ally.buffs.sk_zombie = 0;
+2912|        }
+2913|        let _live = ally.summon && ally.summon.skId && ((ally.buffs[ally.summon.skId] || 0) > 0) && state.ticks < ally.summon.endTick;
+2914|        if (!_live) {
+2915|            // 👑 v2.7.95 召喚也吃「開啟閘」：只召「來源角色有勾選自動施放」的召喚術（比照玩家 autoActions·玩家沒開→傭兵不耗 MP 召喚）；優先強力版 sk_summon>sk_elf_summon2>其他，但每個候選都須通過 _mercAutoOn
+2916|            let _sumSid = (ally.skills.includes('sk_summon') && _mercAutoOn(ally, 'sk_summon')) ? 'sk_summon'
+2917|                : (ally.skills.includes('sk_elf_summon2') && _mercAutoOn(ally, 'sk_elf_summon2') && allySkillElementOk(ally, 'sk_elf_summon2')) ? 'sk_elf_summon2'   // 🩸 妖精傭兵優先「召喚強力屬性精靈」(上級精靈)：先學的一般版 sk_elf_summon 排在前面，.find 會先抓到它 → 傭兵永遠只召弱版；顯式優先強力版修正。🧝 v3.8.5 屬性精靈召喚是 reqEleAny → 尚未選屬性者不召（比照玩家）
+2918|                : ally.skills.find(s => { let d = DB.skills[s]; return d && d.type === 'buff' && d.summon && !(s === 'sk_zombie' && typeof necroBookEquipped === 'function' && necroBookEquipped(ally)) && _mercAutoOn(ally, s) && allySkillElementOk(ally, s); });
+2919|            if (_sumSid) {
+2920|                let _ssk = DB.skills[_sumSid];
+2921|                let _scost = (ally.d && typeof ally.d.getMpCost === 'function') ? ally.d.getMpCost(_ssk.mp, _ssk.tier) : (_ssk.mp || 0);
+2922|                if (ally._setIllusion3 && isSupportSkill(_ssk)) _scost = Math.max(1, Math.ceil(_scost / 2));   // 🔮 v3.1.77 幻覺3/5（傭兵）：輔助技能 MP -50%
+2923|                if ((ally.mp || 0) >= _scost) { ally.mp -= _scost; allyManaMasteryRefund(ally, _scost); setupSummon(_sumSid, _ssk, ally); }
+2924|            }
+2925|        }
+2926|    }
+2927|    if (changed) { try { _allyLevelRecompute(ally); } catch (e) {} }   // 重算 ally.d 反映 buff 衍生值（含 ally._recompN++·供幻覺 nonce 守衛）
+2928|    if (_MERC_ILLU_ATK_AURA.map(s => ((ally.buffs[s] || 0) > 0) ? '1' : '0').join('') !== _auraBefore) { try { if (typeof calcStats === 'function') calcStats(); } catch (e) {} }   // 🌟 v3.0.100→🔮 v3.2.2 本傭兵攻擊型幻覺光環變動→刷新玩家 d（recompute 末段重注入 teamIlluAura(player)）
+2929|    try { shareTeamBuffs(ally); } catch (e) {}   // 🤝 v3.4.45 單體輔助共享：本傭兵有清單內 buff→幫缺的隊友補
+2930|}

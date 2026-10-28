@@ -13,7 +13,7 @@
  * ========================================================================== */
 const CODE_VERSION = 'code-clanbase-v396';
 const BUILD_ID     = '1006-0105';
-const CACHE_TAG = 'ab.20261027a';
+const CACHE_TAG = 'ab.20261028s';
 const CORE_CACHE   = 'il-core-' + CACHE_TAG;
 const RUNTIME_CACHE = 'il-rt-' + CACHE_TAG;
 

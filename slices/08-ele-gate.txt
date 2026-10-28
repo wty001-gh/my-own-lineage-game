@@ -1,0 +1,42 @@
+// FILE js\08-items-equip.js L720-760
+720|            player.buffs[d.eff] = d.dur;
+721|            if(!silent) logSys(`使用了 ${d.n}。`);
+722|        }
+723|        consume(item);
+724|        calcStats();
+725|    } else if (d.type === 'wpn' || d.type === 'arm' || d.type === 'acc') {
+726|        equipItem(item);
+727|    // 🗑️ v3.5.83 移除 `d.type === 'scroll' → openEnhanceModal(item)` 分支：全部 type:'scroll' 物品都在本檔更上游
+728|    //    就被攔截處理，而真正的強化卷軸（js/00-data.js）根本沒有 type 欄位 → 此分支不可達。
+729|    //    現行強化唯一入口＝ showEnhanceOptions / doEnhance。
+730|    } else if (d.type === 'skillbk') {
+731|        let sd = DB.skills[d.sk];
+732|        let reqLv = skillReqLv(sd, d.sk);   // 🏅 集中化：含魔導精通特例（妖精可學四項法師法術）
+733|        if(reqLv === undefined) { logSys(`你的職業無法學習「${sd.n}」。`); return; }
+734|        if(player.lv < reqLv) { logSys(`等級不足，需要等級 ${reqLv} 才能學習「${sd.n}」。`); return; }
+735|        
+736|        // 👇 補上這兩行：確保屬性相符才能吃水晶！
+737|        if(sd.reqEle && player.elfEle !== sd.reqEle) { logSys(`屬性不符，無法學習「${sd.n}」。`); return; }
+738|        if(sd.reqEleAny && !player.elfEle) { logSys(`尚未選擇屬性，無法學習「${sd.n}」。`); return; }
+739|
+740|        if(!player.skills.includes(d.sk)) {
+741|            player.skills.push(d.sk);
+742|            logSys(`學習了技能: <span class="text-cyan-300">${DB.skills[d.sk].n}</span>`);
+743|            consume(item);
+744|            renderTabs();
+745|            renderSkillSelects();
+746|        } else logSys(`你已經學過這個技能了。`);
+747|    }
+748|    updateUI();
+749|    if(!silent && !keepModal && document.getElementById('item-modal').classList.contains('hidden') === false && (d.type !== 'scroll' || d.eff === 'poly' || d.eff === 'magicbarrier' || d.eff === 'teleport_scroll')) {
+750|        closeModal();
+751|    }
+752|}
+753|
+754|// 雙手武器判定：弓(isBow)或雙手武器(w2h)，皆不可與盾牌並存
+755|function isTwoHandedWpn(d) {
+756|    return !!(d && (d.isBow || d.w2h) && !d.oneHand);   // 🏝️ oneHand：單手武器（古老的弩槍＝單手弓）即使是弓也可與盾牌/臂甲並用
+757|}
+758|// 隱身狀態：施放隱身術(buff)期間，或穿著隱身斗篷(arm_88)時皆成立；卸下斗篷即失效
+759|function isInvisible() {
+760|    return player.buffs.sk_invisible > 0 || (player.eq.cloak && DB.items[player.eq.cloak.id] && (DB.items[player.eq.cloak.id].stealth || player.eq.cloak.id === 'arm_88'));   // 🔧 stealth flag：泛用隱身斗篷（炎魔的血光斗篷等）

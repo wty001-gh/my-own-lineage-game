@@ -1,0 +1,124 @@
+// FILE js\01-drops-config.js L1188-1310
+1188|const MASTERY_POS_STYLE = {   // 四向按鈕四色（上紅/左藍/右紫/下綠）
+1189|    top:    'bg-red-950/80 border-red-500 hover:bg-red-900',
+1190|    left:   'bg-blue-950/80 border-blue-500 hover:bg-blue-900',
+1191|    right:  'bg-purple-950/80 border-purple-500 hover:bg-purple-900',
+1192|    bottom: 'bg-emerald-950/80 border-emerald-500 hover:bg-emerald-900'
+1193|};
+1194|const MAGIC_MASTERY_SKILLS = ['sk_blizzard', 'sk_tornado', 'sk_quake', 'sk_fire_storm'];   // 魔導精通可學的法師法術
+1195|function hasMastery(id) { return !!(player && player.mastery === id); }
+1196|function allyHasMastery(ally, id) { return !!(ally && ally.mastery === id); }   // 🔧 傭兵吃「自身存檔」的精通（不吃主玩家精通）
+1197|function repairMasteryState(p) {
+1198|    let result = { changed: false, reset: false, reason: null };
+1199|    if (!p || typeof p !== 'object') return result;
+1200|
+1201|    let reset = reason => {
+1202|        p.masteryQuest = null;
+1203|        p.mastery = null;
+1204|        p.masteryChangeCnt = 0;
+1205|        result.changed = true;
+1206|        result.reset = true;
+1207|        result.reason = reason;
+1208|    };
+1209|    let hasSavedMastery = p.mastery != null || p.masteryQuest != null || Number(p.masteryChangeCnt) > 0;
+1210|
+1211|    // 經典模式不開放精通；清除舊版刪角殘留或外部匯入的不合法狀態。
+1212|    if (p.classicMode) {
+1213|        if (hasSavedMastery) reset('classic-mode');
+1214|        return result;
+1215|    }
+1216|
+1217|    let md = MASTERY_DATA[p.cls];
+1218|    if (!md || !md.list) {
+1219|        if (hasSavedMastery) reset('unknown-class');
+1220|        return result;
+1221|    }
+1222|
+1223|    // v3.7.73 前，刪角後不重整便創角會沿用上一角色的 player 物件。
+1224|    // 新職業因此可能帶著舊職業精通 ID，渲染／切換時存取 md.list[舊ID] 而中斷。
+1225|    if (p.mastery != null && !Object.prototype.hasOwnProperty.call(md.list, p.mastery)) {
+1226|        reset('class-mismatch');
+1227|        return result;
+1228|    }
+1229|
+1230|    let validQuest = p.masteryQuest === null || p.masteryQuest === 'active' || p.masteryQuest === 'done';
+1231|    if (!validQuest) {
+1232|        p.masteryQuest = p.mastery == null ? null : 'done';
+1233|        result.changed = true;
+1234|        result.reason = 'invalid-quest';
+1235|    } else if (p.mastery != null && p.masteryQuest !== 'done') {
+1236|        // 已有合法精通代表任務必定完成；保護很早期缺 masteryQuest 的合法存檔。
+1237|        p.masteryQuest = 'done';
+1238|        result.changed = true;
+1239|        result.reason = 'missing-completion';
+1240|    }
+1241|
+1242|    let count = Math.max(0, Math.floor(Number(p.masteryChangeCnt) || 0));
+1243|    if (p.mastery == null) count = 0;
+1244|    if (p.masteryChangeCnt !== count) {
+1245|        p.masteryChangeCnt = count;
+1246|        result.changed = true;
+1247|        if (!result.reason) result.reason = 'invalid-change-count';
+1248|    }
+1249|    return result;
+1250|}
+1251|// 🌟 v3.0.99 隊長團隊光環：任一隊員(玩家或未倒地傭兵)維持該 buff 即全隊生效。清單供「傭兵可維持/隊伍面板可開關/避免重複施放」使用。
+1252|//   ⚠️不含完全免疫類(絕對屏障/大地屏障/魔法屏障·刻意不給傭兵)。golem/ogre/lich 為幻術幻象召喚(illuSummon)·此處僅列其「光環」由玩家提供·傭兵暫不維持(見 _isMercSelfBuff)。
+1253|const TEAM_AURA_SKILLS = ['sk_elf_earthbless', 'sk_royal_burnweapon', 'sk_royal_shield', 'sk_elf_dancefire'];   // 傭兵可維持的團隊光環（大地祝福AC-7·灼熱武器傷害/命中+5·閃亮之盾AC-8·🔥v3.8.3 舞躍之火近距離傷害+3）。任一來源施放一次即惠及玩家、傭兵、寵物與召喚物，同技能不重複疊加。鋼鐵防護為施法者自身 AC-10，不列入團隊光環。⚠️v3.4.45 水之元氣/化身已改「單體共享」(TEAM_SHARE_BUFFS)→移出此清單。⚠️此陣列＝唯一註冊點（勿在 DB.skills 加 teamAura 旗標·無人讀取）。
+1254|// 🤝 v3.4.45 單體輔助共享清單：施法者(玩家/傭兵)自己有清單內 buff、隊友沒有 → 由 shareTeamBuffs(js/06) 一次補滿所有缺者(逐一扣施法者 MP)。與「自動維持勾選」解耦(只看清單＋是否持有)。
+1255|//   ⚠️其中原為全隊光環者(幻覺歐吉/巫妖/鑽石高崙/化身·水之元氣)已於本版改單體：移出 TEAM_AURA_SKILLS＋teamIlluAura/teamAcBonus/teamDmgReduceMult 只對寵物/召喚保留(forMinion)；玩家/傭兵改各自持有(recompute d)＋此共享逐人補。
+1256|const TEAM_SHARE_BUFFS = new Set(['sk_holy_wpn', 'sk_dex_up', 'sk_haste_spell', 'sk_greater_haste', 'sk_bless_wpn', 'sk_str_up', 'sk_holy_barrier', 'sk_illu_ogre', 'sk_illu_focus', 'sk_illu_lich', 'sk_illu_golem', 'sk_illu_avatar', 'sk_elf_watervital', 'sk_elf_windshot', 'sk_elf_earthshield', 'sk_elf_preciseshot', 'sk_elf_stormeye', 'sk_heal_energy_storm']);   // 🌀 v3.4.71 治癒能量風暴＝單體輔助共享（施法者有→幫缺的傭兵/玩家補·各自 320s 結束才再補）；v3.5.87 補強力加速術（漏列·原本「只有強力加速術」的施法者不分享加速）
+1257|// ⚠️ v3.4.45 暴風之眼(sk_elf_stormeye·+2遠傷/+2遠命)＝用戶要「一次施放全隊生效」：以自動共享達成（一位維持者→鋪給全隊玩家/傭兵·各自 recompute d 生效）。寵物/召喚未涵蓋（真．全隊 ranged 光環需改 8 個傷害熱點·邊際效益低·暫以共享代之）。
+1258|// 團隊光環是否有「任一隊員(排除 exclude)」維持中：exclude 傳「受益者本身」→其自身光環已由 recomputeStats 套進自身 d，避免與此 helper 雙算（僅對 recompute 有套進 d 的光環需排除·如 AC/攻擊）。
+1259|function _teamAuraHas(sid, exclude) {
+1260|    if (typeof player !== 'undefined' && player && player !== exclude && player.buffs && (player.buffs[sid] || 0) > 0) return true;
+1261|    let al = (typeof player !== 'undefined' && player && player.allies) || [];
+1262|    for (let i = 0; i < al.length; i++) { let a = al[i]; if (a && a !== exclude && !a._downed && a.buffs && (a.buffs[sid] || 0) > 0) return true; }
+1263|    return false;
+1264|}
+1265|function masteryChangeCost() { return { gold: 3000000 }; }   // 固定費用：每次更換都維持 300 萬金幣，不隨次數遞增
+1266|// 技能職業需求等級（單一事實來源）：🏅 魔導精通的妖精可學四項法師法術（需求等級沿用法師）
+1267|function skillReqLv(sk, skId) {
+1268|    if (player.cls === 'dark') {
+1269|        if (sk.reqD !== undefined) return sk.reqD;                                  // 黑暗妖精專屬魔法
+1270|        if (sk.reqM !== undefined && (sk.tier === 1 || sk.tier === 2)) return sk.tier === 1 ? 12 : 24;   // 基礎法師魔法：一階 Lv12 / 二階 Lv24（學不到精靈水晶與高階法師魔法）
+1271|        return undefined;
+1272|    }
+1273|    if (player.cls === 'illusion') return sk.reqI;   // 🔮 幻術士：只學帶 reqI 的法術（記憶水晶＋日光術）；undefined＝不可學（不再誤用 reqE）
+1274|    if (player.cls === 'dragon') return sk.reqDk;   // 🐉 龍騎士：只學帶 reqDk 的龍魔法（含日光術）；undefined＝不可學
+1275|    if (player.cls === 'warrior') {                  // ⚔️ 戰士：只學帶 reqW 的技能印記；另可在 Lv15 學一階法師魔法
+1276|        if (sk.reqW !== undefined) return sk.reqW;
+1277|        if (sk.reqM !== undefined && sk.tier === 1) return 15;
+1278|        return undefined;
+1279|    }
+1280|    if (player.cls === 'royal') {                    // 👑 王族：學帶 reqRoy 的王族魔法；另可在 Lv10/Lv20 學一/二階法師魔法（魔法精通可再學三~五階）
+1281|        if (sk.reqRoy !== undefined) return sk.reqRoy;
+1282|        if (sk.reqM !== undefined && sk.tier === 1) return 10;
+1283|        if (sk.reqM !== undefined && sk.tier === 2) return 20;
+1284|        if (player.mastery === 'k_royal_magic' && sk.reqM !== undefined && (sk.tier === 3 || sk.tier === 4 || sk.tier === 5)) return sk.reqM;   // 🏅 魔法精通：可學法師三~五階魔法
+1285|        return undefined;
+1286|    }
+1287|    let lv = player.cls === 'mage' ? sk.reqM : (player.cls === 'knight' ? sk.reqK : sk.reqE);
+1288|    if (lv === undefined && player.cls === 'elf' && player.mastery === 'e_magic' && skId && MAGIC_MASTERY_SKILLS.includes(skId)) lv = sk.reqM;
+1289|    return lv;
+1290|}
+1291|let _echoFree = false;        // 🏅 迴響精通：免費連發旗標（連發那次不耗MP、不再連鎖）
+1292|let _royalFreeCast = false;   // 👑 魔法精通：一般攻擊命中 10% 免MP額外施放選定攻擊技的旗標
+1293|
+1294|let state = { running: false, ticks: 0, pDmgTick: 0, ff: false, ffSmall: false, inTick: false };
+1295|// 🗑️ v3.7.94 用戶指定移除離線掛機（js/27 整檔刪除）：現在只剩「網頁還開著」這一軌——
+1296|//    切分頁／縮小的背景期間由下方 Worker 心跳持續跑，被節流到的差額則於回前景時補幀補跑（state.ff 補跑重建）。
+1297|//    **真正關閉網頁＝進度完全停止**，重開不再有任何離線結算。
+1298|const TICK_MS = 100;                 // 一個邏輯 tick 代表的真實時間
+1299|const JUNK_AUTOSELL_TICKS = 100;    // 🗑️ 廢品自動賣出間隔：10 秒（100 tick × 100ms·2026-07-01 由 1800/3分鐘改快）；玩家手動標示廢品會把倒數重置為此值（標完 10 秒無新動作才賣）。⚠️自動賣出這條路徑不 saveGame(見 autoSellJunk)，靠其他既有存檔點落地
+1300|const MERC_EXP_SHARE = 0.5;          // ⚠️已停用：v3.7.62 起主玩家、未倒地傭兵與寵物各得完整經驗；常數只留給舊外部引用
+1301|// 🤝 Phase4：設為「全體」的怪物攻擊技能名（依 mag.skn 比對·同名全部生效）→ 同時打玩家＋全部非倒地傭兵。其餘怪物傷害/狀態魔法仍可依仇恨權重隨機打單一目標(玩家或某傭兵)。
+1302|const MOB_PARTY_AOE_SKILLS = new Set(['闇黑波動','毒霧','鐮刀波動','火焰之舞','燃燒的火球','火焰之陣','地面震裂','跳躍波動','冰雪暴','震裂術','咆哮','燃燒立方','火焰噴吐','流星雨','火牢','寒冰噴吐','巨水炮','大地怒吼','毒氣風暴','閃電風暴','火焰雨','寒冰吐息','地獄犬噴吐','火風暴','龍捲風','爆炎的火球','噴火','漩渦','防身電擊','震裂踏擊','火焰放射','黑霧','火焰氣息','黑暗流星雨','放射斬','迴旋鞭打','衝擊波動','千刃破軍','靈魂波動','火焰爆發','迴旋斬','龍的一擊','地獄火','黑魔法力場','鐮刀劍氣斬','腐蝕之血','冰錐流星雨','水氣爆裂','集體衝暈','巨石爆裂','地面障礙','邪靈之氣','血夜月彎刀','夜魔飛襲','幻象光線','集體相消','劇毒龍捲風','麻痺蜘蛛網','雷霆風暴','沙塵暴','震裂重擊','冰雪颶風','衝擊之暈','岩漿流星雨','火焰散落','鎌鼬旋風','寒冰氣息','妖狐之火','牛鬼突進','大地崩裂','幽魂怨念','枯竭詛咒','屬性噴吐','劇毒噴吐','毀滅隕石']);   // 🐍 提卡爾杰弗雷庫雙BOSS 全體技能；🌑 v3.3.33 聖地；🌅 枯竭詛咒對每位玩家/傭兵各自以 MR 判定藥水霜化；🐉 v3.7.57 安塔瑞斯副本全體技（與 js/00 PARTY_AOE_SKILLS 同步）
+1303|let _loopLast = null;                // 上次主迴圈時間戳 (performance.now)
+1304|let _tickDebt = 0;                   // 尚待逐 tick 真實補跑的時間債務（含切分頁／縮小的背景時間）
+1305|let _ffSavePending = false;          // 補跑期間收到的存檔要求：還清後只補存一次，避免半套進度覆蓋 checkpoint
+1306|let _gameLoopId = null;              // 主迴圈 setInterval id（用於避免重複註冊）
+1307|let _saveLoopId = null;             // 自動存檔 setInterval id
+1308|let currentSlot = 1;                // 目前所在的存檔位（1~4）
+1309|
+1310|function catchupActive() {

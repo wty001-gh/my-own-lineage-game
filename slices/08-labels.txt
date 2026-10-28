@@ -1,0 +1,27 @@
+// FILE js\08-items-equip.js L1245-1270
+1245|    return 'text-amber-300';                          // 其他 (琥珀黃)
+1246|}
+1247|
+1248|// 戰鬥畫面右上狀態 ICON（原版天堂風格）。本表＝「有圖示的持續增益」白名單；召喚、瞬發與缺圖技能不顯示。
+1249|// ⚠️ v3.5.94 修正舊註解的誤導：本表 ≠ assets/state-icons 資料夾內容。圖示 URL 全專案只有下方 renderStatusIconBar
+1250|//    一處組裝，來源＝本表 ＋ 函式開頭幾個硬編藥水/誘捕/變身 buff ＋ PLAYER_DEBUFF_ICON ＋ 持續治療兩筆。
+1251|//    資料夾裡沒被這幾處引用到的檔案就是孤兒（曾累積到 70 個），請搬進 tools/_archive/state-icons-unused/ 而非直接刪。
+1252|const STATUS_ICON_SKILLS = {
+1253|    'sk_sunlight':'日光術','sk_shield':'保護罩','sk_holy_wpn':'神聖武器','sk_ench_wpn':'擬似魔法武器','sk_reveal':'無所遁形術','sk_load_up':'負重強化','sk_shield2':'鎧甲護持',
+1254|    'sk_dex_up':'通暢氣脈術','sk_magic_shield':'魔法屏障','sk_meditation':'冥想術','sk_haste_spell':'加速術','sk_str_up':'體魄強健術',
+1255|    'sk_bless_wpn':'祝福魔法武器','sk_greater_haste':'加速術','sk_berserk':'狂暴術','sk_holy_dash':'神聖疾走','sk_blizzard_storm':'冰雪颶風','sk_fire_prison':'火牢','sk_invisible':'隱身術','sk_heal_energy_storm':'治癒能量風暴',
+1256|    'sk_holy_barrier':'聖結界','sk_soul_up':'靈魂昇華','sk_solid_shield':'堅固防護','sk_reduction_armor':'增幅防禦','sk_spike_armor':'尖刺盔甲',
+1257|    'sk_counter_barrier':'反擊屏障','sk_elf_mr':'魔法防禦','sk_elf_purify':'淨化精神','sk_elf_eleres':'屬性防禦','sk_elf_singleres':'單屬性防禦',
+1258|    'sk_elf_firewpn':'火焰武器','sk_elf_windshot':'風之神射','sk_elf_winddash':'風之疾走','sk_elf_earthguard':'大地防護','sk_elf_watervital':'水之元氣',
+1259|    'sk_elf_dancefire':'舞躍之火','sk_elf_stormeye':'暴風之眼','sk_elf_earthshield':'大地屏障','sk_elf_earthbless':'大地的祝福','sk_elf_blazewpn':'烈炎武器',
+1260|    'sk_elf_flamesoul':'烈焰之魂','sk_elf_stormshot':'暴風神射','sk_elf_preciseshot':'精準射擊','sk_elf_steelguard':'鋼鐵防護','sk_elf_attrfire':'屬性之火',
+1261|    'sk_elf_physboost':'體能激發','sk_elf_energyboost':'能量激發','sk_elf_mirror':'鏡反射','sk_dark_str':'力量提升','sk_dark_mrup':'影之防護',
+1262|    'sk_dark_stealth':'暗隱術','sk_dark_poison':'附加劇毒','sk_dark_dex':'敏捷提升','sk_dark_poisonres':'毒性抵抗','sk_dark_burn':'燃燒鬥志',
+1263|    'sk_dark_walkhaste':'行走加速','sk_dark_fang':'暗影之牙','sk_dark_dodge':'暗影閃避','sk_dark_erup':'迴避提升','sk_dark_double':'雙重破壞',
+1264|    'sk_illu_ogre':'幻覺：歐吉','sk_illu_cube_burn':'立方：燃燒','sk_illu_mirror':'鏡像','sk_illu_focus':'專注','sk_illu_lich':'幻覺：巫妖',
+1265|    'sk_illu_cube_quake':'立方：地裂','sk_illu_golem':'幻覺：鑽石高崙','sk_illu_cube_shock':'立方：衝擊','sk_illu_endure':'耐力','sk_illu_avatar':'幻覺：化身',
+1266|    'sk_illu_insight':'洞察','sk_illu_cube_harmony':'立方：和諧','sk_illu_pain':'疼痛的歡愉','sk_dragon_armor':'龍之護鎧','sk_dragon_flameslash':'燃燒擊砍','sk_dragon_awaken_antares':'覺醒：安塔瑞斯',
+1267|    'sk_dragon_bloodlust':'血之渴望','sk_dragon_awaken_falion':'覺醒：法利昂','sk_dragon_deadlybody':'致命身軀','sk_dragon_awaken_baraka':'覺醒：巴拉卡斯','sk_royal_precise':'精準目標','sk_royal_burnweapon':'灼熱武器','sk_royal_bravewill':'勇猛意志','sk_royal_shield':'閃亮之盾',
+1268|    'sk_warrior_throwaxe':'戰斧投擲','sk_warrior_endurance':'體能強化','sk_warrior_outlaw':'亡命之徒',
+1269|    // 裝備法術沿用原法術圖示。
+1270|    'sk_helm_dex1':'通暢氣脈術','sk_helm_dex2':'加速術','sk_helm_str1':'擬似魔法武器','sk_helm_str2':'無所遁形術','sk_helm_str3':'體魄強健術'

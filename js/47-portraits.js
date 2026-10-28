@@ -99,7 +99,7 @@ function openPortraitPicker(tab) {
 
 // ab.20261023a：英雄頭像統一入口——招募結果／英雄頁／自走棋（酒館卡、棋子、板凳）／派遣全部用呢個，同一英雄同一張圖。
 // 優先：英雄專屬立繪 assets/hero-full/<defId>.jpg → 英雄嘅 portraitId 立繪 → 職業預設圖。
-var HERO_FULL_IDS = ["hero_aurelia_royal", "hero_brenna_warrior", "hero_celine_royal", "hero_cinder_dragon", "hero_echo_illusion", "hero_ignara_dragon", "hero_ignis_mage", "hero_isolde_knight", "hero_morgana_illusion", "hero_nyx_dark", "hero_petra_knight", "hero_pyria_elf", "hero_skaldi_warrior", "hero_sora_mage", "hero_terrae_elf", "hero_umbra_dark"];
+var HERO_FULL_IDS = ["hero_aurelia_royal", "hero_brenna_warrior", "hero_celine_royal", "hero_cinder_dragon", "hero_echo_illusion", "hero_ignara_dragon", "hero_ignis_mage", "hero_isolde_knight", "hero_morgana_illusion", "hero_nyx_dark", "hero_petra_knight", "hero_pyria_elf", "hero_skaldi_warrior", "hero_sora_mage", "hero_terrae_elf", "hero_umbra_dark", "hero_wyrmia_dragon"];
 function heroPortraitUrl(h) {
     if (!h) return '';
     var db = (typeof HERO_DB !== 'undefined' && HERO_DB) || window.HERO_DB || {};

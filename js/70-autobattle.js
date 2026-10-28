@@ -2,12 +2,15 @@
 // 獨立模組：唔改舊戰鬥；入口按鈕『♟️ 自走棋』。存檔只新增 player.ab。數值表見 design/auto-battler-390-numbers.md
 (function () {
 'use strict';
+var AB_MOB_SKULL='assets/ui/ab-mob-skull.svg';
+var AB_BOSS_CROWN='assets/ui/ab-boss-crown.svg';
 var AB_MOB_ICONS=["CZ2128·達美.png","亞烏菈·貝拉·菲歐拉.png","反王肯恩.png","夏提雅·布拉德弗倫.png","威克提姆.png","娜貝拉爾·伽瑪.png","安茲·烏爾·恭.png","惡夢-底比斯 凱比斯(紅).png","惡夢-底比斯 凱比斯(黑).png","惡夢-底比斯 尖碑石奴(黑).png","惡夢-底比斯 尖碑石奴.png","惡夢-底比斯 尼荷斯(藍).png","惡夢-底比斯 尼荷斯.png","惡夢-底比斯 巴斯(紅).png","惡夢-底比斯 巴斯.png","惡夢-底比斯 斯芬克斯(黑).png","惡夢-底比斯 斯芬克斯.png","惡夢-底比斯 曼陀羅草(白).png","惡夢-底比斯 曼陀羅草.png","惡夢-底比斯 聖甲蟲(藍).png","惡夢-底比斯 聖甲蟲.png","惡夢-底比斯 賀洛斯.png","惡夢-底比斯 阿努斯(黑).png","惡夢-底比斯 阿努斯.png","惡夢-底比斯 阿努比斯.png","惡夢-提卡爾杰弗雷庫(雄).png","惡夢-提卡爾杰弗雷庫(雌).png","惡夢-提卡爾艾庫卡伊拉(藍).png","惡夢-提卡爾艾庫卡伊拉(黃).png","惡夢-提卡爾艾庫尤卡(白).png","惡夢-提卡爾艾庫尤卡(藍).png","惡夢-提卡爾艾庫巴拉(紅).png","惡夢-提卡爾艾庫巴拉.png","惡夢-提卡爾艾庫艾托(枯竭).png","惡夢-提卡爾艾庫艾托.png","惡夢-提卡爾艾庫阿茲特(黃).png","惡夢-提卡爾艾庫阿茲特.png","惡夢-提卡爾薩德司卡(紅).png","惡夢-提卡爾薩德司卡(紫).png","惡夢-提卡爾薩德提歐(藍).png","惡夢-提卡爾薩德提歐(黃).png","惡夢-提卡爾薩德泥偶(黑).png","惡夢-提卡爾薩德泥偶.png","新-遺亡之島亞力安.png","新-遺亡之島卡司特.png","新-遺亡之島卡司特王.png","新-遺亡之島哈維.png","新-遺亡之島夏洛伯.png","新-遺亡之島多羅.png","新-遺亡之島巨大牛人.png","新-遺亡之島巨大鱷魚.png","新-遺亡之島巨斧牛人.png","新-遺亡之島格利芬.png","新-遺亡之島楊果里恩.png","新-遺亡之島歐熊.png","新-遺亡之島狼人.png","新-遺亡之島獨眼巨人.png","新-遺亡之島萊肯.png","新-遺亡之島蛇女.png","新-遺亡之島蜥蜴人.png","新-遺亡之島變形怪.png","新-遺亡之島邪惡蜥蜴.png","新-遺亡之島鏈鎚牛人.png","新-遺亡之島阿魯巴.png","新-遺亡之島飛龍.png","新-遺亡之島食人妖精.png","新-遺亡之島食人妖精王.png","新-遺亡之島鱷魚.png","新-遺亡之島黑暗精靈.png","水之魔女賽尼斯.png","由莉·阿爾法.png","科塞特斯.png","索留香·艾普西隆.png","腐敗-地之牙.png","腐敗-地靈之主.png","腐敗-曼波兔.png","腐敗-水之牙.png","腐敗-水靈之主.png","腐敗-深淵之主.png","腐敗-深淵地靈.png","腐敗-深淵弓箭手.png","腐敗-深淵水靈.png","腐敗-深淵火靈.png","腐敗-深淵風靈.png","腐敗-深淵食屍鬼.png","腐敗-火之牙.png","腐敗-火靈之主.png","腐敗-西斯.png","腐敗-風之牙.png","腐敗-風靈之主.png","艾特利亞斯·歐米伽.png","蒼淵金杖魔女 · 塞蕾娜.png","迪米烏哥斯.png","雅兒貝德.png","露普絲雷其娜·貝塔.png","馬雷·貝羅·菲歐雷.png","高格斯.png"];// ===== 開放白名單（v3.9.0 只開小量內容；舊遊戲資料完全唔郁；設 AB_WL.enabled=false 可全開）=====
 var AB_WL = window.AB_WL = {
   enabled: true,
-  heroes: ['hero_isolde_knight', 'hero_petra_knight', 'hero_aurelia_royal', 'hero_celine_royal', 'hero_morgana_illusion', 'hero_echo_illusion',
-           'hero_skaldi_warrior', 'hero_brenna_warrior', 'hero_pyria_elf', 'hero_terrae_elf', 'hero_ignis_mage', 'hero_sora_mage',
-           'hero_umbra_dark', 'hero_nyx_dark', 'hero_ignara_dragon', 'hero_cinder_dragon'],
+  heroes: ['hero_isolde_knight', 'hero_petra_knight', 'hero_viviane_knight', 'hero_aurelia_royal', 'hero_celine_royal', 'hero_ophelia_royal',
+           'hero_morgana_illusion', 'hero_echo_illusion', 'hero_iris_illusion', 'hero_skaldi_warrior', 'hero_brenna_warrior', 'hero_thyra_warrior',
+           'hero_pyria_elf', 'hero_terrae_elf', 'hero_sylwen_elf', 'hero_ignis_mage', 'hero_sora_mage', 'hero_circe_mage',
+           'hero_umbra_dark', 'hero_nyx_dark', 'hero_nocturne_dark', 'hero_ignara_dragon', 'hero_cinder_dragon', 'hero_wyrmia_dragon'],
   sets: ['bone', 'bluepirate', 'steel', 'darkelf', 'dk', 'kurt', 'priest', 'frost', 'demon', 'fourking', 'rebel'],
   recipes: ['無盡之刃', '疾風劍', '巨人鎧', '大法師杖', '雙抗壁壘', '死神之爪'],
   mobs: ['nm_thebes_scarab', 'nm_tikal_azt', 'cor_elf_firefang', 'nm_thebes_sphinx', 'cor_elf_waterfang', 'cor_abyss_water', 'cor_elf_waterlord',
@@ -15,6 +18,58 @@ var AB_WL = window.AB_WL = {
   bosses: ['nm_tikal_boss_f', 'nm_thebes_horus', 'cor_abyss_lord']
 };
 function wlHero(defId) { return !AB_WL.enabled || AB_WL.heroes.indexOf(defId) >= 0; }
+// ===== 怪物定位：坦／刺客／遠距（ab.20261028g）=====
+var AB_MOB_ROLE = window.AB_MOB_ROLE = {
+  nm_thebes_scarab: 'tank',
+  nm_tikal_azt: 'tank',
+  cor_elf_firefang: 'ranged',
+  nm_thebes_sphinx: 'ranged',
+  cor_elf_waterfang: 'ranged',
+  cor_abyss_water: 'ranged',
+  cor_elf_waterlord: 'ranged',
+  cor_elf_windfang: 'ranged',
+  cor_abyss_archer: 'ranged',
+  cor_elf_windlord: 'ranged',
+  cor_abyss_ghoul: 'assassin',
+  nm_tikal_mud: 'tank',
+  cor_abyss_sith: 'assassin',
+  nm_thebes_obelisk: 'tank',
+  nm_tikal_boss_f: 'tank',
+  nm_thebes_horus: 'ranged',
+  cor_abyss_lord: 'tank'
+};
+var MOB_ROLE_LB = window.AB_MOB_ROLE_LB = { tank: '坦', assassin: '刺客', ranged: '遠距' };
+var MOB_ROLE_IC = { tank: '🛡️', assassin: '🗡️', ranged: '🎯' };
+var MOB_CLS = window.AB_MOB_CLS = {
+  mob_tank: { lb: '坦', ic: '🛡️' },
+  mob_assassin: { lb: '刺客', ic: '🗡️' },
+  mob_ranged: { lb: '遠距', ic: '🎯' },
+  mob_m: { lb: '近戰', ic: '👊' },
+  mob_r: { lb: '遠距', ic: '🎯' }
+};
+/** 推斷怪物定位：覆寫表 → 遠距 → 刺客名／脆皮 → 其餘近戰＝坦 */
+function mobRole(mb, id) {
+  if (!mb) return 'tank';
+  var oid = id || mb.id;
+  if (oid && AB_MOB_ROLE[oid]) return AB_MOB_ROLE[oid];
+  var n = mb.n || '', rid = String(oid || '');
+  var ranged = !!(mb.mag && mb.mag.dmg) || /弓|射手|archer/i.test(n) || /archer/i.test(rid);
+  if (ranged) return 'ranged';
+  if (/刺客|影|牙|食屍鬼|ghoul|sith|西斯|fang|暗影|影刃/i.test(n) || /ghoul|sith|fang|assassin/i.test(rid)) return 'assassin';
+  if (/高崙|石|甲蟲|泥偶|守護|騎士|巨|熊|牛人|石奴|甲|盾/i.test(n)) return 'tank';
+  try {
+    var hp = mb.hp || 0, dmgHi = (mb.dmg && mb.dmg[1]) || 1;
+    if (hp > 0 && dmgHi > 0 && hp / dmgHi < 18) return 'assassin';
+  } catch (e) {}
+  return 'tank';
+}
+function mobRowOrder(role, boss) {
+  if (boss) return [1, 0, 2, 3];
+  if (role === 'tank') return [3, 2, 1, 0];
+  return [0, 1, 2, 3]; // 遠距／刺客：敵方後排起（row 0）
+}
+function isBossUnit(u) { return !!(u && (u.boss || (u.mob && u.rarity === 'SSR'))); }
+
 var ROWS = 4, COLS = 6;                 // 每方 4×6；總棋盤 8 行（0-3 敵、4-7 我）
 var TICK = 100;                          // ms／tick（×速度）
 var CLS = {
@@ -32,13 +87,15 @@ var STAR_MUL = { 1:1.0, 2:1.5, 3:2.25 };   // 局內 TFT 合成星（1/2/3）技
 var PERM_SKILL_MUL = window.AB_PERM_SKILL_MUL = { 0:1, 1:1, 2:1, 3:1.15, 4:1.3, 5:1.5 };   // 局外永久星：≥3★ 技能倍率提升
 var MAIN_CD = 12;                        // 主角技能冷卻（秒）
 var MAIN_CLS = { Dknight:'dragon', illusionist:'illusion' };
-var SKILL_NAME = { knight:'嘲諷・盾壁', mage:'爆炎火球', elf:'三重矢', warrior:'旋風斬', dark:'暗影突襲', dragon:'龍息', illusion:'幻象束縛', royal:'王者祝福' };
+var SKILL_NAME = { knight:'嘲諷・盾壁', mage:'火球', elf:'三重矢', warrior:'旋風斬', dark:'暗影突襲', dragon:'龍息', illusion:'幻象束縛', royal:'王者祝福',
+  mob_tank:'盾擊', mob_assassin:'突襲', mob_ranged:'遠程轟擊', mob_m:'重擊', mob_r:'遠程轟擊' };
 var UNIQUE = {
   hero_isolde_knight:   { n:'銀誓壁壘', fn:'u_isolde' },
   hero_aurelia_royal:   { n:'王權聖光', fn:'u_aurelia' },
   hero_morgana_illusion:{ n:'虛像都城', fn:'u_morgana' },
   hero_skaldi_warrior:  { n:'北境斧王', fn:'u_skaldi' },
   hero_petra_knight:    { n:'衝擊之暈', fn:'k_shock' },
+  hero_viviane_knight:  { n:'治癒之光', fn:'k_heal' },
   hero_sora_mage:       { n:'潮汐聖詠', fn:'h_sora', healer: true },
   hero_lumina_mage:     { n:'聖光庇護', fn:'h_lumina', healer: true, hidden: true },
   hero_nerys_mage:      { n:'春雨祈願', fn:'h_nerys', healer: true, hidden: true }
@@ -55,7 +112,7 @@ var KNIGHT_POOL = window.AB_KNIGHT_POOL = {
   k_guard:   { n: '守護之盾', src: '新增', share: 0.5, t: 4, d: '最低 HP 隊友 4 秒內所受傷害 50% 由騎士代受' },
   k_heal:    { n: '治癒之光', src: '原作 治癒魔法頭盔', heal: 1.2, d: '自身＋相鄰隊友回復 1.2×攻' },
   k_last:    { n: '背水一戰', src: '新增', heal: 0.2, inv: 1.5, d: '施放後本場首次致命傷：保留 1 HP、無敵 1.5 秒、回 20% HP' },
-  assign: { basic: 'k_taunt', hero_isolde_knight: 'u_isolde', hero_petra_knight: 'k_shock' }
+  assign: { basic: 'k_taunt', hero_isolde_knight: 'u_isolde', hero_petra_knight: 'k_shock', hero_viviane_knight: 'k_heal', hero_aria_knight: 'k_redarm', hero_cassia_knight: 'k_counter', hero_rheina_knight: 'k_solid', hero_nora_knight: 'k_taunt', hero_selene_knight: 'k_solid', hero_brigitte_knight: 'k_redarm', hero_lena_knight: 'k_taunt', hero_mirae_knight: 'k_guard', hero_jodie_knight: 'k_counter' }
 };
 var FALLBACK_POR = { knight:'v8-knight-1-t.webp', royal:'v8-royal-1-t.webp', elf:'v8-elf-1-t.webp', illusion:'v8-illusion-1-t.webp', warrior:'v8-warrior-1-t.webp', mage:'v8-mage-1-t.webp', dark:'v8-dark-1-t.webp', dragon:'v8-dragon-1-t.webp' };
 // 職業頭像：先用遊戲原生 assets/character/<女職業>.png（box 上缺→PC 有），失敗就用 assets/ab-class/ 自繪
@@ -129,7 +186,7 @@ var BAL = window.AB_BAL = {
   "darkInv": 0.8,
   "darkLs": 0.35
  },
- "cs": {"knightDr": [0.02, 0.05, 0.07], "knightSh": [0, 0.03, 0.06], "royalAtk": [0.015, 0.13, 0.18], "royalRegen": 0.0165, "elfAs": [0.089, 0.22, 0.33], "illuStun": [1.536, 1.9, 1.294], "illuMana": 1.445, "warAtk": [0.111, 0.151, 0.206], "warRage": 0.136, "mageSp": [0.72, 0.72, 0.82], "darkTeamCrit": 0.026, "darkCrit": [0.10, 0.20, 0.30], "darkAtk": [0.08, 0.15, 0.22], "dragonHp": [0.093, 0.204, 0.307], "dragonAtk": [0.12, 0.2, 0.28]},
+ "cs": {"knightDr": [0.02, 0.05, 0.07], "knightSh": [0, 0.03, 0.06], "royalAtk": [0.015, 0.13, 0.18], "royalRegen": 0.0165, "elfAs": [0.089, 0.22, 0.33], "illuStun": [1.2, 1.45, 1.1], "illuMana": 1.445, "warAtk": [0.111, 0.151, 0.206], "warRage": 0.136, "mageSp": [0.72, 0.72, 0.82], "darkTeamCrit": 0.026, "darkCrit": [0.10, 0.20, 0.30], "darkAtk": [0.08, 0.15, 0.22], "dragonHp": [0.093, 0.204, 0.307], "dragonAtk": [0.12, 0.2, 0.28]},
  "heal": { "mul": 0.9, "decayT": 25, "decayMul": 0.45 },   /* v3.10.0 playtest：微減＋提早重傷，防拖局 */
  "es": {"fireP2": 0.45, "fireP3": 0.7, "fireD2": 0.3, "fireD3": 0.4, "waterSlow": 0.35, "waterFrz": 0.18, "windAs2": 0.1, "windAs3": 0.1, "windBolt": 0.12, "earthDef2": 10, "earthDef3": 18, "earthSh": 0.15, "resAtk": [0.05, 0.12], "resHp": [0.04, 0.1]}
 };   // 第 7 輪（meta 修正）；第 4 輪自動收斂（/tmp/pt/tune.js）
@@ -220,7 +277,7 @@ function mkUnit(h, side, cell) {
   var statStar = { 1: 1, 2: 1.8, 3: 3.2 }[st] || 1;
   var permStat = (h.defId && !h.basic && !h.isMain) ? (1 + permStar * (AB_EXP.heroStatPerStar || 0.05)) : 1;
   var u = { uid: side + ':' + (h.pid || h.id), hid: h.hid || h.id, defId: h.defId || null, name: h.name, cls: h.cls, side: side, isMain: !!h.isMain,
-    rarity: h.rarity, star: st, permStar: permStar, por: h.por || heroPor(h), hero: !!h.defId,
+    rarity: h.rarity, star: st, permStar: permStar, por: h.por || heroPor(h), hero: !!h.defId, basic: !!(h.basic || (!h.defId && !h.isMain)),
     mhp: Math.round(c.hp * m * statStar * permStat * (h.isMain ? 1.3 : 1)), atk: Math.round(c.atk * m * statStar * permStat * (h.isMain ? 1.2 : 1)), def: c.def, mr: c.mr,
     rng: c.rng, as: c.as, mmana: c.mana, dmgType: c.dmg, cell: cell };
   u.hp = u.mhp; u.mana = 0; u.shield = 0; u.cdA = 0.1 + Math.random() * 0.4; u.cdM = 0; u.stun = 0; u.taunt = null; u.tauntT = 0; u.buffAtk = 0; u.buffT = 0;
@@ -230,10 +287,18 @@ function mkUnit(h, side, cell) {
   if (!h.isMain && side === 'p' && (!h.defId || h.basic)) { var cb = 1 + campLv(h.cls) * CAMP.perLv; u.mhp = Math.round(u.mhp * cb); u.atk = Math.round(u.atk * cb); u.as *= cb; u.campMul = cb; }
   u.sp = 1; u.mana0 = 0; u.crit = 0.08; u.regen = 0; u.shield0 = 0; u.ele = null; u.items = [];
   if (!h.isMain && side === 'p') {
-    // 英雄：6 件局外永久裝；基本兵／士兵：唔著永久裝／軍械，只靠營地等級＋場內裝（ab.20261024a）
-    if (h.defId && !h.basic) { var g = heroGear(h.hid || h.id, h.simEq ? { rarity: h.rarity, eq: h.simEq } : null); u.atk = Math.round(u.atk + g.atk); u.def += Math.round(g.def); u.mr += Math.round(g.mr); u.mhp = Math.round(u.mhp + g.hp); u.ele = g.ele; g.fx.forEach(function (fx) { applyFx(u, fx, 1); }); u.sets = g.sets;
-      // ab.20261026f：永久專武（局外），唔佔場內 3 格
-      try { if (window.AB_WPN && h.defId) { u.exclStar = AB_WPN.equipped(h.defId) ? AB_WPN.star(h.defId) : 0; u.exclOn = !!u.exclStar || (AB_WPN.equipped(h.defId) && AB_WPN.owned(h.defId)); if (u.exclOn) { var efx = AB_WPN.fxFor(h.defId); if (efx) applyFx(u, efx, 1); u.exclName = (AB_EXCL[h.defId] || {}).n || '專武'; } else { u.exclStar = 0; } } } catch (eEx) { u.exclStar = 0; }
+    // ab.20261028c：英雄主線改專屬三件套；局外永久裝（gearBag）軟停用
+    if (h.defId && !h.basic) {
+      if (!(window.AB_SET && AB_SET.enabled)) {
+        var g = heroGear(h.hid || h.id, h.simEq ? { rarity: h.rarity, eq: h.simEq } : null); u.atk = Math.round(u.atk + g.atk); u.def += Math.round(g.def); u.mr += Math.round(g.mr); u.mhp = Math.round(u.mhp + g.hp); u.ele = g.ele; g.fx.forEach(function (fx) { applyFx(u, fx, 1); }); u.sets = g.sets;
+      }
+      try {
+        if (window.AB_SET && AB_SET.enabled && AB_SET.applyToUnit) AB_SET.applyToUnit(u, h.defId);
+        else if (window.AB_WPN && h.defId) {
+          u.exclStar = AB_WPN.equipped(h.defId) ? AB_WPN.star(h.defId) : 0; u.exclOn = !!u.exclStar || (AB_WPN.equipped(h.defId) && AB_WPN.owned(h.defId));
+          if (u.exclOn) { var efx = AB_WPN.fxFor(h.defId); if (efx) applyFx(u, efx, 1); u.exclName = (AB_EXCL[h.defId] || {}).n || '專武'; } else { u.exclStar = 0; }
+        }
+      } catch (eEx) { u.exclStar = 0; }
     }
     (h.items || []).slice(0, ITEM_SLOTS).forEach(function (it) { applyFx(u, it.fx, 1); });
     u.items = (h.items || []).slice(0, ITEM_SLOTS);
@@ -246,13 +311,17 @@ function mkUnit(h, side, cell) {
 }
 function mkMob(id, cell, wave, boss) {
   var mb = DB.mobs[id];
-  var ranged = !!(mb.mag && mb.mag.dmg) || /弓|射手|archer/i.test(mb.n || '');
+  var role = mobRole(mb, id);
+  var cls = role === 'ranged' ? 'mob_ranged' : (role === 'assassin' ? 'mob_assassin' : 'mob_tank');
   var w = wave;
-  var u = { uid: 'e:' + id + ':' + cell, name: mb.n, cls: ranged ? 'mob_r' : 'mob_m', side: 'e', isMain: false, rarity: boss ? 'SSR' : 'N', star: boss ? 3 : (w >= 4 ? 2 : 1),
-    por: mb.img || ('assets/icons/monsters/' + AB_MOB_ICONS[0]), mob: true, mid: id, race: raceLb(mb), ele: (mb.e && mb.e !== 'none' && ELE_NAME[mb.e]) ? mb.e : ((mb.mag && mb.mag.ele && ELE_NAME[mb.mag.ele]) ? mb.mag.ele : null),
+  var u = { uid: 'e:' + id + ':' + cell, name: mb.n, cls: cls, side: 'e', isMain: false, rarity: boss ? 'SSR' : 'N', star: boss ? 3 : (w >= 4 ? 2 : 1),
+    por: AB_MOB_SKULL, mob: true, mid: id, boss: !!boss, mobRole: role, race: raceLb(mb), ele: (mb.e && mb.e !== 'none' && ELE_NAME[mb.e]) ? mb.e : ((mb.mag && mb.mag.ele && ELE_NAME[mb.mag.ele]) ? mb.mag.ele : null),
     mhp: Math.round(((AB_DUNGEONS[S.dungeon || 0] || AB_DUNGEONS[0]).hpMul) * (BAL.wave.hp0 + (w - 1) * BAL.wave.hpLin) * Math.pow(BAL.wave.hpGrow, w - 1) * (boss ? BAL.wave.boss.hp * Math.pow(BAL.wave.boss.hpStep || 1, Math.max(0, Math.floor(w / 5) - 1)) : 1)), atk: Math.round(((AB_DUNGEONS[S.dungeon || 0] || AB_DUNGEONS[0]).atkMul) * (BAL.wave.atk0 + (w - 1) * BAL.wave.atkLin) * Math.pow(BAL.wave.atkGrow, w - 1) * (boss ? BAL.wave.boss.atk : 1)), def: BAL.wave.def0 + w * BAL.wave.defLin, mr: BAL.wave.mr0 + w * BAL.wave.mrLin,
-    rng: ranged ? 3 : 1, as: ranged ? 0.7 : 0.8, mmana: boss ? 90 : 0, dmgType: ranged ? 'mag' : 'phys', cell: cell };
-  u.hp = u.mhp; u.mana = 0; u.shield = 0; u.cdA = 0.3 + Math.random() * 0.6; u.cdM = 0; u.stun = 0; u.taunt = null; u.tauntT = 0; u.buffAtk = 0; u.buffT = 0; u.dead = false;
+    rng: role === 'ranged' ? 3 : 1, as: role === 'ranged' ? 0.7 : (role === 'assassin' ? 1.05 : 0.8), mmana: boss ? 90 : 75, dmgType: role === 'ranged' ? ((mb.mag && mb.mag.dmg) ? 'mag' : 'phys') : 'phys', cell: cell, crit: role === 'assassin' ? 0.14 : 0.08 };
+  if (role === 'tank') { u.mhp = Math.round(u.mhp * 1.15); u.atk = Math.round(u.atk * 0.9); u.def += 4; }
+  else if (role === 'assassin') { u.mhp = Math.round(u.mhp * 0.85); u.atk = Math.round(u.atk * 1.12); u.assassin = true; }
+  if (boss) { u.mmana = Math.max(u.mmana, 90); u.mana0 = 25; }
+  u.hp = u.mhp; u.mana = boss ? (u.mana0 || 0) : 0; u.shield = 0; u.cdA = 0.3 + Math.random() * 0.6; u.cdM = 0; u.stun = 0; u.taunt = null; u.tauntT = 0; u.buffAtk = 0; u.buffT = 0; u.dead = false; u._stick = null; u._stickT = 0;
   return u;
 }
 function raceLb(m) { try { if (typeof MOB_RACE_TO_MAJOR !== 'undefined' && typeof MOB_RACE_MAJOR_LABELS !== 'undefined') { var mj = m.raceMajor || MOB_RACE_TO_MAJOR[m.race]; if (mj && MOB_RACE_MAJOR_LABELS[mj]) return MOB_RACE_MAJOR_LABELS[mj]; } } catch (e) {} return m.race || ''; }
@@ -265,12 +334,39 @@ var AB_DG = window.AB_DG = {
   // 開放設定（placeholder＝現有白名單階；正式開放範圍等 design/lineage-classic-open-content.md 決定）
   openTiers: [1, 2, 3, 4, 5],                 // 用戶決定：全部地圖開放；階只用嚟排序／難度／等級門檻
   // 依 design/lineage-classic-open-content.md：經典版已開＝OPEN；unknown／未開＝鎖。tierOverride 跟該文件嘅建議階。
-  tierOverride: { training: 1, talking_island: 1, talking_island_port: 1, zone_13: 1, zone_14: 1, silver_knight: 1, zone_01: 1, elf_forest: 1, gludio: 1,
-    zone_15: 2, zone_16: 2, zone_17: 2, zone_06: 2, zone_07: 2, zone_08: 2, zone_09: 3, zone_10: 3, zone_11: 3, zone_12: 3,
-    kent: 2, windwood: 2, desert: 2, zone_22: 2, zone_23: 2, zone_24: 2, zone_25: 2, zone_32: 2, zone_33: 2, giran: 2,
-    zone_18: 3, zone_19: 3, zone_20: 3, zone_21: 3, dragon_valley: 3, zone_26: 3, zone_27: 3, zone_28: 3, zone_29: 4, zone_30: 4, zone_31: 4,
-    heine: 3, eva_kingdom: 3, zone_34: 3, zone_35: 3, zone_36: 3, mirror_forest: 3, fire_dragon: 4, zone_02: 3, zone_03: 3, zone_04: 3, zone_05: 3,
-    zone_37: 4, zone_38: 4, zone_39: 4, zone_40: 4, zone_41: 4, crystal_cave1: 4, crystal_cave2: 4, crystal_cave3: 4, twilight_mt: 4, giant_tomb: 4 },
+  // ab.20261028h §F：有王跟王階、無王跟怪；弱圖強王（Kurt／Baphomet）抬 Tier＋獎勵；傲慢只用 10 段濃縮層
+  tierOverride: {
+    training: 1, talking_island: 1, silver_knight: 1, zone_01: 1, elf_forest: 1, gludio: 1,
+    // 說話之島：港口 Kurt→T4；地監 13+14 跟 Baphomet→T4
+    talking_island_port: 4, zone_13: 4, zone_14: 4,
+    // 古魯丁地監：上中層合併階；下層死亡騎士→T5
+    zone_06: 3, zone_07: 3, zone_08: 3, zone_09: 4, zone_10: 4, zone_11: 4, zone_12: 5,
+    // 眠龍／精靈墓
+    zone_15: 2, zone_16: 2, zone_17: 2, zone_02: 3, zone_03: 3, zone_04: 3, zone_05: 3,
+    // 肯特／風木 T2；沙漠／奇岩 T3
+    kent: 2, windwood: 2, zone_22: 2, zone_23: 2, zone_24: 2, zone_25: 2,
+    desert: 3, giran: 3, zone_18: 3, zone_19: 3, zone_20: 3, zone_21: 3,
+    // 龍之谷／火龍窟／海音／水晶→T4–5
+    dragon_valley: 4, zone_26: 4, zone_27: 4, zone_28: 4, zone_29: 5, zone_30: 5, zone_31: 5,
+    fire_dragon: 5, heine: 4, eva_kingdom: 4, zone_34: 4, zone_35: 4, zone_36: 4, mirror_forest: 4,
+    crystal_cave1: 4, crystal_cave2: 5, crystal_cave3: 5, twilight_mt: 4,
+    // 蟻穴／巨人之墓 T5（女皇 hidden 另列）
+    zone_32: 4, zone_33: 5, giant_tomb: 5, hidden_antqueen: 5,
+    zone_37: 4, zone_38: 4, zone_39: 5, zone_40: 5, zone_41: 5,
+    // 傲慢之塔 10 濃縮層（原 f2–f100 段頭目）
+    pride_2_10: 3, pride_11_20: 3, pride_21_30: 4, pride_31_40: 4, pride_41_50: 4,
+    pride_51_60: 5, pride_61_70: 5, pride_71_80: 5, pride_81_90: 5, pride_91_100: 5
+  },
+  // 獎勵倍率（T4/T5 裝備／專武券機率壓低：20%／28%，唔用表內 28/38）
+  tierReward: {
+    1: { gold: 1.2, mat: 1.1, ticket: 0.08 },
+    2: { gold: 1.6, mat: 1.5, ticket: 0.12 },
+    3: { gold: 2.2, mat: 2.0, ticket: 0.18 },
+    4: { gold: 3.0, mat: 2.6, ticket: 0.20 },
+    5: { gold: 4.2, mat: 3.8, ticket: 0.28 }
+  },
+  // AB 只顯示傲慢 10 段；隱藏逐層 pride_fN／攀登層（怪種唔改，只係唔喺自走棋清單拆開）
+  hideMapRe: /^pride_f\d+$|^pride_climb$/,
   openMaps: null,   // null＝全開。下面係經典版已開清單（保留，切換用）：
   classicOpenMaps: ['training', 'talking_island', 'talking_island_port', 'zone_13', 'zone_14', 'silver_knight', 'zone_01', 'elf_forest', 'gludio',
     'zone_15', 'zone_16', 'zone_17', 'zone_06', 'zone_07', 'zone_08', 'zone_09', 'zone_10', 'zone_11', 'zone_12',
@@ -281,7 +377,7 @@ var AB_DG = window.AB_DG = {
   lockMaps: [],
   curate: { maxTypes: 4, raceW: 2, tierW: 2, freshW: 1 },   // 每關精選怪種：最多 4 種（獨有怪一定保留，可超出）；同族／同階／未喺前關用過優先                               // 強制鎖住（優先於上面兩項）
   tierLv: [15, 30, 45, 60],                   // 怪物等級 → 階：≤15 T1、≤30 T2、≤45 T3、≤60 T4、>60 T5
-  wavesField: 3, wavesFloor: 4,               // 野外 3 波、地監樓層 4 波（最後一波頭目）
+  wavesField: 4, wavesFloor: 4,               // 野外 4 波、地監樓層 4 波（最後一波頭目）·ab.20261028b
   lvPerWave: 1.4, bossLvPerWave: 2.1, bossMaxAhead: 9, eliteMaxAhead: 3, stageStep: 1.4,   // 頭目最多比該關有效波數高 8
    // 頭目用自己等級計強度
                                // 難度：有效波數 = 地圖普通怪平均等級 / 3 ＋ 關內第幾波
@@ -293,7 +389,7 @@ var AB_DG = window.AB_DG = {
   multiBossPow: 0.6,                          // 多頭目同場：每隻 HP 倍率 ÷ n^0.6
   firstRegion: 'talkingisland',                 // v3.10.0：新手由說話之島開始（原 gludin）
   starterOrder: { talkingisland: ['talking_island', 'talking_island_port', 'zone_13', 'zone_14'] },
-  reqLvOverride: { talking_island: 1, talking_island_port: 3, zone_13: 5, zone_14: 8 },   // 說話之島周邊 Lv1 可進，日一農場／首通頭目路
+  reqLvOverride: { talking_island: 1, talking_island_port: 12, zone_13: 14, zone_14: 18, zone_12: 35, silver_knight: 1 },   // 弱圖強王：港口／巴風特抬門檻；銀騎士仍 T1
   bossOverride: {                             // 跟原作：
     zone_09: { boss: ['casper', 'marcus', 'sema', 'batus'], hpMul: 1.3, atkMul: 1.1, ele: { casper: 'fire', marcus: 'water', sema: 'wind', batus: 'earth' } },   // 各自元素（卡士柏/巴土瑟跟技能元素；馬庫爾/西瑪資料係無屬性，按四色補水/風）              // 古魯丁 4 樓：四色法師一齊出
     zone_12: { boss: ['dk'], hpMul: 1.4, atkMul: 1.1, ahead: 3, escort: ['skeleton', 'ghoul', 'ogre_king'] }  // 古魯丁 7 樓：死亡騎士＋骷髏／食屍鬼護衛（食人妖精王都喺度）
@@ -325,10 +421,12 @@ function dgBuild() {
     var ter = floor ? AB_DG.floorTer : (AB_DG.regionTer[reg.key] || majorEle(norm) || 'earth');
     var st = { all: all, ov: ov || null, v: v, n: t, reg: reg.key, regN: reg.label, norm: norm, boss: boss, escort: (ov && ov.escort) || [], elite: elite, tier: tier, avgLv: Math.round(avg), p75: p75,
       dataTier: dataTier, waves: floor ? AB_DG.wavesFloor : AB_DG.wavesField, floor: floor, ter: ter, tn: floor ? AB_DG.floorTn : (TER_TN[ter] || '野外') };
-    st.open = AB_DG.lockMaps.indexOf(v) < 0 && (AB_DG.openMaps ? AB_DG.openMaps.indexOf(v) >= 0 : AB_DG.openTiers.indexOf(tier) >= 0); return st; }
+    var hid = false; try { hid = (AB_DG.hideMapRe && AB_DG.hideMapRe.test(v)) || (AB_DG.hideMaps && AB_DG.hideMaps.indexOf(v) >= 0); } catch (eH) {}
+    st.hidden = !!hid;
+    st.open = !hid && AB_DG.lockMaps.indexOf(v) < 0 && (AB_DG.openMaps ? AB_DG.openMaps.indexOf(v) >= 0 : AB_DG.openTiers.indexOf(tier) >= 0); return st; }
   function majorEle(ids) { var c = {}; ids.forEach(function (id) { var e = MB[id].e; if (e && ELE_NAME[e]) c[e] = (c[e] || 0) + 1; }); var b = null; Object.keys(c).forEach(function (e) { if (!b || c[e] > c[b]) b = e; }); return b; }
   regs.forEach(function (reg) { var d = { key: reg.key, n: reg.label, stages: [] };
-    reg.maps.forEach(function (m) { if (/^town_/.test(m.v) || seen[m.v]) return; seen[m.v] = 1; var st = mkStage(m.v, m.t, reg); if (st) { st.idx = d.stages.length; st.d = d; d.stages.push(st); _dg.byV[m.v] = st; } });
+    reg.maps.forEach(function (m) { if (/^town_/.test(m.v) || seen[m.v]) return; seen[m.v] = 1; var st = mkStage(m.v, m.t, reg); if (!st) return; _dg.byV[m.v] = st; if (st.hidden) return; st.idx = d.stages.length; st.d = d; d.stages.push(st); });
     if (d.stages.length) {
       var so = (AB_DG.starterOrder || {})[d.key];
       if (so) { d.stages.sort(function (a, b) { var ia = so.indexOf(a.v), ib = so.indexOf(b.v); return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib); }); d.stages.forEach(function (st, i) { st.idx = i; }); }
@@ -338,7 +436,7 @@ function dgBuild() {
   Object.keys(M).forEach(function (v) { if (seen[v] || /^town_/.test(v)) return; var sp = (M[v] || []).filter(function (id) { return MB[id]; });
     var must = sp.some(function (id) { return MB[id].boss || Object.keys(_dg.mobMaps[id] || {}).length === 1; }); if (!must) return;
     var t = v; try { Object.keys(MAP_CATEGORIES).forEach(function (k) { MAP_CATEGORIES[k].forEach(function (m) { if (m.v === v) t = m.t; }); }); } catch (e) {}
-    seen[v] = 1; var st = mkStage(v, t, other); if (st) { st.idx = other.stages.length; st.d = other; other.stages.push(st); _dg.byV[v] = st; } });
+    seen[v] = 1; var st = mkStage(v, t, other); if (!st) return; _dg.byV[v] = st; if (st.hidden) return; st.idx = other.stages.length; st.d = other; other.stages.push(st); });
   if (other.stages.length) _dg.list.push(other);
   _dg.list.forEach(function (d) { d.tier = Math.min.apply(null, d.stages.map(function (x) { return x.tier; })); });
   _dg.list.sort(function (a, b) { return (a.key === AB_DG.firstRegion ? -1 : 0) - (b.key === AB_DG.firstRegion ? -1 : 0) || a.tier - b.tier; });   // 進度排序：古魯丁先，其餘按階
@@ -363,7 +461,7 @@ function dgFirstOpen(key) { var d = dgBuild().list.filter(function (x) { return 
   var nc = ok.filter(function (st) { return !dgCleared(st.v); })[0]; return nc || ok[ok.length - 1] || null; }
 function dgBuildWave(w) {
   var st = dgStage(), out = [], MB = DB.mobs; if (!st) return out; var we = dgEffW(st, w); var isBoss = w >= st.waves; var taken = {};
-  function place(id, boss, row0) { var wq = boss ? Math.max(we, Math.min(we + (st.elite ? AB_DG.eliteMaxAhead : (st.ov && st.ov.ahead != null ? st.ov.ahead : AB_DG.bossMaxAhead)), Math.round((MB[id].lv || 1) / AB_DG.bossLvPerWave))) : we; var ranged = !!(MB[id].mag && MB[id].mag.dmg) && !boss; var order = boss ? [1, 0, 2, 3] : ranged ? [0, 1, 2, 3] : [3, 2, 1, 0]; var cell = -1;
+  function place(id, boss, row0) { var wq = boss ? Math.max(we, Math.min(we + (st.elite ? AB_DG.eliteMaxAhead : (st.ov && st.ov.ahead != null ? st.ov.ahead : AB_DG.bossMaxAhead)), Math.round((MB[id].lv || 1) / AB_DG.bossLvPerWave))) : we; var role = mobRole(MB[id], id); var order = mobRowOrder(role, boss); var cell = -1;
     for (var r = 0; r < 4 && cell < 0; r++) for (var t = 0; t < COLS; t++) { var cc = order[r] * COLS + [2, 3, 1, 4, 0, 5][t % 6]; if (!taken[cc]) { cell = cc; break; } }
     if (cell < 0) return; taken[cell] = 1; var u = mkMob(id, cell, wq, boss); out.push(u); return u; }
   if (isBoss) {
@@ -480,12 +578,12 @@ function dist(a, b) { var A = rc(a), B = rc(b); return Math.max(Math.abs(A.r - B
 function occ(cell) { for (var i = 0; i < S.units.length; i++) if (!S.units[i].dead && S.units[i].cell === cell) return S.units[i]; return null; }
 
 // ---------- 酒館（每場 Run）----------
-var GEN_COST = 1, HERO_COST = { N: 2, R: 3, SR: 4, SSR: 5 };
-var SHOP_N = 5, REROLL = 2, BENCH_N = 8, START_GOLD = 8;
+var GEN_COST = 2, HERO_COST = { N: 1, R: 2, SR: 3, SSR: 3 };   // ab.20261028b 測試定案
+var SHOP_N = 5, REROLL = 2, BENCH_N = 8, START_GOLD = 10;
 // 上場人數（主角以外）：跟冒險者公會等級成長；data-driven，將來加格就加一行
 var AB_BOARD = window.AB_BOARD = { steps: [[0, 4], [3, 5], [6, 6], [10, 7]], max: 7 };   // v3.10.0：主角唔再上場，每級上場 +1 補返
 function boardMax() { var g = 0; try { g = guildLv(); } catch (e) {} var n = AB_BOARD.steps[0][1]; AB_BOARD.steps.forEach(function (st) { if (g >= st[0]) n = st[1]; }); return Math.min(AB_BOARD.max, n); }
-var HERO_SLOT_P = 0.22;
+var HERO_SLOT_P = 0.35;   // ab.20261028b：測試定案（士兵最高 2★）
 // v3.10.0 魅力（player.d.cha）：細幅加成，唔係必堆屬性
 var AB_CHA = window.AB_CHA = { base: 12, royalAtkPer: 0.002, royalAtkCap: 0.08, rerollStep: 20, rerollMin: 1, heroPPer: 0.001, heroPCap: 0.03 };
 function abCha() { try { return hasPlayer() && player.d ? (player.d.cha || 0) : 0; } catch (e) { return 0; } }
@@ -561,17 +659,54 @@ function abFameTxt() { var I = abFameInfo(); return '🏛 公會 Lv' + I.lv + ' 
 function abFame(n, why) { n = Math.round(n || 0); if (!n || S.sim || !hasPlayer() || !(window.GD && GD.data)) return 0; var g = GD.data(); if (!g) return 0;
   var lv0 = guildLv(), c0 = boardMax(); g.fame += n; if (S.run) S.run.fame = (S.run.fame || 0) + n; if (why) pushLog('🏛 名聲 +' + n + '（' + why + '）');
   var lv1 = guildLv(), c1 = boardMax(); if (lv1 > lv0) { var m = '🎉 公會升級！Lv' + lv1 + (c1 > c0 ? ' · 上陣 +' + (c1 - c0) + '（而家 ' + c1 + ' 隻）' : ''); pushLog(m); try { hint(m); } catch (e) {} } return n; }
+function abTierReward(st) {
+  st = st || (typeof dgStage === 'function' ? dgStage() : null);
+  var TR = (AB_DG && AB_DG.tierReward) || {};
+  var t = Math.max(1, Math.min(5, (st && st.tier) || 1));
+  return TR[t] || TR[1] || { gold: 1, mat: 1, ticket: 0.1 };
+}
 function runPayout(waveReached, manual) {
   if (!hasPlayer()) return; var E = AB_ECON.run, R = S.run || {}; var cls = (R.classes && R.classes.length) ? R.classes : CLS_KEYS.slice(0, 4);
   var stars = (R.board || []).reduce(function (a, p) { return a + (p.star || 1); }, 0); var mul = (manual ? E.manualMul : 1) * (1 + stars * E.starBonus);
-  var gold = Math.round(E.goldPerWave * waveReached * mul); var mats = Math.round(E.endMatsPerWave * waveReached * mul);
-  player.gold = (player.gold || 0) + gold; abSplitMats(mats, cls); S.lastPay = { gold: gold, mats: mats, fame: R.fame || 0 };
-  pushLog('🏁 結算：💰' + gold + '、材料 ×' + mats + '（' + cls.map(function (c) { return AB_ECON.mats[c]; }).join('／') + '）');
+  var TR = abTierReward(typeof dgStage === 'function' ? dgStage() : null);
+  var gold = Math.round(E.goldPerWave * waveReached * mul * (TR.gold || 1)); var mats = Math.round(E.endMatsPerWave * waveReached * mul * (TR.mat || 1));
+  player.gold = (player.gold || 0) + gold; abSplitMats(mats, cls); S.lastPay = { gold: gold, mats: mats, fame: R.fame || 0, tier: (dgStage() || {}).tier };
+  var cEqLog = '';
+  try {
+    if (waveReached > 0 && window.AB_SET && AB_SET.addClsTk) {
+      var ticketP = (TR.ticket != null) ? TR.ticket : 0.1;
+      if (Math.random() < ticketP * 0.15) {
+        var pool = cls.length ? cls : (AB_SET.CLS_KEYS || CLS_KEYS);
+        var cPick = pool[Math.floor(Math.random() * pool.length)];
+        if (AB_SET.addClsTk('equip', cPick, 1)) cEqLog = '、🎟' + ((AB_SET.CLS_LB && AB_SET.CLS_LB[cPick]) || cPick) + '職業裝備券 ×1';
+      }
+    }
+  } catch (eP) {}
+  pushLog('🏁 結算：💰' + gold + '、材料 ×' + mats + cEqLog + '（T' + ((dgStage() || {}).tier || 1) + '×金' + (TR.gold || 1) + '／材' + (TR.mat || 1) + '・' + cls.map(function (c) { return AB_ECON.mats[c]; }).join('／') + '）');
 }
 function bossReward() { if (!hasPlayer()) return; var E = AB_ECON.run, R = S.run || {}; var cls = (R.classes && R.classes.length) ? R.classes : CLS_KEYS.slice(0, 4);
-  for (var i = 0; i < E.bossMats; i++) addMat(cls[Math.floor(Math.random() * cls.length)], 1); var c = Math.random() < E.bossCoreP ? 1 : 0; addCore(c); var tk = abPayTickets(Math.random() < (E.bossTicketP || 0) ? 1 : 0), dm = abPayDiamonds(Math.random() < (E.bossDiaP || 0) ? 1 : 0);
-  var wt = 0; try { if (window.AB_WPN && AB_WPN.payTickets && Math.random() < (E.bossWpnTicketP != null ? E.bossWpnTicketP : 0.25)) wt = AB_WPN.payTickets(1); } catch (eW) {}
-  pushLog('👑 頭目獎勵：材料 ×' + E.bossMats + (c ? '、' + AB_ECON.core + ' ×1' : '') + (tk ? '、英雄招募券 ×1' : '') + (wt ? '、⚔專武券 ×1' : '') + (dm ? '、💎1' : '')); }
+  var st = (typeof dgStage === 'function') ? dgStage() : null; var TR = abTierReward(st);
+  var matN = Math.max(1, Math.round((E.bossMats || 1) * (TR.mat || 1)));
+  for (var i = 0; i < matN; i++) addMat(cls[Math.floor(Math.random() * cls.length)], 1);
+  var c = Math.random() < E.bossCoreP ? 1 : 0; addCore(c);
+  var ticketP = (TR.ticket != null) ? TR.ticket : (E.bossTicketP || 0.1);
+  var tk = abPayTickets(Math.random() < ticketP ? 1 : 0), dm = abPayDiamonds(Math.random() < (E.bossDiaP || 0) ? 1 : 0);
+  // 專屬裝備券跟同一階 ticket 率（T4 20%／T5 28% 已壓低）
+  var wt = 0; try { if (window.AB_WPN && AB_WPN.payTickets && Math.random() < ticketP) wt = AB_WPN.payTickets(1); } catch (eW) {}
+  // 職業指定卷：跟 ticketP；裝備券 ticketP×0.5、英雄券 ticketP×0.25；跟今場出戰職業
+  var cEq = 0, cHr = 0, cEqCls = '', cHrCls = '';
+  try {
+    if (window.AB_SET && AB_SET.addClsTk) {
+      var pool = (cls && cls.length) ? cls : ((AB_SET.CLS_KEYS || CLS_KEYS).slice());
+      var pick = function () { return pool[Math.floor(Math.random() * pool.length)]; };
+      if (Math.random() < ticketP * 0.5) { cEqCls = pick(); cEq = AB_SET.addClsTk('equip', cEqCls, 1); }
+      if (Math.random() < ticketP * 0.25) { cHrCls = pick(); cHr = AB_SET.addClsTk('hero', cHrCls, 1); }
+    }
+  } catch (eC) {}
+  var bits = '👑 頭目獎勵：材料 ×' + matN + (c ? '、' + AB_ECON.core + ' ×1' : '') + (tk ? '、英雄招募券 ×1' : '') + (wt ? '、🛡專屬裝備券 ×1' : '') + (dm ? '、💎1' : '');
+  if (cEq) bits += '、🎟' + ((AB_SET.CLS_LB && AB_SET.CLS_LB[cEqCls]) || cEqCls) + '職業裝備券 ×1';
+  if (cHr) bits += '、🎟' + ((AB_SET.CLS_LB && AB_SET.CLS_LB[cHrCls]) || cHrCls) + '職業英雄券 ×1';
+  pushLog(bits + '（T' + ((st && st.tier) || 1) + ' 券率 ' + Math.round(ticketP * 100) + '%）'); }
 // ===================== v3.10.0 離線收益（自走棋唯一收益來源；舊掛機戰鬥已停用）=====================
 // 基準：農場關（ab.dg.farm＝已通關嘅關卡）有效波數 effW；冇農場關＝冇離線收益。全部常數喺度調。
 var AB_OFFLINE = window.AB_OFFLINE = {
@@ -839,7 +974,9 @@ function renderCamp() {
       return '<div class="ab-brow">📦 ' + AB_ECON.core + ' ' + (ab.cores || 0) + ' · <button class="ab-btn ab-mini" id="ab-c-camp">收取營地產出</button><button class="ab-btn ab-mini" id="ab-c-idle">領取離線掛機</button></div>' +
       '<div class="ab-brow">🧭 派遣（' + ab.dispatch.length + '/' + AB_ECON.dispatch.slots + '，' + AB_ECON.dispatch.hours + ' 小時）：' + ab.dispatch.map(function (d) { var left = Math.max(0, d.until - Date.now()); return d.name + '→' + AB_ECON.mats[d.cls] + (left ? ' ' + Math.ceil(left / 60000) + '分' : ' ✔'); }).join('、') +
       ' <select id="ab-d-hero">' + hs.map(function (h) { return '<option value="' + h.id + '">' + h.name + ' ' + h.rarity + '</option>'; }).join('') + '</select><select id="ab-d-mat">' + CLS_KEYS.map(function (c) { return '<option value="' + c + '">' + AB_ECON.mats[c] + '</option>'; }).join('') + '</select><button class="ab-btn ab-mini" id="ab-d-go">派遣</button><button class="ab-btn ab-mini" id="ab-d-col">收派遣</button></div>'; })() +
-    (function () { var ab = econ() || { gearBag: [] }; var SL = { weapon: '武器', armor: '盔甲', helm: '頭盔', gloves: '手套', boots: '靴', acc: '飾品' };
+    ((window.AB_SET && AB_SET.enabled)
+      ? '<div class="ab-brow" style="opacity:.8">🛡 永久裝備打造／鐵匠已停用（專屬三件套主線）。用專屬裝備券／職業裝備券抽武器・防具・飾品；同一英雄共用碎片。</div>'
+      : (    (function () { var ab = econ() || { gearBag: [] }; var SL = { weapon: '武器', armor: '盔甲', helm: '頭盔', gloves: '手套', boots: '靴', acc: '飾品' };
       var tg = ownedHeroes().map(function (h) { return ['h:' + h.id, h.name]; });   // 士兵唔著局外裝，只畀英雄揀
       var stName = function (id) { var st = AB_SETS_ALL.filter(function (x) { return x.id === id; })[0]; return st ? st.n : id; };
       return '<div class="ab-brow">🔨 打造（' + AB_GEAR_SRC.ore.n + ' ' + (ab.ore || 0) + '）：' + [1, 2, 3, 4].map(function (t) { var C = AB_GEAR_SRC.craft[t]; return '<button class="ab-btn ab-mini" data-craft="' + t + '"' + (C.locked ? ' disabled' : '') + '>T' + t + (C.locked ? ' 🔒地監' : ' 💰' + C.gold + '＋礦' + C.ore + (C.cores ? '＋核' + C.cores : '')) + '</button>'; }).join('') +
@@ -850,11 +987,11 @@ function renderCamp() {
         '<button class="ab-btn ab-mini" data-enbuy="bwpn">祝福武器 ' + Sx.tickets.price + '🎫</button><button class="ab-btn ab-mini" data-enbuy="barm">祝福盔甲 ' + Sx.tickets.price + '🎫</button><button class="ab-btn ab-mini" data-enbuy="prot">保護 ' + Sx.tickets.price + '🎫</button>（每週各 ' + Sx.tickets.weekly + '）</div>'; })() +
         abGearBagHtml({ ctx: 'camp', action: function (g) { var I = enInfo(g), cp = enCap(g); return ((g.en || 0) >= cp ? '<small>（強化上限 +' + cp + '）</small>' : '<button class="ab-btn ab-mini" data-ench="' + g.uid + '">強化 ' + Math.round(enRate(g) * 1000) / 10 + '%</button><small>' + ((g.en || 0) >= I.safe ? ' ⚠超安定(' + I.safe + ')失敗會爆' : ' 安定 ' + I.safe) + '</small>') +
           ' 裝備者：<select data-gear="' + g.uid + '"><option value="">（未裝）</option>' + tg.map(function (o) { return '<option value="' + o[0] + '"' + (g.on === o[0] ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select>'; } }); })() +
-    '<div class=\"ab-brow\">⚒ 鐵匠 Lv' + smithLv() + '（永久裝備 +' + Math.round(smithLv() * SMITH.gearPerLv * 100) + '%；已解鎖配方 ' + RECIPE.filter(function (r) { return r.smith <= smithLv(); }).length + '/' + RECIPE.length + '） ' + (smithLv() >= SMITH.maxLv ? '<b>MAX</b>' : '<button class="ab-btn ab-mini" id="ab-smith">升級 ' + costTxt(SMITH.cost(smithLv())) + '</button>') + '</div>' +
+    '<div class=\"ab-brow\">⚒ 鐵匠 Lv' + smithLv() + '（永久裝備 +' + Math.round(smithLv() * SMITH.gearPerLv * 100) + '%；已解鎖配方 ' + RECIPE.filter(function (r) { return r.smith <= smithLv(); }).length + '/' + RECIPE.length + '） ' + (smithLv() >= SMITH.maxLv ? '<b>MAX</b>' : '<button class="ab-btn ab-mini" id="ab-smith">升級 ' + costTxt(SMITH.cost(smithLv())) + '</button>') + '</div>')) +
     CLS_KEYS.map(function (c) { var lv = campLv(c);
       return '<div class="ab-brow">' + CLS[c].ic + ' ' + CAMP.name[c] + ' Lv' + lv + ' · ' + AB_ECON.mats[c] + ' ' + matN(c) + ' <small>（基本兵 HP/攻/攻速/技能 +' + Math.round(lv * CAMP.perLv * 100) + '%）</small> ' +
       (lv >= CAMP.maxLv ? '<b>MAX</b>' : '<button class="ab-btn ab-mini" data-cls="' + c + '">升級 ' + costTxt(CAMP.cost(lv), c) + '</button>') +
-      '<br><small class="ab-dim">士兵唔著永久裝／軍械；只靠營地等級＋每局場內裝。英雄喺背包著 6 件局外裝。</small></div>'; }).join('');
+      '<br><small class="ab-dim">士兵唔著永久裝／專屬裝；只靠營地等級＋每局場內裝。英雄用專屬三件套（大廳轉蛋）。</small></div>'; }).join('');
   box.querySelector('#ab-camp-x').onclick = function () { box.remove(); };
   var sb = box.querySelector('#ab-smith'); if (sb) sb.onclick = smithUp;
   var q = function (id, f) { var b = box.querySelector(id); if (b) b.onclick = f; };
@@ -1126,7 +1263,7 @@ function buy(i) {
 // v3.10.0：酒館升星提示（聯盟戰棋式）
 function shopMergeInfo(it) { if (!it || it.itemKey || !S.run) return null; var k = pieceKey(it), own = S.run.board.concat(S.run.bench).filter(function (q) { return pieceKey(q) === k; });
   var n1 = own.filter(function (q) { return q.star === 1; }).length, n2 = own.filter(function (q) { return q.star === 2; }).length, st = 1;
-  if (n1 + 1 >= 3) { st = 2; if (n2 + 1 >= 3) st = 3; } return { star: st, pair: n1 >= 1, own: own.filter(function (q) { return q.star === 1 || (st === 3 && q.star === 2); }) }; }
+  if (n1 + 1 >= 3) { st = 2; if (n2 + 1 >= 3 && !isBasicPc(it)) st = 3; } return { star: st, pair: n1 >= 1, own: own.filter(function (q) { return q.star === 1 || (st === 3 && q.star === 2); }) }; }
 function mergeHL(list) { if (!root) return; var ids = {}; (list || []).forEach(function (q) { ids[q.pid] = 1; });
   S.units.forEach(function (u) { var tk = document.getElementById('abt-' + cssId(u.uid)); if (tk) tk.classList.toggle('ab-mg', !!(u.pc && ids[u.pc.pid])); });
   Array.prototype.forEach.call(root.querySelectorAll('.ab-bslot'), function (b) { b.classList.toggle('ab-mg', !!(b._pc && ids[b._pc.pid])); }); }
@@ -1138,8 +1275,14 @@ function merge() {
     all.forEach(function (p) { if (p.star >= 3) return; var k = pieceKey(p) + '#' + p.star; (groups[k] = groups[k] || []).push(p); });
     Object.keys(groups).forEach(function (k) { var g = groups[k]; if (again || g.length < 3) return;
       var keep = g.filter(function (p) { return R.board.indexOf(p) >= 0; })[0] || g[0];
+      // ab.20261028b：基本兵／士兵最高 2★（拒絕合成出 3★；英雄照舊可到 3★）
+      if (isBasicPc(keep) && (keep.star || 1) >= 2) {
+        if (!R._solStarHint) { R._solStarHint = 1; hint('基本兵／士兵最高 2★，唔可以合成 3★'); pushLog('⚠ 基本兵／士兵最高 2★'); }
+        return;
+      }
       g.filter(function (p) { return p !== keep; }).slice(0, 2).forEach(function (p) { keep.paid += p.paid; unequipAll(p); rm(p); });
-      keep.star++; S.starFx = keep.pid; pushLog('✨ 合成 ' + keep.name + ' ' + keep.star + '★'); again = true; });
+      keep.star++; if (isBasicPc(keep) && keep.star > 2) keep.star = 2;
+      S.starFx = keep.pid; pushLog('✨ 合成 ' + keep.name + ' ' + keep.star + '★'); again = true; });
   }
 }
 function rm(p) { var R = S.run; var i = R.board.indexOf(p); if (i >= 0) R.board.splice(i, 1); i = R.bench.indexOf(p); if (i >= 0) R.bench.splice(i, 1); }
@@ -1176,8 +1319,8 @@ function buildWave(w) {
   for (var i = 0; i < n - (bossWave ? 1 : 0); i++) {
     var ter = stageOf(w).ter, terP = pool.norm.filter(function (x) { return DB.mobs[x].e === ter; });
     var id = (terP.length && Math.random() < 0.6) ? terP[Math.floor(Math.random() * terP.length)] : pool.norm[(start + i * 5 + Math.floor(Math.random() * 3)) % pool.norm.length];
-    var ranged = !!(DB.mobs[id].mag && DB.mobs[id].mag.dmg);
-    var rowOrder = ranged ? [0, 1, 2, 3] : [3, 2, 1, 0];
+    var role = mobRole(DB.mobs[id], id);
+    var rowOrder = mobRowOrder(role, false);
     var cell = -1;
     for (var r = 0; r < 4 && cell < 0; r++) for (var t = 0; t < COLS; t++) { var cc = rowOrder[r] * COLS + [2, 3, 1, 4, 0, 5][(t + i) % 6]; if (!taken[cc]) { cell = cc; break; } }
     taken[cell] = 1; out.push(mkMob(id, cell, w, false));
@@ -1194,8 +1337,27 @@ function alive(side) { return S.units.filter(function (u) { return !u.dead && u.
 function foes(u) { return alive(u.side === 'p' ? 'e' : 'p'); }
 function pickTarget(u) {
   if (u.taunt && !u.taunt.dead && u.tauntT > 0) return u.taunt;
-  var fs = foes(u); var best = null, bd = 99;
-  fs.forEach(function (f) { var d = dist(u.cell, f.cell) + (f.hp / f.mhp) * 0.1; if (d < bd) { bd = d; best = f; } });
+  var fs = foes(u); if (!fs.length) return null;
+  // 坦：威脅黏著
+  if (u.mobRole === 'tank' && u._stick && !u._stick.dead && (u._stickT || 0) > 0 && fs.indexOf(u._stick) >= 0) return u._stick;
+  // 刺客（含玩家 dark）：優先後排殘血
+  if (u.assassin || u.mobRole === 'assassin' || u.cls === 'dark' || u.cls === 'mob_assassin') {
+    var back = fs.filter(function (f) {
+      var rr = Math.floor(f.cell / COLS);
+      if (u.side === 'e') return rr >= 5;
+      return rr <= 2;
+    });
+    var pool = back.length ? back : fs.filter(function (f) { return !(CLS[f.cls] && CLS[f.cls].front); });
+    if (!pool.length) pool = fs;
+    return pool.slice().sort(function (a, b) { return (a.hp / a.mhp) - (b.hp / b.mhp) || dist(u.cell, a.cell) - dist(u.cell, b.cell); })[0];
+  }
+  var best = null, bd = 99;
+  fs.forEach(function (f) {
+    var d = dist(u.cell, f.cell) + (f.hp / f.mhp) * (u.mobRole === 'tank' ? 0.05 : 0.1);
+    if (u.mobRole === 'tank' && CLS[f.cls] && CLS[f.cls].front) d -= 0.35;
+    if (d < bd) { bd = d; best = f; }
+  });
+  if (u.mobRole === 'tank' && best) { u._stick = best; u._stickT = 4; }
   return best;
 }
 // ===== v3.10.0 戰績・表現統計 =====
@@ -1224,6 +1386,7 @@ window.abHistoryHtml = abHistoryHtml;
 function hurt(src, tgt, amt, type, opt) {
   if (!tgt || tgt.dead) return 0;
   opt = opt || {};
+  if (tgt && tgt.drT > 0 && tgt.drP) { amt *= (1 - Math.min(0.5, tgt.drP)); }
   if (tgt.invT > 0) { floatTxt(tgt, '閃', '#a78bfa'); return 0; }
   if (tgt.guardT > 0 && tgt.guardBy && !tgt.guardBy.dead && !opt.guarded) { var gp = tgt.guardP || 0.5; hurt(src, tgt.guardBy, amt * gp, type, { noMana: true, guarded: true, crit: opt.crit }); amt *= (1 - gp); }
   var a = amt * (1 + (src && src.buffT > 0 ? src.buffAtk : 0));
@@ -1240,7 +1403,11 @@ function hurt(src, tgt, amt, type, opt) {
   if (src && !opt.noMana) src.mana = Math.min(src.mmana, src.mana + 10 * (src.manaG || 1));
   tgt.mana = Math.min(tgt.mmana, tgt.mana + 5 * (tgt.manaG || 1));
   if (em > 1 && d > 0 && Math.random() < 0.3) floatTxt(tgt, '剋!', '#fde047');
-  if (d > 0) floatTxt(tgt, d, type === 'mag' ? (ELE_COL[(src && src.ele) || 'magic']) : (src && src.side === 'e' ? '#fca5a5' : '#f1f5f9'), crit);
+  if (d > 0) {
+    /* 戰鬥可讀性：物白／魔紫／爆擊黃（爆擊覆蓋物魔色） */
+    var dmgCol = crit ? '#facc15' : (type === 'mag' ? '#c084fc' : '#ffffff');
+    floatTxt(tgt, d, dmgCol, crit);
+  }
   hitFlash(tgt);
   if (tgt.hp <= 0) { tgt.hp = 0; tgt.dead = true; if (src) stOf(src).kills++; killFx(tgt); if (tgt.mob && tgt.side === 'e' && !S.sim) { abDropRoll(tgt); abOrigDrop(tgt); try { if (typeof DE !== 'undefined' && DE && DE.tryKillDrip && DB.mobs[tgt.mid]) DE.tryKillDrip(DB.mobs[tgt.mid]); } catch (e) {} } if (tgt.mob && tgt.side === 'e' && !S.sim && DB.mobs[tgt.mid]) S.waveExp = (S.waveExp || 0) + (DB.mobs[tgt.mid].exp || 0) * AB_EXP.killMul; }
   return d;
@@ -1294,11 +1461,49 @@ var SK = {
   dragon: function (u, t, m) { if (!t) return; inRadius(t.cell, 1, t.side).concat([]).forEach(function (e) { hurt(u, e, u.atk * BAL.sk.dragonBreath * m, 'mag', { noMana: true }); e.burn = { t: 3, d: u.atk * 0.15 * m, src: u }; });
     lineFx(u, t, '#f97316'); },
   illusion: function (u, t, m) { var fs = foes(u).sort(function (a, b) { return b.atk - a.atk; }).slice(0, m >= 2 ? 3 : 2);
-    fs.forEach(function (f) { hurt(u, f, u.atk * BAL.sk.illuHit * m, 'mag', { noMana: true }); f.stun = Math.max(f.stun, 1.5 + (m - 1) * 0.5); floatTxt(f, '暈', '#e879f9'); ringFx(f, '#e879f9', 0); }); },
+    fs.forEach(function (f) { hurt(u, f, u.atk * BAL.sk.illuHit * m, 'mag', { noMana: true }); f.stun = Math.max(f.stun, 1.2 + (m - 1) * 0.4); floatTxt(f, '暈', '#e879f9'); ringFx(f, '#e879f9', 0); }); },
   royal: function (u, t, m) { var al = alive(u.side); var low = al.slice().sort(function (a, b) { return a.hp / a.mhp - b.hp / b.mhp; })[0];
     if (low) heal(u, low, u.atk * BAL.sk.royalHeal * m); al.forEach(function (a) { a.buffAtk = a.buffT > 0 ? Math.max(a.buffAtk || 0, BAL.sk.royalBuff) : BAL.sk.royalBuff; a.buffT = Math.max(a.buffT || 0, 4); }); ringFx(u, '#fde68a', 3); },
-  mob_m: function (u, t, m) { if (t) { inRadius(t.cell, 1, t.side).forEach(function (e) { hurt(u, e, u.atk * 1.6, 'phys', { noMana: true }); }); ringFx(t, '#ef4444', 1); } },
-  mob_r: function (u, t, m) { if (t) projFx(u, t, '#ef4444', function () { inRadius(t.cell, 1, t.side).forEach(function (e) { hurt(u, e, u.atk * 1.5, 'mag', { noMana: true }); }); }); }
+  mob_tank: function (u, t, m) {
+    var boss = isBossUnit(u); var mul = boss ? 2.0 : 1.6;
+    if (t) { inRadius(t.cell, boss ? 2 : 1, t.side).forEach(function (e) { hurt(u, e, u.atk * mul, 'phys', { noMana: true }); }); ringFx(t, '#93c5fd', boss ? 2 : 1); }
+    inRadius(u.cell, boss ? 3 : 2, enemySide(u)).forEach(function (e) { e.taunt = u; e.tauntT = Math.max(e.tauntT || 0, boss ? 3.5 : 2.2); });
+    u.shield += Math.round(u.mhp * (boss ? 0.18 : 0.10) * (m || 1));
+    u.defB = (u.defB || 0) + (boss ? 12 : 6); u.defT = Math.max(u.defT || 0, boss ? 4 : 2.5);
+    floatTxt(u, boss ? '盾牆！' : '盾擊', '#93c5fd'); ringFx(u, '#93c5fd', boss ? 2 : 0);
+  },
+  mob_assassin: function (u, t, m) {
+    var boss = isBossUnit(u); var fs = foes(u); if (!fs.length) return;
+    var back = fs.slice().sort(function (a, b) {
+      var ar = Math.floor(a.cell / COLS), br = Math.floor(b.cell / COLS);
+      var aBack = u.side === 'e' ? (ar >= 5 ? 0 : 1) : (ar <= 2 ? 0 : 1);
+      var bBack = u.side === 'e' ? (br >= 5 ? 0 : 1) : (br <= 2 ? 0 : 1);
+      return aBack - bBack || (a.hp / a.mhp) - (b.hp / b.mhp);
+    })[0];
+    var spot = adjFree(back.cell); if (spot >= 0) u.cell = spot;
+    var dd = hurt(u, back, u.atk * (boss ? 2.6 : 2.0) * (m || 1), 'phys', { noMana: true, crit: true });
+    if (boss && dd > 0) { var extra = fs.filter(function (f) { return f !== back; }).sort(function (a, b) { return a.hp / a.mhp - b.hp / b.mhp; })[0]; if (extra) hurt(u, extra, u.atk * 1.2 * (m || 1), 'phys', { noMana: true, crit: true }); }
+    if (dd > 0) heal(u, u, dd * (boss ? 0.35 : 0.2), { vamp: true });
+    u.invT = Math.max(u.invT || 0, boss ? 1.2 : 0.6);
+    ringFx(back, '#a78bfa', 0); floatTxt(u, boss ? '暗殺！' : '突襲', '#a78bfa');
+  },
+  mob_ranged: function (u, t, m) {
+    var boss = isBossUnit(u);
+    var fs = foes(u).slice().sort(function (a, b) { return dist(u.cell, a.cell) - dist(u.cell, b.cell); });
+    if (!fs.length) return;
+    var targets = boss ? fs.slice(0, Math.min(4, fs.length)) : (t ? [t] : fs.slice(0, 1));
+    var primary = targets[0];
+    var doHit = function () {
+      targets.forEach(function (e, i) {
+        hurt(u, e, u.atk * (boss ? 1.7 : 1.5) * (m || 1) * (i === 0 ? 1 : 0.7), u.dmgType || 'mag', { noMana: true });
+        if (boss) e.burn = { t: 3, d: u.atk * 0.18 * (m || 1), src: u };
+      });
+      if (primary) { inRadius(primary.cell, 1, primary.side).forEach(function (e) { if (targets.indexOf(e) < 0) hurt(u, e, u.atk * 0.7 * (m || 1), u.dmgType || 'mag', { noMana: true }); }); ringFx(primary, '#ef4444', boss ? 2 : 1); }
+    };
+    if (S.sim) doHit(); else projFx(u, primary, '#ef4444', doHit);
+  },
+  mob_m: function (u, t, m) { return SK.mob_tank(u, t, m); },
+  mob_r: function (u, t, m) { return SK.mob_ranged(u, t, m); }
 };
 function cleanse(a) { if (!a) return; a.stun = 0; a.burn = null; a.slowT = 0; a.missP = 0; floatTxt(a, '淨化', '#7dd3fc'); }
 var USK = {
@@ -1314,7 +1519,7 @@ var USK = {
   k_last: function (u, t, m) { u.lastStand = KNIGHT_POOL.k_last; SK.knight(u, t, m * 0.5); },
   u_isolde: function (u, t, m) { alive(u.side).forEach(function (a) { a.shield += Math.round(a.mhp * BAL.sk.isoldeShield * m); }); SK.knight(u, t, m * 0.6); },
   u_aurelia: function (u, t, m) { alive(u.side).forEach(function (a) { heal(u, a, u.atk * 1.8 * m); a.buffAtk = a.buffT > 0 ? Math.max(a.buffAtk || 0, 0.3) : 0.3; a.buffT = Math.max(a.buffT || 0, 5); }); ringFx(u, '#fde68a', 6); },
-  u_morgana: function (u, t, m) { foes(u).forEach(function (f) { f.stun = Math.max(f.stun, 1.2 * m); hurt(u, f, u.atk * 0.9 * m, 'mag', { noMana: true }); ringFx(f, '#e879f9', 0); }); },
+  u_morgana: function (u, t, m) { var st = Math.min(1.0 * m, 1.2); foes(u).forEach(function (f) { f.stun = Math.max(f.stun || 0, st); hurt(u, f, u.atk * 0.9 * m, 'mag', { noMana: true }); ringFx(f, '#e879f9', 0); }); },
   u_skaldi: function (u, t, m) { var es = inRadius(u.cell, 1, enemySide(u)); if (!es.length && t) es = [t]; var tot = 0;
     es.forEach(function (e) { tot += hurt(u, e, u.atk * 2.4 * m, 'phys', { noMana: true }); }); heal(u, u, tot * 0.3); ringFx(u, '#cbd5e1', 1); }
 };
@@ -1340,8 +1545,8 @@ function applySkillQual(u, t, m) {
       if (ps >= 4) foes(u).slice(0, 3).forEach(function (f) { f.slowT = Math.max(f.slowT || 0, 1.5); });
       if (ps >= 5 && t) hurt(u, t, u.atk * 0.4 * m, 'phys', { noMana: true });
     } else if (cls === 'illusion') {
-      foes(u).slice(0, 3).forEach(function (f) { f.stun = Math.max(f.stun || 0, (f.stun || 0) + 0.6); });
-      if (ps >= 4) { var more = foes(u).sort(function (a, b) { return b.atk - a.atk; })[3]; if (more) { hurt(u, more, u.atk * BAL.sk.illuHit * m * 0.8, 'mag', { noMana: true }); more.stun = Math.max(more.stun, 1.2); } }
+      foes(u).slice(0, 3).forEach(function (f) { f.stun = Math.max(f.stun || 0, (f.stun || 0) + 0.35); });
+      if (ps >= 4) { var more = foes(u).sort(function (a, b) { return b.atk - a.atk; })[3]; if (more) { hurt(u, more, u.atk * BAL.sk.illuHit * m * 0.8, 'mag', { noMana: true }); more.stun = Math.max(more.stun, 0.8); } }
       if (ps >= 5) foes(u).forEach(function (f) { f.mana = Math.max(0, (f.mana || 0) - 20); });
     } else if (cls === 'warrior') {
       if (t) inRadius(t.cell, 1, t.side).forEach(function (e) { e.slowT = Math.max(e.slowT || 0, 2); });
@@ -1416,6 +1621,37 @@ function applySkillQual(u, t, m) {
     if (!S.sim) floatTxt(u, '專武' + ws + '★', '#c084fc');
   }
 }
+// ab.20261028e：專屬三件套套裝質變（固定旗標；唔改 skillTargetFlash／skillCallout）
+function applySetFlags(u, t, m) {
+  if (!u || !u.setOn || !u.setFlag) return;
+  var f = u.setFlag; m = m || 1;
+  if (f === 'isoldeDr') { u.drT = Math.max(u.drT || 0, 3); u.drP = Math.max(u.drP || 0, 0.2); if (!S.sim) floatTxt(u, '銀誓−傷', '#93c5fd'); }
+  else if (f === 'petraTaunt' && t) { t._tauntExtra = Math.max(t._tauntExtra || 0, 0.5); }
+  else if (f === 'aureliaHeal' || f === 'soraCleanse') { /* heal path 另 hook；呢度標淨化意圖 */ u._setCleanse = true; }
+  else if (f === 'celineBuff') { alive(u.side).forEach(function (a) { a.atkBuffT = Math.max(a.atkBuffT || 0, (a.atkBuffT || 0) + 1); }); }
+  else if (f === 'morganaSet') {
+    foes(u).forEach(function (x) { if (x.stun > 0) x.stun = Math.max(x.stun, x.stun * 1.2); });
+    var top = foes(u).slice().sort(function (a, b) { return b.atk - a.atk; })[0];
+    if (top) hurt(u, top, u.atk * 0.5 * m, 'mag', { noMana: true });
+  }
+  else if (f === 'echoMiss' && t) { t.missT = Math.max(t.missT || 0, 3); t.missP = Math.max(t.missP || 0, 0.1); }
+  else if (f === 'skaldiRange' && t) { inRadius(t.cell, 2, t.side).forEach(function (e) { if (e !== t) hurt(u, e, u.atk * 0.35 * m, 'phys', { noMana: true }); }); }
+  else if (f === 'brennaAs') { if (u.hp < u.mhp * 0.5) u.asBuffT = Math.max(u.asBuffT || 0, 3); }
+  else if (f === 'pyriaBurn' && t) { if (t.burn) t.burn.stack = Math.min(2, (t.burn.stack || 1) + 1); }
+  else if (f === 'terraeSlow' && t) { t.slowT = Math.max(t.slowT || 0, 2); }
+  else if (f === 'ignisBurn' || f === 'mageBurn') { if (t) inRadius(t.cell, 0, t.side).forEach(function (e) { e.burn = { t: 3, d: u.atk * 0.12 * m, src: u }; }); }
+  else if (f === 'umbraDouble' && t) { hurt(u, t, u.atk * 0.45 * m, 'phys', { noMana: true, crit: true }); }
+  else if (f === 'nyxAs' || f === 'darkNextCrit') { u.nextCrit = true; u.asBuffT = Math.max(u.asBuffT || 0, 2); }
+  else if (f === 'ignaraFear' && t) { inRadius(t.cell, 1, t.side).forEach(function (e) { if (e.burn) e.burn.t = Math.max(e.burn.t, 4); e.fearT = Math.max(e.fearT || 0, 1.2); }); }
+  else if (f === 'cinderSlow' && t) { inRadius(t.cell, 1, t.side).forEach(function (e) { e.slowT = Math.max(e.slowT || 0, 1.5); }); }
+  else if (f === 'warMana') { /* warrior cleave mana — tick 補 */ u._setWarMana = true; }
+  else if (f === 'elfSplash' && t && Math.random() < 0.25) {
+    inRadius(t.cell, 1, t.side).forEach(function (e) { if (e !== t) hurt(u, e, u.atk * 0.4 * m, 'phys', { noMana: true }); });
+  }
+  else if (f === 'illuVuln' && t) { if (t.stun > 0) t.vulnT = Math.max(t.vulnT || 0, 2); t.vulnP = Math.max(t.vulnP || 0, 0.1); }
+  else if (f === 'dragonStackBurn' && t) { inRadius(t.cell, 1, t.side).forEach(function (e) { if (e.burn) e.burn.stack = Math.min(2, (e.burn.stack || 1) + 1); }); }
+  else if (f === 'healShield') { u._setHealShield = 0.08; }
+}
 function castSkill(u, isMainManual) {
   stOf(u).casts++;
   var t = pickTarget(u);
@@ -1423,13 +1659,23 @@ function castSkill(u, isMainManual) {
   if (!u.isMain && u.hero) m *= (PERM_SKILL_MUL[u.permStar] || 1);   // 局外永久星 ≥3 技能倍率
   // 專武星 ≥3 額外技能倍率（質變以外嘅數值層）
   if (!u.isMain && u.hero && (u.exclStar || 0) >= 3) m *= ({ 3: 1.08, 4: 1.14, 5: 1.22 }[u.exclStar] || 1);
-  var name = u.uniq ? u.uniq.n : (SKILL_NAME[u.cls] || '技能');
-  try { (u.uniq ? USK[u.uniq.fn] : SK[u.cls] || SK.mob_m)(u, t, m); } catch (e) { console.warn('[ab] skill', e); }
+  // ab.20261028i：士兵／基本兵技能 ×0.85（只 N 級；由 resolveSkill 閘）
+  var _skApi = window.AB_SKILL_API, _resolved = null;
+  try { if (_skApi && _skApi.resolve) _resolved = _skApi.resolve(u); } catch (eR) { _resolved = null; }
+  if (_resolved && _resolved.soldier) m *= (_skApi.SOLDIER_MUL || 0.85);
+  var name = (_resolved && _resolved.name) ? _resolved.name : (u.uniq ? u.uniq.n : (SKILL_NAME[u.cls] || (u.mob ? (isBossUnit(u) ? ({ tank: '盾牆轟擊', assassin: '暗殺突襲', ranged: '災厄轟擊' }[u.mobRole] || '頭目技') : (SKILL_NAME['mob_' + (u.mobRole || 'tank')] || '重擊')) : '技能')));
+  /* 戰鬥可讀性：紅閃目標格＋出招名（純視覺重疊，唔加 wait／唔改 tick） */
+  try { skillTargetFlash(u, t); } catch (eFlash) {}
+  try { skillCallout(u, name, m); } catch (eCall) {}
+  try {
+    if (_resolved && typeof _resolved.fn === 'function') _resolved.fn(u, t, m);
+    else (u.uniq ? USK[u.uniq.fn] : SK[u.cls] || SK.mob_m)(u, t, m);
+  } catch (e) { console.warn('[ab] skill', e); }
   try { applySkillQual(u, t, m); } catch (e2) { console.warn('[ab] skillQual', e2); }
+  try { applySetFlags(u, t, m); } catch (eSet) { console.warn('[ab] setFlag', eSet); }
   // 暗影永久星吸血加強（喺技能本體之後補）
   if (u._permDarkLs && u.cls === 'dark') { /* 標記已用；實際吸血喺 SK.dark 內用 BAL；呢度補少量治療 */ heal(u, u, u.atk * 0.15 * m, { vamp: true }); u._permDarkLs = 0; }
-  floatTxt(u, name, '#fbbf24', false, true);
-  pushLog((u.side === 'p' ? '' : '敵 ') + u.name + '：' + name + ((u.permStar || 0) >= 3 ? '✦' : '') + ((u.exclStar || 0) >= 3 ? '⚔' : ''));
+  pushLog((u.side === 'p' ? '' : '敵 ') + u.name + '：' + name + ((u.permStar || 0) >= 3 ? '✦' : '') + ((u.exclStar || 0) >= 3 ? '⚔' : '') + (u.setOn ? '🛡' : '') + (_resolved && _resolved.soldier ? '⁻' : ''));
   if (u.isMain || u.uniq) shake();
 }
 // ---------- 羈絆（職業 2/4/6＋元素 2/3；可疊加）----------
@@ -1511,7 +1757,25 @@ function tick(dt) {
     if (u.stun > 0) { u.stun -= dt; return; }
     var t = pickTarget(u); if (!t) return;
     if (!u.isMain && u.mmana > 0 && u.mana >= u.mmana) { u.mana = 0; castSkill(u); return; }
-    if (dist(u.cell, t.cell) > u.rng) { u.cdM -= dt; if (u.cdM <= 0) { stepToward(u, t); u.cdM = 0.45; } return; }
+    if (u.mobRole === 'tank' && u._stickT > 0) u._stickT -= dt;
+    var dtt = dist(u.cell, t.cell);
+    // 遠距：已在射程內唔再往前擠；太近（<2）嘗試後退一格
+    if (u.mobRole === 'ranged' && dtt <= u.rng) {
+      if (dtt < 2) {
+        u.cdM -= dt;
+        if (u.cdM <= 0) {
+          var A = rc(u.cell), B = rc(t.cell), best = -1, bd = dtt;
+          for (var dr = -1; dr <= 1; dr++) for (var dc = -1; dc <= 1; dc++) {
+            if (!dr && !dc) continue; var r = A.r + dr, c = A.c + dc;
+            if (r < 0 || r > 7 || c < 0 || c >= COLS) continue; var cc = r * COLS + c; if (occ(cc)) continue;
+            var d2 = Math.max(Math.abs(r - B.r), Math.abs(c - B.c));
+            if (d2 > bd) { bd = d2; best = cc; }
+          }
+          if (best >= 0) u.cell = best;
+          u.cdM = 0.45;
+        }
+      }
+    } else if (dtt > u.rng) { u.cdM -= dt; if (u.cdM <= 0) { stepToward(u, t); u.cdM = 0.45; } return; }
     u.cdA -= dt;
     if (u.cdA <= 0) { u.cdA = 1 / (u.as * (u.slowT > 0 ? 0.8 : 1) * (u.rageAs && u.hp < u.mhp * 0.5 ? 1 + u.rageAs : 1));
       if (u.rng > 1) projFx(u, t, u.ele ? ELE_COL[u.ele] : (u.dmgType === 'mag' ? '#ce93d8' : '#e2e8f0'), function () { hurt(u, t, u.atk, u.dmgType); onHit(u, t); });
@@ -1579,11 +1843,11 @@ function buildUi() {
     '<button id="ab-pause" class="ab-btn">⏸ 暫停</button><button id="ab-speed" class="ab-btn">×1</button><button id="ab-close" class="ab-btn ab-x">🏠 返回大廳</button></div>' +
     '<div class="ab-main ab-lay3">' +
     '<div class="ab-side ab-left"><div class="ab-h">🔗 羈絆</div><div id="ab-syn" class="ab-syn"></div>' +
-    '<div class="ab-bar"><button id="ab-start" class="ab-btn ab-go">開打 ▶</button><button id="ab-mainsk" class="ab-btn ab-msk" style="display:none">主角技能</button><label class="ab-auto" style="display:none"><input type="checkbox" id="ab-automain"> 自動</label></div><div id="ab-hint" class="ab-hint"></div>' +
     '<div class="ab-bar ab-tools"><button id="ab-basicbtn" class="ab-btn ab-mini">⚙ 基本兵</button><button id="ab-wikibtn" class="ab-btn ab-mini">📖 小百科</button><button id="ab-campbtn" class="ab-btn ab-mini">🏕 營地</button></div>' +
     '<div class="ab-h">📊 表現統計 <span class="ab-mtabs"><button class="ab-btn ab-mini" data-mtab="dmg">傷害</button><button class="ab-btn ab-mini" data-mtab="taken">承受</button><button class="ab-btn ab-mini" data-mtab="heal">治療</button></span></div><div id="ab-meter" class="ab-meter"></div>' +
     '<div class="ab-h">📜 戰報</div><div id="ab-log" class="ab-log"></div></div>' +
-    '<div class="ab-boardwrap"><div id="ab-board" class="ab-board"></div><div id="ab-fx" class="ab-fx"></div><div id="ab-banner" class="ab-banner hidden"></div></div>' +
+    '<div class="ab-boardwrap"><div id="ab-board" class="ab-board"></div><div id="ab-fx" class="ab-fx"></div><div id="ab-banner" class="ab-banner hidden"></div>' +
+    '<div class="ab-board-go"><button id="ab-start" class="ab-btn ab-go">開打 ▶</button><button id="ab-mainsk" class="ab-btn ab-msk" style="display:none">主角技能</button><label class="ab-auto" style="display:none"><input type="checkbox" id="ab-automain"> 自動</label><div id="ab-hint" class="ab-hint"></div></div></div>' +
     '<div id="ab-result" class="ab-result hidden"><div class="ab-rbox"><h2 id="ab-rtitle"></h2><div id="ab-rtxt" class="ab-dim"></div><div class="ab-h">⭐ 今局表現（全局累計）</div><div id="ab-rmeter" class="ab-meter ab-rmeter"></div><div class="ab-bar"><button id="ab-r-lobby" class="ab-btn ab-go">🏠 返回大廳</button><button id="ab-r-again" class="ab-btn">↻ 再打一局</button></div></div></div>' +
     '<div class="ab-side ab-right"><div class="ab-h">🔍 棋子資料 <small class="ab-dim">（點／滑過棋子）</small></div><div id="ab-detail" class="ab-detail"></div></div>' +
     '<div class="ab-bottom"><div class="ab-benchrow"><div class="ab-itemcol"><div class="ab-h">🎒 裝備 <small class="ab-dim">唔分職業・拖去棋子</small><button id="ab-rcbtn" class="ab-btn ab-mini">⚒ 合成表</button></div><div id="ab-items" class="ab-items"></div><div id="ab-itemtip" class="ab-itemtip"></div></div>' +
@@ -1658,10 +1922,22 @@ function pushLog(t) { if (S.sim) return; S.log.unshift(t); S.log.length = Math.m
 // ===== v3.10.0 棋子詳情（數值／技能／裝備）=====
 function skillInfo(u) {
   var K = BAL.sk, P = function (x) { return Math.round(x * 100) + '%'; }, X = function (x) { return (Math.round(x * 100) / 100) + '×攻'; };
-  if (u.mob) return { n: u.cls === 'mob_r' ? '遠程轟擊' : '重擊', d: '目標及周圍 1 格 ' + (u.cls === 'mob_r' ? '1.5×攻魔傷' : '1.6×攻物傷') };
+  if (u.mob) {
+    var boss = isBossUnit(u), role = u.mobRole || (u.cls === 'mob_ranged' || u.cls === 'mob_r' ? 'ranged' : (u.cls === 'mob_assassin' ? 'assassin' : 'tank'));
+    if (role === 'ranged') return { n: boss ? '災厄轟擊' : '遠程轟擊', d: boss ? '多目標轟擊＋燃燒（最多 4 隻）' : '目標及周圍濺射 1.5×攻' + (u.dmgType === 'mag' ? '魔傷' : '物傷') };
+    if (role === 'assassin') return { n: boss ? '暗殺突襲' : '突襲', d: boss ? '躍向後排殘血 2.6×攻必爆＋追加一擊＋吸血' : '躍向後排殘血 2.0×攻必爆＋吸血' };
+    return { n: boss ? '盾牆轟擊' : '盾擊', d: boss ? '範圍物傷＋嘲諷＋大護盾' : '目標周圍物傷＋嘲諷＋自盾' };
+  }
   if (u.uniq) { var KP = KNIGHT_POOL[u.uniq.fn]; var UD = { h_sora: '全隊回復 ' + X(K.soraHeal) + '＋淨化最低 HP 隊友', h_lumina: '最低 HP 隊友回復 2.2×攻＋10% HP 護盾＋淨化', h_nerys: '全隊 4 秒持續回復（每秒 0.25×攻）＋對 2 敵 0.8×攻魔傷',
       u_aurelia: '全隊回復 1.8×攻＋攻擊 +30%，5 秒', u_morgana: '全體敵人暈 1.2 秒＋0.9×攻魔傷', u_skaldi: '周圍 1 格敵人 2.4×攻物傷，回復傷害 30%', u_isolde: '全隊護盾 ' + P(K.isoldeShield) + ' HP＋嘲諷（0.6 倍）' };
     return enrichSkillInfo(u, { n: u.uniq.n, d: (KP && KP.d && u.uniq.fn !== 'u_isolde' ? KP.d : UD[u.uniq.fn] || ''), uniq: true }); }
+  // ab.20261028i：優先用技能池 resolve（士兵 N×0.85／英雄按稀有度）
+  try {
+    if (window.AB_SKILL_API && AB_SKILL_API.info) {
+      var pooled = AB_SKILL_API.info(u);
+      if (pooled && pooled.n) return enrichSkillInfo(u, { n: pooled.n, d: pooled.d || '', uniq: !!pooled.uniq });
+    }
+  } catch (ePool) {}
   var D = { knight: '半徑 2 敵人嘲諷 ' + K.knightTaunt + ' 秒＋自身護盾 ' + P(K.knightShield) + ' HP', mage: '敵人最密集處火球 ' + X(K.mageAoe) + ' 魔傷（周圍 ×' + K.mageFall + '）；3 隻以上法師逐隻 ×' + K.mageStack,
     elf: u.elfEle === 'water' ? '治療最低 HP 隊友 ' + X(K.waterHeal) + '＋淨化，再射 0.5 倍水箭' : '向最近 3 敵各射 ' + X(K.elfShot) + ' 物傷', warrior: '目標周圍 1 格 ' + X(K.warCleave) + ' 物傷',
     dark: '突襲遠處殘血敵人 ' + X(K.darkHit) + '（必爆），吸血 ' + P(K.darkLs) + '（滿血轉護盾），無敵 ' + K.darkInv + ' 秒', dragon: '目標周圍 1 格 ' + X(K.dragonBreath) + ' 魔傷＋燃燒 3 秒（每秒 0.15×攻）',
@@ -1687,14 +1963,15 @@ function enrichSkillInfo(u, base) {
     if (wt) extra.push('<span style="color:#c084fc">⚔ 專武' + u.exclStar + '★質變：' + wt + '</span>');
     else if (u.exclName) extra.push('<span style="color:#c084fc">⚔ 專武' + u.exclStar + '★已覺醒</span>');
   } else if (!u.isMain && u.hero && u.defId && window.AB_EXCL && AB_EXCL[u.defId]) {
-    if (u.exclOn) extra.push('<span class="ab-dim">專武「' + (u.exclName || AB_EXCL[u.defId].n) + '」' + (u.exclStar || 0) + '★（3★ 起技能質變）</span>');
+    if (u.exclOn) extra.push('<span class="ab-dim">專武「' + (u.exclName || (AB_EXCL[u.defId]||{}).n) + '」' + (u.exclStar || 0) + '★' + (u.exclArmStar != null ? '・甲' + (u.exclArmStar||0) + '★・飾' + (u.exclAccStar||0) + '★' : '') + '</span>');
+    if (u.setOn) extra.push('<span style="color:#6ee7b7">🛡 套裝：' + (u.setText || '已啟動') + '</span>');
     else if (window.AB_WPN && AB_WPN.owned && AB_WPN.owned(u.defId)) extra.push('<span class="ab-dim">專武未裝備</span>');
-    else if (u.rarity === 'SR' || u.rarity === 'SSR') extra.push('<span class="ab-dim">未有專武（專武轉蛋抽取）</span>');
+    else if (window.AB_SET && AB_SET.enabled) extra.push('<span class="ab-dim">專屬三件套：大廳裝備轉蛋</span>');
   }
   if (extra.length) base.d = (base.d || '') + '<br>' + extra.join('<br>');
   return base;
 }
-function skillMul(u) { var m = STAR_MUL[u.star] || 1; if (u.isMain) m *= 1.3; if (u.heroSk) m *= BAL.heroSk; if (u.campMul) m *= u.campMul; if (u.sp) m *= u.sp; if (!u.isMain && u.hero) m *= (PERM_SKILL_MUL[u.permStar] || 1); return m; }
+function skillMul(u) { var m = STAR_MUL[u.star] || 1; if (u.isMain) m *= 1.3; if (u.heroSk) m *= BAL.heroSk; if (u.campMul) m *= u.campMul; if (u.sp) m *= u.sp; if (!u.isMain && u.hero) m *= (PERM_SKILL_MUL[u.permStar] || 1); if (!u.isMain && u.hero && (u.exclStar || 0) >= 3) m *= ({ 3: 1.08, 4: 1.14, 5: 1.22 }[u.exclStar] || 1); try { var api = window.AB_SKILL_API, r = api && api.resolve && api.resolve(u); if (r && r.soldier) m *= (api.SOLDIER_MUL || 0.85); } catch (e) {} return m; }
 function gearListFor(u) { var ab = ensureAb(); if (!ab || !ab.gearBag || u.side !== 'p' || u.isMain) return null;
   // 基本兵／士兵唔著局外裝（ab.20261024a）
   if (!u.hero || (u.pc && u.pc.basic)) return null;
@@ -1706,14 +1983,15 @@ function gearListFor(u) { var ab = ensureAb(); if (!ab || !ab.gearBag || u.side 
   var sets = AB_SETS.filter(function (st) { return cnt[st.id] >= 2; }).map(function (st) { return '<li>🔗 ' + st.n + ' ' + cnt[st.id] + ' 件：' + fxText(setBonus(st, cnt[st.id])) + '</li>'; });
   return { key: key, rows: rows, sets: sets, sm: sm }; }
 function detailHtml(u) {
-  var C = CLS[u.cls] || {}, sk = skillInfo(u), m = skillMul(u), r1 = function (x) { return Math.round(x * 100) / 100; };
-  var h = '<div class="ab-dt-hd"><img src="' + u.por + '" onerror="this.style.display=\'none\'" alt=""><div><b>' + u.name + '</b> ' + '★'.repeat(u.star || 1) + (u.hero && (u.permStar || 0) > 0 ? ' <small class="ab-gold">永久' + u.permStar + '★</small>' : '') + '<br><small>' + (u.side === 'e' ? '敵方' : '我方') + ' · ' + (C.lb || (u.mob ? '怪物' : '')) + (u.rarity ? ' · ' + u.rarity : '') + (u.ele ? ' · ' + ELE_ICON[u.ele] + ELE_NAME[u.ele] : '') + (u.isMain ? ' · 主角' : '') + '</small></div></div>';
+  var C = CLS[u.cls] || MOB_CLS[u.cls] || {}, sk = skillInfo(u), m = skillMul(u), r1 = function (x) { return Math.round(x * 100) / 100; };
+  var roleTag = (u.mob && u.mobRole) ? ((MOB_ROLE_IC[u.mobRole] || '') + (MOB_ROLE_LB[u.mobRole] || '')) : '';
+  var h = '<div class="ab-dt-hd"><img src="' + u.por + '" onerror="this.style.display=\'none\'" alt=""><div><b>' + u.name + '</b> ' + '★'.repeat(u.star || 1) + (u.hero && (u.permStar || 0) > 0 ? ' <small class="ab-gold">永久' + u.permStar + '★</small>' : '') + '<br><small>' + (u.side === 'e' ? '敵方' : '我方') + ' · ' + (roleTag || C.lb || (u.mob ? '怪物' : '')) + (u.mob && isBossUnit(u) ? ' · 頭目' : '') + (u.rarity ? ' · ' + u.rarity : '') + (u.ele ? ' · ' + ELE_ICON[u.ele] + ELE_NAME[u.ele] : '') + (u.isMain ? ' · 主角' : '') + '</small></div></div>';
   h += '<table class="ab-dt-t"><tr><td>❤ HP</td><td>' + Math.max(0, Math.round(u.hp)) + ' / ' + u.mhp + '</td><td>⚔ 攻擊</td><td>' + u.atk + (u.buffAtk && u.buffT > 0 ? ' <small>(+' + Math.round(u.buffAtk * 100) + '%)</small>' : '') + '</td></tr>' +
     '<tr><td>⚡ 攻速</td><td>' + r1(u.as) + '/秒</td><td>🎯 射程</td><td>' + u.rng + ' 格</td></tr><tr><td>🛡 物防</td><td>' + u.def + '</td><td>🔰 魔防</td><td>' + u.mr + '</td></tr>' +
     '<tr><td>💧 能量</td><td>' + (u.isMain ? '冷卻 ' + MAIN_CD + ' 秒' : Math.round(u.mana) + ' / ' + u.mmana) + '</td><td>💥 爆擊</td><td>' + Math.round(u.crit * 100) + '%</td></tr>' +
     '<tr><td>✨ 技能</td><td>×' + r1(u.sp) + '</td><td>🧪 傷害</td><td>' + (u.dmgType === 'mag' ? '魔法' : '物理') + '</td></tr>' +
     (u.regen || u.shield0 || u.mana0 ? '<tr><td colspan="4"><small>' + [u.regen ? '每秒回血 ' + r1(u.regen * 100) + '%' : '', u.shield0 ? '開場護盾 ' + Math.round(u.shield0 * 100) + '%' : '', u.mana0 ? '開場能量 ' + Math.round(u.mana0) : ''].filter(Boolean).join('、') + '</small></td></tr>' : '') + '</table>';
-  h += '<div class="ab-dt-sk"><b>' + (u.isMain ? '主角技能' : '技能') + '：' + sk.n + '</b>' + (sk.uniq ? ' <small class="ab-gold">專屬</small>' : '') + '<br><small>' + sk.d + '</small><br><small class="ab-dim">技能倍率 ×' + r1(m) + '（局內星' + (u.isMain ? '×主角' : '') + (u.heroSk ? '×英雄' : '') + (u.campMul ? '×營地' : '') + ((u.permStar || 0) >= 3 ? '×永久' + u.permStar + '★' : '') + '×技能加成）' + (u.isMain ? '' : '；能量滿 ' + u.mmana + ' 施放') + '</small></div>';
+  h += '<div class="ab-dt-sk"><b>' + (u.isMain ? '主角技能' : '技能') + '：' + sk.n + '</b>' + (sk.uniq ? ' <small class="ab-gold">專屬</small>' : '') + ' <small class="ab-gold">總倍率 ×' + r1(m) + '</small><br><small>' + sk.d + '</small><br><small class="ab-dim">倍率構成：局內星' + (u.isMain ? '×主角' : '') + (u.heroSk ? '×英雄1.15' : '') + (u.campMul ? '×營地' : '') + ((u.permStar || 0) >= 3 ? '×永久' + u.permStar + '★' : '') + ((u.exclStar || 0) >= 3 ? '×專武' + u.exclStar + '★' : '') + (u.isMain ? '' : '；能量滿 ' + u.mmana + ' 施放') + '</small></div>';
   if (u.hero && u.defId && (u.rarity === 'SR' || u.rarity === 'SSR' || (window.AB_EXCL && AB_EXCL[u.defId]))) {
     var en = (window.AB_EXCL && AB_EXCL[u.defId]) || null;
     if (en) {
@@ -1786,13 +2064,16 @@ function render() {
   S.units.forEach(function (u) {
     var id = 'abt-' + cssId(u.uid); seen[id] = 1;
     var tk = document.getElementById(id);
-    if (!tk) { tk = el('div', 'ab-tok ' + (u.side === 'p' ? 'ab-p' : 'ab-e') + (u.isMain ? ' ab-mainu' : '') + (u.mob ? ' ab-mob' : '') + (u.tint ? ' ab-tint ab-tint-' + u.tint : ''));
+    if (!tk) { tk = el('div', 'ab-tok ' + (u.side === 'p' ? 'ab-p' : 'ab-e') + (u.isMain ? ' ab-mainu' : '') + (u.mob ? ' ab-mob' : '') + (u.boss ? ' ab-boss' : '') + (u.tint ? ' ab-tint ab-tint-' + u.tint : ''));
       tk.id = id;
-      tk.innerHTML = '<div class="ab-face"><img draggable="false" alt=""></div><span class="ab-ic"></span><span class="ab-stars"></span><div class="ab-hp"><i></i><b></b></div><div class="ab-mp"><i></i></div><div class="ab-tits"></div>';
-      var img = tk.querySelector('img'); img.onerror = function () { this.onerror = null; this.src = u.mob ? 'assets/icons/monsters/' + AB_MOB_ICONS[0] : fbPor(u.cls); }; img.src = u.por;
-      tk.querySelector('.ab-ic').textContent = u.mob ? (u.rng > 1 ? '🎯' : '👊') : (CLS[u.cls] || {}).ic || '';
+      tk.innerHTML = '<div class="ab-face"><img class="ab-face-img" draggable="false" alt="">' + (u.boss ? '<img class="ab-boss-crown" src="' + AB_BOSS_CROWN + '" draggable="false" alt="">' : '') + '</div><span class="ab-ic"></span><span class="ab-stars"></span><div class="ab-hp"><i></i><b></b></div><div class="ab-mp"><i></i></div><div class="ab-tits"></div>';
+      var img = tk.querySelector('.ab-face-img'); img.onerror = function () { this.onerror = null; this.src = u.mob ? AB_MOB_SKULL : fbPor(u.cls); }; img.src = u.por;
+      tk.querySelector('.ab-ic').textContent = u.mob ? (MOB_ROLE_IC[u.mobRole] || (u.rng > 1 ? '🎯' : '👊')) : (CLS[u.cls] || {}).ic || '';
       var eb = el('span', 'ab-ele'); tk.appendChild(eb);
-      if (u.mob) { try { var mm = DB.mobs[u.mid]; tk.title = (typeof getMobDisplayName === 'function' ? getMobDisplayName(mm) : u.name) + (u.race ? ' · ' + u.race : ''); } catch (e) {} }
+      if (u.mob) {
+        var rb = el('span', 'ab-mobrole ab-mr-' + (u.mobRole || 'tank')); rb.textContent = MOB_ROLE_LB[u.mobRole] || ''; tk.appendChild(rb);
+        try { var mm = DB.mobs[u.mid]; tk.title = (typeof getMobDisplayName === 'function' ? getMobDisplayName(mm) : u.name) + (u.mobRole ? ' · ' + (MOB_ROLE_LB[u.mobRole] || '') : '') + (u.race ? ' · ' + u.race : ''); } catch (e) {}
+      }
       tk.querySelector('.ab-face').style.borderColor = u.side === 'e' ? '#ef4444' : ({ N: '#94a3b8', R: '#60a5fa', SR: '#c084fc', SSR: '#fbbf24' }[u.rarity] || '#fff');
       tk.title = u.name; boardEl.appendChild(tk); }
     if (!tk.classList.contains('ab-drag') || !drag) { tk.classList.remove('ab-drag'); var r = cellRect(u.cell); tk.style.left = r.x + 'px'; tk.style.top = r.y + 'px'; }
@@ -1862,6 +2143,48 @@ function floatTxt(u, txt, col, big, skill) { if (S.sim) return;
   if (!fxEl || !S.open || fxEl.childElementCount > 160) return;
   var p = tokPos(u); var d = el('div', 'ab-num' + (big ? ' ab-crit' : '') + (skill ? ' ab-sk' : '')); d.textContent = txt; d.style.color = col || '#fff';
   d.style.left = (p.x + (Math.random() * 16 - 8)) + 'px'; d.style.top = (p.y - p.h * 0.3) + 'px'; fxEl.appendChild(d); setTimeout(function () { d.remove(); }, 900);
+}
+/** 戰鬥可讀性：技能目標格紅閃（純 CSS，0 延遲） */
+function skillTargetFlash(u, t) {
+  if (S.sim || !boardEl) return;
+  var cells = {};
+  function mark(c) { if (c != null && c >= 0) cells[c] = 1; }
+  if (t) mark(t.cell);
+  var cls = u && u.cls;
+  /* AoE／嘲諷：一併閃周邊目標格，保持一致 */
+  if (t && (cls === 'warrior' || cls === 'mage' || cls === 'dragon' || cls === 'mob_m' || cls === 'mob_r' || cls === 'mob_tank' || cls === 'mob_ranged' || cls === 'mob_assassin' || u.uniq)) {
+    try { inRadius(t.cell, 1, t.side).forEach(function (e) { mark(e.cell); }); } catch (eR) {}
+  }
+  if (cls === 'knight' || cls === 'mob_tank') {
+    try { inRadius(u.cell, isBossUnit(u) ? 3 : 2, enemySide(u)).forEach(function (e) { mark(e.cell); }); } catch (eK) {}
+  }
+  if (cls === 'mob_assassin') {
+    try { foes(u).forEach(function (e) { var rr = Math.floor(e.cell / COLS); if ((u.side === 'e' && rr >= 5) || (u.side === 'p' && rr <= 2)) mark(e.cell); }); } catch (eA) {}
+  }
+  if (cls === 'illusion' && t) {
+    try { foes(u).slice(0, 3).forEach(function (e) { mark(e.cell); }); } catch (eI) {}
+  }
+  Object.keys(cells).forEach(function (ck) {
+    var cel = boardEl.querySelector('.ab-cell[data-cell="' + ck + '"]');
+    if (!cel) return;
+    cel.classList.remove('ab-tgt-flash');
+    void cel.offsetWidth;
+    cel.classList.add('ab-tgt-flash');
+    setTimeout(function () { cel.classList.remove('ab-tgt-flash'); }, 300);
+  });
+}
+/** 戰鬥可讀性：出招名 callout（~1s fade，唔改戰鬥速度） */
+function skillCallout(u, name, mul) {
+  if (S.sim || !fxEl || !S.open || !name) return;
+  if (fxEl.childElementCount > 160) return;
+  var p = tokPos(u);
+  var d = el('div', 'ab-sk-call');
+  var mx = (mul != null && isFinite(mul)) ? (' ×' + (Math.round(mul * 100) / 100)) : '';
+  d.textContent = name + mx;
+  d.style.left = p.x + 'px';
+  d.style.top = (p.y - p.h * 0.62) + 'px';
+  fxEl.appendChild(d);
+  setTimeout(function () { d.remove(); }, 1100);
 }
 function projFx(a, b, col, done) {
   if (S.sim) { done && done(); return; }
@@ -1943,7 +2266,7 @@ function abWikiHtml() {
     '<li>每局開始：由 8 大職業揀 <b>4 個</b>做基本部隊；酒館每次出 ' + SHOP_N + ' 格，起始 ' + START_GOLD + '💰，刷新 ' + REROLL + '💰；後備席 ' + BENCH_N + ' 格。</li>' +
     '<li>酒館每格有 ' + P(HERO_SLOT_P) + ' 機會出你自選帶出場嘅英雄（權重 N ' + HERO_W.N + '／R ' + HERO_W.R + '／SR ' + HERO_W.SR + '／SSR ' + HERO_W.SSR + '），其餘係所揀職業嘅通用兵。價錢：通用兵 ' + GEN_COST + '💰，英雄 N ' + HERO_COST.N + '／R ' + HERO_COST.R + '／SR ' + HERO_COST.SR + '／SSR ' + HERO_COST.SSR + '💰。</li>' +
     '<li>棋盤每方 ' + ROWS + '×' + COLS + '；上場人數（主角以外）跟冒險者公會等級：' + AB_BOARD.steps.map(function (s) { return '公會 Lv' + s[0] + '＋ → ' + s[1] + ' 人'; }).join('、') + '（上限 ' + AB_BOARD.max + '）。</li>' +
-    '<li>局內 3 隻相同合成升星（TFT）：技能倍率 ' + Object.keys(STAR_MUL).map(function (k) { return k + '★ ×' + STAR_MUL[k]; }).join('、') + '。稀有度屬性倍率：' + Object.keys(RAR).map(function (k) { return k + ' ×' + RAR[k]; }).join('、') + '。另有局外永久星（碎片突破），≥3★ 再乘技能 ' + [3,4,5].map(function (s) { return s + '★×' + (PERM_SKILL_MUL[s]||1); }).join('/') + '。</li>' +
+    '<li>局內 3 隻相同合成升星（TFT）：技能倍率 ' + Object.keys(STAR_MUL).map(function (k) { return k + '★ ×' + STAR_MUL[k]; }).join('、') + '。<b>基本兵／士兵最高 2★</b>（唔可以合成 3★）；英雄（有 defId、非 basic）可到 3★。稀有度屬性倍率：' + Object.keys(RAR).map(function (k) { return k + ' ×' + RAR[k]; }).join('、') + '。另有局外永久星（碎片突破），≥3★ 再乘技能 ' + [3,4,5].map(function (s) { return s + '★×' + (PERM_SKILL_MUL[s]||1); }).join('/') + '。</li>' +
     '<li>公會 Lv' + AB_GUILD_UNLOCK.N + ' 起可用自己 <b>N</b> 英雄、Lv' + AB_GUILD_UNLOCK.R + ' 起可用 <b>R</b> 英雄取代同職業通用兵（⚙ 基本兵）。</li>' +
     '<li>主角（指揮官）唔上場；佢嘅等級＝帳號等級，靠隊伍擊殺 EXP 升級。</li></ul>');
   // 2 職業
@@ -1960,7 +2283,7 @@ function abWikiHtml() {
   // 4 裝備
   h += sec('gear', '④ 裝備', '<ul><li><b>兩層裝備（簡化）：</b>① 局外永久裝——<b>只限英雄</b>，每隻 6 件（武器／盔甲／頭盔／手套／靴／飾品各一），按稀有度上限 N T' + TIER_CAP.N + '、R T' + TIER_CAP.R + '、SR T' + TIER_CAP.SR + '、SSR T' + TIER_CAP.SSR + '；超過上限唔生效。② 場內裝——英雄同基本兵都可以著，只限今局、只對嗰隻單位生效。</li><li><b>基本兵／士兵一律唔著永久裝／軍械</b>；士兵強度靠職業營地等級（每級 HP/攻/攻速/技能 +' + P(CAMP.perLv) + '）同每局場內元件／合成裝。</li></ul>' +
     tb(['套裝', 'Tier', '定位', '效果'], AB_SETS.map(function (s) { return [s.n, 'T' + s.tier, s.role || '', Object.keys(s.b).map(function (n) { return n + ' 件：' + J(s.b[n]); }).join('<br>')]; })) +
-    '<ul><li>局內裝：每隻 ' + ITEM_SLOTS + ' 格，倉 ' + STASH_MAX + ' 格。<b>唔分職業</b>：任何職業嘅英雄或基本兵都可以裝任何元件／合成裝（例如騎士都可以拎法杖），合成規則同 3 格上限照舊。</li><li>⚔ 專武（SR／SSR）：局外永久裝，大廳專武轉蛋獲得，<b>唔再場內掉落</b>；專武碎片升星，3★ 起技能質變（唔佔場內 3 格）。</li></ul>' +
+    '<ul><li>局內裝：每隻 ' + ITEM_SLOTS + ' 格，倉 ' + STASH_MAX + ' 格。<b>唔分職業</b>。</li><li>🛡 專屬三件套（武器＋防具＋飾品）：大廳專屬裝備轉蛋；同一英雄共用專屬碎片；三件齊開套裝質變（固定數字）。局外永久裝打造／鐵匠已軟停用。</li></ul>' +
     tb(['元件', '效果'], COMP_KEYS.map(function (k) { return [COMP[k].n, COMP[k].d]; })) +
     tb(['合成', '材料', '效果'], RECIPE.map(function (r) { return [r.n, COMP[r.a].n + '＋' + COMP[r.b].n + (r.smith ? '（鐵匠 Lv' + r.smith + '）' : ''), J(r.fx)]; })));
   // 5 據點
@@ -1972,7 +2295,7 @@ function abWikiHtml() {
   // 6 地監
   var dl = []; try { dl = dgBuild().list; } catch (e) {}
   var nst = dl.reduce(function (a, d) { return a + d.stages.length; }, 0);
-  h += sec('dg', '⑥ 地監（' + dl.length + ' 個・' + nst + ' 關）', '<p>每個地區／城一個地監；有王或者獨有怪嘅地圖必定出現。每關最多 ' + AB_DG.curate.maxTypes + ' 種怪。關卡等級要求＝該圖普通怪 p75 等級 − ' + AB_EXP.reqLvFromP75 + '（可用 reqLvOverride 覆寫；說話之島周邊＝Lv' + ((AB_DG.reqLvOverride||{}).talking_island||1) + '）。首選地區：' + (AB_DG.firstRegion || '') + '。</p>' +
+  h += sec('dg', '⑥ 地監（' + dl.length + ' 個・' + nst + ' 關）', '<p>每個地區／城一個地監；有王或者獨有怪嘅地圖必定出現。野外每關 ' + AB_DG.wavesField + ' 波、地監樓層 ' + AB_DG.wavesFloor + ' 波（最後一波頭目）。每關最多 ' + AB_DG.curate.maxTypes + ' 種怪。關卡等級要求＝該圖普通怪 p75 等級 − ' + AB_EXP.reqLvFromP75 + '（可用 reqLvOverride 覆寫；說話之島周邊＝Lv' + ((AB_DG.reqLvOverride||{}).talking_island||1) + '）。首選地區：' + (AB_DG.firstRegion || '') + '。</p>' +
     tb(['地監', '關卡（頭目）'], dl.map(function (d) { return [d.n, d.stages.map(function (s) { var b = (s.boss || []).map(function (id) { return (DB.mobs[id] || {}).n || id; }).join('/'); return s.n + (b ? '〔' + b + '〕' : ''); }).join('、')]; })) +
     '<p>古魯丁地監：4F 頭目四色法師（弱王，目標 Lv40 英雄＋全套安定值初中級裝可挑戰）；7F 頭目死亡騎士（難）。</p>');
   // 7 EXP
@@ -1984,6 +2307,11 @@ function abWikiHtml() {
     '<li>離線：農場關普通怪平均 EXP × ' + AB_EXP.idleKillsPerH + ' 隻/小時 × ' + P(AB_EXP.idleEff) + '；離線 EXP 同樣以隊伍擊殺計，全數畀指揮官；訓練場每級所有英雄每小時得離線隊伍擊殺 EXP 嘅 ' + P(AB_EXP.trainPerLv) + '。</li></ul>');
   // 8 白名單
   var HD = (typeof HERO_DB !== 'undefined' && HERO_DB) || {};
+  h += sec('mobrole', '⑧½ 怪物定位（坦／刺客／遠距・ab.20261028g）', '<ul>' +
+    '<li><b>坦</b>：前排、HP×1.15／攻×0.9；鎖定前排威脅；技能「盾擊」嘲諷＋自盾（頭目＝盾牆轟擊）。</li>' +
+    '<li><b>刺客</b>：敵方後排開場、HP×0.85／攻速高；<b>pickTarget 優先玩家後排殘血</b>；技能「突襲」躍擊（頭目＝暗殺突襲）。</li>' +
+    '<li><b>遠距</b>：後排、射程 3；在射程內唔再往前擠，太近會後退；技能「遠程轟擊」（頭目＝災厄轟擊多目標＋燃）。</li>' +
+    '<li>白名單怪用 <code>AB_MOB_ROLE</code> 覆寫；其他怪按名稱／魔法／脆皮推斷。所有頭目必有能量技能。</li></ul>');
   h += sec('wl', '⑧ 現時開放內容（白名單）', '<ul><li>英雄（' + AB_WL.heroes.length + '）：' + AB_WL.heroes.map(function (id) { var d = HD[id] || {}; return (d.name || id) + (d.rarity ? '（' + d.rarity + '）' : ''); }).join('、') + '</li>' +
     '<li>套裝（' + AB_SETS.length + '）：' + AB_SETS.map(function (s) { return s.n; }).join('、') + '</li><li>合成（' + RECIPE.length + '）：' + RECIPE.map(function (r) { return r.n; }).join('、') + '</li>' +
     '<li>怪物（' + AB_WL.mobs.length + '）／頭目（' + AB_WL.bosses.length + '）：' + AB_WL.mobs.concat(AB_WL.bosses).map(function (id) { return (DB.mobs[id] || {}).n || id; }).join('、') + '</li></ul>');
@@ -1999,16 +2327,17 @@ function abWikiHtml() {
     '<li>卷軸：' + Object.keys(EN.names).map(function (k) { return EN.names[k]; }).join('、') + '。祝福卷成功 +' + EN.blessGain[0] + '～+' + EN.blessGain[1] + '；保護卷：超安定失敗改為強化值 −1，唔會爆。</li>' +
     '<li>每 +1：武器 攻 +' + P(EN.bonus.wpn.atk[0]) + '（超安定 +' + P(EN.bonus.wpn.atk[1]) + '）；防具 物防 +' + P(EN.bonus.arm.def[0]) + '／HP +' + P(EN.bonus.arm.hp[0]) + '（超安定 +' + P(EN.bonus.arm.def[1]) + '／+' + P(EN.bonus.arm.hp[1]) + '）；飾品 主屬性 +' + P(EN.bonus.acc.atk[0]) + '（超安定 +' + P(EN.bonus.acc.atk[1]) + '）。</li>' +
     '<li>來源：通關 ' + P(ES.stageClearP) + '；頭目首通 ' + ES.bossFirst.scrolls + ' 張＋祝福 ' + ES.bossFirst.blessed + '；頭目重複 卷 ' + P(ES.bossRepeat.scrollP) + '／祝福 ' + P(ES.bossRepeat.blessedP) + '／保護 ' + P(ES.bossRepeat.protP) + '；離線每小時 ' + ES.offlinePerH + '；派遣 ' + P(ES.dispatch.scrollP) + '（' + ES.dispatch.rareMin + '+ 英雄 ' + P(ES.dispatch.rareP) + ' 祝福／保護）；鐵匠每級每日 ' + ES.smithPerLv + ' 張；商店 ' + ES.shop.gold.price + '💰（每日 ' + ES.shop.gold.daily + '）、祝福／保護 ' + ES.shop.tickets.price + '🎫（每週各 ' + ES.shop.tickets.weekly + '）。</li></ul>');
-  var KP = KNIGHT_POOL; h += sec('knight', '⑫ 騎士技能池', tb(['技能', '來源', '效果', '使用者'], Object.keys(KP).filter(function (k) { return k !== 'assign'; }).map(function (k) { var who = Object.keys(KP.assign).filter(function (a) { return KP.assign[a] === k; }).map(function (a) { return a === 'basic' ? '基本騎士兵' : (((typeof HERO_DB !== 'undefined' && HERO_DB[a]) || {}).name || a); }).join('、'); return [KP[k].n, KP[k].src, KP[k].d, who || '（預留畀之後嘅騎士英雄）']; })));
+  var KP = KNIGHT_POOL; h += sec('skillpool', '⑪½ 技能池・士兵閘（ab.20261028s）', '<ul><li><b>士兵／基本兵</b>：只用該職業 <b>N 級</b>技能，傷害／效果再 ×0.85（疊加喺局內星倍率上）。唔會帶 R／SR／SSR 技。</li><li><b>英雄</b>：AB_HERO_ASSIGN 逐隻分配 Excel 池技；原有 UNIQUE（銀誓／王權／虛像／北境斧／衝擊／治癒／潮汐等）仍優先。</li><li>定案見 design/skill-diversity-20261028s.md；圖鑑／詳情／出招顯示總倍率。</li></ul>');
+  h += sec('knight', '⑫ 騎士技能池', tb(['技能', '來源', '效果', '使用者'], Object.keys(KP).filter(function (k) { return k !== 'assign'; }).map(function (k) { var who = Object.keys(KP.assign).filter(function (a) { return KP.assign[a] === k; }).map(function (a) { return a === 'basic' ? '基本騎士兵' : (((typeof HERO_DB !== 'undefined' && HERO_DB[a]) || {}).name || a); }).join('、'); return [KP[k].n, KP[k].src, KP[k].d, who || '（預留畀之後嘅騎士英雄）']; })));
   h += sec('healer', '⑬ 治療定位（冇第 9 職業）', '<ul><li>水屬性妖精技能改為「治療＋淨化」：治療最低 HP 隊友 ' + BAL.sk.waterHeal + '×攻，解除暈／燃燒／減速／Miss，再射一發 0.5× 水箭。</li>' +
     '<li>法師英雄分輸出型同治療型：' + Object.keys(UNIQUE).filter(function (k) { return UNIQUE[k].healer; }).map(function (k) { return UNIQUE[k].n + '（' + ((((typeof HERO_DB !== 'undefined' && HERO_DB[k]) || {}).name) || k) + (UNIQUE[k].hidden ? '，未開放' : '') + '）'; }).join('、') + '。潮汐聖詠＝全隊 ' + BAL.sk.soraHeal + '×攻＋淨化最低 HP 隊友。</li>' +
     '<li>防拖局：全部治療 ×' + BAL.heal.mul + '；戰鬥超過 ' + BAL.heal.decayT + ' 秒後治療 ×' + BAL.heal.decayMul + '（重傷）。</li></ul>');
   h += sec('lobby', '⑭ 公會大廳・乾淨放置層', '<ul><li>大廳：中間係英雄立繪（優先 assets/hero-full/；冇就用肖像）；左右箭咀／滑動切換，撳一下睇詳情；左側入口：地監／營地（鐵匠＋派遣合併）／招募／圖鑑／百科／戰績；紅點＝有嘢可以收／升級。未有英雄撳中央提示會去招募。</li><li><b>自走棋放置層已唔再有城鎮 NPC</b>：底部舊碼頭同舊公會掣已移除；唔再經大廳開 interactNPC 舊商人。</li><li>強化／打造／派遣用左側「🏕 營地」或底部「🏰 據點」；英雄換局外裝喺「🎫 招募」名冊。</li><li>底部：上次／農場、🌙 領離線、🏰 據點、⚔ 出發、🎯 重點營地。舊遊戲左右欄（#col-left／#col-right）同戰鬥日誌已隱藏，中央大廳撐滿。</li></ul>');
-  h += sec('layout', '⑮ 棋局畫面・棋子詳情', '<ul><li>佈局（聯盟戰棋式）：上＝回合／關卡；左欄＝羈絆、開打／主角技能、戰報；中＝棋盤；右欄＝棋子資料；下＝裝備欄＋後備欄（' + BENCH_N + ' 格），最底 5 格酒館（左金幣／上場數，右刷新 ' + chaReroll() + '💰）。窄螢幕會改為上下排列。</li>' +
+  h += sec('layout', '⑮ 棋局畫面・棋子詳情', '<ul><li>佈局（聯盟戰棋式）：上＝回合／關卡；左欄＝羈絆、戰報；中＝棋盤（中＝開打／下一回合）；右欄＝棋子資料；下＝裝備欄＋後備欄（' + BENCH_N + ' 格），最底 5 格酒館（左金幣／上場數，右刷新 ' + chaReroll() + '💰）。窄螢幕會改為上下排列。</li>' +
     '<li>棋子詳情：滑過或者點棋盤／後備欄任何棋子（敵人都得），右欄會列出最終數值（HP、攻擊、攻速、射程、物防、魔防、能量、爆擊、技能倍率；已計星級、營地、局外裝、套裝同場內裝備）。</li>' +
     '<li>技能：顯示技能名、效果同實際倍率（星級×' + STAR_MUL[2] + '/' + STAR_MUL[3] + '、主角 ×1.3、英雄 ×' + BAL.heroSk + '、營地、技能加成）。</li>' +
     '<li>裝備：場內裝備（最多 ' + ITEM_SLOTS + ' 件）逐件列加成；局外套裝逐件列 T 級、強化 +N 同實際加成（已計強化同鐵匠），湊夠件數會列出套裝效果；超出稀有度上限嘅會標示唔生效。裝備欄每件都直接顯示效果，滑過會喺下面列全文。</li></ul>');
-  h += sec('tft', '⑯ 操作（聯盟戰棋式）', '<ul><li>佈局：上＝回合／關卡資訊；左＝羈絆（滑過睇效果）、開打、戰報；中＝棋盤；右＝棋子資料（點／滑過棋子）；下＝裝備欄＋後備欄，再下面係 5 格酒館，左邊金幣同上場數，右邊刷新。</li>' +
+  h += sec('tft', '⑯ 操作（聯盟戰棋式）', '<ul><li>佈局：上＝回合／關卡資訊；左＝羈絆（滑過睇效果）、戰報；中＝棋盤（中＝開打／下一回合）；右＝棋子資料（點／滑過棋子）；下＝裝備欄＋後備欄，再下面係 5 格酒館，左邊金幣同上場數，右邊刷新。</li>' +
     '<li>快捷鍵：D 刷新酒館、E 賣出滑鼠指住嘅棋子、W 將指住嘅棋子上場／落後備、Space 暫停。</li>' +
     '<li>賣出：棋盤或者後備欄任何一隻都可以賣（拖去酒館位置會顯示賣價；或者揀中再撳「賣出已選」）。賣價＝買入總價 ×80%（最少 1💰），身上場內裝備退返裝備欄。戰鬥中只可以賣後備欄。</li>' +
     '<li>滿位買嘢：棋盤同後備欄都滿嘅時候撳酒館卡唔會強迫賣棋盤；佢會標住嗰張卡，等你自己揀賣邊隻（棋盤或後備），賣完自動買入。如果買咗會湊夠 3 隻同星（計棋盤＋後備，連埋酒館入面同款一齊買），滿位都照買，一次過買齊並即刻合成。上場數（例如 4/4）係公會等級決定嘅上限；棋盤有空格都唔代表可以再放。</li>' +
@@ -2016,7 +2345,7 @@ function abWikiHtml() {
   h += sec('fix1022', '⑰ 大廳／結算修正', '<ul><li>每局完咗會彈出結算：「🏠 返回大廳」或者「↻ 再打一局」。揀職業畫面左上角有「🏠 返回大廳」；同一時間只會有一個揀職業畫面。</li><li>棋局右上角「🏠 返回大廳」隨時可以撳；打到一半會先問你確認（放棄今局，已攞獎勵照計）。</li><li>左側「🏕 營地」同底部「🏰 據點」都開職業營地・鐵匠・派遣（合併入口）。</li><li>ab.20261026a／b：NPC 碼頭移除；舊左右欄／戰鬥日誌隱藏；右側功能欄收走；離線改底部「領離線」。</li></ul>');
   h += sec('nomain', '⑱ 主角唔再上場', '<ul><li>主角唔再以棋子身份上棋盤，亦冇「主角技能 [Q]」；改為上場上限全部 +1：' + AB_BOARD.steps.map(function (x) { return '公會 Lv' + x[0] + '＋ ' + x[1] + ' 隻'; }).join('、') + '（最多 ' + AB_BOARD.max + '）。</li><li>失敗條件改為：我方棋子全滅。</li><li>魅力（王族）嘅全隊攻擊加成、酒館刷新折扣、英雄出現率照舊以全隊被動計。</li><li>舊有主角升級學技能（技能分頁、隊伍技能設定、「魔法傳授者」NPC）喺自走棋版已移除。</li></ul>');
   h += sec('heropage', '⑲ 英雄頁（名冊）', '<ul><li>大廳「招募」頁直接顯示你擁有嘅英雄頭像格（頭像、名、稀有度、職業、等級、星）。</li><li>點頭像：上面展開詳情：全身立繪、自走棋最終數值（已計等級、局外裝、套裝、鐵匠）、技能效果同倍率、已穿局外裝逐件加成；「🎒 換局外裝」直接用套裝背包穿／卸。</li><li>「招募事務所（抽卡）」掣保留喺頁頂。</li></ul>');
-  h += sec('excl', '⑳ 專武（SR／SSR・ab.20261026f）', '<ul><li>每個 SR／SSR 英雄有一把專屬武器（專武）。N／R 冇專武。</li><li><b>獲取</b>：大廳「⚔ 專武轉蛋」用專武券抽取（頭目約 25% 掉專武券；首次通關送約一半招募券數量嘅專武券；亦可用金幣買／3 張英雄招募券換 1 張專武券）。</li><li><b>唔再</b>喺局內酒館／頭目掉落專武。</li><li><b>碎片分開</b>：重複抽專武 →「專武碎片」（存喺該把武器）；英雄重複 →「英雄碎片」。兩者<b>唔互通</b>，唔可以互相兌換。</li><li>專武升星：專武碎片突破，費用約 15→250（SSR ×1.35），上限 5★。屬性隨星略升。</li><li><b>3★ 起技能質變</b>（同英雄永久 3★ 質變可疊加）：戰鬥行為同詳情說明會變。4／5★ 再強化。</li><li>擁有後預設裝備喺對應英雄；可喺名冊／專武頁卸下。</li><li>招募頁「⚔ 專武庫」一覽擁有專武同專武碎片（篩選：全部／已裝備／未滿星）。</li></ul>');
+  h += sec('excl', '⑳ 專屬三件套（ab.20261028e）', '<ul><li>每個開放英雄有武器＋防具＋飾品。士兵冇專屬裝。</li><li><b>武器</b>：沿用專武（3★+ 技能質變）。<b>防具／飾品</b>：只數值（每★ +8%）。</li><li><b>套裝質變</b>：三件齊裝備先開；固定效果，唔跟平均★ ×1.15／×1.3。</li><li><b>碎片</b>：每英雄一個共用「專屬碎片」池（武器／防具／飾品升星同一池）；同英雄碎片完全分開。</li><li>局外永久裝打造／鐵匠 UI 已停用（主線改專屬三件套）。</li></ul>');
   h += sec('starup', '㉑ 酒館升星提示', '<ul><li>酒館卡如果買咗會湊夠 3 隻同星（計棋盤＋後備欄，連環升星都計），張卡會發金色／彩虹光，角落顯示「⬆★★」或「⬆★★★」（升到幾多星）。</li><li>已經有 1 隻同款（1★）嘅卡會有淡色外框，提示湊緊對。</li><li>滑鼠指住酒館卡時，棋盤／後備欄上會一齊合成嘅棋子都會發光。</li><li>合成升星嗰下，升星嘅棋子會爆一下星光。</li></ul>');
   h += sec('stats', '㉒ 表現統計・戰績', '<ul><li>棋局左欄「📊 表現統計」：每隻我方棋子嘅傷害（物理／魔法／真傷分色）、承受（含護盾吸收）、治療；戰鬥中即時更新，打完保留到下一場開打。滑過橫條睇擊殺、技能施放次數。</li><li>結算畫面列出全局累計表現，第一名標 ⭐ MVP。</li><li>戰績：大廳「📜 戰績」掣，保存最近 30 局：時間、地監／關卡、去到第幾波、勝負、陣容（頭像＋星）、MVP、獎勵；頂部顯示總場數、勝率同每個地監最佳紀錄。</li><li>護盾「施放者」暫時唔計入治療欄，護盾只以「承受方吸收」計。</li></ul>');
   h += sec('shophover', '㉓ 酒館卡預覽', '<ul><li>滑鼠指住酒館卡：右欄「棋子資料」會顯示「🛒 預覽（未買）」：費用、職業羈絆（上場人數變化同下一個門檻）、元素、最終數值、技能效果同倍率；英雄會列出專屬裝備同已穿局外裝加成。</li><li>如果買咗會升星，預覽直接用升星後嘅星級計數值。滑走就返回之前揀中／指住嘅棋子。</li><li>卡本身亦有簡短提示（數值＋技能）。</li></ul>');
@@ -2027,17 +2356,33 @@ function abWikiHtml() {
   h += sec('gddisp', '㉘ 公會委託板派遣', '<ul><li>委託板派遣同「自動編成」會用你擁有嘅英雄（名冊入面嘅英雄）做成員；揀好英雄撳「派遣」就會出發，唔會再彈「成員資料已變更」。</li><li>成員頭像：英雄用佢自己嘅肖像；冇肖像就用職業圖示。</li></ul>');
   h += sec('origdrop', '㉙ 原作怪物掉落（製作材料）', '<ul><li>自走棋每殺一隻敵方怪，都會用返原作嗰隻怪嘅掉落表（MOB_DROPS、黑暗妖精武器／水晶、龍騎士、戰士印記、記憶水晶表，同埋銀礦石規則）各自判定，物品直接入背包（同原作一樣），製作 NPC 嘅材料就係咁嚟。</li><li>材料、藥水等：原機率 ×' + AB_ECON.mobDropMul + '；武器／防具／飾品／遺物：原機率 ×' + AB_ECON.mobGearDropMul + '。試煉道具照原作規則（未接試煉唔掉）。</li><li>戰報每波結算一次：「📦 原作掉落：…」（裝備粗體）。示範模式唔掉。</li><li>離線：按農場關嘅怪，以每小時 ' + AB_ECON.offWavesPerH + ' 波 × ' + AB_ECON.offMobsPerWave + ' 隻 × ' + Math.round(AB_ECON.offDropShare * 100) + '% 計算材料（唔包裝備）。</li></ul>');
   h += sec('nosrc', '㊙ 製作材料來源補充', '<ul><li>💎 <b>元素石</b>：妖精森林地區關卡（妖精森林周邊、眠龍洞穴 1–3 樓）每殺 ' + AB_EFOREST_STONE + '%×' + AB_ECON.mobDropMul + '（≈' + (AB_EFOREST_STONE * AB_ECON.mobDropMul) + '%，每小時約 ' + Math.round(300 * AB_EFOREST_STONE * AB_ECON.mobDropMul / 100) + ' 粒）；農場設喺嗰度離線都有。賽巴斯、娜魯帕、妖精 NPC 用。</li><li>布料（白／紅／藍）：原作奇岩「愛弗特」布料商人；騎士面甲：原作奇岩「范吉爾」防具商人（自走棋大廳已唔再開舊商店 NPC；暫靠原作掉落／之後再補來源）。</li><li><b>暫未有掉落來源（之後加）</b>：' + Object.keys(AB_NO_SRC).filter(function (k) { return !/pride_pass_[2-9]/.test(k); }).map(function (k) { var nm = (DB.items[k] || {}).n || k; if (/pride_pass/.test(k)) nm = '傲慢之塔傳送符 11F–91F'; var nn = AB_NO_SRC[k]; try { Object.keys(DB.towns || {}).forEach(function (t) { (DB.towns[t].npcs || []).forEach(function (x) { if (x && x.id === AB_NO_SRC[k]) nn = x.n || nn; }); }); } catch (e) {} return nm + '（' + nn + '）'; }).join('、') + '。製作介面會喺呢啲材料旁邊標示。純白的萬能藥暫時只可以經洗點回收。</li></ul>');
-  h += sec('wpngacha', '㉟ 專武轉蛋・碎片（ab.20261027a）', '<ul><li>入口：大廳左側「⚔ 專武」或招募頁「專武轉蛋」。</li><li>池：已開放白名單內嘅 SR／SSR 專武；權重約 SR 80%／SSR 20%，SSR 保底 40 抽。</li><li>重複 → 該把專武嘅「專武碎片」（SR +15／SSR +25），只用嚟專武突破。</li><li>英雄碎片只用嚟英雄突破；介面會分開標「英雄碎片」「專武碎片」。</li><li><b>專武十連／單抽會彈結果</b>（就算今 session 未抽過英雄都睇到）；大廳招募頁有「⚔ 專武庫」可睇擁有專武、星、專武碎片、已裝備與否。</li></ul>');
+  h += sec('wpngacha', '㉟ 專屬裝備轉蛋・職業卷（ab.20261028o）', '<ul><li>入口：名冊「🛡 專屬裝備轉蛋」。槽位權重 武器40%／防具30%／飾品30%。</li><li>全池保底：60 抽必出一件 SSR 英雄專屬件。</li><li>職業英雄券：只抽該職業開放英雄；職業裝備券：只抽該職業英雄專屬三件。</li><li><b>取得</b>：頭目／通關機率掉落（跟今場出戰職業；頭目：裝備券＝ticketP×50%、英雄券＝ticketP×25%；通關：裝備券＝ticketP×15%）；或用 5 專屬裝備券／3 英雄招募券兌換自選職業卷。</li><li>新號一次過：70 英雄券 + 30 專屬裝備券（=_apExcl100Granted）。</li><li>重複 → 該英雄共用專屬碎片。</li></ul>');
   h += sec('gachares', '㉚ 招募結果彈窗', '<ul><li>單抽／十連之後會彈出結果清單：每隻英雄嘅頭像、名、稀有度（顏色：N 灰／R 藍／SR 紫／SSR 金）、職業。</li><li>SSR、SR 排最前並且發光；第一次抽到標「NEW」入名冊；重複會寫轉咗幾多碎片（N 5／R 10／SR 20／SSR 30，加落嗰隻英雄度）。</li><li>專武轉蛋同樣彈結果（專武名、對應英雄、NEW／重複→專武碎片 +N）；SSR 排頭。</li><li>撳「確定」或者彈窗外面關閉。</li></ul>');
   h += sec('gearsets', '㉛ 局外裝 T1–T5・套裝一覽', '<p><b>套裝背包用法（新）：</b>背包按套裝分組（T 級高嘅排先），每組一行顯示套裝名、T 級、擁有部位 x/6 同件數效果；每件裝備係一格細卡（部位圖示、+強化、邊個著緊）。滑鼠指住睇簡介，撳一下喺上面詳情框睇完整說明，再喺度強化／揀裝備者（英雄頁就係穿戴／卸下）；再撳一次或 ✕ 收埋。上面篩選：全部／未穿／各部位／T 級。</p><p>每件局外裝＝部位基礎數值 × T 級 × 強化倍率 × 鐵匠加成（每級 +' + Math.round(SMITH.gearPerLv * 100) + '%）。同一隻<b>英雄</b>穿同一套裝夠件數就觸發效果（超出稀有度 T 上限嘅件唔計；基本兵／士兵唔著局外裝）。滑鼠指住背包件會顯示詳細；營地背包同英雄換裝頁每件下面都有寫。T4/T5 而家未開放（要新地監材料）。</p>' + abSetTableHtml());
   h += sec('cleanlobby', '㉜ 乾淨放置層（ab.20261026b）', '<ul><li>自走棋 AB_ONLY 大廳：左側地監／營地（鐵匠＋派遣合併，派遣／可升級有紅點）／招募／圖鑑／百科／戰績；底部上次／農場＋🌙 領離線、🏰 據點、⚔ 出發、🎯 重點營地；中間英雄立繪。</li><li>已移除：NPC 碼頭、大廳右側功能欄、舊公會（只開舊 clan tab）掣、經 openHub／interactNPC 入舊城鎮商人。</li><li><b>隱藏舊左右欄</b>（#col-left、#col-right）同戰鬥／世界日誌，#col-center 撐滿；HTML 結構保留唔刪。</li><li>舊 DB.towns NPC 資料同存檔結構保留唔郁；只係 UI 冇入口。</li></ul>');
-  h += sec('permqual', '㉞ 英雄永久星技能質變（ab.20261026f）', '<ul><li>名冊英雄永久星 ≥3：技能說明出現「✦ 英雄N★質變」；戰鬥施放時有額外效果（職業預設 + 專屬覆寫）。</li><li>同時裝備 ≥3★ 專武：再疊「⚔ 專武N★質變」。</li><li>兩者同局內 TFT 合成星、永久星倍率一齊計。</li></ul>');
-  h += sec('codex', '㉝ 英雄圖鑑（ab.20261026c）', '<ul><li>大廳左側「📒 圖鑑」：對照 HERO_DB 同白名單，睇邊啲<strong>已開放</strong>英雄仲未抽到。</li><li>摘要：已開放 X／Y 已擁有、未抽到 Z（琥珀色）。</li><li>篩選：全部已開放｜未抽到｜已擁有｜按職業｜按稀有度（SSR→N）；可勾「顯示未開放」（灰階剪影＋鎖＋名「？？？」）。</li><li>擁有判定：帳號名冊 <code>player.heroes</code> 嘅 raw defId（唔用示範名冊、唔因白名單過濾而漏計）。</li><li>已開放未擁有唔好同「未開放」撈亂——未開放唔入抽卡池，預設唔算欠收集。</li><li>點已開放格可睇 blurb／lore／技能（未抽到都睇得）。</li></ul>');
+    h += sec('maptier', '㊿ 地圖階・獎勵（ab.20261028h §F）', '<ul><li><b>定階規則</b>：有頭目→跟頭目強度定 Tier；無頭目→跟普通怪。弱圖有強王（港口 Kurt、巴風特）抬 Tier＋獎勵。</li><li>獎勵：T1 金1.2／材1.1／券8% … T4 3.0／2.6／<b>20%</b>；T5 4.2／3.8／<b>28%</b>。</li><li>傲慢之塔：10 段濃縮層；古魯丁下層死亡騎士 T5；銀騎士 T1。</li></ul>');
+h += sec('permqual', '㉞ 英雄永久星技能質變（ab.20261026f）', '<ul><li>名冊英雄永久星 ≥3：技能說明出現「✦ 英雄N★質變」；戰鬥施放時有額外效果（職業預設 + 專屬覆寫）。</li><li>同時裝備 ≥3★ 專武：再疊「⚔ 專武N★質變」。</li><li>兩者同局內 TFT 合成星、永久星倍率一齊計。</li></ul>');
+  h += sec('skdiv', '㉟½ 技能多元化（ab.20261028s）', '<ul><li>來源：Excel「技能池」；士兵只 N×0.85；英雄按 <code>AB_HERO_ASSIGN</code> 逐隻分配，UNIQUE 優先。</li><li>已開放英雄 skills 陣列同戰鬥技唔再成組複製；同職同稀有度至少簽名技或組合唔同。</li><li>倍率顯示：棋子詳情／圖鑑／名冊管理／出招 callout（總倍率 ×m；本體係數見技能說明）。</li><li>局內星 1/1.5/2.25；永久星 ≥3 → 1.15/1.3/1.5；專武 ≥3 → 1.08/1.14/1.22；非 UNIQUE 英雄再 ×1.15。</li></ul>');
+  h += sec('codex', '㉝ 英雄圖鑑（ab.20261028r）', '<ul><li>大廳左側「📒 圖鑑」：對照 HERO_DB 同白名單，睇邊啲<strong>已開放</strong>英雄仲未抽到，同埋<strong>碎片夠可突破</strong>嘅已擁有英雄。</li><li>摘要：已開放 X／Y 已擁有、未抽到 Z（琥珀色）、可突破 N（琥珀色閃爍）。</li><li>篩選：全部已開放｜未抽到｜已擁有｜可突破｜按職業｜按稀有度（SSR→N）；可勾「顯示未開放」（灰階剪影＋鎖＋名「？？？」）。</li><li>可突破格：琥珀邊＋持續 pulse／glow，「可突破」標蓋過 ✔；側欄圖鑑紅點＝未抽數＋可突破數。</li><li>點可突破格 → 詳情顯示「⭐ 碎片足夠（而家 X／要 Y）」＋「⭐ 去突破」→ 開英雄管理面板做碎片突破。</li><li>擁有判定：帳號名冊 <code>player.heroes</code> 嘅 raw defId（唔用示範名冊）。突破判定：<code>AP.canBreakthrough</code>／<code>heroCanBreakthrough</code>。</li><li>已開放未擁有唔好同「未開放」撈亂——未開放唔入抽卡池，預設唔算欠收集。</li></ul>');
   return '<div class="ab-h">📖 自走棋小百科 · v3.10.0 <button class="ab-btn ab-mini" id="ab-wiki-x">✕</button></div>' + h;
 }
 function openWiki() { var old = document.getElementById('ab-wiki'); if (old) { old.remove(); return; }
   var box = el('div', 'ab-wiki'); box.id = 'ab-wiki'; box.innerHTML = abWikiHtml(); document.body.appendChild(box);
   box.querySelector('#ab-wiki-x').onclick = function () { box.remove(); }; }
+
+// ab.20261028i：畀 74-skill-pool.js 用嘅戰鬥 helper（IIFE 內函式）
+(function exposeSkillApi() {
+  var api = window.AB_SKILL_API = window.AB_SKILL_API || {};
+  api.ctx = {
+    hurt: hurt, heal: heal, foes: foes, alive: alive, inRadius: inRadius, enemySide: enemySide,
+    ringFx: ringFx, floatTxt: floatTxt, projFx: projFx, lineFx: lineFx, dist: dist, adjFree: adjFree,
+    cleanse: cleanse, BAL: BAL, SK: SK, USK: USK, S: S, COLS: COLS, CLS: CLS, isBossUnit: isBossUnit,
+    pickTarget: pickTarget, pushLog: pushLog
+  };
+  api.SKILL_NAME = SKILL_NAME;
+  api.UNIQUE = UNIQUE;
+})();
+
 window.abOpenWiki = openWiki;
 window.abEnch = { enchant: gearEnchant, buy: enShopBuy, rate: enRate, info: enInfo, cap: enCap, scrolls: scrolls, mul: enMul };
 window.abHome = { open: openAb, pick: function () { openAb(); openClassPick(); }, camps: function () { openCampUi(null); }, campsIn: function (host) { openCampUi(host); }, wiki: openWiki, collectIdle: collectIdle, collectCamps: collectCamps, dispatchCollect: dispatchCollect,
